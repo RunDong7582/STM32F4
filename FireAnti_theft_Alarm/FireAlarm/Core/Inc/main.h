@@ -29,12 +29,14 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
+#include "stm32f4xx_ll_i2c.h"
+#include "stm32f4xx_ll_usart.h"
+#include "stm32f4xx_ll_rcc.h"
 #include "stm32f4xx_ll_system.h"
 #include "stm32f4xx_ll_gpio.h"
 #include "stm32f4xx_ll_exti.h"
 #include "stm32f4xx_ll_bus.h"
 #include "stm32f4xx_ll_cortex.h"
-#include "stm32f4xx_ll_rcc.h"
 #include "stm32f4xx_ll_utils.h"
 #include "stm32f4xx_ll_pwr.h"
 #include "stm32f4xx_ll_dma.h"
@@ -67,22 +69,26 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define L1_Pin LL_GPIO_PIN_8
-#define L1_GPIO_Port GPIOE
-#define L2_Pin LL_GPIO_PIN_9
-#define L2_GPIO_Port GPIOE
-#define L3_Pin LL_GPIO_PIN_10
-#define L3_GPIO_Port GPIOE
-#define L4_Pin LL_GPIO_PIN_11
-#define L4_GPIO_Port GPIOE
-#define L5_Pin LL_GPIO_PIN_12
-#define L5_GPIO_Port GPIOE
-#define L6_Pin LL_GPIO_PIN_13
-#define L6_GPIO_Port GPIOE
-#define L7_Pin LL_GPIO_PIN_14
-#define L7_GPIO_Port GPIOE
-#define L8_Pin LL_GPIO_PIN_15
-#define L8_GPIO_Port GPIOE
+#define K2_Pin LL_GPIO_PIN_2
+#define K2_GPIO_Port GPIOE
+#define K3_Pin LL_GPIO_PIN_3
+#define K3_GPIO_Port GPIOE
+#define K4_Pin LL_GPIO_PIN_4
+#define K4_GPIO_Port GPIOE
+#define K5_Pin LL_GPIO_PIN_5
+#define K5_GPIO_Port GPIOE
+#define K6_Pin LL_GPIO_PIN_6
+#define K6_GPIO_Port GPIOE
+#define LCD_BL_Pin LL_GPIO_PIN_10
+#define LCD_BL_GPIO_Port GPIOB
+#define T_CS_Pin LL_GPIO_PIN_12
+#define T_CS_GPIO_Port GPIOB
+#define LCD_RST_Pin LL_GPIO_PIN_13
+#define LCD_RST_GPIO_Port GPIOD
+#define BEEP_Pin LL_GPIO_PIN_4
+#define BEEP_GPIO_Port GPIOB
+#define K1_Pin LL_GPIO_PIN_1
+#define K1_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 
