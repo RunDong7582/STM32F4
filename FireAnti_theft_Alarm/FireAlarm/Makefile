@@ -242,4 +242,22 @@ clean:
 #######################################
 -include $(wildcard $(BUILD_DIR)/*.d)
 
+# Add a target to generate the list of changed files
+.PHONY: changed-files
+changed-files:
+	./generate-changed-files.sh
+
+# Get the list of changed files
+CHANGED_FILES := $(shell cat changed_files.list)
+
+# Build only the changed files
+partial-build: changed-files $(CHANGED_FILES:.c=.o)
+	$(CC) $(PARTIAL_BUILD_OBJECTS) $(LDFLAGS) -o $(BUILD_DIR)/$(TARGET).elf
+	$(SZ) $(BUILD_DIR)/$(TARGET).elf
+	$(HEX) $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex
+	$(BIN) $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).bin
+
+
+
+
 # *** EOF ***

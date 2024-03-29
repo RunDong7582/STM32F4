@@ -1,4 +1,4 @@
-ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 1
+ARM GAS  F:\msys64\tmp\ccRWFODq.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 1
   28:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** ----------------------------------------------------------------------
   29:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** File        : LCDConf_FlexColor_Template.c
   30:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** Purpose     : Display controller configuration (single layer)
-ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 2
+ARM GAS  F:\msys64\tmp\ccRWFODq.s 			page 2
 
 
   31:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** ---------------------------END-OF-HEADER------------------------------
@@ -118,7 +118,7 @@ ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 1
   85:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c ****   #error Color conversion not defined!
   86:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** #endif
   87:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** #ifndef   GUIDRV_FLEXCOLOR
-ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 3
+ARM GAS  F:\msys64\tmp\ccRWFODq.s 			page 3
 
 
   88:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c ****   #error No display driver defined!
@@ -178,7 +178,7 @@ ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 1
  142:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c ****   }
  143:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** }
  144:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** 
-ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 4
+ARM GAS  F:\msys64\tmp\ccRWFODq.s 			page 4
 
 
  145:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** /*********************************************************************
@@ -238,7 +238,7 @@ ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 1
   54 001a F022     		movs	r2, #240
   55 001c 4FF4A071 		mov	r1, #320
   56 0020 0020     		movs	r0, #0
-ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 5
+ARM GAS  F:\msys64\tmp\ccRWFODq.s 			page 5
 
 
   57 0022 FFF7FEFF 		bl	LCD_SetVSizeEx
@@ -298,7 +298,7 @@ ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 1
  208:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** *      0 - Ok
  209:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** */
  210:Drivers/STemWin/Config/LCDConf_FlexColor_Template.c **** int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
-ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 6
+ARM GAS  F:\msys64\tmp\ccRWFODq.s 			page 6
 
 
   79              		.loc 1 210 74 is_stmt 1 view -0
@@ -358,7 +358,7 @@ ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 1
  110 000e 4FF0FF30 		mov	r0, #-1
  111              	.LVL6:
  112              		.loc 1 231 1 view .LVU18
-ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 7
+ARM GAS  F:\msys64\tmp\ccRWFODq.s 			page 7
 
 
  113 0012 7047     		bx	lr
@@ -372,16 +372,16 @@ ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 1
  122              		.file 5 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\sys\\_stdint.h"
  123              		.file 6 "Drivers/LCD/lcd_drv.h"
  124              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
-ARM GAS  F:\msys64\tmp\ccc07GOh.s 			page 8
+ARM GAS  F:\msys64\tmp\ccRWFODq.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 LCDConf_FlexColor_Template.c
-F:\msys64\tmp\ccc07GOh.s:20     .text.LCD_X_Config:00000000 $t
-F:\msys64\tmp\ccc07GOh.s:26     .text.LCD_X_Config:00000000 LCD_X_Config
-F:\msys64\tmp\ccc07GOh.s:64     .text.LCD_X_Config:00000028 $d
-F:\msys64\tmp\ccc07GOh.s:70     .text.LCD_X_DisplayDriver:00000000 $t
-F:\msys64\tmp\ccc07GOh.s:76     .text.LCD_X_DisplayDriver:00000000 LCD_X_DisplayDriver
+F:\msys64\tmp\ccRWFODq.s:20     .text.LCD_X_Config:00000000 $t
+F:\msys64\tmp\ccRWFODq.s:26     .text.LCD_X_Config:00000000 LCD_X_Config
+F:\msys64\tmp\ccRWFODq.s:64     .text.LCD_X_Config:00000028 $d
+F:\msys64\tmp\ccRWFODq.s:70     .text.LCD_X_DisplayDriver:00000000 $t
+F:\msys64\tmp\ccRWFODq.s:76     .text.LCD_X_DisplayDriver:00000000 LCD_X_DisplayDriver
 
 UNDEFINED SYMBOLS
 GUI_DEVICE_CreateAndLink

@@ -1,0 +1,2942 @@
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"YouYuan_23.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	GUI_FontHZ_YouYuan_23
+  20              		.global	GUI_FontHZYouYuan_23_Prop0020
+  21              		.global	GUI_FontHZYouYuan_23_Propb4f3
+  22              		.global	GUI_FontHZYouYuan_23_Propb5e7
+  23              		.global	GUI_FontHZYouYuan_23_Propbabc
+  24              		.global	GUI_FontHZYouYuan_23_Propbcbc
+  25              		.global	GUI_FontHZYouYuan_23_Propbfc6
+  26              		.global	GUI_FontHZYouYuan_23_Propd1a7
+  27              		.global	GUI_FontHZYouYuan_23_Propd4f8
+  28              		.global	GUI_FontHZYouYuan_23_Propd6dd
+  29              		.global	GUI_FontHZYouYuan_23_Propd7d3
+  30              		.global	GUI_FontHZYouYuan_23_Propd8b9
+  31              		.global	GUI_FontHZYouYuan_23_CharInfo
+  32              		.global	acFontHZYouYuan_23_d8b9
+  33              		.global	acFontHZYouYuan_23_d7d3
+  34              		.global	acFontHZYouYuan_23_d6dd
+  35              		.global	acFontHZYouYuan_23_d4f8
+  36              		.global	acFontHZYouYuan_23_d1a7
+  37              		.global	acFontHZYouYuan_23_bfc6
+  38              		.global	acFontHZYouYuan_23_bcbc
+  39              		.global	acFontHZYouYuan_23_babc
+  40              		.global	acFontHZYouYuan_23_b5e7
+  41              		.global	acFontHZYouYuan_23_b4f3
+  42              		.global	acFontHZYouYuan_23_007f
+  43              		.global	acFontHZYouYuan_23_007e
+  44              		.global	acFontHZYouYuan_23_007d
+  45              		.global	acFontHZYouYuan_23_007c
+  46              		.global	acFontHZYouYuan_23_007b
+  47              		.global	acFontHZYouYuan_23_007a
+  48              		.global	acFontHZYouYuan_23_0079
+  49              		.global	acFontHZYouYuan_23_0078
+  50              		.global	acFontHZYouYuan_23_0077
+  51              		.global	acFontHZYouYuan_23_0076
+  52              		.global	acFontHZYouYuan_23_0075
+  53              		.global	acFontHZYouYuan_23_0074
+  54              		.global	acFontHZYouYuan_23_0073
+  55              		.global	acFontHZYouYuan_23_0072
+  56              		.global	acFontHZYouYuan_23_0071
+  57              		.global	acFontHZYouYuan_23_0070
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 2
+
+
+  58              		.global	acFontHZYouYuan_23_006f
+  59              		.global	acFontHZYouYuan_23_006e
+  60              		.global	acFontHZYouYuan_23_006d
+  61              		.global	acFontHZYouYuan_23_006c
+  62              		.global	acFontHZYouYuan_23_006b
+  63              		.global	acFontHZYouYuan_23_006a
+  64              		.global	acFontHZYouYuan_23_0069
+  65              		.global	acFontHZYouYuan_23_0068
+  66              		.global	acFontHZYouYuan_23_0067
+  67              		.global	acFontHZYouYuan_23_0066
+  68              		.global	acFontHZYouYuan_23_0065
+  69              		.global	acFontHZYouYuan_23_0064
+  70              		.global	acFontHZYouYuan_23_0063
+  71              		.global	acFontHZYouYuan_23_0062
+  72              		.global	acFontHZYouYuan_23_0061
+  73              		.global	acFontHZYouYuan_23_0060
+  74              		.global	acFontHZYouYuan_23_005f
+  75              		.global	acFontHZYouYuan_23_005e
+  76              		.global	acFontHZYouYuan_23_005d
+  77              		.global	acFontHZYouYuan_23_005c
+  78              		.global	acFontHZYouYuan_23_005b
+  79              		.global	acFontHZYouYuan_23_005a
+  80              		.global	acFontHZYouYuan_23_0059
+  81              		.global	acFontHZYouYuan_23_0058
+  82              		.global	acFontHZYouYuan_23_0057
+  83              		.global	acFontHZYouYuan_23_0056
+  84              		.global	acFontHZYouYuan_23_0055
+  85              		.global	acFontHZYouYuan_23_0054
+  86              		.global	acFontHZYouYuan_23_0053
+  87              		.global	acFontHZYouYuan_23_0052
+  88              		.global	acFontHZYouYuan_23_0051
+  89              		.global	acFontHZYouYuan_23_0050
+  90              		.global	acFontHZYouYuan_23_004f
+  91              		.global	acFontHZYouYuan_23_004e
+  92              		.global	acFontHZYouYuan_23_004d
+  93              		.global	acFontHZYouYuan_23_004c
+  94              		.global	acFontHZYouYuan_23_004b
+  95              		.global	acFontHZYouYuan_23_004a
+  96              		.global	acFontHZYouYuan_23_0049
+  97              		.global	acFontHZYouYuan_23_0048
+  98              		.global	acFontHZYouYuan_23_0047
+  99              		.global	acFontHZYouYuan_23_0046
+ 100              		.global	acFontHZYouYuan_23_0045
+ 101              		.global	acFontHZYouYuan_23_0044
+ 102              		.global	acFontHZYouYuan_23_0043
+ 103              		.global	acFontHZYouYuan_23_0042
+ 104              		.global	acFontHZYouYuan_23_0041
+ 105              		.global	acFontHZYouYuan_23_0040
+ 106              		.global	acFontHZYouYuan_23_003f
+ 107              		.global	acFontHZYouYuan_23_003e
+ 108              		.global	acFontHZYouYuan_23_003d
+ 109              		.global	acFontHZYouYuan_23_003c
+ 110              		.global	acFontHZYouYuan_23_003b
+ 111              		.global	acFontHZYouYuan_23_003a
+ 112              		.global	acFontHZYouYuan_23_0039
+ 113              		.global	acFontHZYouYuan_23_0038
+ 114              		.global	acFontHZYouYuan_23_0037
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 3
+
+
+ 115              		.global	acFontHZYouYuan_23_0036
+ 116              		.global	acFontHZYouYuan_23_0035
+ 117              		.global	acFontHZYouYuan_23_0034
+ 118              		.global	acFontHZYouYuan_23_0033
+ 119              		.global	acFontHZYouYuan_23_0032
+ 120              		.global	acFontHZYouYuan_23_0031
+ 121              		.global	acFontHZYouYuan_23_0030
+ 122              		.global	acFontHZYouYuan_23_002f
+ 123              		.global	acFontHZYouYuan_23_002e
+ 124              		.global	acFontHZYouYuan_23_002d
+ 125              		.global	acFontHZYouYuan_23_002c
+ 126              		.global	acFontHZYouYuan_23_002b
+ 127              		.global	acFontHZYouYuan_23_002a
+ 128              		.global	acFontHZYouYuan_23_0029
+ 129              		.global	acFontHZYouYuan_23_0028
+ 130              		.global	acFontHZYouYuan_23_0027
+ 131              		.global	acFontHZYouYuan_23_0026
+ 132              		.global	acFontHZYouYuan_23_0025
+ 133              		.global	acFontHZYouYuan_23_0024
+ 134              		.global	acFontHZYouYuan_23_0023
+ 135              		.global	acFontHZYouYuan_23_0022
+ 136              		.global	acFontHZYouYuan_23_0021
+ 137              		.global	acFontHZYouYuan_23_0020
+ 138              		.section	.rodata.GUI_FontHZYouYuan_23_CharInfo,"a"
+ 139              		.align	2
+ 142              	GUI_FontHZYouYuan_23_CharInfo:
+ 143 0000 0D       		.byte	13
+ 144 0001 0D       		.byte	13
+ 145 0002 02       		.byte	2
+ 146 0003 00       		.space	1
+ 147 0004 00000000 		.word	acFontHZYouYuan_23_0020
+ 148 0008 0D       		.byte	13
+ 149 0009 0D       		.byte	13
+ 150 000a 02       		.byte	2
+ 151 000b 00       		.space	1
+ 152 000c 00000000 		.word	acFontHZYouYuan_23_0021
+ 153 0010 0D       		.byte	13
+ 154 0011 0D       		.byte	13
+ 155 0012 02       		.byte	2
+ 156 0013 00       		.space	1
+ 157 0014 00000000 		.word	acFontHZYouYuan_23_0022
+ 158 0018 0D       		.byte	13
+ 159 0019 0D       		.byte	13
+ 160 001a 02       		.byte	2
+ 161 001b 00       		.space	1
+ 162 001c 00000000 		.word	acFontHZYouYuan_23_0023
+ 163 0020 0D       		.byte	13
+ 164 0021 0D       		.byte	13
+ 165 0022 02       		.byte	2
+ 166 0023 00       		.space	1
+ 167 0024 00000000 		.word	acFontHZYouYuan_23_0024
+ 168 0028 0D       		.byte	13
+ 169 0029 0D       		.byte	13
+ 170 002a 02       		.byte	2
+ 171 002b 00       		.space	1
+ 172 002c 00000000 		.word	acFontHZYouYuan_23_0025
+ 173 0030 0D       		.byte	13
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 4
+
+
+ 174 0031 0D       		.byte	13
+ 175 0032 02       		.byte	2
+ 176 0033 00       		.space	1
+ 177 0034 00000000 		.word	acFontHZYouYuan_23_0026
+ 178 0038 0D       		.byte	13
+ 179 0039 0D       		.byte	13
+ 180 003a 02       		.byte	2
+ 181 003b 00       		.space	1
+ 182 003c 00000000 		.word	acFontHZYouYuan_23_0027
+ 183 0040 0D       		.byte	13
+ 184 0041 0D       		.byte	13
+ 185 0042 02       		.byte	2
+ 186 0043 00       		.space	1
+ 187 0044 00000000 		.word	acFontHZYouYuan_23_0028
+ 188 0048 0D       		.byte	13
+ 189 0049 0D       		.byte	13
+ 190 004a 02       		.byte	2
+ 191 004b 00       		.space	1
+ 192 004c 00000000 		.word	acFontHZYouYuan_23_0029
+ 193 0050 0D       		.byte	13
+ 194 0051 0D       		.byte	13
+ 195 0052 02       		.byte	2
+ 196 0053 00       		.space	1
+ 197 0054 00000000 		.word	acFontHZYouYuan_23_002a
+ 198 0058 0D       		.byte	13
+ 199 0059 0D       		.byte	13
+ 200 005a 02       		.byte	2
+ 201 005b 00       		.space	1
+ 202 005c 00000000 		.word	acFontHZYouYuan_23_002b
+ 203 0060 0D       		.byte	13
+ 204 0061 0D       		.byte	13
+ 205 0062 02       		.byte	2
+ 206 0063 00       		.space	1
+ 207 0064 00000000 		.word	acFontHZYouYuan_23_002c
+ 208 0068 0D       		.byte	13
+ 209 0069 0D       		.byte	13
+ 210 006a 02       		.byte	2
+ 211 006b 00       		.space	1
+ 212 006c 00000000 		.word	acFontHZYouYuan_23_002d
+ 213 0070 0D       		.byte	13
+ 214 0071 0D       		.byte	13
+ 215 0072 02       		.byte	2
+ 216 0073 00       		.space	1
+ 217 0074 00000000 		.word	acFontHZYouYuan_23_002e
+ 218 0078 0D       		.byte	13
+ 219 0079 0D       		.byte	13
+ 220 007a 02       		.byte	2
+ 221 007b 00       		.space	1
+ 222 007c 00000000 		.word	acFontHZYouYuan_23_002f
+ 223 0080 0D       		.byte	13
+ 224 0081 0D       		.byte	13
+ 225 0082 02       		.byte	2
+ 226 0083 00       		.space	1
+ 227 0084 00000000 		.word	acFontHZYouYuan_23_0030
+ 228 0088 0D       		.byte	13
+ 229 0089 0D       		.byte	13
+ 230 008a 02       		.byte	2
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 5
+
+
+ 231 008b 00       		.space	1
+ 232 008c 00000000 		.word	acFontHZYouYuan_23_0031
+ 233 0090 0D       		.byte	13
+ 234 0091 0D       		.byte	13
+ 235 0092 02       		.byte	2
+ 236 0093 00       		.space	1
+ 237 0094 00000000 		.word	acFontHZYouYuan_23_0032
+ 238 0098 0D       		.byte	13
+ 239 0099 0D       		.byte	13
+ 240 009a 02       		.byte	2
+ 241 009b 00       		.space	1
+ 242 009c 00000000 		.word	acFontHZYouYuan_23_0033
+ 243 00a0 0D       		.byte	13
+ 244 00a1 0D       		.byte	13
+ 245 00a2 02       		.byte	2
+ 246 00a3 00       		.space	1
+ 247 00a4 00000000 		.word	acFontHZYouYuan_23_0034
+ 248 00a8 0D       		.byte	13
+ 249 00a9 0D       		.byte	13
+ 250 00aa 02       		.byte	2
+ 251 00ab 00       		.space	1
+ 252 00ac 00000000 		.word	acFontHZYouYuan_23_0035
+ 253 00b0 0D       		.byte	13
+ 254 00b1 0D       		.byte	13
+ 255 00b2 02       		.byte	2
+ 256 00b3 00       		.space	1
+ 257 00b4 00000000 		.word	acFontHZYouYuan_23_0036
+ 258 00b8 0D       		.byte	13
+ 259 00b9 0D       		.byte	13
+ 260 00ba 02       		.byte	2
+ 261 00bb 00       		.space	1
+ 262 00bc 00000000 		.word	acFontHZYouYuan_23_0037
+ 263 00c0 0D       		.byte	13
+ 264 00c1 0D       		.byte	13
+ 265 00c2 02       		.byte	2
+ 266 00c3 00       		.space	1
+ 267 00c4 00000000 		.word	acFontHZYouYuan_23_0038
+ 268 00c8 0D       		.byte	13
+ 269 00c9 0D       		.byte	13
+ 270 00ca 02       		.byte	2
+ 271 00cb 00       		.space	1
+ 272 00cc 00000000 		.word	acFontHZYouYuan_23_0039
+ 273 00d0 0D       		.byte	13
+ 274 00d1 0D       		.byte	13
+ 275 00d2 02       		.byte	2
+ 276 00d3 00       		.space	1
+ 277 00d4 00000000 		.word	acFontHZYouYuan_23_003a
+ 278 00d8 0D       		.byte	13
+ 279 00d9 0D       		.byte	13
+ 280 00da 02       		.byte	2
+ 281 00db 00       		.space	1
+ 282 00dc 00000000 		.word	acFontHZYouYuan_23_003b
+ 283 00e0 0D       		.byte	13
+ 284 00e1 0D       		.byte	13
+ 285 00e2 02       		.byte	2
+ 286 00e3 00       		.space	1
+ 287 00e4 00000000 		.word	acFontHZYouYuan_23_003c
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 6
+
+
+ 288 00e8 0D       		.byte	13
+ 289 00e9 0D       		.byte	13
+ 290 00ea 02       		.byte	2
+ 291 00eb 00       		.space	1
+ 292 00ec 00000000 		.word	acFontHZYouYuan_23_003d
+ 293 00f0 0D       		.byte	13
+ 294 00f1 0D       		.byte	13
+ 295 00f2 02       		.byte	2
+ 296 00f3 00       		.space	1
+ 297 00f4 00000000 		.word	acFontHZYouYuan_23_003e
+ 298 00f8 0D       		.byte	13
+ 299 00f9 0D       		.byte	13
+ 300 00fa 02       		.byte	2
+ 301 00fb 00       		.space	1
+ 302 00fc 00000000 		.word	acFontHZYouYuan_23_003f
+ 303 0100 0D       		.byte	13
+ 304 0101 0D       		.byte	13
+ 305 0102 02       		.byte	2
+ 306 0103 00       		.space	1
+ 307 0104 00000000 		.word	acFontHZYouYuan_23_0040
+ 308 0108 0D       		.byte	13
+ 309 0109 0D       		.byte	13
+ 310 010a 02       		.byte	2
+ 311 010b 00       		.space	1
+ 312 010c 00000000 		.word	acFontHZYouYuan_23_0041
+ 313 0110 0D       		.byte	13
+ 314 0111 0D       		.byte	13
+ 315 0112 02       		.byte	2
+ 316 0113 00       		.space	1
+ 317 0114 00000000 		.word	acFontHZYouYuan_23_0042
+ 318 0118 0D       		.byte	13
+ 319 0119 0D       		.byte	13
+ 320 011a 02       		.byte	2
+ 321 011b 00       		.space	1
+ 322 011c 00000000 		.word	acFontHZYouYuan_23_0043
+ 323 0120 0D       		.byte	13
+ 324 0121 0D       		.byte	13
+ 325 0122 02       		.byte	2
+ 326 0123 00       		.space	1
+ 327 0124 00000000 		.word	acFontHZYouYuan_23_0044
+ 328 0128 0D       		.byte	13
+ 329 0129 0D       		.byte	13
+ 330 012a 02       		.byte	2
+ 331 012b 00       		.space	1
+ 332 012c 00000000 		.word	acFontHZYouYuan_23_0045
+ 333 0130 0D       		.byte	13
+ 334 0131 0D       		.byte	13
+ 335 0132 02       		.byte	2
+ 336 0133 00       		.space	1
+ 337 0134 00000000 		.word	acFontHZYouYuan_23_0046
+ 338 0138 0D       		.byte	13
+ 339 0139 0D       		.byte	13
+ 340 013a 02       		.byte	2
+ 341 013b 00       		.space	1
+ 342 013c 00000000 		.word	acFontHZYouYuan_23_0047
+ 343 0140 0D       		.byte	13
+ 344 0141 0D       		.byte	13
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 7
+
+
+ 345 0142 02       		.byte	2
+ 346 0143 00       		.space	1
+ 347 0144 00000000 		.word	acFontHZYouYuan_23_0048
+ 348 0148 0D       		.byte	13
+ 349 0149 0D       		.byte	13
+ 350 014a 02       		.byte	2
+ 351 014b 00       		.space	1
+ 352 014c 00000000 		.word	acFontHZYouYuan_23_0049
+ 353 0150 0D       		.byte	13
+ 354 0151 0D       		.byte	13
+ 355 0152 02       		.byte	2
+ 356 0153 00       		.space	1
+ 357 0154 00000000 		.word	acFontHZYouYuan_23_004a
+ 358 0158 0D       		.byte	13
+ 359 0159 0D       		.byte	13
+ 360 015a 02       		.byte	2
+ 361 015b 00       		.space	1
+ 362 015c 00000000 		.word	acFontHZYouYuan_23_004b
+ 363 0160 0D       		.byte	13
+ 364 0161 0D       		.byte	13
+ 365 0162 02       		.byte	2
+ 366 0163 00       		.space	1
+ 367 0164 00000000 		.word	acFontHZYouYuan_23_004c
+ 368 0168 0D       		.byte	13
+ 369 0169 0D       		.byte	13
+ 370 016a 02       		.byte	2
+ 371 016b 00       		.space	1
+ 372 016c 00000000 		.word	acFontHZYouYuan_23_004d
+ 373 0170 0D       		.byte	13
+ 374 0171 0D       		.byte	13
+ 375 0172 02       		.byte	2
+ 376 0173 00       		.space	1
+ 377 0174 00000000 		.word	acFontHZYouYuan_23_004e
+ 378 0178 0D       		.byte	13
+ 379 0179 0D       		.byte	13
+ 380 017a 02       		.byte	2
+ 381 017b 00       		.space	1
+ 382 017c 00000000 		.word	acFontHZYouYuan_23_004f
+ 383 0180 0D       		.byte	13
+ 384 0181 0D       		.byte	13
+ 385 0182 02       		.byte	2
+ 386 0183 00       		.space	1
+ 387 0184 00000000 		.word	acFontHZYouYuan_23_0050
+ 388 0188 0D       		.byte	13
+ 389 0189 0D       		.byte	13
+ 390 018a 02       		.byte	2
+ 391 018b 00       		.space	1
+ 392 018c 00000000 		.word	acFontHZYouYuan_23_0051
+ 393 0190 0D       		.byte	13
+ 394 0191 0D       		.byte	13
+ 395 0192 02       		.byte	2
+ 396 0193 00       		.space	1
+ 397 0194 00000000 		.word	acFontHZYouYuan_23_0052
+ 398 0198 0D       		.byte	13
+ 399 0199 0D       		.byte	13
+ 400 019a 02       		.byte	2
+ 401 019b 00       		.space	1
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 8
+
+
+ 402 019c 00000000 		.word	acFontHZYouYuan_23_0053
+ 403 01a0 0D       		.byte	13
+ 404 01a1 0D       		.byte	13
+ 405 01a2 02       		.byte	2
+ 406 01a3 00       		.space	1
+ 407 01a4 00000000 		.word	acFontHZYouYuan_23_0054
+ 408 01a8 0D       		.byte	13
+ 409 01a9 0D       		.byte	13
+ 410 01aa 02       		.byte	2
+ 411 01ab 00       		.space	1
+ 412 01ac 00000000 		.word	acFontHZYouYuan_23_0055
+ 413 01b0 0D       		.byte	13
+ 414 01b1 0D       		.byte	13
+ 415 01b2 02       		.byte	2
+ 416 01b3 00       		.space	1
+ 417 01b4 00000000 		.word	acFontHZYouYuan_23_0056
+ 418 01b8 0D       		.byte	13
+ 419 01b9 0D       		.byte	13
+ 420 01ba 02       		.byte	2
+ 421 01bb 00       		.space	1
+ 422 01bc 00000000 		.word	acFontHZYouYuan_23_0057
+ 423 01c0 0D       		.byte	13
+ 424 01c1 0D       		.byte	13
+ 425 01c2 02       		.byte	2
+ 426 01c3 00       		.space	1
+ 427 01c4 00000000 		.word	acFontHZYouYuan_23_0058
+ 428 01c8 0D       		.byte	13
+ 429 01c9 0D       		.byte	13
+ 430 01ca 02       		.byte	2
+ 431 01cb 00       		.space	1
+ 432 01cc 00000000 		.word	acFontHZYouYuan_23_0059
+ 433 01d0 0D       		.byte	13
+ 434 01d1 0D       		.byte	13
+ 435 01d2 02       		.byte	2
+ 436 01d3 00       		.space	1
+ 437 01d4 00000000 		.word	acFontHZYouYuan_23_005a
+ 438 01d8 0D       		.byte	13
+ 439 01d9 0D       		.byte	13
+ 440 01da 02       		.byte	2
+ 441 01db 00       		.space	1
+ 442 01dc 00000000 		.word	acFontHZYouYuan_23_005b
+ 443 01e0 0D       		.byte	13
+ 444 01e1 0D       		.byte	13
+ 445 01e2 02       		.byte	2
+ 446 01e3 00       		.space	1
+ 447 01e4 00000000 		.word	acFontHZYouYuan_23_005c
+ 448 01e8 0D       		.byte	13
+ 449 01e9 0D       		.byte	13
+ 450 01ea 02       		.byte	2
+ 451 01eb 00       		.space	1
+ 452 01ec 00000000 		.word	acFontHZYouYuan_23_005d
+ 453 01f0 0D       		.byte	13
+ 454 01f1 0D       		.byte	13
+ 455 01f2 02       		.byte	2
+ 456 01f3 00       		.space	1
+ 457 01f4 00000000 		.word	acFontHZYouYuan_23_005e
+ 458 01f8 0D       		.byte	13
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 9
+
+
+ 459 01f9 0D       		.byte	13
+ 460 01fa 02       		.byte	2
+ 461 01fb 00       		.space	1
+ 462 01fc 00000000 		.word	acFontHZYouYuan_23_005f
+ 463 0200 0D       		.byte	13
+ 464 0201 0D       		.byte	13
+ 465 0202 02       		.byte	2
+ 466 0203 00       		.space	1
+ 467 0204 00000000 		.word	acFontHZYouYuan_23_0060
+ 468 0208 0D       		.byte	13
+ 469 0209 0D       		.byte	13
+ 470 020a 02       		.byte	2
+ 471 020b 00       		.space	1
+ 472 020c 00000000 		.word	acFontHZYouYuan_23_0061
+ 473 0210 0D       		.byte	13
+ 474 0211 0D       		.byte	13
+ 475 0212 02       		.byte	2
+ 476 0213 00       		.space	1
+ 477 0214 00000000 		.word	acFontHZYouYuan_23_0062
+ 478 0218 0D       		.byte	13
+ 479 0219 0D       		.byte	13
+ 480 021a 02       		.byte	2
+ 481 021b 00       		.space	1
+ 482 021c 00000000 		.word	acFontHZYouYuan_23_0063
+ 483 0220 0D       		.byte	13
+ 484 0221 0D       		.byte	13
+ 485 0222 02       		.byte	2
+ 486 0223 00       		.space	1
+ 487 0224 00000000 		.word	acFontHZYouYuan_23_0064
+ 488 0228 0D       		.byte	13
+ 489 0229 0D       		.byte	13
+ 490 022a 02       		.byte	2
+ 491 022b 00       		.space	1
+ 492 022c 00000000 		.word	acFontHZYouYuan_23_0065
+ 493 0230 0D       		.byte	13
+ 494 0231 0D       		.byte	13
+ 495 0232 02       		.byte	2
+ 496 0233 00       		.space	1
+ 497 0234 00000000 		.word	acFontHZYouYuan_23_0066
+ 498 0238 0D       		.byte	13
+ 499 0239 0D       		.byte	13
+ 500 023a 02       		.byte	2
+ 501 023b 00       		.space	1
+ 502 023c 00000000 		.word	acFontHZYouYuan_23_0067
+ 503 0240 0D       		.byte	13
+ 504 0241 0D       		.byte	13
+ 505 0242 02       		.byte	2
+ 506 0243 00       		.space	1
+ 507 0244 00000000 		.word	acFontHZYouYuan_23_0068
+ 508 0248 0D       		.byte	13
+ 509 0249 0D       		.byte	13
+ 510 024a 02       		.byte	2
+ 511 024b 00       		.space	1
+ 512 024c 00000000 		.word	acFontHZYouYuan_23_0069
+ 513 0250 0D       		.byte	13
+ 514 0251 0D       		.byte	13
+ 515 0252 02       		.byte	2
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 10
+
+
+ 516 0253 00       		.space	1
+ 517 0254 00000000 		.word	acFontHZYouYuan_23_006a
+ 518 0258 0D       		.byte	13
+ 519 0259 0D       		.byte	13
+ 520 025a 02       		.byte	2
+ 521 025b 00       		.space	1
+ 522 025c 00000000 		.word	acFontHZYouYuan_23_006b
+ 523 0260 0D       		.byte	13
+ 524 0261 0D       		.byte	13
+ 525 0262 02       		.byte	2
+ 526 0263 00       		.space	1
+ 527 0264 00000000 		.word	acFontHZYouYuan_23_006c
+ 528 0268 0D       		.byte	13
+ 529 0269 0D       		.byte	13
+ 530 026a 02       		.byte	2
+ 531 026b 00       		.space	1
+ 532 026c 00000000 		.word	acFontHZYouYuan_23_006d
+ 533 0270 0D       		.byte	13
+ 534 0271 0D       		.byte	13
+ 535 0272 02       		.byte	2
+ 536 0273 00       		.space	1
+ 537 0274 00000000 		.word	acFontHZYouYuan_23_006e
+ 538 0278 0D       		.byte	13
+ 539 0279 0D       		.byte	13
+ 540 027a 02       		.byte	2
+ 541 027b 00       		.space	1
+ 542 027c 00000000 		.word	acFontHZYouYuan_23_006f
+ 543 0280 0D       		.byte	13
+ 544 0281 0D       		.byte	13
+ 545 0282 02       		.byte	2
+ 546 0283 00       		.space	1
+ 547 0284 00000000 		.word	acFontHZYouYuan_23_0070
+ 548 0288 0D       		.byte	13
+ 549 0289 0D       		.byte	13
+ 550 028a 02       		.byte	2
+ 551 028b 00       		.space	1
+ 552 028c 00000000 		.word	acFontHZYouYuan_23_0071
+ 553 0290 0D       		.byte	13
+ 554 0291 0D       		.byte	13
+ 555 0292 02       		.byte	2
+ 556 0293 00       		.space	1
+ 557 0294 00000000 		.word	acFontHZYouYuan_23_0072
+ 558 0298 0D       		.byte	13
+ 559 0299 0D       		.byte	13
+ 560 029a 02       		.byte	2
+ 561 029b 00       		.space	1
+ 562 029c 00000000 		.word	acFontHZYouYuan_23_0073
+ 563 02a0 0D       		.byte	13
+ 564 02a1 0D       		.byte	13
+ 565 02a2 02       		.byte	2
+ 566 02a3 00       		.space	1
+ 567 02a4 00000000 		.word	acFontHZYouYuan_23_0074
+ 568 02a8 0D       		.byte	13
+ 569 02a9 0D       		.byte	13
+ 570 02aa 02       		.byte	2
+ 571 02ab 00       		.space	1
+ 572 02ac 00000000 		.word	acFontHZYouYuan_23_0075
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 11
+
+
+ 573 02b0 0D       		.byte	13
+ 574 02b1 0D       		.byte	13
+ 575 02b2 02       		.byte	2
+ 576 02b3 00       		.space	1
+ 577 02b4 00000000 		.word	acFontHZYouYuan_23_0076
+ 578 02b8 0D       		.byte	13
+ 579 02b9 0D       		.byte	13
+ 580 02ba 02       		.byte	2
+ 581 02bb 00       		.space	1
+ 582 02bc 00000000 		.word	acFontHZYouYuan_23_0077
+ 583 02c0 0D       		.byte	13
+ 584 02c1 0D       		.byte	13
+ 585 02c2 02       		.byte	2
+ 586 02c3 00       		.space	1
+ 587 02c4 00000000 		.word	acFontHZYouYuan_23_0078
+ 588 02c8 0D       		.byte	13
+ 589 02c9 0D       		.byte	13
+ 590 02ca 02       		.byte	2
+ 591 02cb 00       		.space	1
+ 592 02cc 00000000 		.word	acFontHZYouYuan_23_0079
+ 593 02d0 0D       		.byte	13
+ 594 02d1 0D       		.byte	13
+ 595 02d2 02       		.byte	2
+ 596 02d3 00       		.space	1
+ 597 02d4 00000000 		.word	acFontHZYouYuan_23_007a
+ 598 02d8 0D       		.byte	13
+ 599 02d9 0D       		.byte	13
+ 600 02da 02       		.byte	2
+ 601 02db 00       		.space	1
+ 602 02dc 00000000 		.word	acFontHZYouYuan_23_007b
+ 603 02e0 0D       		.byte	13
+ 604 02e1 0D       		.byte	13
+ 605 02e2 02       		.byte	2
+ 606 02e3 00       		.space	1
+ 607 02e4 00000000 		.word	acFontHZYouYuan_23_007c
+ 608 02e8 0D       		.byte	13
+ 609 02e9 0D       		.byte	13
+ 610 02ea 02       		.byte	2
+ 611 02eb 00       		.space	1
+ 612 02ec 00000000 		.word	acFontHZYouYuan_23_007d
+ 613 02f0 0D       		.byte	13
+ 614 02f1 0D       		.byte	13
+ 615 02f2 02       		.byte	2
+ 616 02f3 00       		.space	1
+ 617 02f4 00000000 		.word	acFontHZYouYuan_23_007e
+ 618 02f8 06       		.byte	6
+ 619 02f9 06       		.byte	6
+ 620 02fa 01       		.byte	1
+ 621 02fb 00       		.space	1
+ 622 02fc 00000000 		.word	acFontHZYouYuan_23_007f
+ 623 0300 19       		.byte	25
+ 624 0301 19       		.byte	25
+ 625 0302 04       		.byte	4
+ 626 0303 00       		.space	1
+ 627 0304 00000000 		.word	acFontHZYouYuan_23_b4f3
+ 628 0308 19       		.byte	25
+ 629 0309 19       		.byte	25
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 12
+
+
+ 630 030a 04       		.byte	4
+ 631 030b 00       		.space	1
+ 632 030c 00000000 		.word	acFontHZYouYuan_23_b5e7
+ 633 0310 19       		.byte	25
+ 634 0311 19       		.byte	25
+ 635 0312 04       		.byte	4
+ 636 0313 00       		.space	1
+ 637 0314 00000000 		.word	acFontHZYouYuan_23_babc
+ 638 0318 19       		.byte	25
+ 639 0319 19       		.byte	25
+ 640 031a 04       		.byte	4
+ 641 031b 00       		.space	1
+ 642 031c 00000000 		.word	acFontHZYouYuan_23_bcbc
+ 643 0320 19       		.byte	25
+ 644 0321 19       		.byte	25
+ 645 0322 04       		.byte	4
+ 646 0323 00       		.space	1
+ 647 0324 00000000 		.word	acFontHZYouYuan_23_bfc6
+ 648 0328 19       		.byte	25
+ 649 0329 19       		.byte	25
+ 650 032a 04       		.byte	4
+ 651 032b 00       		.space	1
+ 652 032c 00000000 		.word	acFontHZYouYuan_23_d1a7
+ 653 0330 19       		.byte	25
+ 654 0331 19       		.byte	25
+ 655 0332 04       		.byte	4
+ 656 0333 00       		.space	1
+ 657 0334 00000000 		.word	acFontHZYouYuan_23_d4f8
+ 658 0338 19       		.byte	25
+ 659 0339 19       		.byte	25
+ 660 033a 04       		.byte	4
+ 661 033b 00       		.space	1
+ 662 033c 00000000 		.word	acFontHZYouYuan_23_d6dd
+ 663 0340 19       		.byte	25
+ 664 0341 19       		.byte	25
+ 665 0342 04       		.byte	4
+ 666 0343 00       		.space	1
+ 667 0344 00000000 		.word	acFontHZYouYuan_23_d7d3
+ 668 0348 19       		.byte	25
+ 669 0349 19       		.byte	25
+ 670 034a 04       		.byte	4
+ 671 034b 00       		.space	1
+ 672 034c 00000000 		.word	acFontHZYouYuan_23_d8b9
+ 673              		.section	.rodata.GUI_FontHZYouYuan_23_Prop0020,"a"
+ 674              		.align	2
+ 677              	GUI_FontHZYouYuan_23_Prop0020:
+ 678 0000 2000     		.short	32
+ 679 0002 7F00     		.short	127
+ 680 0004 00000000 		.word	GUI_FontHZYouYuan_23_CharInfo
+ 681 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propb4f3
+ 682              		.section	.rodata.GUI_FontHZYouYuan_23_Propb4f3,"a"
+ 683              		.align	2
+ 686              	GUI_FontHZYouYuan_23_Propb4f3:
+ 687 0000 F3B4     		.short	-19213
+ 688 0002 F3B4     		.short	-19213
+ 689 0004 00030000 		.word	GUI_FontHZYouYuan_23_CharInfo+768
+ 690 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propb5e7
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 13
+
+
+ 691              		.section	.rodata.GUI_FontHZYouYuan_23_Propb5e7,"a"
+ 692              		.align	2
+ 695              	GUI_FontHZYouYuan_23_Propb5e7:
+ 696 0000 E7B5     		.short	-18969
+ 697 0002 E7B5     		.short	-18969
+ 698 0004 08030000 		.word	GUI_FontHZYouYuan_23_CharInfo+776
+ 699 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propbabc
+ 700              		.section	.rodata.GUI_FontHZYouYuan_23_Propbabc,"a"
+ 701              		.align	2
+ 704              	GUI_FontHZYouYuan_23_Propbabc:
+ 705 0000 BCBA     		.short	-17732
+ 706 0002 BCBA     		.short	-17732
+ 707 0004 10030000 		.word	GUI_FontHZYouYuan_23_CharInfo+784
+ 708 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propbcbc
+ 709              		.section	.rodata.GUI_FontHZYouYuan_23_Propbcbc,"a"
+ 710              		.align	2
+ 713              	GUI_FontHZYouYuan_23_Propbcbc:
+ 714 0000 BCBC     		.short	-17220
+ 715 0002 BCBC     		.short	-17220
+ 716 0004 18030000 		.word	GUI_FontHZYouYuan_23_CharInfo+792
+ 717 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propbfc6
+ 718              		.section	.rodata.GUI_FontHZYouYuan_23_Propbfc6,"a"
+ 719              		.align	2
+ 722              	GUI_FontHZYouYuan_23_Propbfc6:
+ 723 0000 C6BF     		.short	-16442
+ 724 0002 C6BF     		.short	-16442
+ 725 0004 20030000 		.word	GUI_FontHZYouYuan_23_CharInfo+800
+ 726 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propd1a7
+ 727              		.section	.rodata.GUI_FontHZYouYuan_23_Propd1a7,"a"
+ 728              		.align	2
+ 731              	GUI_FontHZYouYuan_23_Propd1a7:
+ 732 0000 A7D1     		.short	-11865
+ 733 0002 A7D1     		.short	-11865
+ 734 0004 28030000 		.word	GUI_FontHZYouYuan_23_CharInfo+808
+ 735 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propd4f8
+ 736              		.section	.rodata.GUI_FontHZYouYuan_23_Propd4f8,"a"
+ 737              		.align	2
+ 740              	GUI_FontHZYouYuan_23_Propd4f8:
+ 741 0000 F8D4     		.short	-11016
+ 742 0002 F8D4     		.short	-11016
+ 743 0004 30030000 		.word	GUI_FontHZYouYuan_23_CharInfo+816
+ 744 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propd6dd
+ 745              		.section	.rodata.GUI_FontHZYouYuan_23_Propd6dd,"a"
+ 746              		.align	2
+ 749              	GUI_FontHZYouYuan_23_Propd6dd:
+ 750 0000 DDD6     		.short	-10531
+ 751 0002 DDD6     		.short	-10531
+ 752 0004 38030000 		.word	GUI_FontHZYouYuan_23_CharInfo+824
+ 753 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propd7d3
+ 754              		.section	.rodata.GUI_FontHZYouYuan_23_Propd7d3,"a"
+ 755              		.align	2
+ 758              	GUI_FontHZYouYuan_23_Propd7d3:
+ 759 0000 D3D7     		.short	-10285
+ 760 0002 D3D7     		.short	-10285
+ 761 0004 40030000 		.word	GUI_FontHZYouYuan_23_CharInfo+832
+ 762 0008 00000000 		.word	GUI_FontHZYouYuan_23_Propd8b9
+ 763              		.section	.rodata.GUI_FontHZYouYuan_23_Propd8b9,"a"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 14
+
+
+ 764              		.align	2
+ 767              	GUI_FontHZYouYuan_23_Propd8b9:
+ 768 0000 B9D8     		.short	-10055
+ 769 0002 B9D8     		.short	-10055
+ 770 0004 48030000 		.word	GUI_FontHZYouYuan_23_CharInfo+840
+ 771 0008 00000000 		.word	0
+ 772              		.section	.rodata.GUI_FontHZ_YouYuan_23,"a"
+ 773              		.align	2
+ 776              	GUI_FontHZ_YouYuan_23:
+ 777 0000 00000000 		.word	GUIPROP_DispChar
+ 778 0004 00000000 		.word	GUIPROP_GetCharDistX
+ 779 0008 00000000 		.word	GUIPROP_GetFontInfo
+ 780 000c 00000000 		.word	GUIPROP_IsInFont
+ 781 0010 00000000 		.word	0
+ 782 0014 00000000 		.word	GUI_ENC_APIList_SJIS
+ 783 0018 17       		.byte	23
+ 784 0019 17       		.byte	23
+ 785 001a 01       		.byte	1
+ 786 001b 01       		.byte	1
+ 787 001c 00000000 		.word	GUI_FontHZYouYuan_23_Prop0020
+ 788 0020 00000000 		.space	4
+ 789              		.section	.rodata.acFontHZYouYuan_23_0020,"a"
+ 790              		.align	2
+ 793              	acFontHZYouYuan_23_0020:
+ 794 0000 00000000 		.space	46
+ 794      00000000 
+ 794      00000000 
+ 794      00000000 
+ 794      00000000 
+ 795              		.section	.rodata.acFontHZYouYuan_23_0021,"a"
+ 796              		.align	2
+ 799              	acFontHZYouYuan_23_0021:
+ 800 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\007\000\007\000\007"
+ 800      00000000 
+ 800      07000700 
+ 800      07
+ 801 000d 00070007 		.ascii	"\000\007\000\007\000\007\000\007\000\007\000\003\000"
+ 801      00070007 
+ 801      00070003 
+ 801      00
+ 802 001a 03000300 		.ascii	"\003\000\003\000\000\000\000\000\000\000\007\200\007"
+ 802      00000000 
+ 802      00000780 
+ 802      07
+ 803 0027 80000000 		.ascii	"\200\000\000\000\000\000\000"
+ 803      000000
+ 804              		.section	.rodata.acFontHZYouYuan_23_0022,"a"
+ 805              		.align	2
+ 808              	acFontHZYouYuan_23_0022:
+ 809 0000 00000000 		.ascii	"\000\000\000\000\017\340\037\340\037\300;\2006\000\000"
+ 809      0FE01FE0 
+ 809      1FC03B80 
+ 809      360000
+ 810 000f 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 810      00000000 
+ 810      00000000 
+ 810      00
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 15
+
+
+ 811 001c 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 811      00000000 
+ 811      00000000 
+ 811      00
+ 812 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 812      00
+ 813              		.section	.rodata.acFontHZYouYuan_23_0023,"a"
+ 814              		.align	2
+ 817              	acFontHZYouYuan_23_0023:
+ 818 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\030\300\030"
+ 818      00000000 
+ 818      000018C0 
+ 818      18
+ 819 000d C018C018 		.ascii	"\300\030\300\030\300\177\360\030\300\030\300\030\300"
+ 819      C07FF018 
+ 819      C018C018 
+ 819      C0
+ 820 001a 18C039C0 		.ascii	"\030\3009\300\177\3609\3001\2001\2001\200\000\000\000"
+ 820      7FF039C0 
+ 820      31803180 
+ 820      31800000 
+ 820      00
+ 821 002b 000000   		.ascii	"\000\000\000"
+ 822              		.section	.rodata.acFontHZYouYuan_23_0024,"a"
+ 823              		.align	2
+ 826              	acFontHZYouYuan_23_0024:
+ 827 0000 00000000 		.ascii	"\000\000\000\000\000\000\003\000\003\000\017\300\037"
+ 827      00000300 
+ 827      03000FC0 
+ 827      1F
+ 828 000d E03FE03B 		.ascii	"\340?\340;\340?\000\037\000\017\000\007\200\003\300"
+ 828      E03F001F 
+ 828      000F0007 
+ 828      8003C0
+ 829 001c 03E03F70 		.ascii	"\003\340?p?p;`?\340\037\300\003\000\003\000\000\000"
+ 829      3F703B60 
+ 829      3FE01FC0 
+ 829      03000300 
+ 829      0000
+ 830              		.section	.rodata.acFontHZYouYuan_23_0025,"a"
+ 831              		.align	2
+ 834              	acFontHZYouYuan_23_0025:
+ 835 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000|\300|\300\357"
+ 835      00000000 
+ 835      00007CC0 
+ 835      7CC0EF
+ 836 000f 80EF80EF 		.ascii	"\200\357\200\357\200\357\000\177\000\177\360\007\370"
+ 836      80EF007F 
+ 836      007FF007 
+ 836      F8
+ 837 001c 0FB80F98 		.ascii	"\017\270\017\230\033\230\031\2309\3700\360\000\000\000"
+ 837      1B981998 
+ 837      39F830F0 
+ 837      000000
+ 838 002b 000000   		.ascii	"\000\000\000"
+ 839              		.section	.rodata.acFontHZYouYuan_23_0026,"a"
+ 840              		.align	2
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 16
+
+
+ 843              	acFontHZYouYuan_23_0026:
+ 844 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\037\000;\200"
+ 844      00000000 
+ 844      00001F00 
+ 844      3B80
+ 845 000e 3B803380 		.ascii	";\2003\200;\000?\340<\300<\300|\300\357\300\357\200"
+ 845      3B003FE0 
+ 845      3CC03CC0 
+ 845      7CC0EFC0 
+ 845      EF80
+ 846 0020 E780E3B0 		.ascii	"\347\200\343\260w\360?\360\000\000\000\000\000\000"
+ 846      77F03FF0 
+ 846      00000000 
+ 846      0000
+ 847              		.section	.rodata.acFontHZYouYuan_23_0027,"a"
+ 848              		.align	2
+ 851              	acFontHZYouYuan_23_0027:
+ 852 0000 00000000 		.ascii	"\000\000\000\0008\000|\000<\000\030\0008\000p\000\000"
+ 852      38007C00 
+ 852      3C001800 
+ 852      38007000 
+ 852      00
+ 853 0011 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 853      00000000 
+ 853      00000000 
+ 853      00
+ 854 001e 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 854      00000000 
+ 854      00000000 
+ 854      00
+ 855 002b 000000   		.ascii	"\000\000\000"
+ 856              		.section	.rodata.acFontHZYouYuan_23_0028,"a"
+ 857              		.align	2
+ 860              	acFontHZYouYuan_23_0028:
+ 861 0000 00000000 		.ascii	"\000\000\000\000\0000\000`\000\300\001\300\001\200\003"
+ 861      00300060 
+ 861      00C001C0 
+ 861      018003
+ 862 000f 80038007 		.ascii	"\200\003\200\007\000\007\000\007\000\007\000\007\000"
+ 862      00070007 
+ 862      00070007 
+ 862      00
+ 863 001c 07000380 		.ascii	"\007\000\003\200\003\200\001\200\001\300\000\300\000"
+ 863      03800180 
+ 863      01C000C0 
+ 863      00
+ 864 0029 60003000 		.ascii	"`\0000\000\000"
+ 864      00
+ 865              		.section	.rodata.acFontHZYouYuan_23_0029,"a"
+ 866              		.align	2
+ 869              	acFontHZYouYuan_23_0029:
+ 870 0000 00000000 		.ascii	"\000\000\000\000p\0008\000\034\000\014\000\016\000\006"
+ 870      70003800 
+ 870      1C000C00 
+ 870      0E0006
+ 871 000f 00070007 		.ascii	"\000\007\000\007\000\007\000\007\000\007\000\007\000"
+ 871      00070007 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 17
+
+
+ 871      00070007 
+ 871      00
+ 872 001c 07000700 		.ascii	"\007\000\007\000\006\000\016\000\014\000\034\0008\000"
+ 872      06000E00 
+ 872      0C001C00 
+ 872      3800
+ 873 002a 70000000 		.ascii	"p\000\000\000"
+ 874              		.section	.rodata.acFontHZYouYuan_23_002a,"a"
+ 875              		.align	2
+ 878              	acFontHZYouYuan_23_002a:
+ 879 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\007"
+ 879      00000000 
+ 879      00000000 
+ 879      07
+ 880 000d 00070027 		.ascii	"\000\007\000'0\177\360?\360\017\200\017\200?\360\177"
+ 880      307FF03F 
+ 880      F00F800F 
+ 880      803FF07F 
+ 881 001d F0273007 		.ascii	"\360'0\007\000\007\000\000\000\000\000\000\000\000\000"
+ 881      00070000 
+ 881      00000000 
+ 881      000000
+ 882 002c 0000     		.ascii	"\000\000"
+ 883              		.section	.rodata.acFontHZYouYuan_23_002b,"a"
+ 884              		.align	2
+ 887              	acFontHZYouYuan_23_002b:
+ 888 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\003"
+ 888      00000000 
+ 888      00000000 
+ 888      03
+ 889 000d 00030003 		.ascii	"\000\003\000\003\000\003\000\003\000\177\370\003\000"
+ 889      00030003 
+ 889      007FF803 
+ 889      00
+ 890 001a 03000300 		.ascii	"\003\000\003\000\003\000\003\000\000\000\000\000\000"
+ 890      03000300 
+ 890      00000000 
+ 890      00
+ 891 0027 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 891      000000
+ 892              		.section	.rodata.acFontHZYouYuan_23_002c,"a"
+ 893              		.align	2
+ 896              	acFontHZYouYuan_23_002c:
+ 897 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 897      00000000 
+ 897      00000000 
+ 897      00
+ 898 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 898      00000000 
+ 898      00000000 
+ 898      00
+ 899 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\0008\000|\000<\000\030"
+ 899      00000000 
+ 899      38007C00 
+ 899      3C0018
+ 900 0029 00380070 		.ascii	"\0008\000p\000"
+ 900      00
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 18
+
+
+ 901              		.section	.rodata.acFontHZYouYuan_23_002d,"a"
+ 902              		.align	2
+ 905              	acFontHZYouYuan_23_002d:
+ 906 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 906      00000000 
+ 906      00000000 
+ 906      00
+ 907 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\377\360\000\000"
+ 907      00000000 
+ 907      00FFF000 
+ 907      00
+ 908 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 908      00000000 
+ 908      00000000 
+ 908      00
+ 909 0027 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 909      000000
+ 910              		.section	.rodata.acFontHZYouYuan_23_002e,"a"
+ 911              		.align	2
+ 914              	acFontHZYouYuan_23_002e:
+ 915 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 915      00000000 
+ 915      00000000 
+ 915      00
+ 916 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 916      00000000 
+ 916      00000000 
+ 916      00
+ 917 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000<\000<\000\000"
+ 917      00000000 
+ 917      00003C00 
+ 917      3C0000
+ 918 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 918      00
+ 919              		.section	.rodata.acFontHZYouYuan_23_002f,"a"
+ 920              		.align	2
+ 923              	acFontHZYouYuan_23_002f:
+ 924 0000 00000000 		.ascii	"\000\000\000\000\0000\000`\000`\000\300\000\300\001"
+ 924      00300060 
+ 924      006000C0 
+ 924      00C001
+ 925 000f 80018003 		.ascii	"\200\001\200\003\200\003\000\007\000\006\000\016\000"
+ 925      80030007 
+ 925      0006000E 
+ 925      00
+ 926 001c 0C001C00 		.ascii	"\014\000\034\000\030\0008\0000\0000\000`\000`\000\000"
+ 926      18003800 
+ 926      30003000 
+ 926      60006000 
+ 926      00
+ 927 002d 00       		.ascii	"\000"
+ 928              		.section	.rodata.acFontHZYouYuan_23_0030,"a"
+ 929              		.align	2
+ 932              	acFontHZYouYuan_23_0030:
+ 933 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\300\035"
+ 933      00000000 
+ 933      00000FC0 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 19
+
+
+ 933      1D
+ 934 000d E038E038 		.ascii	"\3408\3408ppppppppppppppp8p8\340\035\340\017\200\000"
+ 934      70707070 
+ 934      70707070 
+ 934      70707070 
+ 934      70707038 
+ 935 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 935      00
+ 936              		.section	.rodata.acFontHZYouYuan_23_0031,"a"
+ 937              		.align	2
+ 940              	acFontHZYouYuan_23_0031:
+ 941 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\003\000\037"
+ 941      00000000 
+ 941      00000300 
+ 941      1F
+ 942 000d 00070007 		.ascii	"\000\007\000\007\000\007\000\007\000\007\000\007\000"
+ 942      00070007 
+ 942      00070007 
+ 942      00
+ 943 001a 07000700 		.ascii	"\007\000\007\000\007\000\007\000\007\000\007\200\037"
+ 943      07000700 
+ 943      07000780 
+ 943      1F
+ 944 0027 E0000000 		.ascii	"\340\000\000\000\000\000\000"
+ 944      000000
+ 945              		.section	.rodata.acFontHZYouYuan_23_0032,"a"
+ 946              		.align	2
+ 949              	acFontHZYouYuan_23_0032:
+ 950 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\037\3008\340"
+ 950      00000000 
+ 950      00001FC0 
+ 950      38E0
+ 951 000e 30707870 		.ascii	"0pxp8p\000p\000\340\001\300\003\200\007\000\016\000"
+ 951      38700070 
+ 951      00E001C0 
+ 951      03800700 
+ 951      0E00
+ 952 0020 1C303830 		.ascii	"\034080pp\177\360\000\000\000\000\000\000"
+ 952      70707FF0 
+ 952      00000000 
+ 952      0000
+ 953              		.section	.rodata.acFontHZYouYuan_23_0033,"a"
+ 954              		.align	2
+ 957              	acFontHZYouYuan_23_0033:
+ 958 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\037\3009\340"
+ 958      00000000 
+ 958      00001FC0 
+ 958      39E0
+ 959 000e 38E03860 		.ascii	"8\3408`\000\340\001\300\007\200\001\340\000p\000p\000"
+ 959      00E001C0 
+ 959      078001E0 
+ 959      00700070 
+ 959      00
+ 960 001f 70387078 		.ascii	"p8pxp9\340\037\300\000\000\000\000\000\000"
+ 960      7039E01F 
+ 960      C0000000 
+ 960      000000
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 20
+
+
+ 961              		.section	.rodata.acFontHZYouYuan_23_0034,"a"
+ 962              		.align	2
+ 965              	acFontHZYouYuan_23_0034:
+ 966 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\001\300\003\300\003"
+ 966      00000000 
+ 966      01C003C0 
+ 966      03
+ 967 000d C007C00F 		.ascii	"\300\007\300\017\300\015\300\031\3009\3001\300a\300"
+ 967      C00DC019 
+ 967      C039C031 
+ 967      C061C0
+ 968 001c 7FF001C0 		.ascii	"\177\360\001\300\001\300\001\300\003\300\017\360\000"
+ 968      01C001C0 
+ 968      03C00FF0 
+ 968      00
+ 969 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 969      00
+ 970              		.section	.rodata.acFontHZYouYuan_23_0035,"a"
+ 971              		.align	2
+ 974              	acFontHZYouYuan_23_0035:
+ 975 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000?\3600\0000"
+ 975      00000000 
+ 975      00003FF0 
+ 975      300030
+ 976 000f 00300030 		.ascii	"\0000\0000\000?\300<\3408p\000p\000p8pxp0p8\340\037"
+ 976      003FC03C 
+ 976      E0387000 
+ 976      70007038 
+ 976      70787030 
+ 977 0027 C0000000 		.ascii	"\300\000\000\000\000\000\000"
+ 977      000000
+ 978              		.section	.rodata.acFontHZYouYuan_23_0036,"a"
+ 979              		.align	2
+ 982              	acFontHZYouYuan_23_0036:
+ 983 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\300\034"
+ 983      00000000 
+ 983      00000FC0 
+ 983      1C
+ 984 000d E038E038 		.ascii	"\3408\3408\000p\000\177\300|\340xpppppppxp8p\034\340"
+ 984      0070007F 
+ 984      C07CE078 
+ 984      70707070 
+ 984      70707078 
+ 985 0026 0FC00000 		.ascii	"\017\300\000\000\000\000\000\000"
+ 985      00000000 
+ 986              		.section	.rodata.acFontHZYouYuan_23_0037,"a"
+ 987              		.align	2
+ 990              	acFontHZYouYuan_23_0037:
+ 991 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000?\3400\340p"
+ 991      00000000 
+ 991      00003FE0 
+ 991      30E070
+ 992 000f C061C001 		.ascii	"\300a\300\001\200\003\200\003\000\007\000\007\000\006"
+ 992      80038003 
+ 992      00070007 
+ 992      0006
+ 993 001d 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\000\000"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 21
+
+
+ 993      000E000E 
+ 993      000E0000 
+ 993      00
+ 994 002a 00000000 		.ascii	"\000\000\000\000"
+ 995              		.section	.rodata.acFontHZYouYuan_23_0038,"a"
+ 996              		.align	2
+ 999              	acFontHZYouYuan_23_0038:
+ 1000 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\037\3008\340"
+ 1000      00000000 
+ 1000      00001FC0 
+ 1000      38E0
+ 1001 000e 70707070 		.ascii	"pppppp8`\037\300\037\3009\340pppppppp8\340\037\300\000"
+ 1001      70703860 
+ 1001      1FC01FC0 
+ 1001      39E07070 
+ 1001      70707070 
+ 1002 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 1002      00
+ 1003              		.section	.rodata.acFontHZYouYuan_23_0039,"a"
+ 1004              		.align	2
+ 1007              	acFontHZYouYuan_23_0039:
+ 1008 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\037\3009\340"
+ 1008      00000000 
+ 1008      00001FC0 
+ 1008      39E0
+ 1009 000e 70E07070 		.ascii	"p\340ppppppppp\3609\360\037\360\000p\000\3408\3409\300"
+ 1009      70707070 
+ 1009      707070F0 
+ 1009      39F01FF0 
+ 1009      007000E0 
+ 1010 0026 1F800000 		.ascii	"\037\200\000\000\000\000\000\000"
+ 1010      00000000 
+ 1011              		.section	.rodata.acFontHZYouYuan_23_003a,"a"
+ 1012              		.align	2
+ 1015              	acFontHZYouYuan_23_003a:
+ 1016 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1016      00000000 
+ 1016      00000000 
+ 1016      00
+ 1017 000d 00000000 		.ascii	"\000\000\000\000\000\007\000\007\000\000\000\000\000"
+ 1017      00070007 
+ 1017      00000000 
+ 1017      00
+ 1018 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\007\000\007"
+ 1018      00000000 
+ 1018      00000700 
+ 1018      07
+ 1019 0027 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 1019      000000
+ 1020              		.section	.rodata.acFontHZYouYuan_23_003b,"a"
+ 1021              		.align	2
+ 1024              	acFontHZYouYuan_23_003b:
+ 1025 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1025      00000000 
+ 1025      00000000 
+ 1025      00
+ 1026 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\007\000\000\000\000\000"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 22
+
+
+ 1026      00000007 
+ 1026      00000000 
+ 1026      00
+ 1027 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\007"
+ 1027      00000000 
+ 1027      00000000 
+ 1027      07
+ 1028 0027 00030007 		.ascii	"\000\003\000\007\000\006\000"
+ 1028      000600
+ 1029              		.section	.rodata.acFontHZYouYuan_23_003c,"a"
+ 1030              		.align	2
+ 1033              	acFontHZYouYuan_23_003c:
+ 1034 0000 00000000 		.ascii	"\000\000\000\000\000\000\000`\000\300\001\200\003\000"
+ 1034      00000060 
+ 1034      00C00180 
+ 1034      0300
+ 1035 000e 07000E00 		.ascii	"\007\000\016\000\034\0008\000p\0008\000\034\000\016"
+ 1035      1C003800 
+ 1035      70003800 
+ 1035      1C000E
+ 1036 001d 00070003 		.ascii	"\000\007\000\003\000\001\200\000\300\000`\000\000\000"
+ 1036      00018000 
+ 1036      C0006000 
+ 1036      0000
+ 1037 002b 000000   		.ascii	"\000\000\000"
+ 1038              		.section	.rodata.acFontHZYouYuan_23_003d,"a"
+ 1039              		.align	2
+ 1042              	acFontHZYouYuan_23_003d:
+ 1043 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1043      00000000 
+ 1043      00000000 
+ 1043      00
+ 1044 000d 00000000 		.ascii	"\000\000\000\000\000\377\360\000\000\000\000\000\000"
+ 1044      00FFF000 
+ 1044      00000000 
+ 1044      00
+ 1045 001a 0000FFF0 		.ascii	"\000\000\377\360\000\000\000\000\000\000\000\000\000"
+ 1045      00000000 
+ 1045      00000000 
+ 1045      00
+ 1046 0027 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 1046      000000
+ 1047              		.section	.rodata.acFontHZYouYuan_23_003e,"a"
+ 1048              		.align	2
+ 1051              	acFontHZYouYuan_23_003e:
+ 1052 0000 00000000 		.ascii	"\000\000\000\000\000\0000\0008\000\034\000\016\000\007"
+ 1052      00003000 
+ 1052      38001C00 
+ 1052      0E0007
+ 1053 000f 00038001 		.ascii	"\000\003\200\001\200\000\300\000`\000\300\001\200\003"
+ 1053      8000C000 
+ 1053      6000C001 
+ 1053      8003
+ 1054 001d 8007000E 		.ascii	"\200\007\000\016\000\034\0008\0000\000\000\000\000\000"
+ 1054      001C0038 
+ 1054      00300000 
+ 1054      000000
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 23
+
+
+ 1055 002c 0000     		.ascii	"\000\000"
+ 1056              		.section	.rodata.acFontHZYouYuan_23_003f,"a"
+ 1057              		.align	2
+ 1060              	acFontHZYouYuan_23_003f:
+ 1061 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\037\3008\340ppppxp"
+ 1061      00000000 
+ 1061      1FC038E0 
+ 1061      70707070 
+ 1061      7870
+ 1062 0012 78700070 		.ascii	"xp\000p\001\340\003\200\007\000\007\000\007\000\000"
+ 1062      01E00380 
+ 1062      07000700 
+ 1062      070000
+ 1063 0021 00000007 		.ascii	"\000\000\000\007\000\007\000\000\000\000\000\000\000"
+ 1063      00070000 
+ 1063      00000000 
+ 1063      00
+ 1064              		.section	.rodata.acFontHZYouYuan_23_0040,"a"
+ 1065              		.align	2
+ 1068              	acFontHZYouYuan_23_0040:
+ 1069 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\340\034"
+ 1069      00000000 
+ 1069      00000FE0 
+ 1069      1C
+ 1070 000d 70383033 		.ascii	"p803\370w\370~\370~\370|\370}\330}\370\177\360?\370"
+ 1070      F877F87E 
+ 1070      F87EF87C 
+ 1070      F87DD87D 
+ 1070      F87FF03F 
+ 1071 0022 38301CF0 		.ascii	"80\034\360\017\300\000\000\000\000\000\000"
+ 1071      0FC00000 
+ 1071      00000000 
+ 1072              		.section	.rodata.acFontHZYouYuan_23_0041,"a"
+ 1073              		.align	2
+ 1076              	acFontHZYouYuan_23_0041:
+ 1077 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\000\017"
+ 1077      00000000 
+ 1077      00000F00 
+ 1077      0F
+ 1078 000d 000F000F 		.ascii	"\000\017\000\017\000\037\200\033\200\033\200\031\300"
+ 1078      001F801B 
+ 1078      801B8019 
+ 1078      C0
+ 1079 001a 39C03FC0 		.ascii	"9\300?\3001\3000\340p\340p\340\371\360\000\000\000\000"
+ 1079      31C030E0 
+ 1079      70E070E0 
+ 1079      F9F00000 
+ 1079      0000
+ 1080 002c 0000     		.ascii	"\000\000"
+ 1081              		.section	.rodata.acFontHZYouYuan_23_0042,"a"
+ 1082              		.align	2
+ 1085              	acFontHZYouYuan_23_0042:
+ 1086 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\377\3408\360"
+ 1086      00000000 
+ 1086      0000FFE0 
+ 1086      38F0
+ 1087 000e 38703870 		.ascii	"8p8p8p8\340?\3008\3408p8x88888p8\360\377\340\000\000"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 24
+
+
+ 1087      387038E0 
+ 1087      3FC038E0 
+ 1087      38703878 
+ 1087      38383838 
+ 1088 002a 00000000 		.ascii	"\000\000\000\000"
+ 1089              		.section	.rodata.acFontHZYouYuan_23_0043,"a"
+ 1090              		.align	2
+ 1093              	acFontHZYouYuan_23_0043:
+ 1094 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\340\034"
+ 1094      00000000 
+ 1094      00000FE0 
+ 1094      1C
+ 1095 000d F0387078 		.ascii	"\3608px0p\000p\000p\000p\000p\000p\000p0p08`<\340\017"
+ 1095      30700070 
+ 1095      00700070 
+ 1095      00700070 
+ 1095      00703070 
+ 1096 0027 C0000000 		.ascii	"\300\000\000\000\000\000\000"
+ 1096      000000
+ 1097              		.section	.rodata.acFontHZYouYuan_23_0044,"a"
+ 1098              		.align	2
+ 1101              	acFontHZYouYuan_23_0044:
+ 1102 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\177\2009\340"
+ 1102      00000000 
+ 1102      00007F80 
+ 1102      39E0
+ 1103 000e 38F03870 		.ascii	"8\3608p8x8x8888888x8p8p8\3609\340\177\200\000\000\000"
+ 1103      38783878 
+ 1103      38383838 
+ 1103      38383878 
+ 1103      38703870 
+ 1104 002b 000000   		.ascii	"\000\000\000"
+ 1105              		.section	.rodata.acFontHZYouYuan_23_0045,"a"
+ 1106              		.align	2
+ 1109              	acFontHZYouYuan_23_0045:
+ 1110 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\177\3408\360"
+ 1110      00000000 
+ 1110      00007FE0 
+ 1110      38F0
+ 1111 000e 38303800 		.ascii	"808\0008\3009\300?\3009\3008\3008\0008\00080808\360"
+ 1111      38C039C0 
+ 1111      3FC039C0 
+ 1111      38C03800 
+ 1111      38003830 
+ 1112 0026 7FE00000 		.ascii	"\177\340\000\000\000\000\000\000"
+ 1112      00000000 
+ 1113              		.section	.rodata.acFontHZYouYuan_23_0046,"a"
+ 1114              		.align	2
+ 1117              	acFontHZYouYuan_23_0046:
+ 1118 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\177\3608p8"
+ 1118      00000000 
+ 1118      00007FF0 
+ 1118      387038
+ 1119 000f 30380038 		.ascii	"08\0008\3008\300?\3008\3008\3008\0008\0008\0008\000"
+ 1119      C038C03F 
+ 1119      C038C038 
+ 1119      C0380038 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 25
+
+
+ 1119      00380038 
+ 1120 0024 38007C00 		.ascii	"8\000|\000\000\000\000\000\000\000"
+ 1120      00000000 
+ 1120      0000
+ 1121              		.section	.rodata.acFontHZYouYuan_23_0047,"a"
+ 1122              		.align	2
+ 1125              	acFontHZYouYuan_23_0047:
+ 1126 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\340\034"
+ 1126      00000000 
+ 1126      00000FE0 
+ 1126      1C
+ 1127 000d E0387070 		.ascii	"\3408pppp\000p\000p\000p\000q\370pppppp8p<\360\017\300"
+ 1127      70700070 
+ 1127      00700070 
+ 1127      0071F870 
+ 1127      70707070 
+ 1128 0028 00000000 		.ascii	"\000\000\000\000\000\000"
+ 1128      0000
+ 1129              		.section	.rodata.acFontHZYouYuan_23_0048,"a"
+ 1130              		.align	2
+ 1133              	acFontHZYouYuan_23_0048:
+ 1134 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\374\3708p8"
+ 1134      00000000 
+ 1134      0000FCF8 
+ 1134      387038
+ 1135 000f 70387038 		.ascii	"p8p8p8p8p?\3608p8p8p8p8p8p\374\370\000\000\000\000\000"
+ 1135      70387038 
+ 1135      703FF038 
+ 1135      70387038 
+ 1135      70387038 
+ 1136 002d 00       		.ascii	"\000"
+ 1137              		.section	.rodata.acFontHZYouYuan_23_0049,"a"
+ 1138              		.align	2
+ 1141              	acFontHZYouYuan_23_0049:
+ 1142 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000?\340\007\000"
+ 1142      00000000 
+ 1142      00003FE0 
+ 1142      0700
+ 1143 000e 07000700 		.ascii	"\007\000\007\000\007\000\007\000\007\000\007\000\007"
+ 1143      07000700 
+ 1143      07000700 
+ 1143      07
+ 1144 001b 00070007 		.ascii	"\000\007\000\007\000\007\000\007\000\007\000?\340\000"
+ 1144      00070007 
+ 1144      0007003F 
+ 1144      E000
+ 1145 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 1145      00
+ 1146              		.section	.rodata.acFontHZYouYuan_23_004a,"a"
+ 1147              		.align	2
+ 1150              	acFontHZYouYuan_23_004a:
+ 1151 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\370\001"
+ 1151      00000000 
+ 1151      00000FF8 
+ 1151      01
+ 1152 000d C001C001 		.ascii	"\300\001\300\001\300\001\300\001\300\001\300\001\300"
+ 1152      C001C001 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 26
+
+
+ 1152      C001C001 
+ 1152      C0
+ 1153 001a 01C001C0 		.ascii	"\001\300\001\300\001\300\001\300\001\300\001\300\001"
+ 1153      01C001C0 
+ 1153      01C001C0 
+ 1153      01
+ 1154 0027 C071C073 		.ascii	"\300q\300s\200\177\000"
+ 1154      807F00
+ 1155              		.section	.rodata.acFontHZYouYuan_23_004b,"a"
+ 1156              		.align	2
+ 1159              	acFontHZYouYuan_23_004b:
+ 1160 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\375\3708\340"
+ 1160      00000000 
+ 1160      0000FDF8 
+ 1160      38E0
+ 1161 000e 38C03980 		.ascii	"8\3009\200;\000?\000?\000?\000;\200;\3009\3008\3408"
+ 1161      3B003F00 
+ 1161      3F003F00 
+ 1161      3B803BC0 
+ 1161      39C038E0 
+ 1162 0023 E03870FC 		.ascii	"\3408p\374\370\000\000\000\000\000\000"
+ 1162      F8000000 
+ 1162      000000
+ 1163              		.section	.rodata.acFontHZYouYuan_23_004c,"a"
+ 1164              		.align	2
+ 1167              	acFontHZYouYuan_23_004c:
+ 1168 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000~\0008\0008"
+ 1168      00000000 
+ 1168      00007E00 
+ 1168      380038
+ 1169 000f 00380038 		.ascii	"\0008\0008\0008\0008\0008\0008\0008\0008\00080808\360"
+ 1169      00380038 
+ 1169      00380038 
+ 1169      00380038 
+ 1169      00383038 
+ 1170 0026 7FF00000 		.ascii	"\177\360\000\000\000\000\000\000"
+ 1170      00000000 
+ 1171              		.section	.rodata.acFontHZYouYuan_23_004d,"a"
+ 1172              		.align	2
+ 1175              	acFontHZYouYuan_23_004d:
+ 1176 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\360xxpx\360"
+ 1176      00000000 
+ 1176      0000F078 
+ 1176      787078F0 
+ 1177 0010 78F078F0 		.ascii	"x\360x\360}\360}\360}\360\177\360o\360opopopgp\376\370"
+ 1177      7DF07DF0 
+ 1177      7DF07FF0 
+ 1177      6FF06F70 
+ 1177      6F706F70 
+ 1178 0028 00000000 		.ascii	"\000\000\000\000\000\000"
+ 1178      0000
+ 1179              		.section	.rodata.acFontHZYouYuan_23_004e,"a"
+ 1180              		.align	2
+ 1183              	acFontHZYouYuan_23_004e:
+ 1184 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\370\37080<"
+ 1184      00000000 
+ 1184      0000F8F8 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 27
+
+
+ 1184      38303C
+ 1185 000f 303C303E 		.ascii	"0<0>0?0707\2603\3601\3601\3600\3600\3600p\3700\000\000"
+ 1185      303F3037 
+ 1185      3037B033 
+ 1185      F031F031 
+ 1185      F030F030 
+ 1186 002a 00000000 		.ascii	"\000\000\000\000"
+ 1187              		.section	.rodata.acFontHZYouYuan_23_004f,"a"
+ 1188              		.align	2
+ 1191              	acFontHZYouYuan_23_004f:
+ 1192 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\300\034"
+ 1192      00000000 
+ 1192      00000FC0 
+ 1192      1C
+ 1193 000d E0387070 		.ascii	"\3408pppp8p8p8p8p8p8p8pp8p\034\340\017\300\000\000\000"
+ 1193      70703870 
+ 1193      38703870 
+ 1193      38703870 
+ 1193      38703870 
+ 1194 002b 000000   		.ascii	"\000\000\000"
+ 1195              		.section	.rodata.acFontHZYouYuan_23_0050,"a"
+ 1196              		.align	2
+ 1199              	acFontHZYouYuan_23_0050:
+ 1200 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\177\3408\360"
+ 1200      00000000 
+ 1200      00007FE0 
+ 1200      38F0
+ 1201 000e 38303838 		.ascii	"8088888p8\360?\3408\0008\0008\0008\0008\0008\000|\000"
+ 1201      38383870 
+ 1201      38F03FE0 
+ 1201      38003800 
+ 1201      38003800 
+ 1202 0028 00000000 		.ascii	"\000\000\000\000\000\000"
+ 1202      0000
+ 1203              		.section	.rodata.acFontHZYouYuan_23_0051,"a"
+ 1204              		.align	2
+ 1207              	acFontHZYouYuan_23_0051:
+ 1208 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\300\034"
+ 1208      00000000 
+ 1208      00000FC0 
+ 1208      1C
+ 1209 000d E0387070 		.ascii	"\3408pppp8p8p8p8p8p8\177x\177\3609\360\035\340\017\340"
+ 1209      70703870 
+ 1209      38703870 
+ 1209      38703870 
+ 1209      387F787F 
+ 1210 0028 01F800F0 		.ascii	"\001\370\000\360\000\000"
+ 1210      0000
+ 1211              		.section	.rodata.acFontHZYouYuan_23_0052,"a"
+ 1212              		.align	2
+ 1215              	acFontHZYouYuan_23_0052:
+ 1216 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\177\3408\360"
+ 1216      00000000 
+ 1216      00007FE0 
+ 1216      38F0
+ 1217 000e 38703870 		.ascii	"8p8p8p8\340?\300;\2009\2009\3009\3008\3408\3408p|x\000"
+ 1217      387038E0 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 28
+
+
+ 1217      3FC03B80 
+ 1217      398039C0 
+ 1217      39C038E0 
+ 1218 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 1218      00
+ 1219              		.section	.rodata.acFontHZYouYuan_23_0053,"a"
+ 1220              		.align	2
+ 1223              	acFontHZYouYuan_23_0053:
+ 1224 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\037\3608\360"
+ 1224      00000000 
+ 1224      00001FF0 
+ 1224      38F0
+ 1225 000e 70707030 		.ascii	"ppp0p\0008\000\037\000\007\300\001\340\000p`ppppp|\340"
+ 1225      70003800 
+ 1225      1F0007C0 
+ 1225      01E00070 
+ 1225      60707070 
+ 1226 0026 3FC00000 		.ascii	"?\300\000\000\000\000\000\000"
+ 1226      00000000 
+ 1227              		.section	.rodata.acFontHZYouYuan_23_0054,"a"
+ 1228              		.align	2
+ 1231              	acFontHZYouYuan_23_0054:
+ 1232 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000?\360wpw0g0"
+ 1232      00000000 
+ 1232      00003FF0 
+ 1232      77707730 
+ 1232      6730
+ 1233 0012 07000700 		.ascii	"\007\000\007\000\007\000\007\000\007\000\007\000\007"
+ 1233      07000700 
+ 1233      07000700 
+ 1233      07
+ 1234 001f 00070007 		.ascii	"\000\007\000\007\000\007\000\017\300\000\000\000\000"
+ 1234      0007000F 
+ 1234      C0000000 
+ 1234      00
+ 1235 002c 0000     		.ascii	"\000\000"
+ 1236              		.section	.rodata.acFontHZYouYuan_23_0055,"a"
+ 1237              		.align	2
+ 1240              	acFontHZYouYuan_23_0055:
+ 1241 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\374\370808"
+ 1241      00000000 
+ 1241      0000FCF8 
+ 1241      383038
+ 1242 000f 30383038 		.ascii	"08080808080808080808p<\340\037\300\000\000\000\000\000"
+ 1242      30383038 
+ 1242      30383038 
+ 1242      30383038 
+ 1242      30383038 
+ 1243 002d 00       		.ascii	"\000"
+ 1244              		.section	.rodata.acFontHZYouYuan_23_0056,"a"
+ 1245              		.align	2
+ 1248              	acFontHZYouYuan_23_0056:
+ 1249 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\374\370xp8"
+ 1249      00000000 
+ 1249      0000FCF8 
+ 1249      787038
+ 1250 000f 60386038 		.ascii	"`8`8\340\034\300\034\300\035\300\017\200\017\200\017"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 29
+
+
+ 1250      E01CC01C 
+ 1250      C01DC00F 
+ 1250      800F800F 
+ 1251 001f 800F8007 		.ascii	"\200\017\200\007\000\007\000\007\000\000\000\000\000"
+ 1251      00070007 
+ 1251      00000000 
+ 1251      00
+ 1252 002c 0000     		.ascii	"\000\000"
+ 1253              		.section	.rodata.acFontHZYouYuan_23_0057,"a"
+ 1254              		.align	2
+ 1257              	acFontHZYouYuan_23_0057:
+ 1258 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\377\370w0w"
+ 1258      00000000 
+ 1258      0000FFF8 
+ 1258      773077
+ 1259 000f 70777077 		.ascii	"pwpw\3407\340?\340?\340?\340?\340\035\340\035\300\035"
+ 1259      E037E03F 
+ 1259      E03FE03F 
+ 1259      E03FE01D 
+ 1259      E01DC01D 
+ 1260 0023 C01DC01C 		.ascii	"\300\035\300\034\300\000\000\000\000\000\000"
+ 1260      C0000000 
+ 1260      000000
+ 1261              		.section	.rodata.acFontHZYouYuan_23_0058,"a"
+ 1262              		.align	2
+ 1265              	acFontHZYouYuan_23_0058:
+ 1266 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000}\3608\3008"
+ 1266      00000000 
+ 1266      00007DF0 
+ 1266      38C038
+ 1267 000f C01D801F 		.ascii	"\300\035\200\037\200\017\000\017\000\007\000\007\000"
+ 1267      800F000F 
+ 1267      00070007 
+ 1267      00
+ 1268 001c 0F801F80 		.ascii	"\017\200\037\200\031\3009\3000\340\371\360\000\000\000"
+ 1268      19C039C0 
+ 1268      30E0F9F0 
+ 1268      000000
+ 1269 002b 000000   		.ascii	"\000\000\000"
+ 1270              		.section	.rodata.acFontHZYouYuan_23_0059,"a"
+ 1271              		.align	2
+ 1274              	acFontHZYouYuan_23_0059:
+ 1275 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\374\3708p8"
+ 1275      00000000 
+ 1275      0000FCF8 
+ 1275      387038
+ 1276 000f 601CC01C 		.ascii	"`\034\300\034\300\037\300\017\200\017\200\007\000\007"
+ 1276      C01FC00F 
+ 1276      800F8007 
+ 1276      0007
+ 1277 001d 00070007 		.ascii	"\000\007\000\007\000\007\000\007\000\037\300\000\000"
+ 1277      00070007 
+ 1277      001FC000 
+ 1277      00
+ 1278 002a 00000000 		.ascii	"\000\000\000\000"
+ 1279              		.section	.rodata.acFontHZYouYuan_23_005a,"a"
+ 1280              		.align	2
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 30
+
+
+ 1283              	acFontHZYouYuan_23_005a:
+ 1284 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000?\3608\360p"
+ 1284      00000000 
+ 1284      00003FF0 
+ 1284      38F070
+ 1285 000f E001E001 		.ascii	"\340\001\340\001\300\003\200\003\200\007\000\017\000"
+ 1285      C0038003 
+ 1285      8007000F 
+ 1285      00
+ 1286 001c 0E001C00 		.ascii	"\016\000\034\000\03408`8\340\177\340\000\000\000\000"
+ 1286      1C303860 
+ 1286      38E07FE0 
+ 1286      00000000 
+ 1287 002c 0000     		.ascii	"\000\000"
+ 1288              		.section	.rodata.acFontHZYouYuan_23_005b,"a"
+ 1289              		.align	2
+ 1292              	acFontHZYouYuan_23_005b:
+ 1293 0000 00000000 		.ascii	"\000\000\000\000\007\360\006\000\006\000\006\000\006"
+ 1293      07F00600 
+ 1293      06000600 
+ 1293      06
+ 1294 000d 00060006 		.ascii	"\000\006\000\006\000\006\000\006\000\006\000\006\000"
+ 1294      00060006 
+ 1294      00060006 
+ 1294      00
+ 1295 001a 06000600 		.ascii	"\006\000\006\000\006\000\006\000\006\000\006\000\006"
+ 1295      06000600 
+ 1295      06000600 
+ 1295      06
+ 1296 0027 00060007 		.ascii	"\000\006\000\007\360\000\000"
+ 1296      F00000
+ 1297              		.section	.rodata.acFontHZYouYuan_23_005c,"a"
+ 1298              		.align	2
+ 1301              	acFontHZYouYuan_23_005c:
+ 1302 0000 00000000 		.ascii	"\000\000\000\000\000\0000\0008\0008\000\030\000\034"
+ 1302      00003000 
+ 1302      38003800 
+ 1302      18001C
+ 1303 000f 000C000E 		.ascii	"\000\014\000\016\000\016\000\006\000\007\000\003\000"
+ 1303      000E0006 
+ 1303      00070003 
+ 1303      00
+ 1304 001c 03800380 		.ascii	"\003\200\003\200\001\200\001\300\000\300\000\340\000"
+ 1304      018001C0 
+ 1304      00C000E0 
+ 1304      00
+ 1305 0029 E0006000 		.ascii	"\340\000`\000`"
+ 1305      60
+ 1306              		.section	.rodata.acFontHZYouYuan_23_005d,"a"
+ 1307              		.align	2
+ 1310              	acFontHZYouYuan_23_005d:
+ 1311 0000 00000000 		.ascii	"\000\000\000\000\177\200\003\200\003\200\003\200\003"
+ 1311      7F800380 
+ 1311      03800380 
+ 1311      03
+ 1312 000d 80038003 		.ascii	"\200\003\200\003\200\003\200\003\200\003\200\003\200"
+ 1312      80038003 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 31
+
+
+ 1312      80038003 
+ 1312      80
+ 1313 001a 03800380 		.ascii	"\003\200\003\200\003\200\003\200\003\200\003\200\003"
+ 1313      03800380 
+ 1313      03800380 
+ 1313      03
+ 1314 0027 8003807F 		.ascii	"\200\003\200\177\200\000\000"
+ 1314      800000
+ 1315              		.section	.rodata.acFontHZYouYuan_23_005e,"a"
+ 1316              		.align	2
+ 1319              	acFontHZYouYuan_23_005e:
+ 1320 0000 00000000 		.ascii	"\000\000\000\000\017\000\037\200\030\300\000\000\000"
+ 1320      0F001F80 
+ 1320      18C00000 
+ 1320      00
+ 1321 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1321      00000000 
+ 1321      00000000 
+ 1321      00
+ 1322 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1322      00000000 
+ 1322      00000000 
+ 1322      00
+ 1323 0027 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 1323      000000
+ 1324              		.section	.rodata.acFontHZYouYuan_23_005f,"a"
+ 1325              		.align	2
+ 1328              	acFontHZYouYuan_23_005f:
+ 1329 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1329      00000000 
+ 1329      00000000 
+ 1329      00
+ 1330 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1330      00000000 
+ 1330      00000000 
+ 1330      00
+ 1331 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1331      00000000 
+ 1331      00000000 
+ 1331      00
+ 1332 0027 00000000 		.ascii	"\000\000\000\000\000\377\370"
+ 1332      00FFF8
+ 1333              		.section	.rodata.acFontHZYouYuan_23_0060,"a"
+ 1334              		.align	2
+ 1337              	acFontHZYouYuan_23_0060:
+ 1338 0000 00000000 		.ascii	"\000\000\000\000<\000\006\000\000\000\000\000\000\000"
+ 1338      3C000600 
+ 1338      00000000 
+ 1338      0000
+ 1339 000e 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1339      00000000 
+ 1339      00000000 
+ 1339      00
+ 1340 001b 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1340      00000000 
+ 1340      00000000 
+ 1340      00
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 32
+
+
+ 1341 0028 00000000 		.ascii	"\000\000\000\000\000\000"
+ 1341      0000
+ 1342              		.section	.rodata.acFontHZYouYuan_23_0061,"a"
+ 1343              		.align	2
+ 1346              	acFontHZYouYuan_23_0061:
+ 1347 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1347      00000000 
+ 1347      00000000 
+ 1347      00
+ 1348 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\037\3008\3400\340\007\340"
+ 1348      0000001F 
+ 1348      C038E030 
+ 1348      E007E0
+ 1349 001c 1EE078E0 		.ascii	"\036\340x\340p\340p\340y\370?\370\000\000\000\000\000"
+ 1349      70E070E0 
+ 1349      79F83FF8 
+ 1349      00000000 
+ 1349      00
+ 1350 002d 00       		.ascii	"\000"
+ 1351              		.section	.rodata.acFontHZYouYuan_23_0062,"a"
+ 1352              		.align	2
+ 1355              	acFontHZYouYuan_23_0062:
+ 1356 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\0008\000x\0008\0008\000"
+ 1356      00000000 
+ 1356      38007800 
+ 1356      38003800 
+ 1357 0010 38003800 		.ascii	"8\0008\000?\300<\3408p8p8p8p8p8p<\340?\300\000\000\000"
+ 1357      3FC03CE0 
+ 1357      38703870 
+ 1357      38703870 
+ 1357      38703870 
+ 1358 002b 000000   		.ascii	"\000\000\000"
+ 1359              		.section	.rodata.acFontHZYouYuan_23_0063,"a"
+ 1360              		.align	2
+ 1363              	acFontHZYouYuan_23_0063:
+ 1364 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1364      00000000 
+ 1364      00000000 
+ 1364      00
+ 1365 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\017\300\034\3408\340p\000"
+ 1365      0000000F 
+ 1365      C01CE038 
+ 1365      E07000
+ 1366 001c 70007000 		.ascii	"p\000p\000p\0008`<\340\017\300\000\000\000\000\000\000"
+ 1366      70003860 
+ 1366      3CE00FC0 
+ 1366      00000000 
+ 1366      0000
+ 1367              		.section	.rodata.acFontHZYouYuan_23_0064,"a"
+ 1368              		.align	2
+ 1371              	acFontHZYouYuan_23_0064:
+ 1372 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000p\001\360\000p\000"
+ 1372      00000000 
+ 1372      007001F0 
+ 1372      007000
+ 1373 000f 70007000 		.ascii	"p\000p\000p\017\360\034\3608ppppppppp8\360=\370\017"
+ 1373      700FF01C 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 33
+
+
+ 1373      F0387070 
+ 1373      70707070 
+ 1373      70707038 
+ 1374 0027 E0000000 		.ascii	"\340\000\000\000\000\000\000"
+ 1374      000000
+ 1375              		.section	.rodata.acFontHZYouYuan_23_0065,"a"
+ 1376              		.align	2
+ 1379              	acFontHZYouYuan_23_0065:
+ 1380 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1380      00000000 
+ 1380      00000000 
+ 1380      00
+ 1381 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\017\300\034\3408p0p\177"
+ 1381      0000000F 
+ 1381      C01CE038 
+ 1381      7030707F 
+ 1382 001d F0700030 		.ascii	"\360p\0000\00080\034\340\017\300\000\000\000\000\000"
+ 1382      0038301C 
+ 1382      E00FC000 
+ 1382      00000000 
+ 1383 002d 00       		.ascii	"\000"
+ 1384              		.section	.rodata.acFontHZYouYuan_23_0066,"a"
+ 1385              		.align	2
+ 1388              	acFontHZYouYuan_23_0066:
+ 1389 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\003\360\007"
+ 1389      00000000 
+ 1389      000003F0 
+ 1389      07
+ 1390 000d 700E700E 		.ascii	"p\016p\016\000\016\000\177\340\016\000\016\000\016\000"
+ 1390      000E007F 
+ 1390      E00E000E 
+ 1390      000E00
+ 1391 001c 0E000E00 		.ascii	"\016\000\016\000\016\000\016\000\016\000?\300\000\000"
+ 1391      0E000E00 
+ 1391      0E003FC0 
+ 1391      0000
+ 1392 002a 00000000 		.ascii	"\000\000\000\000"
+ 1393              		.section	.rodata.acFontHZYouYuan_23_0067,"a"
+ 1394              		.align	2
+ 1397              	acFontHZYouYuan_23_0067:
+ 1398 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1398      00000000 
+ 1398      00000000 
+ 1398      00
+ 1399 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\037\370=\3708\3408\340"
+ 1399      0000001F 
+ 1399      F83DF838 
+ 1399      E038E0
+ 1400 001c 3DE01FC0 		.ascii	"=\340\037\3008\000?\200?\360ppp08p\037\340"
+ 1400      38003F80 
+ 1400      3FF07070 
+ 1400      70303870 
+ 1400      1FE0
+ 1401              		.section	.rodata.acFontHZYouYuan_23_0068,"a"
+ 1402              		.align	2
+ 1405              	acFontHZYouYuan_23_0068:
+ 1406 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\030\000x\0008\0008"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 34
+
+
+ 1406      00000000 
+ 1406      18007800 
+ 1406      380038
+ 1407 000f 00380038 		.ascii	"\0008\0008\000?\340>\3408p8p8p8p8p8p8p|\370\000\000"
+ 1407      003FE03E 
+ 1407      E0387038 
+ 1407      70387038 
+ 1407      70387038 
+ 1408 002a 00000000 		.ascii	"\000\000\000\000"
+ 1409              		.section	.rodata.acFontHZYouYuan_23_0069,"a"
+ 1410              		.align	2
+ 1413              	acFontHZYouYuan_23_0069:
+ 1414 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\007\200\007"
+ 1414      00000000 
+ 1414      00000780 
+ 1414      07
+ 1415 000d 80000000 		.ascii	"\200\000\000\000\000\000\000\037\000\007\000\007\000"
+ 1415      0000001F 
+ 1415      00070007 
+ 1415      00
+ 1416 001a 07000700 		.ascii	"\007\000\007\000\007\000\007\000\007\000\007\000\037"
+ 1416      07000700 
+ 1416      07000700 
+ 1416      1F
+ 1417 0027 E0000000 		.ascii	"\340\000\000\000\000\000\000"
+ 1417      000000
+ 1418              		.section	.rodata.acFontHZYouYuan_23_006a,"a"
+ 1419              		.align	2
+ 1422              	acFontHZYouYuan_23_006a:
+ 1423 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\340\000"
+ 1423      00000000 
+ 1423      000000E0 
+ 1423      00
+ 1424 000d E0000000 		.ascii	"\340\000\000\000\000\000\000\003\340\000\340\000\340"
+ 1424      00000003 
+ 1424      E000E000 
+ 1424      E0
+ 1425 001a 00E000E0 		.ascii	"\000\340\000\340\000\340\000\340\000\340\000\340\000"
+ 1425      00E000E0 
+ 1425      00E000E0 
+ 1425      00
+ 1426 0027 E000E039 		.ascii	"\340\000\3409\300?\200"
+ 1426      C03F80
+ 1427              		.section	.rodata.acFontHZYouYuan_23_006b,"a"
+ 1428              		.align	2
+ 1431              	acFontHZYouYuan_23_006b:
+ 1432 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\030\000x\0008\0008"
+ 1432      00000000 
+ 1432      18007800 
+ 1432      380038
+ 1433 000f 00380038 		.ascii	"\0008\0008\0009\3609\300;\200?\000?\000?\2009\3008\340"
+ 1433      0039F039 
+ 1433      C03B803F 
+ 1433      003F003F 
+ 1433      8039C038 
+ 1434 0024 38E07DF8 		.ascii	"8\340}\370\000\000\000\000\000\000"
+ 1434      00000000 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 35
+
+
+ 1434      0000
+ 1435              		.section	.rodata.acFontHZYouYuan_23_006c,"a"
+ 1436              		.align	2
+ 1439              	acFontHZYouYuan_23_006c:
+ 1440 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000?\000\007\000"
+ 1440      00000000 
+ 1440      00003F00 
+ 1440      0700
+ 1441 000e 07000700 		.ascii	"\007\000\007\000\007\000\007\000\007\000\007\000\007"
+ 1441      07000700 
+ 1441      07000700 
+ 1441      07
+ 1442 001b 00070007 		.ascii	"\000\007\000\007\000\007\000\007\000\007\000?\340\000"
+ 1442      00070007 
+ 1442      0007003F 
+ 1442      E000
+ 1443 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 1443      00
+ 1444              		.section	.rodata.acFontHZYouYuan_23_006d,"a"
+ 1445              		.align	2
+ 1448              	acFontHZYouYuan_23_006d:
+ 1449 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1449      00000000 
+ 1449      00000000 
+ 1449      00
+ 1450 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\377\360\177\270s8s8s8s"
+ 1450      000000FF 
+ 1450      F07FB873 
+ 1450      38733873 
+ 1450      3873
+ 1451 001f 38733873 		.ascii	"8s8s8s8\377\370\000\000\000\000\000\000"
+ 1451      387338FF 
+ 1451      F8000000 
+ 1451      000000
+ 1452              		.section	.rodata.acFontHZYouYuan_23_006e,"a"
+ 1453              		.align	2
+ 1456              	acFontHZYouYuan_23_006e:
+ 1457 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1457      00000000 
+ 1457      00000000 
+ 1457      00
+ 1458 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\177\300>\3408p8p8p8p8p"
+ 1458      0000007F 
+ 1458      C03EE038 
+ 1458      70387038 
+ 1458      70387038 
+ 1459 0022 38703870 		.ascii	"8p8p|\370\000\000\000\000\000\000"
+ 1459      7CF80000 
+ 1459      00000000 
+ 1460              		.section	.rodata.acFontHZYouYuan_23_006f,"a"
+ 1461              		.align	2
+ 1464              	acFontHZYouYuan_23_006f:
+ 1465 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1465      00000000 
+ 1465      00000000 
+ 1465      00
+ 1466 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\017\300<\3408pppp8p8pp"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 36
+
+
+ 1466      0000000F 
+ 1466      C03CE038 
+ 1466      70707070 
+ 1466      38703870 
+ 1467 0022 30703CE0 		.ascii	"0p<\340\017\300\000\000\000\000\000\000"
+ 1467      0FC00000 
+ 1467      00000000 
+ 1468              		.section	.rodata.acFontHZYouYuan_23_0070,"a"
+ 1469              		.align	2
+ 1472              	acFontHZYouYuan_23_0070:
+ 1473 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1473      00000000 
+ 1473      00000000 
+ 1473      00
+ 1474 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\177\300<\3608p8p88888p"
+ 1474      0000007F 
+ 1474      C03CF038 
+ 1474      70387038 
+ 1474      38383838 
+ 1475 0022 38703CE0 		.ascii	"8p<\340?\3008\0008\000|\000"
+ 1475      3FC03800 
+ 1475      38007C00 
+ 1476              		.section	.rodata.acFontHZYouYuan_23_0071,"a"
+ 1477              		.align	2
+ 1480              	acFontHZYouYuan_23_0071:
+ 1481 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1481      00000000 
+ 1481      00000000 
+ 1481      00
+ 1482 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\017\340<\3408`p`p`p`p`"
+ 1482      0000000F 
+ 1482      E03CE038 
+ 1482      60706070 
+ 1482      60706070 
+ 1483 0022 306039E0 		.ascii	"0`9\340\037\340\000`\000`\001\370"
+ 1483      1FE00060 
+ 1483      006001F8 
+ 1484              		.section	.rodata.acFontHZYouYuan_23_0072,"a"
+ 1485              		.align	2
+ 1488              	acFontHZYouYuan_23_0072:
+ 1489 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1489      00000000 
+ 1489      00000000 
+ 1489      00
+ 1490 000d 00000000 		.ascii	"\000\000\000\000\000\000\000}\360\037\360\036\000\034"
+ 1490      0000007D 
+ 1490      F01FF01E 
+ 1490      001C
+ 1491 001b 001C001C 		.ascii	"\000\034\000\034\000\034\000\034\000\034\000\177\200"
+ 1491      001C001C 
+ 1491      001C007F 
+ 1491      80
+ 1492 0028 00000000 		.ascii	"\000\000\000\000\000\000"
+ 1492      0000
+ 1493              		.section	.rodata.acFontHZYouYuan_23_0073,"a"
+ 1494              		.align	2
+ 1497              	acFontHZYouYuan_23_0073:
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 37
+
+
+ 1498 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1498      00000000 
+ 1498      00000000 
+ 1498      00
+ 1499 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\017\340\034\3408p<\000"
+ 1499      0000000F 
+ 1499      E01CE038 
+ 1499      703C00
+ 1500 001c 1F8003E0 		.ascii	"\037\200\003\340\000p0p8p?\340\000\000\000\000\000\000"
+ 1500      00703070 
+ 1500      38703FE0 
+ 1500      00000000 
+ 1500      0000
+ 1501              		.section	.rodata.acFontHZYouYuan_23_0074,"a"
+ 1502              		.align	2
+ 1505              	acFontHZYouYuan_23_0074:
+ 1506 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\006"
+ 1506      00000000 
+ 1506      00000000 
+ 1506      06
+ 1507 000d 0006000E 		.ascii	"\000\006\000\016\000\016\000\177\340\016\000\016\000"
+ 1507      000E007F 
+ 1507      E00E000E 
+ 1507      00
+ 1508 001a 0E000E00 		.ascii	"\016\000\016\000\016\000\016\000\0160\007`\007\300\000"
+ 1508      0E000E00 
+ 1508      0E300760 
+ 1508      07C000
+ 1509 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 1509      00
+ 1510              		.section	.rodata.acFontHZYouYuan_23_0075,"a"
+ 1511              		.align	2
+ 1514              	acFontHZYouYuan_23_0075:
+ 1515 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1515      00000000 
+ 1515      00000000 
+ 1515      00
+ 1516 000d 00000000 		.ascii	"\000\000\000\000\0008`y\3408`8`8`8`8`8`8\3409\370\037"
+ 1516      00386079 
+ 1516      E0386038 
+ 1516      60386038 
+ 1516      60386038 
+ 1517 0027 E0000000 		.ascii	"\340\000\000\000\000\000\000"
+ 1517      000000
+ 1518              		.section	.rodata.acFontHZYouYuan_23_0076,"a"
+ 1519              		.align	2
+ 1522              	acFontHZYouYuan_23_0076:
+ 1523 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1523      00000000 
+ 1523      00000000 
+ 1523      00
+ 1524 000d 00000000 		.ascii	"\000\000\000\000\000\000\000|\3708`\030\340\034\300"
+ 1524      0000007C 
+ 1524      F8386018 
+ 1524      E01CC0
+ 1525 001c 1CC00FC0 		.ascii	"\034\300\017\300\017\200\007\200\007\000\007\000\000"
+ 1525      0F800780 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 38
+
+
+ 1525      07000700 
+ 1525      00
+ 1526 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 1526      00
+ 1527              		.section	.rodata.acFontHZYouYuan_23_0077,"a"
+ 1528              		.align	2
+ 1531              	acFontHZYouYuan_23_0077:
+ 1532 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1532      00000000 
+ 1532      00000000 
+ 1532      00
+ 1533 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\377\370wpw`7`?\340?\340"
+ 1533      000000FF 
+ 1533      F8777077 
+ 1533      6037603F 
+ 1533      E03FE0
+ 1534 0020 3FE01DC0 		.ascii	"?\340\035\300\035\300\034\300\000\000\000\000\000\000"
+ 1534      1DC01CC0 
+ 1534      00000000 
+ 1534      0000
+ 1535              		.section	.rodata.acFontHZYouYuan_23_0078,"a"
+ 1536              		.align	2
+ 1539              	acFontHZYouYuan_23_0078:
+ 1540 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1540      00000000 
+ 1540      00000000 
+ 1540      00
+ 1541 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\177\3409\300\035\200\017"
+ 1541      0000007F 
+ 1541      E039C01D 
+ 1541      800F
+ 1542 001b 000F000F 		.ascii	"\000\017\000\017\000\017\200\031\3009\300\177\360\000"
+ 1542      000F8019 
+ 1542      C039C07F 
+ 1542      F000
+ 1543 0029 00000000 		.ascii	"\000\000\000\000\000"
+ 1543      00
+ 1544              		.section	.rodata.acFontHZYouYuan_23_0079,"a"
+ 1545              		.align	2
+ 1548              	acFontHZYouYuan_23_0079:
+ 1549 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1549      00000000 
+ 1549      00000000 
+ 1549      00
+ 1550 000d 00000000 		.ascii	"\000\000\000\000\000\000\000}\3608\300\030\300\035\300"
+ 1550      0000007D 
+ 1550      F038C018 
+ 1550      C01DC0
+ 1551 001c 0D800F80 		.ascii	"\015\200\017\200\007\000\007\000\007\000\002\000\000"
+ 1551      07000700 
+ 1551      07000200 
+ 1551      00
+ 1552 0029 0038003C 		.ascii	"\0008\000<\000"
+ 1552      00
+ 1553              		.section	.rodata.acFontHZYouYuan_23_007a,"a"
+ 1554              		.align	2
+ 1557              	acFontHZYouYuan_23_007a:
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 39
+
+
+ 1558 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1558      00000000 
+ 1558      00000000 
+ 1558      00
+ 1559 000d 00000000 		.ascii	"\000\000\000\000\000\000\000?\3408\3401\300\003\200"
+ 1559      0000003F 
+ 1559      E038E031 
+ 1559      C00380
+ 1560 001c 07000E00 		.ascii	"\007\000\016\000\016`\034`8\340?\340\000\000\000\000"
+ 1560      0E601C60 
+ 1560      38E03FE0 
+ 1560      00000000 
+ 1561 002c 0000     		.ascii	"\000\000"
+ 1562              		.section	.rodata.acFontHZYouYuan_23_007b,"a"
+ 1563              		.align	2
+ 1566              	acFontHZYouYuan_23_007b:
+ 1567 0000 00000000 		.ascii	"\000\000\000\000\000\360\001\300\001\300\001\200\001"
+ 1567      00F001C0 
+ 1567      01C00180 
+ 1567      01
+ 1568 000d 80018001 		.ascii	"\200\001\200\001\200\001\200\003\200\007\000\001\200"
+ 1568      80018003 
+ 1568      80070001 
+ 1568      80
+ 1569 001a 01800180 		.ascii	"\001\200\001\200\001\200\001\200\001\200\001\200\001"
+ 1569      01800180 
+ 1569      01800180 
+ 1569      01
+ 1570 0027 C001C000 		.ascii	"\300\001\300\000\360\000\000"
+ 1570      F00000
+ 1571              		.section	.rodata.acFontHZYouYuan_23_007c,"a"
+ 1572              		.align	2
+ 1575              	acFontHZYouYuan_23_007c:
+ 1576 0000 03000300 		.ascii	"\003\000\003\000\003\000\003\000\003\000\003\000\003"
+ 1576      03000300 
+ 1576      03000300 
+ 1576      03
+ 1577 000d 00030003 		.ascii	"\000\003\000\003\000\003\000\003\000\003\000\003\000"
+ 1577      00030003 
+ 1577      00030003 
+ 1577      00
+ 1578 001a 03000300 		.ascii	"\003\000\003\000\003\000\003\000\003\000\003\000\003"
+ 1578      03000300 
+ 1578      03000300 
+ 1578      03
+ 1579 0027 00030003 		.ascii	"\000\003\000\003\000\003\000"
+ 1579      000300
+ 1580              		.section	.rodata.acFontHZYouYuan_23_007d,"a"
+ 1581              		.align	2
+ 1584              	acFontHZYouYuan_23_007d:
+ 1585 0000 00000000 		.ascii	"\000\000\000\0008\000\034\000\014\000\014\000\014\000"
+ 1585      38001C00 
+ 1585      0C000C00 
+ 1585      0C00
+ 1586 000e 0C000C00 		.ascii	"\014\000\014\000\014\000\016\000\007\000\016\000\014"
+ 1586      0C000E00 
+ 1586      07000E00 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 40
+
+
+ 1586      0C
+ 1587 001b 000C000C 		.ascii	"\000\014\000\014\000\014\000\014\000\014\000\014\000"
+ 1587      000C000C 
+ 1587      000C000C 
+ 1587      00
+ 1588 0028 1C003800 		.ascii	"\034\0008\000\000\000"
+ 1588      0000
+ 1589              		.section	.rodata.acFontHZYouYuan_23_007e,"a"
+ 1590              		.align	2
+ 1593              	acFontHZYouYuan_23_007e:
+ 1594 0000 00003C00 		.ascii	"\000\000<\000~\000g0\003\360\001\340\000\000\000\000"
+ 1594      7E006730 
+ 1594      03F001E0 
+ 1594      00000000 
+ 1595 0010 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1595      00000000 
+ 1595      00000000 
+ 1595      00
+ 1596 001d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1596      00000000 
+ 1596      00000000 
+ 1596      00
+ 1597 002a 00000000 		.ascii	"\000\000\000\000"
+ 1598              		.section	.rodata.acFontHZYouYuan_23_007f,"a"
+ 1599              		.align	2
+ 1602              	acFontHZYouYuan_23_007f:
+ 1603 0000 00000000 		.ascii	"\000\000\000\000\000\000\374\374\374\374\374\374\374"
+ 1603      0000FCFC 
+ 1603      FCFCFCFC 
+ 1603      FC
+ 1604 000d FCFCFCFC 		.ascii	"\374\374\374\374\374\374\000\000\000\000"
+ 1604      FCFC0000 
+ 1604      0000
+ 1605              		.section	.rodata.acFontHZYouYuan_23_b4f3,"a"
+ 1606              		.align	2
+ 1609              	acFontHZYouYuan_23_b4f3:
+ 1610 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\0008\000\000\0008\000"
+ 1610      00000000 
+ 1610      00380000 
+ 1610      003800
+ 1611 000f 00003800 		.ascii	"\000\0008\000\000\0008\000\000\0008\000\000\177\377"
+ 1611      00003800 
+ 1611      00003800 
+ 1611      007FFF
+ 1612 001e FE000038 		.ascii	"\376\000\0008\000\000\0008\000\000\000<\000\000\000"
+ 1612      00000038 
+ 1612      0000003C 
+ 1612      000000
+ 1613 002d 3C000000 		.ascii	"<\000\000\000|\000\000\000~\000\000\000f\000\000\000"
+ 1613      7C000000 
+ 1613      7E000000 
+ 1613      66000000 
+ 1614 003d E7000000 		.ascii	"\347\000\000\000\303\200\000\001\303\200\000\003\201"
+ 1614      C3800001 
+ 1614      C3800003 
+ 1614      81
+ 1615 004a C0000700 		.ascii	"\300\000\007\000\340\000\016\000p\000<\000<\000p\000"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 41
+
+
+ 1615      E0000E00 
+ 1615      70003C00 
+ 1615      3C007000 
+ 1616 005a 0E00     		.ascii	"\016\000"
+ 1617              		.section	.rodata.acFontHZYouYuan_23_b5e7,"a"
+ 1618              		.align	2
+ 1621              	acFontHZYouYuan_23_b5e7:
+ 1622 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\0008\000\000\0008\000"
+ 1622      00000000 
+ 1622      00380000 
+ 1622      003800
+ 1623 000f 00003800 		.ascii	"\000\0008\000\000?\377\370\000088\000088\000088\000"
+ 1623      003FFFF8 
+ 1623      00303838 
+ 1623      00303838 
+ 1623      00303838 
+ 1624 0024 30383800 		.ascii	"088\000?\377\370\000?\377\370\000088\000088\000088\000"
+ 1624      3FFFF800 
+ 1624      3FFFF800 
+ 1624      30383800 
+ 1624      30383800 
+ 1625 003c 30383800 		.ascii	"088\000?\377\370\000\037\377\366\000\0008\006\000\000"
+ 1625      3FFFF800 
+ 1625      1FFFF600 
+ 1625      00380600 
+ 1625      00
+ 1626 004d 38060000 		.ascii	"8\006\000\0008\016\000\000?\376\000\000\037\370\000"
+ 1626      380E0000 
+ 1626      3FFE0000 
+ 1626      1FF800
+ 1627              		.section	.rodata.acFontHZYouYuan_23_babc,"a"
+ 1628              		.align	2
+ 1631              	acFontHZYouYuan_23_babc:
+ 1632 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\016\006\000\000\016"
+ 1632      00000000 
+ 1632      0E060000 
+ 1632      0E
+ 1633 000d 0700000E 		.ascii	"\007\000\000\016\007\200\000\016\377\376\000\177\300"
+ 1633      0780000E 
+ 1633      FFFE007F 
+ 1633      C0
+ 1634 001a 00007FC0 		.ascii	"\000\000\177\300\000\000\017\037\340\000\017?\340\000"
+ 1634      00000F1F 
+ 1634      E0000F3F 
+ 1634      E000
+ 1635 0028 0FB86000 		.ascii	"\017\270`\000\037\270`\000\037\370`\000>\270`\000>8"
+ 1635      1FB86000 
+ 1635      1FF86000 
+ 1635      3EB86000 
+ 1635      3E38
+ 1636 003a 60007E38 		.ascii	"`\000~8`\000n8f\000\0160g\000\016pg\000\016pf\000\016"
+ 1636      60006E38 
+ 1636      66000E30 
+ 1636      67000E70 
+ 1636      67000E70 
+ 1637 0051 E066000F 		.ascii	"\340f\000\017\300~\000\017\200|\000"
+ 1637      C07E000F 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 42
+
+
+ 1637      807C00
+ 1638              		.section	.rodata.acFontHZYouYuan_23_bcbc,"a"
+ 1639              		.align	2
+ 1642              	acFontHZYouYuan_23_bcbc:
+ 1643 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\014\003\000\000\014"
+ 1643      00000000 
+ 1643      0C030000 
+ 1643      0C
+ 1644 000d 0300000C 		.ascii	"\003\000\000\014\003\000\000\014\377\376\000\014\003"
+ 1644      0300000C 
+ 1644      FFFE000C 
+ 1644      03
+ 1645 001a 00007FC3 		.ascii	"\000\000\177\303\000\000\016\003\000\000\014\177\360"
+ 1645      00000E03 
+ 1645      00000C7F 
+ 1645      F0
+ 1646 0027 000CFFFC 		.ascii	"\000\014\377\374\000\0140\030\000\017\2708\000\017\270"
+ 1646      000C3018 
+ 1646      000FB838 
+ 1646      000FB8
+ 1647 0036 38001E1C 		.ascii	"8\000\036\034p\000|\014\340\000l\017\340\000\014\007"
+ 1647      70007C0C 
+ 1647      E0006C0F 
+ 1647      E0000C07 
+ 1648 0046 C0000C07 		.ascii	"\300\000\014\007\200\000\014\037\340\000\014|\360\000"
+ 1648      80000C1F 
+ 1648      E0000C7C 
+ 1648      F000
+ 1649 0054 6FF03C00 		.ascii	"o\360<\000\177\200\036\000"
+ 1649      7F801E00 
+ 1650              		.section	.rodata.acFontHZYouYuan_23_bfc6,"a"
+ 1651              		.align	2
+ 1654              	acFontHZYouYuan_23_bfc6:
+ 1655 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\001\3408\000?\3168"
+ 1655      00000000 
+ 1655      01E03800 
+ 1655      3FCE38
+ 1656 000f 00060738 		.ascii	"\000\006\0078\000\006\003\270\000\006\003\370\000\006"
+ 1656      000603B8 
+ 1656      000603F8 
+ 1656      0006
+ 1657 001d 01F8007F 		.ascii	"\001\370\000\177\340\370\000\177\370x\000\017\2348\000"
+ 1657      E0F8007F 
+ 1657      F878000F 
+ 1657      9C3800
+ 1658 002c 0F8E3800 		.ascii	"\017\2168\000\017\3078\000\037\343\270\000\036\341\370"
+ 1658      0FC73800 
+ 1658      1FE3B800 
+ 1658      1EE1F8
+ 1659 003b 003E6038 		.ascii	"\000>`8\000v\001\376\000f\177\370\000\006`8\000\006"
+ 1659      007601FE 
+ 1659      00667FF8 
+ 1659      00066038 
+ 1659      0006
+ 1660 004d 00380006 		.ascii	"\0008\000\006\0008\000\006\0008\000\006\0008\000"
+ 1660      00380006 
+ 1660      00380006 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 43
+
+
+ 1660      003800
+ 1661              		.section	.rodata.acFontHZYouYuan_23_d1a7,"a"
+ 1662              		.align	2
+ 1665              	acFontHZYouYuan_23_d1a7:
+ 1666 0000 00000000 		.ascii	"\000\000\000\000\000 \000\000\010p8\000\03480\000\016"
+ 1666      00200000 
+ 1666      08703800 
+ 1666      1C383000 
+ 1666      0E
+ 1667 0011 38700007 		.ascii	"8p\000\007\034`\000?\377\374\000\177\377\376\000p\000"
+ 1667      1C60003F 
+ 1667      FFFC007F 
+ 1667      FFFE0070 
+ 1667      00
+ 1668 0022 0E007000 		.ascii	"\016\000p\000\016\000\177\377\314\000p\001\334\000\000"
+ 1668      0E007FFF 
+ 1668      CC007001 
+ 1668      DC0000
+ 1669 0031 07800000 		.ascii	"\007\200\000\000\036\000\000\000\030\000\000\000\034"
+ 1669      1E000000 
+ 1669      18000000 
+ 1669      1C
+ 1670 003e 00007FFF 		.ascii	"\000\000\177\377\376\000\000\016\000\000\000\006\000"
+ 1670      FE00000E 
+ 1670      00000006 
+ 1670      00
+ 1671 004b 00000700 		.ascii	"\000\000\007\000\000\000\007\000\000\003\206\000\000"
+ 1671      00000700 
+ 1671      00038600 
+ 1671      00
+ 1672 0058 01FE0000 		.ascii	"\001\376\000\000"
+ 1673              		.section	.rodata.acFontHZYouYuan_23_d4f8,"a"
+ 1674              		.align	2
+ 1677              	acFontHZYouYuan_23_d4f8:
+ 1678 0000 00000000 		.ascii	"\000\000\000\000\002\000\000\000\007\000\340\000\003"
+ 1678      02000000 
+ 1678      0700E000 
+ 1678      03
+ 1679 000d C1C00000 		.ascii	"\301\300\000\000\303\200\000\037\377\370\000\037\377"
+ 1679      C380001F 
+ 1679      FFF8001F 
+ 1679      FF
+ 1680 001a FC003F18 		.ascii	"\374\000?\030\374\000;\230\374\000;\231\334\0009\333"
+ 1680      FC003B98 
+ 1680      FC003B99 
+ 1680      DC0039DB 
+ 1681 002a 9C0039DB 		.ascii	"\234\0009\333\234\000\037\377\370\000\017\377\360\000"
+ 1681      9C001FFF 
+ 1681      F8000FFF 
+ 1681      F000
+ 1682 0038 00000000 		.ascii	"\000\000\000\000\017\377\370\000\014\0008\000\014\000"
+ 1682      0FFFF800 
+ 1682      0C003800 
+ 1682      0C00
+ 1683 0046 38000FFF 		.ascii	"8\000\017\377\370\000\014\0008\000\014\0008\000\014"
+ 1683      F8000C00 
+ 1683      38000C00 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 44
+
+
+ 1683      38000C
+ 1684 0055 0038000F 		.ascii	"\0008\000\017\377\370\000"
+ 1684      FFF800
+ 1685              		.section	.rodata.acFontHZYouYuan_23_d6dd,"a"
+ 1686              		.align	2
+ 1689              	acFontHZYouYuan_23_d6dd:
+ 1690 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\007\000\034\000\007"
+ 1690      00000000 
+ 1690      07001C00 
+ 1690      07
+ 1691 000d 0E1C0007 		.ascii	"\016\034\000\007\016\034\000\007\016\034\000\037\317"
+ 1691      0E1C0007 
+ 1691      0E1C001F 
+ 1691      CF
+ 1692 001a 9C003FCF 		.ascii	"\234\000?\317\234\000?\357\234\000?\357\334\000?o\334"
+ 1692      9C003FEF 
+ 1692      9C003FEF 
+ 1692      DC003F6F 
+ 1692      DC
+ 1693 002b 003F6EDC 		.ascii	"\000?n\334\000?~\374\000?~\374\000w>|\000v>|\000f>|"
+ 1693      003F7EFC 
+ 1693      003F7EFC 
+ 1693      00773E7C 
+ 1693      00763E7C 
+ 1694 0043 000E3E3C 		.ascii	"\000\016><\000\016\016\034\000\014\016\034\000\034\016"
+ 1694      000E0E1C 
+ 1694      000C0E1C 
+ 1694      001C0E
+ 1695 0052 1C00180E 		.ascii	"\034\000\030\016\034\0008\000\034\000"
+ 1695      1C003800 
+ 1695      1C00
+ 1696              		.section	.rodata.acFontHZYouYuan_23_d7d3,"a"
+ 1697              		.align	2
+ 1700              	acFontHZYouYuan_23_d7d3:
+ 1701 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\037"
+ 1701      00000000 
+ 1701      00000000 
+ 1701      1F
+ 1702 000d FFF00000 		.ascii	"\377\360\000\000\000\340\000\000\003\300\000\000\007"
+ 1702      00E00000 
+ 1702      03C00000 
+ 1702      07
+ 1703 001a 8000001E 		.ascii	"\200\000\000\036\000\000\0008\000\000\000x\000\000\000"
+ 1703      00000038 
+ 1703      00000078 
+ 1703      000000
+ 1704 0029 1C000000 		.ascii	"\034\000\000\000\016\000\000\177\377\376\000\000\007"
+ 1704      0E00007F 
+ 1704      FFFE0000 
+ 1704      07
+ 1705 0036 00000007 		.ascii	"\000\000\000\007\000\000\000\003\000\000\000\003\200"
+ 1705      00000003 
+ 1705      00000003 
+ 1705      80
+ 1706 0043 00000380 		.ascii	"\000\000\003\200\000\000\003\200\000\000\003\000\000"
+ 1706      00000380 
+ 1706      00000300 
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 45
+
+
+ 1706      00
+ 1707 0050 0F070000 		.ascii	"\017\007\000\000\007\336\000\000\001\374\000\000"
+ 1707      07DE0000 
+ 1707      01FC0000 
+ 1708              		.section	.rodata.acFontHZYouYuan_23_d8b9,"a"
+ 1709              		.align	2
+ 1712              	acFontHZYouYuan_23_d8b9:
+ 1713 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\014\001\200\000\034"
+ 1713      00000000 
+ 1713      0C018000 
+ 1713      1C
+ 1714 000d 01C0001F 		.ascii	"\001\300\000\037\377\374\0008\037\376\000p\003\260\000"
+ 1714      FFFC0038 
+ 1714      1FFE0070 
+ 1714      03B000
+ 1715 001c 7FE33800 		.ascii	"\177\3438\000\037\3678\000\037n\034\000\037\177\374"
+ 1715      1FF73800 
+ 1715      1F6E1C00 
+ 1715      1F7FFC
+ 1716 002b 001BFFFE 		.ascii	"\000\033\377\376\000\031\347\376\000\177\377\366\000"
+ 1716      0019E7FE 
+ 1716      007FFFF6 
+ 1716      00
+ 1717 0038 7FFFF000 		.ascii	"\177\377\360\000>\347\360\000?\357\360\0007\357\377"
+ 1717      3EE7F000 
+ 1717      3FEFF000 
+ 1717      37EFFF
+ 1718 0047 0033EFF7 		.ascii	"\0003\357\367\000?\377\377\000?\375\376\000\000\335"
+ 1718      003FFFFF 
+ 1718      003FFDFE 
+ 1718      0000DD
+ 1719 0056 FE000FF9 		.ascii	"\376\000\017\371\376\000"
+ 1719      FE00
+ 1720              		.text
+ 1721              	.Letext0:
+ 1722              		.file 1 "Drivers/STemWin/inc/GUI_Type.h"
+ 1723              		.file 2 "Core/Src/YouYuan_23.c"
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 46
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 YouYuan_23.c
+F:\msys64\tmp\cckqUQBd.s:776    .rodata.GUI_FontHZ_YouYuan_23:00000000 GUI_FontHZ_YouYuan_23
+F:\msys64\tmp\cckqUQBd.s:677    .rodata.GUI_FontHZYouYuan_23_Prop0020:00000000 GUI_FontHZYouYuan_23_Prop0020
+F:\msys64\tmp\cckqUQBd.s:686    .rodata.GUI_FontHZYouYuan_23_Propb4f3:00000000 GUI_FontHZYouYuan_23_Propb4f3
+F:\msys64\tmp\cckqUQBd.s:695    .rodata.GUI_FontHZYouYuan_23_Propb5e7:00000000 GUI_FontHZYouYuan_23_Propb5e7
+F:\msys64\tmp\cckqUQBd.s:704    .rodata.GUI_FontHZYouYuan_23_Propbabc:00000000 GUI_FontHZYouYuan_23_Propbabc
+F:\msys64\tmp\cckqUQBd.s:713    .rodata.GUI_FontHZYouYuan_23_Propbcbc:00000000 GUI_FontHZYouYuan_23_Propbcbc
+F:\msys64\tmp\cckqUQBd.s:722    .rodata.GUI_FontHZYouYuan_23_Propbfc6:00000000 GUI_FontHZYouYuan_23_Propbfc6
+F:\msys64\tmp\cckqUQBd.s:731    .rodata.GUI_FontHZYouYuan_23_Propd1a7:00000000 GUI_FontHZYouYuan_23_Propd1a7
+F:\msys64\tmp\cckqUQBd.s:740    .rodata.GUI_FontHZYouYuan_23_Propd4f8:00000000 GUI_FontHZYouYuan_23_Propd4f8
+F:\msys64\tmp\cckqUQBd.s:749    .rodata.GUI_FontHZYouYuan_23_Propd6dd:00000000 GUI_FontHZYouYuan_23_Propd6dd
+F:\msys64\tmp\cckqUQBd.s:758    .rodata.GUI_FontHZYouYuan_23_Propd7d3:00000000 GUI_FontHZYouYuan_23_Propd7d3
+F:\msys64\tmp\cckqUQBd.s:767    .rodata.GUI_FontHZYouYuan_23_Propd8b9:00000000 GUI_FontHZYouYuan_23_Propd8b9
+F:\msys64\tmp\cckqUQBd.s:142    .rodata.GUI_FontHZYouYuan_23_CharInfo:00000000 GUI_FontHZYouYuan_23_CharInfo
+F:\msys64\tmp\cckqUQBd.s:1712   .rodata.acFontHZYouYuan_23_d8b9:00000000 acFontHZYouYuan_23_d8b9
+F:\msys64\tmp\cckqUQBd.s:1700   .rodata.acFontHZYouYuan_23_d7d3:00000000 acFontHZYouYuan_23_d7d3
+F:\msys64\tmp\cckqUQBd.s:1689   .rodata.acFontHZYouYuan_23_d6dd:00000000 acFontHZYouYuan_23_d6dd
+F:\msys64\tmp\cckqUQBd.s:1677   .rodata.acFontHZYouYuan_23_d4f8:00000000 acFontHZYouYuan_23_d4f8
+F:\msys64\tmp\cckqUQBd.s:1665   .rodata.acFontHZYouYuan_23_d1a7:00000000 acFontHZYouYuan_23_d1a7
+F:\msys64\tmp\cckqUQBd.s:1654   .rodata.acFontHZYouYuan_23_bfc6:00000000 acFontHZYouYuan_23_bfc6
+F:\msys64\tmp\cckqUQBd.s:1642   .rodata.acFontHZYouYuan_23_bcbc:00000000 acFontHZYouYuan_23_bcbc
+F:\msys64\tmp\cckqUQBd.s:1631   .rodata.acFontHZYouYuan_23_babc:00000000 acFontHZYouYuan_23_babc
+F:\msys64\tmp\cckqUQBd.s:1621   .rodata.acFontHZYouYuan_23_b5e7:00000000 acFontHZYouYuan_23_b5e7
+F:\msys64\tmp\cckqUQBd.s:1609   .rodata.acFontHZYouYuan_23_b4f3:00000000 acFontHZYouYuan_23_b4f3
+F:\msys64\tmp\cckqUQBd.s:1602   .rodata.acFontHZYouYuan_23_007f:00000000 acFontHZYouYuan_23_007f
+F:\msys64\tmp\cckqUQBd.s:1593   .rodata.acFontHZYouYuan_23_007e:00000000 acFontHZYouYuan_23_007e
+F:\msys64\tmp\cckqUQBd.s:1584   .rodata.acFontHZYouYuan_23_007d:00000000 acFontHZYouYuan_23_007d
+F:\msys64\tmp\cckqUQBd.s:1575   .rodata.acFontHZYouYuan_23_007c:00000000 acFontHZYouYuan_23_007c
+F:\msys64\tmp\cckqUQBd.s:1566   .rodata.acFontHZYouYuan_23_007b:00000000 acFontHZYouYuan_23_007b
+F:\msys64\tmp\cckqUQBd.s:1557   .rodata.acFontHZYouYuan_23_007a:00000000 acFontHZYouYuan_23_007a
+F:\msys64\tmp\cckqUQBd.s:1548   .rodata.acFontHZYouYuan_23_0079:00000000 acFontHZYouYuan_23_0079
+F:\msys64\tmp\cckqUQBd.s:1539   .rodata.acFontHZYouYuan_23_0078:00000000 acFontHZYouYuan_23_0078
+F:\msys64\tmp\cckqUQBd.s:1531   .rodata.acFontHZYouYuan_23_0077:00000000 acFontHZYouYuan_23_0077
+F:\msys64\tmp\cckqUQBd.s:1522   .rodata.acFontHZYouYuan_23_0076:00000000 acFontHZYouYuan_23_0076
+F:\msys64\tmp\cckqUQBd.s:1514   .rodata.acFontHZYouYuan_23_0075:00000000 acFontHZYouYuan_23_0075
+F:\msys64\tmp\cckqUQBd.s:1505   .rodata.acFontHZYouYuan_23_0074:00000000 acFontHZYouYuan_23_0074
+F:\msys64\tmp\cckqUQBd.s:1497   .rodata.acFontHZYouYuan_23_0073:00000000 acFontHZYouYuan_23_0073
+F:\msys64\tmp\cckqUQBd.s:1488   .rodata.acFontHZYouYuan_23_0072:00000000 acFontHZYouYuan_23_0072
+F:\msys64\tmp\cckqUQBd.s:1480   .rodata.acFontHZYouYuan_23_0071:00000000 acFontHZYouYuan_23_0071
+F:\msys64\tmp\cckqUQBd.s:1472   .rodata.acFontHZYouYuan_23_0070:00000000 acFontHZYouYuan_23_0070
+F:\msys64\tmp\cckqUQBd.s:1464   .rodata.acFontHZYouYuan_23_006f:00000000 acFontHZYouYuan_23_006f
+F:\msys64\tmp\cckqUQBd.s:1456   .rodata.acFontHZYouYuan_23_006e:00000000 acFontHZYouYuan_23_006e
+F:\msys64\tmp\cckqUQBd.s:1448   .rodata.acFontHZYouYuan_23_006d:00000000 acFontHZYouYuan_23_006d
+F:\msys64\tmp\cckqUQBd.s:1439   .rodata.acFontHZYouYuan_23_006c:00000000 acFontHZYouYuan_23_006c
+F:\msys64\tmp\cckqUQBd.s:1431   .rodata.acFontHZYouYuan_23_006b:00000000 acFontHZYouYuan_23_006b
+F:\msys64\tmp\cckqUQBd.s:1422   .rodata.acFontHZYouYuan_23_006a:00000000 acFontHZYouYuan_23_006a
+F:\msys64\tmp\cckqUQBd.s:1413   .rodata.acFontHZYouYuan_23_0069:00000000 acFontHZYouYuan_23_0069
+F:\msys64\tmp\cckqUQBd.s:1405   .rodata.acFontHZYouYuan_23_0068:00000000 acFontHZYouYuan_23_0068
+F:\msys64\tmp\cckqUQBd.s:1397   .rodata.acFontHZYouYuan_23_0067:00000000 acFontHZYouYuan_23_0067
+F:\msys64\tmp\cckqUQBd.s:1388   .rodata.acFontHZYouYuan_23_0066:00000000 acFontHZYouYuan_23_0066
+F:\msys64\tmp\cckqUQBd.s:1379   .rodata.acFontHZYouYuan_23_0065:00000000 acFontHZYouYuan_23_0065
+F:\msys64\tmp\cckqUQBd.s:1371   .rodata.acFontHZYouYuan_23_0064:00000000 acFontHZYouYuan_23_0064
+F:\msys64\tmp\cckqUQBd.s:1363   .rodata.acFontHZYouYuan_23_0063:00000000 acFontHZYouYuan_23_0063
+F:\msys64\tmp\cckqUQBd.s:1355   .rodata.acFontHZYouYuan_23_0062:00000000 acFontHZYouYuan_23_0062
+F:\msys64\tmp\cckqUQBd.s:1346   .rodata.acFontHZYouYuan_23_0061:00000000 acFontHZYouYuan_23_0061
+F:\msys64\tmp\cckqUQBd.s:1337   .rodata.acFontHZYouYuan_23_0060:00000000 acFontHZYouYuan_23_0060
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 47
+
+
+F:\msys64\tmp\cckqUQBd.s:1328   .rodata.acFontHZYouYuan_23_005f:00000000 acFontHZYouYuan_23_005f
+F:\msys64\tmp\cckqUQBd.s:1319   .rodata.acFontHZYouYuan_23_005e:00000000 acFontHZYouYuan_23_005e
+F:\msys64\tmp\cckqUQBd.s:1310   .rodata.acFontHZYouYuan_23_005d:00000000 acFontHZYouYuan_23_005d
+F:\msys64\tmp\cckqUQBd.s:1301   .rodata.acFontHZYouYuan_23_005c:00000000 acFontHZYouYuan_23_005c
+F:\msys64\tmp\cckqUQBd.s:1292   .rodata.acFontHZYouYuan_23_005b:00000000 acFontHZYouYuan_23_005b
+F:\msys64\tmp\cckqUQBd.s:1283   .rodata.acFontHZYouYuan_23_005a:00000000 acFontHZYouYuan_23_005a
+F:\msys64\tmp\cckqUQBd.s:1274   .rodata.acFontHZYouYuan_23_0059:00000000 acFontHZYouYuan_23_0059
+F:\msys64\tmp\cckqUQBd.s:1265   .rodata.acFontHZYouYuan_23_0058:00000000 acFontHZYouYuan_23_0058
+F:\msys64\tmp\cckqUQBd.s:1257   .rodata.acFontHZYouYuan_23_0057:00000000 acFontHZYouYuan_23_0057
+F:\msys64\tmp\cckqUQBd.s:1248   .rodata.acFontHZYouYuan_23_0056:00000000 acFontHZYouYuan_23_0056
+F:\msys64\tmp\cckqUQBd.s:1240   .rodata.acFontHZYouYuan_23_0055:00000000 acFontHZYouYuan_23_0055
+F:\msys64\tmp\cckqUQBd.s:1231   .rodata.acFontHZYouYuan_23_0054:00000000 acFontHZYouYuan_23_0054
+F:\msys64\tmp\cckqUQBd.s:1223   .rodata.acFontHZYouYuan_23_0053:00000000 acFontHZYouYuan_23_0053
+F:\msys64\tmp\cckqUQBd.s:1215   .rodata.acFontHZYouYuan_23_0052:00000000 acFontHZYouYuan_23_0052
+F:\msys64\tmp\cckqUQBd.s:1207   .rodata.acFontHZYouYuan_23_0051:00000000 acFontHZYouYuan_23_0051
+F:\msys64\tmp\cckqUQBd.s:1199   .rodata.acFontHZYouYuan_23_0050:00000000 acFontHZYouYuan_23_0050
+F:\msys64\tmp\cckqUQBd.s:1191   .rodata.acFontHZYouYuan_23_004f:00000000 acFontHZYouYuan_23_004f
+F:\msys64\tmp\cckqUQBd.s:1183   .rodata.acFontHZYouYuan_23_004e:00000000 acFontHZYouYuan_23_004e
+F:\msys64\tmp\cckqUQBd.s:1175   .rodata.acFontHZYouYuan_23_004d:00000000 acFontHZYouYuan_23_004d
+F:\msys64\tmp\cckqUQBd.s:1167   .rodata.acFontHZYouYuan_23_004c:00000000 acFontHZYouYuan_23_004c
+F:\msys64\tmp\cckqUQBd.s:1159   .rodata.acFontHZYouYuan_23_004b:00000000 acFontHZYouYuan_23_004b
+F:\msys64\tmp\cckqUQBd.s:1150   .rodata.acFontHZYouYuan_23_004a:00000000 acFontHZYouYuan_23_004a
+F:\msys64\tmp\cckqUQBd.s:1141   .rodata.acFontHZYouYuan_23_0049:00000000 acFontHZYouYuan_23_0049
+F:\msys64\tmp\cckqUQBd.s:1133   .rodata.acFontHZYouYuan_23_0048:00000000 acFontHZYouYuan_23_0048
+F:\msys64\tmp\cckqUQBd.s:1125   .rodata.acFontHZYouYuan_23_0047:00000000 acFontHZYouYuan_23_0047
+F:\msys64\tmp\cckqUQBd.s:1117   .rodata.acFontHZYouYuan_23_0046:00000000 acFontHZYouYuan_23_0046
+F:\msys64\tmp\cckqUQBd.s:1109   .rodata.acFontHZYouYuan_23_0045:00000000 acFontHZYouYuan_23_0045
+F:\msys64\tmp\cckqUQBd.s:1101   .rodata.acFontHZYouYuan_23_0044:00000000 acFontHZYouYuan_23_0044
+F:\msys64\tmp\cckqUQBd.s:1093   .rodata.acFontHZYouYuan_23_0043:00000000 acFontHZYouYuan_23_0043
+F:\msys64\tmp\cckqUQBd.s:1085   .rodata.acFontHZYouYuan_23_0042:00000000 acFontHZYouYuan_23_0042
+F:\msys64\tmp\cckqUQBd.s:1076   .rodata.acFontHZYouYuan_23_0041:00000000 acFontHZYouYuan_23_0041
+F:\msys64\tmp\cckqUQBd.s:1068   .rodata.acFontHZYouYuan_23_0040:00000000 acFontHZYouYuan_23_0040
+F:\msys64\tmp\cckqUQBd.s:1060   .rodata.acFontHZYouYuan_23_003f:00000000 acFontHZYouYuan_23_003f
+F:\msys64\tmp\cckqUQBd.s:1051   .rodata.acFontHZYouYuan_23_003e:00000000 acFontHZYouYuan_23_003e
+F:\msys64\tmp\cckqUQBd.s:1042   .rodata.acFontHZYouYuan_23_003d:00000000 acFontHZYouYuan_23_003d
+F:\msys64\tmp\cckqUQBd.s:1033   .rodata.acFontHZYouYuan_23_003c:00000000 acFontHZYouYuan_23_003c
+F:\msys64\tmp\cckqUQBd.s:1024   .rodata.acFontHZYouYuan_23_003b:00000000 acFontHZYouYuan_23_003b
+F:\msys64\tmp\cckqUQBd.s:1015   .rodata.acFontHZYouYuan_23_003a:00000000 acFontHZYouYuan_23_003a
+F:\msys64\tmp\cckqUQBd.s:1007   .rodata.acFontHZYouYuan_23_0039:00000000 acFontHZYouYuan_23_0039
+F:\msys64\tmp\cckqUQBd.s:999    .rodata.acFontHZYouYuan_23_0038:00000000 acFontHZYouYuan_23_0038
+F:\msys64\tmp\cckqUQBd.s:990    .rodata.acFontHZYouYuan_23_0037:00000000 acFontHZYouYuan_23_0037
+F:\msys64\tmp\cckqUQBd.s:982    .rodata.acFontHZYouYuan_23_0036:00000000 acFontHZYouYuan_23_0036
+F:\msys64\tmp\cckqUQBd.s:974    .rodata.acFontHZYouYuan_23_0035:00000000 acFontHZYouYuan_23_0035
+F:\msys64\tmp\cckqUQBd.s:965    .rodata.acFontHZYouYuan_23_0034:00000000 acFontHZYouYuan_23_0034
+F:\msys64\tmp\cckqUQBd.s:957    .rodata.acFontHZYouYuan_23_0033:00000000 acFontHZYouYuan_23_0033
+F:\msys64\tmp\cckqUQBd.s:949    .rodata.acFontHZYouYuan_23_0032:00000000 acFontHZYouYuan_23_0032
+F:\msys64\tmp\cckqUQBd.s:940    .rodata.acFontHZYouYuan_23_0031:00000000 acFontHZYouYuan_23_0031
+F:\msys64\tmp\cckqUQBd.s:932    .rodata.acFontHZYouYuan_23_0030:00000000 acFontHZYouYuan_23_0030
+F:\msys64\tmp\cckqUQBd.s:923    .rodata.acFontHZYouYuan_23_002f:00000000 acFontHZYouYuan_23_002f
+F:\msys64\tmp\cckqUQBd.s:914    .rodata.acFontHZYouYuan_23_002e:00000000 acFontHZYouYuan_23_002e
+F:\msys64\tmp\cckqUQBd.s:905    .rodata.acFontHZYouYuan_23_002d:00000000 acFontHZYouYuan_23_002d
+F:\msys64\tmp\cckqUQBd.s:896    .rodata.acFontHZYouYuan_23_002c:00000000 acFontHZYouYuan_23_002c
+F:\msys64\tmp\cckqUQBd.s:887    .rodata.acFontHZYouYuan_23_002b:00000000 acFontHZYouYuan_23_002b
+F:\msys64\tmp\cckqUQBd.s:878    .rodata.acFontHZYouYuan_23_002a:00000000 acFontHZYouYuan_23_002a
+F:\msys64\tmp\cckqUQBd.s:869    .rodata.acFontHZYouYuan_23_0029:00000000 acFontHZYouYuan_23_0029
+F:\msys64\tmp\cckqUQBd.s:860    .rodata.acFontHZYouYuan_23_0028:00000000 acFontHZYouYuan_23_0028
+F:\msys64\tmp\cckqUQBd.s:851    .rodata.acFontHZYouYuan_23_0027:00000000 acFontHZYouYuan_23_0027
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 48
+
+
+F:\msys64\tmp\cckqUQBd.s:843    .rodata.acFontHZYouYuan_23_0026:00000000 acFontHZYouYuan_23_0026
+F:\msys64\tmp\cckqUQBd.s:834    .rodata.acFontHZYouYuan_23_0025:00000000 acFontHZYouYuan_23_0025
+F:\msys64\tmp\cckqUQBd.s:826    .rodata.acFontHZYouYuan_23_0024:00000000 acFontHZYouYuan_23_0024
+F:\msys64\tmp\cckqUQBd.s:817    .rodata.acFontHZYouYuan_23_0023:00000000 acFontHZYouYuan_23_0023
+F:\msys64\tmp\cckqUQBd.s:808    .rodata.acFontHZYouYuan_23_0022:00000000 acFontHZYouYuan_23_0022
+F:\msys64\tmp\cckqUQBd.s:799    .rodata.acFontHZYouYuan_23_0021:00000000 acFontHZYouYuan_23_0021
+F:\msys64\tmp\cckqUQBd.s:793    .rodata.acFontHZYouYuan_23_0020:00000000 acFontHZYouYuan_23_0020
+F:\msys64\tmp\cckqUQBd.s:139    .rodata.GUI_FontHZYouYuan_23_CharInfo:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:674    .rodata.GUI_FontHZYouYuan_23_Prop0020:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:683    .rodata.GUI_FontHZYouYuan_23_Propb4f3:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:692    .rodata.GUI_FontHZYouYuan_23_Propb5e7:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:701    .rodata.GUI_FontHZYouYuan_23_Propbabc:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:710    .rodata.GUI_FontHZYouYuan_23_Propbcbc:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:719    .rodata.GUI_FontHZYouYuan_23_Propbfc6:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:728    .rodata.GUI_FontHZYouYuan_23_Propd1a7:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:737    .rodata.GUI_FontHZYouYuan_23_Propd4f8:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:746    .rodata.GUI_FontHZYouYuan_23_Propd6dd:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:755    .rodata.GUI_FontHZYouYuan_23_Propd7d3:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:764    .rodata.GUI_FontHZYouYuan_23_Propd8b9:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:773    .rodata.GUI_FontHZ_YouYuan_23:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:790    .rodata.acFontHZYouYuan_23_0020:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:796    .rodata.acFontHZYouYuan_23_0021:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:805    .rodata.acFontHZYouYuan_23_0022:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:814    .rodata.acFontHZYouYuan_23_0023:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:823    .rodata.acFontHZYouYuan_23_0024:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:831    .rodata.acFontHZYouYuan_23_0025:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:840    .rodata.acFontHZYouYuan_23_0026:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:848    .rodata.acFontHZYouYuan_23_0027:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:857    .rodata.acFontHZYouYuan_23_0028:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:866    .rodata.acFontHZYouYuan_23_0029:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:875    .rodata.acFontHZYouYuan_23_002a:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:884    .rodata.acFontHZYouYuan_23_002b:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:893    .rodata.acFontHZYouYuan_23_002c:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:902    .rodata.acFontHZYouYuan_23_002d:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:911    .rodata.acFontHZYouYuan_23_002e:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:920    .rodata.acFontHZYouYuan_23_002f:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:929    .rodata.acFontHZYouYuan_23_0030:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:937    .rodata.acFontHZYouYuan_23_0031:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:946    .rodata.acFontHZYouYuan_23_0032:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:954    .rodata.acFontHZYouYuan_23_0033:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:962    .rodata.acFontHZYouYuan_23_0034:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:971    .rodata.acFontHZYouYuan_23_0035:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:979    .rodata.acFontHZYouYuan_23_0036:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:987    .rodata.acFontHZYouYuan_23_0037:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:996    .rodata.acFontHZYouYuan_23_0038:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1004   .rodata.acFontHZYouYuan_23_0039:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1012   .rodata.acFontHZYouYuan_23_003a:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1021   .rodata.acFontHZYouYuan_23_003b:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1030   .rodata.acFontHZYouYuan_23_003c:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1039   .rodata.acFontHZYouYuan_23_003d:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1048   .rodata.acFontHZYouYuan_23_003e:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1057   .rodata.acFontHZYouYuan_23_003f:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1065   .rodata.acFontHZYouYuan_23_0040:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1073   .rodata.acFontHZYouYuan_23_0041:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1082   .rodata.acFontHZYouYuan_23_0042:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1090   .rodata.acFontHZYouYuan_23_0043:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1098   .rodata.acFontHZYouYuan_23_0044:00000000 $d
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 49
+
+
+F:\msys64\tmp\cckqUQBd.s:1106   .rodata.acFontHZYouYuan_23_0045:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1114   .rodata.acFontHZYouYuan_23_0046:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1122   .rodata.acFontHZYouYuan_23_0047:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1130   .rodata.acFontHZYouYuan_23_0048:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1138   .rodata.acFontHZYouYuan_23_0049:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1147   .rodata.acFontHZYouYuan_23_004a:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1156   .rodata.acFontHZYouYuan_23_004b:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1164   .rodata.acFontHZYouYuan_23_004c:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1172   .rodata.acFontHZYouYuan_23_004d:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1180   .rodata.acFontHZYouYuan_23_004e:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1188   .rodata.acFontHZYouYuan_23_004f:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1196   .rodata.acFontHZYouYuan_23_0050:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1204   .rodata.acFontHZYouYuan_23_0051:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1212   .rodata.acFontHZYouYuan_23_0052:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1220   .rodata.acFontHZYouYuan_23_0053:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1228   .rodata.acFontHZYouYuan_23_0054:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1237   .rodata.acFontHZYouYuan_23_0055:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1245   .rodata.acFontHZYouYuan_23_0056:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1254   .rodata.acFontHZYouYuan_23_0057:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1262   .rodata.acFontHZYouYuan_23_0058:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1271   .rodata.acFontHZYouYuan_23_0059:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1280   .rodata.acFontHZYouYuan_23_005a:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1289   .rodata.acFontHZYouYuan_23_005b:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1298   .rodata.acFontHZYouYuan_23_005c:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1307   .rodata.acFontHZYouYuan_23_005d:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1316   .rodata.acFontHZYouYuan_23_005e:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1325   .rodata.acFontHZYouYuan_23_005f:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1334   .rodata.acFontHZYouYuan_23_0060:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1343   .rodata.acFontHZYouYuan_23_0061:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1352   .rodata.acFontHZYouYuan_23_0062:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1360   .rodata.acFontHZYouYuan_23_0063:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1368   .rodata.acFontHZYouYuan_23_0064:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1376   .rodata.acFontHZYouYuan_23_0065:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1385   .rodata.acFontHZYouYuan_23_0066:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1394   .rodata.acFontHZYouYuan_23_0067:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1402   .rodata.acFontHZYouYuan_23_0068:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1410   .rodata.acFontHZYouYuan_23_0069:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1419   .rodata.acFontHZYouYuan_23_006a:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1428   .rodata.acFontHZYouYuan_23_006b:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1436   .rodata.acFontHZYouYuan_23_006c:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1445   .rodata.acFontHZYouYuan_23_006d:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1453   .rodata.acFontHZYouYuan_23_006e:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1461   .rodata.acFontHZYouYuan_23_006f:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1469   .rodata.acFontHZYouYuan_23_0070:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1477   .rodata.acFontHZYouYuan_23_0071:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1485   .rodata.acFontHZYouYuan_23_0072:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1494   .rodata.acFontHZYouYuan_23_0073:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1502   .rodata.acFontHZYouYuan_23_0074:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1511   .rodata.acFontHZYouYuan_23_0075:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1519   .rodata.acFontHZYouYuan_23_0076:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1528   .rodata.acFontHZYouYuan_23_0077:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1536   .rodata.acFontHZYouYuan_23_0078:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1545   .rodata.acFontHZYouYuan_23_0079:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1554   .rodata.acFontHZYouYuan_23_007a:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1563   .rodata.acFontHZYouYuan_23_007b:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1572   .rodata.acFontHZYouYuan_23_007c:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1581   .rodata.acFontHZYouYuan_23_007d:00000000 $d
+ARM GAS  F:\msys64\tmp\cckqUQBd.s 			page 50
+
+
+F:\msys64\tmp\cckqUQBd.s:1590   .rodata.acFontHZYouYuan_23_007e:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1599   .rodata.acFontHZYouYuan_23_007f:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1606   .rodata.acFontHZYouYuan_23_b4f3:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1618   .rodata.acFontHZYouYuan_23_b5e7:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1628   .rodata.acFontHZYouYuan_23_babc:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1639   .rodata.acFontHZYouYuan_23_bcbc:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1651   .rodata.acFontHZYouYuan_23_bfc6:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1662   .rodata.acFontHZYouYuan_23_d1a7:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1674   .rodata.acFontHZYouYuan_23_d4f8:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1686   .rodata.acFontHZYouYuan_23_d6dd:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1697   .rodata.acFontHZYouYuan_23_d7d3:00000000 $d
+F:\msys64\tmp\cckqUQBd.s:1709   .rodata.acFontHZYouYuan_23_d8b9:00000000 $d
+
+UNDEFINED SYMBOLS
+GUIPROP_DispChar
+GUIPROP_GetCharDistX
+GUIPROP_GetFontInfo
+GUIPROP_IsInFont
+GUI_ENC_APIList_SJIS
