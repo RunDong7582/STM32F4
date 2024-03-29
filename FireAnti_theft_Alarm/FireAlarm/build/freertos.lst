@@ -1,0 +1,639 @@
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"freertos.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.DefaultMainTask,"ax",%progbits
+  20              		.align	1
+  21              		.global	DefaultMainTask
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	DefaultMainTask:
+  27              	.LFB800:
+  28              		.file 1 "Core/Src/freertos.c"
+   1:Core/Src/freertos.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/freertos.c **** /**
+   3:Core/Src/freertos.c ****   ******************************************************************************
+   4:Core/Src/freertos.c ****   * File Name          : freertos.c
+   5:Core/Src/freertos.c ****   * Description        : Code for freertos applications
+   6:Core/Src/freertos.c ****   ******************************************************************************
+   7:Core/Src/freertos.c ****   * @attention
+   8:Core/Src/freertos.c ****   *
+   9:Core/Src/freertos.c ****   * Copyright (c) 2024 STMicroelectronics.
+  10:Core/Src/freertos.c ****   * All rights reserved.
+  11:Core/Src/freertos.c ****   *
+  12:Core/Src/freertos.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/freertos.c ****   * in the root directory of this software component.
+  14:Core/Src/freertos.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/freertos.c ****   *
+  16:Core/Src/freertos.c ****   ******************************************************************************
+  17:Core/Src/freertos.c ****   */
+  18:Core/Src/freertos.c **** /* USER CODE END Header */
+  19:Core/Src/freertos.c **** 
+  20:Core/Src/freertos.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/freertos.c **** #include "FreeRTOS.h"
+  22:Core/Src/freertos.c **** #include "task.h"
+  23:Core/Src/freertos.c **** #include "main.h"
+  24:Core/Src/freertos.c **** #include "cmsis_os.h"
+  25:Core/Src/freertos.c **** 
+  26:Core/Src/freertos.c **** /* Private includes ----------------------------------------------------------*/
+  27:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
+  28:Core/Src/freertos.c **** #include "stdio.h"
+  29:Core/Src/freertos.c **** #include "string.h"
+  30:Core/Src/freertos.c **** #include "gpio.h"
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 2
+
+
+  31:Core/Src/freertos.c **** // #include "DS18B20.h"
+  32:Core/Src/freertos.c **** #include "../../Drivers/STemWin/inc/GUI.h"
+  33:Core/Src/freertos.c **** #include "touch.h"
+  34:Core/Src/freertos.c **** #include <cmsis_os2.h>
+  35:Core/Src/freertos.c **** 
+  36:Core/Src/freertos.c **** /* USER CODE END Includes */
+  37:Core/Src/freertos.c **** 
+  38:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
+  39:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
+  40:Core/Src/freertos.c **** 
+  41:Core/Src/freertos.c **** /* USER CODE END PTD */
+  42:Core/Src/freertos.c **** 
+  43:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
+  44:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
+  45:Core/Src/freertos.c **** 
+  46:Core/Src/freertos.c **** /* USER CODE END PD */
+  47:Core/Src/freertos.c **** 
+  48:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
+  49:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
+  50:Core/Src/freertos.c **** 
+  51:Core/Src/freertos.c **** /* USER CODE END PM */
+  52:Core/Src/freertos.c **** 
+  53:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
+  54:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
+  55:Core/Src/freertos.c **** 
+  56:Core/Src/freertos.c **** /* USER CODE END Variables */
+  57:Core/Src/freertos.c **** /* Definitions for MainTask */
+  58:Core/Src/freertos.c **** osThreadId_t MainTaskHandle;
+  59:Core/Src/freertos.c **** const osThreadAttr_t MainTask_attributes = {
+  60:Core/Src/freertos.c ****   .name = "MainTask",
+  61:Core/Src/freertos.c ****   .stack_size = 512 * 4,
+  62:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  63:Core/Src/freertos.c **** };
+  64:Core/Src/freertos.c **** /* Definitions for KeyTask */
+  65:Core/Src/freertos.c **** osThreadId_t KeyTaskHandle;
+  66:Core/Src/freertos.c **** const osThreadAttr_t KeyTask_attributes = {
+  67:Core/Src/freertos.c ****   .name = "KeyTask",
+  68:Core/Src/freertos.c ****   .stack_size = 256 * 4,
+  69:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  70:Core/Src/freertos.c **** };
+  71:Core/Src/freertos.c **** /* Definitions for UartTask */
+  72:Core/Src/freertos.c **** osThreadId_t UartTaskHandle;
+  73:Core/Src/freertos.c **** const osThreadAttr_t UartTask_attributes = {
+  74:Core/Src/freertos.c ****   .name = "UartTask",
+  75:Core/Src/freertos.c ****   .stack_size = 512 * 4,
+  76:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  77:Core/Src/freertos.c **** };
+  78:Core/Src/freertos.c **** /* Definitions for GUITask */
+  79:Core/Src/freertos.c **** osThreadId_t GUITaskHandle;
+  80:Core/Src/freertos.c **** const osThreadAttr_t GUITask_attributes = {
+  81:Core/Src/freertos.c ****   .name = "GUITask",
+  82:Core/Src/freertos.c ****   .stack_size = 256 * 4,
+  83:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  84:Core/Src/freertos.c **** };
+  85:Core/Src/freertos.c **** 
+  86:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+  87:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 3
+
+
+  88:Core/Src/freertos.c **** 
+  89:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+  90:Core/Src/freertos.c **** 
+  91:Core/Src/freertos.c **** void DefaultMainTask(void *argument);
+  92:Core/Src/freertos.c **** void StartKeyTask(void *argument);
+  93:Core/Src/freertos.c **** void StartUartTask(void *argument);
+  94:Core/Src/freertos.c **** void StartGUITask(void *argument);
+  95:Core/Src/freertos.c **** 
+  96:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  97:Core/Src/freertos.c **** 
+  98:Core/Src/freertos.c **** /**
+  99:Core/Src/freertos.c ****   * @brief  FreeRTOS initialization
+ 100:Core/Src/freertos.c ****   * @param  None
+ 101:Core/Src/freertos.c ****   * @retval None
+ 102:Core/Src/freertos.c ****   */
+ 103:Core/Src/freertos.c **** void MX_FREERTOS_Init(void) {
+ 104:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 105:Core/Src/freertos.c **** 
+ 106:Core/Src/freertos.c ****   /* USER CODE END Init */
+ 107:Core/Src/freertos.c **** 
+ 108:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+ 109:Core/Src/freertos.c ****   /* add mutexes, ... */
+ 110:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+ 111:Core/Src/freertos.c **** 
+ 112:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+ 113:Core/Src/freertos.c ****   /* add semaphores, ... */
+ 114:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+ 115:Core/Src/freertos.c **** 
+ 116:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+ 117:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+ 118:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+ 119:Core/Src/freertos.c **** 
+ 120:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 121:Core/Src/freertos.c ****   /* add queues, ... */
+ 122:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+ 123:Core/Src/freertos.c **** 
+ 124:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 125:Core/Src/freertos.c ****   /* creation of MainTask */
+ 126:Core/Src/freertos.c ****   MainTaskHandle = osThreadNew(DefaultMainTask, NULL, &MainTask_attributes);
+ 127:Core/Src/freertos.c **** 
+ 128:Core/Src/freertos.c ****   /* creation of KeyTask */
+ 129:Core/Src/freertos.c ****   KeyTaskHandle = osThreadNew(StartKeyTask, NULL, &KeyTask_attributes);
+ 130:Core/Src/freertos.c **** 
+ 131:Core/Src/freertos.c ****   /* creation of UartTask */
+ 132:Core/Src/freertos.c ****   UartTaskHandle = osThreadNew(StartUartTask, NULL, &UartTask_attributes);
+ 133:Core/Src/freertos.c **** 
+ 134:Core/Src/freertos.c ****   /* creation of GUITask */
+ 135:Core/Src/freertos.c ****   GUITaskHandle = osThreadNew(StartGUITask, NULL, &GUITask_attributes);
+ 136:Core/Src/freertos.c **** 
+ 137:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 138:Core/Src/freertos.c ****   /* add threads, ... */
+ 139:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 140:Core/Src/freertos.c **** 
+ 141:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 142:Core/Src/freertos.c ****   /* add events, ... */
+ 143:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 144:Core/Src/freertos.c **** 
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 4
+
+
+ 145:Core/Src/freertos.c **** }
+ 146:Core/Src/freertos.c **** 
+ 147:Core/Src/freertos.c **** /* USER CODE BEGIN Header_DefaultMainTask */
+ 148:Core/Src/freertos.c **** /**
+ 149:Core/Src/freertos.c ****   * @brief  Function implementing the MainTask thread.
+ 150:Core/Src/freertos.c ****   * @param  argument: Not used
+ 151:Core/Src/freertos.c ****   * @retval None
+ 152:Core/Src/freertos.c ****   */
+ 153:Core/Src/freertos.c **** /* USER CODE END Header_DefaultMainTask */
+ 154:Core/Src/freertos.c **** void DefaultMainTask(void *argument)
+ 155:Core/Src/freertos.c **** {
+  29              		.loc 1 155 1 view -0
+  30              		.cfi_startproc
+  31              		@ Volatile: function does not return.
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              	.LVL0:
+  35              		.loc 1 155 1 is_stmt 0 view .LVU1
+  36 0000 08B5     		push	{r3, lr}
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 3, -8
+  40              		.cfi_offset 14, -4
+  41              	.LVL1:
+  42              	.L2:
+ 156:Core/Src/freertos.c ****   /* USER CODE BEGIN DefaultMainTask */
+ 157:Core/Src/freertos.c ****   /* Infinite loop */
+ 158:Core/Src/freertos.c ****   for(;;)
+  43              		.loc 1 158 3 is_stmt 1 discriminator 1 view .LVU2
+ 159:Core/Src/freertos.c ****   {
+ 160:Core/Src/freertos.c ****     osDelay(1);
+  44              		.loc 1 160 5 discriminator 1 view .LVU3
+  45 0002 0120     		movs	r0, #1
+  46 0004 FFF7FEFF 		bl	osDelay
+  47              	.LVL2:
+ 158:Core/Src/freertos.c ****   {
+  48              		.loc 1 158 8 discriminator 1 view .LVU4
+  49 0008 FBE7     		b	.L2
+  50              		.cfi_endproc
+  51              	.LFE800:
+  53              		.section	.text.StartKeyTask,"ax",%progbits
+  54              		.align	1
+  55              		.global	StartKeyTask
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  60              	StartKeyTask:
+  61              	.LFB801:
+ 161:Core/Src/freertos.c ****   }
+ 162:Core/Src/freertos.c ****   /* USER CODE END DefaultMainTask */
+ 163:Core/Src/freertos.c **** }
+ 164:Core/Src/freertos.c **** 
+ 165:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartKeyTask */
+ 166:Core/Src/freertos.c **** /**
+ 167:Core/Src/freertos.c **** * @brief Function implementing the KeyTask thread.
+ 168:Core/Src/freertos.c **** * @param argument: Not used
+ 169:Core/Src/freertos.c **** * @retval None
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 5
+
+
+ 170:Core/Src/freertos.c **** */
+ 171:Core/Src/freertos.c **** /* USER CODE END Header_StartKeyTask */
+ 172:Core/Src/freertos.c **** void StartKeyTask(void *argument)
+ 173:Core/Src/freertos.c **** {
+  62              		.loc 1 173 1 view -0
+  63              		.cfi_startproc
+  64              		@ Volatile: function does not return.
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67              	.LVL3:
+  68              		.loc 1 173 1 is_stmt 0 view .LVU6
+  69 0000 08B5     		push	{r3, lr}
+  70              	.LCFI1:
+  71              		.cfi_def_cfa_offset 8
+  72              		.cfi_offset 3, -8
+  73              		.cfi_offset 14, -4
+  74              	.LVL4:
+  75              	.L5:
+ 174:Core/Src/freertos.c ****   /* USER CODE BEGIN StartKeyTask */
+ 175:Core/Src/freertos.c ****   /* Infinite loop */
+ 176:Core/Src/freertos.c ****   for(;;)
+  76              		.loc 1 176 3 is_stmt 1 discriminator 1 view .LVU7
+ 177:Core/Src/freertos.c ****   {
+ 178:Core/Src/freertos.c ****     osDelay(1);
+  77              		.loc 1 178 5 discriminator 1 view .LVU8
+  78 0002 0120     		movs	r0, #1
+  79 0004 FFF7FEFF 		bl	osDelay
+  80              	.LVL5:
+ 176:Core/Src/freertos.c ****   {
+  81              		.loc 1 176 8 discriminator 1 view .LVU9
+  82 0008 FBE7     		b	.L5
+  83              		.cfi_endproc
+  84              	.LFE801:
+  86              		.section	.text.StartUartTask,"ax",%progbits
+  87              		.align	1
+  88              		.global	StartUartTask
+  89              		.syntax unified
+  90              		.thumb
+  91              		.thumb_func
+  93              	StartUartTask:
+  94              	.LFB802:
+ 179:Core/Src/freertos.c ****   }
+ 180:Core/Src/freertos.c ****   /* USER CODE END StartKeyTask */
+ 181:Core/Src/freertos.c **** }
+ 182:Core/Src/freertos.c **** 
+ 183:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartUartTask */
+ 184:Core/Src/freertos.c **** /**
+ 185:Core/Src/freertos.c **** * @brief Function implementing the UartTask thread.
+ 186:Core/Src/freertos.c **** * @param argument: Not used
+ 187:Core/Src/freertos.c **** * @retval None
+ 188:Core/Src/freertos.c **** */
+ 189:Core/Src/freertos.c **** /* USER CODE END Header_StartUartTask */
+ 190:Core/Src/freertos.c **** void StartUartTask(void *argument)
+ 191:Core/Src/freertos.c **** {
+  95              		.loc 1 191 1 view -0
+  96              		.cfi_startproc
+  97              		@ Volatile: function does not return.
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 6
+
+
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              	.LVL6:
+ 101              		.loc 1 191 1 is_stmt 0 view .LVU11
+ 102 0000 08B5     		push	{r3, lr}
+ 103              	.LCFI2:
+ 104              		.cfi_def_cfa_offset 8
+ 105              		.cfi_offset 3, -8
+ 106              		.cfi_offset 14, -4
+ 107              	.LVL7:
+ 108              	.L8:
+ 192:Core/Src/freertos.c ****   /* USER CODE BEGIN StartUartTask */
+ 193:Core/Src/freertos.c ****   /* Infinite loop */
+ 194:Core/Src/freertos.c ****   for(;;)
+ 109              		.loc 1 194 3 is_stmt 1 discriminator 1 view .LVU12
+ 195:Core/Src/freertos.c ****   {
+ 196:Core/Src/freertos.c ****     osDelay(1);
+ 110              		.loc 1 196 5 discriminator 1 view .LVU13
+ 111 0002 0120     		movs	r0, #1
+ 112 0004 FFF7FEFF 		bl	osDelay
+ 113              	.LVL8:
+ 194:Core/Src/freertos.c ****   {
+ 114              		.loc 1 194 8 discriminator 1 view .LVU14
+ 115 0008 FBE7     		b	.L8
+ 116              		.cfi_endproc
+ 117              	.LFE802:
+ 119              		.section	.text.StartGUITask,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	StartGUITask
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 126              	StartGUITask:
+ 127              	.LVL9:
+ 128              	.LFB803:
+ 197:Core/Src/freertos.c ****   }
+ 198:Core/Src/freertos.c ****   /* USER CODE END StartUartTask */
+ 199:Core/Src/freertos.c **** }
+ 200:Core/Src/freertos.c **** 
+ 201:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartGUITask */
+ 202:Core/Src/freertos.c **** /**
+ 203:Core/Src/freertos.c **** * @brief Function implementing the GUITask thread.
+ 204:Core/Src/freertos.c **** * @param argument: Not used
+ 205:Core/Src/freertos.c **** * @retval None
+ 206:Core/Src/freertos.c **** */
+ 207:Core/Src/freertos.c **** /* USER CODE END Header_StartGUITask */
+ 208:Core/Src/freertos.c **** void StartGUITask(void *argument)
+ 209:Core/Src/freertos.c **** {
+ 129              		.loc 1 209 1 view -0
+ 130              		.cfi_startproc
+ 131              		@ Volatile: function does not return.
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134              		.loc 1 209 1 is_stmt 0 view .LVU16
+ 135 0000 08B5     		push	{r3, lr}
+ 136              	.LCFI3:
+ 137              		.cfi_def_cfa_offset 8
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 7
+
+
+ 138              		.cfi_offset 3, -8
+ 139              		.cfi_offset 14, -4
+ 210:Core/Src/freertos.c ****   /* USER CODE BEGIN StartGUITask */
+ 211:Core/Src/freertos.c ****   /* Infinite loop */
+ 212:Core/Src/freertos.c **** 	GUI_Init();
+ 140              		.loc 1 212 2 is_stmt 1 view .LVU17
+ 141 0002 FFF7FEFF 		bl	GUI_Init
+ 142              	.LVL10:
+ 213:Core/Src/freertos.c **** 	GUI_SetBkColor(GUI_WHITE);
+ 143              		.loc 1 213 2 view .LVU18
+ 144 0006 4FF0FF30 		mov	r0, #-1
+ 145 000a FFF7FEFF 		bl	GUI_SetBkColor
+ 146              	.LVL11:
+ 214:Core/Src/freertos.c **** 	GUI_Clear();
+ 147              		.loc 1 214 2 view .LVU19
+ 148 000e FFF7FEFF 		bl	GUI_Clear
+ 149              	.LVL12:
+ 150              	.L11:
+ 215:Core/Src/freertos.c ****   for(;;)
+ 151              		.loc 1 215 3 discriminator 1 view .LVU20
+ 216:Core/Src/freertos.c ****   {
+ 217:Core/Src/freertos.c ****     osDelay(1);
+ 152              		.loc 1 217 5 discriminator 1 view .LVU21
+ 153 0012 0120     		movs	r0, #1
+ 154 0014 FFF7FEFF 		bl	osDelay
+ 155              	.LVL13:
+ 215:Core/Src/freertos.c ****   for(;;)
+ 156              		.loc 1 215 8 discriminator 1 view .LVU22
+ 157 0018 FBE7     		b	.L11
+ 158              		.cfi_endproc
+ 159              	.LFE803:
+ 161              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+ 162              		.align	1
+ 163              		.global	MX_FREERTOS_Init
+ 164              		.syntax unified
+ 165              		.thumb
+ 166              		.thumb_func
+ 168              	MX_FREERTOS_Init:
+ 169              	.LFB799:
+ 103:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 170              		.loc 1 103 29 view -0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174 0000 08B5     		push	{r3, lr}
+ 175              	.LCFI4:
+ 176              		.cfi_def_cfa_offset 8
+ 177              		.cfi_offset 3, -8
+ 178              		.cfi_offset 14, -4
+ 126:Core/Src/freertos.c **** 
+ 179              		.loc 1 126 3 view .LVU24
+ 126:Core/Src/freertos.c **** 
+ 180              		.loc 1 126 20 is_stmt 0 view .LVU25
+ 181 0002 0E4A     		ldr	r2, .L15
+ 182 0004 0021     		movs	r1, #0
+ 183 0006 0E48     		ldr	r0, .L15+4
+ 184 0008 FFF7FEFF 		bl	osThreadNew
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 8
+
+
+ 185              	.LVL14:
+ 126:Core/Src/freertos.c **** 
+ 186              		.loc 1 126 18 view .LVU26
+ 187 000c 0D4B     		ldr	r3, .L15+8
+ 188 000e 1860     		str	r0, [r3]
+ 129:Core/Src/freertos.c **** 
+ 189              		.loc 1 129 3 is_stmt 1 view .LVU27
+ 129:Core/Src/freertos.c **** 
+ 190              		.loc 1 129 19 is_stmt 0 view .LVU28
+ 191 0010 0D4A     		ldr	r2, .L15+12
+ 192 0012 0021     		movs	r1, #0
+ 193 0014 0D48     		ldr	r0, .L15+16
+ 194 0016 FFF7FEFF 		bl	osThreadNew
+ 195              	.LVL15:
+ 129:Core/Src/freertos.c **** 
+ 196              		.loc 1 129 17 view .LVU29
+ 197 001a 0D4B     		ldr	r3, .L15+20
+ 198 001c 1860     		str	r0, [r3]
+ 132:Core/Src/freertos.c **** 
+ 199              		.loc 1 132 3 is_stmt 1 view .LVU30
+ 132:Core/Src/freertos.c **** 
+ 200              		.loc 1 132 20 is_stmt 0 view .LVU31
+ 201 001e 0D4A     		ldr	r2, .L15+24
+ 202 0020 0021     		movs	r1, #0
+ 203 0022 0D48     		ldr	r0, .L15+28
+ 204 0024 FFF7FEFF 		bl	osThreadNew
+ 205              	.LVL16:
+ 132:Core/Src/freertos.c **** 
+ 206              		.loc 1 132 18 view .LVU32
+ 207 0028 0C4B     		ldr	r3, .L15+32
+ 208 002a 1860     		str	r0, [r3]
+ 135:Core/Src/freertos.c **** 
+ 209              		.loc 1 135 3 is_stmt 1 view .LVU33
+ 135:Core/Src/freertos.c **** 
+ 210              		.loc 1 135 19 is_stmt 0 view .LVU34
+ 211 002c 0C4A     		ldr	r2, .L15+36
+ 212 002e 0021     		movs	r1, #0
+ 213 0030 0C48     		ldr	r0, .L15+40
+ 214 0032 FFF7FEFF 		bl	osThreadNew
+ 215              	.LVL17:
+ 135:Core/Src/freertos.c **** 
+ 216              		.loc 1 135 17 view .LVU35
+ 217 0036 0C4B     		ldr	r3, .L15+44
+ 218 0038 1860     		str	r0, [r3]
+ 145:Core/Src/freertos.c **** 
+ 219              		.loc 1 145 1 view .LVU36
+ 220 003a 08BD     		pop	{r3, pc}
+ 221              	.L16:
+ 222              		.align	2
+ 223              	.L15:
+ 224 003c 00000000 		.word	.LANCHOR0
+ 225 0040 00000000 		.word	DefaultMainTask
+ 226 0044 00000000 		.word	.LANCHOR1
+ 227 0048 00000000 		.word	.LANCHOR2
+ 228 004c 00000000 		.word	StartKeyTask
+ 229 0050 00000000 		.word	.LANCHOR3
+ 230 0054 00000000 		.word	.LANCHOR4
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 9
+
+
+ 231 0058 00000000 		.word	StartUartTask
+ 232 005c 00000000 		.word	.LANCHOR5
+ 233 0060 00000000 		.word	.LANCHOR6
+ 234 0064 00000000 		.word	StartGUITask
+ 235 0068 00000000 		.word	.LANCHOR7
+ 236              		.cfi_endproc
+ 237              	.LFE799:
+ 239              		.global	GUITask_attributes
+ 240              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 241              		.align	2
+ 242              	.LC0:
+ 243 0000 47554954 		.ascii	"GUITask\000"
+ 243      61736B00 
+ 244              		.global	GUITaskHandle
+ 245              		.global	UartTask_attributes
+ 246              		.align	2
+ 247              	.LC1:
+ 248 0008 55617274 		.ascii	"UartTask\000"
+ 248      5461736B 
+ 248      00
+ 249              		.global	UartTaskHandle
+ 250              		.global	KeyTask_attributes
+ 251 0011 000000   		.align	2
+ 252              	.LC2:
+ 253 0014 4B657954 		.ascii	"KeyTask\000"
+ 253      61736B00 
+ 254              		.global	KeyTaskHandle
+ 255              		.global	MainTask_attributes
+ 256              		.align	2
+ 257              	.LC3:
+ 258 001c 4D61696E 		.ascii	"MainTask\000"
+ 258      5461736B 
+ 258      00
+ 259              		.global	MainTaskHandle
+ 260              		.section	.bss.GUITaskHandle,"aw",%nobits
+ 261              		.align	2
+ 262              		.set	.LANCHOR7,. + 0
+ 265              	GUITaskHandle:
+ 266 0000 00000000 		.space	4
+ 267              		.section	.bss.KeyTaskHandle,"aw",%nobits
+ 268              		.align	2
+ 269              		.set	.LANCHOR3,. + 0
+ 272              	KeyTaskHandle:
+ 273 0000 00000000 		.space	4
+ 274              		.section	.bss.MainTaskHandle,"aw",%nobits
+ 275              		.align	2
+ 276              		.set	.LANCHOR1,. + 0
+ 279              	MainTaskHandle:
+ 280 0000 00000000 		.space	4
+ 281              		.section	.bss.UartTaskHandle,"aw",%nobits
+ 282              		.align	2
+ 283              		.set	.LANCHOR5,. + 0
+ 286              	UartTaskHandle:
+ 287 0000 00000000 		.space	4
+ 288              		.section	.rodata.GUITask_attributes,"a"
+ 289              		.align	2
+ 290              		.set	.LANCHOR6,. + 0
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 10
+
+
+ 293              	GUITask_attributes:
+ 294 0000 00000000 		.word	.LC0
+ 295 0004 00000000 		.space	16
+ 295      00000000 
+ 295      00000000 
+ 295      00000000 
+ 296 0014 00040000 		.word	1024
+ 297 0018 18000000 		.word	24
+ 298 001c 00000000 		.space	8
+ 298      00000000 
+ 299              		.section	.rodata.KeyTask_attributes,"a"
+ 300              		.align	2
+ 301              		.set	.LANCHOR2,. + 0
+ 304              	KeyTask_attributes:
+ 305 0000 14000000 		.word	.LC2
+ 306 0004 00000000 		.space	16
+ 306      00000000 
+ 306      00000000 
+ 306      00000000 
+ 307 0014 00040000 		.word	1024
+ 308 0018 18000000 		.word	24
+ 309 001c 00000000 		.space	8
+ 309      00000000 
+ 310              		.section	.rodata.MainTask_attributes,"a"
+ 311              		.align	2
+ 312              		.set	.LANCHOR0,. + 0
+ 315              	MainTask_attributes:
+ 316 0000 1C000000 		.word	.LC3
+ 317 0004 00000000 		.space	16
+ 317      00000000 
+ 317      00000000 
+ 317      00000000 
+ 318 0014 00080000 		.word	2048
+ 319 0018 18000000 		.word	24
+ 320 001c 00000000 		.space	8
+ 320      00000000 
+ 321              		.section	.rodata.UartTask_attributes,"a"
+ 322              		.align	2
+ 323              		.set	.LANCHOR4,. + 0
+ 326              	UartTask_attributes:
+ 327 0000 08000000 		.word	.LC1
+ 328 0004 00000000 		.space	16
+ 328      00000000 
+ 328      00000000 
+ 328      00000000 
+ 329 0014 00080000 		.word	2048
+ 330 0018 18000000 		.word	24
+ 331 001c 00000000 		.space	8
+ 331      00000000 
+ 332              		.text
+ 333              	.Letext0:
+ 334              		.file 2 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\machine\\_default_ty
+ 335              		.file 3 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 336              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 337              		.file 5 "Core/Src/../../Drivers/STemWin/inc/GUI.h"
+ 338              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ARM GAS  F:\msys64\tmp\cciR3vIH.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 freertos.c
+F:\msys64\tmp\cciR3vIH.s:20     .text.DefaultMainTask:00000000 $t
+F:\msys64\tmp\cciR3vIH.s:26     .text.DefaultMainTask:00000000 DefaultMainTask
+F:\msys64\tmp\cciR3vIH.s:54     .text.StartKeyTask:00000000 $t
+F:\msys64\tmp\cciR3vIH.s:60     .text.StartKeyTask:00000000 StartKeyTask
+F:\msys64\tmp\cciR3vIH.s:87     .text.StartUartTask:00000000 $t
+F:\msys64\tmp\cciR3vIH.s:93     .text.StartUartTask:00000000 StartUartTask
+F:\msys64\tmp\cciR3vIH.s:120    .text.StartGUITask:00000000 $t
+F:\msys64\tmp\cciR3vIH.s:126    .text.StartGUITask:00000000 StartGUITask
+F:\msys64\tmp\cciR3vIH.s:162    .text.MX_FREERTOS_Init:00000000 $t
+F:\msys64\tmp\cciR3vIH.s:168    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+F:\msys64\tmp\cciR3vIH.s:224    .text.MX_FREERTOS_Init:0000003c $d
+F:\msys64\tmp\cciR3vIH.s:293    .rodata.GUITask_attributes:00000000 GUITask_attributes
+F:\msys64\tmp\cciR3vIH.s:241    .rodata.str1.4:00000000 $d
+F:\msys64\tmp\cciR3vIH.s:265    .bss.GUITaskHandle:00000000 GUITaskHandle
+F:\msys64\tmp\cciR3vIH.s:326    .rodata.UartTask_attributes:00000000 UartTask_attributes
+F:\msys64\tmp\cciR3vIH.s:286    .bss.UartTaskHandle:00000000 UartTaskHandle
+F:\msys64\tmp\cciR3vIH.s:304    .rodata.KeyTask_attributes:00000000 KeyTask_attributes
+F:\msys64\tmp\cciR3vIH.s:272    .bss.KeyTaskHandle:00000000 KeyTaskHandle
+F:\msys64\tmp\cciR3vIH.s:315    .rodata.MainTask_attributes:00000000 MainTask_attributes
+F:\msys64\tmp\cciR3vIH.s:279    .bss.MainTaskHandle:00000000 MainTaskHandle
+F:\msys64\tmp\cciR3vIH.s:261    .bss.GUITaskHandle:00000000 $d
+F:\msys64\tmp\cciR3vIH.s:268    .bss.KeyTaskHandle:00000000 $d
+F:\msys64\tmp\cciR3vIH.s:275    .bss.MainTaskHandle:00000000 $d
+F:\msys64\tmp\cciR3vIH.s:282    .bss.UartTaskHandle:00000000 $d
+F:\msys64\tmp\cciR3vIH.s:289    .rodata.GUITask_attributes:00000000 $d
+F:\msys64\tmp\cciR3vIH.s:300    .rodata.KeyTask_attributes:00000000 $d
+F:\msys64\tmp\cciR3vIH.s:311    .rodata.MainTask_attributes:00000000 $d
+F:\msys64\tmp\cciR3vIH.s:322    .rodata.UartTask_attributes:00000000 $d
+
+UNDEFINED SYMBOLS
+osDelay
+GUI_Init
+GUI_SetBkColor
+GUI_Clear
+osThreadNew

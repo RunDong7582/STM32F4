@@ -1,0 +1,589 @@
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 2
+  15              		.file	"LCDConf_Lin_Template.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.CUSTOM_LCD_CopyBuffer,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	CUSTOM_LCD_CopyBuffer:
+  26              	.LVL0:
+  27              	.LFB0:
+  28              		.file 1 "Drivers/STemWin/Config/LCDConf_Lin_Template.c"
+   1:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** /*********************************************************************
+   2:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *                SEGGER Microcontroller GmbH & Co. KG                *
+   3:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *        Solutions for real time microcontroller applications        *
+   4:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** **********************************************************************
+   5:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *                                                                    *
+   6:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *        (c) 1996 - 2017  SEGGER Microcontroller GmbH & Co. KG       *
+   7:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *                                                                    *
+   8:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *        Internet: www.segger.com    Support:  support@segger.com    *
+   9:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *                                                                    *
+  10:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** **********************************************************************
+  11:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  12:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** ** emWin V5.44 - Graphical user interface for embedded applications **
+  13:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** All  Intellectual Property rights  in the Software belongs to  SEGGER.
+  14:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** emWin is protected by  international copyright laws.  Knowledge of the
+  15:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** source code may not be used to write a similar product.  This file may
+  16:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** only be used in accordance with the following terms:
+  17:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  18:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** The  software has  been licensed  to STMicroelectronics International
+  19:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** N.V. a Dutch company with a Swiss branch and its headquarters in Plan-
+  20:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** les-Ouates, Geneva, 39 Chemin du Champ des Filles, Switzerland for the
+  21:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** purposes of creating libraries for ARM Cortex-M-based 32-bit microcon_
+  22:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** troller products commercialized by Licensee only, sublicensed and dis_
+  23:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** tributed under the terms and conditions of the End User License Agree_
+  24:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** ment supplied by STMicroelectronics International N.V.
+  25:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** Full source code is available at: www.segger.com
+  26:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  27:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** We appreciate your understanding and fairness.
+  28:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** ----------------------------------------------------------------------
+  29:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** File        : LCDConf_Lin_Template.c
+  30:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** Purpose     : Display controller configuration (single layer)
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 2
+
+
+  31:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** ---------------------------END-OF-HEADER------------------------------
+  32:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** */
+  33:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  34:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** /**
+  35:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   ******************************************************************************
+  36:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   * @attention
+  37:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   *
+  38:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics. 
+  39:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   * All rights reserved.</center></h2>
+  40:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   *
+  41:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   * This software component is licensed by ST under Ultimate Liberty license SLA0044,
+  42:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   * the "License"; You may not use this file except in compliance with the License.
+  43:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   * You may obtain a copy of the License at:
+  44:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   *                      http://www.st.com/SLA0044
+  45:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   *
+  46:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   ******************************************************************************
+  47:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   */
+  48:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  49:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #include "GUI.h"
+  50:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #include "GUIDRV_Lin.h"
+  51:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  52:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** /*********************************************************************
+  53:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+  54:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *       Layer configuration (to be modified)
+  55:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+  56:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** **********************************************************************
+  57:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** */
+  58:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** //
+  59:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** // Physical display size
+  60:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** //
+  61:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #define XSIZE_PHYS 320
+  62:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #define YSIZE_PHYS 240
+  63:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  64:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** //
+  65:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** // Color conversion
+  66:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** //
+  67:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #define COLOR_CONVERSION GUICC_8888
+  68:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  69:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** //
+  70:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** // Display driver
+  71:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** //
+  72:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #define DISPLAY_DRIVER GUIDRV_WIN32
+  73:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  74:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** //
+  75:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** // Buffers / VScreens
+  76:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** //
+  77:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #define NUM_BUFFERS  1 // Number of multiple buffers to be used
+  78:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #define NUM_VSCREENS 1 // Number of virtual screens to be used
+  79:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+  80:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** /*********************************************************************
+  81:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+  82:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *       Configuration checking
+  83:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+  84:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** **********************************************************************
+  85:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** */
+  86:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #ifndef   VRAM_ADDR
+  87:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #define VRAM_ADDR 0 // TBD by customer: This has to be the frame buffer start address
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 3
+
+
+  88:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #endif
+  89:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #ifndef   XSIZE_PHYS
+  90:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #error Physical X size of display is not defined!
+  91:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #endif
+  92:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #ifndef   YSIZE_PHYS
+  93:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #error Physical Y size of display is not defined!
+  94:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #endif
+  95:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #ifndef   COLOR_CONVERSION
+  96:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #error Color conversion not defined!
+  97:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #endif
+  98:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #ifndef   DISPLAY_DRIVER
+  99:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #error No display driver defined!
+ 100:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #endif
+ 101:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #ifndef   NUM_VSCREENS
+ 102:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #define NUM_VSCREENS 1
+ 103:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #else
+ 104:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #if (NUM_VSCREENS <= 0)
+ 105:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     #error At least one screeen needs to be defined!
+ 106:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #endif
+ 107:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #endif
+ 108:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #if (NUM_VSCREENS > 1) && (NUM_BUFFERS > 1)
+ 109:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #error Virtual screens and multiple buffers are not allowed!
+ 110:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** #endif
+ 111:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+ 112:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** /*********************************************************************
+ 113:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+ 114:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *       Public code
+ 115:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+ 116:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** **********************************************************************
+ 117:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** */
+ 118:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** /*********************************************************************
+ 119:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+ 120:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *       LCD_X_Config
+ 121:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+ 122:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** * Purpose:
+ 123:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   Called during the initialization process in order to set up the
+ 124:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   display driver configuration.
+ 125:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   
+ 126:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** */
+ 127:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** static void CUSTOM_LCD_CopyBuffer(unsigned long LayerIndex, unsigned long IndexSrc, unsigned long I
+ 128:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** {
+  29              		.loc 1 128 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+ 129:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** return ;
+  34              		.loc 1 129 1 view .LVU1
+ 130:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** }
+  35              		.loc 1 130 1 is_stmt 0 view .LVU2
+  36 0000 7047     		bx	lr
+  37              		.cfi_endproc
+  38              	.LFE0:
+  40              		.section	.text.CUSTOM_LCD_CopyRect,"ax",%progbits
+  41              		.align	1
+  42              		.syntax unified
+  43              		.thumb
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 4
+
+
+  44              		.thumb_func
+  46              	CUSTOM_LCD_CopyRect:
+  47              	.LVL1:
+  48              	.LFB1:
+ 131:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+ 132:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** static void CUSTOM_LCD_CopyRect(unsigned long LayerIndex, unsigned long x0, unsigned long y0, unsig
+ 133:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** {
+  49              		.loc 1 133 1 is_stmt 1 view -0
+  50              		.cfi_startproc
+  51              		@ args = 12, pretend = 0, frame = 0
+  52              		@ frame_needed = 0, uses_anonymous_args = 0
+  53              		@ link register save eliminated.
+ 134:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** return ;
+  54              		.loc 1 134 1 view .LVU4
+ 135:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** }
+  55              		.loc 1 135 1 is_stmt 0 view .LVU5
+  56 0000 7047     		bx	lr
+  57              		.cfi_endproc
+  58              	.LFE1:
+  60              		.section	.text.CUSTOM_LCD_DrawBitmap16bpp,"ax",%progbits
+  61              		.align	1
+  62              		.global	CUSTOM_LCD_DrawBitmap16bpp
+  63              		.syntax unified
+  64              		.thumb
+  65              		.thumb_func
+  67              	CUSTOM_LCD_DrawBitmap16bpp:
+  68              	.LVL2:
+  69              	.LFB2:
+ 136:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+ 137:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** void CUSTOM_LCD_DrawBitmap16bpp(int LayerIndex, int x, int y, U8 const * p, int xSize, int ySize, i
+ 138:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** {
+  70              		.loc 1 138 1 is_stmt 1 view -0
+  71              		.cfi_startproc
+  72              		@ args = 12, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		@ link register save eliminated.
+ 139:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** return ;
+  75              		.loc 1 139 1 view .LVU7
+ 140:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** }
+  76              		.loc 1 140 1 is_stmt 0 view .LVU8
+  77 0000 7047     		bx	lr
+  78              		.cfi_endproc
+  79              	.LFE2:
+  81              		.section	.text.CUSTOM_LCD_DrawBitmap8bpp,"ax",%progbits
+  82              		.align	1
+  83              		.global	CUSTOM_LCD_DrawBitmap8bpp
+  84              		.syntax unified
+  85              		.thumb
+  86              		.thumb_func
+  88              	CUSTOM_LCD_DrawBitmap8bpp:
+  89              	.LVL3:
+  90              	.LFB3:
+ 141:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+ 142:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** void CUSTOM_LCD_DrawBitmap8bpp(int LayerIndex, int x, int y, U16 const * p, int xSize, int ySize, i
+ 143:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** {
+  91              		.loc 1 143 1 is_stmt 1 view -0
+  92              		.cfi_startproc
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 5
+
+
+  93              		@ args = 12, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		@ link register save eliminated.
+ 144:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   return ;
+  96              		.loc 1 144 3 view .LVU10
+ 145:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** }
+  97              		.loc 1 145 1 is_stmt 0 view .LVU11
+  98 0000 7047     		bx	lr
+  99              		.cfi_endproc
+ 100              	.LFE3:
+ 102              		.section	.text.LCD_X_Config,"ax",%progbits
+ 103              		.align	1
+ 104              		.global	LCD_X_Config
+ 105              		.syntax unified
+ 106              		.thumb
+ 107              		.thumb_func
+ 109              	LCD_X_Config:
+ 110              	.LFB4:
+ 146:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** void LCD_X_Config(void) {
+ 111              		.loc 1 146 25 is_stmt 1 view -0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115 0000 08B5     		push	{r3, lr}
+ 116              	.LCFI0:
+ 117              		.cfi_def_cfa_offset 8
+ 118              		.cfi_offset 3, -8
+ 119              		.cfi_offset 14, -4
+ 147:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 148:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   // At first initialize use of multiple buffers on demand
+ 149:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 150:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #if (NUM_BUFFERS > 1)
+ 151:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     GUI_MULTIBUF_Config(NUM_BUFFERS);
+ 152:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #endif
+ 153:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 154:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   // Set display driver and color conversion for 1st layer
+ 155:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 156:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   GUI_DEVICE_CreateAndLink(DISPLAY_DRIVER, COLOR_CONVERSION, 0, 0);
+ 120              		.loc 1 156 3 view .LVU13
+ 121 0002 0023     		movs	r3, #0
+ 122 0004 1A46     		mov	r2, r3
+ 123 0006 1F49     		ldr	r1, .L9
+ 124 0008 1F48     		ldr	r0, .L9+4
+ 125 000a FFF7FEFF 		bl	GUI_DEVICE_CreateAndLink
+ 126              	.LVL4:
+ 157:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 158:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   // Display driver configuration, required for Lin-driver
+ 159:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 160:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   if (LCD_GetSwapXY()) {
+ 127              		.loc 1 160 3 view .LVU14
+ 128              		.loc 1 160 7 is_stmt 0 view .LVU15
+ 129 000e FFF7FEFF 		bl	LCD_GetSwapXY
+ 130              	.LVL5:
+ 131              		.loc 1 160 6 view .LVU16
+ 132 0012 48B3     		cbz	r0, .L6
+ 161:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_SetSizeEx (0, YSIZE_PHYS, XSIZE_PHYS);
+ 133              		.loc 1 161 5 is_stmt 1 view .LVU17
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 6
+
+
+ 134 0014 4FF4A072 		mov	r2, #320
+ 135 0018 F021     		movs	r1, #240
+ 136 001a 0020     		movs	r0, #0
+ 137 001c FFF7FEFF 		bl	LCD_SetSizeEx
+ 138              	.LVL6:
+ 162:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_SetVSizeEx(0, YSIZE_PHYS * NUM_VSCREENS, XSIZE_PHYS);
+ 139              		.loc 1 162 5 view .LVU18
+ 140 0020 4FF4A072 		mov	r2, #320
+ 141 0024 F021     		movs	r1, #240
+ 142 0026 0020     		movs	r0, #0
+ 143 0028 FFF7FEFF 		bl	LCD_SetVSizeEx
+ 144              	.LVL7:
+ 145              	.L7:
+ 163:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   } else {
+ 164:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_SetSizeEx (0, XSIZE_PHYS, YSIZE_PHYS);
+ 165:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_SetVSizeEx(0, XSIZE_PHYS, YSIZE_PHYS * NUM_VSCREENS);
+ 166:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 167:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   LCD_SetVRAMAddrEx(0, (void *)VRAM_ADDR);
+ 146              		.loc 1 167 3 view .LVU19
+ 147 002c 0021     		movs	r1, #0
+ 148 002e 0846     		mov	r0, r1
+ 149 0030 FFF7FEFF 		bl	LCD_SetVRAMAddrEx
+ 150              	.LVL8:
+ 168:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 169:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   // Set user palette data (only required if no fixed palette is used)
+ 170:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 171:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #if defined(PALETTE)
+ 172:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_SetLUTEx(0, PALETTE);
+ 173:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   #endif
+ 174:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   
+ 175:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 176:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   // Set custom functions for several operations to optimize native processes
+ 177:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   //
+ 178:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   LCD_SetDevFunc(0, LCD_DEVFUNC_COPYBUFFER, (void(*)(void))CUSTOM_LCD_CopyBuffer);
+ 151              		.loc 1 178 3 view .LVU20
+ 152 0034 154A     		ldr	r2, .L9+8
+ 153 0036 2121     		movs	r1, #33
+ 154 0038 0020     		movs	r0, #0
+ 155 003a FFF7FEFF 		bl	LCD_SetDevFunc
+ 156              	.LVL9:
+ 179:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   LCD_SetDevFunc(0, LCD_DEVFUNC_COPYRECT,   (void(*)(void))CUSTOM_LCD_CopyRect);
+ 157              		.loc 1 179 3 view .LVU21
+ 158 003e 144A     		ldr	r2, .L9+12
+ 159 0040 2321     		movs	r1, #35
+ 160 0042 0020     		movs	r0, #0
+ 161 0044 FFF7FEFF 		bl	LCD_SetDevFunc
+ 162              	.LVL10:
+ 180:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   LCD_SetDevFunc(0, LCD_DEVFUNC_FILLRECT, (void(*)(void))LCD_FillRect);
+ 163              		.loc 1 180 3 view .LVU22
+ 164 0048 124A     		ldr	r2, .L9+16
+ 165 004a 1921     		movs	r1, #25
+ 166 004c 0020     		movs	r0, #0
+ 167 004e FFF7FEFF 		bl	LCD_SetDevFunc
+ 168              	.LVL11:
+ 181:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   LCD_SetDevFunc(0, LCD_DEVFUNC_DRAWBMP_8BPP, (void(*)(void))CUSTOM_LCD_DrawBitmap8bpp); 
+ 169              		.loc 1 181 3 view .LVU23
+ 170 0052 114A     		ldr	r2, .L9+20
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 7
+
+
+ 171 0054 2521     		movs	r1, #37
+ 172 0056 0020     		movs	r0, #0
+ 173 0058 FFF7FEFF 		bl	LCD_SetDevFunc
+ 174              	.LVL12:
+ 182:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   LCD_SetDevFunc(0, LCD_DEVFUNC_DRAWBMP_16BPP, (void(*)(void))CUSTOM_LCD_DrawBitmap16bpp);
+ 175              		.loc 1 182 3 view .LVU24
+ 176 005c 0F4A     		ldr	r2, .L9+24
+ 177 005e 2421     		movs	r1, #36
+ 178 0060 0020     		movs	r0, #0
+ 179 0062 FFF7FEFF 		bl	LCD_SetDevFunc
+ 180              	.LVL13:
+ 183:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** }
+ 181              		.loc 1 183 1 is_stmt 0 view .LVU25
+ 182 0066 08BD     		pop	{r3, pc}
+ 183              	.L6:
+ 164:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_SetVSizeEx(0, XSIZE_PHYS, YSIZE_PHYS * NUM_VSCREENS);
+ 184              		.loc 1 164 5 is_stmt 1 view .LVU26
+ 185 0068 F022     		movs	r2, #240
+ 186 006a 4FF4A071 		mov	r1, #320
+ 187 006e 0020     		movs	r0, #0
+ 188 0070 FFF7FEFF 		bl	LCD_SetSizeEx
+ 189              	.LVL14:
+ 165:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 190              		.loc 1 165 5 view .LVU27
+ 191 0074 F022     		movs	r2, #240
+ 192 0076 4FF4A071 		mov	r1, #320
+ 193 007a 0020     		movs	r0, #0
+ 194 007c FFF7FEFF 		bl	LCD_SetVSizeEx
+ 195              	.LVL15:
+ 196 0080 D4E7     		b	.L7
+ 197              	.L10:
+ 198 0082 00BF     		.align	2
+ 199              	.L9:
+ 200 0084 00000000 		.word	LCD_API_ColorConv_8888
+ 201 0088 00000000 		.word	GUIDRV_Win_API
+ 202 008c 00000000 		.word	CUSTOM_LCD_CopyBuffer
+ 203 0090 00000000 		.word	CUSTOM_LCD_CopyRect
+ 204 0094 00000000 		.word	LCD_FillRect
+ 205 0098 00000000 		.word	CUSTOM_LCD_DrawBitmap8bpp
+ 206 009c 00000000 		.word	CUSTOM_LCD_DrawBitmap16bpp
+ 207              		.cfi_endproc
+ 208              	.LFE4:
+ 210              		.section	.text.LCD_X_DisplayDriver,"ax",%progbits
+ 211              		.align	1
+ 212              		.global	LCD_X_DisplayDriver
+ 213              		.syntax unified
+ 214              		.thumb
+ 215              		.thumb_func
+ 217              	LCD_X_DisplayDriver:
+ 218              	.LVL16:
+ 219              	.LFB5:
+ 184:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+ 185:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** /*********************************************************************
+ 186:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+ 187:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *       LCD_X_DisplayDriver
+ 188:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+ 189:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** * Purpose:
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 8
+
+
+ 190:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   This function is called by the display driver for several purposes.
+ 191:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   To support the according task the routine needs to be adapted to
+ 192:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   the display controller. Please note that the commands marked with
+ 193:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   'optional' are not cogently required and should only be adapted if 
+ 194:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   the display controller supports these features.
+ 195:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+ 196:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** * Parameter:
+ 197:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   LayerIndex - Index of layer to be configured
+ 198:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   Cmd        - Please refer to the details in the switch statement below
+ 199:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   pData      - Pointer to a LCD_X_DATA structure
+ 200:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *
+ 201:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** * Return Value:
+ 202:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *   < -1 - Error
+ 203:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *     -1 - Command not handled
+ 204:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** *      0 - Ok
+ 205:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** */
+ 206:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
+ 220              		.loc 1 206 74 view -0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224              		@ link register save eliminated.
+ 207:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   int r;
+ 225              		.loc 1 207 3 view .LVU29
+ 208:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** 
+ 209:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   switch (Cmd) {
+ 226              		.loc 1 209 3 view .LVU30
+ 227 0000 0629     		cmp	r1, #6
+ 228 0002 03D9     		bls	.L16
+ 229 0004 0E29     		cmp	r1, #14
+ 230 0006 07D1     		bne	.L15
+ 231 0008 0020     		movs	r0, #0
+ 232              	.LVL17:
+ 233              		.loc 1 209 3 is_stmt 0 view .LVU31
+ 234 000a 7047     		bx	lr
+ 235              	.LVL18:
+ 236              	.L16:
+ 237              		.loc 1 209 3 view .LVU32
+ 238 000c 11B9     		cbnz	r1, .L17
+ 210:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_INITCONTROLLER: {
+ 211:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 212:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // Called during the initialization process in order to set up the
+ 213:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // display controller and put it into operation. If the display
+ 214:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // controller is not initialized by any external routine this needs
+ 215:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // to be adapted by the customer...
+ 216:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 217:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // ...
+ 218:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     return 0;
+ 219:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 220:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_SETVRAMADDR: {
+ 221:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 222:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // Required for setting the address of the video RAM for drivers
+ 223:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // with memory mapped video RAM which is passed in the 'pVRAM' element of p
+ 224:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 225:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_X_SETVRAMADDR_INFO * p;
+ 226:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     p = (LCD_X_SETVRAMADDR_INFO *)pData;
+ 227:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //...
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 9
+
+
+ 228:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     return 0;
+ 229:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 230:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_SETORG: {
+ 231:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 232:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // Required for setting the display origin which is passed in the 'xPos' and 'yPos' element of 
+ 233:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 234:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_X_SETORG_INFO * p;
+ 235:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     p = (LCD_X_SETORG_INFO *)pData;
+ 236:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //...
+ 237:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     return 0;
+ 238:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 239:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_SHOWBUFFER: {
+ 240:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 241:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // Required if multiple buffers are used. The 'Index' element of p contains the buffer index.
+ 242:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 243:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_X_SHOWBUFFER_INFO * p;
+ 244:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     p = (LCD_X_SHOWBUFFER_INFO *)pData;
+ 245:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //...
+ 246:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     return 0;
+ 247:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 248:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_SETLUTENTRY: {
+ 249:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 250:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // Required for setting a lookup table entry which is passed in the 'Pos' and 'Color' element o
+ 251:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 252:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     LCD_X_SETLUTENTRY_INFO * p;
+ 253:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     p = (LCD_X_SETLUTENTRY_INFO *)pData;
+ 254:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //...
+ 255:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     return 0;
+ 256:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 257:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_ON: {
+ 258:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 259:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // Required if the display controller should support switching on and off
+ 260:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 261:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     return 0;
+ 262:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 263:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_OFF: {
+ 264:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 265:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // Required if the display controller should support switching on and off
+ 266:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     //
+ 267:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     // ...
+ 268:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     return 0;
+ 269:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 270:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   default:
+ 271:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****     r = -1;
+ 272:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   }
+ 273:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   return r;
+ 239              		.loc 1 273 10 view .LVU33
+ 240 000e 4FF0FF30 		mov	r0, #-1
+ 241              	.LVL19:
+ 242              		.loc 1 273 10 view .LVU34
+ 243 0012 7047     		bx	lr
+ 244              	.LVL20:
+ 245              	.L17:
+ 209:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_INITCONTROLLER: {
+ 246              		.loc 1 209 3 view .LVU35
+ 247 0014 0020     		movs	r0, #0
+ 248              	.LVL21:
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 10
+
+
+ 209:Drivers/STemWin/Config/LCDConf_Lin_Template.c ****   case LCD_X_INITCONTROLLER: {
+ 249              		.loc 1 209 3 view .LVU36
+ 250 0016 7047     		bx	lr
+ 251              	.LVL22:
+ 252              	.L15:
+ 253              		.loc 1 273 10 view .LVU37
+ 254 0018 4FF0FF30 		mov	r0, #-1
+ 255              	.LVL23:
+ 274:Drivers/STemWin/Config/LCDConf_Lin_Template.c **** }
+ 256              		.loc 1 274 1 view .LVU38
+ 257 001c 7047     		bx	lr
+ 258              		.cfi_endproc
+ 259              	.LFE5:
+ 261              		.text
+ 262              	.Letext0:
+ 263              		.file 2 "Drivers/STemWin/inc/LCD.h"
+ 264              		.file 3 "Drivers/STemWin/inc/GUI.h"
+ARM GAS  F:\msys64\tmp\ccV1zI0e.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 LCDConf_Lin_Template.c
+F:\msys64\tmp\ccV1zI0e.s:20     .text.CUSTOM_LCD_CopyBuffer:00000000 $t
+F:\msys64\tmp\ccV1zI0e.s:25     .text.CUSTOM_LCD_CopyBuffer:00000000 CUSTOM_LCD_CopyBuffer
+F:\msys64\tmp\ccV1zI0e.s:41     .text.CUSTOM_LCD_CopyRect:00000000 $t
+F:\msys64\tmp\ccV1zI0e.s:46     .text.CUSTOM_LCD_CopyRect:00000000 CUSTOM_LCD_CopyRect
+F:\msys64\tmp\ccV1zI0e.s:61     .text.CUSTOM_LCD_DrawBitmap16bpp:00000000 $t
+F:\msys64\tmp\ccV1zI0e.s:67     .text.CUSTOM_LCD_DrawBitmap16bpp:00000000 CUSTOM_LCD_DrawBitmap16bpp
+F:\msys64\tmp\ccV1zI0e.s:82     .text.CUSTOM_LCD_DrawBitmap8bpp:00000000 $t
+F:\msys64\tmp\ccV1zI0e.s:88     .text.CUSTOM_LCD_DrawBitmap8bpp:00000000 CUSTOM_LCD_DrawBitmap8bpp
+F:\msys64\tmp\ccV1zI0e.s:103    .text.LCD_X_Config:00000000 $t
+F:\msys64\tmp\ccV1zI0e.s:109    .text.LCD_X_Config:00000000 LCD_X_Config
+F:\msys64\tmp\ccV1zI0e.s:200    .text.LCD_X_Config:00000084 $d
+F:\msys64\tmp\ccV1zI0e.s:211    .text.LCD_X_DisplayDriver:00000000 $t
+F:\msys64\tmp\ccV1zI0e.s:217    .text.LCD_X_DisplayDriver:00000000 LCD_X_DisplayDriver
+
+UNDEFINED SYMBOLS
+GUI_DEVICE_CreateAndLink
+LCD_GetSwapXY
+LCD_SetSizeEx
+LCD_SetVSizeEx
+LCD_SetVRAMAddrEx
+LCD_SetDevFunc
+LCD_API_ColorConv_8888
+GUIDRV_Win_API
+LCD_FillRect

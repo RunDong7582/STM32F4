@@ -25,6 +25,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdio.h"
+#include "string.h"
+#include "gpio.h"
+// #include "DS18B20.h"
+#include "../../Drivers/STemWin/inc/GUI.h"
+#include "touch.h"
+#include <cmsis_os2.h>
 
 /* USER CODE END Includes */
 
@@ -202,6 +209,9 @@ void StartGUITask(void *argument)
 {
   /* USER CODE BEGIN StartGUITask */
   /* Infinite loop */
+	GUI_Init();
+	GUI_SetBkColor(GUI_WHITE);
+	GUI_Clear();
   for(;;)
   {
     osDelay(1);

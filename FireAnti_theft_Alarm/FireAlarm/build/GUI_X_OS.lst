@@ -1,0 +1,654 @@
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"GUI_X_OS.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.GUI_X_GetTime,"ax",%progbits
+  20              		.align	1
+  21              		.global	GUI_X_GetTime
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	GUI_X_GetTime:
+  27              	.LFB4:
+  28              		.file 1 "Drivers/STemWin/OS/GUI_X_OS.c"
+   1:Drivers/STemWin/OS/GUI_X_OS.c **** /*********************************************************************
+   2:Drivers/STemWin/OS/GUI_X_OS.c **** *                SEGGER Microcontroller GmbH & Co. KG                *
+   3:Drivers/STemWin/OS/GUI_X_OS.c **** *        Solutions for real time microcontroller applications        *
+   4:Drivers/STemWin/OS/GUI_X_OS.c **** **********************************************************************
+   5:Drivers/STemWin/OS/GUI_X_OS.c **** *                                                                    *
+   6:Drivers/STemWin/OS/GUI_X_OS.c **** *        (c) 1996 - 2017  SEGGER Microcontroller GmbH & Co. KG       *
+   7:Drivers/STemWin/OS/GUI_X_OS.c **** *                                                                    *
+   8:Drivers/STemWin/OS/GUI_X_OS.c **** *        Internet: www.segger.com    Support:  support@segger.com    *
+   9:Drivers/STemWin/OS/GUI_X_OS.c **** *                                                                    *
+  10:Drivers/STemWin/OS/GUI_X_OS.c **** **********************************************************************
+  11:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  12:Drivers/STemWin/OS/GUI_X_OS.c **** ** emWin V5.44 - Graphical user interface for embedded applications **
+  13:Drivers/STemWin/OS/GUI_X_OS.c **** All  Intellectual Property rights  in the Software belongs to  SEGGER.
+  14:Drivers/STemWin/OS/GUI_X_OS.c **** emWin is protected by  international copyright laws.  Knowledge of the
+  15:Drivers/STemWin/OS/GUI_X_OS.c **** source code may not be used to write a similar product.  This file may
+  16:Drivers/STemWin/OS/GUI_X_OS.c **** only be used in accordance with the following terms:
+  17:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  18:Drivers/STemWin/OS/GUI_X_OS.c **** The  software has  been licensed  to STMicroelectronics International
+  19:Drivers/STemWin/OS/GUI_X_OS.c **** N.V. a Dutch company with a Swiss branch and its headquarters in Plan-
+  20:Drivers/STemWin/OS/GUI_X_OS.c **** les-Ouates, Geneva, 39 Chemin du Champ des Filles, Switzerland for the
+  21:Drivers/STemWin/OS/GUI_X_OS.c **** purposes of creating libraries for ARM Cortex-M-based 32-bit microcon_
+  22:Drivers/STemWin/OS/GUI_X_OS.c **** troller products commercialized by Licensee only, sublicensed and dis_
+  23:Drivers/STemWin/OS/GUI_X_OS.c **** tributed under the terms and conditions of the End User License Agree_
+  24:Drivers/STemWin/OS/GUI_X_OS.c **** ment supplied by STMicroelectronics International N.V.
+  25:Drivers/STemWin/OS/GUI_X_OS.c **** Full source code is available at: www.segger.com
+  26:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  27:Drivers/STemWin/OS/GUI_X_OS.c **** We appreciate your understanding and fairness.
+  28:Drivers/STemWin/OS/GUI_X_OS.c **** ----------------------------------------------------------------------
+  29:Drivers/STemWin/OS/GUI_X_OS.c **** File        : GUI_X_OS.C
+  30:Drivers/STemWin/OS/GUI_X_OS.c **** Purpose     : This file provides emWin Interface with FreeRTOS
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 2
+
+
+  31:Drivers/STemWin/OS/GUI_X_OS.c **** ---------------------------END-OF-HEADER------------------------------
+  32:Drivers/STemWin/OS/GUI_X_OS.c **** */
+  33:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  34:Drivers/STemWin/OS/GUI_X_OS.c **** /**
+  35:Drivers/STemWin/OS/GUI_X_OS.c ****   ******************************************************************************
+  36:Drivers/STemWin/OS/GUI_X_OS.c ****   * @attention
+  37:Drivers/STemWin/OS/GUI_X_OS.c ****   *
+  38:Drivers/STemWin/OS/GUI_X_OS.c ****   * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics. 
+  39:Drivers/STemWin/OS/GUI_X_OS.c ****   * All rights reserved.</center></h2>
+  40:Drivers/STemWin/OS/GUI_X_OS.c ****   *
+  41:Drivers/STemWin/OS/GUI_X_OS.c ****   * This software component is licensed by ST under Ultimate Liberty license SLA0044,
+  42:Drivers/STemWin/OS/GUI_X_OS.c ****   * the "License"; You may not use this file except in compliance with the License.
+  43:Drivers/STemWin/OS/GUI_X_OS.c ****   * You may obtain a copy of the License at:
+  44:Drivers/STemWin/OS/GUI_X_OS.c ****   *                      http://www.st.com/SLA0044
+  45:Drivers/STemWin/OS/GUI_X_OS.c ****   *
+  46:Drivers/STemWin/OS/GUI_X_OS.c ****   ******************************************************************************
+  47:Drivers/STemWin/OS/GUI_X_OS.c ****   */
+  48:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  49:Drivers/STemWin/OS/GUI_X_OS.c **** /* Includes ------------------------------------------------------------------*/
+  50:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  51:Drivers/STemWin/OS/GUI_X_OS.c **** #include "GUI.h"
+  52:Drivers/STemWin/OS/GUI_X_OS.c ****     
+  53:Drivers/STemWin/OS/GUI_X_OS.c ****     /* FreeRTOS include files */
+  54:Drivers/STemWin/OS/GUI_X_OS.c **** #include "cmsis_os.h"
+  55:Drivers/STemWin/OS/GUI_X_OS.c ****     
+  56:Drivers/STemWin/OS/GUI_X_OS.c **** /*********************************************************************
+  57:Drivers/STemWin/OS/GUI_X_OS.c **** *
+  58:Drivers/STemWin/OS/GUI_X_OS.c **** * Global data
+  59:Drivers/STemWin/OS/GUI_X_OS.c **** */
+  60:Drivers/STemWin/OS/GUI_X_OS.c **** //static osMutexId osMutex;
+  61:Drivers/STemWin/OS/GUI_X_OS.c **** //static osSemaphoreId osSemaphore;
+  62:Drivers/STemWin/OS/GUI_X_OS.c **** static osMutexId_t osMutex;
+  63:Drivers/STemWin/OS/GUI_X_OS.c **** static osSemaphoreId_t osSemaphore;
+  64:Drivers/STemWin/OS/GUI_X_OS.c **** /*********************************************************************
+  65:Drivers/STemWin/OS/GUI_X_OS.c **** *
+  66:Drivers/STemWin/OS/GUI_X_OS.c **** * Timing:
+  67:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_GetTime()
+  68:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_Delay(int)
+  69:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  70:Drivers/STemWin/OS/GUI_X_OS.c **** Some timing dependent routines require a GetTime
+  71:Drivers/STemWin/OS/GUI_X_OS.c **** and delay function. Default time unit (tick), normally is
+  72:Drivers/STemWin/OS/GUI_X_OS.c **** 1 ms.
+  73:Drivers/STemWin/OS/GUI_X_OS.c **** */
+  74:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  75:Drivers/STemWin/OS/GUI_X_OS.c **** int GUI_X_GetTime(void)
+  76:Drivers/STemWin/OS/GUI_X_OS.c **** {
+  29              		.loc 1 76 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  77:Drivers/STemWin/OS/GUI_X_OS.c ****   return ((int) osKernelSysTick());
+  38              		.loc 1 77 3 view .LVU1
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 3
+
+
+  39              		.loc 1 77 17 is_stmt 0 view .LVU2
+  40 0002 FFF7FEFF 		bl	osKernelGetSysTimerCount
+  41              	.LVL0:
+  78:Drivers/STemWin/OS/GUI_X_OS.c **** }
+  42              		.loc 1 78 1 view .LVU3
+  43 0006 08BD     		pop	{r3, pc}
+  44              		.cfi_endproc
+  45              	.LFE4:
+  47              		.section	.text.GUI_X_Delay,"ax",%progbits
+  48              		.align	1
+  49              		.global	GUI_X_Delay
+  50              		.syntax unified
+  51              		.thumb
+  52              		.thumb_func
+  54              	GUI_X_Delay:
+  55              	.LVL1:
+  56              	.LFB5:
+  79:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  80:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_Delay(int ms)
+  81:Drivers/STemWin/OS/GUI_X_OS.c **** {
+  57              		.loc 1 81 1 is_stmt 1 view -0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              		.loc 1 81 1 is_stmt 0 view .LVU5
+  62 0000 08B5     		push	{r3, lr}
+  63              	.LCFI1:
+  64              		.cfi_def_cfa_offset 8
+  65              		.cfi_offset 3, -8
+  66              		.cfi_offset 14, -4
+  82:Drivers/STemWin/OS/GUI_X_OS.c ****   osDelay( ms );
+  67              		.loc 1 82 3 is_stmt 1 view .LVU6
+  68 0002 FFF7FEFF 		bl	osDelay
+  69              	.LVL2:
+  83:Drivers/STemWin/OS/GUI_X_OS.c **** }
+  70              		.loc 1 83 1 is_stmt 0 view .LVU7
+  71 0006 08BD     		pop	{r3, pc}
+  72              		.cfi_endproc
+  73              	.LFE5:
+  75              		.section	.text.GUI_X_Init,"ax",%progbits
+  76              		.align	1
+  77              		.global	GUI_X_Init
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  82              	GUI_X_Init:
+  83              	.LFB6:
+  84:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  85:Drivers/STemWin/OS/GUI_X_OS.c **** /*********************************************************************
+  86:Drivers/STemWin/OS/GUI_X_OS.c **** *
+  87:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_Init()
+  88:Drivers/STemWin/OS/GUI_X_OS.c **** *
+  89:Drivers/STemWin/OS/GUI_X_OS.c **** * Note:
+  90:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_Init() is called from GUI_Init is a possibility to init
+  91:Drivers/STemWin/OS/GUI_X_OS.c **** * some hardware which needs to be up and running before the GUI.
+  92:Drivers/STemWin/OS/GUI_X_OS.c **** * If not required, leave this routine blank.
+  93:Drivers/STemWin/OS/GUI_X_OS.c **** */
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 4
+
+
+  94:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  95:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_Init(void) {
+  84              		.loc 1 95 23 is_stmt 1 view -0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88              		@ link register save eliminated.
+  96:Drivers/STemWin/OS/GUI_X_OS.c **** }
+  89              		.loc 1 96 1 view .LVU9
+  90 0000 7047     		bx	lr
+  91              		.cfi_endproc
+  92              	.LFE6:
+  94              		.section	.text.GUI_X_ExecIdle,"ax",%progbits
+  95              		.align	1
+  96              		.global	GUI_X_ExecIdle
+  97              		.syntax unified
+  98              		.thumb
+  99              		.thumb_func
+ 101              	GUI_X_ExecIdle:
+ 102              	.LFB7:
+  97:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  98:Drivers/STemWin/OS/GUI_X_OS.c **** 
+  99:Drivers/STemWin/OS/GUI_X_OS.c **** /*********************************************************************
+ 100:Drivers/STemWin/OS/GUI_X_OS.c **** *
+ 101:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_ExecIdle
+ 102:Drivers/STemWin/OS/GUI_X_OS.c **** *
+ 103:Drivers/STemWin/OS/GUI_X_OS.c **** * Note:
+ 104:Drivers/STemWin/OS/GUI_X_OS.c **** * Called if WM is in idle state
+ 105:Drivers/STemWin/OS/GUI_X_OS.c **** */
+ 106:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 107:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_ExecIdle(void) {
+ 103              		.loc 1 107 27 view -0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107 0000 08B5     		push	{r3, lr}
+ 108              	.LCFI2:
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 3, -8
+ 111              		.cfi_offset 14, -4
+ 108:Drivers/STemWin/OS/GUI_X_OS.c **** 	GUI_X_Delay(1);
+ 112              		.loc 1 108 2 view .LVU11
+ 113 0002 0120     		movs	r0, #1
+ 114 0004 FFF7FEFF 		bl	GUI_X_Delay
+ 115              	.LVL3:
+ 109:Drivers/STemWin/OS/GUI_X_OS.c **** }
+ 116              		.loc 1 109 1 is_stmt 0 view .LVU12
+ 117 0008 08BD     		pop	{r3, pc}
+ 118              		.cfi_endproc
+ 119              	.LFE7:
+ 121              		.section	.text.GUI_X_InitOS,"ax",%progbits
+ 122              		.align	1
+ 123              		.global	GUI_X_InitOS
+ 124              		.syntax unified
+ 125              		.thumb
+ 126              		.thumb_func
+ 128              	GUI_X_InitOS:
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 5
+
+
+ 129              	.LFB8:
+ 110:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 111:Drivers/STemWin/OS/GUI_X_OS.c **** /*********************************************************************
+ 112:Drivers/STemWin/OS/GUI_X_OS.c **** *
+ 113:Drivers/STemWin/OS/GUI_X_OS.c **** * Multitasking:
+ 114:Drivers/STemWin/OS/GUI_X_OS.c **** *
+ 115:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_InitOS()
+ 116:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_GetTaskId()
+ 117:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_Lock()
+ 118:Drivers/STemWin/OS/GUI_X_OS.c **** * GUI_X_Unlock()
+ 119:Drivers/STemWin/OS/GUI_X_OS.c **** *
+ 120:Drivers/STemWin/OS/GUI_X_OS.c **** * Note:
+ 121:Drivers/STemWin/OS/GUI_X_OS.c **** * The following routines are required only if emWin is used in a
+ 122:Drivers/STemWin/OS/GUI_X_OS.c **** * true multi task environment, which means you have more than one
+ 123:Drivers/STemWin/OS/GUI_X_OS.c **** * thread using the emWin API.
+ 124:Drivers/STemWin/OS/GUI_X_OS.c **** * In this case the
+ 125:Drivers/STemWin/OS/GUI_X_OS.c **** * #define GUI_OS 1
+ 126:Drivers/STemWin/OS/GUI_X_OS.c **** * needs to be in GUIConf.h
+ 127:Drivers/STemWin/OS/GUI_X_OS.c **** */
+ 128:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 129:Drivers/STemWin/OS/GUI_X_OS.c **** /* Init OS */
+ 130:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_InitOS(void)
+ 131:Drivers/STemWin/OS/GUI_X_OS.c **** { 
+ 130              		.loc 1 131 1 is_stmt 1 view -0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134 0000 08B5     		push	{r3, lr}
+ 135              	.LCFI3:
+ 136              		.cfi_def_cfa_offset 8
+ 137              		.cfi_offset 3, -8
+ 138              		.cfi_offset 14, -4
+ 132:Drivers/STemWin/OS/GUI_X_OS.c ****   /* Create Mutex lock */
+ 133:Drivers/STemWin/OS/GUI_X_OS.c ****   osMutexDef(MUTEX);
+ 139              		.loc 1 133 3 view .LVU14
+ 140              		.loc 1 133 3 view .LVU15
+ 134:Drivers/STemWin/OS/GUI_X_OS.c ****   
+ 135:Drivers/STemWin/OS/GUI_X_OS.c ****   /* Create the Mutex used by the two threads */
+ 136:Drivers/STemWin/OS/GUI_X_OS.c **** //  osMutex = osMutexCreate(osMutex(MUTEX));
+ 137:Drivers/STemWin/OS/GUI_X_OS.c ****   osMutex = osMutexNew(NULL);
+ 141              		.loc 1 137 3 view .LVU16
+ 142              		.loc 1 137 13 is_stmt 0 view .LVU17
+ 143 0002 0020     		movs	r0, #0
+ 144 0004 FFF7FEFF 		bl	osMutexNew
+ 145              	.LVL4:
+ 146              		.loc 1 137 11 view .LVU18
+ 147 0008 044B     		ldr	r3, .L10
+ 148 000a 1860     		str	r0, [r3]
+ 138:Drivers/STemWin/OS/GUI_X_OS.c ****   
+ 139:Drivers/STemWin/OS/GUI_X_OS.c ****   /* Create Semaphore lock */
+ 140:Drivers/STemWin/OS/GUI_X_OS.c ****   osSemaphoreDef(SEM);
+ 149              		.loc 1 140 3 is_stmt 1 view .LVU19
+ 150              		.loc 1 140 3 view .LVU20
+ 141:Drivers/STemWin/OS/GUI_X_OS.c ****   
+ 142:Drivers/STemWin/OS/GUI_X_OS.c ****   /* Create the Semaphore used by the two threads */
+ 143:Drivers/STemWin/OS/GUI_X_OS.c **** //  osSemaphore= osSemaphoreCreate(osSemaphore(SEM), 1);  
+ 144:Drivers/STemWin/OS/GUI_X_OS.c ****   osSemaphore= osSemaphoreNew(1, 1, NULL);  
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 6
+
+
+ 151              		.loc 1 144 3 view .LVU21
+ 152              		.loc 1 144 16 is_stmt 0 view .LVU22
+ 153 000c 0022     		movs	r2, #0
+ 154 000e 0121     		movs	r1, #1
+ 155 0010 0846     		mov	r0, r1
+ 156 0012 FFF7FEFF 		bl	osSemaphoreNew
+ 157              	.LVL5:
+ 158              		.loc 1 144 14 view .LVU23
+ 159 0016 024B     		ldr	r3, .L10+4
+ 160 0018 1860     		str	r0, [r3]
+ 145:Drivers/STemWin/OS/GUI_X_OS.c **** }
+ 161              		.loc 1 145 1 view .LVU24
+ 162 001a 08BD     		pop	{r3, pc}
+ 163              	.L11:
+ 164              		.align	2
+ 165              	.L10:
+ 166 001c 00000000 		.word	.LANCHOR0
+ 167 0020 00000000 		.word	.LANCHOR1
+ 168              		.cfi_endproc
+ 169              	.LFE8:
+ 171              		.section	.text.GUI_X_Unlock,"ax",%progbits
+ 172              		.align	1
+ 173              		.global	GUI_X_Unlock
+ 174              		.syntax unified
+ 175              		.thumb
+ 176              		.thumb_func
+ 178              	GUI_X_Unlock:
+ 179              	.LFB9:
+ 146:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 147:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_Unlock(void)
+ 148:Drivers/STemWin/OS/GUI_X_OS.c **** { 
+ 180              		.loc 1 148 1 is_stmt 1 view -0
+ 181              		.cfi_startproc
+ 182              		@ args = 0, pretend = 0, frame = 0
+ 183              		@ frame_needed = 0, uses_anonymous_args = 0
+ 184 0000 08B5     		push	{r3, lr}
+ 185              	.LCFI4:
+ 186              		.cfi_def_cfa_offset 8
+ 187              		.cfi_offset 3, -8
+ 188              		.cfi_offset 14, -4
+ 149:Drivers/STemWin/OS/GUI_X_OS.c ****   osMutexRelease(osMutex);
+ 189              		.loc 1 149 3 view .LVU26
+ 190 0002 024B     		ldr	r3, .L14
+ 191 0004 1868     		ldr	r0, [r3]
+ 192 0006 FFF7FEFF 		bl	osMutexRelease
+ 193              	.LVL6:
+ 150:Drivers/STemWin/OS/GUI_X_OS.c **** }
+ 194              		.loc 1 150 1 is_stmt 0 view .LVU27
+ 195 000a 08BD     		pop	{r3, pc}
+ 196              	.L15:
+ 197              		.align	2
+ 198              	.L14:
+ 199 000c 00000000 		.word	.LANCHOR0
+ 200              		.cfi_endproc
+ 201              	.LFE9:
+ 203              		.section	.text.GUI_X_Lock,"ax",%progbits
+ 204              		.align	1
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 7
+
+
+ 205              		.global	GUI_X_Lock
+ 206              		.syntax unified
+ 207              		.thumb
+ 208              		.thumb_func
+ 210              	GUI_X_Lock:
+ 211              	.LFB10:
+ 151:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 152:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_Lock(void)
+ 153:Drivers/STemWin/OS/GUI_X_OS.c **** {
+ 212              		.loc 1 153 1 is_stmt 1 view -0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 0
+ 215              		@ frame_needed = 0, uses_anonymous_args = 0
+ 216 0000 08B5     		push	{r3, lr}
+ 217              	.LCFI5:
+ 218              		.cfi_def_cfa_offset 8
+ 219              		.cfi_offset 3, -8
+ 220              		.cfi_offset 14, -4
+ 154:Drivers/STemWin/OS/GUI_X_OS.c **** //  osMutexWait(osMutex , osWaitForever) ;
+ 155:Drivers/STemWin/OS/GUI_X_OS.c ****   osMutexAcquire(osMutex , osWaitForever) ;
+ 221              		.loc 1 155 3 view .LVU29
+ 222 0002 4FF0FF31 		mov	r1, #-1
+ 223 0006 024B     		ldr	r3, .L18
+ 224 0008 1868     		ldr	r0, [r3]
+ 225 000a FFF7FEFF 		bl	osMutexAcquire
+ 226              	.LVL7:
+ 156:Drivers/STemWin/OS/GUI_X_OS.c **** }
+ 227              		.loc 1 156 1 is_stmt 0 view .LVU30
+ 228 000e 08BD     		pop	{r3, pc}
+ 229              	.L19:
+ 230              		.align	2
+ 231              	.L18:
+ 232 0010 00000000 		.word	.LANCHOR0
+ 233              		.cfi_endproc
+ 234              	.LFE10:
+ 236              		.section	.text.GUI_X_GetTaskId,"ax",%progbits
+ 237              		.align	1
+ 238              		.global	GUI_X_GetTaskId
+ 239              		.syntax unified
+ 240              		.thumb
+ 241              		.thumb_func
+ 243              	GUI_X_GetTaskId:
+ 244              	.LFB11:
+ 157:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 158:Drivers/STemWin/OS/GUI_X_OS.c **** /* Get Task handle */
+ 159:Drivers/STemWin/OS/GUI_X_OS.c **** U32 GUI_X_GetTaskId(void) 
+ 160:Drivers/STemWin/OS/GUI_X_OS.c **** { 
+ 245              		.loc 1 160 1 is_stmt 1 view -0
+ 246              		.cfi_startproc
+ 247              		@ args = 0, pretend = 0, frame = 0
+ 248              		@ frame_needed = 0, uses_anonymous_args = 0
+ 249 0000 08B5     		push	{r3, lr}
+ 250              	.LCFI6:
+ 251              		.cfi_def_cfa_offset 8
+ 252              		.cfi_offset 3, -8
+ 253              		.cfi_offset 14, -4
+ 161:Drivers/STemWin/OS/GUI_X_OS.c ****   return ((U32) osThreadGetId());
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 8
+
+
+ 254              		.loc 1 161 3 view .LVU32
+ 255              		.loc 1 161 17 is_stmt 0 view .LVU33
+ 256 0002 FFF7FEFF 		bl	osThreadGetId
+ 257              	.LVL8:
+ 162:Drivers/STemWin/OS/GUI_X_OS.c **** }
+ 258              		.loc 1 162 1 view .LVU34
+ 259 0006 08BD     		pop	{r3, pc}
+ 260              		.cfi_endproc
+ 261              	.LFE11:
+ 263              		.section	.text.GUI_X_WaitEvent,"ax",%progbits
+ 264              		.align	1
+ 265              		.global	GUI_X_WaitEvent
+ 266              		.syntax unified
+ 267              		.thumb
+ 268              		.thumb_func
+ 270              	GUI_X_WaitEvent:
+ 271              	.LFB12:
+ 163:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 164:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 165:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_WaitEvent (void) 
+ 166:Drivers/STemWin/OS/GUI_X_OS.c **** {
+ 272              		.loc 1 166 1 is_stmt 1 view -0
+ 273              		.cfi_startproc
+ 274              		@ args = 0, pretend = 0, frame = 0
+ 275              		@ frame_needed = 0, uses_anonymous_args = 0
+ 276 0000 08B5     		push	{r3, lr}
+ 277              	.LCFI7:
+ 278              		.cfi_def_cfa_offset 8
+ 279              		.cfi_offset 3, -8
+ 280              		.cfi_offset 14, -4
+ 167:Drivers/STemWin/OS/GUI_X_OS.c **** //  osSemaphoreWait(osSemaphore , osWaitForever) ;
+ 168:Drivers/STemWin/OS/GUI_X_OS.c ****   osSemaphoreAcquire(osSemaphore , osWaitForever) ;
+ 281              		.loc 1 168 3 view .LVU36
+ 282 0002 4FF0FF31 		mov	r1, #-1
+ 283 0006 024B     		ldr	r3, .L24
+ 284 0008 1868     		ldr	r0, [r3]
+ 285 000a FFF7FEFF 		bl	osSemaphoreAcquire
+ 286              	.LVL9:
+ 169:Drivers/STemWin/OS/GUI_X_OS.c **** }
+ 287              		.loc 1 169 1 is_stmt 0 view .LVU37
+ 288 000e 08BD     		pop	{r3, pc}
+ 289              	.L25:
+ 290              		.align	2
+ 291              	.L24:
+ 292 0010 00000000 		.word	.LANCHOR1
+ 293              		.cfi_endproc
+ 294              	.LFE12:
+ 296              		.section	.text.GUI_X_SignalEvent,"ax",%progbits
+ 297              		.align	1
+ 298              		.global	GUI_X_SignalEvent
+ 299              		.syntax unified
+ 300              		.thumb
+ 301              		.thumb_func
+ 303              	GUI_X_SignalEvent:
+ 304              	.LFB13:
+ 170:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 171:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 9
+
+
+ 172:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_SignalEvent (void) 
+ 173:Drivers/STemWin/OS/GUI_X_OS.c **** {
+ 305              		.loc 1 173 1 is_stmt 1 view -0
+ 306              		.cfi_startproc
+ 307              		@ args = 0, pretend = 0, frame = 0
+ 308              		@ frame_needed = 0, uses_anonymous_args = 0
+ 309 0000 08B5     		push	{r3, lr}
+ 310              	.LCFI8:
+ 311              		.cfi_def_cfa_offset 8
+ 312              		.cfi_offset 3, -8
+ 313              		.cfi_offset 14, -4
+ 174:Drivers/STemWin/OS/GUI_X_OS.c ****   osMutexRelease(osSemaphore);
+ 314              		.loc 1 174 3 view .LVU39
+ 315 0002 024B     		ldr	r3, .L28
+ 316 0004 1868     		ldr	r0, [r3]
+ 317 0006 FFF7FEFF 		bl	osMutexRelease
+ 318              	.LVL10:
+ 175:Drivers/STemWin/OS/GUI_X_OS.c **** }
+ 319              		.loc 1 175 1 is_stmt 0 view .LVU40
+ 320 000a 08BD     		pop	{r3, pc}
+ 321              	.L29:
+ 322              		.align	2
+ 323              	.L28:
+ 324 000c 00000000 		.word	.LANCHOR1
+ 325              		.cfi_endproc
+ 326              	.LFE13:
+ 328              		.section	.text.GUI_X_Log,"ax",%progbits
+ 329              		.align	1
+ 330              		.global	GUI_X_Log
+ 331              		.syntax unified
+ 332              		.thumb
+ 333              		.thumb_func
+ 335              	GUI_X_Log:
+ 336              	.LVL11:
+ 337              	.LFB14:
+ 176:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 177:Drivers/STemWin/OS/GUI_X_OS.c **** /*********************************************************************
+ 178:Drivers/STemWin/OS/GUI_X_OS.c **** *
+ 179:Drivers/STemWin/OS/GUI_X_OS.c **** * Logging: OS dependent
+ 180:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 181:Drivers/STemWin/OS/GUI_X_OS.c **** Note:
+ 182:Drivers/STemWin/OS/GUI_X_OS.c **** Logging is used in higher debug levels only. The typical target
+ 183:Drivers/STemWin/OS/GUI_X_OS.c **** build does not use logging and does therefor not require any of
+ 184:Drivers/STemWin/OS/GUI_X_OS.c **** the logging routines below. For a release build without logging
+ 185:Drivers/STemWin/OS/GUI_X_OS.c **** the routines below may be eliminated to save some space.
+ 186:Drivers/STemWin/OS/GUI_X_OS.c **** (If the linker is not function aware and eliminates unreferenced
+ 187:Drivers/STemWin/OS/GUI_X_OS.c **** functions automatically)
+ 188:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 189:Drivers/STemWin/OS/GUI_X_OS.c **** */
+ 190:Drivers/STemWin/OS/GUI_X_OS.c **** 
+ 191:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_Log (const char *s) { }
+ 338              		.loc 1 191 32 is_stmt 1 view -0
+ 339              		.cfi_startproc
+ 340              		@ args = 0, pretend = 0, frame = 0
+ 341              		@ frame_needed = 0, uses_anonymous_args = 0
+ 342              		@ link register save eliminated.
+ 343              		.loc 1 191 34 view .LVU42
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 10
+
+
+ 344 0000 7047     		bx	lr
+ 345              		.cfi_endproc
+ 346              	.LFE14:
+ 348              		.section	.text.GUI_X_Warn,"ax",%progbits
+ 349              		.align	1
+ 350              		.global	GUI_X_Warn
+ 351              		.syntax unified
+ 352              		.thumb
+ 353              		.thumb_func
+ 355              	GUI_X_Warn:
+ 356              	.LVL12:
+ 357              	.LFB15:
+ 192:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_Warn (const char *s) { }
+ 358              		.loc 1 192 33 view -0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362              		@ link register save eliminated.
+ 363              		.loc 1 192 35 view .LVU44
+ 364 0000 7047     		bx	lr
+ 365              		.cfi_endproc
+ 366              	.LFE15:
+ 368              		.section	.text.GUI_X_ErrorOut,"ax",%progbits
+ 369              		.align	1
+ 370              		.global	GUI_X_ErrorOut
+ 371              		.syntax unified
+ 372              		.thumb
+ 373              		.thumb_func
+ 375              	GUI_X_ErrorOut:
+ 376              	.LVL13:
+ 377              	.LFB16:
+ 193:Drivers/STemWin/OS/GUI_X_OS.c **** void GUI_X_ErrorOut(const char *s) { }
+ 378              		.loc 1 193 36 view -0
+ 379              		.cfi_startproc
+ 380              		@ args = 0, pretend = 0, frame = 0
+ 381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 382              		@ link register save eliminated.
+ 383              		.loc 1 193 38 view .LVU46
+ 384 0000 7047     		bx	lr
+ 385              		.cfi_endproc
+ 386              	.LFE16:
+ 388              		.section	.bss.osMutex,"aw",%nobits
+ 389              		.align	2
+ 390              		.set	.LANCHOR0,. + 0
+ 393              	osMutex:
+ 394 0000 00000000 		.space	4
+ 395              		.section	.bss.osSemaphore,"aw",%nobits
+ 396              		.align	2
+ 397              		.set	.LANCHOR1,. + 0
+ 400              	osSemaphore:
+ 401 0000 00000000 		.space	4
+ 402              		.text
+ 403              	.Letext0:
+ 404              		.file 2 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\machine\\_default_ty
+ 405              		.file 3 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 406              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 407              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h"
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 11
+
+
+ 408              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ARM GAS  F:\msys64\tmp\cch5gtY2.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 GUI_X_OS.c
+F:\msys64\tmp\cch5gtY2.s:20     .text.GUI_X_GetTime:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:26     .text.GUI_X_GetTime:00000000 GUI_X_GetTime
+F:\msys64\tmp\cch5gtY2.s:48     .text.GUI_X_Delay:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:54     .text.GUI_X_Delay:00000000 GUI_X_Delay
+F:\msys64\tmp\cch5gtY2.s:76     .text.GUI_X_Init:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:82     .text.GUI_X_Init:00000000 GUI_X_Init
+F:\msys64\tmp\cch5gtY2.s:95     .text.GUI_X_ExecIdle:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:101    .text.GUI_X_ExecIdle:00000000 GUI_X_ExecIdle
+F:\msys64\tmp\cch5gtY2.s:122    .text.GUI_X_InitOS:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:128    .text.GUI_X_InitOS:00000000 GUI_X_InitOS
+F:\msys64\tmp\cch5gtY2.s:166    .text.GUI_X_InitOS:0000001c $d
+F:\msys64\tmp\cch5gtY2.s:172    .text.GUI_X_Unlock:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:178    .text.GUI_X_Unlock:00000000 GUI_X_Unlock
+F:\msys64\tmp\cch5gtY2.s:199    .text.GUI_X_Unlock:0000000c $d
+F:\msys64\tmp\cch5gtY2.s:204    .text.GUI_X_Lock:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:210    .text.GUI_X_Lock:00000000 GUI_X_Lock
+F:\msys64\tmp\cch5gtY2.s:232    .text.GUI_X_Lock:00000010 $d
+F:\msys64\tmp\cch5gtY2.s:237    .text.GUI_X_GetTaskId:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:243    .text.GUI_X_GetTaskId:00000000 GUI_X_GetTaskId
+F:\msys64\tmp\cch5gtY2.s:264    .text.GUI_X_WaitEvent:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:270    .text.GUI_X_WaitEvent:00000000 GUI_X_WaitEvent
+F:\msys64\tmp\cch5gtY2.s:292    .text.GUI_X_WaitEvent:00000010 $d
+F:\msys64\tmp\cch5gtY2.s:297    .text.GUI_X_SignalEvent:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:303    .text.GUI_X_SignalEvent:00000000 GUI_X_SignalEvent
+F:\msys64\tmp\cch5gtY2.s:324    .text.GUI_X_SignalEvent:0000000c $d
+F:\msys64\tmp\cch5gtY2.s:329    .text.GUI_X_Log:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:335    .text.GUI_X_Log:00000000 GUI_X_Log
+F:\msys64\tmp\cch5gtY2.s:349    .text.GUI_X_Warn:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:355    .text.GUI_X_Warn:00000000 GUI_X_Warn
+F:\msys64\tmp\cch5gtY2.s:369    .text.GUI_X_ErrorOut:00000000 $t
+F:\msys64\tmp\cch5gtY2.s:375    .text.GUI_X_ErrorOut:00000000 GUI_X_ErrorOut
+F:\msys64\tmp\cch5gtY2.s:389    .bss.osMutex:00000000 $d
+F:\msys64\tmp\cch5gtY2.s:393    .bss.osMutex:00000000 osMutex
+F:\msys64\tmp\cch5gtY2.s:396    .bss.osSemaphore:00000000 $d
+F:\msys64\tmp\cch5gtY2.s:400    .bss.osSemaphore:00000000 osSemaphore
+
+UNDEFINED SYMBOLS
+osKernelGetSysTimerCount
+osDelay
+osMutexNew
+osSemaphoreNew
+osMutexRelease
+osMutexAcquire
+osThreadGetId
+osSemaphoreAcquire
