@@ -212,6 +212,9 @@ void StartGUITask(void *argument)
 	GUI_Init();
 	GUI_SetBkColor(GUI_WHITE);
 	GUI_Clear();
+  GUI_SetFont(&GUI_FontHZ_SimSun_24AA4);
+	GUI_SetColor(GUI_RED);
+	GUI_DispStringAt("EX07 LCDÓ¦ÓÃ", 75, 13);
   for(;;)
   {
     osDelay(1);

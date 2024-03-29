@@ -66,6 +66,7 @@ Core/Src/fsmc.c \
 Core/Src/i2c.c \
 Core/Src/spi.c \
 Core/Src/usart.c \
+Core/Src/YouYuan_23.c \
 Core/Src/stm32f4xx_hal_timebase_tim.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fsmc.c \
