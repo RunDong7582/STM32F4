@@ -29,7 +29,7 @@ extern "C" {
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
+#define KEY_MASK (K1_Pin| K2_Pin | K3_Pin | K4_Pin | K5_Pin | K6_Pin)
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
@@ -39,7 +39,9 @@ extern "C" {
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+uint16_t ScanKey(void);
+void Beep(uint8_t tune, uint16_t time);
+extern uint16_t beep_time;
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

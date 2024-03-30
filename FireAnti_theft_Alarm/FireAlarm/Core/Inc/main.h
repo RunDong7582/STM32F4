@@ -30,13 +30,12 @@ extern "C" {
 #include "stm32f4xx_hal.h"
 
 #include "stm32f4xx_ll_i2c.h"
-#include "stm32f4xx_ll_usart.h"
-#include "stm32f4xx_ll_rcc.h"
 #include "stm32f4xx_ll_system.h"
 #include "stm32f4xx_ll_gpio.h"
 #include "stm32f4xx_ll_exti.h"
 #include "stm32f4xx_ll_bus.h"
 #include "stm32f4xx_ll_cortex.h"
+#include "stm32f4xx_ll_rcc.h"
 #include "stm32f4xx_ll_utils.h"
 #include "stm32f4xx_ll_pwr.h"
 #include "stm32f4xx_ll_dma.h"
@@ -87,6 +86,8 @@ void Error_Handler(void);
 #define LCD_RST_GPIO_Port GPIOD
 #define BEEP_Pin LL_GPIO_PIN_4
 #define BEEP_GPIO_Port GPIOB
+#define DATA_Pin LL_GPIO_PIN_0
+#define DATA_GPIO_Port GPIOE
 #define K1_Pin LL_GPIO_PIN_1
 #define K1_GPIO_Port GPIOE
 

@@ -1,4 +1,4 @@
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,7 +26,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
   23              		.thumb
   24              		.thumb_func
   26              	MX_SPI2_Init:
-  27              	.LFB792:
+  27              	.LFB658:
   28              		.file 1 "Core/Src/spi.c"
    1:Core/Src/spi.c **** /* USER CODE BEGIN Header */
    2:Core/Src/spi.c **** /**
@@ -58,7 +58,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
   28:Core/Src/spi.c **** 
   29:Core/Src/spi.c **** /* SPI2 init function */
   30:Core/Src/spi.c **** void MX_SPI2_Init(void)
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 2
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 2
 
 
   31:Core/Src/spi.c **** {
@@ -118,7 +118,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
   66 001e 2822     		movs	r2, #40
   67 0020 C261     		str	r2, [r0, #28]
   48:Core/Src/spi.c ****   hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 3
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 3
 
 
   68              		.loc 1 48 3 is_stmt 1 view .LVU17
@@ -169,7 +169,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
  100 0040 00000000 		.word	.LANCHOR0
  101 0044 00380040 		.word	1073756160
  102              		.cfi_endproc
- 103              	.LFE792:
+ 103              	.LFE658:
  105              		.section	.text.HAL_SPI_MspInit,"ax",%progbits
  106              		.align	1
  107              		.global	HAL_SPI_MspInit
@@ -178,10 +178,10 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
  110              		.thumb_func
  112              	HAL_SPI_MspInit:
  113              	.LVL2:
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 4
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 4
 
 
- 114              	.LFB793:
+ 114              	.LFB659:
   61:Core/Src/spi.c **** 
   62:Core/Src/spi.c **** void HAL_SPI_MspInit(SPI_HandleTypeDef* spiHandle)
   63:Core/Src/spi.c **** {
@@ -238,7 +238,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
   85:Core/Src/spi.c ****     GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
   86:Core/Src/spi.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   87:Core/Src/spi.c **** 
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 5
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 5
 
 
   88:Core/Src/spi.c ****   /* USER CODE BEGIN SPI2_MspInit 1 */
@@ -298,7 +298,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
  183 0044 03F00203 		and	r3, r3, #2
  184 0048 0293     		str	r3, [sp, #8]
   74:Core/Src/spi.c ****     /**SPI2 GPIO Configuration
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 6
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 6
 
 
  185              		.loc 1 74 5 view .LVU49
@@ -349,7 +349,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
  218 0068 00380040 		.word	1073756160
  219 006c 00040240 		.word	1073873920
  220              		.cfi_endproc
- 221              	.LFE793:
+ 221              	.LFE659:
  223              		.section	.text.HAL_SPI_MspDeInit,"ax",%progbits
  224              		.align	1
  225              		.global	HAL_SPI_MspDeInit
@@ -358,10 +358,10 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
  228              		.thumb_func
  230              	HAL_SPI_MspDeInit:
  231              	.LVL7:
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 7
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 7
 
 
- 232              	.LFB794:
+ 232              	.LFB660:
   93:Core/Src/spi.c **** 
   94:Core/Src/spi.c **** void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
   95:Core/Src/spi.c **** {
@@ -418,7 +418,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
  260 0014 1364     		str	r3, [r2, #64]
  111:Core/Src/spi.c **** 
  261              		.loc 1 111 5 view .LVU70
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 8
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 8
 
 
  262 0016 4FF47041 		mov	r1, #61440
@@ -437,7 +437,7 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
  274 0028 00380240 		.word	1073887232
  275 002c 00040240 		.word	1073873920
  276              		.cfi_endproc
- 277              	.LFE794:
+ 277              	.LFE660:
  279              		.global	hspi2
  280              		.section	.bss.hspi2,"aw",%nobits
  281              		.align	2
@@ -460,22 +460,22 @@ ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 1
  296              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
  297              		.file 10 "Core/Inc/main.h"
  298              		.file 11 "Core/Inc/spi.h"
-ARM GAS  F:\msys64\tmp\cccXkCia.s 			page 9
+ARM GAS  F:\msys64\tmp\ccHcn4UO.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-F:\msys64\tmp\cccXkCia.s:20     .text.MX_SPI2_Init:00000000 $t
-F:\msys64\tmp\cccXkCia.s:26     .text.MX_SPI2_Init:00000000 MX_SPI2_Init
-F:\msys64\tmp\cccXkCia.s:100    .text.MX_SPI2_Init:00000040 $d
-F:\msys64\tmp\cccXkCia.s:106    .text.HAL_SPI_MspInit:00000000 $t
-F:\msys64\tmp\cccXkCia.s:112    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-F:\msys64\tmp\cccXkCia.s:218    .text.HAL_SPI_MspInit:00000068 $d
-F:\msys64\tmp\cccXkCia.s:224    .text.HAL_SPI_MspDeInit:00000000 $t
-F:\msys64\tmp\cccXkCia.s:230    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-F:\msys64\tmp\cccXkCia.s:273    .text.HAL_SPI_MspDeInit:00000024 $d
-F:\msys64\tmp\cccXkCia.s:285    .bss.hspi2:00000000 hspi2
-F:\msys64\tmp\cccXkCia.s:281    .bss.hspi2:00000000 $d
+F:\msys64\tmp\ccHcn4UO.s:20     .text.MX_SPI2_Init:00000000 $t
+F:\msys64\tmp\ccHcn4UO.s:26     .text.MX_SPI2_Init:00000000 MX_SPI2_Init
+F:\msys64\tmp\ccHcn4UO.s:100    .text.MX_SPI2_Init:00000040 $d
+F:\msys64\tmp\ccHcn4UO.s:106    .text.HAL_SPI_MspInit:00000000 $t
+F:\msys64\tmp\ccHcn4UO.s:112    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+F:\msys64\tmp\ccHcn4UO.s:218    .text.HAL_SPI_MspInit:00000068 $d
+F:\msys64\tmp\ccHcn4UO.s:224    .text.HAL_SPI_MspDeInit:00000000 $t
+F:\msys64\tmp\ccHcn4UO.s:230    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+F:\msys64\tmp\ccHcn4UO.s:273    .text.HAL_SPI_MspDeInit:00000024 $d
+F:\msys64\tmp\ccHcn4UO.s:285    .bss.hspi2:00000000 hspi2
+F:\msys64\tmp\ccHcn4UO.s:281    .bss.hspi2:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

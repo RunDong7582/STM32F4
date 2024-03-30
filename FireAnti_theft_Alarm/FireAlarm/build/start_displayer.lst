@@ -1,0 +1,276 @@
+ARM GAS  F:\msys64\tmp\cc1hMfWb.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"start_displayer.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Start_Displayer_display,"ax",%progbits
+  20              		.align	1
+  21              		.global	Start_Displayer_display
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Start_Displayer_display:
+  27              	.LVL0:
+  28              	.LFB5:
+  29              		.file 1 "Core/Src/start_displayer.c"
+   1:Core/Src/start_displayer.c **** #include <stdio.h>
+   2:Core/Src/start_displayer.c **** #include <stdlib.h>
+   3:Core/Src/start_displayer.c **** #include <assert.h>
+   4:Core/Src/start_displayer.c **** #include "GUI.h"
+   5:Core/Src/start_displayer.c **** #include "displayer.h"
+   6:Core/Src/start_displayer.c **** 
+   7:Core/Src/start_displayer.c **** struct Start_Displayer {
+   8:Core/Src/start_displayer.c ****         const struct display_i *interface;
+   9:Core/Src/start_displayer.c ****         int skip;                       // K5
+  10:Core/Src/start_displayer.c ****         const char *content;            // for GUI display
+  11:Core/Src/start_displayer.c ****         int timeset;                    // ms
+  12:Core/Src/start_displayer.c ****         void (*current_operation)();    
+  13:Core/Src/start_displayer.c **** };
+  14:Core/Src/start_displayer.c **** 
+  15:Core/Src/start_displayer.c **** void Start_Displayer_display(struct Start_Displayer *self, const char *str);
+  16:Core/Src/start_displayer.c **** 
+  17:Core/Src/start_displayer.c **** static const struct displayer_i displayer_interface = {
+  18:Core/Src/start_displayer.c ****     .display = (displayer_display_fn)Start_Displayer_display,
+  19:Core/Src/start_displayer.c **** };
+  20:Core/Src/start_displayer.c **** 
+  21:Core/Src/start_displayer.c **** struct Start_Displayer *Start_Displayer_new(const char *content) {
+  22:Core/Src/start_displayer.c ****         struct Start_Displayer *self;
+  23:Core/Src/start_displayer.c **** 
+  24:Core/Src/start_displayer.c ****         self = malloc(sizeof(struct Start_Displayer));
+  25:Core/Src/start_displayer.c ****         assert(self != NULL);
+  26:Core/Src/start_displayer.c **** 
+  27:Core/Src/start_displayer.c ****         self->interface = &displayer_interface;
+  28:Core/Src/start_displayer.c ****         self->content = content;
+  29:Core/Src/start_displayer.c ****         self->timeset = 1000;
+ARM GAS  F:\msys64\tmp\cc1hMfWb.s 			page 2
+
+
+  30:Core/Src/start_displayer.c **** 
+  31:Core/Src/start_displayer.c ****         return self;
+  32:Core/Src/start_displayer.c **** }
+  33:Core/Src/start_displayer.c **** 
+  34:Core/Src/start_displayer.c **** void Start_Displayer_cleanup(struct Start_Displayer *self) {
+  35:Core/Src/start_displayer.c ****         free(self);
+  36:Core/Src/start_displayer.c **** }
+  37:Core/Src/start_displayer.c **** 
+  38:Core/Src/start_displayer.c **** void Start_Displayer_display(struct Start_Displayer *self, const char *str)
+  39:Core/Src/start_displayer.c **** {
+  30              		.loc 1 39 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 39 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  40:Core/Src/start_displayer.c ****         GUI_DispStringAt(self->content, 76, 96);
+  40              		.loc 1 40 9 is_stmt 1 view .LVU2
+  41 0002 6022     		movs	r2, #96
+  42 0004 4C21     		movs	r1, #76
+  43              	.LVL1:
+  44              		.loc 1 40 9 is_stmt 0 view .LVU3
+  45 0006 8068     		ldr	r0, [r0, #8]
+  46              	.LVL2:
+  47              		.loc 1 40 9 view .LVU4
+  48 0008 FFF7FEFF 		bl	GUI_DispStringAt
+  49              	.LVL3:
+  41:Core/Src/start_displayer.c **** }...
+  50              		.loc 1 41 1 view .LVU5
+  51 000c 08BD     		pop	{r3, pc}
+  52              		.cfi_endproc
+  53              	.LFE5:
+  55              		.section	.rodata.Start_Displayer_new.str1.4,"aMS",%progbits,1
+  56              		.align	2
+  57              	.LC0:
+  58 0000 73656C66 		.ascii	"self != NULL\000"
+  58      20213D20 
+  58      4E554C4C 
+  58      00
+  59 000d 000000   		.align	2
+  60              	.LC1:
+  61 0010 436F7265 		.ascii	"Core/Src/start_displayer.c\000"
+  61      2F537263 
+  61      2F737461 
+  61      72745F64 
+  61      6973706C 
+  62              		.section	.text.Start_Displayer_new,"ax",%progbits
+  63              		.align	1
+  64              		.global	Start_Displayer_new
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  69              	Start_Displayer_new:
+ARM GAS  F:\msys64\tmp\cc1hMfWb.s 			page 3
+
+
+  70              	.LVL4:
+  71              	.LFB3:
+  21:Core/Src/start_displayer.c **** struct Start_Displayer *Start_Displayer_new(const char *content) {
+  72              		.loc 1 21 66 is_stmt 1 view -0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  21:Core/Src/start_displayer.c **** struct Start_Displayer *Start_Displayer_new(const char *content) {
+  76              		.loc 1 21 66 is_stmt 0 view .LVU7
+  77 0000 10B5     		push	{r4, lr}
+  78              	.LCFI1:
+  79              		.cfi_def_cfa_offset 8
+  80              		.cfi_offset 4, -8
+  81              		.cfi_offset 14, -4
+  82 0002 0446     		mov	r4, r0
+  22:Core/Src/start_displayer.c ****         struct Start_Displayer *self;
+  83              		.loc 1 22 9 is_stmt 1 view .LVU8
+  24:Core/Src/start_displayer.c ****         self = malloc(sizeof(struct Start_Displayer));
+  84              		.loc 1 24 9 view .LVU9
+  24:Core/Src/start_displayer.c ****         self = malloc(sizeof(struct Start_Displayer));
+  85              		.loc 1 24 16 is_stmt 0 view .LVU10
+  86 0004 1420     		movs	r0, #20
+  87              	.LVL5:
+  24:Core/Src/start_displayer.c ****         self = malloc(sizeof(struct Start_Displayer));
+  88              		.loc 1 24 16 view .LVU11
+  89 0006 FFF7FEFF 		bl	malloc
+  90              	.LVL6:
+  25:Core/Src/start_displayer.c ****         assert(self != NULL);
+  91              		.loc 1 25 9 is_stmt 1 view .LVU12
+  92 000a 30B1     		cbz	r0, .L6
+  27:Core/Src/start_displayer.c ****         self->interface = &displayer_interface;
+  93              		.loc 1 27 9 view .LVU13
+  27:Core/Src/start_displayer.c ****         self->interface = &displayer_interface;
+  94              		.loc 1 27 25 is_stmt 0 view .LVU14
+  95 000c 064A     		ldr	r2, .L7
+  96 000e 0260     		str	r2, [r0]
+  28:Core/Src/start_displayer.c ****         self->content = content;
+  97              		.loc 1 28 9 is_stmt 1 view .LVU15
+  28:Core/Src/start_displayer.c ****         self->content = content;
+  98              		.loc 1 28 23 is_stmt 0 view .LVU16
+  99 0010 8460     		str	r4, [r0, #8]
+  29:Core/Src/start_displayer.c ****         self->timeset = 1000;
+ 100              		.loc 1 29 9 is_stmt 1 view .LVU17
+  29:Core/Src/start_displayer.c ****         self->timeset = 1000;
+ 101              		.loc 1 29 23 is_stmt 0 view .LVU18
+ 102 0012 4FF47A72 		mov	r2, #1000
+ 103 0016 C260     		str	r2, [r0, #12]
+  31:Core/Src/start_displayer.c ****         return self;
+ 104              		.loc 1 31 9 is_stmt 1 view .LVU19
+  32:Core/Src/start_displayer.c **** }
+ 105              		.loc 1 32 1 is_stmt 0 view .LVU20
+ 106 0018 10BD     		pop	{r4, pc}
+ 107              	.LVL7:
+ 108              	.L6:
+  25:Core/Src/start_displayer.c ****         assert(self != NULL);
+ 109              		.loc 1 25 9 discriminator 1 view .LVU21
+ 110 001a 044B     		ldr	r3, .L7+4
+ARM GAS  F:\msys64\tmp\cc1hMfWb.s 			page 4
+
+
+ 111 001c 044A     		ldr	r2, .L7+8
+ 112 001e 1921     		movs	r1, #25
+ 113 0020 0448     		ldr	r0, .L7+12
+ 114              	.LVL8:
+  25:Core/Src/start_displayer.c ****         assert(self != NULL);
+ 115              		.loc 1 25 9 discriminator 1 view .LVU22
+ 116 0022 FFF7FEFF 		bl	__assert_func
+ 117              	.LVL9:
+ 118              	.L8:
+ 119 0026 00BF     		.align	2
+ 120              	.L7:
+ 121 0028 00000000 		.word	.LANCHOR1
+ 122 002c 00000000 		.word	.LC0
+ 123 0030 00000000 		.word	.LANCHOR0
+ 124 0034 10000000 		.word	.LC1
+ 125              		.cfi_endproc
+ 126              	.LFE3:
+ 128              		.section	.text.Start_Displayer_cleanup,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	Start_Displayer_cleanup
+ 131              		.syntax unified
+ 132              		.thumb
+ 133              		.thumb_func
+ 135              	Start_Displayer_cleanup:
+ 136              	.LVL10:
+ 137              	.LFB4:
+  34:Core/Src/start_displayer.c **** void Start_Displayer_cleanup(struct Start_Displayer *self) {
+ 138              		.loc 1 34 60 is_stmt 1 view -0
+ 139              		.cfi_startproc
+ 140              		@ args = 0, pretend = 0, frame = 0
+ 141              		@ frame_needed = 0, uses_anonymous_args = 0
+  34:Core/Src/start_displayer.c **** void Start_Displayer_cleanup(struct Start_Displayer *self) {
+ 142              		.loc 1 34 60 is_stmt 0 view .LVU24
+ 143 0000 08B5     		push	{r3, lr}
+ 144              	.LCFI2:
+ 145              		.cfi_def_cfa_offset 8
+ 146              		.cfi_offset 3, -8
+ 147              		.cfi_offset 14, -4
+  35:Core/Src/start_displayer.c ****         free(self);
+ 148              		.loc 1 35 9 is_stmt 1 view .LVU25
+ 149 0002 FFF7FEFF 		bl	free
+ 150              	.LVL11:
+  36:Core/Src/start_displayer.c **** }
+ 151              		.loc 1 36 1 is_stmt 0 view .LVU26
+ 152 0006 08BD     		pop	{r3, pc}
+ 153              		.cfi_endproc
+ 154              	.LFE4:
+ 156              		.section	.rodata.__func__.0,"a"
+ 157              		.align	2
+ 158              		.set	.LANCHOR0,. + 0
+ 161              	__func__.0:
+ 162 0000 53746172 		.ascii	"Start_Displayer_new\000"
+ 162      745F4469 
+ 162      73706C61 
+ 162      7965725F 
+ 162      6E657700 
+ 163              		.section	.rodata.displayer_interface,"a"
+ARM GAS  F:\msys64\tmp\cc1hMfWb.s 			page 5
+
+
+ 164              		.align	2
+ 165              		.set	.LANCHOR1,. + 0
+ 168              	displayer_interface:
+ 169 0000 00000000 		.word	Start_Displayer_display
+ 170              		.text
+ 171              	.Letext0:
+ 172              		.file 2 "Core/Inc/displayer.h"
+ 173              		.file 3 "Drivers/STemWin/inc/GUI.h"
+ 174              		.file 4 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\stdlib.h"
+ 175              		.file 5 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\assert.h"
+ARM GAS  F:\msys64\tmp\cc1hMfWb.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 start_displayer.c
+F:\msys64\tmp\cc1hMfWb.s:20     .text.Start_Displayer_display:00000000 $t
+F:\msys64\tmp\cc1hMfWb.s:26     .text.Start_Displayer_display:00000000 Start_Displayer_display
+F:\msys64\tmp\cc1hMfWb.s:56     .rodata.Start_Displayer_new.str1.4:00000000 $d
+F:\msys64\tmp\cc1hMfWb.s:63     .text.Start_Displayer_new:00000000 $t
+F:\msys64\tmp\cc1hMfWb.s:69     .text.Start_Displayer_new:00000000 Start_Displayer_new
+F:\msys64\tmp\cc1hMfWb.s:121    .text.Start_Displayer_new:00000028 $d
+F:\msys64\tmp\cc1hMfWb.s:129    .text.Start_Displayer_cleanup:00000000 $t
+F:\msys64\tmp\cc1hMfWb.s:135    .text.Start_Displayer_cleanup:00000000 Start_Displayer_cleanup
+F:\msys64\tmp\cc1hMfWb.s:157    .rodata.__func__.0:00000000 $d
+F:\msys64\tmp\cc1hMfWb.s:161    .rodata.__func__.0:00000000 __func__.0
+F:\msys64\tmp\cc1hMfWb.s:164    .rodata.displayer_interface:00000000 $d
+F:\msys64\tmp\cc1hMfWb.s:168    .rodata.displayer_interface:00000000 displayer_interface
+
+UNDEFINED SYMBOLS
+GUI_DispStringAt
+malloc
+__assert_func
+free

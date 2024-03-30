@@ -1,0 +1,1160 @@
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"DS18B20.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.DWT_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	DWT_Init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	DWT_Init:
+  27              	.LFB658:
+  28              		.file 1 "Drivers/DS18B20/DS18B20.c"
+   1:Drivers/DS18B20/DS18B20.c **** #include "DS18B20.h"
+   2:Drivers/DS18B20/DS18B20.c **** 
+   3:Drivers/DS18B20/DS18B20.c **** #define  SkipROM    0xCC  //Ìø¹ýROM
+   4:Drivers/DS18B20/DS18B20.c **** #define  SearchROM  0xF0  //ËÑË÷ROM
+   5:Drivers/DS18B20/DS18B20.c **** #define  ReadROM    0x33  //¶ÁROM
+   6:Drivers/DS18B20/DS18B20.c **** #define  MatchROM   0x55  //Æ¥ÅäROM
+   7:Drivers/DS18B20/DS18B20.c **** #define  AlarmROM   0xEC  //¸æ¾¯ROM
+   8:Drivers/DS18B20/DS18B20.c **** 
+   9:Drivers/DS18B20/DS18B20.c **** #define  StartConvert    0x44  //¿ªÊ¼ÎÂ¶È×ª»»£¬ÔÚÎÂ¶È×ª»»ÆÚ¼ä×ÜÏßÉÏÊä³ö0£¬×ª»»½áÊøºóÊä³ö1
+  10:Drivers/DS18B20/DS18B20.c **** #define  ReadScratchpad  0xBE  //¶ÁÔÝ´æÆ÷µÄ9¸ö×Ö½Ú
+  11:Drivers/DS18B20/DS18B20.c **** #define  WriteScratchpad 0x4E  //Ð´ÔÝ´æÆ÷µÄÎÂ¶È¸æ¾¯THºÍTL
+  12:Drivers/DS18B20/DS18B20.c **** #define  CopyScratchpad  0x48  //½«ÔÝ´æÆ÷µÄÎÂ¶È¸æ¾¯¸´ÖÆµ½EEPROM£¬ÔÚ¸´ÖÆÆÚ¼ä×ÜÏßÉÏÊä³ö0£¬¸´ÖÆÍêºóÊä³
+  13:Drivers/DS18B20/DS18B20.c **** #define  RecallEEPROM    0xB8  //½«EEPROMµÄÎÂ¶È¸æ¾¯¸´ÖÆµ½ÔÝ´æÆ÷ÖÐ£¬¸´ÖÆÆÚ¼äÊä³ö0£¬¸´ÖÆÍê³ÉºóÊä³ö1
+  14:Drivers/DS18B20/DS18B20.c **** #define  ReadPower       0xB4  //¶ÁµçÔ´µÄ¹©µç·½Ê½£º0Îª¼ÄÉúµçÔ´¹©µç£»1ÎªÍâ²¿µçÔ´¹©µç
+  15:Drivers/DS18B20/DS18B20.c **** 
+  16:Drivers/DS18B20/DS18B20.c **** 
+  17:Drivers/DS18B20/DS18B20.c **** #define EnableINT()
+  18:Drivers/DS18B20/DS18B20.c **** #define DisableINT()
+  19:Drivers/DS18B20/DS18B20.c **** 
+  20:Drivers/DS18B20/DS18B20.c **** #define DS_PRECISION 		0x7f   //¾«¶ÈÅäÖÃ¼Ä´æÆ÷ 1f=9Î»; 3f=10Î»; 5f=11Î»; 7f=12Î»;
+  21:Drivers/DS18B20/DS18B20.c **** #define DS_AlarmTH  		0x64
+  22:Drivers/DS18B20/DS18B20.c **** #define DS_AlarmTL  		0x8a
+  23:Drivers/DS18B20/DS18B20.c **** 
+  24:Drivers/DS18B20/DS18B20.c **** #define DS_CONVERT_TICK 1000
+  25:Drivers/DS18B20/DS18B20.c **** 
+  26:Drivers/DS18B20/DS18B20.c **** #define ResetDQ() 	HAL_GPIO_WritePin(DATA_GPIO_Port, DATA_Pin, GPIO_PIN_RESET)
+  27:Drivers/DS18B20/DS18B20.c **** #define SetDQ()  	HAL_GPIO_WritePin(DATA_GPIO_Port, DATA_Pin, GPIO_PIN_SET)
+  28:Drivers/DS18B20/DS18B20.c **** #define GetDQ()  	HAL_GPIO_ReadPin(DATA_GPIO_Port, DATA_Pin) 
+  29:Drivers/DS18B20/DS18B20.c **** 
+  30:Drivers/DS18B20/DS18B20.c **** // Î¢ÃëÑÓÊ±
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 2
+
+
+  31:Drivers/DS18B20/DS18B20.c **** void DWT_Init(void)
+  32:Drivers/DS18B20/DS18B20.c **** {
+  29              		.loc 1 32 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  33:Drivers/DS18B20/DS18B20.c **** 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;	// Ê¹ÄÜDWTÍâÉè
+  34              		.loc 1 33 2 view .LVU1
+  35              		.loc 1 33 19 is_stmt 0 view .LVU2
+  36 0000 074A     		ldr	r2, .L2
+  37 0002 D2F8FC30 		ldr	r3, [r2, #252]
+  38 0006 43F08073 		orr	r3, r3, #16777216
+  39 000a C2F8FC30 		str	r3, [r2, #252]
+  34:Drivers/DS18B20/DS18B20.c **** 	DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk ; 			// Ê¹ÄÜCortex-M DWT CYCCNT¼Ä´æÆ÷
+  40              		.loc 1 34 2 is_stmt 1 view .LVU3
+  41              		.loc 1 34 12 is_stmt 0 view .LVU4
+  42 000e 054B     		ldr	r3, .L2+4
+  43 0010 1A68     		ldr	r2, [r3]
+  44 0012 42F00102 		orr	r2, r2, #1
+  45 0016 1A60     		str	r2, [r3]
+  35:Drivers/DS18B20/DS18B20.c **** 	DWT->CYCCNT = 0; 								// DWT CYCCNT¼Ä´æÆ÷¼ÆÊýÇå0
+  46              		.loc 1 35 2 is_stmt 1 view .LVU5
+  47              		.loc 1 35 14 is_stmt 0 view .LVU6
+  48 0018 0022     		movs	r2, #0
+  49 001a 5A60     		str	r2, [r3, #4]
+  36:Drivers/DS18B20/DS18B20.c **** }
+  50              		.loc 1 36 1 view .LVU7
+  51 001c 7047     		bx	lr
+  52              	.L3:
+  53 001e 00BF     		.align	2
+  54              	.L2:
+  55 0020 00ED00E0 		.word	-536810240
+  56 0024 001000E0 		.word	-536866816
+  57              		.cfi_endproc
+  58              	.LFE658:
+  60              		.section	.text.delayUS_DWT,"ax",%progbits
+  61              		.align	1
+  62              		.global	delayUS_DWT
+  63              		.syntax unified
+  64              		.thumb
+  65              		.thumb_func
+  67              	delayUS_DWT:
+  68              	.LVL0:
+  69              	.LFB659:
+  37:Drivers/DS18B20/DS18B20.c **** 
+  38:Drivers/DS18B20/DS18B20.c **** void delayUS_DWT(uint32_t us) {
+  70              		.loc 1 38 31 is_stmt 1 view -0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 8
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		@ link register save eliminated.
+  75              		.loc 1 38 31 is_stmt 0 view .LVU9
+  76 0000 82B0     		sub	sp, sp, #8
+  77              	.LCFI0:
+  78              		.cfi_def_cfa_offset 8
+  39:Drivers/DS18B20/DS18B20.c **** 	volatile uint32_t cycles = (SystemCoreClock / 1000000L) * us;
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 3
+
+
+  79              		.loc 1 39 2 is_stmt 1 view .LVU10
+  80              		.loc 1 39 46 is_stmt 0 view .LVU11
+  81 0002 0A4B     		ldr	r3, .L7
+  82 0004 1B68     		ldr	r3, [r3]
+  83 0006 0A4A     		ldr	r2, .L7+4
+  84 0008 A2FB0323 		umull	r2, r3, r2, r3
+  85 000c 9B0C     		lsrs	r3, r3, #18
+  86              		.loc 1 39 58 view .LVU12
+  87 000e 00FB03F3 		mul	r3, r0, r3
+  88              		.loc 1 39 20 view .LVU13
+  89 0012 0193     		str	r3, [sp, #4]
+  40:Drivers/DS18B20/DS18B20.c **** 	volatile uint32_t start = DWT->CYCCNT;
+  90              		.loc 1 40 2 is_stmt 1 view .LVU14
+  91              		.loc 1 40 31 is_stmt 0 view .LVU15
+  92 0014 074B     		ldr	r3, .L7+8
+  93 0016 5B68     		ldr	r3, [r3, #4]
+  94              		.loc 1 40 20 view .LVU16
+  95 0018 0093     		str	r3, [sp]
+  96              	.L5:
+  41:Drivers/DS18B20/DS18B20.c **** 	do  {
+  97              		.loc 1 41 2 is_stmt 1 discriminator 1 view .LVU17
+  42:Drivers/DS18B20/DS18B20.c **** 	} while(DWT->CYCCNT - start < cycles);
+  98              		.loc 1 42 2 discriminator 1 view .LVU18
+  99              		.loc 1 42 9 discriminator 1 view .LVU19
+ 100              		.loc 1 42 13 is_stmt 0 discriminator 1 view .LVU20
+ 101 001a 064B     		ldr	r3, .L7+8
+ 102 001c 5B68     		ldr	r3, [r3, #4]
+ 103              		.loc 1 42 22 discriminator 1 view .LVU21
+ 104 001e 009A     		ldr	r2, [sp]
+ 105 0020 9B1A     		subs	r3, r3, r2
+ 106              		.loc 1 42 30 discriminator 1 view .LVU22
+ 107 0022 019A     		ldr	r2, [sp, #4]
+ 108              		.loc 1 42 2 discriminator 1 view .LVU23
+ 109 0024 9342     		cmp	r3, r2
+ 110 0026 F8D3     		bcc	.L5
+  43:Drivers/DS18B20/DS18B20.c **** }
+ 111              		.loc 1 43 1 view .LVU24
+ 112 0028 02B0     		add	sp, sp, #8
+ 113              	.LCFI1:
+ 114              		.cfi_def_cfa_offset 0
+ 115              		@ sp needed
+ 116 002a 7047     		bx	lr
+ 117              	.L8:
+ 118              		.align	2
+ 119              	.L7:
+ 120 002c 00000000 		.word	SystemCoreClock
+ 121 0030 83DE1B43 		.word	1125899907
+ 122 0034 001000E0 		.word	-536866816
+ 123              		.cfi_endproc
+ 124              	.LFE659:
+ 126              		.section	.text.ResetDS18B20,"ax",%progbits
+ 127              		.align	1
+ 128              		.global	ResetDS18B20
+ 129              		.syntax unified
+ 130              		.thumb
+ 131              		.thumb_func
+ 133              	ResetDS18B20:
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 4
+
+
+ 134              	.LFB660:
+  44:Drivers/DS18B20/DS18B20.c **** 
+  45:Drivers/DS18B20/DS18B20.c **** unsigned char ResetDS18B20(void)
+  46:Drivers/DS18B20/DS18B20.c **** {
+ 135              		.loc 1 46 1 is_stmt 1 view -0
+ 136              		.cfi_startproc
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139 0000 10B5     		push	{r4, lr}
+ 140              	.LCFI2:
+ 141              		.cfi_def_cfa_offset 8
+ 142              		.cfi_offset 4, -8
+ 143              		.cfi_offset 14, -4
+  47:Drivers/DS18B20/DS18B20.c **** 	unsigned char resport;
+ 144              		.loc 1 47 2 view .LVU26
+  48:Drivers/DS18B20/DS18B20.c **** 	SetDQ();
+ 145              		.loc 1 48 2 view .LVU27
+ 146 0002 1D4C     		ldr	r4, .L16
+ 147 0004 0122     		movs	r2, #1
+ 148 0006 1146     		mov	r1, r2
+ 149 0008 2046     		mov	r0, r4
+ 150 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 151              	.LVL1:
+  49:Drivers/DS18B20/DS18B20.c **** 	delayUS_DWT(50);
+ 152              		.loc 1 49 2 view .LVU28
+ 153 000e 3220     		movs	r0, #50
+ 154 0010 FFF7FEFF 		bl	delayUS_DWT
+ 155              	.LVL2:
+  50:Drivers/DS18B20/DS18B20.c **** 
+  51:Drivers/DS18B20/DS18B20.c **** 	ResetDQ();
+ 156              		.loc 1 51 2 view .LVU29
+ 157 0014 0022     		movs	r2, #0
+ 158 0016 0121     		movs	r1, #1
+ 159 0018 2046     		mov	r0, r4
+ 160 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 161              	.LVL3:
+  52:Drivers/DS18B20/DS18B20.c **** 	delayUS_DWT(500);  //500us £¨¸ÃÊ±¼äµÄÊ±¼ä·¶Î§¿ÉÒÔ´Ó480µ½960Î¢Ãë£©
+ 162              		.loc 1 52 2 view .LVU30
+ 163 001e 4FF4FA70 		mov	r0, #500
+ 164 0022 FFF7FEFF 		bl	delayUS_DWT
+ 165              	.LVL4:
+  53:Drivers/DS18B20/DS18B20.c **** 	SetDQ();
+ 166              		.loc 1 53 2 view .LVU31
+ 167 0026 0122     		movs	r2, #1
+ 168 0028 1146     		mov	r1, r2
+ 169 002a 2046     		mov	r0, r4
+ 170 002c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 171              	.LVL5:
+  54:Drivers/DS18B20/DS18B20.c **** 	delayUS_DWT(40);  //40us
+ 172              		.loc 1 54 2 view .LVU32
+ 173 0030 2820     		movs	r0, #40
+ 174 0032 FFF7FEFF 		bl	delayUS_DWT
+ 175              	.LVL6:
+  55:Drivers/DS18B20/DS18B20.c **** 	//resport = GetDQ();
+  56:Drivers/DS18B20/DS18B20.c **** 	uint16_t cnt = 0;
+ 176              		.loc 1 56 2 view .LVU33
+  57:Drivers/DS18B20/DS18B20.c **** 	while(GetDQ() && cnt < 500)
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 5
+
+
+ 177              		.loc 1 57 2 view .LVU34
+  56:Drivers/DS18B20/DS18B20.c **** 	while(GetDQ() && cnt < 500)
+ 178              		.loc 1 56 11 is_stmt 0 view .LVU35
+ 179 0036 0024     		movs	r4, #0
+ 180              	.LVL7:
+ 181              	.L10:
+ 182              		.loc 1 57 7 is_stmt 1 view .LVU36
+ 183              		.loc 1 57 8 is_stmt 0 view .LVU37
+ 184 0038 0121     		movs	r1, #1
+ 185 003a 0F48     		ldr	r0, .L16
+ 186 003c FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 187              	.LVL8:
+ 188              		.loc 1 57 7 view .LVU38
+ 189 0040 40B1     		cbz	r0, .L11
+ 190              		.loc 1 57 16 discriminator 1 view .LVU39
+ 191 0042 B4F5FA7F 		cmp	r4, #500
+ 192 0046 05D2     		bcs	.L11
+  58:Drivers/DS18B20/DS18B20.c **** 	{
+  59:Drivers/DS18B20/DS18B20.c **** 		++cnt;
+ 193              		.loc 1 59 3 is_stmt 1 view .LVU40
+ 194 0048 0134     		adds	r4, r4, #1
+ 195              	.LVL9:
+ 196              		.loc 1 59 3 is_stmt 0 view .LVU41
+ 197 004a A4B2     		uxth	r4, r4
+ 198              	.LVL10:
+  60:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(1);  //40us
+ 199              		.loc 1 60 3 is_stmt 1 view .LVU42
+ 200 004c 0120     		movs	r0, #1
+ 201 004e FFF7FEFF 		bl	delayUS_DWT
+ 202              	.LVL11:
+ 203 0052 F1E7     		b	.L10
+ 204              	.L11:
+  61:Drivers/DS18B20/DS18B20.c **** 	}
+  62:Drivers/DS18B20/DS18B20.c **** 	if (cnt >= 500)
+ 205              		.loc 1 62 2 view .LVU43
+ 206              		.loc 1 62 5 is_stmt 0 view .LVU44
+ 207 0054 B4F5FA7F 		cmp	r4, #500
+ 208 0058 0BD3     		bcc	.L14
+  63:Drivers/DS18B20/DS18B20.c **** 		resport = 1;
+ 209              		.loc 1 63 11 view .LVU45
+ 210 005a 0124     		movs	r4, #1
+ 211              	.LVL12:
+ 212              	.L13:
+  64:Drivers/DS18B20/DS18B20.c **** 	else
+  65:Drivers/DS18B20/DS18B20.c **** 		resport = 0;
+  66:Drivers/DS18B20/DS18B20.c **** 	
+  67:Drivers/DS18B20/DS18B20.c **** 	delayUS_DWT(500);  //500us
+ 213              		.loc 1 67 2 is_stmt 1 view .LVU46
+ 214 005c 4FF4FA70 		mov	r0, #500
+ 215 0060 FFF7FEFF 		bl	delayUS_DWT
+ 216              	.LVL13:
+  68:Drivers/DS18B20/DS18B20.c **** 	SetDQ();
+ 217              		.loc 1 68 2 view .LVU47
+ 218 0064 0122     		movs	r2, #1
+ 219 0066 1146     		mov	r1, r2
+ 220 0068 0348     		ldr	r0, .L16
+ 221 006a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 6
+
+
+ 222              	.LVL14:
+  69:Drivers/DS18B20/DS18B20.c **** 	return resport;
+ 223              		.loc 1 69 2 view .LVU48
+  70:Drivers/DS18B20/DS18B20.c **** }
+ 224              		.loc 1 70 1 is_stmt 0 view .LVU49
+ 225 006e 2046     		mov	r0, r4
+ 226 0070 10BD     		pop	{r4, pc}
+ 227              	.LVL15:
+ 228              	.L14:
+  65:Drivers/DS18B20/DS18B20.c **** 	
+ 229              		.loc 1 65 11 view .LVU50
+ 230 0072 0024     		movs	r4, #0
+ 231              	.LVL16:
+  65:Drivers/DS18B20/DS18B20.c **** 	
+ 232              		.loc 1 65 11 view .LVU51
+ 233 0074 F2E7     		b	.L13
+ 234              	.L17:
+ 235 0076 00BF     		.align	2
+ 236              	.L16:
+ 237 0078 00100240 		.word	1073876992
+ 238              		.cfi_endproc
+ 239              	.LFE660:
+ 241              		.section	.text.DS18B20WriteByte,"ax",%progbits
+ 242              		.align	1
+ 243              		.global	DS18B20WriteByte
+ 244              		.syntax unified
+ 245              		.thumb
+ 246              		.thumb_func
+ 248              	DS18B20WriteByte:
+ 249              	.LVL17:
+ 250              	.LFB661:
+  71:Drivers/DS18B20/DS18B20.c **** 
+  72:Drivers/DS18B20/DS18B20.c **** void DS18B20WriteByte(unsigned char Dat)
+  73:Drivers/DS18B20/DS18B20.c **** {
+ 251              		.loc 1 73 1 is_stmt 1 view -0
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255              		.loc 1 73 1 is_stmt 0 view .LVU53
+ 256 0000 38B5     		push	{r3, r4, r5, lr}
+ 257              	.LCFI3:
+ 258              		.cfi_def_cfa_offset 16
+ 259              		.cfi_offset 3, -16
+ 260              		.cfi_offset 4, -12
+ 261              		.cfi_offset 5, -8
+ 262              		.cfi_offset 14, -4
+ 263 0002 0546     		mov	r5, r0
+  74:Drivers/DS18B20/DS18B20.c **** 	unsigned char i;
+ 264              		.loc 1 74 2 is_stmt 1 view .LVU54
+  75:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 265              		.loc 1 75 2 view .LVU55
+ 266              	.LVL18:
+ 267              		.loc 1 75 8 is_stmt 0 view .LVU56
+ 268 0004 0824     		movs	r4, #8
+ 269              		.loc 1 75 2 view .LVU57
+ 270 0006 12E0     		b	.L19
+ 271              	.LVL19:
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 7
+
+
+ 272              	.L20:
+  76:Drivers/DS18B20/DS18B20.c **** 	{
+  77:Drivers/DS18B20/DS18B20.c **** 		ResetDQ();     		//ÔÚ15uÄÚËÍÊýµ½Êý¾ÝÏßÉÏ£¬DS18B20ÔÚ15-60u¶ÁÊý
+  78:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(5);   //5us
+  79:Drivers/DS18B20/DS18B20.c **** 		if(Dat & 0x01)
+  80:Drivers/DS18B20/DS18B20.c **** 			SetDQ();
+  81:Drivers/DS18B20/DS18B20.c **** 		else
+  82:Drivers/DS18B20/DS18B20.c **** 			ResetDQ();
+ 273              		.loc 1 82 4 is_stmt 1 view .LVU58
+ 274 0008 0022     		movs	r2, #0
+ 275 000a 0121     		movs	r1, #1
+ 276 000c 1148     		ldr	r0, .L25
+ 277 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 278              	.LVL20:
+ 279              	.L21:
+  83:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(65);  //65us
+ 280              		.loc 1 83 3 discriminator 2 view .LVU59
+ 281 0012 4120     		movs	r0, #65
+ 282 0014 FFF7FEFF 		bl	delayUS_DWT
+ 283              	.LVL21:
+  84:Drivers/DS18B20/DS18B20.c **** 		SetDQ();
+ 284              		.loc 1 84 3 discriminator 2 view .LVU60
+ 285 0018 0122     		movs	r2, #1
+ 286 001a 1146     		mov	r1, r2
+ 287 001c 0D48     		ldr	r0, .L25
+ 288 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 289              	.LVL22:
+  85:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(2);  	//Á¬ÐøÁ½Î»¼äÓ¦´óÓÚ1us
+ 290              		.loc 1 85 3 discriminator 2 view .LVU61
+ 291 0022 0220     		movs	r0, #2
+ 292 0024 FFF7FEFF 		bl	delayUS_DWT
+ 293              	.LVL23:
+  86:Drivers/DS18B20/DS18B20.c **** 		Dat >>= 1;
+ 294              		.loc 1 86 3 discriminator 2 view .LVU62
+ 295              		.loc 1 86 7 is_stmt 0 discriminator 2 view .LVU63
+ 296 0028 6D08     		lsrs	r5, r5, #1
+ 297              	.LVL24:
+  75:Drivers/DS18B20/DS18B20.c **** 	{
+ 298              		.loc 1 75 20 is_stmt 1 discriminator 2 view .LVU64
+  75:Drivers/DS18B20/DS18B20.c **** 	{
+ 299              		.loc 1 75 21 is_stmt 0 discriminator 2 view .LVU65
+ 300 002a 013C     		subs	r4, r4, #1
+ 301              	.LVL25:
+  75:Drivers/DS18B20/DS18B20.c **** 	{
+ 302              		.loc 1 75 21 discriminator 2 view .LVU66
+ 303 002c E4B2     		uxtb	r4, r4
+ 304              	.LVL26:
+ 305              	.L19:
+  75:Drivers/DS18B20/DS18B20.c **** 	{
+ 306              		.loc 1 75 13 is_stmt 1 discriminator 1 view .LVU67
+  75:Drivers/DS18B20/DS18B20.c **** 	{
+ 307              		.loc 1 75 2 is_stmt 0 discriminator 1 view .LVU68
+ 308 002e 84B1     		cbz	r4, .L24
+  77:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(5);   //5us
+ 309              		.loc 1 77 3 is_stmt 1 view .LVU69
+ 310 0030 0022     		movs	r2, #0
+ 311 0032 0121     		movs	r1, #1
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 8
+
+
+ 312 0034 0748     		ldr	r0, .L25
+ 313 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 314              	.LVL27:
+  78:Drivers/DS18B20/DS18B20.c **** 		if(Dat & 0x01)
+ 315              		.loc 1 78 3 view .LVU70
+ 316 003a 0520     		movs	r0, #5
+ 317 003c FFF7FEFF 		bl	delayUS_DWT
+ 318              	.LVL28:
+  79:Drivers/DS18B20/DS18B20.c **** 			SetDQ();
+ 319              		.loc 1 79 3 view .LVU71
+  79:Drivers/DS18B20/DS18B20.c **** 			SetDQ();
+ 320              		.loc 1 79 5 is_stmt 0 view .LVU72
+ 321 0040 15F0010F 		tst	r5, #1
+ 322 0044 E0D0     		beq	.L20
+  80:Drivers/DS18B20/DS18B20.c **** 		else
+ 323              		.loc 1 80 4 is_stmt 1 view .LVU73
+ 324 0046 0122     		movs	r2, #1
+ 325 0048 1146     		mov	r1, r2
+ 326 004a 0248     		ldr	r0, .L25
+ 327 004c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 328              	.LVL29:
+ 329 0050 DFE7     		b	.L21
+ 330              	.L24:
+  87:Drivers/DS18B20/DS18B20.c **** 	} 
+  88:Drivers/DS18B20/DS18B20.c **** }
+ 331              		.loc 1 88 1 is_stmt 0 view .LVU74
+ 332 0052 38BD     		pop	{r3, r4, r5, pc}
+ 333              	.LVL30:
+ 334              	.L26:
+ 335              		.loc 1 88 1 view .LVU75
+ 336              		.align	2
+ 337              	.L25:
+ 338 0054 00100240 		.word	1073876992
+ 339              		.cfi_endproc
+ 340              	.LFE661:
+ 342              		.section	.text.DS18B20ReadByte,"ax",%progbits
+ 343              		.align	1
+ 344              		.global	DS18B20ReadByte
+ 345              		.syntax unified
+ 346              		.thumb
+ 347              		.thumb_func
+ 349              	DS18B20ReadByte:
+ 350              	.LFB662:
+  89:Drivers/DS18B20/DS18B20.c **** 
+  90:Drivers/DS18B20/DS18B20.c **** 
+  91:Drivers/DS18B20/DS18B20.c **** unsigned char DS18B20ReadByte(void)
+  92:Drivers/DS18B20/DS18B20.c **** {
+ 351              		.loc 1 92 1 is_stmt 1 view -0
+ 352              		.cfi_startproc
+ 353              		@ args = 0, pretend = 0, frame = 0
+ 354              		@ frame_needed = 0, uses_anonymous_args = 0
+ 355 0000 70B5     		push	{r4, r5, r6, lr}
+ 356              	.LCFI4:
+ 357              		.cfi_def_cfa_offset 16
+ 358              		.cfi_offset 4, -16
+ 359              		.cfi_offset 5, -12
+ 360              		.cfi_offset 6, -8
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 9
+
+
+ 361              		.cfi_offset 14, -4
+ 362 0002 0025     		movs	r5, #0
+  93:Drivers/DS18B20/DS18B20.c **** 	unsigned char i,Dat;
+ 363              		.loc 1 93 2 view .LVU77
+  94:Drivers/DS18B20/DS18B20.c **** 	SetDQ();
+ 364              		.loc 1 94 2 view .LVU78
+ 365 0004 0122     		movs	r2, #1
+ 366 0006 1146     		mov	r1, r2
+ 367 0008 1848     		ldr	r0, .L33
+ 368 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 369              	.LVL31:
+  95:Drivers/DS18B20/DS18B20.c **** 	delayUS_DWT(5);
+ 370              		.loc 1 95 2 view .LVU79
+ 371 000e 0520     		movs	r0, #5
+ 372 0010 FFF7FEFF 		bl	delayUS_DWT
+ 373              	.LVL32:
+  96:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 374              		.loc 1 96 2 view .LVU80
+ 375              		.loc 1 96 8 is_stmt 0 view .LVU81
+ 376 0014 0824     		movs	r4, #8
+ 377              		.loc 1 96 2 view .LVU82
+ 378 0016 09E0     		b	.L28
+ 379              	.LVL33:
+ 380              	.L29:
+  97:Drivers/DS18B20/DS18B20.c **** 	{
+  98:Drivers/DS18B20/DS18B20.c **** 		Dat >>= 1;
+  99:Drivers/DS18B20/DS18B20.c **** 		ResetDQ();     //´Ó¶ÁÊ±Ðò¿ªÊ¼µ½²ÉÑùÐÅºÅÏß±ØÐëÔÚ15uÄÚ£¬ÇÒ²ÉÑù¾¡Á¿°²ÅÅÔÚ15uµÄ×îºó
+ 100:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(5);   //5us
+ 101:Drivers/DS18B20/DS18B20.c **** 		SetDQ();
+ 102:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(5);   //5us
+ 103:Drivers/DS18B20/DS18B20.c **** 		if(GetDQ())
+ 104:Drivers/DS18B20/DS18B20.c **** 			Dat |= 0x80;
+ 105:Drivers/DS18B20/DS18B20.c **** 		else
+ 106:Drivers/DS18B20/DS18B20.c **** 			Dat &= 0x7f;  
+ 107:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(65);   //65us
+ 381              		.loc 1 107 3 is_stmt 1 discriminator 2 view .LVU83
+ 382 0018 4120     		movs	r0, #65
+ 383 001a FFF7FEFF 		bl	delayUS_DWT
+ 384              	.LVL34:
+ 108:Drivers/DS18B20/DS18B20.c **** 		SetDQ();
+ 385              		.loc 1 108 3 discriminator 2 view .LVU84
+ 386 001e 0122     		movs	r2, #1
+ 387 0020 1146     		mov	r1, r2
+ 388 0022 1248     		ldr	r0, .L33
+ 389 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 390              	.LVL35:
+  96:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 391              		.loc 1 96 20 discriminator 2 view .LVU85
+  96:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 392              		.loc 1 96 21 is_stmt 0 discriminator 2 view .LVU86
+ 393 0028 013C     		subs	r4, r4, #1
+ 394              	.LVL36:
+  96:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 395              		.loc 1 96 21 discriminator 2 view .LVU87
+ 396 002a E4B2     		uxtb	r4, r4
+ 397              	.LVL37:
+ 398              	.L28:
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 10
+
+
+  96:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 399              		.loc 1 96 13 is_stmt 1 discriminator 1 view .LVU88
+  96:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 400              		.loc 1 96 2 is_stmt 0 discriminator 1 view .LVU89
+ 401 002c DCB1     		cbz	r4, .L32
+  98:Drivers/DS18B20/DS18B20.c **** 		ResetDQ();     //´Ó¶ÁÊ±Ðò¿ªÊ¼µ½²ÉÑùÐÅºÅÏß±ØÐëÔÚ15uÄÚ£¬ÇÒ²ÉÑù¾¡Á¿°²ÅÅÔÚ15uµÄ×îºó
+ 402              		.loc 1 98 3 is_stmt 1 view .LVU90
+  98:Drivers/DS18B20/DS18B20.c **** 		ResetDQ();     //´Ó¶ÁÊ±Ðò¿ªÊ¼µ½²ÉÑùÐÅºÅÏß±ØÐëÔÚ15uÄÚ£¬ÇÒ²ÉÑù¾¡Á¿°²ÅÅÔÚ15uµÄ×îºó
+ 403              		.loc 1 98 7 is_stmt 0 view .LVU91
+ 404 002e 6D08     		lsrs	r5, r5, #1
+ 405              	.LVL38:
+  99:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(5);   //5us
+ 406              		.loc 1 99 3 is_stmt 1 view .LVU92
+ 407 0030 0E4E     		ldr	r6, .L33
+ 408 0032 0022     		movs	r2, #0
+ 409 0034 0121     		movs	r1, #1
+ 410 0036 3046     		mov	r0, r6
+ 411 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 412              	.LVL39:
+ 100:Drivers/DS18B20/DS18B20.c **** 		SetDQ();
+ 413              		.loc 1 100 3 view .LVU93
+ 414 003c 0520     		movs	r0, #5
+ 415 003e FFF7FEFF 		bl	delayUS_DWT
+ 416              	.LVL40:
+ 101:Drivers/DS18B20/DS18B20.c **** 		delayUS_DWT(5);   //5us
+ 417              		.loc 1 101 3 view .LVU94
+ 418 0042 0122     		movs	r2, #1
+ 419 0044 1146     		mov	r1, r2
+ 420 0046 3046     		mov	r0, r6
+ 421 0048 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 422              	.LVL41:
+ 102:Drivers/DS18B20/DS18B20.c **** 		if(GetDQ())
+ 423              		.loc 1 102 3 view .LVU95
+ 424 004c 0520     		movs	r0, #5
+ 425 004e FFF7FEFF 		bl	delayUS_DWT
+ 426              	.LVL42:
+ 103:Drivers/DS18B20/DS18B20.c **** 			Dat |= 0x80;
+ 427              		.loc 1 103 3 view .LVU96
+ 103:Drivers/DS18B20/DS18B20.c **** 			Dat |= 0x80;
+ 428              		.loc 1 103 6 is_stmt 0 view .LVU97
+ 429 0052 0121     		movs	r1, #1
+ 430 0054 3046     		mov	r0, r6
+ 431 0056 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 432              	.LVL43:
+ 103:Drivers/DS18B20/DS18B20.c **** 			Dat |= 0x80;
+ 433              		.loc 1 103 5 view .LVU98
+ 434 005a 0028     		cmp	r0, #0
+ 435 005c DCD0     		beq	.L29
+ 104:Drivers/DS18B20/DS18B20.c **** 		else
+ 436              		.loc 1 104 4 is_stmt 1 view .LVU99
+ 104:Drivers/DS18B20/DS18B20.c **** 		else
+ 437              		.loc 1 104 8 is_stmt 0 view .LVU100
+ 438 005e 65F07F05 		orn	r5, r5, #127
+ 439              	.LVL44:
+ 104:Drivers/DS18B20/DS18B20.c **** 		else
+ 440              		.loc 1 104 8 view .LVU101
+ 441 0062 EDB2     		uxtb	r5, r5
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 11
+
+
+ 442              	.LVL45:
+ 104:Drivers/DS18B20/DS18B20.c **** 		else
+ 443              		.loc 1 104 8 view .LVU102
+ 444 0064 D8E7     		b	.L29
+ 445              	.L32:
+ 109:Drivers/DS18B20/DS18B20.c **** 	}
+ 110:Drivers/DS18B20/DS18B20.c **** 	return Dat;
+ 446              		.loc 1 110 2 is_stmt 1 view .LVU103
+ 111:Drivers/DS18B20/DS18B20.c **** }
+ 447              		.loc 1 111 1 is_stmt 0 view .LVU104
+ 448 0066 2846     		mov	r0, r5
+ 449 0068 70BD     		pop	{r4, r5, r6, pc}
+ 450              	.LVL46:
+ 451              	.L34:
+ 452              		.loc 1 111 1 view .LVU105
+ 453 006a 00BF     		.align	2
+ 454              	.L33:
+ 455 006c 00100240 		.word	1073876992
+ 456              		.cfi_endproc
+ 457              	.LFE662:
+ 459              		.section	.text.ReadRom,"ax",%progbits
+ 460              		.align	1
+ 461              		.global	ReadRom
+ 462              		.syntax unified
+ 463              		.thumb
+ 464              		.thumb_func
+ 466              	ReadRom:
+ 467              	.LVL47:
+ 468              	.LFB663:
+ 112:Drivers/DS18B20/DS18B20.c **** 
+ 113:Drivers/DS18B20/DS18B20.c **** void ReadRom(unsigned char *Read_Addr)
+ 114:Drivers/DS18B20/DS18B20.c **** {
+ 469              		.loc 1 114 1 is_stmt 1 view -0
+ 470              		.cfi_startproc
+ 471              		@ args = 0, pretend = 0, frame = 0
+ 472              		@ frame_needed = 0, uses_anonymous_args = 0
+ 473              		.loc 1 114 1 is_stmt 0 view .LVU107
+ 474 0000 38B5     		push	{r3, r4, r5, lr}
+ 475              	.LCFI5:
+ 476              		.cfi_def_cfa_offset 16
+ 477              		.cfi_offset 3, -16
+ 478              		.cfi_offset 4, -12
+ 479              		.cfi_offset 5, -8
+ 480              		.cfi_offset 14, -4
+ 481 0002 0546     		mov	r5, r0
+ 115:Drivers/DS18B20/DS18B20.c **** 	unsigned char i;
+ 482              		.loc 1 115 2 is_stmt 1 view .LVU108
+ 116:Drivers/DS18B20/DS18B20.c **** 
+ 117:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(ReadROM);
+ 483              		.loc 1 117 2 view .LVU109
+ 484 0004 3320     		movs	r0, #51
+ 485              	.LVL48:
+ 486              		.loc 1 117 2 is_stmt 0 view .LVU110
+ 487 0006 FFF7FEFF 		bl	DS18B20WriteByte
+ 488              	.LVL49:
+ 118:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 489              		.loc 1 118 2 is_stmt 1 view .LVU111
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 12
+
+
+ 490              		.loc 1 118 8 is_stmt 0 view .LVU112
+ 491 000a 0824     		movs	r4, #8
+ 492              		.loc 1 118 2 view .LVU113
+ 493 000c 05E0     		b	.L36
+ 494              	.LVL50:
+ 495              	.L37:
+ 119:Drivers/DS18B20/DS18B20.c **** 	{
+ 120:Drivers/DS18B20/DS18B20.c **** 		*Read_Addr = DS18B20ReadByte();
+ 496              		.loc 1 120 3 is_stmt 1 discriminator 3 view .LVU114
+ 497              		.loc 1 120 16 is_stmt 0 discriminator 3 view .LVU115
+ 498 000e FFF7FEFF 		bl	DS18B20ReadByte
+ 499              	.LVL51:
+ 500              		.loc 1 120 14 discriminator 3 view .LVU116
+ 501 0012 05F8010B 		strb	r0, [r5], #1
+ 502              	.LVL52:
+ 121:Drivers/DS18B20/DS18B20.c **** 		Read_Addr++;
+ 503              		.loc 1 121 3 is_stmt 1 discriminator 3 view .LVU117
+ 118:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 504              		.loc 1 118 20 discriminator 3 view .LVU118
+ 118:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 505              		.loc 1 118 21 is_stmt 0 discriminator 3 view .LVU119
+ 506 0016 013C     		subs	r4, r4, #1
+ 507              	.LVL53:
+ 118:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 508              		.loc 1 118 21 discriminator 3 view .LVU120
+ 509 0018 E4B2     		uxtb	r4, r4
+ 510              	.LVL54:
+ 511              	.L36:
+ 118:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 512              		.loc 1 118 13 is_stmt 1 discriminator 1 view .LVU121
+ 118:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
+ 513              		.loc 1 118 2 is_stmt 0 discriminator 1 view .LVU122
+ 514 001a 002C     		cmp	r4, #0
+ 515 001c F7D1     		bne	.L37
+ 122:Drivers/DS18B20/DS18B20.c **** 	}
+ 123:Drivers/DS18B20/DS18B20.c **** }
+ 516              		.loc 1 123 1 view .LVU123
+ 517 001e 38BD     		pop	{r3, r4, r5, pc}
+ 518              		.loc 1 123 1 view .LVU124
+ 519              		.cfi_endproc
+ 520              	.LFE663:
+ 522              		.section	.text.DS18B20Init,"ax",%progbits
+ 523              		.align	1
+ 524              		.global	DS18B20Init
+ 525              		.syntax unified
+ 526              		.thumb
+ 527              		.thumb_func
+ 529              	DS18B20Init:
+ 530              	.LVL55:
+ 531              	.LFB664:
+ 124:Drivers/DS18B20/DS18B20.c **** 
+ 125:Drivers/DS18B20/DS18B20.c **** void DS18B20Init(unsigned char Precision,unsigned char AlarmTH,unsigned char AlarmTL)
+ 126:Drivers/DS18B20/DS18B20.c **** {	
+ 532              		.loc 1 126 1 is_stmt 1 view -0
+ 533              		.cfi_startproc
+ 534              		@ args = 0, pretend = 0, frame = 0
+ 535              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 13
+
+
+ 536              		.loc 1 126 1 is_stmt 0 view .LVU126
+ 537 0000 70B5     		push	{r4, r5, r6, lr}
+ 538              	.LCFI6:
+ 539              		.cfi_def_cfa_offset 16
+ 540              		.cfi_offset 4, -16
+ 541              		.cfi_offset 5, -12
+ 542              		.cfi_offset 6, -8
+ 543              		.cfi_offset 14, -4
+ 544 0002 0446     		mov	r4, r0
+ 545 0004 0D46     		mov	r5, r1
+ 546 0006 1646     		mov	r6, r2
+ 127:Drivers/DS18B20/DS18B20.c **** 	DisableINT();
+ 547              		.loc 1 127 14 is_stmt 1 view .LVU127
+ 128:Drivers/DS18B20/DS18B20.c **** 	ResetDS18B20();
+ 548              		.loc 1 128 2 view .LVU128
+ 549 0008 FFF7FEFF 		bl	ResetDS18B20
+ 550              	.LVL56:
+ 129:Drivers/DS18B20/DS18B20.c **** 	
+ 130:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(SkipROM); 
+ 551              		.loc 1 130 2 view .LVU129
+ 552 000c CC20     		movs	r0, #204
+ 553 000e FFF7FEFF 		bl	DS18B20WriteByte
+ 554              	.LVL57:
+ 131:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(WriteScratchpad);
+ 555              		.loc 1 131 2 view .LVU130
+ 556 0012 4E20     		movs	r0, #78
+ 557 0014 FFF7FEFF 		bl	DS18B20WriteByte
+ 558              	.LVL58:
+ 132:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(AlarmTL);
+ 559              		.loc 1 132 2 view .LVU131
+ 560 0018 3046     		mov	r0, r6
+ 561 001a FFF7FEFF 		bl	DS18B20WriteByte
+ 562              	.LVL59:
+ 133:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(AlarmTH);
+ 563              		.loc 1 133 2 view .LVU132
+ 564 001e 2846     		mov	r0, r5
+ 565 0020 FFF7FEFF 		bl	DS18B20WriteByte
+ 566              	.LVL60:
+ 134:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(Precision);
+ 567              		.loc 1 134 2 view .LVU133
+ 568 0024 2046     		mov	r0, r4
+ 569 0026 FFF7FEFF 		bl	DS18B20WriteByte
+ 570              	.LVL61:
+ 135:Drivers/DS18B20/DS18B20.c **** 
+ 136:Drivers/DS18B20/DS18B20.c **** 	ResetDS18B20();
+ 571              		.loc 1 136 2 view .LVU134
+ 572 002a FFF7FEFF 		bl	ResetDS18B20
+ 573              	.LVL62:
+ 137:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(SkipROM); 
+ 574              		.loc 1 137 2 view .LVU135
+ 575 002e CC20     		movs	r0, #204
+ 576 0030 FFF7FEFF 		bl	DS18B20WriteByte
+ 577              	.LVL63:
+ 138:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(CopyScratchpad);
+ 578              		.loc 1 138 2 view .LVU136
+ 579 0034 4820     		movs	r0, #72
+ 580 0036 FFF7FEFF 		bl	DS18B20WriteByte
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 14
+
+
+ 581              	.LVL64:
+ 139:Drivers/DS18B20/DS18B20.c **** 	EnableINT();
+ 582              		.loc 1 139 13 view .LVU137
+ 140:Drivers/DS18B20/DS18B20.c **** 
+ 141:Drivers/DS18B20/DS18B20.c **** 	while(!GetDQ());  //µÈ´ý¸´ÖÆÍê³É ///////////
+ 583              		.loc 1 141 2 view .LVU138
+ 584              	.L40:
+ 585              		.loc 1 141 17 discriminator 1 view .LVU139
+ 586              		.loc 1 141 7 discriminator 1 view .LVU140
+ 587              		.loc 1 141 9 is_stmt 0 discriminator 1 view .LVU141
+ 588 003a 0121     		movs	r1, #1
+ 589 003c 0248     		ldr	r0, .L42
+ 590 003e FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 591              	.LVL65:
+ 592              		.loc 1 141 7 discriminator 1 view .LVU142
+ 593 0042 0028     		cmp	r0, #0
+ 594 0044 F9D0     		beq	.L40
+ 142:Drivers/DS18B20/DS18B20.c **** }
+ 595              		.loc 1 142 1 view .LVU143
+ 596 0046 70BD     		pop	{r4, r5, r6, pc}
+ 597              	.L43:
+ 598              		.align	2
+ 599              	.L42:
+ 600 0048 00100240 		.word	1073876992
+ 601              		.cfi_endproc
+ 602              	.LFE664:
+ 604              		.section	.text.DS18B20StartConvert,"ax",%progbits
+ 605              		.align	1
+ 606              		.global	DS18B20StartConvert
+ 607              		.syntax unified
+ 608              		.thumb
+ 609              		.thumb_func
+ 611              	DS18B20StartConvert:
+ 612              	.LFB665:
+ 143:Drivers/DS18B20/DS18B20.c **** 
+ 144:Drivers/DS18B20/DS18B20.c **** void DS18B20StartConvert(void)
+ 145:Drivers/DS18B20/DS18B20.c **** {
+ 613              		.loc 1 145 1 is_stmt 1 view -0
+ 614              		.cfi_startproc
+ 615              		@ args = 0, pretend = 0, frame = 0
+ 616              		@ frame_needed = 0, uses_anonymous_args = 0
+ 617 0000 08B5     		push	{r3, lr}
+ 618              	.LCFI7:
+ 619              		.cfi_def_cfa_offset 8
+ 620              		.cfi_offset 3, -8
+ 621              		.cfi_offset 14, -4
+ 146:Drivers/DS18B20/DS18B20.c **** 	DisableINT();
+ 622              		.loc 1 146 14 view .LVU145
+ 147:Drivers/DS18B20/DS18B20.c **** 	ResetDS18B20();
+ 623              		.loc 1 147 2 view .LVU146
+ 624 0002 FFF7FEFF 		bl	ResetDS18B20
+ 625              	.LVL66:
+ 148:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(SkipROM); 
+ 626              		.loc 1 148 2 view .LVU147
+ 627 0006 CC20     		movs	r0, #204
+ 628 0008 FFF7FEFF 		bl	DS18B20WriteByte
+ 629              	.LVL67:
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 15
+
+
+ 149:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(StartConvert); 
+ 630              		.loc 1 149 2 view .LVU148
+ 631 000c 4420     		movs	r0, #68
+ 632 000e FFF7FEFF 		bl	DS18B20WriteByte
+ 633              	.LVL68:
+ 150:Drivers/DS18B20/DS18B20.c **** 	EnableINT();
+ 634              		.loc 1 150 13 view .LVU149
+ 151:Drivers/DS18B20/DS18B20.c **** }
+ 635              		.loc 1 151 1 is_stmt 0 view .LVU150
+ 636 0012 08BD     		pop	{r3, pc}
+ 637              		.cfi_endproc
+ 638              	.LFE665:
+ 640              		.section	.text.DS18B20_Configuration,"ax",%progbits
+ 641              		.align	1
+ 642              		.global	DS18B20_Configuration
+ 643              		.syntax unified
+ 644              		.thumb
+ 645              		.thumb_func
+ 647              	DS18B20_Configuration:
+ 648              	.LFB666:
+ 152:Drivers/DS18B20/DS18B20.c **** 
+ 153:Drivers/DS18B20/DS18B20.c **** void DS18B20_Configuration(void)
+ 154:Drivers/DS18B20/DS18B20.c **** {
+ 649              		.loc 1 154 1 is_stmt 1 view -0
+ 650              		.cfi_startproc
+ 651              		@ args = 0, pretend = 0, frame = 24
+ 652              		@ frame_needed = 0, uses_anonymous_args = 0
+ 653 0000 00B5     		push	{lr}
+ 654              	.LCFI8:
+ 655              		.cfi_def_cfa_offset 4
+ 656              		.cfi_offset 14, -4
+ 657 0002 87B0     		sub	sp, sp, #28
+ 658              	.LCFI9:
+ 659              		.cfi_def_cfa_offset 32
+ 155:Drivers/DS18B20/DS18B20.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+ 660              		.loc 1 155 3 view .LVU152
+ 661              		.loc 1 155 20 is_stmt 0 view .LVU153
+ 662 0004 0023     		movs	r3, #0
+ 663 0006 0193     		str	r3, [sp, #4]
+ 664 0008 0293     		str	r3, [sp, #8]
+ 665 000a 0393     		str	r3, [sp, #12]
+ 666 000c 0493     		str	r3, [sp, #16]
+ 667 000e 0593     		str	r3, [sp, #20]
+ 156:Drivers/DS18B20/DS18B20.c **** 
+ 157:Drivers/DS18B20/DS18B20.c ****   /* GPIO Ports Clock Enable */
+ 158:Drivers/DS18B20/DS18B20.c ****   __HAL_RCC_GPIOE_CLK_ENABLE();
+ 668              		.loc 1 158 3 is_stmt 1 view .LVU154
+ 669              	.LBB2:
+ 670              		.loc 1 158 3 view .LVU155
+ 671 0010 0093     		str	r3, [sp]
+ 672              		.loc 1 158 3 view .LVU156
+ 673 0012 0A4B     		ldr	r3, .L48
+ 674 0014 1A6B     		ldr	r2, [r3, #48]
+ 675 0016 42F01002 		orr	r2, r2, #16
+ 676 001a 1A63     		str	r2, [r3, #48]
+ 677              		.loc 1 158 3 view .LVU157
+ 678 001c 1B6B     		ldr	r3, [r3, #48]
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 16
+
+
+ 679 001e 03F01003 		and	r3, r3, #16
+ 680 0022 0093     		str	r3, [sp]
+ 681              		.loc 1 158 3 view .LVU158
+ 682 0024 009B     		ldr	r3, [sp]
+ 683              	.LBE2:
+ 684              		.loc 1 158 3 view .LVU159
+ 159:Drivers/DS18B20/DS18B20.c ****   GPIO_InitStruct.Pin = DATA_Pin;
+ 685              		.loc 1 159 3 view .LVU160
+ 686              		.loc 1 159 23 is_stmt 0 view .LVU161
+ 687 0026 0123     		movs	r3, #1
+ 688 0028 0193     		str	r3, [sp, #4]
+ 160:Drivers/DS18B20/DS18B20.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 689              		.loc 1 160 3 is_stmt 1 view .LVU162
+ 690              		.loc 1 160 24 is_stmt 0 view .LVU163
+ 691 002a 0293     		str	r3, [sp, #8]
+ 161:Drivers/DS18B20/DS18B20.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 692              		.loc 1 161 3 is_stmt 1 view .LVU164
+ 162:Drivers/DS18B20/DS18B20.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 693              		.loc 1 162 3 view .LVU165
+ 163:Drivers/DS18B20/DS18B20.c ****   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+ 694              		.loc 1 163 3 view .LVU166
+ 695 002c 01A9     		add	r1, sp, #4
+ 696 002e 0448     		ldr	r0, .L48+4
+ 697 0030 FFF7FEFF 		bl	HAL_GPIO_Init
+ 698              	.LVL69:
+ 164:Drivers/DS18B20/DS18B20.c **** }
+ 699              		.loc 1 164 1 is_stmt 0 view .LVU167
+ 700 0034 07B0     		add	sp, sp, #28
+ 701              	.LCFI10:
+ 702              		.cfi_def_cfa_offset 4
+ 703              		@ sp needed
+ 704 0036 5DF804FB 		ldr	pc, [sp], #4
+ 705              	.L49:
+ 706 003a 00BF     		.align	2
+ 707              	.L48:
+ 708 003c 00380240 		.word	1073887232
+ 709 0040 00100240 		.word	1073876992
+ 710              		.cfi_endproc
+ 711              	.LFE666:
+ 713              		.section	.text.ds18b20_init,"ax",%progbits
+ 714              		.align	1
+ 715              		.global	ds18b20_init
+ 716              		.syntax unified
+ 717              		.thumb
+ 718              		.thumb_func
+ 720              	ds18b20_init:
+ 721              	.LFB667:
+ 165:Drivers/DS18B20/DS18B20.c **** 
+ 166:Drivers/DS18B20/DS18B20.c **** 
+ 167:Drivers/DS18B20/DS18B20.c **** void ds18b20_init(void)
+ 168:Drivers/DS18B20/DS18B20.c **** {
+ 722              		.loc 1 168 1 is_stmt 1 view -0
+ 723              		.cfi_startproc
+ 724              		@ args = 0, pretend = 0, frame = 0
+ 725              		@ frame_needed = 0, uses_anonymous_args = 0
+ 726 0000 08B5     		push	{r3, lr}
+ 727              	.LCFI11:
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 17
+
+
+ 728              		.cfi_def_cfa_offset 8
+ 729              		.cfi_offset 3, -8
+ 730              		.cfi_offset 14, -4
+ 169:Drivers/DS18B20/DS18B20.c **** 	DWT_Init();
+ 731              		.loc 1 169 2 view .LVU169
+ 732 0002 FFF7FEFF 		bl	DWT_Init
+ 733              	.LVL70:
+ 170:Drivers/DS18B20/DS18B20.c **** 
+ 171:Drivers/DS18B20/DS18B20.c **** 	DS18B20_Configuration();
+ 734              		.loc 1 171 2 view .LVU170
+ 735 0006 FFF7FEFF 		bl	DS18B20_Configuration
+ 736              	.LVL71:
+ 172:Drivers/DS18B20/DS18B20.c **** 	ResetDS18B20();
+ 737              		.loc 1 172 2 view .LVU171
+ 738 000a FFF7FEFF 		bl	ResetDS18B20
+ 739              	.LVL72:
+ 173:Drivers/DS18B20/DS18B20.c **** 	DS18B20Init(DS_PRECISION, DS_AlarmTH, DS_AlarmTL);
+ 740              		.loc 1 173 2 view .LVU172
+ 741 000e 8A22     		movs	r2, #138
+ 742 0010 6421     		movs	r1, #100
+ 743 0012 7F20     		movs	r0, #127
+ 744 0014 FFF7FEFF 		bl	DS18B20Init
+ 745              	.LVL73:
+ 174:Drivers/DS18B20/DS18B20.c **** 	DS18B20StartConvert();
+ 746              		.loc 1 174 2 view .LVU173
+ 747 0018 FFF7FEFF 		bl	DS18B20StartConvert
+ 748              	.LVL74:
+ 175:Drivers/DS18B20/DS18B20.c **** }
+ 749              		.loc 1 175 1 is_stmt 0 view .LVU174
+ 750 001c 08BD     		pop	{r3, pc}
+ 751              		.cfi_endproc
+ 752              	.LFE667:
+ 754              		.section	.text.ds18b20_read,"ax",%progbits
+ 755              		.align	1
+ 756              		.global	ds18b20_read
+ 757              		.syntax unified
+ 758              		.thumb
+ 759              		.thumb_func
+ 761              	ds18b20_read:
+ 762              	.LFB668:
+ 176:Drivers/DS18B20/DS18B20.c **** 
+ 177:Drivers/DS18B20/DS18B20.c **** 
+ 178:Drivers/DS18B20/DS18B20.c **** float ds18b20_read(void)
+ 179:Drivers/DS18B20/DS18B20.c **** {
+ 763              		.loc 1 179 1 is_stmt 1 view -0
+ 764              		.cfi_startproc
+ 765              		@ args = 0, pretend = 0, frame = 0
+ 766              		@ frame_needed = 0, uses_anonymous_args = 0
+ 767 0000 10B5     		push	{r4, lr}
+ 768              	.LCFI12:
+ 769              		.cfi_def_cfa_offset 8
+ 770              		.cfi_offset 4, -8
+ 771              		.cfi_offset 14, -4
+ 180:Drivers/DS18B20/DS18B20.c **** 	unsigned char DL, DH;
+ 772              		.loc 1 180 2 view .LVU176
+ 181:Drivers/DS18B20/DS18B20.c **** 	unsigned short TemperatureData;
+ 773              		.loc 1 181 2 view .LVU177
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 18
+
+
+ 182:Drivers/DS18B20/DS18B20.c **** 	float Temperature;
+ 774              		.loc 1 182 2 view .LVU178
+ 183:Drivers/DS18B20/DS18B20.c **** 
+ 184:Drivers/DS18B20/DS18B20.c **** 	DisableINT();
+ 775              		.loc 1 184 14 view .LVU179
+ 185:Drivers/DS18B20/DS18B20.c **** 	DS18B20StartConvert();
+ 776              		.loc 1 185 2 view .LVU180
+ 777 0002 FFF7FEFF 		bl	DS18B20StartConvert
+ 778              	.LVL75:
+ 186:Drivers/DS18B20/DS18B20.c **** 	ResetDS18B20();
+ 779              		.loc 1 186 2 view .LVU181
+ 780 0006 FFF7FEFF 		bl	ResetDS18B20
+ 781              	.LVL76:
+ 187:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(SkipROM); 
+ 782              		.loc 1 187 2 view .LVU182
+ 783 000a CC20     		movs	r0, #204
+ 784 000c FFF7FEFF 		bl	DS18B20WriteByte
+ 785              	.LVL77:
+ 188:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(ReadScratchpad);
+ 786              		.loc 1 188 2 view .LVU183
+ 787 0010 BE20     		movs	r0, #190
+ 788 0012 FFF7FEFF 		bl	DS18B20WriteByte
+ 789              	.LVL78:
+ 189:Drivers/DS18B20/DS18B20.c **** 	DL = DS18B20ReadByte();
+ 790              		.loc 1 189 2 view .LVU184
+ 791              		.loc 1 189 7 is_stmt 0 view .LVU185
+ 792 0016 FFF7FEFF 		bl	DS18B20ReadByte
+ 793              	.LVL79:
+ 794 001a 0446     		mov	r4, r0
+ 795              	.LVL80:
+ 190:Drivers/DS18B20/DS18B20.c **** 	DH = DS18B20ReadByte(); 
+ 796              		.loc 1 190 2 is_stmt 1 view .LVU186
+ 797              		.loc 1 190 7 is_stmt 0 view .LVU187
+ 798 001c FFF7FEFF 		bl	DS18B20ReadByte
+ 799              	.LVL81:
+ 191:Drivers/DS18B20/DS18B20.c **** 	EnableINT();
+ 800              		.loc 1 191 13 is_stmt 1 view .LVU188
+ 192:Drivers/DS18B20/DS18B20.c **** 
+ 193:Drivers/DS18B20/DS18B20.c **** 	TemperatureData = DH;
+ 801              		.loc 1 193 2 view .LVU189
+ 802              		.loc 1 193 18 is_stmt 0 view .LVU190
+ 803 0020 83B2     		uxth	r3, r0
+ 804              	.LVL82:
+ 194:Drivers/DS18B20/DS18B20.c **** 	TemperatureData <<= 8;
+ 805              		.loc 1 194 2 is_stmt 1 view .LVU191
+ 806              		.loc 1 194 18 is_stmt 0 view .LVU192
+ 807 0022 1B02     		lsls	r3, r3, #8
+ 808              	.LVL83:
+ 809              		.loc 1 194 18 view .LVU193
+ 810 0024 9BB2     		uxth	r3, r3
+ 811              	.LVL84:
+ 195:Drivers/DS18B20/DS18B20.c **** 	TemperatureData |= DL;
+ 812              		.loc 1 195 2 is_stmt 1 view .LVU194
+ 813              		.loc 1 195 18 is_stmt 0 view .LVU195
+ 814 0026 43EA0400 		orr	r0, r3, r4
+ 815              	.LVL85:
+ 816              		.loc 1 195 18 view .LVU196
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 19
+
+
+ 817 002a 80B2     		uxth	r0, r0
+ 818              	.LVL86:
+ 196:Drivers/DS18B20/DS18B20.c **** 
+ 197:Drivers/DS18B20/DS18B20.c **** 	Temperature = (float)((float)TemperatureData * 0.0625); //·Ö±æÂÊÎª0.0625¶È
+ 819              		.loc 1 197 2 is_stmt 1 view .LVU197
+ 820              		.loc 1 197 24 is_stmt 0 view .LVU198
+ 821 002c 07EE900A 		vmov	s15, r0	@ int
+ 822 0030 F8EE677A 		vcvt.f32.u32	s15, s15
+ 823              	.LVL87:
+ 198:Drivers/DS18B20/DS18B20.c **** 
+ 199:Drivers/DS18B20/DS18B20.c **** 	return  Temperature;
+ 824              		.loc 1 199 2 is_stmt 1 view .LVU199
+ 200:Drivers/DS18B20/DS18B20.c **** }
+ 825              		.loc 1 200 1 is_stmt 0 view .LVU200
+ 826 0034 9FED020A 		vldr.32	s0, .L54
+ 827 0038 27EE800A 		vmul.f32	s0, s15, s0
+ 828              	.LVL88:
+ 829              		.loc 1 200 1 view .LVU201
+ 830 003c 10BD     		pop	{r4, pc}
+ 831              	.LVL89:
+ 832              	.L55:
+ 833              		.loc 1 200 1 view .LVU202
+ 834 003e 00BF     		.align	2
+ 835              	.L54:
+ 836 0040 0000803D 		.word	1031798784
+ 837              		.cfi_endproc
+ 838              	.LFE668:
+ 840              		.text
+ 841              	.Letext0:
+ 842              		.file 2 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\machine\\_default_ty
+ 843              		.file 3 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 844              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 845              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 846              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 847              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 848              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 DS18B20.c
+F:\msys64\tmp\cccr2Bwe.s:20     .text.DWT_Init:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:26     .text.DWT_Init:00000000 DWT_Init
+F:\msys64\tmp\cccr2Bwe.s:55     .text.DWT_Init:00000020 $d
+F:\msys64\tmp\cccr2Bwe.s:61     .text.delayUS_DWT:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:67     .text.delayUS_DWT:00000000 delayUS_DWT
+F:\msys64\tmp\cccr2Bwe.s:120    .text.delayUS_DWT:0000002c $d
+F:\msys64\tmp\cccr2Bwe.s:127    .text.ResetDS18B20:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:133    .text.ResetDS18B20:00000000 ResetDS18B20
+F:\msys64\tmp\cccr2Bwe.s:237    .text.ResetDS18B20:00000078 $d
+F:\msys64\tmp\cccr2Bwe.s:242    .text.DS18B20WriteByte:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:248    .text.DS18B20WriteByte:00000000 DS18B20WriteByte
+F:\msys64\tmp\cccr2Bwe.s:338    .text.DS18B20WriteByte:00000054 $d
+F:\msys64\tmp\cccr2Bwe.s:343    .text.DS18B20ReadByte:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:349    .text.DS18B20ReadByte:00000000 DS18B20ReadByte
+F:\msys64\tmp\cccr2Bwe.s:455    .text.DS18B20ReadByte:0000006c $d
+F:\msys64\tmp\cccr2Bwe.s:460    .text.ReadRom:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:466    .text.ReadRom:00000000 ReadRom
+F:\msys64\tmp\cccr2Bwe.s:523    .text.DS18B20Init:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:529    .text.DS18B20Init:00000000 DS18B20Init
+F:\msys64\tmp\cccr2Bwe.s:600    .text.DS18B20Init:00000048 $d
+F:\msys64\tmp\cccr2Bwe.s:605    .text.DS18B20StartConvert:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:611    .text.DS18B20StartConvert:00000000 DS18B20StartConvert
+F:\msys64\tmp\cccr2Bwe.s:641    .text.DS18B20_Configuration:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:647    .text.DS18B20_Configuration:00000000 DS18B20_Configuration
+F:\msys64\tmp\cccr2Bwe.s:708    .text.DS18B20_Configuration:0000003c $d
+F:\msys64\tmp\cccr2Bwe.s:714    .text.ds18b20_init:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:720    .text.ds18b20_init:00000000 ds18b20_init
+F:\msys64\tmp\cccr2Bwe.s:755    .text.ds18b20_read:00000000 $t
+F:\msys64\tmp\cccr2Bwe.s:761    .text.ds18b20_read:00000000 ds18b20_read
+F:\msys64\tmp\cccr2Bwe.s:836    .text.ds18b20_read:00000040 $d
+
+UNDEFINED SYMBOLS
+SystemCoreClock
+HAL_GPIO_WritePin
+HAL_GPIO_ReadPin
+HAL_GPIO_Init

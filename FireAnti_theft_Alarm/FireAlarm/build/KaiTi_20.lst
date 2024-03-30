@@ -1,0 +1,3773 @@
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"KaiTi_20.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	GUI_FontHZ_KaiTi_20
+  20              		.global	GUI_FontHZKaiTi_20_Prop0020
+  21              		.global	GUI_FontHZKaiTi_20_Propb2ce
+  22              		.global	GUI_FontHZKaiTi_20_Propb2e2
+  23              		.global	GUI_FontHZKaiTi_20_Propb3c2
+  24              		.global	GUI_FontHZKaiTi_20_Propb4f3
+  25              		.global	GUI_FontHZKaiTi_20_Propb5c1
+  26              		.global	GUI_FontHZKaiTi_20_Propb5e7
+  27              		.global	GUI_FontHZKaiTi_20_Propb7c0
+  28              		.global	GUI_FontHZKaiTi_20_Propbabc
+  29              		.global	GUI_FontHZKaiTi_20_Propbbf0
+  30              		.global	GUI_FontHZKaiTi_20_Propbcbc
+  31              		.global	GUI_FontHZKaiTi_20_Propbce0
+  32              		.global	GUI_FontHZKaiTi_20_Propbde1
+  33              		.global	GUI_FontHZKaiTi_20_Propbedd
+  34              		.global	GUI_FontHZKaiTi_20_Propbfaa
+  35              		.global	GUI_FontHZKaiTi_20_Propbfc6
+  36              		.global	GUI_FontHZKaiTi_20_Propc6f7
+  37              		.global	GUI_FontHZKaiTi_20_Propc7fa
+  38              		.global	GUI_FontHZKaiTi_20_Propc8f3
+  39              		.global	GUI_FontHZKaiTi_20_Propc9e8
+  40              		.global	GUI_FontHZKaiTi_20_Propcab1
+  41              		.global	GUI_FontHZKaiTi_20_Propcab5
+  42              		.global	GUI_FontHZKaiTi_20_Propcabc
+  43              		.global	GUI_FontHZKaiTi_20_Propcaf8
+  44              		.global	GUI_FontHZKaiTi_20_Propcafd
+  45              		.global	GUI_FontHZKaiTi_20_Propcda8
+  46              		.global	GUI_FontHZKaiTi_20_Propcede
+  47              		.global	GUI_FontHZKaiTi_20_Propcfdf
+  48              		.global	GUI_FontHZKaiTi_20_Propd0c5
+  49              		.global	GUI_FontHZKaiTi_20_Propd1a7
+  50              		.global	GUI_FontHZKaiTi_20_Propd4f8
+  51              		.global	GUI_FontHZKaiTi_20_Propd6c3
+  52              		.global	GUI_FontHZKaiTi_20_Propd6dd
+  53              		.global	GUI_FontHZKaiTi_20_Propd7d3
+  54              		.global	GUI_FontHZKaiTi_20_Propd8b9
+  55              		.global	GUI_FontHZKaiTi_20_Propecc5
+  56              		.global	GUI_FontHZKaiTi_20_CharInfo
+  57              		.global	acFontHZKaiTi_20_ecc5
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 2
+
+
+  58              		.global	acFontHZKaiTi_20_d8b9
+  59              		.global	acFontHZKaiTi_20_d7d3
+  60              		.global	acFontHZKaiTi_20_d6dd
+  61              		.global	acFontHZKaiTi_20_d6c3
+  62              		.global	acFontHZKaiTi_20_d4f8
+  63              		.global	acFontHZKaiTi_20_d1a7
+  64              		.global	acFontHZKaiTi_20_d0c5
+  65              		.global	acFontHZKaiTi_20_cfdf
+  66              		.global	acFontHZKaiTi_20_cede
+  67              		.global	acFontHZKaiTi_20_cda8
+  68              		.global	acFontHZKaiTi_20_cafd
+  69              		.global	acFontHZKaiTi_20_caf8
+  70              		.global	acFontHZKaiTi_20_cabc
+  71              		.global	acFontHZKaiTi_20_cab5
+  72              		.global	acFontHZKaiTi_20_cab1
+  73              		.global	acFontHZKaiTi_20_c9e8
+  74              		.global	acFontHZKaiTi_20_c8f3
+  75              		.global	acFontHZKaiTi_20_c7fa
+  76              		.global	acFontHZKaiTi_20_c6f7
+  77              		.global	acFontHZKaiTi_20_bfc6
+  78              		.global	acFontHZKaiTi_20_bfaa
+  79              		.global	acFontHZKaiTi_20_bedd
+  80              		.global	acFontHZKaiTi_20_bde1
+  81              		.global	acFontHZKaiTi_20_bce0
+  82              		.global	acFontHZKaiTi_20_bcbc
+  83              		.global	acFontHZKaiTi_20_bbf0
+  84              		.global	acFontHZKaiTi_20_babc
+  85              		.global	acFontHZKaiTi_20_b7c0
+  86              		.global	acFontHZKaiTi_20_b5e7
+  87              		.global	acFontHZKaiTi_20_b5c1
+  88              		.global	acFontHZKaiTi_20_b4f3
+  89              		.global	acFontHZKaiTi_20_b3c2
+  90              		.global	acFontHZKaiTi_20_b2e2
+  91              		.global	acFontHZKaiTi_20_b2ce
+  92              		.global	acFontHZKaiTi_20_007f
+  93              		.global	acFontHZKaiTi_20_007e
+  94              		.global	acFontHZKaiTi_20_007d
+  95              		.global	acFontHZKaiTi_20_007c
+  96              		.global	acFontHZKaiTi_20_007b
+  97              		.global	acFontHZKaiTi_20_007a
+  98              		.global	acFontHZKaiTi_20_0079
+  99              		.global	acFontHZKaiTi_20_0078
+ 100              		.global	acFontHZKaiTi_20_0077
+ 101              		.global	acFontHZKaiTi_20_0076
+ 102              		.global	acFontHZKaiTi_20_0075
+ 103              		.global	acFontHZKaiTi_20_0074
+ 104              		.global	acFontHZKaiTi_20_0073
+ 105              		.global	acFontHZKaiTi_20_0072
+ 106              		.global	acFontHZKaiTi_20_0071
+ 107              		.global	acFontHZKaiTi_20_0070
+ 108              		.global	acFontHZKaiTi_20_006f
+ 109              		.global	acFontHZKaiTi_20_006e
+ 110              		.global	acFontHZKaiTi_20_006d
+ 111              		.global	acFontHZKaiTi_20_006c
+ 112              		.global	acFontHZKaiTi_20_006b
+ 113              		.global	acFontHZKaiTi_20_006a
+ 114              		.global	acFontHZKaiTi_20_0069
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 3
+
+
+ 115              		.global	acFontHZKaiTi_20_0068
+ 116              		.global	acFontHZKaiTi_20_0067
+ 117              		.global	acFontHZKaiTi_20_0066
+ 118              		.global	acFontHZKaiTi_20_0065
+ 119              		.global	acFontHZKaiTi_20_0064
+ 120              		.global	acFontHZKaiTi_20_0063
+ 121              		.global	acFontHZKaiTi_20_0062
+ 122              		.global	acFontHZKaiTi_20_0061
+ 123              		.global	acFontHZKaiTi_20_0060
+ 124              		.global	acFontHZKaiTi_20_005f
+ 125              		.global	acFontHZKaiTi_20_005e
+ 126              		.global	acFontHZKaiTi_20_005d
+ 127              		.global	acFontHZKaiTi_20_005c
+ 128              		.global	acFontHZKaiTi_20_005b
+ 129              		.global	acFontHZKaiTi_20_005a
+ 130              		.global	acFontHZKaiTi_20_0059
+ 131              		.global	acFontHZKaiTi_20_0058
+ 132              		.global	acFontHZKaiTi_20_0057
+ 133              		.global	acFontHZKaiTi_20_0056
+ 134              		.global	acFontHZKaiTi_20_0055
+ 135              		.global	acFontHZKaiTi_20_0054
+ 136              		.global	acFontHZKaiTi_20_0053
+ 137              		.global	acFontHZKaiTi_20_0052
+ 138              		.global	acFontHZKaiTi_20_0051
+ 139              		.global	acFontHZKaiTi_20_0050
+ 140              		.global	acFontHZKaiTi_20_004f
+ 141              		.global	acFontHZKaiTi_20_004e
+ 142              		.global	acFontHZKaiTi_20_004d
+ 143              		.global	acFontHZKaiTi_20_004c
+ 144              		.global	acFontHZKaiTi_20_004b
+ 145              		.global	acFontHZKaiTi_20_004a
+ 146              		.global	acFontHZKaiTi_20_0049
+ 147              		.global	acFontHZKaiTi_20_0048
+ 148              		.global	acFontHZKaiTi_20_0047
+ 149              		.global	acFontHZKaiTi_20_0046
+ 150              		.global	acFontHZKaiTi_20_0045
+ 151              		.global	acFontHZKaiTi_20_0044
+ 152              		.global	acFontHZKaiTi_20_0043
+ 153              		.global	acFontHZKaiTi_20_0042
+ 154              		.global	acFontHZKaiTi_20_0041
+ 155              		.global	acFontHZKaiTi_20_0040
+ 156              		.global	acFontHZKaiTi_20_003f
+ 157              		.global	acFontHZKaiTi_20_003e
+ 158              		.global	acFontHZKaiTi_20_003d
+ 159              		.global	acFontHZKaiTi_20_003c
+ 160              		.global	acFontHZKaiTi_20_003b
+ 161              		.global	acFontHZKaiTi_20_003a
+ 162              		.global	acFontHZKaiTi_20_0039
+ 163              		.global	acFontHZKaiTi_20_0038
+ 164              		.global	acFontHZKaiTi_20_0037
+ 165              		.global	acFontHZKaiTi_20_0036
+ 166              		.global	acFontHZKaiTi_20_0035
+ 167              		.global	acFontHZKaiTi_20_0034
+ 168              		.global	acFontHZKaiTi_20_0033
+ 169              		.global	acFontHZKaiTi_20_0032
+ 170              		.global	acFontHZKaiTi_20_0031
+ 171              		.global	acFontHZKaiTi_20_0030
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 4
+
+
+ 172              		.global	acFontHZKaiTi_20_002f
+ 173              		.global	acFontHZKaiTi_20_002e
+ 174              		.global	acFontHZKaiTi_20_002d
+ 175              		.global	acFontHZKaiTi_20_002c
+ 176              		.global	acFontHZKaiTi_20_002b
+ 177              		.global	acFontHZKaiTi_20_002a
+ 178              		.global	acFontHZKaiTi_20_0029
+ 179              		.global	acFontHZKaiTi_20_0028
+ 180              		.global	acFontHZKaiTi_20_0027
+ 181              		.global	acFontHZKaiTi_20_0026
+ 182              		.global	acFontHZKaiTi_20_0025
+ 183              		.global	acFontHZKaiTi_20_0024
+ 184              		.global	acFontHZKaiTi_20_0023
+ 185              		.global	acFontHZKaiTi_20_0022
+ 186              		.global	acFontHZKaiTi_20_0021
+ 187              		.global	acFontHZKaiTi_20_0020
+ 188              		.section	.rodata.GUI_FontHZKaiTi_20_CharInfo,"a"
+ 189              		.align	2
+ 192              	GUI_FontHZKaiTi_20_CharInfo:
+ 193 0000 0B       		.byte	11
+ 194 0001 0B       		.byte	11
+ 195 0002 02       		.byte	2
+ 196 0003 00       		.space	1
+ 197 0004 00000000 		.word	acFontHZKaiTi_20_0020
+ 198 0008 0B       		.byte	11
+ 199 0009 0B       		.byte	11
+ 200 000a 02       		.byte	2
+ 201 000b 00       		.space	1
+ 202 000c 00000000 		.word	acFontHZKaiTi_20_0021
+ 203 0010 0B       		.byte	11
+ 204 0011 0B       		.byte	11
+ 205 0012 02       		.byte	2
+ 206 0013 00       		.space	1
+ 207 0014 00000000 		.word	acFontHZKaiTi_20_0022
+ 208 0018 0B       		.byte	11
+ 209 0019 0B       		.byte	11
+ 210 001a 02       		.byte	2
+ 211 001b 00       		.space	1
+ 212 001c 00000000 		.word	acFontHZKaiTi_20_0023
+ 213 0020 0B       		.byte	11
+ 214 0021 0B       		.byte	11
+ 215 0022 02       		.byte	2
+ 216 0023 00       		.space	1
+ 217 0024 00000000 		.word	acFontHZKaiTi_20_0024
+ 218 0028 0B       		.byte	11
+ 219 0029 0B       		.byte	11
+ 220 002a 02       		.byte	2
+ 221 002b 00       		.space	1
+ 222 002c 00000000 		.word	acFontHZKaiTi_20_0025
+ 223 0030 0B       		.byte	11
+ 224 0031 0B       		.byte	11
+ 225 0032 02       		.byte	2
+ 226 0033 00       		.space	1
+ 227 0034 00000000 		.word	acFontHZKaiTi_20_0026
+ 228 0038 0B       		.byte	11
+ 229 0039 0B       		.byte	11
+ 230 003a 02       		.byte	2
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 5
+
+
+ 231 003b 00       		.space	1
+ 232 003c 00000000 		.word	acFontHZKaiTi_20_0027
+ 233 0040 0B       		.byte	11
+ 234 0041 0B       		.byte	11
+ 235 0042 02       		.byte	2
+ 236 0043 00       		.space	1
+ 237 0044 00000000 		.word	acFontHZKaiTi_20_0028
+ 238 0048 0B       		.byte	11
+ 239 0049 0B       		.byte	11
+ 240 004a 02       		.byte	2
+ 241 004b 00       		.space	1
+ 242 004c 00000000 		.word	acFontHZKaiTi_20_0029
+ 243 0050 0B       		.byte	11
+ 244 0051 0B       		.byte	11
+ 245 0052 02       		.byte	2
+ 246 0053 00       		.space	1
+ 247 0054 00000000 		.word	acFontHZKaiTi_20_002a
+ 248 0058 0B       		.byte	11
+ 249 0059 0B       		.byte	11
+ 250 005a 02       		.byte	2
+ 251 005b 00       		.space	1
+ 252 005c 00000000 		.word	acFontHZKaiTi_20_002b
+ 253 0060 0B       		.byte	11
+ 254 0061 0B       		.byte	11
+ 255 0062 02       		.byte	2
+ 256 0063 00       		.space	1
+ 257 0064 00000000 		.word	acFontHZKaiTi_20_002c
+ 258 0068 0B       		.byte	11
+ 259 0069 0B       		.byte	11
+ 260 006a 02       		.byte	2
+ 261 006b 00       		.space	1
+ 262 006c 00000000 		.word	acFontHZKaiTi_20_002d
+ 263 0070 0B       		.byte	11
+ 264 0071 0B       		.byte	11
+ 265 0072 02       		.byte	2
+ 266 0073 00       		.space	1
+ 267 0074 00000000 		.word	acFontHZKaiTi_20_002e
+ 268 0078 0B       		.byte	11
+ 269 0079 0B       		.byte	11
+ 270 007a 02       		.byte	2
+ 271 007b 00       		.space	1
+ 272 007c 00000000 		.word	acFontHZKaiTi_20_002f
+ 273 0080 0B       		.byte	11
+ 274 0081 0B       		.byte	11
+ 275 0082 02       		.byte	2
+ 276 0083 00       		.space	1
+ 277 0084 00000000 		.word	acFontHZKaiTi_20_0030
+ 278 0088 0B       		.byte	11
+ 279 0089 0B       		.byte	11
+ 280 008a 02       		.byte	2
+ 281 008b 00       		.space	1
+ 282 008c 00000000 		.word	acFontHZKaiTi_20_0031
+ 283 0090 0B       		.byte	11
+ 284 0091 0B       		.byte	11
+ 285 0092 02       		.byte	2
+ 286 0093 00       		.space	1
+ 287 0094 00000000 		.word	acFontHZKaiTi_20_0032
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 6
+
+
+ 288 0098 0B       		.byte	11
+ 289 0099 0B       		.byte	11
+ 290 009a 02       		.byte	2
+ 291 009b 00       		.space	1
+ 292 009c 00000000 		.word	acFontHZKaiTi_20_0033
+ 293 00a0 0B       		.byte	11
+ 294 00a1 0B       		.byte	11
+ 295 00a2 02       		.byte	2
+ 296 00a3 00       		.space	1
+ 297 00a4 00000000 		.word	acFontHZKaiTi_20_0034
+ 298 00a8 0B       		.byte	11
+ 299 00a9 0B       		.byte	11
+ 300 00aa 02       		.byte	2
+ 301 00ab 00       		.space	1
+ 302 00ac 00000000 		.word	acFontHZKaiTi_20_0035
+ 303 00b0 0B       		.byte	11
+ 304 00b1 0B       		.byte	11
+ 305 00b2 02       		.byte	2
+ 306 00b3 00       		.space	1
+ 307 00b4 00000000 		.word	acFontHZKaiTi_20_0036
+ 308 00b8 0B       		.byte	11
+ 309 00b9 0B       		.byte	11
+ 310 00ba 02       		.byte	2
+ 311 00bb 00       		.space	1
+ 312 00bc 00000000 		.word	acFontHZKaiTi_20_0037
+ 313 00c0 0B       		.byte	11
+ 314 00c1 0B       		.byte	11
+ 315 00c2 02       		.byte	2
+ 316 00c3 00       		.space	1
+ 317 00c4 00000000 		.word	acFontHZKaiTi_20_0038
+ 318 00c8 0B       		.byte	11
+ 319 00c9 0B       		.byte	11
+ 320 00ca 02       		.byte	2
+ 321 00cb 00       		.space	1
+ 322 00cc 00000000 		.word	acFontHZKaiTi_20_0039
+ 323 00d0 0B       		.byte	11
+ 324 00d1 0B       		.byte	11
+ 325 00d2 02       		.byte	2
+ 326 00d3 00       		.space	1
+ 327 00d4 00000000 		.word	acFontHZKaiTi_20_003a
+ 328 00d8 0B       		.byte	11
+ 329 00d9 0B       		.byte	11
+ 330 00da 02       		.byte	2
+ 331 00db 00       		.space	1
+ 332 00dc 00000000 		.word	acFontHZKaiTi_20_003b
+ 333 00e0 0B       		.byte	11
+ 334 00e1 0B       		.byte	11
+ 335 00e2 02       		.byte	2
+ 336 00e3 00       		.space	1
+ 337 00e4 00000000 		.word	acFontHZKaiTi_20_003c
+ 338 00e8 0B       		.byte	11
+ 339 00e9 0B       		.byte	11
+ 340 00ea 02       		.byte	2
+ 341 00eb 00       		.space	1
+ 342 00ec 00000000 		.word	acFontHZKaiTi_20_003d
+ 343 00f0 0B       		.byte	11
+ 344 00f1 0B       		.byte	11
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 7
+
+
+ 345 00f2 02       		.byte	2
+ 346 00f3 00       		.space	1
+ 347 00f4 00000000 		.word	acFontHZKaiTi_20_003e
+ 348 00f8 0B       		.byte	11
+ 349 00f9 0B       		.byte	11
+ 350 00fa 02       		.byte	2
+ 351 00fb 00       		.space	1
+ 352 00fc 00000000 		.word	acFontHZKaiTi_20_003f
+ 353 0100 0B       		.byte	11
+ 354 0101 0B       		.byte	11
+ 355 0102 02       		.byte	2
+ 356 0103 00       		.space	1
+ 357 0104 00000000 		.word	acFontHZKaiTi_20_0040
+ 358 0108 0B       		.byte	11
+ 359 0109 0B       		.byte	11
+ 360 010a 02       		.byte	2
+ 361 010b 00       		.space	1
+ 362 010c 00000000 		.word	acFontHZKaiTi_20_0041
+ 363 0110 0B       		.byte	11
+ 364 0111 0B       		.byte	11
+ 365 0112 02       		.byte	2
+ 366 0113 00       		.space	1
+ 367 0114 00000000 		.word	acFontHZKaiTi_20_0042
+ 368 0118 0B       		.byte	11
+ 369 0119 0B       		.byte	11
+ 370 011a 02       		.byte	2
+ 371 011b 00       		.space	1
+ 372 011c 00000000 		.word	acFontHZKaiTi_20_0043
+ 373 0120 0B       		.byte	11
+ 374 0121 0B       		.byte	11
+ 375 0122 02       		.byte	2
+ 376 0123 00       		.space	1
+ 377 0124 00000000 		.word	acFontHZKaiTi_20_0044
+ 378 0128 0B       		.byte	11
+ 379 0129 0B       		.byte	11
+ 380 012a 02       		.byte	2
+ 381 012b 00       		.space	1
+ 382 012c 00000000 		.word	acFontHZKaiTi_20_0045
+ 383 0130 0B       		.byte	11
+ 384 0131 0B       		.byte	11
+ 385 0132 02       		.byte	2
+ 386 0133 00       		.space	1
+ 387 0134 00000000 		.word	acFontHZKaiTi_20_0046
+ 388 0138 0B       		.byte	11
+ 389 0139 0B       		.byte	11
+ 390 013a 02       		.byte	2
+ 391 013b 00       		.space	1
+ 392 013c 00000000 		.word	acFontHZKaiTi_20_0047
+ 393 0140 0B       		.byte	11
+ 394 0141 0B       		.byte	11
+ 395 0142 02       		.byte	2
+ 396 0143 00       		.space	1
+ 397 0144 00000000 		.word	acFontHZKaiTi_20_0048
+ 398 0148 0B       		.byte	11
+ 399 0149 0B       		.byte	11
+ 400 014a 02       		.byte	2
+ 401 014b 00       		.space	1
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 8
+
+
+ 402 014c 00000000 		.word	acFontHZKaiTi_20_0049
+ 403 0150 0B       		.byte	11
+ 404 0151 0B       		.byte	11
+ 405 0152 02       		.byte	2
+ 406 0153 00       		.space	1
+ 407 0154 00000000 		.word	acFontHZKaiTi_20_004a
+ 408 0158 0B       		.byte	11
+ 409 0159 0B       		.byte	11
+ 410 015a 02       		.byte	2
+ 411 015b 00       		.space	1
+ 412 015c 00000000 		.word	acFontHZKaiTi_20_004b
+ 413 0160 0B       		.byte	11
+ 414 0161 0B       		.byte	11
+ 415 0162 02       		.byte	2
+ 416 0163 00       		.space	1
+ 417 0164 00000000 		.word	acFontHZKaiTi_20_004c
+ 418 0168 0B       		.byte	11
+ 419 0169 0B       		.byte	11
+ 420 016a 02       		.byte	2
+ 421 016b 00       		.space	1
+ 422 016c 00000000 		.word	acFontHZKaiTi_20_004d
+ 423 0170 0B       		.byte	11
+ 424 0171 0B       		.byte	11
+ 425 0172 02       		.byte	2
+ 426 0173 00       		.space	1
+ 427 0174 00000000 		.word	acFontHZKaiTi_20_004e
+ 428 0178 0B       		.byte	11
+ 429 0179 0B       		.byte	11
+ 430 017a 02       		.byte	2
+ 431 017b 00       		.space	1
+ 432 017c 00000000 		.word	acFontHZKaiTi_20_004f
+ 433 0180 0B       		.byte	11
+ 434 0181 0B       		.byte	11
+ 435 0182 02       		.byte	2
+ 436 0183 00       		.space	1
+ 437 0184 00000000 		.word	acFontHZKaiTi_20_0050
+ 438 0188 0B       		.byte	11
+ 439 0189 0B       		.byte	11
+ 440 018a 02       		.byte	2
+ 441 018b 00       		.space	1
+ 442 018c 00000000 		.word	acFontHZKaiTi_20_0051
+ 443 0190 0B       		.byte	11
+ 444 0191 0B       		.byte	11
+ 445 0192 02       		.byte	2
+ 446 0193 00       		.space	1
+ 447 0194 00000000 		.word	acFontHZKaiTi_20_0052
+ 448 0198 0B       		.byte	11
+ 449 0199 0B       		.byte	11
+ 450 019a 02       		.byte	2
+ 451 019b 00       		.space	1
+ 452 019c 00000000 		.word	acFontHZKaiTi_20_0053
+ 453 01a0 0B       		.byte	11
+ 454 01a1 0B       		.byte	11
+ 455 01a2 02       		.byte	2
+ 456 01a3 00       		.space	1
+ 457 01a4 00000000 		.word	acFontHZKaiTi_20_0054
+ 458 01a8 0B       		.byte	11
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 9
+
+
+ 459 01a9 0B       		.byte	11
+ 460 01aa 02       		.byte	2
+ 461 01ab 00       		.space	1
+ 462 01ac 00000000 		.word	acFontHZKaiTi_20_0055
+ 463 01b0 0B       		.byte	11
+ 464 01b1 0B       		.byte	11
+ 465 01b2 02       		.byte	2
+ 466 01b3 00       		.space	1
+ 467 01b4 00000000 		.word	acFontHZKaiTi_20_0056
+ 468 01b8 0B       		.byte	11
+ 469 01b9 0B       		.byte	11
+ 470 01ba 02       		.byte	2
+ 471 01bb 00       		.space	1
+ 472 01bc 00000000 		.word	acFontHZKaiTi_20_0057
+ 473 01c0 0B       		.byte	11
+ 474 01c1 0B       		.byte	11
+ 475 01c2 02       		.byte	2
+ 476 01c3 00       		.space	1
+ 477 01c4 00000000 		.word	acFontHZKaiTi_20_0058
+ 478 01c8 0B       		.byte	11
+ 479 01c9 0B       		.byte	11
+ 480 01ca 02       		.byte	2
+ 481 01cb 00       		.space	1
+ 482 01cc 00000000 		.word	acFontHZKaiTi_20_0059
+ 483 01d0 0B       		.byte	11
+ 484 01d1 0B       		.byte	11
+ 485 01d2 02       		.byte	2
+ 486 01d3 00       		.space	1
+ 487 01d4 00000000 		.word	acFontHZKaiTi_20_005a
+ 488 01d8 0B       		.byte	11
+ 489 01d9 0B       		.byte	11
+ 490 01da 02       		.byte	2
+ 491 01db 00       		.space	1
+ 492 01dc 00000000 		.word	acFontHZKaiTi_20_005b
+ 493 01e0 0B       		.byte	11
+ 494 01e1 0B       		.byte	11
+ 495 01e2 02       		.byte	2
+ 496 01e3 00       		.space	1
+ 497 01e4 00000000 		.word	acFontHZKaiTi_20_005c
+ 498 01e8 0B       		.byte	11
+ 499 01e9 0B       		.byte	11
+ 500 01ea 02       		.byte	2
+ 501 01eb 00       		.space	1
+ 502 01ec 00000000 		.word	acFontHZKaiTi_20_005d
+ 503 01f0 0B       		.byte	11
+ 504 01f1 0B       		.byte	11
+ 505 01f2 02       		.byte	2
+ 506 01f3 00       		.space	1
+ 507 01f4 00000000 		.word	acFontHZKaiTi_20_005e
+ 508 01f8 0B       		.byte	11
+ 509 01f9 0B       		.byte	11
+ 510 01fa 02       		.byte	2
+ 511 01fb 00       		.space	1
+ 512 01fc 00000000 		.word	acFontHZKaiTi_20_005f
+ 513 0200 0B       		.byte	11
+ 514 0201 0B       		.byte	11
+ 515 0202 02       		.byte	2
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 10
+
+
+ 516 0203 00       		.space	1
+ 517 0204 00000000 		.word	acFontHZKaiTi_20_0060
+ 518 0208 0B       		.byte	11
+ 519 0209 0B       		.byte	11
+ 520 020a 02       		.byte	2
+ 521 020b 00       		.space	1
+ 522 020c 00000000 		.word	acFontHZKaiTi_20_0061
+ 523 0210 0B       		.byte	11
+ 524 0211 0B       		.byte	11
+ 525 0212 02       		.byte	2
+ 526 0213 00       		.space	1
+ 527 0214 00000000 		.word	acFontHZKaiTi_20_0062
+ 528 0218 0B       		.byte	11
+ 529 0219 0B       		.byte	11
+ 530 021a 02       		.byte	2
+ 531 021b 00       		.space	1
+ 532 021c 00000000 		.word	acFontHZKaiTi_20_0063
+ 533 0220 0B       		.byte	11
+ 534 0221 0B       		.byte	11
+ 535 0222 02       		.byte	2
+ 536 0223 00       		.space	1
+ 537 0224 00000000 		.word	acFontHZKaiTi_20_0064
+ 538 0228 0B       		.byte	11
+ 539 0229 0B       		.byte	11
+ 540 022a 02       		.byte	2
+ 541 022b 00       		.space	1
+ 542 022c 00000000 		.word	acFontHZKaiTi_20_0065
+ 543 0230 0B       		.byte	11
+ 544 0231 0B       		.byte	11
+ 545 0232 02       		.byte	2
+ 546 0233 00       		.space	1
+ 547 0234 00000000 		.word	acFontHZKaiTi_20_0066
+ 548 0238 0B       		.byte	11
+ 549 0239 0B       		.byte	11
+ 550 023a 02       		.byte	2
+ 551 023b 00       		.space	1
+ 552 023c 00000000 		.word	acFontHZKaiTi_20_0067
+ 553 0240 0B       		.byte	11
+ 554 0241 0B       		.byte	11
+ 555 0242 02       		.byte	2
+ 556 0243 00       		.space	1
+ 557 0244 00000000 		.word	acFontHZKaiTi_20_0068
+ 558 0248 0B       		.byte	11
+ 559 0249 0B       		.byte	11
+ 560 024a 02       		.byte	2
+ 561 024b 00       		.space	1
+ 562 024c 00000000 		.word	acFontHZKaiTi_20_0069
+ 563 0250 0B       		.byte	11
+ 564 0251 0B       		.byte	11
+ 565 0252 02       		.byte	2
+ 566 0253 00       		.space	1
+ 567 0254 00000000 		.word	acFontHZKaiTi_20_006a
+ 568 0258 0B       		.byte	11
+ 569 0259 0B       		.byte	11
+ 570 025a 02       		.byte	2
+ 571 025b 00       		.space	1
+ 572 025c 00000000 		.word	acFontHZKaiTi_20_006b
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 11
+
+
+ 573 0260 0B       		.byte	11
+ 574 0261 0B       		.byte	11
+ 575 0262 02       		.byte	2
+ 576 0263 00       		.space	1
+ 577 0264 00000000 		.word	acFontHZKaiTi_20_006c
+ 578 0268 0B       		.byte	11
+ 579 0269 0B       		.byte	11
+ 580 026a 02       		.byte	2
+ 581 026b 00       		.space	1
+ 582 026c 00000000 		.word	acFontHZKaiTi_20_006d
+ 583 0270 0B       		.byte	11
+ 584 0271 0B       		.byte	11
+ 585 0272 02       		.byte	2
+ 586 0273 00       		.space	1
+ 587 0274 00000000 		.word	acFontHZKaiTi_20_006e
+ 588 0278 0B       		.byte	11
+ 589 0279 0B       		.byte	11
+ 590 027a 02       		.byte	2
+ 591 027b 00       		.space	1
+ 592 027c 00000000 		.word	acFontHZKaiTi_20_006f
+ 593 0280 0B       		.byte	11
+ 594 0281 0B       		.byte	11
+ 595 0282 02       		.byte	2
+ 596 0283 00       		.space	1
+ 597 0284 00000000 		.word	acFontHZKaiTi_20_0070
+ 598 0288 0B       		.byte	11
+ 599 0289 0B       		.byte	11
+ 600 028a 02       		.byte	2
+ 601 028b 00       		.space	1
+ 602 028c 00000000 		.word	acFontHZKaiTi_20_0071
+ 603 0290 0B       		.byte	11
+ 604 0291 0B       		.byte	11
+ 605 0292 02       		.byte	2
+ 606 0293 00       		.space	1
+ 607 0294 00000000 		.word	acFontHZKaiTi_20_0072
+ 608 0298 0B       		.byte	11
+ 609 0299 0B       		.byte	11
+ 610 029a 02       		.byte	2
+ 611 029b 00       		.space	1
+ 612 029c 00000000 		.word	acFontHZKaiTi_20_0073
+ 613 02a0 0B       		.byte	11
+ 614 02a1 0B       		.byte	11
+ 615 02a2 02       		.byte	2
+ 616 02a3 00       		.space	1
+ 617 02a4 00000000 		.word	acFontHZKaiTi_20_0074
+ 618 02a8 0B       		.byte	11
+ 619 02a9 0B       		.byte	11
+ 620 02aa 02       		.byte	2
+ 621 02ab 00       		.space	1
+ 622 02ac 00000000 		.word	acFontHZKaiTi_20_0075
+ 623 02b0 0B       		.byte	11
+ 624 02b1 0B       		.byte	11
+ 625 02b2 02       		.byte	2
+ 626 02b3 00       		.space	1
+ 627 02b4 00000000 		.word	acFontHZKaiTi_20_0076
+ 628 02b8 0B       		.byte	11
+ 629 02b9 0B       		.byte	11
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 12
+
+
+ 630 02ba 02       		.byte	2
+ 631 02bb 00       		.space	1
+ 632 02bc 00000000 		.word	acFontHZKaiTi_20_0077
+ 633 02c0 0B       		.byte	11
+ 634 02c1 0B       		.byte	11
+ 635 02c2 02       		.byte	2
+ 636 02c3 00       		.space	1
+ 637 02c4 00000000 		.word	acFontHZKaiTi_20_0078
+ 638 02c8 0B       		.byte	11
+ 639 02c9 0B       		.byte	11
+ 640 02ca 02       		.byte	2
+ 641 02cb 00       		.space	1
+ 642 02cc 00000000 		.word	acFontHZKaiTi_20_0079
+ 643 02d0 0B       		.byte	11
+ 644 02d1 0B       		.byte	11
+ 645 02d2 02       		.byte	2
+ 646 02d3 00       		.space	1
+ 647 02d4 00000000 		.word	acFontHZKaiTi_20_007a
+ 648 02d8 0B       		.byte	11
+ 649 02d9 0B       		.byte	11
+ 650 02da 02       		.byte	2
+ 651 02db 00       		.space	1
+ 652 02dc 00000000 		.word	acFontHZKaiTi_20_007b
+ 653 02e0 0B       		.byte	11
+ 654 02e1 0B       		.byte	11
+ 655 02e2 02       		.byte	2
+ 656 02e3 00       		.space	1
+ 657 02e4 00000000 		.word	acFontHZKaiTi_20_007c
+ 658 02e8 0B       		.byte	11
+ 659 02e9 0B       		.byte	11
+ 660 02ea 02       		.byte	2
+ 661 02eb 00       		.space	1
+ 662 02ec 00000000 		.word	acFontHZKaiTi_20_007d
+ 663 02f0 0B       		.byte	11
+ 664 02f1 0B       		.byte	11
+ 665 02f2 02       		.byte	2
+ 666 02f3 00       		.space	1
+ 667 02f4 00000000 		.word	acFontHZKaiTi_20_007e
+ 668 02f8 05       		.byte	5
+ 669 02f9 05       		.byte	5
+ 670 02fa 01       		.byte	1
+ 671 02fb 00       		.space	1
+ 672 02fc 00000000 		.word	acFontHZKaiTi_20_007f
+ 673 0300 15       		.byte	21
+ 674 0301 15       		.byte	21
+ 675 0302 03       		.byte	3
+ 676 0303 00       		.space	1
+ 677 0304 00000000 		.word	acFontHZKaiTi_20_b2ce
+ 678 0308 15       		.byte	21
+ 679 0309 15       		.byte	21
+ 680 030a 03       		.byte	3
+ 681 030b 00       		.space	1
+ 682 030c 00000000 		.word	acFontHZKaiTi_20_b2e2
+ 683 0310 15       		.byte	21
+ 684 0311 15       		.byte	21
+ 685 0312 03       		.byte	3
+ 686 0313 00       		.space	1
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 13
+
+
+ 687 0314 00000000 		.word	acFontHZKaiTi_20_b3c2
+ 688 0318 15       		.byte	21
+ 689 0319 15       		.byte	21
+ 690 031a 03       		.byte	3
+ 691 031b 00       		.space	1
+ 692 031c 00000000 		.word	acFontHZKaiTi_20_b4f3
+ 693 0320 15       		.byte	21
+ 694 0321 15       		.byte	21
+ 695 0322 03       		.byte	3
+ 696 0323 00       		.space	1
+ 697 0324 00000000 		.word	acFontHZKaiTi_20_b5c1
+ 698 0328 15       		.byte	21
+ 699 0329 15       		.byte	21
+ 700 032a 03       		.byte	3
+ 701 032b 00       		.space	1
+ 702 032c 00000000 		.word	acFontHZKaiTi_20_b5e7
+ 703 0330 15       		.byte	21
+ 704 0331 15       		.byte	21
+ 705 0332 03       		.byte	3
+ 706 0333 00       		.space	1
+ 707 0334 00000000 		.word	acFontHZKaiTi_20_b7c0
+ 708 0338 15       		.byte	21
+ 709 0339 15       		.byte	21
+ 710 033a 03       		.byte	3
+ 711 033b 00       		.space	1
+ 712 033c 00000000 		.word	acFontHZKaiTi_20_babc
+ 713 0340 15       		.byte	21
+ 714 0341 15       		.byte	21
+ 715 0342 03       		.byte	3
+ 716 0343 00       		.space	1
+ 717 0344 00000000 		.word	acFontHZKaiTi_20_bbf0
+ 718 0348 15       		.byte	21
+ 719 0349 15       		.byte	21
+ 720 034a 03       		.byte	3
+ 721 034b 00       		.space	1
+ 722 034c 00000000 		.word	acFontHZKaiTi_20_bcbc
+ 723 0350 15       		.byte	21
+ 724 0351 15       		.byte	21
+ 725 0352 03       		.byte	3
+ 726 0353 00       		.space	1
+ 727 0354 00000000 		.word	acFontHZKaiTi_20_bce0
+ 728 0358 15       		.byte	21
+ 729 0359 15       		.byte	21
+ 730 035a 03       		.byte	3
+ 731 035b 00       		.space	1
+ 732 035c 00000000 		.word	acFontHZKaiTi_20_bde1
+ 733 0360 15       		.byte	21
+ 734 0361 15       		.byte	21
+ 735 0362 03       		.byte	3
+ 736 0363 00       		.space	1
+ 737 0364 00000000 		.word	acFontHZKaiTi_20_bedd
+ 738 0368 15       		.byte	21
+ 739 0369 15       		.byte	21
+ 740 036a 03       		.byte	3
+ 741 036b 00       		.space	1
+ 742 036c 00000000 		.word	acFontHZKaiTi_20_bfaa
+ 743 0370 15       		.byte	21
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 14
+
+
+ 744 0371 15       		.byte	21
+ 745 0372 03       		.byte	3
+ 746 0373 00       		.space	1
+ 747 0374 00000000 		.word	acFontHZKaiTi_20_bfc6
+ 748 0378 15       		.byte	21
+ 749 0379 15       		.byte	21
+ 750 037a 03       		.byte	3
+ 751 037b 00       		.space	1
+ 752 037c 00000000 		.word	acFontHZKaiTi_20_c6f7
+ 753 0380 15       		.byte	21
+ 754 0381 15       		.byte	21
+ 755 0382 03       		.byte	3
+ 756 0383 00       		.space	1
+ 757 0384 00000000 		.word	acFontHZKaiTi_20_c7fa
+ 758 0388 15       		.byte	21
+ 759 0389 15       		.byte	21
+ 760 038a 03       		.byte	3
+ 761 038b 00       		.space	1
+ 762 038c 00000000 		.word	acFontHZKaiTi_20_c8f3
+ 763 0390 15       		.byte	21
+ 764 0391 15       		.byte	21
+ 765 0392 03       		.byte	3
+ 766 0393 00       		.space	1
+ 767 0394 00000000 		.word	acFontHZKaiTi_20_c9e8
+ 768 0398 15       		.byte	21
+ 769 0399 15       		.byte	21
+ 770 039a 03       		.byte	3
+ 771 039b 00       		.space	1
+ 772 039c 00000000 		.word	acFontHZKaiTi_20_cab1
+ 773 03a0 15       		.byte	21
+ 774 03a1 15       		.byte	21
+ 775 03a2 03       		.byte	3
+ 776 03a3 00       		.space	1
+ 777 03a4 00000000 		.word	acFontHZKaiTi_20_cab5
+ 778 03a8 15       		.byte	21
+ 779 03a9 15       		.byte	21
+ 780 03aa 03       		.byte	3
+ 781 03ab 00       		.space	1
+ 782 03ac 00000000 		.word	acFontHZKaiTi_20_cabc
+ 783 03b0 15       		.byte	21
+ 784 03b1 15       		.byte	21
+ 785 03b2 03       		.byte	3
+ 786 03b3 00       		.space	1
+ 787 03b4 00000000 		.word	acFontHZKaiTi_20_caf8
+ 788 03b8 15       		.byte	21
+ 789 03b9 15       		.byte	21
+ 790 03ba 03       		.byte	3
+ 791 03bb 00       		.space	1
+ 792 03bc 00000000 		.word	acFontHZKaiTi_20_cafd
+ 793 03c0 15       		.byte	21
+ 794 03c1 15       		.byte	21
+ 795 03c2 03       		.byte	3
+ 796 03c3 00       		.space	1
+ 797 03c4 00000000 		.word	acFontHZKaiTi_20_cda8
+ 798 03c8 15       		.byte	21
+ 799 03c9 15       		.byte	21
+ 800 03ca 03       		.byte	3
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 15
+
+
+ 801 03cb 00       		.space	1
+ 802 03cc 00000000 		.word	acFontHZKaiTi_20_cede
+ 803 03d0 15       		.byte	21
+ 804 03d1 15       		.byte	21
+ 805 03d2 03       		.byte	3
+ 806 03d3 00       		.space	1
+ 807 03d4 00000000 		.word	acFontHZKaiTi_20_cfdf
+ 808 03d8 15       		.byte	21
+ 809 03d9 15       		.byte	21
+ 810 03da 03       		.byte	3
+ 811 03db 00       		.space	1
+ 812 03dc 00000000 		.word	acFontHZKaiTi_20_d0c5
+ 813 03e0 15       		.byte	21
+ 814 03e1 15       		.byte	21
+ 815 03e2 03       		.byte	3
+ 816 03e3 00       		.space	1
+ 817 03e4 00000000 		.word	acFontHZKaiTi_20_d1a7
+ 818 03e8 15       		.byte	21
+ 819 03e9 15       		.byte	21
+ 820 03ea 03       		.byte	3
+ 821 03eb 00       		.space	1
+ 822 03ec 00000000 		.word	acFontHZKaiTi_20_d4f8
+ 823 03f0 15       		.byte	21
+ 824 03f1 15       		.byte	21
+ 825 03f2 03       		.byte	3
+ 826 03f3 00       		.space	1
+ 827 03f4 00000000 		.word	acFontHZKaiTi_20_d6c3
+ 828 03f8 15       		.byte	21
+ 829 03f9 15       		.byte	21
+ 830 03fa 03       		.byte	3
+ 831 03fb 00       		.space	1
+ 832 03fc 00000000 		.word	acFontHZKaiTi_20_d6dd
+ 833 0400 15       		.byte	21
+ 834 0401 15       		.byte	21
+ 835 0402 03       		.byte	3
+ 836 0403 00       		.space	1
+ 837 0404 00000000 		.word	acFontHZKaiTi_20_d7d3
+ 838 0408 15       		.byte	21
+ 839 0409 15       		.byte	21
+ 840 040a 03       		.byte	3
+ 841 040b 00       		.space	1
+ 842 040c 00000000 		.word	acFontHZKaiTi_20_d8b9
+ 843 0410 15       		.byte	21
+ 844 0411 15       		.byte	21
+ 845 0412 03       		.byte	3
+ 846 0413 00       		.space	1
+ 847 0414 00000000 		.word	acFontHZKaiTi_20_ecc5
+ 848              		.section	.rodata.GUI_FontHZKaiTi_20_Prop0020,"a"
+ 849              		.align	2
+ 852              	GUI_FontHZKaiTi_20_Prop0020:
+ 853 0000 2000     		.short	32
+ 854 0002 7F00     		.short	127
+ 855 0004 00000000 		.word	GUI_FontHZKaiTi_20_CharInfo
+ 856 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propb2ce
+ 857              		.section	.rodata.GUI_FontHZKaiTi_20_Propb2ce,"a"
+ 858              		.align	2
+ 861              	GUI_FontHZKaiTi_20_Propb2ce:
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 16
+
+
+ 862 0000 CEB2     		.short	-19762
+ 863 0002 CEB2     		.short	-19762
+ 864 0004 00030000 		.word	GUI_FontHZKaiTi_20_CharInfo+768
+ 865 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propb2e2
+ 866              		.section	.rodata.GUI_FontHZKaiTi_20_Propb2e2,"a"
+ 867              		.align	2
+ 870              	GUI_FontHZKaiTi_20_Propb2e2:
+ 871 0000 E2B2     		.short	-19742
+ 872 0002 E2B2     		.short	-19742
+ 873 0004 08030000 		.word	GUI_FontHZKaiTi_20_CharInfo+776
+ 874 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propb3c2
+ 875              		.section	.rodata.GUI_FontHZKaiTi_20_Propb3c2,"a"
+ 876              		.align	2
+ 879              	GUI_FontHZKaiTi_20_Propb3c2:
+ 880 0000 C2B3     		.short	-19518
+ 881 0002 C2B3     		.short	-19518
+ 882 0004 10030000 		.word	GUI_FontHZKaiTi_20_CharInfo+784
+ 883 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propb4f3
+ 884              		.section	.rodata.GUI_FontHZKaiTi_20_Propb4f3,"a"
+ 885              		.align	2
+ 888              	GUI_FontHZKaiTi_20_Propb4f3:
+ 889 0000 F3B4     		.short	-19213
+ 890 0002 F3B4     		.short	-19213
+ 891 0004 18030000 		.word	GUI_FontHZKaiTi_20_CharInfo+792
+ 892 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propb5c1
+ 893              		.section	.rodata.GUI_FontHZKaiTi_20_Propb5c1,"a"
+ 894              		.align	2
+ 897              	GUI_FontHZKaiTi_20_Propb5c1:
+ 898 0000 C1B5     		.short	-19007
+ 899 0002 C1B5     		.short	-19007
+ 900 0004 20030000 		.word	GUI_FontHZKaiTi_20_CharInfo+800
+ 901 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propb5e7
+ 902              		.section	.rodata.GUI_FontHZKaiTi_20_Propb5e7,"a"
+ 903              		.align	2
+ 906              	GUI_FontHZKaiTi_20_Propb5e7:
+ 907 0000 E7B5     		.short	-18969
+ 908 0002 E7B5     		.short	-18969
+ 909 0004 28030000 		.word	GUI_FontHZKaiTi_20_CharInfo+808
+ 910 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propb7c0
+ 911              		.section	.rodata.GUI_FontHZKaiTi_20_Propb7c0,"a"
+ 912              		.align	2
+ 915              	GUI_FontHZKaiTi_20_Propb7c0:
+ 916 0000 C0B7     		.short	-18496
+ 917 0002 C0B7     		.short	-18496
+ 918 0004 30030000 		.word	GUI_FontHZKaiTi_20_CharInfo+816
+ 919 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propbabc
+ 920              		.section	.rodata.GUI_FontHZKaiTi_20_Propbabc,"a"
+ 921              		.align	2
+ 924              	GUI_FontHZKaiTi_20_Propbabc:
+ 925 0000 BCBA     		.short	-17732
+ 926 0002 BCBA     		.short	-17732
+ 927 0004 38030000 		.word	GUI_FontHZKaiTi_20_CharInfo+824
+ 928 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propbbf0
+ 929              		.section	.rodata.GUI_FontHZKaiTi_20_Propbbf0,"a"
+ 930              		.align	2
+ 933              	GUI_FontHZKaiTi_20_Propbbf0:
+ 934 0000 F0BB     		.short	-17424
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 17
+
+
+ 935 0002 F0BB     		.short	-17424
+ 936 0004 40030000 		.word	GUI_FontHZKaiTi_20_CharInfo+832
+ 937 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propbcbc
+ 938              		.section	.rodata.GUI_FontHZKaiTi_20_Propbcbc,"a"
+ 939              		.align	2
+ 942              	GUI_FontHZKaiTi_20_Propbcbc:
+ 943 0000 BCBC     		.short	-17220
+ 944 0002 BCBC     		.short	-17220
+ 945 0004 48030000 		.word	GUI_FontHZKaiTi_20_CharInfo+840
+ 946 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propbce0
+ 947              		.section	.rodata.GUI_FontHZKaiTi_20_Propbce0,"a"
+ 948              		.align	2
+ 951              	GUI_FontHZKaiTi_20_Propbce0:
+ 952 0000 E0BC     		.short	-17184
+ 953 0002 E0BC     		.short	-17184
+ 954 0004 50030000 		.word	GUI_FontHZKaiTi_20_CharInfo+848
+ 955 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propbde1
+ 956              		.section	.rodata.GUI_FontHZKaiTi_20_Propbde1,"a"
+ 957              		.align	2
+ 960              	GUI_FontHZKaiTi_20_Propbde1:
+ 961 0000 E1BD     		.short	-16927
+ 962 0002 E1BD     		.short	-16927
+ 963 0004 58030000 		.word	GUI_FontHZKaiTi_20_CharInfo+856
+ 964 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propbedd
+ 965              		.section	.rodata.GUI_FontHZKaiTi_20_Propbedd,"a"
+ 966              		.align	2
+ 969              	GUI_FontHZKaiTi_20_Propbedd:
+ 970 0000 DDBE     		.short	-16675
+ 971 0002 DDBE     		.short	-16675
+ 972 0004 60030000 		.word	GUI_FontHZKaiTi_20_CharInfo+864
+ 973 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propbfaa
+ 974              		.section	.rodata.GUI_FontHZKaiTi_20_Propbfaa,"a"
+ 975              		.align	2
+ 978              	GUI_FontHZKaiTi_20_Propbfaa:
+ 979 0000 AABF     		.short	-16470
+ 980 0002 AABF     		.short	-16470
+ 981 0004 68030000 		.word	GUI_FontHZKaiTi_20_CharInfo+872
+ 982 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propbfc6
+ 983              		.section	.rodata.GUI_FontHZKaiTi_20_Propbfc6,"a"
+ 984              		.align	2
+ 987              	GUI_FontHZKaiTi_20_Propbfc6:
+ 988 0000 C6BF     		.short	-16442
+ 989 0002 C6BF     		.short	-16442
+ 990 0004 70030000 		.word	GUI_FontHZKaiTi_20_CharInfo+880
+ 991 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propc6f7
+ 992              		.section	.rodata.GUI_FontHZKaiTi_20_Propc6f7,"a"
+ 993              		.align	2
+ 996              	GUI_FontHZKaiTi_20_Propc6f7:
+ 997 0000 F7C6     		.short	-14601
+ 998 0002 F7C6     		.short	-14601
+ 999 0004 78030000 		.word	GUI_FontHZKaiTi_20_CharInfo+888
+ 1000 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propc7fa
+ 1001              		.section	.rodata.GUI_FontHZKaiTi_20_Propc7fa,"a"
+ 1002              		.align	2
+ 1005              	GUI_FontHZKaiTi_20_Propc7fa:
+ 1006 0000 FAC7     		.short	-14342
+ 1007 0002 FAC7     		.short	-14342
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 18
+
+
+ 1008 0004 80030000 		.word	GUI_FontHZKaiTi_20_CharInfo+896
+ 1009 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propc8f3
+ 1010              		.section	.rodata.GUI_FontHZKaiTi_20_Propc8f3,"a"
+ 1011              		.align	2
+ 1014              	GUI_FontHZKaiTi_20_Propc8f3:
+ 1015 0000 F3C8     		.short	-14093
+ 1016 0002 F3C8     		.short	-14093
+ 1017 0004 88030000 		.word	GUI_FontHZKaiTi_20_CharInfo+904
+ 1018 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propc9e8
+ 1019              		.section	.rodata.GUI_FontHZKaiTi_20_Propc9e8,"a"
+ 1020              		.align	2
+ 1023              	GUI_FontHZKaiTi_20_Propc9e8:
+ 1024 0000 E8C9     		.short	-13848
+ 1025 0002 E8C9     		.short	-13848
+ 1026 0004 90030000 		.word	GUI_FontHZKaiTi_20_CharInfo+912
+ 1027 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propcab1
+ 1028              		.section	.rodata.GUI_FontHZKaiTi_20_Propcab1,"a"
+ 1029              		.align	2
+ 1032              	GUI_FontHZKaiTi_20_Propcab1:
+ 1033 0000 B1CA     		.short	-13647
+ 1034 0002 B1CA     		.short	-13647
+ 1035 0004 98030000 		.word	GUI_FontHZKaiTi_20_CharInfo+920
+ 1036 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propcab5
+ 1037              		.section	.rodata.GUI_FontHZKaiTi_20_Propcab5,"a"
+ 1038              		.align	2
+ 1041              	GUI_FontHZKaiTi_20_Propcab5:
+ 1042 0000 B5CA     		.short	-13643
+ 1043 0002 B5CA     		.short	-13643
+ 1044 0004 A0030000 		.word	GUI_FontHZKaiTi_20_CharInfo+928
+ 1045 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propcabc
+ 1046              		.section	.rodata.GUI_FontHZKaiTi_20_Propcabc,"a"
+ 1047              		.align	2
+ 1050              	GUI_FontHZKaiTi_20_Propcabc:
+ 1051 0000 BCCA     		.short	-13636
+ 1052 0002 BCCA     		.short	-13636
+ 1053 0004 A8030000 		.word	GUI_FontHZKaiTi_20_CharInfo+936
+ 1054 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propcaf8
+ 1055              		.section	.rodata.GUI_FontHZKaiTi_20_Propcaf8,"a"
+ 1056              		.align	2
+ 1059              	GUI_FontHZKaiTi_20_Propcaf8:
+ 1060 0000 F8CA     		.short	-13576
+ 1061 0002 F8CA     		.short	-13576
+ 1062 0004 B0030000 		.word	GUI_FontHZKaiTi_20_CharInfo+944
+ 1063 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propcafd
+ 1064              		.section	.rodata.GUI_FontHZKaiTi_20_Propcafd,"a"
+ 1065              		.align	2
+ 1068              	GUI_FontHZKaiTi_20_Propcafd:
+ 1069 0000 FDCA     		.short	-13571
+ 1070 0002 FDCA     		.short	-13571
+ 1071 0004 B8030000 		.word	GUI_FontHZKaiTi_20_CharInfo+952
+ 1072 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propcda8
+ 1073              		.section	.rodata.GUI_FontHZKaiTi_20_Propcda8,"a"
+ 1074              		.align	2
+ 1077              	GUI_FontHZKaiTi_20_Propcda8:
+ 1078 0000 A8CD     		.short	-12888
+ 1079 0002 A8CD     		.short	-12888
+ 1080 0004 C0030000 		.word	GUI_FontHZKaiTi_20_CharInfo+960
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 19
+
+
+ 1081 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propcede
+ 1082              		.section	.rodata.GUI_FontHZKaiTi_20_Propcede,"a"
+ 1083              		.align	2
+ 1086              	GUI_FontHZKaiTi_20_Propcede:
+ 1087 0000 DECE     		.short	-12578
+ 1088 0002 DECE     		.short	-12578
+ 1089 0004 C8030000 		.word	GUI_FontHZKaiTi_20_CharInfo+968
+ 1090 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propcfdf
+ 1091              		.section	.rodata.GUI_FontHZKaiTi_20_Propcfdf,"a"
+ 1092              		.align	2
+ 1095              	GUI_FontHZKaiTi_20_Propcfdf:
+ 1096 0000 DFCF     		.short	-12321
+ 1097 0002 DFCF     		.short	-12321
+ 1098 0004 D0030000 		.word	GUI_FontHZKaiTi_20_CharInfo+976
+ 1099 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propd0c5
+ 1100              		.section	.rodata.GUI_FontHZKaiTi_20_Propd0c5,"a"
+ 1101              		.align	2
+ 1104              	GUI_FontHZKaiTi_20_Propd0c5:
+ 1105 0000 C5D0     		.short	-12091
+ 1106 0002 C5D0     		.short	-12091
+ 1107 0004 D8030000 		.word	GUI_FontHZKaiTi_20_CharInfo+984
+ 1108 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propd1a7
+ 1109              		.section	.rodata.GUI_FontHZKaiTi_20_Propd1a7,"a"
+ 1110              		.align	2
+ 1113              	GUI_FontHZKaiTi_20_Propd1a7:
+ 1114 0000 A7D1     		.short	-11865
+ 1115 0002 A7D1     		.short	-11865
+ 1116 0004 E0030000 		.word	GUI_FontHZKaiTi_20_CharInfo+992
+ 1117 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propd4f8
+ 1118              		.section	.rodata.GUI_FontHZKaiTi_20_Propd4f8,"a"
+ 1119              		.align	2
+ 1122              	GUI_FontHZKaiTi_20_Propd4f8:
+ 1123 0000 F8D4     		.short	-11016
+ 1124 0002 F8D4     		.short	-11016
+ 1125 0004 E8030000 		.word	GUI_FontHZKaiTi_20_CharInfo+1000
+ 1126 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propd6c3
+ 1127              		.section	.rodata.GUI_FontHZKaiTi_20_Propd6c3,"a"
+ 1128              		.align	2
+ 1131              	GUI_FontHZKaiTi_20_Propd6c3:
+ 1132 0000 C3D6     		.short	-10557
+ 1133 0002 C3D6     		.short	-10557
+ 1134 0004 F0030000 		.word	GUI_FontHZKaiTi_20_CharInfo+1008
+ 1135 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propd6dd
+ 1136              		.section	.rodata.GUI_FontHZKaiTi_20_Propd6dd,"a"
+ 1137              		.align	2
+ 1140              	GUI_FontHZKaiTi_20_Propd6dd:
+ 1141 0000 DDD6     		.short	-10531
+ 1142 0002 DDD6     		.short	-10531
+ 1143 0004 F8030000 		.word	GUI_FontHZKaiTi_20_CharInfo+1016
+ 1144 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propd7d3
+ 1145              		.section	.rodata.GUI_FontHZKaiTi_20_Propd7d3,"a"
+ 1146              		.align	2
+ 1149              	GUI_FontHZKaiTi_20_Propd7d3:
+ 1150 0000 D3D7     		.short	-10285
+ 1151 0002 D3D7     		.short	-10285
+ 1152 0004 00040000 		.word	GUI_FontHZKaiTi_20_CharInfo+1024
+ 1153 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propd8b9
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 20
+
+
+ 1154              		.section	.rodata.GUI_FontHZKaiTi_20_Propd8b9,"a"
+ 1155              		.align	2
+ 1158              	GUI_FontHZKaiTi_20_Propd8b9:
+ 1159 0000 B9D8     		.short	-10055
+ 1160 0002 B9D8     		.short	-10055
+ 1161 0004 08040000 		.word	GUI_FontHZKaiTi_20_CharInfo+1032
+ 1162 0008 00000000 		.word	GUI_FontHZKaiTi_20_Propecc5
+ 1163              		.section	.rodata.GUI_FontHZKaiTi_20_Propecc5,"a"
+ 1164              		.align	2
+ 1167              	GUI_FontHZKaiTi_20_Propecc5:
+ 1168 0000 C5EC     		.short	-4923
+ 1169 0002 C5EC     		.short	-4923
+ 1170 0004 10040000 		.word	GUI_FontHZKaiTi_20_CharInfo+1040
+ 1171 0008 00000000 		.word	0
+ 1172              		.section	.rodata.GUI_FontHZ_KaiTi_20,"a"
+ 1173              		.align	2
+ 1176              	GUI_FontHZ_KaiTi_20:
+ 1177 0000 00000000 		.word	GUIPROP_DispChar
+ 1178 0004 00000000 		.word	GUIPROP_GetCharDistX
+ 1179 0008 00000000 		.word	GUIPROP_GetFontInfo
+ 1180 000c 00000000 		.word	GUIPROP_IsInFont
+ 1181 0010 00000000 		.word	0
+ 1182 0014 00000000 		.word	GUI_ENC_APIList_SJIS
+ 1183 0018 14       		.byte	20
+ 1184 0019 14       		.byte	20
+ 1185 001a 01       		.byte	1
+ 1186 001b 01       		.byte	1
+ 1187 001c 00000000 		.word	GUI_FontHZKaiTi_20_Prop0020
+ 1188 0020 00000000 		.space	4
+ 1189              		.section	.rodata.acFontHZKaiTi_20_0020,"a"
+ 1190              		.align	2
+ 1193              	acFontHZKaiTi_20_0020:
+ 1194 0000 00000000 		.space	40
+ 1194      00000000 
+ 1194      00000000 
+ 1194      00000000 
+ 1194      00000000 
+ 1195              		.section	.rodata.acFontHZKaiTi_20_0021,"a"
+ 1196              		.align	2
+ 1199              	acFontHZKaiTi_20_0021:
+ 1200 0000 00000000 		.ascii	"\000\000\000\000\016\000\036\000\016\000\016\000\016"
+ 1200      0E001E00 
+ 1200      0E000E00 
+ 1200      0E
+ 1201 000d 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\016\000"
+ 1201      000E000E 
+ 1201      000E000E 
+ 1201      00
+ 1202 001a 00000E00 		.ascii	"\000\000\016\000\037\000\016\000\000\000\000\000\000"
+ 1202      1F000E00 
+ 1202      00000000 
+ 1202      00
+ 1203 0027 00       		.ascii	"\000"
+ 1204              		.section	.rodata.acFontHZKaiTi_20_0022,"a"
+ 1205              		.align	2
+ 1208              	acFontHZKaiTi_20_0022:
+ 1209 0000 00000000 		.ascii	"\000\000\000\000\000\000?\200?\200?\200?\000\000\000"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 21
+
+
+ 1209      00003F80 
+ 1209      3F803F80 
+ 1209      3F000000 
+ 1210 0010 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1210      00000000 
+ 1210      00000000 
+ 1210      00
+ 1211 001d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000"
+ 1211      00000000 
+ 1211      000000
+ 1212              		.section	.rodata.acFontHZKaiTi_20_0023,"a"
+ 1213              		.align	2
+ 1216              	acFontHZKaiTi_20_0023:
+ 1217 0000 00000000 		.ascii	"\000\000\000\000\000\000\035\300\037\300?\200?\300\377"
+ 1217      00001DC0 
+ 1217      1FC03F80 
+ 1217      3FC0FF
+ 1218 000f E03B803B 		.ascii	"\340;\200;\200;\200\377\300\377\340\177\000w\000w\000"
+ 1218      803B80FF 
+ 1218      C0FFE07F 
+ 1218      00770077 
+ 1218      00
+ 1219 0020 77000000 		.ascii	"w\000\000\000\000\000\000\000"
+ 1219      00000000 
+ 1220              		.section	.rodata.acFontHZKaiTi_20_0024,"a"
+ 1221              		.align	2
+ 1224              	acFontHZKaiTi_20_0024:
+ 1225 0000 00000C00 		.ascii	"\000\000\014\000\016\000\037\000\177\200\177\300\177"
+ 1225      0E001F00 
+ 1225      7F807FC0 
+ 1225      7F
+ 1226 000d C07E003E 		.ascii	"\300~\000>\000\037\000\017\200\017\300\177\300\177\300"
+ 1226      001F000F 
+ 1226      800FC07F 
+ 1226      C07FC0
+ 1227 001c 7FC07F80 		.ascii	"\177\300\177\200\037\000\016\000\016\000\000\000"
+ 1227      1F000E00 
+ 1227      0E000000 
+ 1228              		.section	.rodata.acFontHZKaiTi_20_0025,"a"
+ 1229              		.align	2
+ 1232              	acFontHZKaiTi_20_0025:
+ 1233 0000 00000000 		.ascii	"\000\000\000\000\000\000y\200\375\200\377\200\377\000"
+ 1233      00007980 
+ 1233      FD80FF80 
+ 1233      FF00
+ 1234 000e FF00FE00 		.ascii	"\377\000\376\000~\000\017\300\037\340\037\340\037\340"
+ 1234      7E000FC0 
+ 1234      1FE01FE0 
+ 1234      1FE0
+ 1235 001c 3FE037C0 		.ascii	"?\3407\300s\300\000\000\000\000\000\000"
+ 1235      73C00000 
+ 1235      00000000 
+ 1236              		.section	.rodata.acFontHZKaiTi_20_0026,"a"
+ 1237              		.align	2
+ 1240              	acFontHZKaiTi_20_0026:
+ 1241 0000 00000000 		.ascii	"\000\000\000\000\000\000\036\000?\000\177\200\177\000"
+ 1241      00001E00 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 22
+
+
+ 1241      3F007F80 
+ 1241      7F00
+ 1242 000e 3F003E00 		.ascii	"?\000>\000<\000}\300\377\300\377\300\367\300\363\300"
+ 1242      3C007DC0 
+ 1242      FFC0FFC0 
+ 1242      F7C0F3C0 
+ 1243 001e 7FE03EC0 		.ascii	"\177\340>\300\000\000\000\000\000\000"
+ 1243      00000000 
+ 1243      0000
+ 1244              		.section	.rodata.acFontHZKaiTi_20_0027,"a"
+ 1245              		.align	2
+ 1248              	acFontHZKaiTi_20_0027:
+ 1249 0000 00000000 		.ascii	"\000\000\000\000\000\000\036\000\034\000\034\000\034"
+ 1249      00001E00 
+ 1249      1C001C00 
+ 1249      1C
+ 1250 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1250      00000000 
+ 1250      00000000 
+ 1250      00
+ 1251 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1251      00000000 
+ 1251      00000000 
+ 1251      00
+ 1252 0027 00       		.ascii	"\000"
+ 1253              		.section	.rodata.acFontHZKaiTi_20_0028,"a"
+ 1254              		.align	2
+ 1257              	acFontHZKaiTi_20_0028:
+ 1258 0000 000000C0 		.ascii	"\000\000\000\300\001\300\003\300\003\200\007\000\007"
+ 1258      01C003C0 
+ 1258      03800700 
+ 1258      07
+ 1259 000d 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\016\000"
+ 1259      000E000E 
+ 1259      000E000E 
+ 1259      00
+ 1260 001a 07000700 		.ascii	"\007\000\007\000\003\200\003\300\001\300\000\000\000"
+ 1260      038003C0 
+ 1260      01C00000 
+ 1260      00
+ 1261 0027 00       		.ascii	"\000"
+ 1262              		.section	.rodata.acFontHZKaiTi_20_0029,"a"
+ 1263              		.align	2
+ 1266              	acFontHZKaiTi_20_0029:
+ 1267 0000 00006000 		.ascii	"\000\000`\000\360\000x\0008\000\034\000\034\000\034"
+ 1267      F0007800 
+ 1267      38001C00 
+ 1267      1C001C
+ 1268 000f 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\034\000\034\000"
+ 1268      000E000E 
+ 1268      001C001C 
+ 1268      00
+ 1269 001c 1C003800 		.ascii	"\034\0008\000x\000\360\000\000\000\000\000"
+ 1269      7800F000 
+ 1269      00000000 
+ 1270              		.section	.rodata.acFontHZKaiTi_20_002a,"a"
+ 1271              		.align	2
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 23
+
+
+ 1274              	acFontHZKaiTi_20_002a:
+ 1275 0000 00000000 		.ascii	"\000\000\000\000\000\000\016\000\016\000\377\340\177"
+ 1275      00000E00 
+ 1275      0E00FFE0 
+ 1275      7F
+ 1276 000d C03F803F 		.ascii	"\300?\200?\200\377\340\356\340\016\000\016\000\000\000"
+ 1276      80FFE0EE 
+ 1276      E00E000E 
+ 1276      000000
+ 1277 001c 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1277      00000000 
+ 1277      00000000 
+ 1278              		.section	.rodata.acFontHZKaiTi_20_002b,"a"
+ 1279              		.align	2
+ 1282              	acFontHZKaiTi_20_002b:
+ 1283 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\016\000\016"
+ 1283      00000000 
+ 1283      00000E00 
+ 1283      0E
+ 1284 000d 000E000E 		.ascii	"\000\016\000\016\000\377\340\377\300\016\000\016\000"
+ 1284      00FFE0FF 
+ 1284      C00E000E 
+ 1284      00
+ 1285 001a 0E000000 		.ascii	"\016\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1285      00000000 
+ 1285      00000000 
+ 1285      00
+ 1286 0027 00       		.ascii	"\000"
+ 1287              		.section	.rodata.acFontHZKaiTi_20_002c,"a"
+ 1288              		.align	2
+ 1291              	acFontHZKaiTi_20_002c:
+ 1292 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1292      00000000 
+ 1292      00000000 
+ 1292      00
+ 1293 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1293      00000000 
+ 1293      00000000 
+ 1293      00
+ 1294 001a 00003800 		.ascii	"\000\0008\000x\000x\0008\0000\000`\000"
+ 1294      78007800 
+ 1294      38003000 
+ 1294      6000
+ 1295              		.section	.rodata.acFontHZKaiTi_20_002d,"a"
+ 1296              		.align	2
+ 1299              	acFontHZKaiTi_20_002d:
+ 1300 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1300      00000000 
+ 1300      00000000 
+ 1300      00
+ 1301 000d 00000000 		.ascii	"\000\000\000\000\000\377\340\377\300\000\000\000\000"
+ 1301      00FFE0FF 
+ 1301      C0000000 
+ 1301      00
+ 1302 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1302      00000000 
+ 1302      00000000 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 24
+
+
+ 1302      00
+ 1303 0027 00       		.ascii	"\000"
+ 1304              		.section	.rodata.acFontHZKaiTi_20_002e,"a"
+ 1305              		.align	2
+ 1308              	acFontHZKaiTi_20_002e:
+ 1309 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1309      00000000 
+ 1309      00000000 
+ 1309      00
+ 1310 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1310      00000000 
+ 1310      00000000 
+ 1310      00
+ 1311 001a 00003000 		.ascii	"\000\0000\000x\000x\000\000\000\000\000\000\000"
+ 1311      78007800 
+ 1311      00000000 
+ 1311      0000
+ 1312              		.section	.rodata.acFontHZKaiTi_20_002f,"a"
+ 1313              		.align	2
+ 1316              	acFontHZKaiTi_20_002f:
+ 1317 0000 00000000 		.ascii	"\000\000\000\000\000\300\000\300\001\300\003\200\003"
+ 1317      00C000C0 
+ 1317      01C00380 
+ 1317      03
+ 1318 000d 80070007 		.ascii	"\200\007\000\007\000\016\000\014\000\034\0008\0008\000"
+ 1318      000E000C 
+ 1318      001C0038 
+ 1318      003800
+ 1319 001c 70007000 		.ascii	"p\000p\000\340\000@\000\000\000\000\000"
+ 1319      E0004000 
+ 1319      00000000 
+ 1320              		.section	.rodata.acFontHZKaiTi_20_0030,"a"
+ 1321              		.align	2
+ 1324              	acFontHZKaiTi_20_0030:
+ 1325 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\000?\200{\300q\300\361"
+ 1325      00001F00 
+ 1325      3F807BC0 
+ 1325      71C0F1
+ 1326 000f C0F1C0F1 		.ascii	"\300\361\300\361\300\361\300\361\300\361\300q\300{\300"
+ 1326      C0F1C0F1 
+ 1326      C0F1C071 
+ 1326      C07BC0
+ 1327 001e 3F801F00 		.ascii	"?\200\037\000\000\000\000\000\000\000"
+ 1327      00000000 
+ 1327      0000
+ 1328              		.section	.rodata.acFontHZKaiTi_20_0031,"a"
+ 1329              		.align	2
+ 1332              	acFontHZKaiTi_20_0031:
+ 1333 0000 00000000 		.ascii	"\000\000\000\000\000\000\016\000\036\000>\000~\000>"
+ 1333      00000E00 
+ 1333      1E003E00 
+ 1333      7E003E
+ 1334 000f 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\016\000"
+ 1334      000E000E 
+ 1334      000E000E 
+ 1334      00
+ 1335 001c 0E000E00 		.ascii	"\016\000\016\000\016\000\000\000\000\000\000\000"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 25
+
+
+ 1335      0E000000 
+ 1335      00000000 
+ 1336              		.section	.rodata.acFontHZKaiTi_20_0032,"a"
+ 1337              		.align	2
+ 1340              	acFontHZKaiTi_20_0032:
+ 1341 0000 00000000 		.ascii	"\000\000\000\000\000\000?\000\177\300s\300q\300\003"
+ 1341      00003F00 
+ 1341      7FC073C0 
+ 1341      71C003
+ 1342 000f C003C007 		.ascii	"\300\003\300\007\200\007\000\017\000\036\000<\000x\000"
+ 1342      8007000F 
+ 1342      001E003C 
+ 1342      007800
+ 1343 001e 7FC07FC0 		.ascii	"\177\300\177\300\000\000\000\000\000\000"
+ 1343      00000000 
+ 1343      0000
+ 1344              		.section	.rodata.acFontHZKaiTi_20_0033,"a"
+ 1345              		.align	2
+ 1348              	acFontHZKaiTi_20_0033:
+ 1349 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\000?\300s\300q\300\003"
+ 1349      00001F00 
+ 1349      3FC073C0 
+ 1349      71C003
+ 1350 000f C007800F 		.ascii	"\300\007\200\017\000\007\300\003\300\001\300\361\300"
+ 1350      0007C003 
+ 1350      C001C0F1 
+ 1350      C0
+ 1351 001c 7BC07F80 		.ascii	"{\300\177\200\037\000\000\000\000\000\000\000"
+ 1351      1F000000 
+ 1351      00000000 
+ 1352              		.section	.rodata.acFontHZKaiTi_20_0034,"a"
+ 1353              		.align	2
+ 1356              	acFontHZKaiTi_20_0034:
+ 1357 0000 00000000 		.ascii	"\000\000\000\000\000\000\003\200\007\200\017\200\017"
+ 1357      00000380 
+ 1357      07800F80 
+ 1357      0F
+ 1358 000d 801F803F 		.ascii	"\200\037\200?\200;\200{\200\363\200\377\340\377\340"
+ 1358      803B807B 
+ 1358      80F380FF 
+ 1358      E0FFE0
+ 1359 001c 03800380 		.ascii	"\003\200\003\200\003\200\000\000\000\000\000\000"
+ 1359      03800000 
+ 1359      00000000 
+ 1360              		.section	.rodata.acFontHZKaiTi_20_0035,"a"
+ 1361              		.align	2
+ 1364              	acFontHZKaiTi_20_0035:
+ 1365 0000 00000000 		.ascii	"\000\000\000\000\000\000?\300?\300x\000p\000~\000\177"
+ 1365      00003FC0 
+ 1365      3FC07800 
+ 1365      70007E00 
+ 1365      7F
+ 1366 0011 80F3C001 		.ascii	"\200\363\300\001\300\001\300\001\300\341\300\363\300"
+ 1366      C001C001 
+ 1366      C0E1C0F3 
+ 1366      C0
+ 1367 001e 7F803F00 		.ascii	"\177\200?\000\000\000\000\000\000\000"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 26
+
+
+ 1367      00000000 
+ 1367      0000
+ 1368              		.section	.rodata.acFontHZKaiTi_20_0036,"a"
+ 1369              		.align	2
+ 1372              	acFontHZKaiTi_20_0036:
+ 1373 0000 00000000 		.ascii	"\000\000\000\000\000\000\007\000\017\000\016\000\036"
+ 1373      00000700 
+ 1373      0F000E00 
+ 1373      1E
+ 1374 000d 003C003F 		.ascii	"\000<\000?\200\177\300q\340\361\340\361\340\361\340"
+ 1374      807FC071 
+ 1374      E0F1E0F1 
+ 1374      E0F1E0
+ 1375 001c 79C07FC0 		.ascii	"y\300\177\300\037\000\000\000\000\000\000\000"
+ 1375      1F000000 
+ 1375      00000000 
+ 1376              		.section	.rodata.acFontHZKaiTi_20_0037,"a"
+ 1377              		.align	2
+ 1380              	acFontHZKaiTi_20_0037:
+ 1381 0000 00000000 		.ascii	"\000\000\000\000\000\000\177\300\377\340\001\300\003"
+ 1381      00007FC0 
+ 1381      FFE001C0 
+ 1381      03
+ 1382 000d C0038007 		.ascii	"\300\003\200\007\200\007\000\017\000\016\000\036\000"
+ 1382      8007000F 
+ 1382      000E001E 
+ 1382      00
+ 1383 001a 1E001C00 		.ascii	"\036\000\034\000<\000\034\000\000\000\000\000\000\000"
+ 1383      3C001C00 
+ 1383      00000000 
+ 1383      0000
+ 1384              		.section	.rodata.acFontHZKaiTi_20_0038,"a"
+ 1385              		.align	2
+ 1388              	acFontHZKaiTi_20_0038:
+ 1389 0000 00000000 		.ascii	"\000\000\000\000\000\000?\000\177\200s\300q\300s\300"
+ 1389      00003F00 
+ 1389      7F8073C0 
+ 1389      71C073C0 
+ 1390 0010 7F803F00 		.ascii	"\177\200?\000\177\300\361\300\361\300\361\300\363\300"
+ 1390      7FC0F1C0 
+ 1390      F1C0F1C0 
+ 1390      F3C0
+ 1391 001e 7F803F00 		.ascii	"\177\200?\000\000\000\000\000\000\000"
+ 1391      00000000 
+ 1391      0000
+ 1392              		.section	.rodata.acFontHZKaiTi_20_0039,"a"
+ 1393              		.align	2
+ 1396              	acFontHZKaiTi_20_0039:
+ 1397 0000 00000000 		.ascii	"\000\000\000\000\000\000?\000\177\200\363\300\361\300"
+ 1397      00003F00 
+ 1397      7F80F3C0 
+ 1397      F1C0
+ 1398 000e E1C0F3C0 		.ascii	"\341\300\363\300\363\300\177\200\037\200\017\000\017"
+ 1398      F3C07F80 
+ 1398      1F800F00 
+ 1398      0F
+ 1399 001b 001E001C 		.ascii	"\000\036\000\034\000<\000\000\000\000\000\000\000"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 27
+
+
+ 1399      003C0000 
+ 1399      00000000 
+ 1399      00
+ 1400              		.section	.rodata.acFontHZKaiTi_20_003a,"a"
+ 1401              		.align	2
+ 1404              	acFontHZKaiTi_20_003a:
+ 1405 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1405      00000000 
+ 1405      00000000 
+ 1405      00
+ 1406 000d 0000000C 		.ascii	"\000\000\000\014\000\036\000\036\000\000\000\000\000"
+ 1406      001E001E 
+ 1406      00000000 
+ 1406      00
+ 1407 001a 00000C00 		.ascii	"\000\000\014\000\036\000\036\000\000\000\000\000\000"
+ 1407      1E001E00 
+ 1407      00000000 
+ 1407      00
+ 1408 0027 00       		.ascii	"\000"
+ 1409              		.section	.rodata.acFontHZKaiTi_20_003b,"a"
+ 1410              		.align	2
+ 1413              	acFontHZKaiTi_20_003b:
+ 1414 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1414      00000000 
+ 1414      00000000 
+ 1414      00
+ 1415 000d 0000000C 		.ascii	"\000\000\000\014\000\036\000\036\000\000\000\000\000"
+ 1415      001E001E 
+ 1415      00000000 
+ 1415      00
+ 1416 001a 00000C00 		.ascii	"\000\000\014\000\036\000\036\000\016\000\014\000\030"
+ 1416      1E001E00 
+ 1416      0E000C00 
+ 1416      18
+ 1417 0027 00       		.ascii	"\000"
+ 1418              		.section	.rodata.acFontHZKaiTi_20_003c,"a"
+ 1419              		.align	2
+ 1422              	acFontHZKaiTi_20_003c:
+ 1423 0000 00000000 		.ascii	"\000\000\000\000\000\000\001\300\003\300\007\200\016"
+ 1423      000001C0 
+ 1423      03C00780 
+ 1423      0E
+ 1424 000d 001C0038 		.ascii	"\000\034\0008\000p\000p\0008\000\034\000\017\000\007"
+ 1424      00700070 
+ 1424      0038001C 
+ 1424      000F0007 
+ 1425 001d 8003C001 		.ascii	"\200\003\300\001\300\000\000\000\000\000\000"
+ 1425      C0000000 
+ 1425      000000
+ 1426              		.section	.rodata.acFontHZKaiTi_20_003d,"a"
+ 1427              		.align	2
+ 1430              	acFontHZKaiTi_20_003d:
+ 1431 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\377"
+ 1431      00000000 
+ 1431      00000000 
+ 1431      FF
+ 1432 000d C0FFE000 		.ascii	"\300\377\340\000\000\000\000\000\000\377\340\377\340"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 28
+
+
+ 1432      00000000 
+ 1432      00FFE0FF 
+ 1432      E0
+ 1433 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1433      00000000 
+ 1433      00000000 
+ 1433      00
+ 1434 0027 00       		.ascii	"\000"
+ 1435              		.section	.rodata.acFontHZKaiTi_20_003e,"a"
+ 1436              		.align	2
+ 1439              	acFontHZKaiTi_20_003e:
+ 1440 0000 00000000 		.ascii	"\000\000\000\000\000\000\360\000x\000<\000\036\000\007"
+ 1440      0000F000 
+ 1440      78003C00 
+ 1440      1E0007
+ 1441 000f 00038001 		.ascii	"\000\003\200\001\300\001\300\003\200\017\000\036\000"
+ 1441      C001C003 
+ 1441      800F001E 
+ 1441      00
+ 1442 001c 3C007000 		.ascii	"<\000p\000\340\000\000\000\000\000\000\000"
+ 1442      E0000000 
+ 1442      00000000 
+ 1443              		.section	.rodata.acFontHZKaiTi_20_003f,"a"
+ 1444              		.align	2
+ 1447              	acFontHZKaiTi_20_003f:
+ 1448 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\000\177\200{\300s\300s"
+ 1448      00001F00 
+ 1448      7F807BC0 
+ 1448      73C073
+ 1449 000f C0038007 		.ascii	"\300\003\200\007\200\017\000\016\000\014\000\000\000"
+ 1449      800F000E 
+ 1449      000C0000 
+ 1449      00
+ 1450 001c 0C001E00 		.ascii	"\014\000\036\000\016\000\000\000\000\000\000\000"
+ 1450      0E000000 
+ 1450      00000000 
+ 1451              		.section	.rodata.acFontHZKaiTi_20_0040,"a"
+ 1452              		.align	2
+ 1455              	acFontHZKaiTi_20_0040:
+ 1456 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\0009\300q\300o\340\377"
+ 1456      00001F00 
+ 1456      39C071C0 
+ 1456      6FE0FF
+ 1457 000f E0FFE0FF 		.ascii	"\340\377\340\377\340\377\340\377\340\377\300\377\200"
+ 1457      E0FFE0FF 
+ 1457      E0FFC0FF 
+ 1457      80
+ 1458 001c 70003980 		.ascii	"p\0009\200\037\000\000\000\000\000\000\000"
+ 1458      1F000000 
+ 1458      00000000 
+ 1459              		.section	.rodata.acFontHZKaiTi_20_0041,"a"
+ 1460              		.align	2
+ 1463              	acFontHZKaiTi_20_0041:
+ 1464 0000 00000000 		.ascii	"\000\000\000\000\000\000\016\000\037\000\037\000\037"
+ 1464      00000E00 
+ 1464      1F001F00 
+ 1464      1F
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 29
+
+
+ 1465 000d 003F003F 		.ascii	"\000?\000?\200?\200;\200\177\300\177\300s\300\361\300"
+ 1465      803F803B 
+ 1465      807FC07F 
+ 1465      C073C0F1 
+ 1465      C0
+ 1466 001e F1E0E1E0 		.ascii	"\361\340\341\340\000\000\000\000\000\000"
+ 1466      00000000 
+ 1466      0000
+ 1467              		.section	.rodata.acFontHZKaiTi_20_0042,"a"
+ 1468              		.align	2
+ 1471              	acFontHZKaiTi_20_0042:
+ 1472 0000 00000000 		.ascii	"\000\000\000\000\000\000\377\000\377\200\363\300\361"
+ 1472      0000FF00 
+ 1472      FF80F3C0 
+ 1472      F1
+ 1473 000d C0F1C0F7 		.ascii	"\300\361\300\367\300\377\200\377\300\361\300\361\340"
+ 1473      C0FF80FF 
+ 1473      C0F1C0F1 
+ 1473      E0
+ 1474 001a F1E0F3C0 		.ascii	"\361\340\363\300\377\300\177\000\000\000\000\000\000"
+ 1474      FFC07F00 
+ 1474      00000000 
+ 1474      00
+ 1475 0027 00       		.ascii	"\000"
+ 1476              		.section	.rodata.acFontHZKaiTi_20_0043,"a"
+ 1477              		.align	2
+ 1480              	acFontHZKaiTi_20_0043:
+ 1481 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\000?\300y\300q\340q\340"
+ 1481      00001F00 
+ 1481      3FC079C0 
+ 1481      71E071E0 
+ 1482 0010 F000F000 		.ascii	"\360\000\360\000\360\000\361\340\361\340q\300{\300?"
+ 1482      F000F1E0 
+ 1482      F1E071C0 
+ 1482      7BC03F
+ 1483 001f 801F0000 		.ascii	"\200\037\000\000\000\000\000\000\000"
+ 1483      00000000 
+ 1483      00
+ 1484              		.section	.rodata.acFontHZKaiTi_20_0044,"a"
+ 1485              		.align	2
+ 1488              	acFontHZKaiTi_20_0044:
+ 1489 0000 00000000 		.ascii	"\000\000\000\000\000\000\376\000\377\200\363\300\363"
+ 1489      0000FE00 
+ 1489      FF80F3C0 
+ 1489      F3
+ 1490 000d C0F1C0F1 		.ascii	"\300\361\300\361\300\361\340\361\340\361\300\361\300"
+ 1490      C0F1E0F1 
+ 1490      E0F1C0F1 
+ 1490      C0
+ 1491 001a F3C0F7C0 		.ascii	"\363\300\367\300\377\200~\000\000\000\000\000\000\000"
+ 1491      FF807E00 
+ 1491      00000000 
+ 1491      0000
+ 1492              		.section	.rodata.acFontHZKaiTi_20_0045,"a"
+ 1493              		.align	2
+ 1496              	acFontHZKaiTi_20_0045:
+ 1497 0000 00000000 		.ascii	"\000\000\000\000\000\000\177\300\177\300p\000p\000p"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 30
+
+
+ 1497      00007FC0 
+ 1497      7FC07000 
+ 1497      700070
+ 1498 000f 0078007F 		.ascii	"\000x\000\177\300\177\200p\000p\000p\000p\000\177\300"
+ 1498      C07F8070 
+ 1498      00700070 
+ 1498      0070007F 
+ 1498      C0
+ 1499 0020 7FC00000 		.ascii	"\177\300\000\000\000\000\000\000"
+ 1499      00000000 
+ 1500              		.section	.rodata.acFontHZKaiTi_20_0046,"a"
+ 1501              		.align	2
+ 1504              	acFontHZKaiTi_20_0046:
+ 1505 0000 00000000 		.ascii	"\000\000\000\000\000\000\177\340\177\340p\000p\000p"
+ 1505      00007FE0 
+ 1505      7FE07000 
+ 1505      700070
+ 1506 000f 0070007F 		.ascii	"\000p\000\177\200\177\200p\000p\000p\000p\000p\000p"
+ 1506      807F8070 
+ 1506      00700070 
+ 1506      00700070 
+ 1506      0070
+ 1507 0021 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 1507      000000
+ 1508              		.section	.rodata.acFontHZKaiTi_20_0047,"a"
+ 1509              		.align	2
+ 1512              	acFontHZKaiTi_20_0047:
+ 1513 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\000?\200{\300q\300q\300"
+ 1513      00001F00 
+ 1513      3F807BC0 
+ 1513      71C071C0 
+ 1514 0010 F000F000 		.ascii	"\360\000\360\000\367\300\367\300\361\300q\300{\300?"
+ 1514      F7C0F7C0 
+ 1514      F1C071C0 
+ 1514      7BC03F
+ 1515 001f C01FC000 		.ascii	"\300\037\300\000\000\000\000\000\000"
+ 1515      00000000 
+ 1515      00
+ 1516              		.section	.rodata.acFontHZKaiTi_20_0048,"a"
+ 1517              		.align	2
+ 1520              	acFontHZKaiTi_20_0048:
+ 1521 0000 00000000 		.ascii	"\000\000\000\000\000\000\361\300\361\300\361\300\361"
+ 1521      0000F1C0 
+ 1521      F1C0F1C0 
+ 1521      F1
+ 1522 000d C0F1C0F3 		.ascii	"\300\361\300\363\300\377\300\377\300\361\300\361\300"
+ 1522      C0FFC0FF 
+ 1522      C0F1C0F1 
+ 1522      C0
+ 1523 001a F1C0F1C0 		.ascii	"\361\300\361\300\361\300q\300\000\000\000\000\000\000"
+ 1523      F1C071C0 
+ 1523      00000000 
+ 1523      0000
+ 1524              		.section	.rodata.acFontHZKaiTi_20_0049,"a"
+ 1525              		.align	2
+ 1528              	acFontHZKaiTi_20_0049:
+ 1529 0000 00000000 		.ascii	"\000\000\000\000\000\000\016\000\016\000\016\000\016"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 31
+
+
+ 1529      00000E00 
+ 1529      0E000E00 
+ 1529      0E
+ 1530 000d 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\016\000"
+ 1530      000E000E 
+ 1530      000E000E 
+ 1530      00
+ 1531 001a 0E000E00 		.ascii	"\016\000\016\000\016\000\016\000\000\000\000\000\000"
+ 1531      0E000E00 
+ 1531      00000000 
+ 1531      00
+ 1532 0027 00       		.ascii	"\000"
+ 1533              		.section	.rodata.acFontHZKaiTi_20_004a,"a"
+ 1534              		.align	2
+ 1537              	acFontHZKaiTi_20_004a:
+ 1538 0000 00000000 		.ascii	"\000\000\000\000\000\000\001\300\001\300\001\300\001"
+ 1538      000001C0 
+ 1538      01C001C0 
+ 1538      01
+ 1539 000d C001C001 		.ascii	"\300\001\300\001\300\001\300\001\300q\300q\300s\300"
+ 1539      C001C001 
+ 1539      C071C071 
+ 1539      C073C0
+ 1540 001c 7BC03F80 		.ascii	"{\300?\200\037\000\000\000\000\000\000\000"
+ 1540      1F000000 
+ 1540      00000000 
+ 1541              		.section	.rodata.acFontHZKaiTi_20_004b,"a"
+ 1542              		.align	2
+ 1545              	acFontHZKaiTi_20_004b:
+ 1546 0000 00000000 		.ascii	"\000\000\000\000\000\000\361\300\363\300\367\200\377"
+ 1546      0000F1C0 
+ 1546      F3C0F780 
+ 1546      FF
+ 1547 000d 00FE00FE 		.ascii	"\000\376\000\376\000\376\000\377\000\377\000\367\200"
+ 1547      00FE00FF 
+ 1547      00FF00F7 
+ 1547      80
+ 1548 001a F780F3C0 		.ascii	"\367\200\363\300\363\300q\340\000\000\000\000\000\000"
+ 1548      F3C071E0 
+ 1548      00000000 
+ 1548      0000
+ 1549              		.section	.rodata.acFontHZKaiTi_20_004c,"a"
+ 1550              		.align	2
+ 1553              	acFontHZKaiTi_20_004c:
+ 1554 0000 00000000 		.ascii	"\000\000\000\000\000\000p\000p\000p\000p\000p\000p\000"
+ 1554      00007000 
+ 1554      70007000 
+ 1554      70007000 
+ 1554      7000
+ 1555 0012 70007000 		.ascii	"p\000p\000p\000p\000p\000p\000\177\300\177\300\000\000"
+ 1555      70007000 
+ 1555      70007000 
+ 1555      7FC07FC0 
+ 1555      0000
+ 1556 0024 00000000 		.ascii	"\000\000\000\000"
+ 1557              		.section	.rodata.acFontHZKaiTi_20_004d,"a"
+ 1558              		.align	2
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 32
+
+
+ 1561              	acFontHZKaiTi_20_004d:
+ 1562 0000 00000000 		.ascii	"\000\000\000\000\000\000\373\340\373\340\373\340\373"
+ 1562      0000FBE0 
+ 1562      FBE0FBE0 
+ 1562      FB
+ 1563 000d E0FFE0FF 		.ascii	"\340\377\340\377\340\377\340\377\340\377\340\377\340"
+ 1563      E0FFE0FF 
+ 1563      E0FFE0FF 
+ 1563      E0
+ 1564 001a FFE0FFE0 		.ascii	"\377\340\377\340\377\340\377\300\000\000\000\000\000"
+ 1564      FFE0FFC0 
+ 1564      00000000 
+ 1564      00
+ 1565 0027 00       		.ascii	"\000"
+ 1566              		.section	.rodata.acFontHZKaiTi_20_004e,"a"
+ 1567              		.align	2
+ 1570              	acFontHZKaiTi_20_004e:
+ 1571 0000 00000000 		.ascii	"\000\000\000\000\000\000\361\300\371\300\371\300\375"
+ 1571      0000F1C0 
+ 1571      F9C0F9C0 
+ 1571      FD
+ 1572 000d C0FDC0FD 		.ascii	"\300\375\300\375\300\377\300\377\300\377\300\367\300"
+ 1572      C0FFC0FF 
+ 1572      C0FFC0F7 
+ 1572      C0
+ 1573 001a F7C0F3C0 		.ascii	"\367\300\363\300\363\300q\300\000\000\000\000\000\000"
+ 1573      F3C071C0 
+ 1573      00000000 
+ 1573      0000
+ 1574              		.section	.rodata.acFontHZKaiTi_20_004f,"a"
+ 1575              		.align	2
+ 1578              	acFontHZKaiTi_20_004f:
+ 1579 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\000\177\200{\300\361\300"
+ 1579      00001F00 
+ 1579      7F807BC0 
+ 1579      F1C0
+ 1580 000e F1C0F1E0 		.ascii	"\361\300\361\340\361\340\361\340\361\340\361\300q\300"
+ 1580      F1E0F1E0 
+ 1580      F1E0F1C0 
+ 1580      71C0
+ 1581 001c 7BC03F80 		.ascii	"{\300?\200\037\000\000\000\000\000\000\000"
+ 1581      1F000000 
+ 1581      00000000 
+ 1582              		.section	.rodata.acFontHZKaiTi_20_0050,"a"
+ 1583              		.align	2
+ 1586              	acFontHZKaiTi_20_0050:
+ 1587 0000 00000000 		.ascii	"\000\000\000\000\000\000\177\000\177\300s\300q\340q"
+ 1587      00007F00 
+ 1587      7FC073C0 
+ 1587      71E071
+ 1588 000f E071E07B 		.ascii	"\340q\340{\300\177\200~\000p\000p\000p\000p\000p\000"
+ 1588      C07F807E 
+ 1588      00700070 
+ 1588      00700070 
+ 1588      007000
+ 1589 0022 00000000 		.ascii	"\000\000\000\000\000\000"
+ 1589      0000
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 33
+
+
+ 1590              		.section	.rodata.acFontHZKaiTi_20_0051,"a"
+ 1591              		.align	2
+ 1594              	acFontHZKaiTi_20_0051:
+ 1595 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\000\177\200{\300\361\300"
+ 1595      00001F00 
+ 1595      7F807BC0 
+ 1595      F1C0
+ 1596 000e F1C0F1E0 		.ascii	"\361\300\361\340\361\340\361\340\367\340\367\300w\300"
+ 1596      F1E0F1E0 
+ 1596      F7E0F7C0 
+ 1596      77C0
+ 1597 001c 7FC03FC0 		.ascii	"\177\300?\300\037\300\000\000\000\000\000\000"
+ 1597      1FC00000 
+ 1597      00000000 
+ 1598              		.section	.rodata.acFontHZKaiTi_20_0052,"a"
+ 1599              		.align	2
+ 1602              	acFontHZKaiTi_20_0052:
+ 1603 0000 00000000 		.ascii	"\000\000\000\000\000\000\377\000\377\300\363\300\361"
+ 1603      0000FF00 
+ 1603      FFC0F3C0 
+ 1603      F1
+ 1604 000d C0F1C0F3 		.ascii	"\300\361\300\363\300\377\300\377\000\367\000\367\200"
+ 1604      C0FFC0FF 
+ 1604      00F700F7 
+ 1604      80
+ 1605 001a F380F3C0 		.ascii	"\363\200\363\300\361\300q\300\000\000\000\000\000\000"
+ 1605      F1C071C0 
+ 1605      00000000 
+ 1605      0000
+ 1606              		.section	.rodata.acFontHZKaiTi_20_0053,"a"
+ 1607              		.align	2
+ 1610              	acFontHZKaiTi_20_0053:
+ 1611 0000 00000000 		.ascii	"\000\000\000\000\000\000\037\000\177\200s\300s\300p"
+ 1611      00001F00 
+ 1611      7F8073C0 
+ 1611      73C070
+ 1612 000f 007C003F 		.ascii	"\000|\000?\000\017\200\003\300\361\300\361\300s\300"
+ 1612      000F8003 
+ 1612      C0F1C0F1 
+ 1612      C073C0
+ 1613 001e 7FC01F00 		.ascii	"\177\300\037\000\000\000\000\000\000\000"
+ 1613      00000000 
+ 1613      0000
+ 1614              		.section	.rodata.acFontHZKaiTi_20_0054,"a"
+ 1615              		.align	2
+ 1618              	acFontHZKaiTi_20_0054:
+ 1619 0000 00000000 		.ascii	"\000\000\000\000\000\000\377\300\377\300\016\000\016"
+ 1619      0000FFC0 
+ 1619      FFC00E00 
+ 1619      0E
+ 1620 000d 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\016\000"
+ 1620      000E000E 
+ 1620      000E000E 
+ 1620      00
+ 1621 001a 0E000E00 		.ascii	"\016\000\016\000\016\000\016\000\000\000\000\000\000"
+ 1621      0E000E00 
+ 1621      00000000 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 34
+
+
+ 1621      00
+ 1622 0027 00       		.ascii	"\000"
+ 1623              		.section	.rodata.acFontHZKaiTi_20_0055,"a"
+ 1624              		.align	2
+ 1627              	acFontHZKaiTi_20_0055:
+ 1628 0000 00000000 		.ascii	"\000\000\000\000\000\000\361\300\361\300\361\300\361"
+ 1628      0000F1C0 
+ 1628      F1C0F1C0 
+ 1628      F1
+ 1629 000d C0F1C0F1 		.ascii	"\300\361\300\361\300\361\300\361\300\361\300\361\300"
+ 1629      C0F1C0F1 
+ 1629      C0F1C0F1 
+ 1629      C0
+ 1630 001a F1C07BC0 		.ascii	"\361\300{\300\177\300\037\000\000\000\000\000\000\000"
+ 1630      7FC01F00 
+ 1630      00000000 
+ 1630      0000
+ 1631              		.section	.rodata.acFontHZKaiTi_20_0056,"a"
+ 1632              		.align	2
+ 1635              	acFontHZKaiTi_20_0056:
+ 1636 0000 00000000 		.ascii	"\000\000\000\000\000\000\341\340\361\340\361\300s\300"
+ 1636      0000E1E0 
+ 1636      F1E0F1C0 
+ 1636      73C0
+ 1637 000e 7BC07B80 		.ascii	"{\300{\200;\200?\200?\200?\000\037\000\037\000\036\000"
+ 1637      3B803F80 
+ 1637      3F803F00 
+ 1637      1F001F00 
+ 1637      1E00
+ 1638 0020 0E000000 		.ascii	"\016\000\000\000\000\000\000\000"
+ 1638      00000000 
+ 1639              		.section	.rodata.acFontHZKaiTi_20_0057,"a"
+ 1640              		.align	2
+ 1643              	acFontHZKaiTi_20_0057:
+ 1644 0000 00000000 		.ascii	"\000\000\000\000\000\000\357\340\377\340\377\340\377"
+ 1644      0000EFE0 
+ 1644      FFE0FFE0 
+ 1644      FF
+ 1645 000d E0FFC0FF 		.ascii	"\340\377\300\377\300\377\300\177\300\177\300\177\300"
+ 1645      C0FFC07F 
+ 1645      C07FC07F 
+ 1645      C0
+ 1646 001a 7FC07BC0 		.ascii	"\177\300{\300{\200{\200\000\000\000\000\000\000"
+ 1646      7B807B80 
+ 1646      00000000 
+ 1646      0000
+ 1647              		.section	.rodata.acFontHZKaiTi_20_0058,"a"
+ 1648              		.align	2
+ 1651              	acFontHZKaiTi_20_0058:
+ 1652 0000 00000000 		.ascii	"\000\000\000\000\000\000\361\300{\300{\200?\200?\000"
+ 1652      0000F1C0 
+ 1652      7BC07B80 
+ 1652      3F803F00 
+ 1653 0010 1F001E00 		.ascii	"\037\000\036\000\037\000\037\000?\200;\200{\300\361"
+ 1653      1F001F00 
+ 1653      3F803B80 
+ 1653      7BC0F1
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 35
+
+
+ 1654 001f C0E1C000 		.ascii	"\300\341\300\000\000\000\000\000\000"
+ 1654      00000000 
+ 1654      00
+ 1655              		.section	.rodata.acFontHZKaiTi_20_0059,"a"
+ 1656              		.align	2
+ 1659              	acFontHZKaiTi_20_0059:
+ 1660 0000 00000000 		.ascii	"\000\000\000\000\000\000\361\340q\300{\300;\200?\200"
+ 1660      0000F1E0 
+ 1660      71C07BC0 
+ 1660      3B803F80 
+ 1661 0010 1F001F00 		.ascii	"\037\000\037\000\016\000\016\000\016\000\016\000\016"
+ 1661      0E000E00 
+ 1661      0E000E00 
+ 1661      0E
+ 1662 001d 000E000E 		.ascii	"\000\016\000\016\000\000\000\000\000\000\000"
+ 1662      00000000 
+ 1662      000000
+ 1663              		.section	.rodata.acFontHZKaiTi_20_005a,"a"
+ 1664              		.align	2
+ 1667              	acFontHZKaiTi_20_005a:
+ 1668 0000 00000000 		.ascii	"\000\000\000\000\000\000\177\300\177\300\003\300\003"
+ 1668      00007FC0 
+ 1668      7FC003C0 
+ 1668      03
+ 1669 000d 8007800F 		.ascii	"\200\007\200\017\000\016\000\036\000<\000<\000x\000"
+ 1669      000E001E 
+ 1669      003C003C 
+ 1669      007800
+ 1670 001c 7000FFC0 		.ascii	"p\000\377\300\377\300\000\000\000\000\000\000"
+ 1670      FFC00000 
+ 1670      00000000 
+ 1671              		.section	.rodata.acFontHZKaiTi_20_005b,"a"
+ 1672              		.align	2
+ 1675              	acFontHZKaiTi_20_005b:
+ 1676 0000 00001FC0 		.ascii	"\000\000\037\300\037\300\036\000\036\000\036\000\036"
+ 1676      1FC01E00 
+ 1676      1E001E00 
+ 1676      1E
+ 1677 000d 001E001E 		.ascii	"\000\036\000\036\000\036\000\036\000\036\000\036\000"
+ 1677      001E001E 
+ 1677      001E001E 
+ 1677      00
+ 1678 001a 1E001E00 		.ascii	"\036\000\036\000\036\000\036\000\037\300\017\300\000"
+ 1678      1E001E00 
+ 1678      1FC00FC0 
+ 1678      00
+ 1679 0027 00       		.ascii	"\000"
+ 1680              		.section	.rodata.acFontHZKaiTi_20_005c,"a"
+ 1681              		.align	2
+ 1684              	acFontHZKaiTi_20_005c:
+ 1685 0000 00000000 		.ascii	"\000\000\000\000\000\000p\000p\0008\0008\000\034\000"
+ 1685      00007000 
+ 1685      70003800 
+ 1685      38001C00 
+ 1686 0010 1C001C00 		.ascii	"\034\000\034\000\016\000\016\000\007\000\007\000\007"
+ 1686      0E000E00 
+ 1686      07000700 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 36
+
+
+ 1686      07
+ 1687 001d 00038003 		.ascii	"\000\003\200\003\200\001\300\001\300\000\000"
+ 1687      8001C001 
+ 1687      C00000
+ 1688              		.section	.rodata.acFontHZKaiTi_20_005d,"a"
+ 1689              		.align	2
+ 1692              	acFontHZKaiTi_20_005d:
+ 1693 0000 00007E00 		.ascii	"\000\000~\000~\000\016\000\016\000\016\000\016\000\016"
+ 1693      7E000E00 
+ 1693      0E000E00 
+ 1693      0E000E
+ 1694 000f 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\016\000"
+ 1694      000E000E 
+ 1694      000E000E 
+ 1694      00
+ 1695 001c 0E000E00 		.ascii	"\016\000\016\000\016\000~\000~\000\000\000"
+ 1695      0E007E00 
+ 1695      7E000000 
+ 1696              		.section	.rodata.acFontHZKaiTi_20_005e,"a"
+ 1697              		.align	2
+ 1700              	acFontHZKaiTi_20_005e:
+ 1701 0000 00001F00 		.ascii	"\000\000\037\000?\200{\200\000\000\000\000\000\000\000"
+ 1701      3F807B80 
+ 1701      00000000 
+ 1701      000000
+ 1702 000f 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1702      00000000 
+ 1702      00000000 
+ 1702      00
+ 1703 001c 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1703      00000000 
+ 1703      00000000 
+ 1704              		.section	.rodata.acFontHZKaiTi_20_005f,"a"
+ 1705              		.align	2
+ 1708              	acFontHZKaiTi_20_005f:
+ 1709 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1709      00000000 
+ 1709      00000000 
+ 1709      00
+ 1710 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1710      00000000 
+ 1710      00000000 
+ 1710      00
+ 1711 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\377"
+ 1711      00000000 
+ 1711      00000000 
+ 1711      FF
+ 1712 0027 E0       		.ascii	"\340"
+ 1713              		.section	.rodata.acFontHZKaiTi_20_0060,"a"
+ 1714              		.align	2
+ 1717              	acFontHZKaiTi_20_0060:
+ 1718 0000 00001E00 		.ascii	"\000\000\036\000\016\000\017\000\007\000\000\000\000"
+ 1718      0E000F00 
+ 1718      07000000 
+ 1718      00
+ 1719 000d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1719      00000000 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 37
+
+
+ 1719      00000000 
+ 1719      00
+ 1720 001a 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1720      00000000 
+ 1720      00000000 
+ 1720      00
+ 1721 0027 00       		.ascii	"\000"
+ 1722              		.section	.rodata.acFontHZKaiTi_20_0061,"a"
+ 1723              		.align	2
+ 1726              	acFontHZKaiTi_20_0061:
+ 1727 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1727      00000000 
+ 1727      00000000 
+ 1727      00
+ 1728 000d 0000003F 		.ascii	"\000\000\000?\200{\300s\300\037\300\177\300s\300\363"
+ 1728      807BC073 
+ 1728      C01FC07F 
+ 1728      C073C0F3 
+ 1729 001d C07FC03F 		.ascii	"\300\177\300?\300\000\000\000\000\000\000"
+ 1729      C0000000 
+ 1729      000000
+ 1730              		.section	.rodata.acFontHZKaiTi_20_0062,"a"
+ 1731              		.align	2
+ 1734              	acFontHZKaiTi_20_0062:
+ 1735 0000 00000000 		.ascii	"\000\000\000\000\000\000p\000p\000p\000p\000~\000\177"
+ 1735      00007000 
+ 1735      70007000 
+ 1735      70007E00 
+ 1735      7F
+ 1736 0011 807FC073 		.ascii	"\200\177\300s\300q\300q\300q\300{\300\177\200\177\000"
+ 1736      C071C071 
+ 1736      C071C07B 
+ 1736      C07F807F 
+ 1736      00
+ 1737 0022 00000000 		.ascii	"\000\000\000\000\000\000"
+ 1737      0000
+ 1738              		.section	.rodata.acFontHZKaiTi_20_0063,"a"
+ 1739              		.align	2
+ 1742              	acFontHZKaiTi_20_0063:
+ 1743 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1743      00000000 
+ 1743      00000000 
+ 1743      00
+ 1744 000d 0000003F 		.ascii	"\000\000\000?\200{\300q\300\360\000\360\000\361\300"
+ 1744      807BC071 
+ 1744      C0F000F0 
+ 1744      00F1C0
+ 1745 001c 7BC07F80 		.ascii	"{\300\177\200\037\000\000\000\000\000\000\000"
+ 1745      1F000000 
+ 1745      00000000 
+ 1746              		.section	.rodata.acFontHZKaiTi_20_0064,"a"
+ 1747              		.align	2
+ 1750              	acFontHZKaiTi_20_0064:
+ 1751 0000 00000000 		.ascii	"\000\000\000\000\000\000\001\300\001\300\001\300\001"
+ 1751      000001C0 
+ 1751      01C001C0 
+ 1751      01
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 38
+
+
+ 1752 000d C00FC03F 		.ascii	"\300\017\300?\300\177\300\363\300\361\300\361\300\363"
+ 1752      C07FC0F3 
+ 1752      C0F1C0F1 
+ 1752      C0F3
+ 1753 001b C073C07F 		.ascii	"\300s\300\177\300\037\300\000\000\000\000\000\000"
+ 1753      C01FC000 
+ 1753      00000000 
+ 1753      00
+ 1754              		.section	.rodata.acFontHZKaiTi_20_0065,"a"
+ 1755              		.align	2
+ 1758              	acFontHZKaiTi_20_0065:
+ 1759 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1759      00000000 
+ 1759      00000000 
+ 1759      00
+ 1760 000d 0000003F 		.ascii	"\000\000\000?\200{\300q\300\377\300\360\000\361\300"
+ 1760      807BC071 
+ 1760      C0FFC0F0 
+ 1760      00F1C0
+ 1761 001c 7BC03FC0 		.ascii	"{\300?\300\037\000\000\000\000\000\000\000"
+ 1761      1F000000 
+ 1761      00000000 
+ 1762              		.section	.rodata.acFontHZKaiTi_20_0066,"a"
+ 1763              		.align	2
+ 1766              	acFontHZKaiTi_20_0066:
+ 1767 0000 00000000 		.ascii	"\000\000\000\000\000\000\017\300\037\300\036\000\034"
+ 1767      00000FC0 
+ 1767      1FC01E00 
+ 1767      1C
+ 1768 000d 001E00FF 		.ascii	"\000\036\000\377\300\036\000\034\000\034\000\034\000"
+ 1768      C01E001C 
+ 1768      001C001C 
+ 1768      00
+ 1769 001a 1C001C00 		.ascii	"\034\000\034\000\034\000\034\000\000\000\000\000\000"
+ 1769      1C001C00 
+ 1769      00000000 
+ 1769      00
+ 1770 0027 00       		.ascii	"\000"
+ 1771              		.section	.rodata.acFontHZKaiTi_20_0067,"a"
+ 1772              		.align	2
+ 1775              	acFontHZKaiTi_20_0067:
+ 1776 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1776      00000000 
+ 1776      00000000 
+ 1776      00
+ 1777 000d 0000C03F 		.ascii	"\000\000\300?\340\177\200s\200{\200?\200~\000x\000\177"
+ 1777      E07F8073 
+ 1777      807B803F 
+ 1777      807E0078 
+ 1777      007F
+ 1778 001f C077C0F1 		.ascii	"\300w\300\361\300\177\300\037\000"
+ 1778      C07FC01F 
+ 1778      00
+ 1779              		.section	.rodata.acFontHZKaiTi_20_0068,"a"
+ 1780              		.align	2
+ 1783              	acFontHZKaiTi_20_0068:
+ 1784 0000 00000000 		.ascii	"\000\000\000\000\000\000p\000p\000p\000p\000p\000\177"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 39
+
+
+ 1784      00007000 
+ 1784      70007000 
+ 1784      70007000 
+ 1784      7F
+ 1785 0011 807BC079 		.ascii	"\200{\300y\300q\300q\300q\300q\300q\300q\300\000\000"
+ 1785      C071C071 
+ 1785      C071C071 
+ 1785      C071C071 
+ 1785      C00000
+ 1786 0024 00000000 		.ascii	"\000\000\000\000"
+ 1787              		.section	.rodata.acFontHZKaiTi_20_0069,"a"
+ 1788              		.align	2
+ 1791              	acFontHZKaiTi_20_0069:
+ 1792 0000 00000000 		.ascii	"\000\000\000\000\000\000\016\000\036\000\014\000\000"
+ 1792      00000E00 
+ 1792      1E000C00 
+ 1792      00
+ 1793 000d 0000000E 		.ascii	"\000\000\000\016\000\016\000\016\000\016\000\016\000"
+ 1793      000E000E 
+ 1793      000E000E 
+ 1793      00
+ 1794 001a 0E000E00 		.ascii	"\016\000\016\000\016\000\016\000\000\000\000\000\000"
+ 1794      0E000E00 
+ 1794      00000000 
+ 1794      00
+ 1795 0027 00       		.ascii	"\000"
+ 1796              		.section	.rodata.acFontHZKaiTi_20_006a,"a"
+ 1797              		.align	2
+ 1800              	acFontHZKaiTi_20_006a:
+ 1801 0000 00000000 		.ascii	"\000\000\000\000\000\000\007\200\007\200\003\000\000"
+ 1801      00000780 
+ 1801      07800300 
+ 1801      00
+ 1802 000d 00000007 		.ascii	"\000\000\000\007\200\007\200\007\200\007\200\007\200"
+ 1802      80078007 
+ 1802      80078007 
+ 1802      80
+ 1803 001a 07800780 		.ascii	"\007\200\007\200\007\200\007\200'\000\177\000<\000"
+ 1803      07800780 
+ 1803      27007F00 
+ 1803      3C00
+ 1804              		.section	.rodata.acFontHZKaiTi_20_006b,"a"
+ 1805              		.align	2
+ 1808              	acFontHZKaiTi_20_006b:
+ 1809 0000 00000000 		.ascii	"\000\000\000\000\000\000p\000p\000p\000p\000p\000s\200"
+ 1809      00007000 
+ 1809      70007000 
+ 1809      70007000 
+ 1809      7380
+ 1810 0012 77007E00 		.ascii	"w\000~\000~\000\177\000w\200s\200s\300q\300\000\000"
+ 1810      7E007F00 
+ 1810      77807380 
+ 1810      73C071C0 
+ 1810      0000
+ 1811 0024 00000000 		.ascii	"\000\000\000\000"
+ 1812              		.section	.rodata.acFontHZKaiTi_20_006c,"a"
+ 1813              		.align	2
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 40
+
+
+ 1816              	acFontHZKaiTi_20_006c:
+ 1817 0000 00000000 		.ascii	"\000\000\000\000\000\000\016\000\016\000\016\000\016"
+ 1817      00000E00 
+ 1817      0E000E00 
+ 1817      0E
+ 1818 000d 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\016\000"
+ 1818      000E000E 
+ 1818      000E000E 
+ 1818      00
+ 1819 001a 0E000E00 		.ascii	"\016\000\016\000\016\000\016\000\000\000\000\000\000"
+ 1819      0E000E00 
+ 1819      00000000 
+ 1819      00
+ 1820 0027 00       		.ascii	"\000"
+ 1821              		.section	.rodata.acFontHZKaiTi_20_006d,"a"
+ 1822              		.align	2
+ 1825              	acFontHZKaiTi_20_006d:
+ 1826 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1826      00000000 
+ 1826      00000000 
+ 1826      00
+ 1827 000d 000000FF 		.ascii	"\000\000\000\377\340\377\340\356\340\356\340\356\340"
+ 1827      E0FFE0EE 
+ 1827      E0EEE0EE 
+ 1827      E0
+ 1828 001a EEE0EEE0 		.ascii	"\356\340\356\340\356\340\356\340\000\000\000\000\000"
+ 1828      EEE0EEE0 
+ 1828      00000000 
+ 1828      00
+ 1829 0027 00       		.ascii	"\000"
+ 1830              		.section	.rodata.acFontHZKaiTi_20_006e,"a"
+ 1831              		.align	2
+ 1834              	acFontHZKaiTi_20_006e:
+ 1835 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1835      00000000 
+ 1835      00000000 
+ 1835      00
+ 1836 000d 0000007F 		.ascii	"\000\000\000\177\200{\300y\300q\300q\300q\300q\300q"
+ 1836      807BC079 
+ 1836      C071C071 
+ 1836      C071C071 
+ 1836      C071
+ 1837 001f C071C000 		.ascii	"\300q\300\000\000\000\000\000\000"
+ 1837      00000000 
+ 1837      00
+ 1838              		.section	.rodata.acFontHZKaiTi_20_006f,"a"
+ 1839              		.align	2
+ 1842              	acFontHZKaiTi_20_006f:
+ 1843 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1843      00000000 
+ 1843      00000000 
+ 1843      00
+ 1844 000d 0000003F 		.ascii	"\000\000\000?\200\177\300q\300\361\340\361\340\361\300"
+ 1844      807FC071 
+ 1844      C0F1E0F1 
+ 1844      E0F1C0
+ 1845 001c 7BC03F80 		.ascii	"{\300?\200\037\000\000\000\000\000\000\000"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 41
+
+
+ 1845      1F000000 
+ 1845      00000000 
+ 1846              		.section	.rodata.acFontHZKaiTi_20_0070,"a"
+ 1847              		.align	2
+ 1850              	acFontHZKaiTi_20_0070:
+ 1851 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1851      00000000 
+ 1851      00000000 
+ 1851      00
+ 1852 000d 0000007F 		.ascii	"\000\000\000\177\200\177\300s\300q\300q\300q\300{\300"
+ 1852      807FC073 
+ 1852      C071C071 
+ 1852      C071C07B 
+ 1852      C0
+ 1853 001e 7F807F00 		.ascii	"\177\200\177\000p\000p\000p\000"
+ 1853      70007000 
+ 1853      7000
+ 1854              		.section	.rodata.acFontHZKaiTi_20_0071,"a"
+ 1855              		.align	2
+ 1858              	acFontHZKaiTi_20_0071:
+ 1859 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1859      00000000 
+ 1859      00000000 
+ 1859      00
+ 1860 000d 0000003F 		.ascii	"\000\000\000?\300\177\300\363\300\361\300\361\300\363"
+ 1860      C07FC0F3 
+ 1860      C0F1C0F1 
+ 1860      C0F3
+ 1861 001b C073C07F 		.ascii	"\300s\300\177\300?\300\001\300\001\300\001\300"
+ 1861      C03FC001 
+ 1861      C001C001 
+ 1861      C0
+ 1862              		.section	.rodata.acFontHZKaiTi_20_0072,"a"
+ 1863              		.align	2
+ 1866              	acFontHZKaiTi_20_0072:
+ 1867 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1867      00000000 
+ 1867      00000000 
+ 1867      00
+ 1868 000d 0000003F 		.ascii	"\000\000\000?\200?\200<\0008\0008\0008\0008\0008\000"
+ 1868      803F803C 
+ 1868      00380038 
+ 1868      00380038 
+ 1868      003800
+ 1869 0020 38000000 		.ascii	"8\000\000\000\000\000\000\000"
+ 1869      00000000 
+ 1870              		.section	.rodata.acFontHZKaiTi_20_0073,"a"
+ 1871              		.align	2
+ 1874              	acFontHZKaiTi_20_0073:
+ 1875 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1875      00000000 
+ 1875      00000000 
+ 1875      00
+ 1876 000d 0000003F 		.ascii	"\000\000\000?\200{\300x\000~\000\037\200\003\300s\300"
+ 1876      807BC078 
+ 1876      007E001F 
+ 1876      8003C073 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 42
+
+
+ 1876      C0
+ 1877 001e 7FC01F00 		.ascii	"\177\300\037\000\000\000\000\000\000\000"
+ 1877      00000000 
+ 1877      0000
+ 1878              		.section	.rodata.acFontHZKaiTi_20_0074,"a"
+ 1879              		.align	2
+ 1882              	acFontHZKaiTi_20_0074:
+ 1883 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\034\000\034"
+ 1883      00000000 
+ 1883      00001C00 
+ 1883      1C
+ 1884 000d 003E00FF 		.ascii	"\000>\000\377\200>\000\034\000\034\000\034\000\034\000"
+ 1884      803E001C 
+ 1884      001C001C 
+ 1884      001C00
+ 1885 001c 1C001FC0 		.ascii	"\034\000\037\300\017\300\000\000\000\000\000\000"
+ 1885      0FC00000 
+ 1885      00000000 
+ 1886              		.section	.rodata.acFontHZKaiTi_20_0075,"a"
+ 1887              		.align	2
+ 1890              	acFontHZKaiTi_20_0075:
+ 1891 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1891      00000000 
+ 1891      00000000 
+ 1891      00
+ 1892 000d 00000071 		.ascii	"\000\000\000q\300q\300q\300q\300q\300s\300s\300\177"
+ 1892      C071C071 
+ 1892      C071C071 
+ 1892      C073C073 
+ 1892      C07F
+ 1893 001f C03FC000 		.ascii	"\300?\300\000\000\000\000\000\000"
+ 1893      00000000 
+ 1893      00
+ 1894              		.section	.rodata.acFontHZKaiTi_20_0076,"a"
+ 1895              		.align	2
+ 1898              	acFontHZKaiTi_20_0076:
+ 1899 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1899      00000000 
+ 1899      00000000 
+ 1899      00
+ 1900 000d 00000071 		.ascii	"\000\000\000q\300s\300{\200;\200?\200?\000\037\000\037"
+ 1900      C073C07B 
+ 1900      803B803F 
+ 1900      803F001F 
+ 1900      001F
+ 1901 001f 001E0000 		.ascii	"\000\036\000\000\000\000\000\000\000"
+ 1901      00000000 
+ 1901      00
+ 1902              		.section	.rodata.acFontHZKaiTi_20_0077,"a"
+ 1903              		.align	2
+ 1906              	acFontHZKaiTi_20_0077:
+ 1907 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1907      00000000 
+ 1907      00000000 
+ 1907      00
+ 1908 000d 000000FF 		.ascii	"\000\000\000\377\340\377\340\377\300\377\300\177\300"
+ 1908      E0FFE0FF 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 43
+
+
+ 1908      C0FFC07F 
+ 1908      C0
+ 1909 001a 7FC07FC0 		.ascii	"\177\300\177\300{\200;\200\000\000\000\000\000\000"
+ 1909      7B803B80 
+ 1909      00000000 
+ 1909      0000
+ 1910              		.section	.rodata.acFontHZKaiTi_20_0078,"a"
+ 1911              		.align	2
+ 1914              	acFontHZKaiTi_20_0078:
+ 1915 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1915      00000000 
+ 1915      00000000 
+ 1915      00
+ 1916 000d 0000007B 		.ascii	"\000\000\000{\300?\200?\000\037\000\036\000\037\000"
+ 1916      C03F803F 
+ 1916      001F001E 
+ 1916      001F00
+ 1917 001c 3F807BC0 		.ascii	"?\200{\300q\300\000\000\000\000\000\000"
+ 1917      71C00000 
+ 1917      00000000 
+ 1918              		.section	.rodata.acFontHZKaiTi_20_0079,"a"
+ 1919              		.align	2
+ 1922              	acFontHZKaiTi_20_0079:
+ 1923 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1923      00000000 
+ 1923      00000000 
+ 1923      00
+ 1924 000d 000000F1 		.ascii	"\000\000\000\361\300s\300{\200;\200?\200?\000\037\000"
+ 1924      C073C07B 
+ 1924      803B803F 
+ 1924      803F001F 
+ 1924      00
+ 1925 001e 1F001E00 		.ascii	"\037\000\036\000\036\000|\0008\000"
+ 1925      1E007C00 
+ 1925      3800
+ 1926              		.section	.rodata.acFontHZKaiTi_20_007a,"a"
+ 1927              		.align	2
+ 1930              	acFontHZKaiTi_20_007a:
+ 1931 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1931      00000000 
+ 1931      00000000 
+ 1931      00
+ 1932 000d 0000007F 		.ascii	"\000\000\000\177\300\007\200\007\200\017\000\036\000"
+ 1932      C0078007 
+ 1932      800F001E 
+ 1932      00
+ 1933 001a 3C007800 		.ascii	"<\000x\000\177\300\177\300\000\000\000\000\000\000"
+ 1933      7FC07FC0 
+ 1933      00000000 
+ 1933      0000
+ 1934              		.section	.rodata.acFontHZKaiTi_20_007b,"a"
+ 1935              		.align	2
+ 1938              	acFontHZKaiTi_20_007b:
+ 1939 0000 000003C0 		.ascii	"\000\000\003\300\007\200\007\000\007\000\007\000\007"
+ 1939      07800700 
+ 1939      07000700 
+ 1939      07
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 44
+
+
+ 1940 000d 00070007 		.ascii	"\000\007\000\007\000\017\000\017\000\007\000\007\000"
+ 1940      000F000F 
+ 1940      00070007 
+ 1940      00
+ 1941 001a 07000700 		.ascii	"\007\000\007\000\007\000\007\000\007\200\003\300\000"
+ 1941      07000700 
+ 1941      078003C0 
+ 1941      00
+ 1942 0027 00       		.ascii	"\000"
+ 1943              		.section	.rodata.acFontHZKaiTi_20_007c,"a"
+ 1944              		.align	2
+ 1947              	acFontHZKaiTi_20_007c:
+ 1948 0000 0E000E00 		.ascii	"\016\000\016\000\016\000\016\000\016\000\016\000\016"
+ 1948      0E000E00 
+ 1948      0E000E00 
+ 1948      0E
+ 1949 000d 000E000E 		.ascii	"\000\016\000\016\000\016\000\016\000\016\000\016\000"
+ 1949      000E000E 
+ 1949      000E000E 
+ 1949      00
+ 1950 001a 0E000E00 		.ascii	"\016\000\016\000\016\000\016\000\016\000\016\000\016"
+ 1950      0E000E00 
+ 1950      0E000E00 
+ 1950      0E
+ 1951 0027 00       		.ascii	"\000"
+ 1952              		.section	.rodata.acFontHZKaiTi_20_007d,"a"
+ 1953              		.align	2
+ 1956              	acFontHZKaiTi_20_007d:
+ 1957 0000 00007800 		.ascii	"\000\000x\000<\000<\000<\000<\000<\000<\000<\000\036"
+ 1957      3C003C00 
+ 1957      3C003C00 
+ 1957      3C003C00 
+ 1957      3C001E
+ 1958 0013 001E003C 		.ascii	"\000\036\000<\000<\000<\000<\000<\000<\000<\000x\000"
+ 1958      003C003C 
+ 1958      003C003C 
+ 1958      003C003C 
+ 1958      007800
+ 1959 0026 0000     		.ascii	"\000\000"
+ 1960              		.section	.rodata.acFontHZKaiTi_20_007e,"a"
+ 1961              		.align	2
+ 1964              	acFontHZKaiTi_20_007e:
+ 1965 0000 3CC07FC0 		.ascii	"<\300\177\300\177\300\003\200\000\000\000\000\000\000"
+ 1965      7FC00380 
+ 1965      00000000 
+ 1965      0000
+ 1966 000e 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1966      00000000 
+ 1966      00000000 
+ 1966      00
+ 1967 001b 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1967      00000000 
+ 1967      00000000 
+ 1967      00
+ 1968              		.section	.rodata.acFontHZKaiTi_20_007f,"a"
+ 1969              		.align	2
+ 1972              	acFontHZKaiTi_20_007f:
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 45
+
+
+ 1973 0000 00000000 		.ascii	"\000\000\000\000\000\370\370\370\370\370\370\370\370"
+ 1973      00F8F8F8 
+ 1973      F8F8F8F8 
+ 1973      F8
+ 1974 000d F8F8F800 		.ascii	"\370\370\370\000\000\000\000"
+ 1974      000000
+ 1975              		.section	.rodata.acFontHZKaiTi_20_b2ce,"a"
+ 1976              		.align	2
+ 1979              	acFontHZKaiTi_20_b2ce:
+ 1980 0000 00000000 		.ascii	"\000\000\000\000\360\000\000\370\000\001\336\000\003"
+ 1980      F00000F8 
+ 1980      0001DE00 
+ 1980      03
+ 1981 000d FE0007C0 		.ascii	"\376\000\007\300\000\001\377\200\037\370\000\003\230"
+ 1981      0001FF80 
+ 1981      1FF80003 
+ 1981      98
+ 1982 001a 0003FE00 		.ascii	"\000\003\376\000\007\357\000\017\377\300\037\373\360"
+ 1982      07EF000F 
+ 1982      FFC01FFB 
+ 1982      F0
+ 1983 0027 30FC0001 		.ascii	"0\374\000\001\374\000\003x\000\000\360\000\001\300\000"
+ 1983      FC000378 
+ 1983      0000F000 
+ 1983      01C000
+ 1984 0036 07000000 		.ascii	"\007\000\000\000\000\000"
+ 1984      0000
+ 1985              		.section	.rodata.acFontHZKaiTi_20_b2e2,"a"
+ 1986              		.align	2
+ 1989              	acFontHZKaiTi_20_b2e2:
+ 1990 0000 00000000 		.ascii	"\000\000\000\000\000\300\000\000\340\037\370\340\017"
+ 1990      00C00000 
+ 1990      E01FF8E0 
+ 1990      0F
+ 1991 000d B8E001FE 		.ascii	"\270\340\001\376\340#\377\340;\377\340?\377\340\017"
+ 1991      E023FFE0 
+ 1991      3BFFE03F 
+ 1991      FFE00F
+ 1992 001c FFE01FFF 		.ascii	"\377\340\037\377\340\037\377\3408\360\340y\370\340;"
+ 1992      E01FFFE0 
+ 1992      38F0E079 
+ 1992      F8E03B
+ 1993 002b BCE00703 		.ascii	"\274\340\007\003\340\000\001\340\000\001\300\000\000"
+ 1993      E00001E0 
+ 1993      0001C000 
+ 1993      00
+ 1994 0038 00000000 		.ascii	"\000\000\000\000"
+ 1995              		.section	.rodata.acFontHZKaiTi_20_b3c2,"a"
+ 1996              		.align	2
+ 1999              	acFontHZKaiTi_20_b3c2:
+ 2000 0000 00000000 		.ascii	"\000\000\000\000\014\000\003\236\000?\334\000;\235\200"
+ 2000      0C00039E 
+ 2000      003FDC00 
+ 2000      3B9D80
+ 2001 000f 1F3F801F 		.ascii	"\037?\200\037\374\000\033>\000\037\376\000\037\357\300"
+ 2001      FC001B3E 
+ 2001      001FFE00 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 46
+
+
+ 2001      1FEFC0
+ 2002 001e 19FFC018 		.ascii	"\031\377\300\030\356\0008\017\0008\357\3009\357\340"
+ 2002      EE00380F 
+ 2002      0038EFC0 
+ 2002      39EFE0
+ 2003 002d 39CEE039 		.ascii	"9\316\3409\276\000\000\034\000\000\000\000\000\000\000"
+ 2003      BE00001C 
+ 2003      00000000 
+ 2003      000000
+ 2004              		.section	.rodata.acFontHZKaiTi_20_b4f3,"a"
+ 2005              		.align	2
+ 2008              	acFontHZKaiTi_20_b4f3:
+ 2009 0000 00000000 		.ascii	"\000\000\000\000\300\000\000\360\000\000\360\000\000"
+ 2009      C00000F0 
+ 2009      0000F000 
+ 2009      00
+ 2010 000d E00000E0 		.ascii	"\340\000\000\340\000\000\340\000\000\377\200\037\374"
+ 2010      0000E000 
+ 2010      00FF801F 
+ 2010      FC
+ 2011 001a 0006E000 		.ascii	"\000\006\340\000\000\340\000\000\360\000\000\370\000"
+ 2011      00E00000 
+ 2011      F00000F8 
+ 2011      00
+ 2012 0027 01DC0003 		.ascii	"\001\334\000\003\336\000\003\217\000\017\007\300\034"
+ 2012      DE00038F 
+ 2012      000F07C0 
+ 2012      1C
+ 2013 0034 03F00000 		.ascii	"\003\360\000\000\000\000\000\000"
+ 2013      00000000 
+ 2014              		.section	.rodata.acFontHZKaiTi_20_b5c1,"a"
+ 2015              		.align	2
+ 2018              	acFontHZKaiTi_20_b5c1:
+ 2019 0000 00000000 		.ascii	"\000\000\000\0008\000\0008\000\016{\000\007\177\200"
+ 2019      38000038 
+ 2019      000E7B00 
+ 2019      077F80
+ 2020 000f 03E78000 		.ascii	"\003\347\200\000\376\000\001\270\000\007|\000\016\177"
+ 2020      FE0001B8 
+ 2020      00077C00 
+ 2020      0E7F
+ 2021 001d 001EE7E0 		.ascii	"\000\036\347\340\001\217\000\017\377\200\007\377\000"
+ 2021      018F000F 
+ 2021      FF8007FF 
+ 2021      00
+ 2022 002a 07FF0007 		.ascii	"\007\377\000\007\377\000\037\377\360\177\000\000\000"
+ 2022      FF001FFF 
+ 2022      F07F0000 
+ 2022      00
+ 2023 0037 00000000 		.ascii	"\000\000\000\000\000"
+ 2023      00
+ 2024              		.section	.rodata.acFontHZKaiTi_20_b5e7,"a"
+ 2025              		.align	2
+ 2028              	acFontHZKaiTi_20_b5e7:
+ 2029 0000 00000000 		.ascii	"\000\000\000\000\300\000\001\340\000\001\340\000\000"
+ 2029      C00001E0 
+ 2029      0001E000 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 47
+
+
+ 2029      00
+ 2030 000d E00001FF 		.ascii	"\340\000\001\377\000\037\307\200\034\307\000\037\377"
+ 2030      001FC780 
+ 2030      1CC7001F 
+ 2030      FF
+ 2031 001a 000FCE00 		.ascii	"\000\017\316\000\016\316\000\017\374\000\017\300\000"
+ 2031      0ECE000F 
+ 2031      FC000FC0 
+ 2031      00
+ 2032 0027 01C0C000 		.ascii	"\001\300\300\000\300\340\000\340\340\000\177\340\000"
+ 2032      C0E000E0 
+ 2032      E0007FE0 
+ 2032      00
+ 2033 0034 1F000000 		.ascii	"\037\000\000\000\000\000\000\000"
+ 2033      00000000 
+ 2034              		.section	.rodata.acFontHZKaiTi_20_b7c0,"a"
+ 2035              		.align	2
+ 2038              	acFontHZKaiTi_20_b7c0:
+ 2039 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\036\000\007\317\000?\206"
+ 2039      0000001E 
+ 2039      0007CF00 
+ 2039      3F86
+ 2040 000e 003F0000 		.ascii	"\000?\000\000>\017\360?\376\000\037\034\000\037\037"
+ 2040      3E0FF03F 
+ 2040      FE001F1C 
+ 2040      001F1F
+ 2041 001d 001B3B80 		.ascii	"\000\033;\2008s\3008s\2008\343\2009\307\000;?\0008\036"
+ 2041      3873C038 
+ 2041      738038E3 
+ 2041      8039C700 
+ 2041      3B3F0038 
+ 2042 0032 00001C00 		.ascii	"\000\000\034\000\000\000\000\000\000\000"
+ 2042      00000000 
+ 2042      0000
+ 2043              		.section	.rodata.acFontHZKaiTi_20_babc,"a"
+ 2044              		.align	2
+ 2047              	acFontHZKaiTi_20_babc:
+ 2048 0000 0000000F 		.ascii	"\000\000\000\017\000\000\007\034\000\007\016\000\007"
+ 2048      0000071C 
+ 2048      00070E00 
+ 2048      07
+ 2049 000d 06000701 		.ascii	"\006\000\007\001\300\007\337\300\037\370\000\177\000"
+ 2049      C007DFC0 
+ 2049      1FF8007F 
+ 2049      00
+ 2050 001a 000F3F00 		.ascii	"\000\017?\000\017\376\000\037>\000?>\0007~0g~0\007~"
+ 2050      0FFE001F 
+ 2050      3E003F3E 
+ 2050      00377E30 
+ 2050      677E3007 
+ 2051 002f 700FE7F0 		.ascii	"p\017\347\360\007\301\300\000\000\000\000\000\000"
+ 2051      07C1C000 
+ 2051      00000000 
+ 2051      00
+ 2052              		.section	.rodata.acFontHZKaiTi_20_bbf0,"a"
+ 2053              		.align	2
+ 2056              	acFontHZKaiTi_20_bbf0:
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 48
+
+
+ 2057 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\340\000\000\340\000\000"
+ 2057      000000E0 
+ 2057      0000E000 
+ 2057      00
+ 2058 000d E00000E3 		.ascii	"\340\000\000\343\000\000\347\200\016\357\000\007\374"
+ 2058      0000E780 
+ 2058      0EEF0007 
+ 2058      FC
+ 2059 001a 0007E000 		.ascii	"\000\007\340\000\000\340\000\001\360\000\001\370\000"
+ 2059      00E00001 
+ 2059      F00001F8 
+ 2059      00
+ 2060 0027 03DC0003 		.ascii	"\003\334\000\003\216\000\007\017\200\036\007\3608\001"
+ 2060      8E00070F 
+ 2060      801E07F0 
+ 2060      3801
+ 2061 0035 E0000000 		.ascii	"\340\000\000\000\000\000\000"
+ 2061      000000
+ 2062              		.section	.rodata.acFontHZKaiTi_20_bcbc,"a"
+ 2063              		.align	2
+ 2066              	acFontHZKaiTi_20_bcbc:
+ 2067 0000 00000007 		.ascii	"\000\000\000\007\014\000\007\216\000\007\016\000\007"
+ 2067      0C00078E 
+ 2067      00070E00 
+ 2067      07
+ 2068 000d 0E00070F 		.ascii	"\016\000\007\017\300\007\376\000\037\014\000\007\016"
+ 2068      C007FE00 
+ 2068      1F0C0007 
+ 2068      0E
+ 2069 001a 00079F80 		.ascii	"\000\007\237\200\007\177\000\037w\000\177?\0007\036"
+ 2069      077F001F 
+ 2069      77007F3F 
+ 2069      00371E
+ 2070 0029 00071F00 		.ascii	"\000\007\037\000\017?\300\007\343\360\006\000\000\000"
+ 2070      0F3FC007 
+ 2070      E3F00600 
+ 2070      0000
+ 2071 0037 00000000 		.ascii	"\000\000\000\000\000"
+ 2071      00
+ 2072              		.section	.rodata.acFontHZKaiTi_20_bce0,"a"
+ 2073              		.align	2
+ 2076              	acFontHZKaiTi_20_bce0:
+ 2077 0000 00000000 		.ascii	"\000\000\000\000\000\000\001\336\000\001\336\000\017"
+ 2077      000001DE 
+ 2077      0001DE00 
+ 2077      0F
+ 2078 000d DC0007DF 		.ascii	"\334\000\007\337\300\007\370\000\017\360\000\017\357"
+ 2078      C007F800 
+ 2078      0FF0000F 
+ 2078      EF
+ 2079 001a 000FC700 		.ascii	"\000\017\307\000\001\300\000\000\177\200\017\377\200"
+ 2079      01C00000 
+ 2079      7F800FFF 
+ 2079      80
+ 2080 0027 07FF0007 		.ascii	"\007\377\000\007\377\000\007\377\300?\377\360>\000\000"
+ 2080      FF0007FF 
+ 2080      C03FFFF0 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 49
+
+
+ 2080      3E0000
+ 2081 0036 00000000 		.ascii	"\000\000\000\000\000\000"
+ 2081      0000
+ 2082              		.section	.rodata.acFontHZKaiTi_20_bde1,"a"
+ 2083              		.align	2
+ 2086              	acFontHZKaiTi_20_bde1:
+ 2087 0000 00000000 		.ascii	"\000\000\000\000\000\000\007\017\000\007\217\000\007"
+ 2087      0000070F 
+ 2087      00078F00 
+ 2087      07
+ 2088 000d 06000FC6 		.ascii	"\006\000\017\306\000\017\307\360\037\377\200?\006\000"
+ 2088      000FC7F0 
+ 2088      1FFF803F 
+ 2088      0600
+ 2089 001b 0607C00F 		.ascii	"\006\007\300\017\377\300\036\000\000\030\317\300\007"
+ 2089      FFC01E00 
+ 2089      0018CFC0 
+ 2089      07
+ 2090 0028 BDE03E39 		.ascii	"\275\340>9\3008?\300\000\030\000\000\000\000\000\000"
+ 2090      C0383FC0 
+ 2090      00180000 
+ 2090      00000000 
+ 2091 0038 00000000 		.ascii	"\000\000\000\000"
+ 2092              		.section	.rodata.acFontHZKaiTi_20_bedd,"a"
+ 2093              		.align	2
+ 2096              	acFontHZKaiTi_20_bedd:
+ 2097 0000 00000006 		.ascii	"\000\000\000\006\000\000\007\200\000\007?\300\007{\300"
+ 2097      00000780 
+ 2097      00073FC0 
+ 2097      077BC0
+ 2098 000f 07338007 		.ascii	"\0073\200\007\377\200?~\000\007w\000\007\367\360\007"
+ 2098      FF803F7E 
+ 2098      00077700 
+ 2098      07F7F007 
+ 2099 001f 7F001F7E 		.ascii	"\177\000\037~\000\177\177\3007\377\340\007\371\300\017"
+ 2099      007F7FC0 
+ 2099      37FFE007 
+ 2099      F9C00F
+ 2100 002e D9C00F9F 		.ascii	"\331\300\017\237\300\007\000\000\000\000\000\000\000"
+ 2100      C0070000 
+ 2100      00000000 
+ 2100      00
+ 2101 003b 00       		.ascii	"\000"
+ 2102              		.section	.rodata.acFontHZKaiTi_20_bfaa,"a"
+ 2103              		.align	2
+ 2106              	acFontHZKaiTi_20_bfaa:
+ 2107 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\377\200\007"
+ 2107      00000000 
+ 2107      0000FF80 
+ 2107      07
+ 2108 000d FC0001DC 		.ascii	"\374\000\001\334\000\001\334\000\001\335\340\017\377"
+ 2108      0001DC00 
+ 2108      01DDE00F 
+ 2108      FF
+ 2109 001a F03FDC00 		.ascii	"\360?\334\000\001\234\000\003\234\000\003\234\000\003"
+ 2109      019C0003 
+ 2109      9C00039C 
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 50
+
+
+ 2109      0003
+ 2110 0028 1C00071C 		.ascii	"\034\000\007\034\000\016\034\000\014\034\000\000\034"
+ 2110      000E1C00 
+ 2110      0C1C0000 
+ 2110      1C
+ 2111 0035 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 2111      000000
+ 2112              		.section	.rodata.acFontHZKaiTi_20_bfc6,"a"
+ 2113              		.align	2
+ 2116              	acFontHZKaiTi_20_bfc6:
+ 2117 0000 00000000 		.ascii	"\000\000\000\000\007\000\001\307\200\003\303\200\007"
+ 2117      070001C7 
+ 2117      8003C380 
+ 2117      07
+ 2118 000d 1F000F9F 		.ascii	"\037\000\017\237\000\003\303\000\007\373\000\177\237"
+ 2118      0003C300 
+ 2118      07FB007F 
+ 2118      9F
+ 2119 001a 003783F8 		.ascii	"\0007\203\370\017\377\300\037\373\000;\203\0003\203"
+ 2119      0FFFC01F 
+ 2119      FB003B83 
+ 2119      003383
+ 2120 0029 00038300 		.ascii	"\000\003\203\000\007\203\000\003\003\000\003\003\000"
+ 2120      07830003 
+ 2120      03000303 
+ 2120      00
+ 2121 0036 00030000 		.ascii	"\000\003\000\000\000\000"
+ 2121      0000
+ 2122              		.section	.rodata.acFontHZKaiTi_20_c6f7,"a"
+ 2123              		.align	2
+ 2126              	acFontHZKaiTi_20_c6f7:
+ 2127 0000 00000000 		.ascii	"\000\000\000\000\000\000\003\377\200\037\373\200\015"
+ 2127      000003FF 
+ 2127      801FFB80 
+ 2127      0D
+ 2128 000d BF000FBF 		.ascii	"\277\000\017\277\000\014\343\200\000\357\300\017\376"
+ 2128      000CE380 
+ 2128      00EFC00F 
+ 2128      FE
+ 2129 001a 0007F000 		.ascii	"\000\007\360\000\001\374\000\003\217\200\017\007\340"
+ 2129      01FC0003 
+ 2129      8F800F07 
+ 2129      E0
+ 2130 0027 39CF801F 		.ascii	"9\317\200\037\373\300\015\373\200\017\377\200\016\030"
+ 2130      FBC00DFB 
+ 2130      800FFF80 
+ 2130      0E18
+ 2131 0035 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 2131      000000
+ 2132              		.section	.rodata.acFontHZKaiTi_20_c7fa,"a"
+ 2133              		.align	2
+ 2136              	acFontHZKaiTi_20_c7fa:
+ 2137 0000 00000000 		.ascii	"\000\000\000\0008\000\0008\000\003\370\000\001\370\000"
+ 2137      38000038 
+ 2137      0003F800 
+ 2137      01F800
+ 2138 000f 01FB0001 		.ascii	"\001\373\000\001\377\300\037\371\300\035\271\300\035"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 51
+
+
+ 2138      FFC01FF9 
+ 2138      C01DB9C0 
+ 2138      1D
+ 2139 001c FFC01FFD 		.ascii	"\377\300\037\375\300\015\271\300\015\263\300\015\377"
+ 2139      C00DB9C0 
+ 2139      0DB3C00D 
+ 2139      FF
+ 2140 0029 C00FEFC0 		.ascii	"\300\017\357\300\014\007\200\000\003\200\000\003\000"
+ 2140      0C078000 
+ 2140      03800003 
+ 2140      00
+ 2141 0036 00000000 		.ascii	"\000\000\000\000\000\000"
+ 2141      0000
+ 2142              		.section	.rodata.acFontHZKaiTi_20_c8f3,"a"
+ 2143              		.align	2
+ 2146              	acFontHZKaiTi_20_c8f3:
+ 2147 0000 00000000 		.ascii	"\000\000\000\000\000\000\014\340\000\016\377\340\006"
+ 2147      00000CE0 
+ 2147      000EFFE0 
+ 2147      06
+ 2148 000d 00E00180 		.ascii	"\000\340\001\200\340\001\317\340y\376\3409\336\340\001"
+ 2148      E001CFE0 
+ 2148      79FEE039 
+ 2148      DEE001
+ 2149 001c FFE00FDC 		.ascii	"\377\340\017\334\340\015\337\340\035\377\340\035\200"
+ 2149      E00DDFE0 
+ 2149      1DFFE01D 
+ 2149      80
+ 2150 0029 E03B80E0 		.ascii	"\340;\200\3409\203\340\030\001\340\000\000\300\000\000"
+ 2150      3983E018 
+ 2150      01E00000 
+ 2150      C00000
+ 2151 0038 00000000 		.ascii	"\000\000\000\000"
+ 2152              		.section	.rodata.acFontHZKaiTi_20_c9e8,"a"
+ 2153              		.align	2
+ 2156              	acFontHZKaiTi_20_c9e8:
+ 2157 0000 00000000 		.ascii	"\000\000\000\000\000\000\016\017\000\017\177\000\003"
+ 2157      00000E0F 
+ 2157      000F7F00 
+ 2157      03
+ 2158 000d 7E00007E 		.ascii	"~\000\000~\000\000\177\300\017w\300\177f\000>?\000\016"
+ 2158      00007FC0 
+ 2158      0F77C07F 
+ 2158      66003E3F 
+ 2158      000E
+ 2159 001f 37000E77 		.ascii	"7\000\016w\000\016>\000\017\236\000\017\036\000\016"
+ 2159      000E3E00 
+ 2159      0F9E000F 
+ 2159      1E000E
+ 2160 002e 3F000EF3 		.ascii	"?\000\016\363\300\000\003\360\000\000\000\000\000\000"
+ 2160      C00003F0 
+ 2160      00000000 
+ 2160      0000
+ 2161              		.section	.rodata.acFontHZKaiTi_20_cab1,"a"
+ 2162              		.align	2
+ 2165              	acFontHZKaiTi_20_cab1:
+ 2166 0000 00000000 		.ascii	"\000\000\000\000\016\000\000\017\000\000\007\000?\207"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 52
+
+
+ 2166      0E00000F 
+ 2166      00000700 
+ 2166      3F87
+ 2167 000e 003B8700 		.ascii	"\000;\207\000;\207\340;\377\360?\367\000?\207\000;\367"
+ 2167      3B87E03B 
+ 2167      FFF03FF7 
+ 2167      003F8700 
+ 2167      3BF7
+ 2168 0020 003BFF00 		.ascii	"\000;\377\000;\207\000?\207\000?\007\000\033\007\000"
+ 2168      3B87003F 
+ 2168      87003F07 
+ 2168      001B0700 
+ 2169 0030 001F0000 		.ascii	"\000\037\000\000\016\000\000\006\000\000\000\000"
+ 2169      0E000006 
+ 2169      00000000 
+ 2170              		.section	.rodata.acFontHZKaiTi_20_cab5,"a"
+ 2171              		.align	2
+ 2174              	acFontHZKaiTi_20_cab5:
+ 2175 0000 00000000 		.ascii	"\000\000\000\000\340\000\000\360\000\000\177\000\017"
+ 2175      E00000F0 
+ 2175      00007F00 
+ 2175      0F
+ 2176 000d FFC01E27 		.ascii	"\377\300\036'\300\037\370\000\033\360\000\000\360\000"
+ 2176      C01FF800 
+ 2176      1BF00000 
+ 2176      F000
+ 2177 001b 07F00003 		.ascii	"\007\360\000\003\377\300\007\377\300?\360\000\000\360"
+ 2177      FFC007FF 
+ 2177      C03FF000 
+ 2177      00F0
+ 2178 0029 0000EE00 		.ascii	"\000\000\356\000\001\307\000\003\207\200\016\003\300"
+ 2178      01C70003 
+ 2178      87800E03 
+ 2178      C0
+ 2179 0036 00000000 		.ascii	"\000\000\000\000\000\000"
+ 2179      0000
+ 2180              		.section	.rodata.acFontHZKaiTi_20_cabc,"a"
+ 2181              		.align	2
+ 2184              	acFontHZKaiTi_20_cabc:
+ 2185 0000 00000000 		.ascii	"\000\000\000\000\000\000\007\016\000\007\017\000\007"
+ 2185      0000070E 
+ 2185      00070F00 
+ 2185      07
+ 2186 000d 0E00071C 		.ascii	"\016\000\007\034\000\007\037\200\007\371\340\007\377"
+ 2186      00071F80 
+ 2186      07F9E007 
+ 2186      FF
+ 2187 001a E07FFE60 		.ascii	"\340\177\376`\177\300\000\017\201\300\007\277\340\007"
+ 2187      7FC0000F 
+ 2187      81C007BF 
+ 2187      E007
+ 2188 0028 B9C007F9 		.ascii	"\271\300\007\371\300\017\377\300\030\034\000\000\000"
+ 2188      C00FFFC0 
+ 2188      181C0000 
+ 2188      00
+ 2189 0035 00000000 		.ascii	"\000\000\000\000\000\000\000"
+ 2189      000000
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 53
+
+
+ 2190              		.section	.rodata.acFontHZKaiTi_20_caf8,"a"
+ 2191              		.align	2
+ 2194              	acFontHZKaiTi_20_caf8:
+ 2195 0000 00000000 		.ascii	"\000\000\000\000\340\000\000\340\000\000\374\000\003"
+ 2195      E00000E0 
+ 2195      0000FC00 
+ 2195      03
+ 2196 000d F80000EC 		.ascii	"\370\000\000\354\000\000\377\000\017\357\000\016\356"
+ 2196      0000FF00 
+ 2196      0FEF000E 
+ 2196      EE
+ 2197 001a 0007FE00 		.ascii	"\000\007\376\000\007\340\000\001\360\000\003\374\000"
+ 2197      07E00001 
+ 2197      F00003FC 
+ 2197      00
+ 2198 0027 07FE000E 		.ascii	"\007\376\000\016\357\300\034\343\360p\340\000\000\340"
+ 2198      EFC01CE3 
+ 2198      F070E000 
+ 2198      00E0
+ 2199 0035 0000E000 		.ascii	"\000\000\340\000\000\000\000"
+ 2199      000000
+ 2200              		.section	.rodata.acFontHZKaiTi_20_cafd,"a"
+ 2201              		.align	2
+ 2204              	acFontHZKaiTi_20_cafd:
+ 2205 0000 00000003 		.ascii	"\000\000\000\003\000\000\003\200\000\003\357\000\017"
+ 2205      00000380 
+ 2205      0003EF00 
+ 2205      0F
+ 2206 000d EE000FCE 		.ascii	"\356\000\017\316\000\003\376\000\037\237\340\007\377"
+ 2206      0003FE00 
+ 2206      1F9FE007 
+ 2206      FF
+ 2207 001a 000FFF00 		.ascii	"\000\017\377\000\0377\000\007\377\000\037\376\000\177"
+ 2207      1F370007 
+ 2207      FF001FFE 
+ 2207      007F
+ 2208 0028 CE0007DF 		.ascii	"\316\000\007\337\000\003\377\200\007\343\300\034\301"
+ 2208      0003FF80 
+ 2208      07E3C01C 
+ 2208      C1
+ 2209 0035 F0000000 		.ascii	"\360\000\000\000\000\000\000"
+ 2209      000000
+ 2210              		.section	.rodata.acFontHZKaiTi_20_cda8,"a"
+ 2211              		.align	2
+ 2214              	acFontHZKaiTi_20_cda8:
+ 2215 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\037\200\000\377\200\036"
+ 2215      0000001F 
+ 2215      8000FF80 
+ 2215      1E
+ 2216 000d 3E000E3F 		.ascii	">\000\016?\000\000?\200\000\377\200\016\377\200>\377"
+ 2216      00003F80 
+ 2216      00FF800E 
+ 2216      FF803EFF 
+ 2217 001d 800CFF80 		.ascii	"\200\014\377\200\014\377\200\016\377\300\016\377\300"
+ 2217      0CFF800E 
+ 2217      FFC00EFF 
+ 2217      C0
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 54
+
+
+ 2218 002a 7F9F8031 		.ascii	"\177\237\2001\363\200\000?\360\000\017\300\000\000\000"
+ 2218      F380003F 
+ 2218      F0000FC0 
+ 2218      000000
+ 2219 0039 000000   		.ascii	"\000\000\000"
+ 2220              		.section	.rodata.acFontHZKaiTi_20_cede,"a"
+ 2221              		.align	2
+ 2224              	acFontHZKaiTi_20_cede:
+ 2225 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\014\000\003\376\000\001"
+ 2225      0000000C 
+ 2225      0003FE00 
+ 2225      01
+ 2226 000d E00000E0 		.ascii	"\340\000\000\340\000\000\340\000\000\377\000\017\340"
+ 2226      0000E000 
+ 2226      00FF000F 
+ 2226      E0
+ 2227 001a 0001F000 		.ascii	"\000\001\360\000\001\360\000\003\360\000\003\360\000"
+ 2227      01F00003 
+ 2227      F00003F0 
+ 2227      00
+ 2228 0027 0770700E 		.ascii	"\007pp\016pp8x\360\000?\360\000\017\200\000\000\000"
+ 2228      70703878 
+ 2228      F0003FF0 
+ 2228      000F8000 
+ 2228      0000
+ 2229 0039 000000   		.ascii	"\000\000\000"
+ 2230              		.section	.rodata.acFontHZKaiTi_20_cfdf,"a"
+ 2231              		.align	2
+ 2234              	acFontHZKaiTi_20_cfdf:
+ 2235 0000 00000000 		.ascii	"\000\000\000\000\000\000\006\177\000\007;\200\0168\000"
+ 2235      0000067F 
+ 2235      00073B80 
+ 2235      0E3800
+ 2236 000f 0FFF000F 		.ascii	"\017\377\000\017\374\000\037\373\200?\037\000\007\177"
+ 2236      FC001FFB 
+ 2236      803F1F00 
+ 2236      077F
+ 2237 001d 800EFF80 		.ascii	"\200\016\377\200\037\217\000\036\016\000\001\336\000"
+ 2237      1F8F001E 
+ 2237      0E0001DE 
+ 2237      00
+ 2238 002a 07BF603E 		.ascii	"\007\277`>\343\340\010\001\340\000\000\340\000\000\000"
+ 2238      E3E00801 
+ 2238      E00000E0 
+ 2238      000000
+ 2239 0039 000000   		.ascii	"\000\000\000"
+ 2240              		.section	.rodata.acFontHZKaiTi_20_d0c5,"a"
+ 2241              		.align	2
+ 2244              	acFontHZKaiTi_20_d0c5:
+ 2245 0000 00000000 		.ascii	"\000\000\000\000\000\000\007\236\000\007\016\000\007"
+ 2245      0000079E 
+ 2245      00070E00 
+ 2245      07
+ 2246 000d 00000E07 		.ascii	"\000\000\016\007\360\017\377\200\036\000\000\037?\000"
+ 2246      F00FFF80 
+ 2246      1E00001F 
+ 2246      3F00
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 55
+
+
+ 2247 001b 3E000076 		.ascii	">\000\000v\037\200\006>\000\006\007\200\006\177\300"
+ 2247      1F80063E 
+ 2247      00060780 
+ 2247      067FC0
+ 2248 002a 0E73800E 		.ascii	"\016s\200\016s\200\016\177\200\016\000\000\000\000\000"
+ 2248      73800E7F 
+ 2248      800E0000 
+ 2248      000000
+ 2249 0039 000000   		.ascii	"\000\000\000"
+ 2250              		.section	.rodata.acFontHZKaiTi_20_d1a7,"a"
+ 2251              		.align	2
+ 2254              	acFontHZKaiTi_20_d1a7:
+ 2255 0000 00040000 		.ascii	"\000\004\000\000\017\000\007~\000\003\376\000\003\274"
+ 2255      0F00077E 
+ 2255      0003FE00 
+ 2255      03BC
+ 2256 000e 00003FE0 		.ascii	"\000\000?\340\037\361\360\0349\300?\374\00088\000\000"
+ 2256      1FF1F01C 
+ 2256      39C03FFC 
+ 2256      00383800 
+ 2256      00
+ 2257 001f 700000FF 		.ascii	"p\000\000\377\300?\360\000\000p\000\0008\000\000x\000"
+ 2257      C03FF000 
+ 2257      00700000 
+ 2257      38000078 
+ 2257      00
+ 2258 0030 00700001 		.ascii	"\000p\000\001\360\000\000\340\000\000\000\000"
+ 2258      F00000E0 
+ 2258      00000000 
+ 2259              		.section	.rodata.acFontHZKaiTi_20_d4f8,"a"
+ 2260              		.align	2
+ 2263              	acFontHZKaiTi_20_d4f8:
+ 2264 0000 00000000 		.ascii	"\000\000\000\000\016\000\003\234\000\001\363\000\000"
+ 2264      0E00039C 
+ 2264      0001F300 
+ 2264      00
+ 2265 000d FFC01FFF 		.ascii	"\377\300\037\377\300\037\377\200\017\377\200\016\377"
+ 2265      C01FFF80 
+ 2265      0FFF800E 
+ 2265      FF
+ 2266 001a 0007E000 		.ascii	"\000\007\340\000\000\034\000\007\376\000\007\016\000"
+ 2266      001C0007 
+ 2266      FE00070E 
+ 2266      00
+ 2267 0027 03FE0003 		.ascii	"\003\376\000\003\016\000\007\376\000\007\376\000\003"
+ 2267      0E0007FE 
+ 2267      0007FE00 
+ 2267      03
+ 2268 0034 1E00001C 		.ascii	"\036\000\000\034\000\000\000\000"
+ 2268      00000000 
+ 2269              		.section	.rodata.acFontHZKaiTi_20_d6c3,"a"
+ 2270              		.align	2
+ 2273              	acFontHZKaiTi_20_d6c3:
+ 2274 0000 00000000 		.ascii	"\000\000\000\000\003\000\000\377\200\017\373\200\007"
+ 2274      030000FF 
+ 2274      800FFB80 
+ 2274      07
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 56
+
+
+ 2275 000d FF0007FF 		.ascii	"\377\000\007\377\000\003p\000\000\377\000\017\340\000"
+ 2275      00037000 
+ 2275      00FF000F 
+ 2275      E000
+ 2276 001b 01FE0003 		.ascii	"\001\376\000\003\236\000\003\376\000\003\376\000\003"
+ 2276      9E0003FE 
+ 2276      0003FE00 
+ 2276      03
+ 2277 0028 8E0003FC 		.ascii	"\216\000\003\374\000\003\217\300?\377\360?\000\000\000"
+ 2277      00038FC0 
+ 2277      3FFFF03F 
+ 2277      000000
+ 2278 0037 00000000 		.ascii	"\000\000\000\000\000"
+ 2278      00
+ 2279              		.section	.rodata.acFontHZKaiTi_20_d6dd,"a"
+ 2280              		.align	2
+ 2283              	acFontHZKaiTi_20_d6dd:
+ 2284 0000 00000000 		.ascii	"\000\000\000\000\003\200\000\003\300\017s\300\007q\300"
+ 2284      03800003 
+ 2284      C00F73C0 
+ 2284      0771C0
+ 2285 000f 07718007 		.ascii	"\007q\200\0071\200\037\377\200\037\377\200?\363\200"
+ 2285      31801FFF 
+ 2285      801FFF80 
+ 2285      3FF380
+ 2286 001e 3F718007 		.ascii	"?q\200\007q\200\006q\200\016q\300\0161\300\034\003\300"
+ 2286      71800671 
+ 2286      800E71C0 
+ 2286      0E31C01C 
+ 2286      03C0
+ 2287 0030 3803C000 		.ascii	"8\003\300\000\001\200\000\000\000\000\000\000"
+ 2287      01800000 
+ 2287      00000000 
+ 2288              		.section	.rodata.acFontHZKaiTi_20_d7d3,"a"
+ 2289              		.align	2
+ 2292              	acFontHZKaiTi_20_d7d3:
+ 2293 0000 00000000 		.ascii	"\000\000\000\000\000\000\000>\000\007\377\000\003\236"
+ 2293      0000003E 
+ 2293      0007FF00 
+ 2293      039E
+ 2294 000e 00003800 		.ascii	"\000\0008\000\000\360\000\000s\340\001\377\340\177\370"
+ 2294      00F00000 
+ 2294      73E001FF 
+ 2294      E07FF8
+ 2295 001d 00003800 		.ascii	"\000\0008\000\0008\000\0008\000\0008\000\0008\000\000"
+ 2295      00380000 
+ 2295      38000038 
+ 2295      00003800 
+ 2295      00
+ 2296 002e 380001F8 		.ascii	"8\000\001\370\000\000\360\000\000`\000\000\000\000"
+ 2296      0000F000 
+ 2296      00600000 
+ 2296      0000
+ 2297              		.section	.rodata.acFontHZKaiTi_20_d8b9,"a"
+ 2298              		.align	2
+ 2301              	acFontHZKaiTi_20_d8b9:
+ 2302 0000 00000000 		.ascii	"\000\000\000\000\000\000\007\017\000\007\007\000\017"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 57
+
+
+ 2302      0000070F 
+ 2302      00070700 
+ 2302      0F
+ 2303 000d E3E00FBF 		.ascii	"\343\340\017\277\300\035\216\000\017\317\200\017\337"
+ 2303      C01D8E00 
+ 2303      0FCF800F 
+ 2303      DF
+ 2304 001a C01FFFC0 		.ascii	"\300\037\377\300\377\363\200\177\377\200?\377\200\177"
+ 2304      FFF3807F 
+ 2304      FF803FFF 
+ 2304      807F
+ 2305 0028 FF8071FF 		.ascii	"\377\200q\377\260\003\377\370\007\341\370\003\200\000"
+ 2305      B003FFF8 
+ 2305      07E1F803 
+ 2305      8000
+ 2306 0036 00000000 		.ascii	"\000\000\000\000\000\000"
+ 2306      0000
+ 2307              		.section	.rodata.acFontHZKaiTi_20_ecc5,"a"
+ 2308              		.align	2
+ 2311              	acFontHZKaiTi_20_ecc5:
+ 2312 0000 00000000 		.ascii	"\000\000\000\000\000\000\017\034\000\007\036\000\007"
+ 2312      00000F1C 
+ 2312      00071E00 
+ 2312      07
+ 2313 000d 8E0007C0 		.ascii	"\216\000\007\300\340\007\237\360'~\000?\037\200>;\200"
+ 2313      E0079FF0 
+ 2313      277E003F 
+ 2313      1F803E3B 
+ 2313      80
+ 2314 001e 1E7F000E 		.ascii	"\036\177\000\016~\000\017\017\000\017\237\200\037\277"
+ 2314      7E000F0F 
+ 2314      000F9F80 
+ 2314      1FBF
+ 2315 002c C018FFE0 		.ascii	"\300\030\377\3408`\340`\000\000\000\000\000\000\000"
+ 2315      3860E060 
+ 2315      00000000 
+ 2315      000000
+ 2316 003b 00       		.ascii	"\000"
+ 2317              		.text
+ 2318              	.Letext0:
+ 2319              		.file 1 "Drivers/STemWin/inc/GUI_Type.h"
+ 2320              		.file 2 "Core/Src/KaiTi_20.c"
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 58
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 KaiTi_20.c
+F:\msys64\tmp\ccAgERy9.s:1176   .rodata.GUI_FontHZ_KaiTi_20:00000000 GUI_FontHZ_KaiTi_20
+F:\msys64\tmp\ccAgERy9.s:852    .rodata.GUI_FontHZKaiTi_20_Prop0020:00000000 GUI_FontHZKaiTi_20_Prop0020
+F:\msys64\tmp\ccAgERy9.s:861    .rodata.GUI_FontHZKaiTi_20_Propb2ce:00000000 GUI_FontHZKaiTi_20_Propb2ce
+F:\msys64\tmp\ccAgERy9.s:870    .rodata.GUI_FontHZKaiTi_20_Propb2e2:00000000 GUI_FontHZKaiTi_20_Propb2e2
+F:\msys64\tmp\ccAgERy9.s:879    .rodata.GUI_FontHZKaiTi_20_Propb3c2:00000000 GUI_FontHZKaiTi_20_Propb3c2
+F:\msys64\tmp\ccAgERy9.s:888    .rodata.GUI_FontHZKaiTi_20_Propb4f3:00000000 GUI_FontHZKaiTi_20_Propb4f3
+F:\msys64\tmp\ccAgERy9.s:897    .rodata.GUI_FontHZKaiTi_20_Propb5c1:00000000 GUI_FontHZKaiTi_20_Propb5c1
+F:\msys64\tmp\ccAgERy9.s:906    .rodata.GUI_FontHZKaiTi_20_Propb5e7:00000000 GUI_FontHZKaiTi_20_Propb5e7
+F:\msys64\tmp\ccAgERy9.s:915    .rodata.GUI_FontHZKaiTi_20_Propb7c0:00000000 GUI_FontHZKaiTi_20_Propb7c0
+F:\msys64\tmp\ccAgERy9.s:924    .rodata.GUI_FontHZKaiTi_20_Propbabc:00000000 GUI_FontHZKaiTi_20_Propbabc
+F:\msys64\tmp\ccAgERy9.s:933    .rodata.GUI_FontHZKaiTi_20_Propbbf0:00000000 GUI_FontHZKaiTi_20_Propbbf0
+F:\msys64\tmp\ccAgERy9.s:942    .rodata.GUI_FontHZKaiTi_20_Propbcbc:00000000 GUI_FontHZKaiTi_20_Propbcbc
+F:\msys64\tmp\ccAgERy9.s:951    .rodata.GUI_FontHZKaiTi_20_Propbce0:00000000 GUI_FontHZKaiTi_20_Propbce0
+F:\msys64\tmp\ccAgERy9.s:960    .rodata.GUI_FontHZKaiTi_20_Propbde1:00000000 GUI_FontHZKaiTi_20_Propbde1
+F:\msys64\tmp\ccAgERy9.s:969    .rodata.GUI_FontHZKaiTi_20_Propbedd:00000000 GUI_FontHZKaiTi_20_Propbedd
+F:\msys64\tmp\ccAgERy9.s:978    .rodata.GUI_FontHZKaiTi_20_Propbfaa:00000000 GUI_FontHZKaiTi_20_Propbfaa
+F:\msys64\tmp\ccAgERy9.s:987    .rodata.GUI_FontHZKaiTi_20_Propbfc6:00000000 GUI_FontHZKaiTi_20_Propbfc6
+F:\msys64\tmp\ccAgERy9.s:996    .rodata.GUI_FontHZKaiTi_20_Propc6f7:00000000 GUI_FontHZKaiTi_20_Propc6f7
+F:\msys64\tmp\ccAgERy9.s:1005   .rodata.GUI_FontHZKaiTi_20_Propc7fa:00000000 GUI_FontHZKaiTi_20_Propc7fa
+F:\msys64\tmp\ccAgERy9.s:1014   .rodata.GUI_FontHZKaiTi_20_Propc8f3:00000000 GUI_FontHZKaiTi_20_Propc8f3
+F:\msys64\tmp\ccAgERy9.s:1023   .rodata.GUI_FontHZKaiTi_20_Propc9e8:00000000 GUI_FontHZKaiTi_20_Propc9e8
+F:\msys64\tmp\ccAgERy9.s:1032   .rodata.GUI_FontHZKaiTi_20_Propcab1:00000000 GUI_FontHZKaiTi_20_Propcab1
+F:\msys64\tmp\ccAgERy9.s:1041   .rodata.GUI_FontHZKaiTi_20_Propcab5:00000000 GUI_FontHZKaiTi_20_Propcab5
+F:\msys64\tmp\ccAgERy9.s:1050   .rodata.GUI_FontHZKaiTi_20_Propcabc:00000000 GUI_FontHZKaiTi_20_Propcabc
+F:\msys64\tmp\ccAgERy9.s:1059   .rodata.GUI_FontHZKaiTi_20_Propcaf8:00000000 GUI_FontHZKaiTi_20_Propcaf8
+F:\msys64\tmp\ccAgERy9.s:1068   .rodata.GUI_FontHZKaiTi_20_Propcafd:00000000 GUI_FontHZKaiTi_20_Propcafd
+F:\msys64\tmp\ccAgERy9.s:1077   .rodata.GUI_FontHZKaiTi_20_Propcda8:00000000 GUI_FontHZKaiTi_20_Propcda8
+F:\msys64\tmp\ccAgERy9.s:1086   .rodata.GUI_FontHZKaiTi_20_Propcede:00000000 GUI_FontHZKaiTi_20_Propcede
+F:\msys64\tmp\ccAgERy9.s:1095   .rodata.GUI_FontHZKaiTi_20_Propcfdf:00000000 GUI_FontHZKaiTi_20_Propcfdf
+F:\msys64\tmp\ccAgERy9.s:1104   .rodata.GUI_FontHZKaiTi_20_Propd0c5:00000000 GUI_FontHZKaiTi_20_Propd0c5
+F:\msys64\tmp\ccAgERy9.s:1113   .rodata.GUI_FontHZKaiTi_20_Propd1a7:00000000 GUI_FontHZKaiTi_20_Propd1a7
+F:\msys64\tmp\ccAgERy9.s:1122   .rodata.GUI_FontHZKaiTi_20_Propd4f8:00000000 GUI_FontHZKaiTi_20_Propd4f8
+F:\msys64\tmp\ccAgERy9.s:1131   .rodata.GUI_FontHZKaiTi_20_Propd6c3:00000000 GUI_FontHZKaiTi_20_Propd6c3
+F:\msys64\tmp\ccAgERy9.s:1140   .rodata.GUI_FontHZKaiTi_20_Propd6dd:00000000 GUI_FontHZKaiTi_20_Propd6dd
+F:\msys64\tmp\ccAgERy9.s:1149   .rodata.GUI_FontHZKaiTi_20_Propd7d3:00000000 GUI_FontHZKaiTi_20_Propd7d3
+F:\msys64\tmp\ccAgERy9.s:1158   .rodata.GUI_FontHZKaiTi_20_Propd8b9:00000000 GUI_FontHZKaiTi_20_Propd8b9
+F:\msys64\tmp\ccAgERy9.s:1167   .rodata.GUI_FontHZKaiTi_20_Propecc5:00000000 GUI_FontHZKaiTi_20_Propecc5
+F:\msys64\tmp\ccAgERy9.s:192    .rodata.GUI_FontHZKaiTi_20_CharInfo:00000000 GUI_FontHZKaiTi_20_CharInfo
+F:\msys64\tmp\ccAgERy9.s:2311   .rodata.acFontHZKaiTi_20_ecc5:00000000 acFontHZKaiTi_20_ecc5
+F:\msys64\tmp\ccAgERy9.s:2301   .rodata.acFontHZKaiTi_20_d8b9:00000000 acFontHZKaiTi_20_d8b9
+F:\msys64\tmp\ccAgERy9.s:2292   .rodata.acFontHZKaiTi_20_d7d3:00000000 acFontHZKaiTi_20_d7d3
+F:\msys64\tmp\ccAgERy9.s:2283   .rodata.acFontHZKaiTi_20_d6dd:00000000 acFontHZKaiTi_20_d6dd
+F:\msys64\tmp\ccAgERy9.s:2273   .rodata.acFontHZKaiTi_20_d6c3:00000000 acFontHZKaiTi_20_d6c3
+F:\msys64\tmp\ccAgERy9.s:2263   .rodata.acFontHZKaiTi_20_d4f8:00000000 acFontHZKaiTi_20_d4f8
+F:\msys64\tmp\ccAgERy9.s:2254   .rodata.acFontHZKaiTi_20_d1a7:00000000 acFontHZKaiTi_20_d1a7
+F:\msys64\tmp\ccAgERy9.s:2244   .rodata.acFontHZKaiTi_20_d0c5:00000000 acFontHZKaiTi_20_d0c5
+F:\msys64\tmp\ccAgERy9.s:2234   .rodata.acFontHZKaiTi_20_cfdf:00000000 acFontHZKaiTi_20_cfdf
+F:\msys64\tmp\ccAgERy9.s:2224   .rodata.acFontHZKaiTi_20_cede:00000000 acFontHZKaiTi_20_cede
+F:\msys64\tmp\ccAgERy9.s:2214   .rodata.acFontHZKaiTi_20_cda8:00000000 acFontHZKaiTi_20_cda8
+F:\msys64\tmp\ccAgERy9.s:2204   .rodata.acFontHZKaiTi_20_cafd:00000000 acFontHZKaiTi_20_cafd
+F:\msys64\tmp\ccAgERy9.s:2194   .rodata.acFontHZKaiTi_20_caf8:00000000 acFontHZKaiTi_20_caf8
+F:\msys64\tmp\ccAgERy9.s:2184   .rodata.acFontHZKaiTi_20_cabc:00000000 acFontHZKaiTi_20_cabc
+F:\msys64\tmp\ccAgERy9.s:2174   .rodata.acFontHZKaiTi_20_cab5:00000000 acFontHZKaiTi_20_cab5
+F:\msys64\tmp\ccAgERy9.s:2165   .rodata.acFontHZKaiTi_20_cab1:00000000 acFontHZKaiTi_20_cab1
+F:\msys64\tmp\ccAgERy9.s:2156   .rodata.acFontHZKaiTi_20_c9e8:00000000 acFontHZKaiTi_20_c9e8
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 59
+
+
+F:\msys64\tmp\ccAgERy9.s:2146   .rodata.acFontHZKaiTi_20_c8f3:00000000 acFontHZKaiTi_20_c8f3
+F:\msys64\tmp\ccAgERy9.s:2136   .rodata.acFontHZKaiTi_20_c7fa:00000000 acFontHZKaiTi_20_c7fa
+F:\msys64\tmp\ccAgERy9.s:2126   .rodata.acFontHZKaiTi_20_c6f7:00000000 acFontHZKaiTi_20_c6f7
+F:\msys64\tmp\ccAgERy9.s:2116   .rodata.acFontHZKaiTi_20_bfc6:00000000 acFontHZKaiTi_20_bfc6
+F:\msys64\tmp\ccAgERy9.s:2106   .rodata.acFontHZKaiTi_20_bfaa:00000000 acFontHZKaiTi_20_bfaa
+F:\msys64\tmp\ccAgERy9.s:2096   .rodata.acFontHZKaiTi_20_bedd:00000000 acFontHZKaiTi_20_bedd
+F:\msys64\tmp\ccAgERy9.s:2086   .rodata.acFontHZKaiTi_20_bde1:00000000 acFontHZKaiTi_20_bde1
+F:\msys64\tmp\ccAgERy9.s:2076   .rodata.acFontHZKaiTi_20_bce0:00000000 acFontHZKaiTi_20_bce0
+F:\msys64\tmp\ccAgERy9.s:2066   .rodata.acFontHZKaiTi_20_bcbc:00000000 acFontHZKaiTi_20_bcbc
+F:\msys64\tmp\ccAgERy9.s:2056   .rodata.acFontHZKaiTi_20_bbf0:00000000 acFontHZKaiTi_20_bbf0
+F:\msys64\tmp\ccAgERy9.s:2047   .rodata.acFontHZKaiTi_20_babc:00000000 acFontHZKaiTi_20_babc
+F:\msys64\tmp\ccAgERy9.s:2038   .rodata.acFontHZKaiTi_20_b7c0:00000000 acFontHZKaiTi_20_b7c0
+F:\msys64\tmp\ccAgERy9.s:2028   .rodata.acFontHZKaiTi_20_b5e7:00000000 acFontHZKaiTi_20_b5e7
+F:\msys64\tmp\ccAgERy9.s:2018   .rodata.acFontHZKaiTi_20_b5c1:00000000 acFontHZKaiTi_20_b5c1
+F:\msys64\tmp\ccAgERy9.s:2008   .rodata.acFontHZKaiTi_20_b4f3:00000000 acFontHZKaiTi_20_b4f3
+F:\msys64\tmp\ccAgERy9.s:1999   .rodata.acFontHZKaiTi_20_b3c2:00000000 acFontHZKaiTi_20_b3c2
+F:\msys64\tmp\ccAgERy9.s:1989   .rodata.acFontHZKaiTi_20_b2e2:00000000 acFontHZKaiTi_20_b2e2
+F:\msys64\tmp\ccAgERy9.s:1979   .rodata.acFontHZKaiTi_20_b2ce:00000000 acFontHZKaiTi_20_b2ce
+F:\msys64\tmp\ccAgERy9.s:1972   .rodata.acFontHZKaiTi_20_007f:00000000 acFontHZKaiTi_20_007f
+F:\msys64\tmp\ccAgERy9.s:1964   .rodata.acFontHZKaiTi_20_007e:00000000 acFontHZKaiTi_20_007e
+F:\msys64\tmp\ccAgERy9.s:1956   .rodata.acFontHZKaiTi_20_007d:00000000 acFontHZKaiTi_20_007d
+F:\msys64\tmp\ccAgERy9.s:1947   .rodata.acFontHZKaiTi_20_007c:00000000 acFontHZKaiTi_20_007c
+F:\msys64\tmp\ccAgERy9.s:1938   .rodata.acFontHZKaiTi_20_007b:00000000 acFontHZKaiTi_20_007b
+F:\msys64\tmp\ccAgERy9.s:1930   .rodata.acFontHZKaiTi_20_007a:00000000 acFontHZKaiTi_20_007a
+F:\msys64\tmp\ccAgERy9.s:1922   .rodata.acFontHZKaiTi_20_0079:00000000 acFontHZKaiTi_20_0079
+F:\msys64\tmp\ccAgERy9.s:1914   .rodata.acFontHZKaiTi_20_0078:00000000 acFontHZKaiTi_20_0078
+F:\msys64\tmp\ccAgERy9.s:1906   .rodata.acFontHZKaiTi_20_0077:00000000 acFontHZKaiTi_20_0077
+F:\msys64\tmp\ccAgERy9.s:1898   .rodata.acFontHZKaiTi_20_0076:00000000 acFontHZKaiTi_20_0076
+F:\msys64\tmp\ccAgERy9.s:1890   .rodata.acFontHZKaiTi_20_0075:00000000 acFontHZKaiTi_20_0075
+F:\msys64\tmp\ccAgERy9.s:1882   .rodata.acFontHZKaiTi_20_0074:00000000 acFontHZKaiTi_20_0074
+F:\msys64\tmp\ccAgERy9.s:1874   .rodata.acFontHZKaiTi_20_0073:00000000 acFontHZKaiTi_20_0073
+F:\msys64\tmp\ccAgERy9.s:1866   .rodata.acFontHZKaiTi_20_0072:00000000 acFontHZKaiTi_20_0072
+F:\msys64\tmp\ccAgERy9.s:1858   .rodata.acFontHZKaiTi_20_0071:00000000 acFontHZKaiTi_20_0071
+F:\msys64\tmp\ccAgERy9.s:1850   .rodata.acFontHZKaiTi_20_0070:00000000 acFontHZKaiTi_20_0070
+F:\msys64\tmp\ccAgERy9.s:1842   .rodata.acFontHZKaiTi_20_006f:00000000 acFontHZKaiTi_20_006f
+F:\msys64\tmp\ccAgERy9.s:1834   .rodata.acFontHZKaiTi_20_006e:00000000 acFontHZKaiTi_20_006e
+F:\msys64\tmp\ccAgERy9.s:1825   .rodata.acFontHZKaiTi_20_006d:00000000 acFontHZKaiTi_20_006d
+F:\msys64\tmp\ccAgERy9.s:1816   .rodata.acFontHZKaiTi_20_006c:00000000 acFontHZKaiTi_20_006c
+F:\msys64\tmp\ccAgERy9.s:1808   .rodata.acFontHZKaiTi_20_006b:00000000 acFontHZKaiTi_20_006b
+F:\msys64\tmp\ccAgERy9.s:1800   .rodata.acFontHZKaiTi_20_006a:00000000 acFontHZKaiTi_20_006a
+F:\msys64\tmp\ccAgERy9.s:1791   .rodata.acFontHZKaiTi_20_0069:00000000 acFontHZKaiTi_20_0069
+F:\msys64\tmp\ccAgERy9.s:1783   .rodata.acFontHZKaiTi_20_0068:00000000 acFontHZKaiTi_20_0068
+F:\msys64\tmp\ccAgERy9.s:1775   .rodata.acFontHZKaiTi_20_0067:00000000 acFontHZKaiTi_20_0067
+F:\msys64\tmp\ccAgERy9.s:1766   .rodata.acFontHZKaiTi_20_0066:00000000 acFontHZKaiTi_20_0066
+F:\msys64\tmp\ccAgERy9.s:1758   .rodata.acFontHZKaiTi_20_0065:00000000 acFontHZKaiTi_20_0065
+F:\msys64\tmp\ccAgERy9.s:1750   .rodata.acFontHZKaiTi_20_0064:00000000 acFontHZKaiTi_20_0064
+F:\msys64\tmp\ccAgERy9.s:1742   .rodata.acFontHZKaiTi_20_0063:00000000 acFontHZKaiTi_20_0063
+F:\msys64\tmp\ccAgERy9.s:1734   .rodata.acFontHZKaiTi_20_0062:00000000 acFontHZKaiTi_20_0062
+F:\msys64\tmp\ccAgERy9.s:1726   .rodata.acFontHZKaiTi_20_0061:00000000 acFontHZKaiTi_20_0061
+F:\msys64\tmp\ccAgERy9.s:1717   .rodata.acFontHZKaiTi_20_0060:00000000 acFontHZKaiTi_20_0060
+F:\msys64\tmp\ccAgERy9.s:1708   .rodata.acFontHZKaiTi_20_005f:00000000 acFontHZKaiTi_20_005f
+F:\msys64\tmp\ccAgERy9.s:1700   .rodata.acFontHZKaiTi_20_005e:00000000 acFontHZKaiTi_20_005e
+F:\msys64\tmp\ccAgERy9.s:1692   .rodata.acFontHZKaiTi_20_005d:00000000 acFontHZKaiTi_20_005d
+F:\msys64\tmp\ccAgERy9.s:1684   .rodata.acFontHZKaiTi_20_005c:00000000 acFontHZKaiTi_20_005c
+F:\msys64\tmp\ccAgERy9.s:1675   .rodata.acFontHZKaiTi_20_005b:00000000 acFontHZKaiTi_20_005b
+F:\msys64\tmp\ccAgERy9.s:1667   .rodata.acFontHZKaiTi_20_005a:00000000 acFontHZKaiTi_20_005a
+F:\msys64\tmp\ccAgERy9.s:1659   .rodata.acFontHZKaiTi_20_0059:00000000 acFontHZKaiTi_20_0059
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 60
+
+
+F:\msys64\tmp\ccAgERy9.s:1651   .rodata.acFontHZKaiTi_20_0058:00000000 acFontHZKaiTi_20_0058
+F:\msys64\tmp\ccAgERy9.s:1643   .rodata.acFontHZKaiTi_20_0057:00000000 acFontHZKaiTi_20_0057
+F:\msys64\tmp\ccAgERy9.s:1635   .rodata.acFontHZKaiTi_20_0056:00000000 acFontHZKaiTi_20_0056
+F:\msys64\tmp\ccAgERy9.s:1627   .rodata.acFontHZKaiTi_20_0055:00000000 acFontHZKaiTi_20_0055
+F:\msys64\tmp\ccAgERy9.s:1618   .rodata.acFontHZKaiTi_20_0054:00000000 acFontHZKaiTi_20_0054
+F:\msys64\tmp\ccAgERy9.s:1610   .rodata.acFontHZKaiTi_20_0053:00000000 acFontHZKaiTi_20_0053
+F:\msys64\tmp\ccAgERy9.s:1602   .rodata.acFontHZKaiTi_20_0052:00000000 acFontHZKaiTi_20_0052
+F:\msys64\tmp\ccAgERy9.s:1594   .rodata.acFontHZKaiTi_20_0051:00000000 acFontHZKaiTi_20_0051
+F:\msys64\tmp\ccAgERy9.s:1586   .rodata.acFontHZKaiTi_20_0050:00000000 acFontHZKaiTi_20_0050
+F:\msys64\tmp\ccAgERy9.s:1578   .rodata.acFontHZKaiTi_20_004f:00000000 acFontHZKaiTi_20_004f
+F:\msys64\tmp\ccAgERy9.s:1570   .rodata.acFontHZKaiTi_20_004e:00000000 acFontHZKaiTi_20_004e
+F:\msys64\tmp\ccAgERy9.s:1561   .rodata.acFontHZKaiTi_20_004d:00000000 acFontHZKaiTi_20_004d
+F:\msys64\tmp\ccAgERy9.s:1553   .rodata.acFontHZKaiTi_20_004c:00000000 acFontHZKaiTi_20_004c
+F:\msys64\tmp\ccAgERy9.s:1545   .rodata.acFontHZKaiTi_20_004b:00000000 acFontHZKaiTi_20_004b
+F:\msys64\tmp\ccAgERy9.s:1537   .rodata.acFontHZKaiTi_20_004a:00000000 acFontHZKaiTi_20_004a
+F:\msys64\tmp\ccAgERy9.s:1528   .rodata.acFontHZKaiTi_20_0049:00000000 acFontHZKaiTi_20_0049
+F:\msys64\tmp\ccAgERy9.s:1520   .rodata.acFontHZKaiTi_20_0048:00000000 acFontHZKaiTi_20_0048
+F:\msys64\tmp\ccAgERy9.s:1512   .rodata.acFontHZKaiTi_20_0047:00000000 acFontHZKaiTi_20_0047
+F:\msys64\tmp\ccAgERy9.s:1504   .rodata.acFontHZKaiTi_20_0046:00000000 acFontHZKaiTi_20_0046
+F:\msys64\tmp\ccAgERy9.s:1496   .rodata.acFontHZKaiTi_20_0045:00000000 acFontHZKaiTi_20_0045
+F:\msys64\tmp\ccAgERy9.s:1488   .rodata.acFontHZKaiTi_20_0044:00000000 acFontHZKaiTi_20_0044
+F:\msys64\tmp\ccAgERy9.s:1480   .rodata.acFontHZKaiTi_20_0043:00000000 acFontHZKaiTi_20_0043
+F:\msys64\tmp\ccAgERy9.s:1471   .rodata.acFontHZKaiTi_20_0042:00000000 acFontHZKaiTi_20_0042
+F:\msys64\tmp\ccAgERy9.s:1463   .rodata.acFontHZKaiTi_20_0041:00000000 acFontHZKaiTi_20_0041
+F:\msys64\tmp\ccAgERy9.s:1455   .rodata.acFontHZKaiTi_20_0040:00000000 acFontHZKaiTi_20_0040
+F:\msys64\tmp\ccAgERy9.s:1447   .rodata.acFontHZKaiTi_20_003f:00000000 acFontHZKaiTi_20_003f
+F:\msys64\tmp\ccAgERy9.s:1439   .rodata.acFontHZKaiTi_20_003e:00000000 acFontHZKaiTi_20_003e
+F:\msys64\tmp\ccAgERy9.s:1430   .rodata.acFontHZKaiTi_20_003d:00000000 acFontHZKaiTi_20_003d
+F:\msys64\tmp\ccAgERy9.s:1422   .rodata.acFontHZKaiTi_20_003c:00000000 acFontHZKaiTi_20_003c
+F:\msys64\tmp\ccAgERy9.s:1413   .rodata.acFontHZKaiTi_20_003b:00000000 acFontHZKaiTi_20_003b
+F:\msys64\tmp\ccAgERy9.s:1404   .rodata.acFontHZKaiTi_20_003a:00000000 acFontHZKaiTi_20_003a
+F:\msys64\tmp\ccAgERy9.s:1396   .rodata.acFontHZKaiTi_20_0039:00000000 acFontHZKaiTi_20_0039
+F:\msys64\tmp\ccAgERy9.s:1388   .rodata.acFontHZKaiTi_20_0038:00000000 acFontHZKaiTi_20_0038
+F:\msys64\tmp\ccAgERy9.s:1380   .rodata.acFontHZKaiTi_20_0037:00000000 acFontHZKaiTi_20_0037
+F:\msys64\tmp\ccAgERy9.s:1372   .rodata.acFontHZKaiTi_20_0036:00000000 acFontHZKaiTi_20_0036
+F:\msys64\tmp\ccAgERy9.s:1364   .rodata.acFontHZKaiTi_20_0035:00000000 acFontHZKaiTi_20_0035
+F:\msys64\tmp\ccAgERy9.s:1356   .rodata.acFontHZKaiTi_20_0034:00000000 acFontHZKaiTi_20_0034
+F:\msys64\tmp\ccAgERy9.s:1348   .rodata.acFontHZKaiTi_20_0033:00000000 acFontHZKaiTi_20_0033
+F:\msys64\tmp\ccAgERy9.s:1340   .rodata.acFontHZKaiTi_20_0032:00000000 acFontHZKaiTi_20_0032
+F:\msys64\tmp\ccAgERy9.s:1332   .rodata.acFontHZKaiTi_20_0031:00000000 acFontHZKaiTi_20_0031
+F:\msys64\tmp\ccAgERy9.s:1324   .rodata.acFontHZKaiTi_20_0030:00000000 acFontHZKaiTi_20_0030
+F:\msys64\tmp\ccAgERy9.s:1316   .rodata.acFontHZKaiTi_20_002f:00000000 acFontHZKaiTi_20_002f
+F:\msys64\tmp\ccAgERy9.s:1308   .rodata.acFontHZKaiTi_20_002e:00000000 acFontHZKaiTi_20_002e
+F:\msys64\tmp\ccAgERy9.s:1299   .rodata.acFontHZKaiTi_20_002d:00000000 acFontHZKaiTi_20_002d
+F:\msys64\tmp\ccAgERy9.s:1291   .rodata.acFontHZKaiTi_20_002c:00000000 acFontHZKaiTi_20_002c
+F:\msys64\tmp\ccAgERy9.s:1282   .rodata.acFontHZKaiTi_20_002b:00000000 acFontHZKaiTi_20_002b
+F:\msys64\tmp\ccAgERy9.s:1274   .rodata.acFontHZKaiTi_20_002a:00000000 acFontHZKaiTi_20_002a
+F:\msys64\tmp\ccAgERy9.s:1266   .rodata.acFontHZKaiTi_20_0029:00000000 acFontHZKaiTi_20_0029
+F:\msys64\tmp\ccAgERy9.s:1257   .rodata.acFontHZKaiTi_20_0028:00000000 acFontHZKaiTi_20_0028
+F:\msys64\tmp\ccAgERy9.s:1248   .rodata.acFontHZKaiTi_20_0027:00000000 acFontHZKaiTi_20_0027
+F:\msys64\tmp\ccAgERy9.s:1240   .rodata.acFontHZKaiTi_20_0026:00000000 acFontHZKaiTi_20_0026
+F:\msys64\tmp\ccAgERy9.s:1232   .rodata.acFontHZKaiTi_20_0025:00000000 acFontHZKaiTi_20_0025
+F:\msys64\tmp\ccAgERy9.s:1224   .rodata.acFontHZKaiTi_20_0024:00000000 acFontHZKaiTi_20_0024
+F:\msys64\tmp\ccAgERy9.s:1216   .rodata.acFontHZKaiTi_20_0023:00000000 acFontHZKaiTi_20_0023
+F:\msys64\tmp\ccAgERy9.s:1208   .rodata.acFontHZKaiTi_20_0022:00000000 acFontHZKaiTi_20_0022
+F:\msys64\tmp\ccAgERy9.s:1199   .rodata.acFontHZKaiTi_20_0021:00000000 acFontHZKaiTi_20_0021
+F:\msys64\tmp\ccAgERy9.s:1193   .rodata.acFontHZKaiTi_20_0020:00000000 acFontHZKaiTi_20_0020
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 61
+
+
+F:\msys64\tmp\ccAgERy9.s:189    .rodata.GUI_FontHZKaiTi_20_CharInfo:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:849    .rodata.GUI_FontHZKaiTi_20_Prop0020:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:858    .rodata.GUI_FontHZKaiTi_20_Propb2ce:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:867    .rodata.GUI_FontHZKaiTi_20_Propb2e2:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:876    .rodata.GUI_FontHZKaiTi_20_Propb3c2:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:885    .rodata.GUI_FontHZKaiTi_20_Propb4f3:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:894    .rodata.GUI_FontHZKaiTi_20_Propb5c1:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:903    .rodata.GUI_FontHZKaiTi_20_Propb5e7:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:912    .rodata.GUI_FontHZKaiTi_20_Propb7c0:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:921    .rodata.GUI_FontHZKaiTi_20_Propbabc:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:930    .rodata.GUI_FontHZKaiTi_20_Propbbf0:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:939    .rodata.GUI_FontHZKaiTi_20_Propbcbc:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:948    .rodata.GUI_FontHZKaiTi_20_Propbce0:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:957    .rodata.GUI_FontHZKaiTi_20_Propbde1:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:966    .rodata.GUI_FontHZKaiTi_20_Propbedd:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:975    .rodata.GUI_FontHZKaiTi_20_Propbfaa:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:984    .rodata.GUI_FontHZKaiTi_20_Propbfc6:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:993    .rodata.GUI_FontHZKaiTi_20_Propc6f7:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1002   .rodata.GUI_FontHZKaiTi_20_Propc7fa:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1011   .rodata.GUI_FontHZKaiTi_20_Propc8f3:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1020   .rodata.GUI_FontHZKaiTi_20_Propc9e8:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1029   .rodata.GUI_FontHZKaiTi_20_Propcab1:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1038   .rodata.GUI_FontHZKaiTi_20_Propcab5:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1047   .rodata.GUI_FontHZKaiTi_20_Propcabc:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1056   .rodata.GUI_FontHZKaiTi_20_Propcaf8:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1065   .rodata.GUI_FontHZKaiTi_20_Propcafd:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1074   .rodata.GUI_FontHZKaiTi_20_Propcda8:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1083   .rodata.GUI_FontHZKaiTi_20_Propcede:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1092   .rodata.GUI_FontHZKaiTi_20_Propcfdf:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1101   .rodata.GUI_FontHZKaiTi_20_Propd0c5:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1110   .rodata.GUI_FontHZKaiTi_20_Propd1a7:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1119   .rodata.GUI_FontHZKaiTi_20_Propd4f8:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1128   .rodata.GUI_FontHZKaiTi_20_Propd6c3:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1137   .rodata.GUI_FontHZKaiTi_20_Propd6dd:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1146   .rodata.GUI_FontHZKaiTi_20_Propd7d3:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1155   .rodata.GUI_FontHZKaiTi_20_Propd8b9:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1164   .rodata.GUI_FontHZKaiTi_20_Propecc5:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1173   .rodata.GUI_FontHZ_KaiTi_20:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1190   .rodata.acFontHZKaiTi_20_0020:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1196   .rodata.acFontHZKaiTi_20_0021:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1205   .rodata.acFontHZKaiTi_20_0022:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1213   .rodata.acFontHZKaiTi_20_0023:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1221   .rodata.acFontHZKaiTi_20_0024:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1229   .rodata.acFontHZKaiTi_20_0025:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1237   .rodata.acFontHZKaiTi_20_0026:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1245   .rodata.acFontHZKaiTi_20_0027:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1254   .rodata.acFontHZKaiTi_20_0028:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1263   .rodata.acFontHZKaiTi_20_0029:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1271   .rodata.acFontHZKaiTi_20_002a:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1279   .rodata.acFontHZKaiTi_20_002b:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1288   .rodata.acFontHZKaiTi_20_002c:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1296   .rodata.acFontHZKaiTi_20_002d:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1305   .rodata.acFontHZKaiTi_20_002e:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1313   .rodata.acFontHZKaiTi_20_002f:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1321   .rodata.acFontHZKaiTi_20_0030:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1329   .rodata.acFontHZKaiTi_20_0031:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1337   .rodata.acFontHZKaiTi_20_0032:00000000 $d
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 62
+
+
+F:\msys64\tmp\ccAgERy9.s:1345   .rodata.acFontHZKaiTi_20_0033:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1353   .rodata.acFontHZKaiTi_20_0034:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1361   .rodata.acFontHZKaiTi_20_0035:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1369   .rodata.acFontHZKaiTi_20_0036:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1377   .rodata.acFontHZKaiTi_20_0037:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1385   .rodata.acFontHZKaiTi_20_0038:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1393   .rodata.acFontHZKaiTi_20_0039:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1401   .rodata.acFontHZKaiTi_20_003a:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1410   .rodata.acFontHZKaiTi_20_003b:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1419   .rodata.acFontHZKaiTi_20_003c:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1427   .rodata.acFontHZKaiTi_20_003d:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1436   .rodata.acFontHZKaiTi_20_003e:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1444   .rodata.acFontHZKaiTi_20_003f:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1452   .rodata.acFontHZKaiTi_20_0040:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1460   .rodata.acFontHZKaiTi_20_0041:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1468   .rodata.acFontHZKaiTi_20_0042:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1477   .rodata.acFontHZKaiTi_20_0043:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1485   .rodata.acFontHZKaiTi_20_0044:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1493   .rodata.acFontHZKaiTi_20_0045:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1501   .rodata.acFontHZKaiTi_20_0046:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1509   .rodata.acFontHZKaiTi_20_0047:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1517   .rodata.acFontHZKaiTi_20_0048:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1525   .rodata.acFontHZKaiTi_20_0049:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1534   .rodata.acFontHZKaiTi_20_004a:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1542   .rodata.acFontHZKaiTi_20_004b:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1550   .rodata.acFontHZKaiTi_20_004c:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1558   .rodata.acFontHZKaiTi_20_004d:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1567   .rodata.acFontHZKaiTi_20_004e:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1575   .rodata.acFontHZKaiTi_20_004f:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1583   .rodata.acFontHZKaiTi_20_0050:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1591   .rodata.acFontHZKaiTi_20_0051:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1599   .rodata.acFontHZKaiTi_20_0052:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1607   .rodata.acFontHZKaiTi_20_0053:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1615   .rodata.acFontHZKaiTi_20_0054:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1624   .rodata.acFontHZKaiTi_20_0055:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1632   .rodata.acFontHZKaiTi_20_0056:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1640   .rodata.acFontHZKaiTi_20_0057:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1648   .rodata.acFontHZKaiTi_20_0058:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1656   .rodata.acFontHZKaiTi_20_0059:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1664   .rodata.acFontHZKaiTi_20_005a:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1672   .rodata.acFontHZKaiTi_20_005b:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1681   .rodata.acFontHZKaiTi_20_005c:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1689   .rodata.acFontHZKaiTi_20_005d:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1697   .rodata.acFontHZKaiTi_20_005e:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1705   .rodata.acFontHZKaiTi_20_005f:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1714   .rodata.acFontHZKaiTi_20_0060:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1723   .rodata.acFontHZKaiTi_20_0061:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1731   .rodata.acFontHZKaiTi_20_0062:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1739   .rodata.acFontHZKaiTi_20_0063:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1747   .rodata.acFontHZKaiTi_20_0064:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1755   .rodata.acFontHZKaiTi_20_0065:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1763   .rodata.acFontHZKaiTi_20_0066:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1772   .rodata.acFontHZKaiTi_20_0067:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1780   .rodata.acFontHZKaiTi_20_0068:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1788   .rodata.acFontHZKaiTi_20_0069:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1797   .rodata.acFontHZKaiTi_20_006a:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1805   .rodata.acFontHZKaiTi_20_006b:00000000 $d
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 63
+
+
+F:\msys64\tmp\ccAgERy9.s:1813   .rodata.acFontHZKaiTi_20_006c:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1822   .rodata.acFontHZKaiTi_20_006d:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1831   .rodata.acFontHZKaiTi_20_006e:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1839   .rodata.acFontHZKaiTi_20_006f:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1847   .rodata.acFontHZKaiTi_20_0070:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1855   .rodata.acFontHZKaiTi_20_0071:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1863   .rodata.acFontHZKaiTi_20_0072:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1871   .rodata.acFontHZKaiTi_20_0073:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1879   .rodata.acFontHZKaiTi_20_0074:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1887   .rodata.acFontHZKaiTi_20_0075:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1895   .rodata.acFontHZKaiTi_20_0076:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1903   .rodata.acFontHZKaiTi_20_0077:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1911   .rodata.acFontHZKaiTi_20_0078:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1919   .rodata.acFontHZKaiTi_20_0079:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1927   .rodata.acFontHZKaiTi_20_007a:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1935   .rodata.acFontHZKaiTi_20_007b:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1944   .rodata.acFontHZKaiTi_20_007c:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1953   .rodata.acFontHZKaiTi_20_007d:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1961   .rodata.acFontHZKaiTi_20_007e:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1969   .rodata.acFontHZKaiTi_20_007f:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1976   .rodata.acFontHZKaiTi_20_b2ce:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1986   .rodata.acFontHZKaiTi_20_b2e2:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:1996   .rodata.acFontHZKaiTi_20_b3c2:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2005   .rodata.acFontHZKaiTi_20_b4f3:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2015   .rodata.acFontHZKaiTi_20_b5c1:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2025   .rodata.acFontHZKaiTi_20_b5e7:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2035   .rodata.acFontHZKaiTi_20_b7c0:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2044   .rodata.acFontHZKaiTi_20_babc:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2053   .rodata.acFontHZKaiTi_20_bbf0:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2063   .rodata.acFontHZKaiTi_20_bcbc:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2073   .rodata.acFontHZKaiTi_20_bce0:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2083   .rodata.acFontHZKaiTi_20_bde1:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2093   .rodata.acFontHZKaiTi_20_bedd:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2103   .rodata.acFontHZKaiTi_20_bfaa:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2113   .rodata.acFontHZKaiTi_20_bfc6:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2123   .rodata.acFontHZKaiTi_20_c6f7:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2133   .rodata.acFontHZKaiTi_20_c7fa:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2143   .rodata.acFontHZKaiTi_20_c8f3:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2153   .rodata.acFontHZKaiTi_20_c9e8:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2162   .rodata.acFontHZKaiTi_20_cab1:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2171   .rodata.acFontHZKaiTi_20_cab5:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2181   .rodata.acFontHZKaiTi_20_cabc:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2191   .rodata.acFontHZKaiTi_20_caf8:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2201   .rodata.acFontHZKaiTi_20_cafd:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2211   .rodata.acFontHZKaiTi_20_cda8:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2221   .rodata.acFontHZKaiTi_20_cede:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2231   .rodata.acFontHZKaiTi_20_cfdf:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2241   .rodata.acFontHZKaiTi_20_d0c5:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2251   .rodata.acFontHZKaiTi_20_d1a7:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2260   .rodata.acFontHZKaiTi_20_d4f8:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2270   .rodata.acFontHZKaiTi_20_d6c3:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2280   .rodata.acFontHZKaiTi_20_d6dd:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2289   .rodata.acFontHZKaiTi_20_d7d3:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2298   .rodata.acFontHZKaiTi_20_d8b9:00000000 $d
+F:\msys64\tmp\ccAgERy9.s:2308   .rodata.acFontHZKaiTi_20_ecc5:00000000 $d
+
+UNDEFINED SYMBOLS
+ARM GAS  F:\msys64\tmp\ccAgERy9.s 			page 64
+
+
+GUIPROP_DispChar
+GUIPROP_GetCharDistX
+GUIPROP_GetFontInfo
+GUIPROP_IsInFont
+GUI_ENC_APIList_SJIS
