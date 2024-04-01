@@ -1,4 +1,4 @@
-ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 1
+ARM GAS  F:\msys64\tmp\ccMOCOqn.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,7 +26,7 @@ ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 1
   23              		.thumb
   24              		.thumb_func
   26              	MX_DMA_Init:
-  27              	.LFB658:
+  27              	.LFB555:
   28              		.file 1 "Core/Src/dma.c"
    1:Core/Src/dma.c **** /* USER CODE BEGIN Header */
    2:Core/Src/dma.c **** /**
@@ -58,7 +58,7 @@ ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 1
   28:Core/Src/dma.c **** /*----------------------------------------------------------------------------*/
   29:Core/Src/dma.c **** /* Configure DMA                                                              */
   30:Core/Src/dma.c **** /*----------------------------------------------------------------------------*/
-ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 2
+ARM GAS  F:\msys64\tmp\ccMOCOqn.s 			page 2
 
 
   31:Core/Src/dma.c **** 
@@ -118,7 +118,7 @@ ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 1
   65 0026 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
   66              	.LVL1:
   49:Core/Src/dma.c **** 
-ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 3
+ARM GAS  F:\msys64\tmp\ccMOCOqn.s 			page 3
 
 
   50:Core/Src/dma.c **** }
@@ -133,7 +133,7 @@ ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 1
   75              	.L3:
   76 0030 00380240 		.word	1073887232
   77              		.cfi_endproc
-  78              	.LFE658:
+  78              	.LFE555:
   80              		.text
   81              	.Letext0:
   82              		.file 2 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\machine\\_default_ty
@@ -141,14 +141,14 @@ ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 1
   84              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
   85              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
   86              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
-ARM GAS  F:\msys64\tmp\ccmizXLr.s 			page 4
+ARM GAS  F:\msys64\tmp\ccMOCOqn.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 dma.c
-F:\msys64\tmp\ccmizXLr.s:20     .text.MX_DMA_Init:00000000 $t
-F:\msys64\tmp\ccmizXLr.s:26     .text.MX_DMA_Init:00000000 MX_DMA_Init
-F:\msys64\tmp\ccmizXLr.s:76     .text.MX_DMA_Init:00000030 $d
+F:\msys64\tmp\ccMOCOqn.s:20     .text.MX_DMA_Init:00000000 $t
+F:\msys64\tmp\ccMOCOqn.s:26     .text.MX_DMA_Init:00000000 MX_DMA_Init
+F:\msys64\tmp\ccMOCOqn.s:76     .text.MX_DMA_Init:00000030 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_SetPriority

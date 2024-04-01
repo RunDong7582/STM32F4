@@ -1,4 +1,4 @@
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,7 +26,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
   23              		.thumb
   24              		.thumb_func
   26              	DWT_Init:
-  27              	.LFB658:
+  27              	.LFB555:
   28              		.file 1 "Drivers/DS18B20/DS18B20.c"
    1:Drivers/DS18B20/DS18B20.c **** #include "DS18B20.h"
    2:Drivers/DS18B20/DS18B20.c **** 
@@ -58,7 +58,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
   28:Drivers/DS18B20/DS18B20.c **** #define GetDQ()  	HAL_GPIO_ReadPin(DATA_GPIO_Port, DATA_Pin) 
   29:Drivers/DS18B20/DS18B20.c **** 
   30:Drivers/DS18B20/DS18B20.c **** // Œ¢√Î—” ±
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 2
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 2
 
 
   31:Drivers/DS18B20/DS18B20.c **** void DWT_Init(void)
@@ -96,7 +96,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
   55 0020 00ED00E0 		.word	-536810240
   56 0024 001000E0 		.word	-536866816
   57              		.cfi_endproc
-  58              	.LFE658:
+  58              	.LFE555:
   60              		.section	.text.delayUS_DWT,"ax",%progbits
   61              		.align	1
   62              		.global	delayUS_DWT
@@ -105,7 +105,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
   65              		.thumb_func
   67              	delayUS_DWT:
   68              	.LVL0:
-  69              	.LFB659:
+  69              	.LFB556:
   37:Drivers/DS18B20/DS18B20.c **** 
   38:Drivers/DS18B20/DS18B20.c **** void delayUS_DWT(uint32_t us) {
   70              		.loc 1 38 31 is_stmt 1 view -0
@@ -118,7 +118,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
   77              	.LCFI0:
   78              		.cfi_def_cfa_offset 8
   39:Drivers/DS18B20/DS18B20.c **** 	volatile uint32_t cycles = (SystemCoreClock / 1000000L) * us;
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 3
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 3
 
 
   79              		.loc 1 39 2 is_stmt 1 view .LVU10
@@ -170,7 +170,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  121 0030 83DE1B43 		.word	1125899907
  122 0034 001000E0 		.word	-536866816
  123              		.cfi_endproc
- 124              	.LFE659:
+ 124              	.LFE556:
  126              		.section	.text.ResetDS18B20,"ax",%progbits
  127              		.align	1
  128              		.global	ResetDS18B20
@@ -178,10 +178,10 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  130              		.thumb
  131              		.thumb_func
  133              	ResetDS18B20:
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 4
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 4
 
 
- 134              	.LFB660:
+ 134              	.LFB557:
   44:Drivers/DS18B20/DS18B20.c **** 
   45:Drivers/DS18B20/DS18B20.c **** unsigned char ResetDS18B20(void)
   46:Drivers/DS18B20/DS18B20.c **** {
@@ -238,7 +238,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
   56:Drivers/DS18B20/DS18B20.c **** 	uint16_t cnt = 0;
  176              		.loc 1 56 2 view .LVU33
   57:Drivers/DS18B20/DS18B20.c **** 	while(GetDQ() && cnt < 500)
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 5
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 5
 
 
  177              		.loc 1 57 2 view .LVU34
@@ -298,7 +298,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  219 0066 1146     		mov	r1, r2
  220 0068 0348     		ldr	r0, .L16
  221 006a FFF7FEFF 		bl	HAL_GPIO_WritePin
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 6
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 6
 
 
  222              	.LVL14:
@@ -322,7 +322,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  236              	.L16:
  237 0078 00100240 		.word	1073876992
  238              		.cfi_endproc
- 239              	.LFE660:
+ 239              	.LFE557:
  241              		.section	.text.DS18B20WriteByte,"ax",%progbits
  242              		.align	1
  243              		.global	DS18B20WriteByte
@@ -331,7 +331,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  246              		.thumb_func
  248              	DS18B20WriteByte:
  249              	.LVL17:
- 250              	.LFB661:
+ 250              	.LFB558:
   71:Drivers/DS18B20/DS18B20.c **** 
   72:Drivers/DS18B20/DS18B20.c **** void DS18B20WriteByte(unsigned char Dat)
   73:Drivers/DS18B20/DS18B20.c **** {
@@ -358,7 +358,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  269              		.loc 1 75 2 view .LVU57
  270 0006 12E0     		b	.L19
  271              	.LVL19:
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 7
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 7
 
 
  272              	.L20:
@@ -418,7 +418,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  309              		.loc 1 77 3 is_stmt 1 view .LVU69
  310 0030 0022     		movs	r2, #0
  311 0032 0121     		movs	r1, #1
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 8
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 8
 
 
  312 0034 0748     		ldr	r0, .L25
@@ -455,7 +455,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  337              	.L25:
  338 0054 00100240 		.word	1073876992
  339              		.cfi_endproc
- 340              	.LFE661:
+ 340              	.LFE558:
  342              		.section	.text.DS18B20ReadByte,"ax",%progbits
  343              		.align	1
  344              		.global	DS18B20ReadByte
@@ -463,7 +463,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  346              		.thumb
  347              		.thumb_func
  349              	DS18B20ReadByte:
- 350              	.LFB662:
+ 350              	.LFB559:
   89:Drivers/DS18B20/DS18B20.c **** 
   90:Drivers/DS18B20/DS18B20.c **** 
   91:Drivers/DS18B20/DS18B20.c **** unsigned char DS18B20ReadByte(void)
@@ -478,7 +478,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  358              		.cfi_offset 4, -16
  359              		.cfi_offset 5, -12
  360              		.cfi_offset 6, -8
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 9
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 9
 
 
  361              		.cfi_offset 14, -4
@@ -538,7 +538,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  396 002a E4B2     		uxtb	r4, r4
  397              	.LVL37:
  398              	.L28:
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 10
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 10
 
 
   96:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
@@ -598,7 +598,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  104:Drivers/DS18B20/DS18B20.c **** 		else
  440              		.loc 1 104 8 view .LVU101
  441 0062 EDB2     		uxtb	r5, r5
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 11
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 11
 
 
  442              	.LVL45:
@@ -620,7 +620,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  454              	.L33:
  455 006c 00100240 		.word	1073876992
  456              		.cfi_endproc
- 457              	.LFE662:
+ 457              	.LFE559:
  459              		.section	.text.ReadRom,"ax",%progbits
  460              		.align	1
  461              		.global	ReadRom
@@ -629,7 +629,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  464              		.thumb_func
  466              	ReadRom:
  467              	.LVL47:
- 468              	.LFB663:
+ 468              	.LFB560:
  112:Drivers/DS18B20/DS18B20.c **** 
  113:Drivers/DS18B20/DS18B20.c **** void ReadRom(unsigned char *Read_Addr)
  114:Drivers/DS18B20/DS18B20.c **** {
@@ -658,7 +658,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  488              	.LVL49:
  118:Drivers/DS18B20/DS18B20.c **** 	for(i = 8; i > 0; i--)
  489              		.loc 1 118 2 is_stmt 1 view .LVU111
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 12
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 12
 
 
  490              		.loc 1 118 8 is_stmt 0 view .LVU112
@@ -701,7 +701,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  517 001e 38BD     		pop	{r3, r4, r5, pc}
  518              		.loc 1 123 1 view .LVU124
  519              		.cfi_endproc
- 520              	.LFE663:
+ 520              	.LFE560:
  522              		.section	.text.DS18B20Init,"ax",%progbits
  523              		.align	1
  524              		.global	DS18B20Init
@@ -710,7 +710,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  527              		.thumb_func
  529              	DS18B20Init:
  530              	.LVL55:
- 531              	.LFB664:
+ 531              	.LFB561:
  124:Drivers/DS18B20/DS18B20.c **** 
  125:Drivers/DS18B20/DS18B20.c **** void DS18B20Init(unsigned char Precision,unsigned char AlarmTH,unsigned char AlarmTL)
  126:Drivers/DS18B20/DS18B20.c **** {	
@@ -718,7 +718,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  533              		.cfi_startproc
  534              		@ args = 0, pretend = 0, frame = 0
  535              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 13
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 13
 
 
  536              		.loc 1 126 1 is_stmt 0 view .LVU126
@@ -778,7 +778,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  578              		.loc 1 138 2 view .LVU136
  579 0034 4820     		movs	r0, #72
  580 0036 FFF7FEFF 		bl	DS18B20WriteByte
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 14
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 14
 
 
  581              	.LVL64:
@@ -806,7 +806,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  599              	.L42:
  600 0048 00100240 		.word	1073876992
  601              		.cfi_endproc
- 602              	.LFE664:
+ 602              	.LFE561:
  604              		.section	.text.DS18B20StartConvert,"ax",%progbits
  605              		.align	1
  606              		.global	DS18B20StartConvert
@@ -814,7 +814,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  608              		.thumb
  609              		.thumb_func
  611              	DS18B20StartConvert:
- 612              	.LFB665:
+ 612              	.LFB562:
  143:Drivers/DS18B20/DS18B20.c **** 
  144:Drivers/DS18B20/DS18B20.c **** void DS18B20StartConvert(void)
  145:Drivers/DS18B20/DS18B20.c **** {
@@ -838,7 +838,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  627 0006 CC20     		movs	r0, #204
  628 0008 FFF7FEFF 		bl	DS18B20WriteByte
  629              	.LVL67:
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 15
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 15
 
 
  149:Drivers/DS18B20/DS18B20.c **** 	DS18B20WriteByte(StartConvert); 
@@ -852,7 +852,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  635              		.loc 1 151 1 is_stmt 0 view .LVU150
  636 0012 08BD     		pop	{r3, pc}
  637              		.cfi_endproc
- 638              	.LFE665:
+ 638              	.LFE562:
  640              		.section	.text.DS18B20_Configuration,"ax",%progbits
  641              		.align	1
  642              		.global	DS18B20_Configuration
@@ -860,7 +860,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  644              		.thumb
  645              		.thumb_func
  647              	DS18B20_Configuration:
- 648              	.LFB666:
+ 648              	.LFB563:
  152:Drivers/DS18B20/DS18B20.c **** 
  153:Drivers/DS18B20/DS18B20.c **** void DS18B20_Configuration(void)
  154:Drivers/DS18B20/DS18B20.c **** {
@@ -898,7 +898,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  676 001a 1A63     		str	r2, [r3, #48]
  677              		.loc 1 158 3 view .LVU157
  678 001c 1B6B     		ldr	r3, [r3, #48]
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 16
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 16
 
 
  679 001e 03F01003 		and	r3, r3, #16
@@ -939,7 +939,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  708 003c 00380240 		.word	1073887232
  709 0040 00100240 		.word	1073876992
  710              		.cfi_endproc
- 711              	.LFE666:
+ 711              	.LFE563:
  713              		.section	.text.ds18b20_init,"ax",%progbits
  714              		.align	1
  715              		.global	ds18b20_init
@@ -947,7 +947,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  717              		.thumb
  718              		.thumb_func
  720              	ds18b20_init:
- 721              	.LFB667:
+ 721              	.LFB564:
  165:Drivers/DS18B20/DS18B20.c **** 
  166:Drivers/DS18B20/DS18B20.c **** 
  167:Drivers/DS18B20/DS18B20.c **** void ds18b20_init(void)
@@ -958,7 +958,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  725              		@ frame_needed = 0, uses_anonymous_args = 0
  726 0000 08B5     		push	{r3, lr}
  727              	.LCFI11:
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 17
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 17
 
 
  728              		.cfi_def_cfa_offset 8
@@ -992,7 +992,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  749              		.loc 1 175 1 is_stmt 0 view .LVU174
  750 001c 08BD     		pop	{r3, pc}
  751              		.cfi_endproc
- 752              	.LFE667:
+ 752              	.LFE564:
  754              		.section	.text.ds18b20_read,"ax",%progbits
  755              		.align	1
  756              		.global	ds18b20_read
@@ -1000,7 +1000,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  758              		.thumb
  759              		.thumb_func
  761              	ds18b20_read:
- 762              	.LFB668:
+ 762              	.LFB565:
  176:Drivers/DS18B20/DS18B20.c **** 
  177:Drivers/DS18B20/DS18B20.c **** 
  178:Drivers/DS18B20/DS18B20.c **** float ds18b20_read(void)
@@ -1018,7 +1018,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  772              		.loc 1 180 2 view .LVU176
  181:Drivers/DS18B20/DS18B20.c **** 	unsigned short TemperatureData;
  773              		.loc 1 181 2 view .LVU177
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 18
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 18
 
 
  182:Drivers/DS18B20/DS18B20.c **** 	float Temperature;
@@ -1078,7 +1078,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  814 0026 43EA0400 		orr	r0, r3, r4
  815              	.LVL85:
  816              		.loc 1 195 18 view .LVU196
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 19
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 19
 
 
  817 002a 80B2     		uxth	r0, r0
@@ -1107,7 +1107,7 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  835              	.L54:
  836 0040 0000803D 		.word	1031798784
  837              		.cfi_endproc
- 838              	.LFE668:
+ 838              	.LFE565:
  840              		.text
  841              	.Letext0:
  842              		.file 2 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\machine\\_default_ty
@@ -1117,41 +1117,41 @@ ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 1
  846              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
  847              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
  848              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
-ARM GAS  F:\msys64\tmp\cccr2Bwe.s 			page 20
+ARM GAS  F:\msys64\tmp\ccu8XMim.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 DS18B20.c
-F:\msys64\tmp\cccr2Bwe.s:20     .text.DWT_Init:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:26     .text.DWT_Init:00000000 DWT_Init
-F:\msys64\tmp\cccr2Bwe.s:55     .text.DWT_Init:00000020 $d
-F:\msys64\tmp\cccr2Bwe.s:61     .text.delayUS_DWT:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:67     .text.delayUS_DWT:00000000 delayUS_DWT
-F:\msys64\tmp\cccr2Bwe.s:120    .text.delayUS_DWT:0000002c $d
-F:\msys64\tmp\cccr2Bwe.s:127    .text.ResetDS18B20:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:133    .text.ResetDS18B20:00000000 ResetDS18B20
-F:\msys64\tmp\cccr2Bwe.s:237    .text.ResetDS18B20:00000078 $d
-F:\msys64\tmp\cccr2Bwe.s:242    .text.DS18B20WriteByte:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:248    .text.DS18B20WriteByte:00000000 DS18B20WriteByte
-F:\msys64\tmp\cccr2Bwe.s:338    .text.DS18B20WriteByte:00000054 $d
-F:\msys64\tmp\cccr2Bwe.s:343    .text.DS18B20ReadByte:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:349    .text.DS18B20ReadByte:00000000 DS18B20ReadByte
-F:\msys64\tmp\cccr2Bwe.s:455    .text.DS18B20ReadByte:0000006c $d
-F:\msys64\tmp\cccr2Bwe.s:460    .text.ReadRom:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:466    .text.ReadRom:00000000 ReadRom
-F:\msys64\tmp\cccr2Bwe.s:523    .text.DS18B20Init:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:529    .text.DS18B20Init:00000000 DS18B20Init
-F:\msys64\tmp\cccr2Bwe.s:600    .text.DS18B20Init:00000048 $d
-F:\msys64\tmp\cccr2Bwe.s:605    .text.DS18B20StartConvert:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:611    .text.DS18B20StartConvert:00000000 DS18B20StartConvert
-F:\msys64\tmp\cccr2Bwe.s:641    .text.DS18B20_Configuration:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:647    .text.DS18B20_Configuration:00000000 DS18B20_Configuration
-F:\msys64\tmp\cccr2Bwe.s:708    .text.DS18B20_Configuration:0000003c $d
-F:\msys64\tmp\cccr2Bwe.s:714    .text.ds18b20_init:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:720    .text.ds18b20_init:00000000 ds18b20_init
-F:\msys64\tmp\cccr2Bwe.s:755    .text.ds18b20_read:00000000 $t
-F:\msys64\tmp\cccr2Bwe.s:761    .text.ds18b20_read:00000000 ds18b20_read
-F:\msys64\tmp\cccr2Bwe.s:836    .text.ds18b20_read:00000040 $d
+F:\msys64\tmp\ccu8XMim.s:20     .text.DWT_Init:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:26     .text.DWT_Init:00000000 DWT_Init
+F:\msys64\tmp\ccu8XMim.s:55     .text.DWT_Init:00000020 $d
+F:\msys64\tmp\ccu8XMim.s:61     .text.delayUS_DWT:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:67     .text.delayUS_DWT:00000000 delayUS_DWT
+F:\msys64\tmp\ccu8XMim.s:120    .text.delayUS_DWT:0000002c $d
+F:\msys64\tmp\ccu8XMim.s:127    .text.ResetDS18B20:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:133    .text.ResetDS18B20:00000000 ResetDS18B20
+F:\msys64\tmp\ccu8XMim.s:237    .text.ResetDS18B20:00000078 $d
+F:\msys64\tmp\ccu8XMim.s:242    .text.DS18B20WriteByte:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:248    .text.DS18B20WriteByte:00000000 DS18B20WriteByte
+F:\msys64\tmp\ccu8XMim.s:338    .text.DS18B20WriteByte:00000054 $d
+F:\msys64\tmp\ccu8XMim.s:343    .text.DS18B20ReadByte:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:349    .text.DS18B20ReadByte:00000000 DS18B20ReadByte
+F:\msys64\tmp\ccu8XMim.s:455    .text.DS18B20ReadByte:0000006c $d
+F:\msys64\tmp\ccu8XMim.s:460    .text.ReadRom:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:466    .text.ReadRom:00000000 ReadRom
+F:\msys64\tmp\ccu8XMim.s:523    .text.DS18B20Init:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:529    .text.DS18B20Init:00000000 DS18B20Init
+F:\msys64\tmp\ccu8XMim.s:600    .text.DS18B20Init:00000048 $d
+F:\msys64\tmp\ccu8XMim.s:605    .text.DS18B20StartConvert:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:611    .text.DS18B20StartConvert:00000000 DS18B20StartConvert
+F:\msys64\tmp\ccu8XMim.s:641    .text.DS18B20_Configuration:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:647    .text.DS18B20_Configuration:00000000 DS18B20_Configuration
+F:\msys64\tmp\ccu8XMim.s:708    .text.DS18B20_Configuration:0000003c $d
+F:\msys64\tmp\ccu8XMim.s:714    .text.ds18b20_init:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:720    .text.ds18b20_init:00000000 ds18b20_init
+F:\msys64\tmp\ccu8XMim.s:755    .text.ds18b20_read:00000000 $t
+F:\msys64\tmp\ccu8XMim.s:761    .text.ds18b20_read:00000000 ds18b20_read
+F:\msys64\tmp\ccu8XMim.s:836    .text.ds18b20_read:00000040 $d
 
 UNDEFINED SYMBOLS
 SystemCoreClock

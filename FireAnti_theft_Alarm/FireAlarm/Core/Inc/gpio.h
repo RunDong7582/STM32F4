@@ -40,8 +40,8 @@ void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 uint16_t ScanKey(void);
-void Beep(uint8_t tune, uint16_t time);
-extern uint16_t beep_time;
+
+// extern uint16_t beep_time;
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

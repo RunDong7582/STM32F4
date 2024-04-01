@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdio.h"
+// #include "stdio.h"
 #include "string.h"
 #include "../inc/gpio.h"
 #include "DS18B20.h"
@@ -34,16 +34,24 @@
 #include <cmsis_os2.h>
 #include "../../API/Menu.h"
 #include "stm32f4xx_ll_gpio.h"
+#include "tim.h"
+#include "usart.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#define uchar unsigned char
+typedef struct {
+    uchar cur;
+    uchar last;
+}Page_t;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -54,9 +62,9 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 float g_tmp = 0;
-uint16_t key = 0;
-unsigned char func_index = 0;
-unsigned char last_index = 127;
+
+Page_t Book = {1 , 127};
+uint32_t beeptick = 0;
 extern const GUI_FONT GUI_FontHZ_YouYuan_24;
 extern const GUI_FONT GUI_FontHZ_KaiTi_32;
 extern const GUI_FONT GUI_FontHZ_KaiTi_20;
@@ -101,9 +109,9 @@ const osThreadAttr_t GUITask_attributes = {
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 static void GUI_Start();
-static void (*current_operation_index)();
-uint16_t KEY_CHECK(uint8_t ch);
-// static void GUI_Menu();
+static void (*current_display_page)();
+void Beep(uint8_t tune, uint16_t time);
+void BeepDone(void);
 /* USER CODE END FunctionPrototypes */
 
 void DefaultMainTask(void *argument);
@@ -195,32 +203,33 @@ void StartKeyTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-		key = ScanKey();
+		uint16_t key = ScanKey();
     if(key > 0)
     {
       switch (key)
       {
         case K1_Pin:
-          func_index = table[func_index].up;      //向上翻
+          Book.cur = table[Book.cur].up;      //向上翻
         break;
         case K2_Pin:
-          func_index = table[func_index].down;    //向下翻
+          Book.cur = table[Book.cur].down;    //向下翻
         break;
         case K3_Pin:
-          func_index = table[func_index].enter;   //确认
+          Book.cur = table[Book.cur].enter;   //确认
         break;
         case K4_Pin:
-          func_index = last_index;                //返回上一页面
+          // Book.cur = Book.last;                //返回上一页面
         break;
         case K5_Pin:
-          GUI_Clear();
         break;
         case K6_Pin:
-          GUI_Clear();
+          Book.cur = 0;
+          Book.last = 127;
         break;
         default:
         break;
       }
+
     }
 
 		// osThreadFlagsSet(StartGUITask, key);
@@ -260,38 +269,19 @@ void StartGUITask(void *argument)
   /* Infinite loop */
   GUI_Init();
   // GUI_Start();
-  // GUI_Menu();
+
   for(;;)
   {
-    if (func_index != last_index)
-		{
-			current_operation_index = table[func_index].current_operation;
+    if (Book.cur != Book.last)
+    {
+      current_display_page = table[Book.cur].current_page;
       GUI_Clear();
-			(*current_operation_index)();//执行当前操作函数
-			
-			last_index = func_index;
-		}
+      (*current_display_page)();//执行当前操作函数
+      Book.last = Book.cur;
+    }
 
-  	// uint32_t gGui = osThreadFlagsWait( K1_Pin | K2_Pin  | K3_Pin | K4_Pin | K5_Pin | K6_Pin ,osFlagsWaitAny,10);
-    // switch (gGui)
-    // {
-    //     case K1_Pin:
-    //     break;
-    //     case K2_Pin:
-    //     break;
-    //     case K3_Pin:
-    //     break;
-    //     case K4_Pin:
-    //     break;
-    //     case K5_Pin:
-    //     break;
-    //     case K6_Pin:
-    //       GUI_Start();
-    //     break;
-    //     default:
-    //     break;
-    //}
-
+    if (Book.cur == 0) Book.cur = 1;
+    BeepDone();
     osDelay(1);
   }
   /* USER CODE END StartGUITask */
@@ -313,7 +303,7 @@ static void GUI_Start()
         GUI_DrawBitmap(&bmfirealarm82, 88, 48);
       else if ( i % 5 == 4)
         GUI_DrawBitmap(&bmfirealarm, 88, 48);
-      GUI_SetColor(GUI_DARKRED);
+      GUI_SetColor(GUI_ORANGE);
       GUI_FillRect(40,200,4*i+40,220);
       GUI_DrawRect(40,200,280,220);
       if( i == 60 ){
@@ -326,6 +316,7 @@ static void GUI_Start()
     }
     GUI_Clear();
     GUI_SetBkColor(GUI_GRAY_D0);
+    GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
     GUI_SetFont(&GUI_FontHZ_YouYuan_24);
     GUI_SetColor(GUI_RED);
     
@@ -336,16 +327,57 @@ static void GUI_Start()
     GUI_DispStringAt("21032311", 106, 96);
     GUI_DispStringAt("陈炫润", 114, 126);
     osDelay(2000);
+    //Beep(5,100);
 }
 
-// static void GUI_Menu()
+void Beep(uint8_t tune, uint16_t time)
+{
+    static uint16_t TAB[] = {494, 523, 588, 660, 698, 784, 880, 988};
+    HAL_TIM_Base_Start(&htim3);
+
+    if (tune >=1  && tune <= 7) {
+      int pre = 1000000 / TAB[tune];
+      __HAL_TIM_SET_AUTORELOAD(&htim3,pre);
+      __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, pre/2);
+      
+      beeptick = osKernelGetTickCount() + time;
+      HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+    }
+}
+
+void BeepDone(void)
+{
+   if(beeptick > 0 && osKernelGetTickCount() >= beeptick) {
+    beeptick = 0;
+    HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_1);
+   }
+
+}
+
+// void UpdateDisplayOnButtonPress(void)
 // {
-//     GUI_SetBkColor(GUI_GRAY_D0);
-//     GUI_SetColor(GUI_BROWN);
-//     GUI_SetFont(&GUI_FontHZ_KaiTi_20);
-//     current_operation_index = table[func_index].current_operation;
+//     current_display_page = table[Book.cur].current_page;
 //     GUI_Clear();
-//     (*current_operation_index)();
+//     (*current_display_page)();  // 执行当前操作函数
+//     Book.last = Book.cur;
+// }
+
+// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+// {
+//     switch (GPIO_Pin)
+//     {
+//         case K5_Pin:
+//             osDelay(10); // 延迟处理
+//             if (HAL_GPIO_ReadPin(K5_GPIO_Port, K5_Pin) == SET)
+//             {
+//                 Book.cur = 1;
+//                 Book.last = 0;
+//                 UpdateDisplayOnButtonPress();  // 更新显示内容
+//             }
+//             break;
+//         default:
+//             break;
+//     }
 // }
 /* USER CODE END Application */
 

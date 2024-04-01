@@ -20,8 +20,6 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "crc.h"
-#include "dma.h"
-#include "i2c.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -92,14 +90,19 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_CRC_Init();
   MX_FSMC_Init();
-  MX_I2C1_Init();
   MX_SPI2_Init();
   MX_USART1_UART_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+  // #ifdef __GNUC__
+  // /* With GCC, small printf (option LD Linker->Libraries->Small printf
+  //   set to 'Yes') calls __io_putchar() */
+  // #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+  // #else
+  // #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+  // #endif /* __GNUC__ */
 
   /* USER CODE END 2 */
 
@@ -121,6 +124,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   }
+  
   /* USER CODE END 3 */
 }
 
@@ -170,6 +174,11 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+// PUTCHAR_PROTOTYPE
+// {
+//    HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+//    return ch;
+// }
 
 /* USER CODE END 4 */
 
@@ -190,7 +199,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+  // if (htim->Instance == TIM7 && beep_time > 0)
+	// {	
+	// 	--beep_time;
+	//  if(0 == beep_time)
+	// 	Beep(0,0); 
+  //  }
   /* USER CODE END Callback 1 */
 }
 

@@ -1,4 +1,4 @@
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
   28:Core/Src/i2c.c **** void MX_I2C1_Init(void)
   29:Core/Src/i2c.c **** {
   29              		.loc 1 29 1 view -0
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 2
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 2
 
 
   30              		.cfi_startproc
@@ -118,7 +118,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
   11:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****       A delay between an RCC peripheral clock enable and the effective peripheral
   12:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****       enabling should be taken into account in order to manage the peripheral read/write
   13:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****       from/to registers.
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 3
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 3
 
 
   14:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****       (+) This delay depends on the peripheral mapping.
@@ -178,7 +178,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
   68:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   */
   69:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_ALL             0xFFFFFFFFU
   70:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_GPIOA           RCC_AHB1ENR_GPIOAEN
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 4
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 4
 
 
   71:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_GPIOB           RCC_AHB1ENR_GPIOBEN
@@ -238,7 +238,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  125:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_SRAM2           RCC_AHB1LPENR_SRAM2LPEN
  126:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #endif /* RCC_AHB1LPENR_SRAM2LPEN */
  127:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #if defined(RCC_AHB1LPENR_SRAM3LPEN)
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 5
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 5
 
 
  128:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_SRAM3           RCC_AHB1LPENR_SRAM3LPEN
@@ -298,7 +298,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  182:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @{
  183:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   */
  184:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_ALL            0xFFFFFFFFU
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 6
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 6
 
 
  185:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #if defined(TIM2)
@@ -358,7 +358,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  239:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_I2C3           RCC_APB1ENR_I2C3EN
  240:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #endif /* I2C3 */
  241:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #if defined(FMPI2C1)
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 7
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 7
 
 
  242:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_FMPI2C1        RCC_APB1ENR_FMPI2C1EN
@@ -418,7 +418,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  296:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_SDIO         RCC_APB2ENR_SDIOEN
  297:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #endif /* SDIO */
  298:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_SPI1         RCC_APB2ENR_SPI1EN
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 8
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 8
 
 
  299:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** #if defined(SPI4)
@@ -478,7 +478,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  353:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** 
  354:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** /**
  355:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @brief  Enable AHB1 peripherals clock.
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 9
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 9
 
 
  356:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @rmtoll AHB1ENR      GPIOAEN            LL_AHB1_GRP1_EnableClock\n
@@ -538,7 +538,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
   64              		.loc 2 409 22 view .LVU6
   65              	.LBB15:
  410:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** {
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 10
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 10
 
 
  411:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   __IO uint32_t tmpreg;
@@ -598,7 +598,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
   50:Core/Src/i2c.c ****   LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
  105              		.loc 1 50 3 is_stmt 1 view .LVU25
  106 0046 02A9     		add	r1, sp, #8
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 11
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 11
 
 
  107 0048 1848     		ldr	r0, .L3+4
@@ -658,7 +658,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  461:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_RNG (*)
  462:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2D (*)
  463:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ETHMAC (*)
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 12
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 12
 
 
  464:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ETHMACTX (*)
@@ -718,7 +718,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  518:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CCMDATARAM (*)
  519:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
  520:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 13
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 13
 
 
  521:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_RNG (*)
@@ -778,7 +778,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  575:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2D (*)
  576:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ETHMAC (*)
  577:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_OTGHS (*)
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 14
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 14
 
 
  578:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *
@@ -838,7 +838,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  632:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** {
  633:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   CLEAR_BIT(RCC->AHB1RSTR, Periphs);
  634:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** }
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 15
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 15
 
 
  635:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** 
@@ -898,7 +898,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  689:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ETHMACTX (*)
  690:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ETHMACRX (*)
  691:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ETHMACPTP (*)
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 16
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 16
 
 
  692:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_OTGHS (*)
@@ -958,7 +958,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  746:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_GPIOI (*)
  747:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_GPIOJ (*)
  748:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_GPIOK (*)
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 17
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 17
 
 
  749:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
@@ -1018,7 +1018,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  803:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** {
  804:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   __IO uint32_t tmpreg;
  805:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   SET_BIT(RCC->AHB2ENR, Periphs);
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 18
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 18
 
 
  806:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   /* Delay after an RCC peripheral clock enabling */
@@ -1078,7 +1078,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  860:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @brief  Force AHB2 peripherals reset.
  861:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @rmtoll AHB2RSTR     DCMIRST      LL_AHB2_GRP1_ForceReset\n
  862:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         AHB2RSTR     CRYPRST      LL_AHB2_GRP1_ForceReset\n
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 19
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 19
 
 
  863:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         AHB2RSTR     AESRST       LL_AHB2_GRP1_ForceReset\n
@@ -1138,7 +1138,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  917:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
  918:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_DCMI (*)
  919:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_CRYP (*)
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 20
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 20
 
 
  920:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_AES  (*)
@@ -1198,7 +1198,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  974:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         AHB3ENR      FSMCEN        LL_AHB3_GRP1_EnableClock\n
  975:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         AHB3ENR      QSPIEN        LL_AHB3_GRP1_EnableClock
  976:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 21
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 21
 
 
  977:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         @arg @ref LL_AHB3_GRP1_PERIPH_FMC (*)
@@ -1258,7 +1258,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
 1031:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @rmtoll AHB3RSTR     FMCRST        LL_AHB3_GRP1_ForceReset\n
 1032:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         AHB3RSTR     FSMCRST       LL_AHB3_GRP1_ForceReset\n
 1033:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         AHB3RSTR     QSPIRST       LL_AHB3_GRP1_ForceReset
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 22
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 22
 
 
 1034:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
@@ -1318,7 +1318,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
 1088:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** 
 1089:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h **** /**
 1090:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @brief  Disable AHB3 peripheral clocks in low-power mode
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 23
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 23
 
 
 1091:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   * @rmtoll AHB3LPENR    FMCLPEN       LL_AHB3_GRP1_DisableClockLowPower\n
@@ -1378,7 +1378,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
 1145:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         APB1ENR     DACEN         LL_APB1_GRP1_EnableClock\n
 1146:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         APB1ENR     UART7EN       LL_APB1_GRP1_EnableClock\n
 1147:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         APB1ENR     UART8EN       LL_APB1_GRP1_EnableClock\n
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 24
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 24
 
 
 1148:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   *         APB1ENR     RTCAPBEN      LL_APB1_GRP1_EnableClock
@@ -1438,7 +1438,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  124              		.loc 2 1190 10 view .LVU32
  125 005c 0093     		str	r3, [sp]
 1191:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h ****   (void)tmpreg;
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 25
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 25
 
 
  126              		.loc 2 1191 3 is_stmt 1 view .LVU33
@@ -1498,7 +1498,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
   37:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @{
   38:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   */
   39:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** 
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 26
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 26
 
 
   40:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** /* Private types -------------------------------------------------------------*/
@@ -1558,7 +1558,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
   94:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   uint32_t DigitalFilter;       /*!< Configures the digital noise filter.
   95:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****                                      This parameter can be a number between Min_Data = 0x00 and Max
   96:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** 
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 27
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 27
 
 
   97:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****                                      This feature can be modified afterwards using unitary function
@@ -1618,7 +1618,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  151:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** /**
  152:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @}
  153:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   */
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 28
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 28
 
 
  154:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** 
@@ -1678,7 +1678,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  208:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** #define LL_I2C_MODE_SMBUS_HOST              (uint32_t)(I2C_CR1_SMBUS | I2C_CR1_SMBTYPE | I2C_CR1_EN
  209:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** #define LL_I2C_MODE_SMBUS_DEVICE            I2C_CR1_SMBUS                                          
  210:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** #define LL_I2C_MODE_SMBUS_DEVICE_ARP        (uint32_t)(I2C_CR1_SMBUS | I2C_CR1_ENARP)              
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 29
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 29
 
 
  211:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** /**
@@ -1738,7 +1738,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  265:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** 
  266:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** /** @defgroup I2C_LL_EM_Exported_Macros_Helper Exported Macros Helper
  267:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @{
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 30
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 30
 
 
  268:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   */
@@ -1798,7 +1798,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  322:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** #define __LL_I2C_SPEED_FAST_TO_CCR(__PCLK__, __SPEED__, __DUTYCYCLE__)  (uint32_t)(((__DUTYCYCLE__)
  323:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****                                                                             (((((__PCLK__) / ((__SP
  324:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****                                                                             (((((__PCLK__) / ((__SP
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 31
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 31
 
 
  325:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** 
@@ -1858,7 +1858,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  379:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
  380:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @retval None
  381:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   */
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 32
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 32
 
 
  382:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** __STATIC_INLINE void LL_I2C_Disable(I2C_TypeDef *I2Cx)
@@ -1918,7 +1918,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  436:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @brief  Get the current Digital Noise Filter configuration.
  437:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @rmtoll FLTR         DNF           LL_I2C_GetDigitalFilter
  438:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 33
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 33
 
 
  439:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @retval Value between Min_Data=0x0 and Max_Data=0xF
@@ -1978,7 +1978,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  493:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** }
  494:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** 
  495:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** /**
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 34
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 34
 
 
  496:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @brief  Disable DMA transmission requests.
@@ -2038,7 +2038,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  550:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** /**
  551:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @brief  Get the data register address used for DMA transfer.
  552:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @rmtoll DR           DR            LL_I2C_DMA_GetRegAddr
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 35
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 35
 
 
  553:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
@@ -2098,7 +2098,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  607:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** 
  608:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** /**
  609:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @brief  Disable General Call.
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 36
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 36
 
 
  610:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @note   When disabled the Address 0x00 is NACKed.
@@ -2158,7 +2158,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  664:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @rmtoll OAR2         ENDUAL        LL_I2C_EnableOwnAddress2
  665:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @param  I2Cx I2C Instance.
  666:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   * @retval None
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 37
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 37
 
 
  667:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h ****   */
@@ -2218,7 +2218,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  168 007a 2B60     		str	r3, [r5]
  169              	.LVL6:
  570:Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h **** }
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 38
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 38
 
 
  170              		.loc 3 570 3 is_stmt 0 view .LVU46
@@ -2278,7 +2278,7 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
   73:Core/Src/i2c.c **** 
   74:Core/Src/i2c.c ****   /* USER CODE END I2C1_Init 2 */
   75:Core/Src/i2c.c **** 
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 39
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 39
 
 
   76:Core/Src/i2c.c **** }
@@ -2303,14 +2303,14 @@ ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 1
  231              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
  232              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h"
  233              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
-ARM GAS  F:\msys64\tmp\cclfnzNs.s 			page 40
+ARM GAS  F:\msys64\tmp\cc0agNY3.s 			page 40
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 i2c.c
-F:\msys64\tmp\cclfnzNs.s:20     .text.MX_I2C1_Init:00000000 $t
-F:\msys64\tmp\cclfnzNs.s:26     .text.MX_I2C1_Init:00000000 MX_I2C1_Init
-F:\msys64\tmp\cclfnzNs.s:221    .text.MX_I2C1_Init:000000a8 $d
+F:\msys64\tmp\cc0agNY3.s:20     .text.MX_I2C1_Init:00000000 $t
+F:\msys64\tmp\cc0agNY3.s:26     .text.MX_I2C1_Init:00000000 MX_I2C1_Init
+F:\msys64\tmp\cc0agNY3.s:221    .text.MX_I2C1_Init:000000a8 $d
 
 UNDEFINED SYMBOLS
 LL_GPIO_Init
