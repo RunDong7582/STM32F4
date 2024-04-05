@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "cstdint": "c",
+        "gui.h": "c",
+        "mpu6050.h": "c"
+    }
+}

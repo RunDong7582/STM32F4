@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "GUI.h"
 
+
 extern GUI_CONST_STORAGE GUI_BITMAP bmhdu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarmbw;
@@ -34,15 +35,14 @@ Book_Table MENU[PAGE_MAX]=
  * 
 */
  
-void Book_Pageturn (uchar cur, float temp, int update)
+void Book_Pageturn (uchar cur, float temp, int update, MPUpacket mpu)
 {  
     for(int i = 0; i < PAGE_MAX; i++ ){
-
-        if( MENU[i].current_id == cur) {
+        if ( MENU[i].current_id == cur) {
 			if(!update)	GUI_Clear();
-            MENU[i].display( temp , update );
+            MENU[i].display( temp , update , mpu);
             break;
-        }
+        } 
     }
 }
 
@@ -50,12 +50,13 @@ void Book_Pageturn (uchar cur, float temp, int update)
  * 	Boot 
  * 
 */
-void Boot (float temp , int update)
+void Boot (float temp , int update , MPUpacket mpu)
 {
-	if(!update){
+	// if(!update){
 		GUI_SetBkColor(GUI_BLACK);
 		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
 		for(int i = 0; i < 61; i++) {
+		if(button) {GUI_Clear();GUI_SetBkColor(GUI_GRAY_D0);GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());break;}
 		if ( i % 5 == 0 && i!=60 )
 			GUI_ClearRect(88,48,216,176);
 		else if ( i % 5 == 1)
@@ -77,12 +78,12 @@ void Boot (float temp , int update)
 		}
 		osDelay(20);
 		}
+		if (!button) {
 		GUI_Clear();
 		GUI_SetBkColor(GUI_GRAY_D0);
 		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
 		GUI_SetFont(&GUI_FontHZ_YouYuan_24);
-		GUI_SetColor(GUI_RED);
-		
+		GUI_SetColor(GUI_RED);		
 		GUI_DrawBitmap(&bmhdu, 0, 0);
 		GUI_DispStringAt("防火防盗监测器", 76, 96);
 		osDelay(1000);
@@ -90,11 +91,12 @@ void Boot (float temp , int update)
 		GUI_DispStringAt("21032311", 106, 96);
 		GUI_DispStringAt("陈炫润", 114, 126);
 		osDelay(2000);
-		Beep(5,100);
-	}
-	else {
-		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());	
-	}
+		}
+		//Beep(5,100);
+	// }
+	// else {
+	// 	GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());	
+	// }
 }
 
 /*
@@ -125,7 +127,7 @@ void Boot (float temp , int update)
     Real Time Monitoring
 */
 
-void RT_Monitor_P1 (float temp , int update)
+void RT_Monitor_P1 (float temp , int update, MPUpacket mpu)
 {
 	if (!update) {
 		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
@@ -159,11 +161,19 @@ void RT_Monitor_P1 (float temp , int update)
 	GUI_SetColor(GUI_RED);
 	GUI_DispStringAt("温度", 156 ,170);
 	GUI_DispStringAt("℃", 260 ,172);
+	GUI_SetColor(GUI_DARKMAGENTA);
+	GUI_DispStringAt("震动报警", 156 ,52);
+
 }
 
-void RT_Monitor_P2(void)
+void RT_Monitor_P2(float temp , int update, MPUpacket mpu)
 {
+   	if (!update) {
+		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+	}
+	GUI_SetBkColor(GUI_GRAY_D0);
     GUI_SetColor(GUI_BROWN);
+	GUI_SetFont(&GUI_FontHZ_KaiTi_20);
 	GUI_DrawRoundedFrame(8,62,108,120,4,6);
 	GUI_DrawRoundedFrame(8,120,108,178,4,6);
 	GUI_DrawRoundedFrame(8,178,108,236,4,6);
@@ -176,17 +186,27 @@ void RT_Monitor_P2(void)
 	GUI_DispStringAt("无线通信",16,140);
 	GUI_DispStringAt("参数设置",16,198); 
 	
-	GUI_ClearRect(150, 20, 310,220);
+	if (!update) GUI_ClearRect(150, 20, 310,220);
 	GUI_SetColor(GUI_LIGHTBLUE);
 	GUI_AA_FillRoundedRect(150, 20, 310,220,5);
 	GUI_SetFont(&GUI_FontComic24B_ASCII);
-	GUI_SetColor(GUI_BLACK);
-	GUI_SetBkColor(GUI_LIGHTBLUE);
+	// GUI_SetBkColor(GUI_LIGHTBLUE);
+	GUI_SetColor(GUI_ORANGE);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
+	char buf[40];
+	sprintf(buf,"%d %d %d",mpu.ax,mpu.ay,mpu.az);
+	GUI_DispStringAt(buf, 170 ,160);
+
 }
 
-void RT_Monitor_P3(void)
+void RT_Monitor_P3(float temp , int update, MPUpacket mpu)
 {
-	GUI_SetColor(GUI_BROWN);
+	if (!update) {
+		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+	}
+	GUI_SetBkColor(GUI_GRAY_D0);
+    GUI_SetColor(GUI_BROWN);
+	GUI_SetFont(&GUI_FontHZ_KaiTi_20);
 	GUI_DrawRoundedFrame(8,62,108,120,4,6);
 	GUI_DrawRoundedFrame(8,120,108,178,4,6);
 	GUI_DrawRoundedFrame(8,178,108,236,4,6);
@@ -199,12 +219,20 @@ void RT_Monitor_P3(void)
 	GUI_DispStringAt("无线通信",16,140);
 	GUI_DispStringAt("参数设置",16,198); 
 	
-	GUI_ClearRect(150, 20, 310,220);
+	if (!update) GUI_ClearRect(150, 20, 310,220);
 	GUI_SetColor(GUI_LIGHTBLUE);
+	if (update)  GUI_ClearRect(156, 170, 284,194);
 	GUI_AA_FillRoundedRect(150, 20, 310,220,5);
 	GUI_SetFont(&GUI_FontComic24B_ASCII);
 	GUI_SetColor(GUI_BLACK);
-	GUI_SetBkColor(GUI_LIGHTBLUE);
+	// GUI_SetBkColor(GUI_LIGHTBLUE);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
+	char buf[10];
+	sprintf(buf,"%.1f", temp);
+	GUI_DispStringAt(buf, 210 ,170);
+	GUI_SetColor(GUI_RED);
+	GUI_DispStringAt("温度", 156 ,170);
+	GUI_DispStringAt("℃", 260 ,172);
 }
 
 void DT_Curve_P1(void)

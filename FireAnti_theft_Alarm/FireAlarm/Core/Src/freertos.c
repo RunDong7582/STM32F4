@@ -53,8 +53,15 @@ typedef struct {
     float old;
 }Temperature;
 
-#define Disp_first        1 << 1
-#define Fetch_temp_event  1 << 2
+// typedef struct {
+//     __IO short ax;
+//     __IO short ay;
+//     __IO short az;
+//     __IO short gx;
+//     __IO short gy;
+//     __IO short gz;
+// }MPUpacket;
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -70,9 +77,11 @@ typedef struct {
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
+int mpuok = 0;
+uint16_t button = 0;
 uint16_t key = 0;
 Temperature gtemp = {0.0f, 0.0f};
-
+MPUpacket mpu = {1,0,-1,1,0,-1};
 Page_t Book = {1 , 127};
 
 uint32_t beeptick = 0;
@@ -88,6 +97,7 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm30;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm60;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm82;
 
+extern __IO short ax, ay, az, gx, gy, gz;	// ????
 /* USER CODE END Variables */
 /* Definitions for MainTask */
 osThreadId_t MainTaskHandle;
@@ -194,12 +204,27 @@ void DefaultMainTask(void *argument)
   /* USER CODE BEGIN DefaultMainTask */
   /* Infinite loop */
   ds18b20_init();
-
+	mpuok = MPU_init();
+	int cnt = 0;
+	while (!mpuok && cnt < 3)
+	{
+		osDelay(500);
+		mpuok = MPU_init();
+		++cnt;
+	}
   for(;;)
   {
     osThreadFlagsWait(0x0001, osFlagsWaitAny, osWaitForever);
     osDelay(1000);
-    gtemp.new  = ds18b20_read(); 
+    gtemp.new  = ds18b20_read();
+    osDelay(500);
+    if (mpuok) {
+      MPU_getdata();
+      mpu.ax = ax;
+      mpu.ay = ay;
+      mpu.az = az;
+    }
+
   }
   /* USER CODE END DefaultMainTask */
 }
@@ -223,27 +248,27 @@ void StartKeyTask(void *argument)
       switch (key)
       {
         case K1_Pin:
-          Book.cur = MENU[Book.cur].up;      //ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
+          Book.cur = MENU[Book.cur].up;     
           osDelay(500);
         break;
         case K4_Pin:
-          Book.cur = MENU[Book.cur].down;    //ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
+          Book.cur = MENU[Book.cur].down;   
           osDelay(500);
         break;
         case K2_Pin:
-          Book.cur = MENU[Book.cur].left;   //Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          Book.cur = MENU[Book.cur].left;   
           osDelay(500);
         break;
         case K3_Pin:    
-          Book.cur = MENU[Book.cur].right;   //Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          Book.cur = MENU[Book.cur].right;   
           osDelay(500);
         break;
-        // case K5_Pin:
-        //   Book.cur = MENU[Book.cur].enter;   //Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-        //   osDelay(500);
-        // break;
+        case K5_Pin:
+          Book.cur = MENU[Book.cur].enter;  
+          osDelay(500);
+        break;
         case K6_Pin:
-          Book.cur = MENU[Book.cur].back;   //Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          Book.cur = MENU[Book.cur].back;  
           osDelay(500);
         break;
         default:
@@ -293,14 +318,16 @@ void StartGUITask(void *argument)
   for(;;)
   {
       if ( Book.last != Book.cur ) {
-          Book_Pageturn(Book.cur,gtemp.new,0);
+          Book_Pageturn(Book.cur,gtemp.new,0,mpu);
           Book.last = Book.cur;
       }
       else {
         if ( gtemp.new != gtemp.old ) {
-          Book_Pageturn(Book.cur,gtemp.new,1);
+          Book_Pageturn(Book.cur,gtemp.new,1,mpu);
           gtemp.old = gtemp.new;
+          button = 0;
         } else {
+          button = 0;
           osThreadFlagsSet(MainTaskHandle , 0x0001);
           osDelay(2U);
         }
@@ -321,6 +348,7 @@ static void GUI_Start()
 	  GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
     GUI_SetBkColor(GUI_BLACK);
     for(int i = 0; i < 61; i++) {
+      if(button) {GUI_Clear();GUI_SetBkColor(GUI_GRAY_D0);GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());break;}
       if ( i % 5 == 0 && i!=60 )
         GUI_ClearRect(88,48,216,176);
       else if ( i % 5 == 1)
@@ -342,20 +370,22 @@ static void GUI_Start()
       }
       osDelay(20);
     }
-    GUI_Clear();
-    GUI_SetBkColor(GUI_GRAY_D0);
-    GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
-    GUI_SetFont(&GUI_FontHZ_YouYuan_24);
-    GUI_SetColor(GUI_RED);
-    
-    GUI_DrawBitmap(&bmhdu, 0, 0);
-    GUI_DispStringAt("·À»ğ·ÀµÁ¼à²âÆ÷", 76, 96);
-    osDelay(1000);
-    GUI_Clear();
-    GUI_DispStringAt("21032311", 106, 96);
-    GUI_DispStringAt("³ÂìÅÈó", 114, 126);
-    osDelay(2000);
-    Beep(7,100);
+    if (!button) {
+      GUI_Clear();
+      GUI_SetBkColor(GUI_GRAY_D0);
+      GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+      GUI_SetFont(&GUI_FontHZ_YouYuan_24);
+      GUI_SetColor(GUI_RED);
+      
+      GUI_DrawBitmap(&bmhdu, 0, 0);
+      GUI_DispStringAt("·À»ğ·ÀµÁ¼à²âÆ÷", 76, 96);
+      osDelay(1000);
+      GUI_Clear();
+      GUI_DispStringAt("21032311", 106, 96);
+      GUI_DispStringAt("³ÂìÅÈó", 114, 126);
+      osDelay(2000);
+    }
+    //Beep(7,100);
 }
 
 void Beep(uint8_t tune, uint16_t time)
@@ -384,8 +414,7 @@ void BeepDone(void)
 
 void UpdateDisplayOnButtonPress(void)
 {
-    Book_Pageturn(Book.cur,gtemp.new,1);
-    Book.last = Book.cur;
+    Book_Pageturn(Book.cur,gtemp.new,1,mpu);
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -395,8 +424,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         case K5_Pin:
           if (HAL_GPIO_ReadPin(K5_GPIO_Port, K5_Pin) == SET)
           {
-              Book.cur = Book.cur = MENU[Book.cur].enter;
+              Book.cur  = MENU[Book.cur].enter;
               Book.last = 0;
+              button = 1;
               UpdateDisplayOnButtonPress(); 
           }
         break;
