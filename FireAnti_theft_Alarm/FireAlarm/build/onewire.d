@@ -1,4 +1,4 @@
-build/gpio.o: Core/Src/gpio.c Core/Inc/gpio.h Core/Inc/main.h \
+build/onewire.o: Drivers/DS18B20/onewire.c Core/Inc/tim.h Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Core/Inc/stm32f4xx_hal_conf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -29,9 +29,17 @@ build/gpio.o: Core/Src/gpio.c Core/Inc/gpio.h Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- Core/Inc/tim.h
-Core/Inc/gpio.h:
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_system.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_cortex.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_rcc.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
+ Drivers/DS18B20/onewire.h Core/Inc/gpio.h Drivers/DS18B20/ds18b20.h
+Core/Inc/tim.h:
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Inc/stm32f4xx_hal_conf.h:
@@ -65,5 +73,15 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
-Core/Inc/tim.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_system.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_cortex.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_rcc.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:
+Drivers/DS18B20/onewire.h:
+Core/Inc/gpio.h:
+Drivers/DS18B20/ds18b20.h:

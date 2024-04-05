@@ -29,6 +29,7 @@
 #include "string.h"
 #include "../inc/gpio.h"
 #include "DS18B20.h"
+#include "MPU6050.h"
 #include "../../Drivers/STemWin/inc/GUI.h"
 #include "touch.h"
 #include <cmsis_os2.h>
@@ -46,6 +47,14 @@ typedef struct {
     uchar cur;
     uchar last;
 }Page_t;
+
+typedef struct {
+    float new;
+    float old;
+}Temperature;
+
+#define Disp_first        1 << 1
+#define Fetch_temp_event  1 << 2
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -61,14 +70,17 @@ typedef struct {
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-float g_tmp = 0;
+uint16_t key = 0;
+Temperature gtemp = {0.0f, 0.0f};
 
 Page_t Book = {1 , 127};
+
 uint32_t beeptick = 0;
 extern const GUI_FONT GUI_FontHZ_YouYuan_24;
 extern const GUI_FONT GUI_FontHZ_KaiTi_32;
 extern const GUI_FONT GUI_FontHZ_KaiTi_20;
 extern const GUI_FONT GUI_FontHZ_KaiTi_12;
+extern const GUI_FONT GUI_FontHZ_Zhongyuan_Hz_24;
 extern GUI_CONST_STORAGE GUI_BITMAP bmhdu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarmbw;
@@ -109,7 +121,7 @@ const osThreadAttr_t GUITask_attributes = {
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 static void GUI_Start();
-static void (*current_display_page)();
+// static void (*current_display_page)();
 void Beep(uint8_t tune, uint16_t time);
 void BeepDone(void);
 /* USER CODE END FunctionPrototypes */
@@ -182,10 +194,12 @@ void DefaultMainTask(void *argument)
   /* USER CODE BEGIN DefaultMainTask */
   /* Infinite loop */
   ds18b20_init();
-  g_tmp = ds18b20_read();
+
   for(;;)
   {
-    osDelay(1);
+    osThreadFlagsWait(0x0001, osFlagsWaitAny, osWaitForever);
+    osDelay(1000);
+    gtemp.new  = ds18b20_read(); 
   }
   /* USER CODE END DefaultMainTask */
 }
@@ -203,28 +217,34 @@ void StartKeyTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-		uint16_t key = ScanKey();
+		key = ScanKey();
     if(key > 0)
     {
       switch (key)
       {
         case K1_Pin:
-          Book.cur = table[Book.cur].up;      //ÏòÉÏ·­
-        break;
-        case K2_Pin:
-          Book.cur = table[Book.cur].down;    //ÏòÏÂ·­
-        break;
-        case K3_Pin:
-          Book.cur = table[Book.cur].enter;   //È·ÈÏ
+          Book.cur = MENU[Book.cur].up;      //ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
+          osDelay(500);
         break;
         case K4_Pin:
-          // Book.cur = Book.last;                //·µ»ØÉÏÒ»Ò³Ãæ
+          Book.cur = MENU[Book.cur].down;    //ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
+          osDelay(500);
         break;
-        case K5_Pin:
+        case K2_Pin:
+          Book.cur = MENU[Book.cur].left;   //Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          osDelay(500);
         break;
+        case K3_Pin:    
+          Book.cur = MENU[Book.cur].right;   //Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          osDelay(500);
+        break;
+        // case K5_Pin:
+        //   Book.cur = MENU[Book.cur].enter;   //Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //   osDelay(500);
+        // break;
         case K6_Pin:
-          Book.cur = 0;
-          Book.last = 127;
+          Book.cur = MENU[Book.cur].back;   //Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          osDelay(500);
         break;
         default:
         break;
@@ -232,7 +252,6 @@ void StartKeyTask(void *argument)
 
     }
 
-		// osThreadFlagsSet(StartGUITask, key);
     osDelay(1);
   }
   /* USER CODE END StartKeyTask */
@@ -268,19 +287,27 @@ void StartGUITask(void *argument)
   /* USER CODE BEGIN StartGUITask */
   /* Infinite loop */
   GUI_Init();
-  // GUI_Start();
-
+  GUI_Start();
+  osThreadFlagsSet(MainTaskHandle , 0x0001);
+  osDelay(2U);
   for(;;)
   {
-    if (Book.cur != Book.last)
-    {
-      current_display_page = table[Book.cur].current_page;
-      GUI_Clear();
-      (*current_display_page)();//Ö´ÐÐµ±Ç°²Ù×÷º¯Êý
-      Book.last = Book.cur;
-    }
+      if ( Book.last != Book.cur ) {
+          Book_Pageturn(Book.cur,gtemp.new,0);
+          Book.last = Book.cur;
+      }
+      else {
+        if ( gtemp.new != gtemp.old ) {
+          Book_Pageturn(Book.cur,gtemp.new,1);
+          gtemp.old = gtemp.new;
+        } else {
+          osThreadFlagsSet(MainTaskHandle , 0x0001);
+          osDelay(2U);
+        }
+      }
+      if (Book.cur == 0) {Book.cur = 1;}
+      osDelay(100);
 
-    if (Book.cur == 0) Book.cur = 1;
     BeepDone();
     osDelay(1);
   }
@@ -291,6 +318,7 @@ void StartGUITask(void *argument)
 /* USER CODE BEGIN Application */
 static void GUI_Start()
 {    
+	  GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
     GUI_SetBkColor(GUI_BLACK);
     for(int i = 0; i < 61; i++) {
       if ( i % 5 == 0 && i!=60 )
@@ -327,7 +355,7 @@ static void GUI_Start()
     GUI_DispStringAt("21032311", 106, 96);
     GUI_DispStringAt("³ÂìÅÈó", 114, 126);
     osDelay(2000);
-    //Beep(5,100);
+    Beep(7,100);
 }
 
 void Beep(uint8_t tune, uint16_t time)
@@ -354,30 +382,27 @@ void BeepDone(void)
 
 }
 
-// void UpdateDisplayOnButtonPress(void)
-// {
-//     current_display_page = table[Book.cur].current_page;
-//     GUI_Clear();
-//     (*current_display_page)();  // Ö´ÐÐµ±Ç°²Ù×÷º¯Êý
-//     Book.last = Book.cur;
-// }
+void UpdateDisplayOnButtonPress(void)
+{
+    Book_Pageturn(Book.cur,gtemp.new,1);
+    Book.last = Book.cur;
+}
 
-// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-// {
-//     switch (GPIO_Pin)
-//     {
-//         case K5_Pin:
-//             osDelay(10); // ÑÓ³Ù´¦Àí
-//             if (HAL_GPIO_ReadPin(K5_GPIO_Port, K5_Pin) == SET)
-//             {
-//                 Book.cur = 1;
-//                 Book.last = 0;
-//                 UpdateDisplayOnButtonPress();  // ¸üÐÂÏÔÊ¾ÄÚÈÝ
-//             }
-//             break;
-//         default:
-//             break;
-//     }
-// }
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    switch (GPIO_Pin)
+    {
+        case K5_Pin:
+          if (HAL_GPIO_ReadPin(K5_GPIO_Port, K5_Pin) == SET)
+          {
+              Book.cur = Book.cur = MENU[Book.cur].enter;
+              Book.last = 0;
+              UpdateDisplayOnButtonPress(); 
+          }
+        break;
+        default:
+        break;
+    }
+}
 /* USER CODE END Application */
 

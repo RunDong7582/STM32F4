@@ -95,14 +95,8 @@ int main(void)
   MX_SPI2_Init();
   MX_USART1_UART_Init();
   MX_TIM3_Init();
+  MX_TIM13_Init();
   /* USER CODE BEGIN 2 */
-  // #ifdef __GNUC__
-  // /* With GCC, small printf (option LD Linker->Libraries->Small printf
-  //   set to 'Yes') calls __io_putchar() */
-  // #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-  // #else
-  // #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-  // #endif /* __GNUC__ */
 
   /* USER CODE END 2 */
 
@@ -149,7 +143,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 12;
+  RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 4;
@@ -174,11 +168,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-// PUTCHAR_PROTOTYPE
-// {
-//    HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
-//    return ch;
-// }
 
 /* USER CODE END 4 */
 

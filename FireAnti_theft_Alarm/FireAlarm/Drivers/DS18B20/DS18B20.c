@@ -23,7 +23,7 @@
 
 #define DS_CONVERT_TICK 1000
 
-#define ResetDQ() 	HAL_GPIO_WritePin(DATA_GPIO_Port, DATA_Pin, GPIO_PIN_RESET)
+#define ResetDQ() HAL_GPIO_WritePin(DATA_GPIO_Port, DATA_Pin, GPIO_PIN_RESET)
 #define SetDQ()  	HAL_GPIO_WritePin(DATA_GPIO_Port, DATA_Pin, GPIO_PIN_SET)
 #define GetDQ()  	HAL_GPIO_ReadPin(DATA_GPIO_Port, DATA_Pin) 
 

@@ -46,12 +46,7 @@ void get_ms(unsigned long *time)
 {
   time[0] = HAL_GetTick();
 }
-void delay_us(uint32_t n)
-{
-	uint8_t j;
-	while(n--)
-	for(j=0;j<10;j++);
-}
+
 void delay_ms(uint32_t n)
 {
   HAL_Delay(n);
