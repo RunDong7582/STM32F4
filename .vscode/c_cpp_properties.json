@@ -10,7 +10,9 @@
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
+                "_UNICODE",
+                "__IO",
+                "__CC_ARM"
             ],
             "compilerPath": "F:\\C debug\\mingw64\\bin\\gcc.exe",
             "cStandard": "c17",

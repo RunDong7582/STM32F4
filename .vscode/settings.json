@@ -2,6 +2,13 @@
     "files.associations": {
         "cstdint": "c",
         "gui.h": "c",
-        "mpu6050.h": "c"
+        "mpu6050.h": "c",
+        "cstdio": "c",
+        "inv_mpu_dmp_motion_driver.h": "c",
+        "cmsis_os2.h": "c",
+        "stm32f4xx_ll_gpio.h": "c",
+        "touch.h": "c",
+        "stm32_i2c.h": "c",
+        "inv_mpu.h": "c"
     }
 }
