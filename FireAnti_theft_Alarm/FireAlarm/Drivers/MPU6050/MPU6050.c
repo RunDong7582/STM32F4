@@ -1,6 +1,7 @@
-#include <printf.h>
+#include <stdio.h>
 #include <math.h>
 #include "MPU6050.h"
+#include "printf.h"
 
 /* Starting sampling rate. */
 #define DEFAULT_MPU_HZ  (50)

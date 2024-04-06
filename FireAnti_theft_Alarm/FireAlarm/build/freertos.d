@@ -41,8 +41,10 @@ build/freertos.o: Core/Src/freertos.c \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  Core/Src/../inc/gpio.h Core/Src/../inc/main.h Drivers/DS18B20/DS18B20.h \
- Drivers/MPU6050/MPU6050.h Drivers/MPU6050/inv_mpu.h \
- Drivers/MPU6050/inv_mpu_dmp_motion_driver.h Drivers/MPU6050/STM32_I2C.h \
+ Core/Src/../../Drivers/MPU6050/MPU6050.h \
+ Core/Src/../../Drivers/MPU6050/inv_mpu.h \
+ Core/Src/../../Drivers/MPU6050/inv_mpu_dmp_motion_driver.h \
+ Core/Src/../../Drivers/MPU6050/STM32_I2C.h \
  Core/Src/../../Drivers/STemWin/inc/GUI.h \
  Core/Src/../../Drivers/STemWin/inc/GUI_ConfDefaults.h \
  Drivers/STemWin/Config/GUIConf.h \
@@ -54,7 +56,7 @@ build/freertos.o: Core/Src/freertos.c \
  Core/Src/../../API/Menu.h Drivers/STemWin/inc/GUI.h Core/Inc/printf.h \
  Core/Inc/usart.h Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h Core/Inc/tim.h \
- Core/Inc/usart.h
+ Core/Inc/usart.h Core/Inc/gpio.h
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -102,10 +104,10 @@ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 Core/Src/../inc/gpio.h:
 Core/Src/../inc/main.h:
 Drivers/DS18B20/DS18B20.h:
-Drivers/MPU6050/MPU6050.h:
-Drivers/MPU6050/inv_mpu.h:
-Drivers/MPU6050/inv_mpu_dmp_motion_driver.h:
-Drivers/MPU6050/STM32_I2C.h:
+Core/Src/../../Drivers/MPU6050/MPU6050.h:
+Core/Src/../../Drivers/MPU6050/inv_mpu.h:
+Core/Src/../../Drivers/MPU6050/inv_mpu_dmp_motion_driver.h:
+Core/Src/../../Drivers/MPU6050/STM32_I2C.h:
 Core/Src/../../Drivers/STemWin/inc/GUI.h:
 Core/Src/../../Drivers/STemWin/inc/GUI_ConfDefaults.h:
 Drivers/STemWin/Config/GUIConf.h:
@@ -123,3 +125,4 @@ Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:
 Core/Inc/tim.h:
 Core/Inc/usart.h:
+Core/Inc/gpio.h:

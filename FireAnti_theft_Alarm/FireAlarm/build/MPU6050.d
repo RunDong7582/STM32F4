@@ -1,5 +1,6 @@
-build/MPU6050.o: Drivers/MPU6050/MPU6050.c Core/Inc/printf.h \
- Core/Inc/usart.h Core/Inc/main.h \
+build/MPU6050.o: Drivers/MPU6050/MPU6050.c Drivers/MPU6050/MPU6050.h \
+ Drivers/MPU6050/inv_mpu.h Drivers/MPU6050/inv_mpu_dmp_motion_driver.h \
+ Drivers/MPU6050/STM32_I2C.h Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Core/Inc/stm32f4xx_hal_conf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -29,12 +30,12 @@ build/MPU6050.o: Drivers/MPU6050/MPU6050.c Core/Inc/printf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- Drivers/MPU6050/MPU6050.h Drivers/MPU6050/inv_mpu.h \
- Drivers/MPU6050/inv_mpu_dmp_motion_driver.h Drivers/MPU6050/STM32_I2C.h \
- Core/Inc/main.h
-Core/Inc/printf.h:
-Core/Inc/usart.h:
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Core/Inc/printf.h \
+ Core/Inc/usart.h Core/Inc/main.h
+Drivers/MPU6050/MPU6050.h:
+Drivers/MPU6050/inv_mpu.h:
+Drivers/MPU6050/inv_mpu_dmp_motion_driver.h:
+Drivers/MPU6050/STM32_I2C.h:
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Inc/stm32f4xx_hal_conf.h:
@@ -68,8 +69,6 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-Drivers/MPU6050/MPU6050.h:
-Drivers/MPU6050/inv_mpu.h:
-Drivers/MPU6050/inv_mpu_dmp_motion_driver.h:
-Drivers/MPU6050/STM32_I2C.h:
+Core/Inc/printf.h:
+Core/Inc/usart.h:
 Core/Inc/main.h:

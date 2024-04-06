@@ -32,6 +32,8 @@ typedef struct
 extern MPUpacket mpu;
 extern Book_Table MENU[PAGE_MAX];
 extern uint16_t button;
+extern __IO int gtw;
+extern __IO int mpuok;
 
 void Book_Pageturn (uchar cur, float temp, int update, MPUpacket mpu);
 void Boot (float temp , int update, MPUpacket mpu);

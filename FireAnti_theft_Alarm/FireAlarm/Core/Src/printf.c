@@ -117,10 +117,11 @@
 #include <float.h>
 #endif
 
+
 void _putchar(char character)
 {
-	///注意这里的输出函数需要自己修改，我这里是设置了串口输出
-    HAL_UART_Transmit(&huart1 ,(uint8_t*)&character, 1, HAL_MAX_DELAY);
+    ITM_SendChar(character);
+    // HAL_UART_Transmit(&huart1 ,(uint8_t*)&character, 1, HAL_MAX_DELAY);
     // send char to console etc.
 }
 

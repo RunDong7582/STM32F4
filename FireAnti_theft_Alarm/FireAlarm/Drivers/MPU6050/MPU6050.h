@@ -1,6 +1,7 @@
 #include "inv_mpu.h"
 #include "inv_mpu_dmp_motion_driver.h"
 #include "STM32_I2C.h"
+#define __IO volatile
 
 int MPU_init(void);								// 初始化MPU6050模块，返回0表示失败
 void MPU_getdata(void);						// 获取六轴数据和姿态角，更新全局变量

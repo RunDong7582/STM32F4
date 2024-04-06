@@ -12,7 +12,7 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm82;
 extern const GUI_FONT GUI_FontHZ_KaiTi_20;
 extern const GUI_FONT GUI_FontHZ_KaiTi_32;
 extern const GUI_FONT GUI_FontHZ_YouYuan_24;
-extern const GUI_FONT GUI_FontHZ_Zhongyuan_Hz_24;
+extern const GUI_FONT GUI_FontHZ_Zhongyuan_HZ_24;
 
 Book_Table MENU[PAGE_MAX]=
 {
@@ -31,7 +31,7 @@ Book_Table MENU[PAGE_MAX]=
 };                                          
 
 /**
- * 	注册显示回调函数
+ * 	轮询
  * 
 */
  
@@ -52,7 +52,6 @@ void Book_Pageturn (uchar cur, float temp, int update, MPUpacket mpu)
 */
 void Boot (float temp , int update , MPUpacket mpu)
 {
-	// if(!update){
 		GUI_SetBkColor(GUI_BLACK);
 		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
 		for(int i = 0; i < 61; i++) {
@@ -83,7 +82,7 @@ void Boot (float temp , int update , MPUpacket mpu)
 		GUI_SetBkColor(GUI_GRAY_D0);
 		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
 		GUI_SetFont(&GUI_FontHZ_YouYuan_24);
-		GUI_SetColor(GUI_RED);		
+		GUI_SetColor(GUI_RED);	
 		GUI_DrawBitmap(&bmhdu, 0, 0);
 		GUI_DispStringAt("防火防盗监测器", 76, 96);
 		osDelay(1000);
@@ -92,39 +91,11 @@ void Boot (float temp , int update , MPUpacket mpu)
 		GUI_DispStringAt("陈炫润", 114, 126);
 		osDelay(2000);
 		}
-		//Beep(5,100);
-	// }
-	// else {
-	// 	GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());	
-	// }
+		// Beep(5,100);
 }
 
 /*
-    Main Menu
-*/
-
-// void Main_menu()
-// {
-// 	GUI_SetBkColor(GUI_GRAY_D0);
-// 	GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
-//     GUI_SetColor(GUI_BROWN);
-//     GUI_SetFont(&GUI_FontHZ_KaiTi_20);
-// 	GUI_DrawRoundedFrame(8,4,108,62,4,6);
-// 	GUI_DrawRoundedFrame(8,62,108,120,4,6);
-// 	GUI_DrawRoundedFrame(8,120,108,178,4,6);
-// 	GUI_DrawRoundedFrame(8,178,108,236,4,6);
-
-// 	GUI_SetColor(GUI_BLACK);
-// 	GUI_DispStringAt("实时监测",16,24);
-// 	GUI_DispStringAt("数据曲线",16,82);
-// 	GUI_DispStringAt("无线通信",16,140);
-// 	GUI_DispStringAt("参数设置",16,198);
-// }
-
-
-
-/*
-    Real Time Monitoring
+    Real Time Monitoring P1
 */
 
 void RT_Monitor_P1 (float temp , int update, MPUpacket mpu)
@@ -154,7 +125,7 @@ void RT_Monitor_P1 (float temp , int update, MPUpacket mpu)
 	GUI_SetFont(&GUI_FontComic24B_ASCII);
 	GUI_SetColor(GUI_BLACK);
 	GUI_SetBkColor(GUI_LIGHTBLUE);
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
 	char buf[10];
 	sprintf(buf,"%.1f", temp);
 	GUI_DispStringAt(buf, 210 ,170);
@@ -163,6 +134,7 @@ void RT_Monitor_P1 (float temp , int update, MPUpacket mpu)
 	GUI_DispStringAt("℃", 260 ,172);
 	GUI_SetColor(GUI_DARKMAGENTA);
 	GUI_DispStringAt("震动报警", 156 ,52);
+	GUI_DispStringAt(gtw ? "有":"无", 208,108);
 
 }
 
@@ -186,15 +158,16 @@ void RT_Monitor_P2(float temp , int update, MPUpacket mpu)
 	GUI_DispStringAt("无线通信",16,140);
 	GUI_DispStringAt("参数设置",16,198); 
 	
-	if (!update) GUI_ClearRect(150, 20, 310,220);
+	// if (!update) GUI_ClearRect(150, 20, 310,220);
 	GUI_SetColor(GUI_LIGHTBLUE);
+	// if (update)  GUI_ClearRect(170, 170, 284,194);
 	GUI_AA_FillRoundedRect(150, 20, 310,220,5);
 	GUI_SetFont(&GUI_FontComic24B_ASCII);
 	// GUI_SetBkColor(GUI_LIGHTBLUE);
-	GUI_SetColor(GUI_ORANGE);
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
-	char buf[40];
-	sprintf(buf,"%d %d %d",mpu.ax,mpu.ay,mpu.az);
+	GUI_SetColor(GUI_BLACK);
+	GUI_SetFont(&GUI_Font20_ASCII);
+	char buf[128];
+	sprintf(buf,"%5d",mpu.ax);
 	GUI_DispStringAt(buf, 170 ,160);
 
 }
@@ -219,20 +192,17 @@ void RT_Monitor_P3(float temp , int update, MPUpacket mpu)
 	GUI_DispStringAt("无线通信",16,140);
 	GUI_DispStringAt("参数设置",16,198); 
 	
-	if (!update) GUI_ClearRect(150, 20, 310,220);
+	// if (!update) GUI_ClearRect(150, 20, 310,220);
 	GUI_SetColor(GUI_LIGHTBLUE);
-	if (update)  GUI_ClearRect(156, 170, 284,194);
+	// if (update)  GUI_ClearRect(156, 170, 284,194);
 	GUI_AA_FillRoundedRect(150, 20, 310,220,5);
 	GUI_SetFont(&GUI_FontComic24B_ASCII);
 	GUI_SetColor(GUI_BLACK);
 	// GUI_SetBkColor(GUI_LIGHTBLUE);
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
-	char buf[10];
-	sprintf(buf,"%.1f", temp);
-	GUI_DispStringAt(buf, 210 ,170);
-	GUI_SetColor(GUI_RED);
-	GUI_DispStringAt("温度", 156 ,170);
-	GUI_DispStringAt("℃", 260 ,172);
+	GUI_SetFont(&GUI_Font10_ASCII);
+	char buf[128];
+	sprintf(buf,"%5d %5d %5d",mpu.gx,mpu.gy,mpu.gz);
+	GUI_DispStringAt(buf, 170 ,160);
 }
 
 void DT_Curve_P1(void)

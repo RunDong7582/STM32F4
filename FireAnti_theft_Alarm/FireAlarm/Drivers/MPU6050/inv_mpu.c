@@ -17,7 +17,7 @@
  *                  MPU9150 (or MPU6050 w/ AK8975 on the auxiliary bus)
  *                  MPU9250 (or MPU6500 w/ AK8963 on the auxiliary bus)
  */
-#include <stdio.h>
+// #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,6 +25,8 @@
 #include "main.h"
 #include "inv_mpu.h"
 #include "STM32_I2C.h"
+#include "printf.h"
+
 /* The following functions must be defined for this platform:
  * i2c_write(unsigned char slave_addr, unsigned char reg_addr,
  *      unsigned char length, unsigned char const *data)
@@ -46,7 +48,12 @@ void get_ms(unsigned long *time)
 {
   time[0] = HAL_GetTick();
 }
-
+void delay_us(uint32_t n)
+{
+	uint8_t j;
+	while(n--)
+	for(j=0;j<10;j++);
+}
 void delay_ms(uint32_t n)
 {
   HAL_Delay(n);

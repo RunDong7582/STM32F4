@@ -29,7 +29,7 @@
 #include "string.h"
 #include "../inc/gpio.h"
 #include "DS18B20.h"
-#include "MPU6050.h"
+#include "../../Drivers/MPU6050/MPU6050.h"
 #include "../../Drivers/STemWin/inc/GUI.h"
 #include "touch.h"
 #include <cmsis_os2.h>
@@ -37,6 +37,7 @@
 #include "stm32f4xx_ll_gpio.h"
 #include "tim.h"
 #include "usart.h"
+#include "gpio.h"
 
 /* USER CODE END Includes */
 
@@ -77,7 +78,8 @@ typedef struct {
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-int mpuok = 0;
+__IO int gtw    = 0;
+__IO int mpuok  = 0;
 uint16_t button = 0;
 uint16_t key = 0;
 Temperature gtemp = {0.0f, 0.0f};
@@ -89,7 +91,7 @@ extern const GUI_FONT GUI_FontHZ_YouYuan_24;
 extern const GUI_FONT GUI_FontHZ_KaiTi_32;
 extern const GUI_FONT GUI_FontHZ_KaiTi_20;
 extern const GUI_FONT GUI_FontHZ_KaiTi_12;
-extern const GUI_FONT GUI_FontHZ_Zhongyuan_Hz_24;
+extern const GUI_FONT GUI_FontHZ_Zhongyuan_HZ_24;
 extern GUI_CONST_STORAGE GUI_BITMAP bmhdu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarmbw;
@@ -97,13 +99,12 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm30;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm60;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm82;
 
-extern __IO short ax, ay, az, gx, gy, gz;	// ????
 /* USER CODE END Variables */
 /* Definitions for MainTask */
 osThreadId_t MainTaskHandle;
 const osThreadAttr_t MainTask_attributes = {
   .name = "MainTask",
-  .stack_size = 512 * 4,
+  .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for KeyTask */
@@ -124,12 +125,13 @@ const osThreadAttr_t UartTask_attributes = {
 osThreadId_t GUITaskHandle;
 const osThreadAttr_t GUITask_attributes = {
   .name = "GUITask",
-  .stack_size = 256 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
+MPUpacket MPU_update ( volatile short ax,volatile short ay,volatile short az,volatile short gx,volatile short gy,volatile short gz);
 static void GUI_Start();
 // static void (*current_display_page)();
 void Beep(uint8_t tune, uint16_t time);
@@ -204,27 +206,12 @@ void DefaultMainTask(void *argument)
   /* USER CODE BEGIN DefaultMainTask */
   /* Infinite loop */
   ds18b20_init();
-	mpuok = MPU_init();
-	int cnt = 0;
-	while (!mpuok && cnt < 3)
-	{
-		osDelay(500);
-		mpuok = MPU_init();
-		++cnt;
-	}
   for(;;)
   {
     osThreadFlagsWait(0x0001, osFlagsWaitAny, osWaitForever);
     osDelay(1000);
     gtemp.new  = ds18b20_read();
-    osDelay(500);
-    if (mpuok) {
-      MPU_getdata();
-      mpu.ax = ax;
-      mpu.ay = ay;
-      mpu.az = az;
-    }
-
+    // osDelay(500);
   }
   /* USER CODE END DefaultMainTask */
 }
@@ -292,10 +279,29 @@ void StartKeyTask(void *argument)
 void StartUartTask(void *argument)
 {
   /* USER CODE BEGIN StartUartTask */
+	mpuok = MPU_init();
+  if(mpuok) {
+      GUI_ClearRect(20,20,200,50);
+      GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+      GUI_SetColor(GUI_LIGHTRED);
+      GUI_DispStringAt("MPU初始化成功",20,20);
+      osDelay(1000);
+      GUI_ClearRect(20,20,200,50);
+  }
   /* Infinite loop */
   for(;;)
-  {
-    osDelay(1);
+  {    
+    if (mpuok && ( Book.cur == 1 || Book.cur == 5 || Book.cur == 6 )) {
+      MPU_getdata();
+      mpu = MPU_update ( ax, ay, az, gx, gy, gz );
+      // printf("MPU Data:%4.1f %4.1f %4.1f, %5d %5d %5d, %5d %5d %5d\n", fAX, fAY, fAZ, ax, ay, az, gx, gy, gz);
+    }
+    if (fAX > 60) {
+      gtw = 1;
+    } else {
+      gtw = 0;
+    }
+    osDelay(300);
   }
   /* USER CODE END StartUartTask */
 }
@@ -313,6 +319,7 @@ void StartGUITask(void *argument)
   /* Infinite loop */
   GUI_Init();
   GUI_Start();
+  printf("Hello STM32F407!\n");
   osThreadFlagsSet(MainTaskHandle , 0x0001);
   osDelay(2U);
   for(;;)
@@ -385,7 +392,7 @@ static void GUI_Start()
       GUI_DispStringAt("陈炫润", 114, 126);
       osDelay(2000);
     }
-    //Beep(7,100);
+    // Beep(7,100);
 }
 
 void Beep(uint8_t tune, uint16_t time)
@@ -433,6 +440,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         default:
         break;
     }
+}
+
+MPUpacket MPU_update ( volatile short ax,volatile short ay,volatile short az,volatile short gx,volatile short gy,volatile short gz)
+{
+    mpu.ax = ax;
+    mpu.ay = ay;
+    mpu.az = az;
+    mpu.gx = gx;
+    mpu.gy = gy;
+    mpu.gz = gz;
 }
 /* USER CODE END Application */
 

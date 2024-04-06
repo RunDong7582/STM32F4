@@ -129,7 +129,7 @@ static uint8_t I2C_ReceiveByte(void)
 void i2cInit(void)
 {
     GPIO_InitTypeDef gpio;
-	//ÒÑ¸ü¸Ä
+	//???
     gpio.Pin = PIN_SCL | PIN_SDA;
     gpio.Speed = GPIO_SPEED_FREQ_MEDIUM;
     gpio.Mode = GPIO_MODE_OUTPUT_OD;
