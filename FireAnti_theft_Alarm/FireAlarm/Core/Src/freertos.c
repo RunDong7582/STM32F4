@@ -25,43 +25,23 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-// #include "stdio.h"
+#include "printf.h"
 #include "string.h"
+#include "../../API/Menu.h"
 #include "../inc/gpio.h"
+#include "../inc/tim.h"
+#include "../inc/usart.h"
+
 #include "DS18B20.h"
-#include "../../Drivers/MPU6050/MPU6050.h"
-#include "../../Drivers/STemWin/inc/GUI.h"
+#include "MPU6050.h"
+#include "GUI.h"
 #include "touch.h"
 #include <cmsis_os2.h>
-#include "../../API/Menu.h"
-#include "stm32f4xx_ll_gpio.h"
-#include "tim.h"
-#include "usart.h"
-#include "gpio.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-#define uchar unsigned char
-typedef struct {
-    uchar cur;
-    uchar last;
-}Page_t;
-
-typedef struct {
-    float new;
-    float old;
-}Temperature;
-
-// typedef struct {
-//     __IO short ax;
-//     __IO short ay;
-//     __IO short az;
-//     __IO short gx;
-//     __IO short gy;
-//     __IO short gz;
-// }MPUpacket;
 
 /* USER CODE END PTD */
 
@@ -78,26 +58,33 @@ typedef struct {
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-__IO int gtw    = 0;
-__IO int mpuok  = 0;
-uint16_t button = 0;
-uint16_t key = 0;
-Temperature gtemp = {0.0f, 0.0f};
-MPUpacket mpu = {1,0,-1,1,0,-1};
-Page_t Book = {1 , 127};
+
+Temperature gtemp = {
+    0.0f, 
+    0.0f,
+      0
+};
+
+MPUpacket mpu = {
+       1,         // ax
+       0,         // ay
+      -1,         // az
+       1,         // gx
+       0,         // gy
+      -1,         // gz
+       0,         // ok
+       0,         // theft-warn
+       0          // update
+};
+
+Page_t Book = {
+        1, 
+      127, 
+        0}
+;
 
 uint32_t beeptick = 0;
-extern const GUI_FONT GUI_FontHZ_YouYuan_24;
-extern const GUI_FONT GUI_FontHZ_KaiTi_32;
-extern const GUI_FONT GUI_FontHZ_KaiTi_20;
-extern const GUI_FONT GUI_FontHZ_KaiTi_12;
-extern const GUI_FONT GUI_FontHZ_Zhongyuan_HZ_24;
-extern GUI_CONST_STORAGE GUI_BITMAP bmhdu;
-extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm;
-extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarmbw;
-extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm30;
-extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm60;
-extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm82;
+
 
 /* USER CODE END Variables */
 /* Definitions for MainTask */
@@ -131,9 +118,7 @@ const osThreadAttr_t GUITask_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-MPUpacket MPU_update ( volatile short ax,volatile short ay,volatile short az,volatile short gx,volatile short gy,volatile short gz);
 static void GUI_Start();
-// static void (*current_display_page)();
 void Beep(uint8_t tune, uint16_t time);
 void BeepDone(void);
 /* USER CODE END FunctionPrototypes */
@@ -211,7 +196,6 @@ void DefaultMainTask(void *argument)
     osThreadFlagsWait(0x0001, osFlagsWaitAny, osWaitForever);
     osDelay(1000);
     gtemp.new  = ds18b20_read();
-    // osDelay(500);
   }
   /* USER CODE END DefaultMainTask */
 }
@@ -229,7 +213,7 @@ void StartKeyTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-		key = ScanKey();
+		uint16_t key = ScanKey();
     if(key > 0)
     {
       switch (key)
@@ -279,27 +263,38 @@ void StartKeyTask(void *argument)
 void StartUartTask(void *argument)
 {
   /* USER CODE BEGIN StartUartTask */
-	mpuok = MPU_init();
-  if(mpuok) {
-      GUI_ClearRect(20,20,200,50);
+	mpu.ok = MPU_init();
+  
+  if (mpu.ok) 
+  {
+      GUI_ClearRect(72,20,252,50);
       GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
       GUI_SetColor(GUI_LIGHTRED);
-      GUI_DispStringAt("MPU初始化成功",20,20);
-      osDelay(1000);
-      GUI_ClearRect(20,20,200,50);
+      GUI_DispStringAt("MPU初始化成功!",72,20);
+      osDelay(700);
+      GUI_ClearRect(72,20,252,50);
   }
+
   /* Infinite loop */
   for(;;)
   {    
-    if (mpuok && ( Book.cur == 1 || Book.cur == 5 || Book.cur == 6 )) {
+    if ( mpu.ok && ( Book.cur == 1 || Book.cur == 5 || Book.cur == 6 ) ) 
+    {
       MPU_getdata();
-      mpu = MPU_update ( ax, ay, az, gx, gy, gz );
+      mpu.ax = ax;
+      mpu.ay = ay;
+      mpu.az = az;
+      mpu.gx = gx;
+      mpu.gy = gy;
+      mpu.gz = gz;
+      mpu.update = 1;
+      // SWV output
       // printf("MPU Data:%4.1f %4.1f %4.1f, %5d %5d %5d, %5d %5d %5d\n", fAX, fAY, fAZ, ax, ay, az, gx, gy, gz);
     }
-    if (fAX > 60) {
-      gtw = 1;
+    if (fAX > 35) {
+      mpu.warn = 1;
     } else {
-      gtw = 0;
+      mpu.warn = 0;
     }
     osDelay(300);
   }
@@ -317,27 +312,46 @@ void StartGUITask(void *argument)
 {
   /* USER CODE BEGIN StartGUITask */
   /* Infinite loop */
+  HAL_TIM_Base_Start(&htim3);
   GUI_Init();
   GUI_Start();
+
   printf("Hello STM32F407!\n");
   osThreadFlagsSet(MainTaskHandle , 0x0001);
   osDelay(2U);
+
   for(;;)
   {
-      if ( Book.last != Book.cur ) {
-          Book_Pageturn(Book.cur,gtemp.new,0,mpu);
+      if ( Book.last != Book.cur ) 
+      {
+          gtemp.update = 0;
+          mpu.update = 1;
+          Book_Pageturn ( Book.cur, gtemp, mpu );
           Book.last = Book.cur;
+
       }
       else {
-        if ( gtemp.new != gtemp.old ) {
-          Book_Pageturn(Book.cur,gtemp.new,1,mpu);
+
+        if ( gtemp.new != gtemp.old ) 
+        {
+          gtemp.update = 1;
+          Book_Pageturn ( Book.cur, gtemp, mpu );
           gtemp.old = gtemp.new;
-          button = 0;
-        } else {
-          button = 0;
+          Book.button = 0;
+        } 
+        else if (gtemp.new == gtemp.old) 
+        {
+          Book.button = 0;
           osThreadFlagsSet(MainTaskHandle , 0x0001);
           osDelay(2U);
+        } 
+        else if (mpu.update) 
+        {
+          Book_Pageturn ( Book.cur, gtemp, mpu );
+          mpu.update = 0;
+          osDelay(100);
         }
+
       }
       if (Book.cur == 0) {Book.cur = 1;}
       osDelay(100);
@@ -354,8 +368,16 @@ static void GUI_Start()
 {    
 	  GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
     GUI_SetBkColor(GUI_BLACK);
-    for(int i = 0; i < 61; i++) {
-      if(button) {GUI_Clear();GUI_SetBkColor(GUI_GRAY_D0);GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());break;}
+    for ( int i = 0; i < 61; i++ ) {
+
+      if ( Book.button ) 
+      {
+          GUI_Clear();
+          GUI_SetBkColor(GUI_GRAY_D0);
+          GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+          break;
+      }
+
       if ( i % 5 == 0 && i!=60 )
         GUI_ClearRect(88,48,216,176);
       else if ( i % 5 == 1)
@@ -366,10 +388,35 @@ static void GUI_Start()
         GUI_DrawBitmap(&bmfirealarm82, 88, 48);
       else if ( i % 5 == 4)
         GUI_DrawBitmap(&bmfirealarm, 88, 48);
+
+      if ( i % 10 == 3) {
+        GUI_ClearRect(250,170,310,190);
+        GUI_SetColor(GUI_LIGHTRED);
+        GUI_SetFont(GUI_FONT_24B_1);
+        GUI_DispStringAt("K5",250,170);
+        osDelay(10);
+      } 
+      if ( i % 10 == 6) {
+        GUI_ClearRect(250,170,310,190);
+        GUI_SetColor(GUI_LIGHTRED);
+        GUI_SetFont(GUI_FONT_24B_1);
+        GUI_DispStringAt("K5>",250,170);
+        osDelay(10);
+      }
+      if ( i % 10 == 9) {
+        GUI_ClearRect(250,170,310,190);
+        GUI_SetColor(GUI_LIGHTRED);
+        GUI_SetFont(GUI_FONT_24B_1);
+        GUI_DispStringAt("K5>>",250,170);
+        osDelay(10);
+      }
+
       GUI_SetColor(GUI_ORANGE);
       GUI_FillRect(40,200,4*i+40,220);
       GUI_DrawRect(40,200,280,220);
-      if( i == 60 ){
+
+      if ( i == 60 ) 
+      {
          GUI_SetColor(GUI_BROWN);
          GUI_SetFont(GUI_FONT_20_ASCII);
          GUI_DispStringAt("100%", 132, 204);
@@ -377,7 +424,10 @@ static void GUI_Start()
       }
       osDelay(20);
     }
-    if (!button) {
+
+    if (!Book.button) 
+    {
+
       GUI_Clear();
       GUI_SetBkColor(GUI_GRAY_D0);
       GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
@@ -391,6 +441,7 @@ static void GUI_Start()
       GUI_DispStringAt("21032311", 106, 96);
       GUI_DispStringAt("陈炫润", 114, 126);
       osDelay(2000);
+
     }
     // Beep(7,100);
 }
@@ -398,7 +449,6 @@ static void GUI_Start()
 void Beep(uint8_t tune, uint16_t time)
 {
     static uint16_t TAB[] = {494, 523, 588, 660, 698, 784, 880, 988};
-    HAL_TIM_Base_Start(&htim3);
 
     if (tune >=1  && tune <= 7) {
       int pre = 1000000 / TAB[tune];
@@ -416,12 +466,12 @@ void BeepDone(void)
     beeptick = 0;
     HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_1);
    }
-
 }
 
 void UpdateDisplayOnButtonPress(void)
 {
-    Book_Pageturn(Book.cur,gtemp.new,1,mpu);
+    gtemp.update = 1;
+    Book_Pageturn(Book.cur, gtemp, mpu);
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -433,7 +483,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
           {
               Book.cur  = MENU[Book.cur].enter;
               Book.last = 0;
-              button = 1;
+              Book.button = 1;
               UpdateDisplayOnButtonPress(); 
           }
         break;
@@ -442,14 +492,5 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     }
 }
 
-MPUpacket MPU_update ( volatile short ax,volatile short ay,volatile short az,volatile short gx,volatile short gy,volatile short gz)
-{
-    mpu.ax = ax;
-    mpu.ay = ay;
-    mpu.az = az;
-    mpu.gx = gx;
-    mpu.gy = gy;
-    mpu.gz = gz;
-}
 /* USER CODE END Application */
 
