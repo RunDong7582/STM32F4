@@ -1,6 +1,14 @@
 #ifndef __MENU_H
 #define __MENU_H
 
+#define TEMP_FIRST 0b0001
+#define  MPU_FIRST 0b0010
+#define TEMP_CURVE 0b0100
+#define  MPU_PITCH 0b1000
+#define   MPU_ROLL 0b1001
+#define    MPU_YAW 0b1010
+
+
 #include "GUI.h"
 #include "printf.h"
 
@@ -20,16 +28,26 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm82;
 #define uchar unsigned char
 #define __IO volatile
 
+#define tPLOT_NUM 120
+#define pPLOT_NUM 60
+#define rPLOT_NUM 40
+#define yPLOT_NUM 40
+
 typedef struct {
     uchar cur;
     uchar last;
     uint16_t button;
+    uint16_t Priority;
+    uint16_t Prev_Priority;
+    uint16_t update;
 }Page_t;
 
 typedef struct {
     float new;
     float old;
     __IO int update;
+    __IO int warn;
+    __IO int cnt;
 }Temperature;
 
 typedef struct {
@@ -39,9 +57,13 @@ typedef struct {
     __IO short gx;
     __IO short gy;
     __IO short gz;
+    __IO float fAX;
+    __IO float fAY;
+    __IO float fAZ;
     __IO int   ok;
     __IO int   warn;
     __IO int   update;
+    __IO int   cnt;
 }MPUpacket;
 
 typedef void (*current_page) ( Temperature temp, MPUpacket mpu );
@@ -55,15 +77,16 @@ typedef struct
     uchar enter;        // enter
     uchar back;         // back
     current_page display // current index to execute display function
-}Book_Table;
+}MENU_Table;
 
 
 extern MPUpacket mpu;
-extern Book_Table MENU[PAGE_MAX];
+extern MENU_Table MENU[PAGE_MAX];
 extern Page_t Book;
 extern Temperature gtemp;
 
-void Book_Pageturn (uchar cur, 
+void Book_Priorswitch (uchar cur);
+void Book_Pageturn    (uchar cur, 
                     Temperature temp, MPUpacket mpu);
 void Boot          (Temperature temp, MPUpacket mpu);
 
@@ -71,8 +94,17 @@ void RT_Monitor_P1 (Temperature temp , MPUpacket mpu);
 void RT_Monitor_P2 (Temperature temp , MPUpacket mpu);
 void RT_Monitor_P3 (Temperature temp , MPUpacket mpu);
 
-void DT_Curve_P1(void);
+void DT_Curve_P1   (Temperature temp , MPUpacket mpu);
+void DT_Curve_P2   (Temperature temp , MPUpacket mpu);
+void DT_Curve_P3   (Temperature temp , MPUpacket mpu);
+void DT_Curve_P4   (Temperature temp , MPUpacket mpu);
+
 void RF_Msg_P1(void);
 void ST_Para_P1(void);
+
+void GUI_TempDrawCurve  (uint8_t margin);
+void GUI_PitchDrawCurve (uint8_t margin);
+void GUI_RollDrawCurve  (uint8_t margin);
+void GUI_YawDrawCurve   (uint8_t margin);
 
 #endif 
