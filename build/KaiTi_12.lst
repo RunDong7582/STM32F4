@@ -1,0 +1,2509 @@
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"KaiTi_12.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	GUI_FontHZ_KaiTi_12
+  20              		.global	GUI_FontHZKaiTi_12_Prop0020
+  21              		.global	GUI_FontHZKaiTi_12_Propb2ce
+  22              		.global	GUI_FontHZKaiTi_12_Propb2e2
+  23              		.global	GUI_FontHZKaiTi_12_Propb3c2
+  24              		.global	GUI_FontHZKaiTi_12_Propb4f3
+  25              		.global	GUI_FontHZKaiTi_12_Propb5c1
+  26              		.global	GUI_FontHZKaiTi_12_Propb5e7
+  27              		.global	GUI_FontHZKaiTi_12_Propb7c0
+  28              		.global	GUI_FontHZKaiTi_12_Propbabc
+  29              		.global	GUI_FontHZKaiTi_12_Propbbf0
+  30              		.global	GUI_FontHZKaiTi_12_Propbcbc
+  31              		.global	GUI_FontHZKaiTi_12_Propbce0
+  32              		.global	GUI_FontHZKaiTi_12_Propbde1
+  33              		.global	GUI_FontHZKaiTi_12_Propbedd
+  34              		.global	GUI_FontHZKaiTi_12_Propbfaa
+  35              		.global	GUI_FontHZKaiTi_12_Propbfc6
+  36              		.global	GUI_FontHZKaiTi_12_Propc6f7
+  37              		.global	GUI_FontHZKaiTi_12_Propc7fa
+  38              		.global	GUI_FontHZKaiTi_12_Propc8f3
+  39              		.global	GUI_FontHZKaiTi_12_Propc9e8
+  40              		.global	GUI_FontHZKaiTi_12_Propcab1
+  41              		.global	GUI_FontHZKaiTi_12_Propcab5
+  42              		.global	GUI_FontHZKaiTi_12_Propcabc
+  43              		.global	GUI_FontHZKaiTi_12_Propcaf8
+  44              		.global	GUI_FontHZKaiTi_12_Propcafd
+  45              		.global	GUI_FontHZKaiTi_12_Propcda8
+  46              		.global	GUI_FontHZKaiTi_12_Propcede
+  47              		.global	GUI_FontHZKaiTi_12_Propcfdf
+  48              		.global	GUI_FontHZKaiTi_12_Propd0c5
+  49              		.global	GUI_FontHZKaiTi_12_Propd1a7
+  50              		.global	GUI_FontHZKaiTi_12_Propd4f8
+  51              		.global	GUI_FontHZKaiTi_12_Propd6c3
+  52              		.global	GUI_FontHZKaiTi_12_Propd6dd
+  53              		.global	GUI_FontHZKaiTi_12_Propd7d3
+  54              		.global	GUI_FontHZKaiTi_12_Propd8b9
+  55              		.global	GUI_FontHZKaiTi_12_Propecc5
+  56              		.global	GUI_FontHZKaiTi_12_CharInfo
+  57              		.global	acFontHZKaiTi_12_ecc5
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 2
+
+
+  58              		.global	acFontHZKaiTi_12_d8b9
+  59              		.global	acFontHZKaiTi_12_d7d3
+  60              		.global	acFontHZKaiTi_12_d6dd
+  61              		.global	acFontHZKaiTi_12_d6c3
+  62              		.global	acFontHZKaiTi_12_d4f8
+  63              		.global	acFontHZKaiTi_12_d1a7
+  64              		.global	acFontHZKaiTi_12_d0c5
+  65              		.global	acFontHZKaiTi_12_cfdf
+  66              		.global	acFontHZKaiTi_12_cede
+  67              		.global	acFontHZKaiTi_12_cda8
+  68              		.global	acFontHZKaiTi_12_cafd
+  69              		.global	acFontHZKaiTi_12_caf8
+  70              		.global	acFontHZKaiTi_12_cabc
+  71              		.global	acFontHZKaiTi_12_cab5
+  72              		.global	acFontHZKaiTi_12_cab1
+  73              		.global	acFontHZKaiTi_12_c9e8
+  74              		.global	acFontHZKaiTi_12_c8f3
+  75              		.global	acFontHZKaiTi_12_c7fa
+  76              		.global	acFontHZKaiTi_12_c6f7
+  77              		.global	acFontHZKaiTi_12_bfc6
+  78              		.global	acFontHZKaiTi_12_bfaa
+  79              		.global	acFontHZKaiTi_12_bedd
+  80              		.global	acFontHZKaiTi_12_bde1
+  81              		.global	acFontHZKaiTi_12_bce0
+  82              		.global	acFontHZKaiTi_12_bcbc
+  83              		.global	acFontHZKaiTi_12_bbf0
+  84              		.global	acFontHZKaiTi_12_babc
+  85              		.global	acFontHZKaiTi_12_b7c0
+  86              		.global	acFontHZKaiTi_12_b5e7
+  87              		.global	acFontHZKaiTi_12_b5c1
+  88              		.global	acFontHZKaiTi_12_b4f3
+  89              		.global	acFontHZKaiTi_12_b3c2
+  90              		.global	acFontHZKaiTi_12_b2e2
+  91              		.global	acFontHZKaiTi_12_b2ce
+  92              		.global	acFontHZKaiTi_12_007f
+  93              		.global	acFontHZKaiTi_12_007e
+  94              		.global	acFontHZKaiTi_12_007d
+  95              		.global	acFontHZKaiTi_12_007c
+  96              		.global	acFontHZKaiTi_12_007b
+  97              		.global	acFontHZKaiTi_12_007a
+  98              		.global	acFontHZKaiTi_12_0079
+  99              		.global	acFontHZKaiTi_12_0078
+ 100              		.global	acFontHZKaiTi_12_0077
+ 101              		.global	acFontHZKaiTi_12_0076
+ 102              		.global	acFontHZKaiTi_12_0075
+ 103              		.global	acFontHZKaiTi_12_0074
+ 104              		.global	acFontHZKaiTi_12_0073
+ 105              		.global	acFontHZKaiTi_12_0072
+ 106              		.global	acFontHZKaiTi_12_0071
+ 107              		.global	acFontHZKaiTi_12_0070
+ 108              		.global	acFontHZKaiTi_12_006f
+ 109              		.global	acFontHZKaiTi_12_006e
+ 110              		.global	acFontHZKaiTi_12_006d
+ 111              		.global	acFontHZKaiTi_12_006c
+ 112              		.global	acFontHZKaiTi_12_006b
+ 113              		.global	acFontHZKaiTi_12_006a
+ 114              		.global	acFontHZKaiTi_12_0069
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 3
+
+
+ 115              		.global	acFontHZKaiTi_12_0068
+ 116              		.global	acFontHZKaiTi_12_0067
+ 117              		.global	acFontHZKaiTi_12_0066
+ 118              		.global	acFontHZKaiTi_12_0065
+ 119              		.global	acFontHZKaiTi_12_0064
+ 120              		.global	acFontHZKaiTi_12_0063
+ 121              		.global	acFontHZKaiTi_12_0062
+ 122              		.global	acFontHZKaiTi_12_0061
+ 123              		.global	acFontHZKaiTi_12_0060
+ 124              		.global	acFontHZKaiTi_12_005f
+ 125              		.global	acFontHZKaiTi_12_005e
+ 126              		.global	acFontHZKaiTi_12_005d
+ 127              		.global	acFontHZKaiTi_12_005c
+ 128              		.global	acFontHZKaiTi_12_005b
+ 129              		.global	acFontHZKaiTi_12_005a
+ 130              		.global	acFontHZKaiTi_12_0059
+ 131              		.global	acFontHZKaiTi_12_0058
+ 132              		.global	acFontHZKaiTi_12_0057
+ 133              		.global	acFontHZKaiTi_12_0056
+ 134              		.global	acFontHZKaiTi_12_0055
+ 135              		.global	acFontHZKaiTi_12_0054
+ 136              		.global	acFontHZKaiTi_12_0053
+ 137              		.global	acFontHZKaiTi_12_0052
+ 138              		.global	acFontHZKaiTi_12_0051
+ 139              		.global	acFontHZKaiTi_12_0050
+ 140              		.global	acFontHZKaiTi_12_004f
+ 141              		.global	acFontHZKaiTi_12_004e
+ 142              		.global	acFontHZKaiTi_12_004d
+ 143              		.global	acFontHZKaiTi_12_004c
+ 144              		.global	acFontHZKaiTi_12_004b
+ 145              		.global	acFontHZKaiTi_12_004a
+ 146              		.global	acFontHZKaiTi_12_0049
+ 147              		.global	acFontHZKaiTi_12_0048
+ 148              		.global	acFontHZKaiTi_12_0047
+ 149              		.global	acFontHZKaiTi_12_0046
+ 150              		.global	acFontHZKaiTi_12_0045
+ 151              		.global	acFontHZKaiTi_12_0044
+ 152              		.global	acFontHZKaiTi_12_0043
+ 153              		.global	acFontHZKaiTi_12_0042
+ 154              		.global	acFontHZKaiTi_12_0041
+ 155              		.global	acFontHZKaiTi_12_0040
+ 156              		.global	acFontHZKaiTi_12_003f
+ 157              		.global	acFontHZKaiTi_12_003e
+ 158              		.global	acFontHZKaiTi_12_003d
+ 159              		.global	acFontHZKaiTi_12_003c
+ 160              		.global	acFontHZKaiTi_12_003b
+ 161              		.global	acFontHZKaiTi_12_003a
+ 162              		.global	acFontHZKaiTi_12_0039
+ 163              		.global	acFontHZKaiTi_12_0038
+ 164              		.global	acFontHZKaiTi_12_0037
+ 165              		.global	acFontHZKaiTi_12_0036
+ 166              		.global	acFontHZKaiTi_12_0035
+ 167              		.global	acFontHZKaiTi_12_0034
+ 168              		.global	acFontHZKaiTi_12_0033
+ 169              		.global	acFontHZKaiTi_12_0032
+ 170              		.global	acFontHZKaiTi_12_0031
+ 171              		.global	acFontHZKaiTi_12_0030
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 4
+
+
+ 172              		.global	acFontHZKaiTi_12_002f
+ 173              		.global	acFontHZKaiTi_12_002e
+ 174              		.global	acFontHZKaiTi_12_002d
+ 175              		.global	acFontHZKaiTi_12_002c
+ 176              		.global	acFontHZKaiTi_12_002b
+ 177              		.global	acFontHZKaiTi_12_002a
+ 178              		.global	acFontHZKaiTi_12_0029
+ 179              		.global	acFontHZKaiTi_12_0028
+ 180              		.global	acFontHZKaiTi_12_0027
+ 181              		.global	acFontHZKaiTi_12_0026
+ 182              		.global	acFontHZKaiTi_12_0025
+ 183              		.global	acFontHZKaiTi_12_0024
+ 184              		.global	acFontHZKaiTi_12_0023
+ 185              		.global	acFontHZKaiTi_12_0022
+ 186              		.global	acFontHZKaiTi_12_0021
+ 187              		.global	acFontHZKaiTi_12_0020
+ 188              		.section	.rodata.GUI_FontHZKaiTi_12_CharInfo,"a"
+ 189              		.align	2
+ 192              	GUI_FontHZKaiTi_12_CharInfo:
+ 193 0000 07       		.byte	7
+ 194 0001 07       		.byte	7
+ 195 0002 01       		.byte	1
+ 196 0003 00       		.space	1
+ 197 0004 00000000 		.word	acFontHZKaiTi_12_0020
+ 198 0008 07       		.byte	7
+ 199 0009 07       		.byte	7
+ 200 000a 01       		.byte	1
+ 201 000b 00       		.space	1
+ 202 000c 00000000 		.word	acFontHZKaiTi_12_0021
+ 203 0010 07       		.byte	7
+ 204 0011 07       		.byte	7
+ 205 0012 01       		.byte	1
+ 206 0013 00       		.space	1
+ 207 0014 00000000 		.word	acFontHZKaiTi_12_0022
+ 208 0018 07       		.byte	7
+ 209 0019 07       		.byte	7
+ 210 001a 01       		.byte	1
+ 211 001b 00       		.space	1
+ 212 001c 00000000 		.word	acFontHZKaiTi_12_0023
+ 213 0020 07       		.byte	7
+ 214 0021 07       		.byte	7
+ 215 0022 01       		.byte	1
+ 216 0023 00       		.space	1
+ 217 0024 00000000 		.word	acFontHZKaiTi_12_0024
+ 218 0028 07       		.byte	7
+ 219 0029 07       		.byte	7
+ 220 002a 01       		.byte	1
+ 221 002b 00       		.space	1
+ 222 002c 00000000 		.word	acFontHZKaiTi_12_0025
+ 223 0030 07       		.byte	7
+ 224 0031 07       		.byte	7
+ 225 0032 01       		.byte	1
+ 226 0033 00       		.space	1
+ 227 0034 00000000 		.word	acFontHZKaiTi_12_0026
+ 228 0038 07       		.byte	7
+ 229 0039 07       		.byte	7
+ 230 003a 01       		.byte	1
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 5
+
+
+ 231 003b 00       		.space	1
+ 232 003c 00000000 		.word	acFontHZKaiTi_12_0027
+ 233 0040 07       		.byte	7
+ 234 0041 07       		.byte	7
+ 235 0042 01       		.byte	1
+ 236 0043 00       		.space	1
+ 237 0044 00000000 		.word	acFontHZKaiTi_12_0028
+ 238 0048 07       		.byte	7
+ 239 0049 07       		.byte	7
+ 240 004a 01       		.byte	1
+ 241 004b 00       		.space	1
+ 242 004c 00000000 		.word	acFontHZKaiTi_12_0029
+ 243 0050 07       		.byte	7
+ 244 0051 07       		.byte	7
+ 245 0052 01       		.byte	1
+ 246 0053 00       		.space	1
+ 247 0054 00000000 		.word	acFontHZKaiTi_12_002a
+ 248 0058 07       		.byte	7
+ 249 0059 07       		.byte	7
+ 250 005a 01       		.byte	1
+ 251 005b 00       		.space	1
+ 252 005c 00000000 		.word	acFontHZKaiTi_12_002b
+ 253 0060 07       		.byte	7
+ 254 0061 07       		.byte	7
+ 255 0062 01       		.byte	1
+ 256 0063 00       		.space	1
+ 257 0064 00000000 		.word	acFontHZKaiTi_12_002c
+ 258 0068 07       		.byte	7
+ 259 0069 07       		.byte	7
+ 260 006a 01       		.byte	1
+ 261 006b 00       		.space	1
+ 262 006c 00000000 		.word	acFontHZKaiTi_12_002d
+ 263 0070 07       		.byte	7
+ 264 0071 07       		.byte	7
+ 265 0072 01       		.byte	1
+ 266 0073 00       		.space	1
+ 267 0074 00000000 		.word	acFontHZKaiTi_12_002e
+ 268 0078 07       		.byte	7
+ 269 0079 07       		.byte	7
+ 270 007a 01       		.byte	1
+ 271 007b 00       		.space	1
+ 272 007c 00000000 		.word	acFontHZKaiTi_12_002f
+ 273 0080 07       		.byte	7
+ 274 0081 07       		.byte	7
+ 275 0082 01       		.byte	1
+ 276 0083 00       		.space	1
+ 277 0084 00000000 		.word	acFontHZKaiTi_12_0030
+ 278 0088 07       		.byte	7
+ 279 0089 07       		.byte	7
+ 280 008a 01       		.byte	1
+ 281 008b 00       		.space	1
+ 282 008c 00000000 		.word	acFontHZKaiTi_12_0031
+ 283 0090 07       		.byte	7
+ 284 0091 07       		.byte	7
+ 285 0092 01       		.byte	1
+ 286 0093 00       		.space	1
+ 287 0094 00000000 		.word	acFontHZKaiTi_12_0032
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 6
+
+
+ 288 0098 07       		.byte	7
+ 289 0099 07       		.byte	7
+ 290 009a 01       		.byte	1
+ 291 009b 00       		.space	1
+ 292 009c 00000000 		.word	acFontHZKaiTi_12_0033
+ 293 00a0 07       		.byte	7
+ 294 00a1 07       		.byte	7
+ 295 00a2 01       		.byte	1
+ 296 00a3 00       		.space	1
+ 297 00a4 00000000 		.word	acFontHZKaiTi_12_0034
+ 298 00a8 07       		.byte	7
+ 299 00a9 07       		.byte	7
+ 300 00aa 01       		.byte	1
+ 301 00ab 00       		.space	1
+ 302 00ac 00000000 		.word	acFontHZKaiTi_12_0035
+ 303 00b0 07       		.byte	7
+ 304 00b1 07       		.byte	7
+ 305 00b2 01       		.byte	1
+ 306 00b3 00       		.space	1
+ 307 00b4 00000000 		.word	acFontHZKaiTi_12_0036
+ 308 00b8 07       		.byte	7
+ 309 00b9 07       		.byte	7
+ 310 00ba 01       		.byte	1
+ 311 00bb 00       		.space	1
+ 312 00bc 00000000 		.word	acFontHZKaiTi_12_0037
+ 313 00c0 07       		.byte	7
+ 314 00c1 07       		.byte	7
+ 315 00c2 01       		.byte	1
+ 316 00c3 00       		.space	1
+ 317 00c4 00000000 		.word	acFontHZKaiTi_12_0038
+ 318 00c8 07       		.byte	7
+ 319 00c9 07       		.byte	7
+ 320 00ca 01       		.byte	1
+ 321 00cb 00       		.space	1
+ 322 00cc 00000000 		.word	acFontHZKaiTi_12_0039
+ 323 00d0 07       		.byte	7
+ 324 00d1 07       		.byte	7
+ 325 00d2 01       		.byte	1
+ 326 00d3 00       		.space	1
+ 327 00d4 00000000 		.word	acFontHZKaiTi_12_003a
+ 328 00d8 07       		.byte	7
+ 329 00d9 07       		.byte	7
+ 330 00da 01       		.byte	1
+ 331 00db 00       		.space	1
+ 332 00dc 00000000 		.word	acFontHZKaiTi_12_003b
+ 333 00e0 07       		.byte	7
+ 334 00e1 07       		.byte	7
+ 335 00e2 01       		.byte	1
+ 336 00e3 00       		.space	1
+ 337 00e4 00000000 		.word	acFontHZKaiTi_12_003c
+ 338 00e8 07       		.byte	7
+ 339 00e9 07       		.byte	7
+ 340 00ea 01       		.byte	1
+ 341 00eb 00       		.space	1
+ 342 00ec 00000000 		.word	acFontHZKaiTi_12_003d
+ 343 00f0 07       		.byte	7
+ 344 00f1 07       		.byte	7
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 7
+
+
+ 345 00f2 01       		.byte	1
+ 346 00f3 00       		.space	1
+ 347 00f4 00000000 		.word	acFontHZKaiTi_12_003e
+ 348 00f8 07       		.byte	7
+ 349 00f9 07       		.byte	7
+ 350 00fa 01       		.byte	1
+ 351 00fb 00       		.space	1
+ 352 00fc 00000000 		.word	acFontHZKaiTi_12_003f
+ 353 0100 07       		.byte	7
+ 354 0101 07       		.byte	7
+ 355 0102 01       		.byte	1
+ 356 0103 00       		.space	1
+ 357 0104 00000000 		.word	acFontHZKaiTi_12_0040
+ 358 0108 07       		.byte	7
+ 359 0109 07       		.byte	7
+ 360 010a 01       		.byte	1
+ 361 010b 00       		.space	1
+ 362 010c 00000000 		.word	acFontHZKaiTi_12_0041
+ 363 0110 07       		.byte	7
+ 364 0111 07       		.byte	7
+ 365 0112 01       		.byte	1
+ 366 0113 00       		.space	1
+ 367 0114 00000000 		.word	acFontHZKaiTi_12_0042
+ 368 0118 07       		.byte	7
+ 369 0119 07       		.byte	7
+ 370 011a 01       		.byte	1
+ 371 011b 00       		.space	1
+ 372 011c 00000000 		.word	acFontHZKaiTi_12_0043
+ 373 0120 07       		.byte	7
+ 374 0121 07       		.byte	7
+ 375 0122 01       		.byte	1
+ 376 0123 00       		.space	1
+ 377 0124 00000000 		.word	acFontHZKaiTi_12_0044
+ 378 0128 07       		.byte	7
+ 379 0129 07       		.byte	7
+ 380 012a 01       		.byte	1
+ 381 012b 00       		.space	1
+ 382 012c 00000000 		.word	acFontHZKaiTi_12_0045
+ 383 0130 07       		.byte	7
+ 384 0131 07       		.byte	7
+ 385 0132 01       		.byte	1
+ 386 0133 00       		.space	1
+ 387 0134 00000000 		.word	acFontHZKaiTi_12_0046
+ 388 0138 07       		.byte	7
+ 389 0139 07       		.byte	7
+ 390 013a 01       		.byte	1
+ 391 013b 00       		.space	1
+ 392 013c 00000000 		.word	acFontHZKaiTi_12_0047
+ 393 0140 07       		.byte	7
+ 394 0141 07       		.byte	7
+ 395 0142 01       		.byte	1
+ 396 0143 00       		.space	1
+ 397 0144 00000000 		.word	acFontHZKaiTi_12_0048
+ 398 0148 07       		.byte	7
+ 399 0149 07       		.byte	7
+ 400 014a 01       		.byte	1
+ 401 014b 00       		.space	1
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 8
+
+
+ 402 014c 00000000 		.word	acFontHZKaiTi_12_0049
+ 403 0150 07       		.byte	7
+ 404 0151 07       		.byte	7
+ 405 0152 01       		.byte	1
+ 406 0153 00       		.space	1
+ 407 0154 00000000 		.word	acFontHZKaiTi_12_004a
+ 408 0158 07       		.byte	7
+ 409 0159 07       		.byte	7
+ 410 015a 01       		.byte	1
+ 411 015b 00       		.space	1
+ 412 015c 00000000 		.word	acFontHZKaiTi_12_004b
+ 413 0160 07       		.byte	7
+ 414 0161 07       		.byte	7
+ 415 0162 01       		.byte	1
+ 416 0163 00       		.space	1
+ 417 0164 00000000 		.word	acFontHZKaiTi_12_004c
+ 418 0168 07       		.byte	7
+ 419 0169 07       		.byte	7
+ 420 016a 01       		.byte	1
+ 421 016b 00       		.space	1
+ 422 016c 00000000 		.word	acFontHZKaiTi_12_004d
+ 423 0170 07       		.byte	7
+ 424 0171 07       		.byte	7
+ 425 0172 01       		.byte	1
+ 426 0173 00       		.space	1
+ 427 0174 00000000 		.word	acFontHZKaiTi_12_004e
+ 428 0178 07       		.byte	7
+ 429 0179 07       		.byte	7
+ 430 017a 01       		.byte	1
+ 431 017b 00       		.space	1
+ 432 017c 00000000 		.word	acFontHZKaiTi_12_004f
+ 433 0180 07       		.byte	7
+ 434 0181 07       		.byte	7
+ 435 0182 01       		.byte	1
+ 436 0183 00       		.space	1
+ 437 0184 00000000 		.word	acFontHZKaiTi_12_0050
+ 438 0188 07       		.byte	7
+ 439 0189 07       		.byte	7
+ 440 018a 01       		.byte	1
+ 441 018b 00       		.space	1
+ 442 018c 00000000 		.word	acFontHZKaiTi_12_0051
+ 443 0190 07       		.byte	7
+ 444 0191 07       		.byte	7
+ 445 0192 01       		.byte	1
+ 446 0193 00       		.space	1
+ 447 0194 00000000 		.word	acFontHZKaiTi_12_0052
+ 448 0198 07       		.byte	7
+ 449 0199 07       		.byte	7
+ 450 019a 01       		.byte	1
+ 451 019b 00       		.space	1
+ 452 019c 00000000 		.word	acFontHZKaiTi_12_0053
+ 453 01a0 07       		.byte	7
+ 454 01a1 07       		.byte	7
+ 455 01a2 01       		.byte	1
+ 456 01a3 00       		.space	1
+ 457 01a4 00000000 		.word	acFontHZKaiTi_12_0054
+ 458 01a8 07       		.byte	7
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 9
+
+
+ 459 01a9 07       		.byte	7
+ 460 01aa 01       		.byte	1
+ 461 01ab 00       		.space	1
+ 462 01ac 00000000 		.word	acFontHZKaiTi_12_0055
+ 463 01b0 07       		.byte	7
+ 464 01b1 07       		.byte	7
+ 465 01b2 01       		.byte	1
+ 466 01b3 00       		.space	1
+ 467 01b4 00000000 		.word	acFontHZKaiTi_12_0056
+ 468 01b8 07       		.byte	7
+ 469 01b9 07       		.byte	7
+ 470 01ba 01       		.byte	1
+ 471 01bb 00       		.space	1
+ 472 01bc 00000000 		.word	acFontHZKaiTi_12_0057
+ 473 01c0 07       		.byte	7
+ 474 01c1 07       		.byte	7
+ 475 01c2 01       		.byte	1
+ 476 01c3 00       		.space	1
+ 477 01c4 00000000 		.word	acFontHZKaiTi_12_0058
+ 478 01c8 07       		.byte	7
+ 479 01c9 07       		.byte	7
+ 480 01ca 01       		.byte	1
+ 481 01cb 00       		.space	1
+ 482 01cc 00000000 		.word	acFontHZKaiTi_12_0059
+ 483 01d0 07       		.byte	7
+ 484 01d1 07       		.byte	7
+ 485 01d2 01       		.byte	1
+ 486 01d3 00       		.space	1
+ 487 01d4 00000000 		.word	acFontHZKaiTi_12_005a
+ 488 01d8 07       		.byte	7
+ 489 01d9 07       		.byte	7
+ 490 01da 01       		.byte	1
+ 491 01db 00       		.space	1
+ 492 01dc 00000000 		.word	acFontHZKaiTi_12_005b
+ 493 01e0 07       		.byte	7
+ 494 01e1 07       		.byte	7
+ 495 01e2 01       		.byte	1
+ 496 01e3 00       		.space	1
+ 497 01e4 00000000 		.word	acFontHZKaiTi_12_005c
+ 498 01e8 07       		.byte	7
+ 499 01e9 07       		.byte	7
+ 500 01ea 01       		.byte	1
+ 501 01eb 00       		.space	1
+ 502 01ec 00000000 		.word	acFontHZKaiTi_12_005d
+ 503 01f0 07       		.byte	7
+ 504 01f1 07       		.byte	7
+ 505 01f2 01       		.byte	1
+ 506 01f3 00       		.space	1
+ 507 01f4 00000000 		.word	acFontHZKaiTi_12_005e
+ 508 01f8 07       		.byte	7
+ 509 01f9 07       		.byte	7
+ 510 01fa 01       		.byte	1
+ 511 01fb 00       		.space	1
+ 512 01fc 00000000 		.word	acFontHZKaiTi_12_005f
+ 513 0200 07       		.byte	7
+ 514 0201 07       		.byte	7
+ 515 0202 01       		.byte	1
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 10
+
+
+ 516 0203 00       		.space	1
+ 517 0204 00000000 		.word	acFontHZKaiTi_12_0060
+ 518 0208 07       		.byte	7
+ 519 0209 07       		.byte	7
+ 520 020a 01       		.byte	1
+ 521 020b 00       		.space	1
+ 522 020c 00000000 		.word	acFontHZKaiTi_12_0061
+ 523 0210 07       		.byte	7
+ 524 0211 07       		.byte	7
+ 525 0212 01       		.byte	1
+ 526 0213 00       		.space	1
+ 527 0214 00000000 		.word	acFontHZKaiTi_12_0062
+ 528 0218 07       		.byte	7
+ 529 0219 07       		.byte	7
+ 530 021a 01       		.byte	1
+ 531 021b 00       		.space	1
+ 532 021c 00000000 		.word	acFontHZKaiTi_12_0063
+ 533 0220 07       		.byte	7
+ 534 0221 07       		.byte	7
+ 535 0222 01       		.byte	1
+ 536 0223 00       		.space	1
+ 537 0224 00000000 		.word	acFontHZKaiTi_12_0064
+ 538 0228 07       		.byte	7
+ 539 0229 07       		.byte	7
+ 540 022a 01       		.byte	1
+ 541 022b 00       		.space	1
+ 542 022c 00000000 		.word	acFontHZKaiTi_12_0065
+ 543 0230 07       		.byte	7
+ 544 0231 07       		.byte	7
+ 545 0232 01       		.byte	1
+ 546 0233 00       		.space	1
+ 547 0234 00000000 		.word	acFontHZKaiTi_12_0066
+ 548 0238 07       		.byte	7
+ 549 0239 07       		.byte	7
+ 550 023a 01       		.byte	1
+ 551 023b 00       		.space	1
+ 552 023c 00000000 		.word	acFontHZKaiTi_12_0067
+ 553 0240 07       		.byte	7
+ 554 0241 07       		.byte	7
+ 555 0242 01       		.byte	1
+ 556 0243 00       		.space	1
+ 557 0244 00000000 		.word	acFontHZKaiTi_12_0068
+ 558 0248 07       		.byte	7
+ 559 0249 07       		.byte	7
+ 560 024a 01       		.byte	1
+ 561 024b 00       		.space	1
+ 562 024c 00000000 		.word	acFontHZKaiTi_12_0069
+ 563 0250 07       		.byte	7
+ 564 0251 07       		.byte	7
+ 565 0252 01       		.byte	1
+ 566 0253 00       		.space	1
+ 567 0254 00000000 		.word	acFontHZKaiTi_12_006a
+ 568 0258 07       		.byte	7
+ 569 0259 07       		.byte	7
+ 570 025a 01       		.byte	1
+ 571 025b 00       		.space	1
+ 572 025c 00000000 		.word	acFontHZKaiTi_12_006b
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 11
+
+
+ 573 0260 07       		.byte	7
+ 574 0261 07       		.byte	7
+ 575 0262 01       		.byte	1
+ 576 0263 00       		.space	1
+ 577 0264 00000000 		.word	acFontHZKaiTi_12_006c
+ 578 0268 07       		.byte	7
+ 579 0269 07       		.byte	7
+ 580 026a 01       		.byte	1
+ 581 026b 00       		.space	1
+ 582 026c 00000000 		.word	acFontHZKaiTi_12_006d
+ 583 0270 07       		.byte	7
+ 584 0271 07       		.byte	7
+ 585 0272 01       		.byte	1
+ 586 0273 00       		.space	1
+ 587 0274 00000000 		.word	acFontHZKaiTi_12_006e
+ 588 0278 07       		.byte	7
+ 589 0279 07       		.byte	7
+ 590 027a 01       		.byte	1
+ 591 027b 00       		.space	1
+ 592 027c 00000000 		.word	acFontHZKaiTi_12_006f
+ 593 0280 07       		.byte	7
+ 594 0281 07       		.byte	7
+ 595 0282 01       		.byte	1
+ 596 0283 00       		.space	1
+ 597 0284 00000000 		.word	acFontHZKaiTi_12_0070
+ 598 0288 07       		.byte	7
+ 599 0289 07       		.byte	7
+ 600 028a 01       		.byte	1
+ 601 028b 00       		.space	1
+ 602 028c 00000000 		.word	acFontHZKaiTi_12_0071
+ 603 0290 07       		.byte	7
+ 604 0291 07       		.byte	7
+ 605 0292 01       		.byte	1
+ 606 0293 00       		.space	1
+ 607 0294 00000000 		.word	acFontHZKaiTi_12_0072
+ 608 0298 07       		.byte	7
+ 609 0299 07       		.byte	7
+ 610 029a 01       		.byte	1
+ 611 029b 00       		.space	1
+ 612 029c 00000000 		.word	acFontHZKaiTi_12_0073
+ 613 02a0 07       		.byte	7
+ 614 02a1 07       		.byte	7
+ 615 02a2 01       		.byte	1
+ 616 02a3 00       		.space	1
+ 617 02a4 00000000 		.word	acFontHZKaiTi_12_0074
+ 618 02a8 07       		.byte	7
+ 619 02a9 07       		.byte	7
+ 620 02aa 01       		.byte	1
+ 621 02ab 00       		.space	1
+ 622 02ac 00000000 		.word	acFontHZKaiTi_12_0075
+ 623 02b0 07       		.byte	7
+ 624 02b1 07       		.byte	7
+ 625 02b2 01       		.byte	1
+ 626 02b3 00       		.space	1
+ 627 02b4 00000000 		.word	acFontHZKaiTi_12_0076
+ 628 02b8 07       		.byte	7
+ 629 02b9 07       		.byte	7
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 12
+
+
+ 630 02ba 01       		.byte	1
+ 631 02bb 00       		.space	1
+ 632 02bc 00000000 		.word	acFontHZKaiTi_12_0077
+ 633 02c0 07       		.byte	7
+ 634 02c1 07       		.byte	7
+ 635 02c2 01       		.byte	1
+ 636 02c3 00       		.space	1
+ 637 02c4 00000000 		.word	acFontHZKaiTi_12_0078
+ 638 02c8 07       		.byte	7
+ 639 02c9 07       		.byte	7
+ 640 02ca 01       		.byte	1
+ 641 02cb 00       		.space	1
+ 642 02cc 00000000 		.word	acFontHZKaiTi_12_0079
+ 643 02d0 07       		.byte	7
+ 644 02d1 07       		.byte	7
+ 645 02d2 01       		.byte	1
+ 646 02d3 00       		.space	1
+ 647 02d4 00000000 		.word	acFontHZKaiTi_12_007a
+ 648 02d8 07       		.byte	7
+ 649 02d9 07       		.byte	7
+ 650 02da 01       		.byte	1
+ 651 02db 00       		.space	1
+ 652 02dc 00000000 		.word	acFontHZKaiTi_12_007b
+ 653 02e0 07       		.byte	7
+ 654 02e1 07       		.byte	7
+ 655 02e2 01       		.byte	1
+ 656 02e3 00       		.space	1
+ 657 02e4 00000000 		.word	acFontHZKaiTi_12_007c
+ 658 02e8 07       		.byte	7
+ 659 02e9 07       		.byte	7
+ 660 02ea 01       		.byte	1
+ 661 02eb 00       		.space	1
+ 662 02ec 00000000 		.word	acFontHZKaiTi_12_007d
+ 663 02f0 07       		.byte	7
+ 664 02f1 07       		.byte	7
+ 665 02f2 01       		.byte	1
+ 666 02f3 00       		.space	1
+ 667 02f4 00000000 		.word	acFontHZKaiTi_12_007e
+ 668 02f8 04       		.byte	4
+ 669 02f9 04       		.byte	4
+ 670 02fa 01       		.byte	1
+ 671 02fb 00       		.space	1
+ 672 02fc 00000000 		.word	acFontHZKaiTi_12_007f
+ 673 0300 0D       		.byte	13
+ 674 0301 0D       		.byte	13
+ 675 0302 02       		.byte	2
+ 676 0303 00       		.space	1
+ 677 0304 00000000 		.word	acFontHZKaiTi_12_b2ce
+ 678 0308 0D       		.byte	13
+ 679 0309 0D       		.byte	13
+ 680 030a 02       		.byte	2
+ 681 030b 00       		.space	1
+ 682 030c 00000000 		.word	acFontHZKaiTi_12_b2e2
+ 683 0310 0D       		.byte	13
+ 684 0311 0D       		.byte	13
+ 685 0312 02       		.byte	2
+ 686 0313 00       		.space	1
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 13
+
+
+ 687 0314 00000000 		.word	acFontHZKaiTi_12_b3c2
+ 688 0318 0D       		.byte	13
+ 689 0319 0D       		.byte	13
+ 690 031a 02       		.byte	2
+ 691 031b 00       		.space	1
+ 692 031c 00000000 		.word	acFontHZKaiTi_12_b4f3
+ 693 0320 0D       		.byte	13
+ 694 0321 0D       		.byte	13
+ 695 0322 02       		.byte	2
+ 696 0323 00       		.space	1
+ 697 0324 00000000 		.word	acFontHZKaiTi_12_b5c1
+ 698 0328 0D       		.byte	13
+ 699 0329 0D       		.byte	13
+ 700 032a 02       		.byte	2
+ 701 032b 00       		.space	1
+ 702 032c 00000000 		.word	acFontHZKaiTi_12_b5e7
+ 703 0330 0D       		.byte	13
+ 704 0331 0D       		.byte	13
+ 705 0332 02       		.byte	2
+ 706 0333 00       		.space	1
+ 707 0334 00000000 		.word	acFontHZKaiTi_12_b7c0
+ 708 0338 0D       		.byte	13
+ 709 0339 0D       		.byte	13
+ 710 033a 02       		.byte	2
+ 711 033b 00       		.space	1
+ 712 033c 00000000 		.word	acFontHZKaiTi_12_babc
+ 713 0340 0D       		.byte	13
+ 714 0341 0D       		.byte	13
+ 715 0342 02       		.byte	2
+ 716 0343 00       		.space	1
+ 717 0344 00000000 		.word	acFontHZKaiTi_12_bbf0
+ 718 0348 0D       		.byte	13
+ 719 0349 0D       		.byte	13
+ 720 034a 02       		.byte	2
+ 721 034b 00       		.space	1
+ 722 034c 00000000 		.word	acFontHZKaiTi_12_bcbc
+ 723 0350 0D       		.byte	13
+ 724 0351 0D       		.byte	13
+ 725 0352 02       		.byte	2
+ 726 0353 00       		.space	1
+ 727 0354 00000000 		.word	acFontHZKaiTi_12_bce0
+ 728 0358 0D       		.byte	13
+ 729 0359 0D       		.byte	13
+ 730 035a 02       		.byte	2
+ 731 035b 00       		.space	1
+ 732 035c 00000000 		.word	acFontHZKaiTi_12_bde1
+ 733 0360 0D       		.byte	13
+ 734 0361 0D       		.byte	13
+ 735 0362 02       		.byte	2
+ 736 0363 00       		.space	1
+ 737 0364 00000000 		.word	acFontHZKaiTi_12_bedd
+ 738 0368 0D       		.byte	13
+ 739 0369 0D       		.byte	13
+ 740 036a 02       		.byte	2
+ 741 036b 00       		.space	1
+ 742 036c 00000000 		.word	acFontHZKaiTi_12_bfaa
+ 743 0370 0D       		.byte	13
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 14
+
+
+ 744 0371 0D       		.byte	13
+ 745 0372 02       		.byte	2
+ 746 0373 00       		.space	1
+ 747 0374 00000000 		.word	acFontHZKaiTi_12_bfc6
+ 748 0378 0D       		.byte	13
+ 749 0379 0D       		.byte	13
+ 750 037a 02       		.byte	2
+ 751 037b 00       		.space	1
+ 752 037c 00000000 		.word	acFontHZKaiTi_12_c6f7
+ 753 0380 0D       		.byte	13
+ 754 0381 0D       		.byte	13
+ 755 0382 02       		.byte	2
+ 756 0383 00       		.space	1
+ 757 0384 00000000 		.word	acFontHZKaiTi_12_c7fa
+ 758 0388 0D       		.byte	13
+ 759 0389 0D       		.byte	13
+ 760 038a 02       		.byte	2
+ 761 038b 00       		.space	1
+ 762 038c 00000000 		.word	acFontHZKaiTi_12_c8f3
+ 763 0390 0D       		.byte	13
+ 764 0391 0D       		.byte	13
+ 765 0392 02       		.byte	2
+ 766 0393 00       		.space	1
+ 767 0394 00000000 		.word	acFontHZKaiTi_12_c9e8
+ 768 0398 0D       		.byte	13
+ 769 0399 0D       		.byte	13
+ 770 039a 02       		.byte	2
+ 771 039b 00       		.space	1
+ 772 039c 00000000 		.word	acFontHZKaiTi_12_cab1
+ 773 03a0 0D       		.byte	13
+ 774 03a1 0D       		.byte	13
+ 775 03a2 02       		.byte	2
+ 776 03a3 00       		.space	1
+ 777 03a4 00000000 		.word	acFontHZKaiTi_12_cab5
+ 778 03a8 0D       		.byte	13
+ 779 03a9 0D       		.byte	13
+ 780 03aa 02       		.byte	2
+ 781 03ab 00       		.space	1
+ 782 03ac 00000000 		.word	acFontHZKaiTi_12_cabc
+ 783 03b0 0D       		.byte	13
+ 784 03b1 0D       		.byte	13
+ 785 03b2 02       		.byte	2
+ 786 03b3 00       		.space	1
+ 787 03b4 00000000 		.word	acFontHZKaiTi_12_caf8
+ 788 03b8 0D       		.byte	13
+ 789 03b9 0D       		.byte	13
+ 790 03ba 02       		.byte	2
+ 791 03bb 00       		.space	1
+ 792 03bc 00000000 		.word	acFontHZKaiTi_12_cafd
+ 793 03c0 0D       		.byte	13
+ 794 03c1 0D       		.byte	13
+ 795 03c2 02       		.byte	2
+ 796 03c3 00       		.space	1
+ 797 03c4 00000000 		.word	acFontHZKaiTi_12_cda8
+ 798 03c8 0D       		.byte	13
+ 799 03c9 0D       		.byte	13
+ 800 03ca 02       		.byte	2
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 15
+
+
+ 801 03cb 00       		.space	1
+ 802 03cc 00000000 		.word	acFontHZKaiTi_12_cede
+ 803 03d0 0D       		.byte	13
+ 804 03d1 0D       		.byte	13
+ 805 03d2 02       		.byte	2
+ 806 03d3 00       		.space	1
+ 807 03d4 00000000 		.word	acFontHZKaiTi_12_cfdf
+ 808 03d8 0D       		.byte	13
+ 809 03d9 0D       		.byte	13
+ 810 03da 02       		.byte	2
+ 811 03db 00       		.space	1
+ 812 03dc 00000000 		.word	acFontHZKaiTi_12_d0c5
+ 813 03e0 0D       		.byte	13
+ 814 03e1 0D       		.byte	13
+ 815 03e2 02       		.byte	2
+ 816 03e3 00       		.space	1
+ 817 03e4 00000000 		.word	acFontHZKaiTi_12_d1a7
+ 818 03e8 0D       		.byte	13
+ 819 03e9 0D       		.byte	13
+ 820 03ea 02       		.byte	2
+ 821 03eb 00       		.space	1
+ 822 03ec 00000000 		.word	acFontHZKaiTi_12_d4f8
+ 823 03f0 0D       		.byte	13
+ 824 03f1 0D       		.byte	13
+ 825 03f2 02       		.byte	2
+ 826 03f3 00       		.space	1
+ 827 03f4 00000000 		.word	acFontHZKaiTi_12_d6c3
+ 828 03f8 0D       		.byte	13
+ 829 03f9 0D       		.byte	13
+ 830 03fa 02       		.byte	2
+ 831 03fb 00       		.space	1
+ 832 03fc 00000000 		.word	acFontHZKaiTi_12_d6dd
+ 833 0400 0D       		.byte	13
+ 834 0401 0D       		.byte	13
+ 835 0402 02       		.byte	2
+ 836 0403 00       		.space	1
+ 837 0404 00000000 		.word	acFontHZKaiTi_12_d7d3
+ 838 0408 0D       		.byte	13
+ 839 0409 0D       		.byte	13
+ 840 040a 02       		.byte	2
+ 841 040b 00       		.space	1
+ 842 040c 00000000 		.word	acFontHZKaiTi_12_d8b9
+ 843 0410 0D       		.byte	13
+ 844 0411 0D       		.byte	13
+ 845 0412 02       		.byte	2
+ 846 0413 00       		.space	1
+ 847 0414 00000000 		.word	acFontHZKaiTi_12_ecc5
+ 848              		.section	.rodata.GUI_FontHZKaiTi_12_Prop0020,"a"
+ 849              		.align	2
+ 852              	GUI_FontHZKaiTi_12_Prop0020:
+ 853 0000 2000     		.short	32
+ 854 0002 7F00     		.short	127
+ 855 0004 00000000 		.word	GUI_FontHZKaiTi_12_CharInfo
+ 856 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propb2ce
+ 857              		.section	.rodata.GUI_FontHZKaiTi_12_Propb2ce,"a"
+ 858              		.align	2
+ 861              	GUI_FontHZKaiTi_12_Propb2ce:
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 16
+
+
+ 862 0000 CEB2     		.short	-19762
+ 863 0002 CEB2     		.short	-19762
+ 864 0004 00030000 		.word	GUI_FontHZKaiTi_12_CharInfo+768
+ 865 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propb2e2
+ 866              		.section	.rodata.GUI_FontHZKaiTi_12_Propb2e2,"a"
+ 867              		.align	2
+ 870              	GUI_FontHZKaiTi_12_Propb2e2:
+ 871 0000 E2B2     		.short	-19742
+ 872 0002 E2B2     		.short	-19742
+ 873 0004 08030000 		.word	GUI_FontHZKaiTi_12_CharInfo+776
+ 874 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propb3c2
+ 875              		.section	.rodata.GUI_FontHZKaiTi_12_Propb3c2,"a"
+ 876              		.align	2
+ 879              	GUI_FontHZKaiTi_12_Propb3c2:
+ 880 0000 C2B3     		.short	-19518
+ 881 0002 C2B3     		.short	-19518
+ 882 0004 10030000 		.word	GUI_FontHZKaiTi_12_CharInfo+784
+ 883 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propb4f3
+ 884              		.section	.rodata.GUI_FontHZKaiTi_12_Propb4f3,"a"
+ 885              		.align	2
+ 888              	GUI_FontHZKaiTi_12_Propb4f3:
+ 889 0000 F3B4     		.short	-19213
+ 890 0002 F3B4     		.short	-19213
+ 891 0004 18030000 		.word	GUI_FontHZKaiTi_12_CharInfo+792
+ 892 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propb5c1
+ 893              		.section	.rodata.GUI_FontHZKaiTi_12_Propb5c1,"a"
+ 894              		.align	2
+ 897              	GUI_FontHZKaiTi_12_Propb5c1:
+ 898 0000 C1B5     		.short	-19007
+ 899 0002 C1B5     		.short	-19007
+ 900 0004 20030000 		.word	GUI_FontHZKaiTi_12_CharInfo+800
+ 901 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propb5e7
+ 902              		.section	.rodata.GUI_FontHZKaiTi_12_Propb5e7,"a"
+ 903              		.align	2
+ 906              	GUI_FontHZKaiTi_12_Propb5e7:
+ 907 0000 E7B5     		.short	-18969
+ 908 0002 E7B5     		.short	-18969
+ 909 0004 28030000 		.word	GUI_FontHZKaiTi_12_CharInfo+808
+ 910 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propb7c0
+ 911              		.section	.rodata.GUI_FontHZKaiTi_12_Propb7c0,"a"
+ 912              		.align	2
+ 915              	GUI_FontHZKaiTi_12_Propb7c0:
+ 916 0000 C0B7     		.short	-18496
+ 917 0002 C0B7     		.short	-18496
+ 918 0004 30030000 		.word	GUI_FontHZKaiTi_12_CharInfo+816
+ 919 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propbabc
+ 920              		.section	.rodata.GUI_FontHZKaiTi_12_Propbabc,"a"
+ 921              		.align	2
+ 924              	GUI_FontHZKaiTi_12_Propbabc:
+ 925 0000 BCBA     		.short	-17732
+ 926 0002 BCBA     		.short	-17732
+ 927 0004 38030000 		.word	GUI_FontHZKaiTi_12_CharInfo+824
+ 928 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propbbf0
+ 929              		.section	.rodata.GUI_FontHZKaiTi_12_Propbbf0,"a"
+ 930              		.align	2
+ 933              	GUI_FontHZKaiTi_12_Propbbf0:
+ 934 0000 F0BB     		.short	-17424
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 17
+
+
+ 935 0002 F0BB     		.short	-17424
+ 936 0004 40030000 		.word	GUI_FontHZKaiTi_12_CharInfo+832
+ 937 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propbcbc
+ 938              		.section	.rodata.GUI_FontHZKaiTi_12_Propbcbc,"a"
+ 939              		.align	2
+ 942              	GUI_FontHZKaiTi_12_Propbcbc:
+ 943 0000 BCBC     		.short	-17220
+ 944 0002 BCBC     		.short	-17220
+ 945 0004 48030000 		.word	GUI_FontHZKaiTi_12_CharInfo+840
+ 946 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propbce0
+ 947              		.section	.rodata.GUI_FontHZKaiTi_12_Propbce0,"a"
+ 948              		.align	2
+ 951              	GUI_FontHZKaiTi_12_Propbce0:
+ 952 0000 E0BC     		.short	-17184
+ 953 0002 E0BC     		.short	-17184
+ 954 0004 50030000 		.word	GUI_FontHZKaiTi_12_CharInfo+848
+ 955 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propbde1
+ 956              		.section	.rodata.GUI_FontHZKaiTi_12_Propbde1,"a"
+ 957              		.align	2
+ 960              	GUI_FontHZKaiTi_12_Propbde1:
+ 961 0000 E1BD     		.short	-16927
+ 962 0002 E1BD     		.short	-16927
+ 963 0004 58030000 		.word	GUI_FontHZKaiTi_12_CharInfo+856
+ 964 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propbedd
+ 965              		.section	.rodata.GUI_FontHZKaiTi_12_Propbedd,"a"
+ 966              		.align	2
+ 969              	GUI_FontHZKaiTi_12_Propbedd:
+ 970 0000 DDBE     		.short	-16675
+ 971 0002 DDBE     		.short	-16675
+ 972 0004 60030000 		.word	GUI_FontHZKaiTi_12_CharInfo+864
+ 973 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propbfaa
+ 974              		.section	.rodata.GUI_FontHZKaiTi_12_Propbfaa,"a"
+ 975              		.align	2
+ 978              	GUI_FontHZKaiTi_12_Propbfaa:
+ 979 0000 AABF     		.short	-16470
+ 980 0002 AABF     		.short	-16470
+ 981 0004 68030000 		.word	GUI_FontHZKaiTi_12_CharInfo+872
+ 982 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propbfc6
+ 983              		.section	.rodata.GUI_FontHZKaiTi_12_Propbfc6,"a"
+ 984              		.align	2
+ 987              	GUI_FontHZKaiTi_12_Propbfc6:
+ 988 0000 C6BF     		.short	-16442
+ 989 0002 C6BF     		.short	-16442
+ 990 0004 70030000 		.word	GUI_FontHZKaiTi_12_CharInfo+880
+ 991 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propc6f7
+ 992              		.section	.rodata.GUI_FontHZKaiTi_12_Propc6f7,"a"
+ 993              		.align	2
+ 996              	GUI_FontHZKaiTi_12_Propc6f7:
+ 997 0000 F7C6     		.short	-14601
+ 998 0002 F7C6     		.short	-14601
+ 999 0004 78030000 		.word	GUI_FontHZKaiTi_12_CharInfo+888
+ 1000 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propc7fa
+ 1001              		.section	.rodata.GUI_FontHZKaiTi_12_Propc7fa,"a"
+ 1002              		.align	2
+ 1005              	GUI_FontHZKaiTi_12_Propc7fa:
+ 1006 0000 FAC7     		.short	-14342
+ 1007 0002 FAC7     		.short	-14342
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 18
+
+
+ 1008 0004 80030000 		.word	GUI_FontHZKaiTi_12_CharInfo+896
+ 1009 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propc8f3
+ 1010              		.section	.rodata.GUI_FontHZKaiTi_12_Propc8f3,"a"
+ 1011              		.align	2
+ 1014              	GUI_FontHZKaiTi_12_Propc8f3:
+ 1015 0000 F3C8     		.short	-14093
+ 1016 0002 F3C8     		.short	-14093
+ 1017 0004 88030000 		.word	GUI_FontHZKaiTi_12_CharInfo+904
+ 1018 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propc9e8
+ 1019              		.section	.rodata.GUI_FontHZKaiTi_12_Propc9e8,"a"
+ 1020              		.align	2
+ 1023              	GUI_FontHZKaiTi_12_Propc9e8:
+ 1024 0000 E8C9     		.short	-13848
+ 1025 0002 E8C9     		.short	-13848
+ 1026 0004 90030000 		.word	GUI_FontHZKaiTi_12_CharInfo+912
+ 1027 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propcab1
+ 1028              		.section	.rodata.GUI_FontHZKaiTi_12_Propcab1,"a"
+ 1029              		.align	2
+ 1032              	GUI_FontHZKaiTi_12_Propcab1:
+ 1033 0000 B1CA     		.short	-13647
+ 1034 0002 B1CA     		.short	-13647
+ 1035 0004 98030000 		.word	GUI_FontHZKaiTi_12_CharInfo+920
+ 1036 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propcab5
+ 1037              		.section	.rodata.GUI_FontHZKaiTi_12_Propcab5,"a"
+ 1038              		.align	2
+ 1041              	GUI_FontHZKaiTi_12_Propcab5:
+ 1042 0000 B5CA     		.short	-13643
+ 1043 0002 B5CA     		.short	-13643
+ 1044 0004 A0030000 		.word	GUI_FontHZKaiTi_12_CharInfo+928
+ 1045 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propcabc
+ 1046              		.section	.rodata.GUI_FontHZKaiTi_12_Propcabc,"a"
+ 1047              		.align	2
+ 1050              	GUI_FontHZKaiTi_12_Propcabc:
+ 1051 0000 BCCA     		.short	-13636
+ 1052 0002 BCCA     		.short	-13636
+ 1053 0004 A8030000 		.word	GUI_FontHZKaiTi_12_CharInfo+936
+ 1054 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propcaf8
+ 1055              		.section	.rodata.GUI_FontHZKaiTi_12_Propcaf8,"a"
+ 1056              		.align	2
+ 1059              	GUI_FontHZKaiTi_12_Propcaf8:
+ 1060 0000 F8CA     		.short	-13576
+ 1061 0002 F8CA     		.short	-13576
+ 1062 0004 B0030000 		.word	GUI_FontHZKaiTi_12_CharInfo+944
+ 1063 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propcafd
+ 1064              		.section	.rodata.GUI_FontHZKaiTi_12_Propcafd,"a"
+ 1065              		.align	2
+ 1068              	GUI_FontHZKaiTi_12_Propcafd:
+ 1069 0000 FDCA     		.short	-13571
+ 1070 0002 FDCA     		.short	-13571
+ 1071 0004 B8030000 		.word	GUI_FontHZKaiTi_12_CharInfo+952
+ 1072 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propcda8
+ 1073              		.section	.rodata.GUI_FontHZKaiTi_12_Propcda8,"a"
+ 1074              		.align	2
+ 1077              	GUI_FontHZKaiTi_12_Propcda8:
+ 1078 0000 A8CD     		.short	-12888
+ 1079 0002 A8CD     		.short	-12888
+ 1080 0004 C0030000 		.word	GUI_FontHZKaiTi_12_CharInfo+960
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 19
+
+
+ 1081 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propcede
+ 1082              		.section	.rodata.GUI_FontHZKaiTi_12_Propcede,"a"
+ 1083              		.align	2
+ 1086              	GUI_FontHZKaiTi_12_Propcede:
+ 1087 0000 DECE     		.short	-12578
+ 1088 0002 DECE     		.short	-12578
+ 1089 0004 C8030000 		.word	GUI_FontHZKaiTi_12_CharInfo+968
+ 1090 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propcfdf
+ 1091              		.section	.rodata.GUI_FontHZKaiTi_12_Propcfdf,"a"
+ 1092              		.align	2
+ 1095              	GUI_FontHZKaiTi_12_Propcfdf:
+ 1096 0000 DFCF     		.short	-12321
+ 1097 0002 DFCF     		.short	-12321
+ 1098 0004 D0030000 		.word	GUI_FontHZKaiTi_12_CharInfo+976
+ 1099 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propd0c5
+ 1100              		.section	.rodata.GUI_FontHZKaiTi_12_Propd0c5,"a"
+ 1101              		.align	2
+ 1104              	GUI_FontHZKaiTi_12_Propd0c5:
+ 1105 0000 C5D0     		.short	-12091
+ 1106 0002 C5D0     		.short	-12091
+ 1107 0004 D8030000 		.word	GUI_FontHZKaiTi_12_CharInfo+984
+ 1108 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propd1a7
+ 1109              		.section	.rodata.GUI_FontHZKaiTi_12_Propd1a7,"a"
+ 1110              		.align	2
+ 1113              	GUI_FontHZKaiTi_12_Propd1a7:
+ 1114 0000 A7D1     		.short	-11865
+ 1115 0002 A7D1     		.short	-11865
+ 1116 0004 E0030000 		.word	GUI_FontHZKaiTi_12_CharInfo+992
+ 1117 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propd4f8
+ 1118              		.section	.rodata.GUI_FontHZKaiTi_12_Propd4f8,"a"
+ 1119              		.align	2
+ 1122              	GUI_FontHZKaiTi_12_Propd4f8:
+ 1123 0000 F8D4     		.short	-11016
+ 1124 0002 F8D4     		.short	-11016
+ 1125 0004 E8030000 		.word	GUI_FontHZKaiTi_12_CharInfo+1000
+ 1126 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propd6c3
+ 1127              		.section	.rodata.GUI_FontHZKaiTi_12_Propd6c3,"a"
+ 1128              		.align	2
+ 1131              	GUI_FontHZKaiTi_12_Propd6c3:
+ 1132 0000 C3D6     		.short	-10557
+ 1133 0002 C3D6     		.short	-10557
+ 1134 0004 F0030000 		.word	GUI_FontHZKaiTi_12_CharInfo+1008
+ 1135 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propd6dd
+ 1136              		.section	.rodata.GUI_FontHZKaiTi_12_Propd6dd,"a"
+ 1137              		.align	2
+ 1140              	GUI_FontHZKaiTi_12_Propd6dd:
+ 1141 0000 DDD6     		.short	-10531
+ 1142 0002 DDD6     		.short	-10531
+ 1143 0004 F8030000 		.word	GUI_FontHZKaiTi_12_CharInfo+1016
+ 1144 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propd7d3
+ 1145              		.section	.rodata.GUI_FontHZKaiTi_12_Propd7d3,"a"
+ 1146              		.align	2
+ 1149              	GUI_FontHZKaiTi_12_Propd7d3:
+ 1150 0000 D3D7     		.short	-10285
+ 1151 0002 D3D7     		.short	-10285
+ 1152 0004 00040000 		.word	GUI_FontHZKaiTi_12_CharInfo+1024
+ 1153 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propd8b9
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 20
+
+
+ 1154              		.section	.rodata.GUI_FontHZKaiTi_12_Propd8b9,"a"
+ 1155              		.align	2
+ 1158              	GUI_FontHZKaiTi_12_Propd8b9:
+ 1159 0000 B9D8     		.short	-10055
+ 1160 0002 B9D8     		.short	-10055
+ 1161 0004 08040000 		.word	GUI_FontHZKaiTi_12_CharInfo+1032
+ 1162 0008 00000000 		.word	GUI_FontHZKaiTi_12_Propecc5
+ 1163              		.section	.rodata.GUI_FontHZKaiTi_12_Propecc5,"a"
+ 1164              		.align	2
+ 1167              	GUI_FontHZKaiTi_12_Propecc5:
+ 1168 0000 C5EC     		.short	-4923
+ 1169 0002 C5EC     		.short	-4923
+ 1170 0004 10040000 		.word	GUI_FontHZKaiTi_12_CharInfo+1040
+ 1171 0008 00000000 		.word	0
+ 1172              		.section	.rodata.GUI_FontHZ_KaiTi_12,"a"
+ 1173              		.align	2
+ 1176              	GUI_FontHZ_KaiTi_12:
+ 1177 0000 00000000 		.word	GUIPROP_DispChar
+ 1178 0004 00000000 		.word	GUIPROP_GetCharDistX
+ 1179 0008 00000000 		.word	GUIPROP_GetFontInfo
+ 1180 000c 00000000 		.word	GUIPROP_IsInFont
+ 1181 0010 00000000 		.word	0
+ 1182 0014 00000000 		.word	GUI_ENC_APIList_SJIS
+ 1183 0018 0C       		.byte	12
+ 1184 0019 0C       		.byte	12
+ 1185 001a 01       		.byte	1
+ 1186 001b 01       		.byte	1
+ 1187 001c 00000000 		.word	GUI_FontHZKaiTi_12_Prop0020
+ 1188 0020 00000000 		.space	4
+ 1189              		.section	.rodata.acFontHZKaiTi_12_0020,"a"
+ 1190              		.align	2
+ 1193              	acFontHZKaiTi_12_0020:
+ 1194 0000 00000000 		.space	12
+ 1194      00000000 
+ 1194      00000000 
+ 1195              		.section	.rodata.acFontHZKaiTi_12_0021,"a"
+ 1196              		.align	2
+ 1199              	acFontHZKaiTi_12_0021:
+ 1200 0000 00383838 		.ascii	"\000888888888\000\000"
+ 1200      38383838 
+ 1200      38380000 
+ 1201              		.section	.rodata.acFontHZKaiTi_12_0022,"a"
+ 1202              		.align	2
+ 1205              	acFontHZKaiTi_12_0022:
+ 1206 0000 00387C7C 		.ascii	"\0008||\000\000\000\000\000\000\000\000"
+ 1206      00000000 
+ 1206      00000000 
+ 1207              		.section	.rodata.acFontHZKaiTi_12_0023,"a"
+ 1208              		.align	2
+ 1211              	acFontHZKaiTi_12_0023:
+ 1212 0000 00007C7C 		.ascii	"\000\000||\376||\376|x\000\000"
+ 1212      FE7C7CFE 
+ 1212      7C780000 
+ 1213              		.section	.rodata.acFontHZKaiTi_12_0024,"a"
+ 1214              		.align	2
+ 1217              	acFontHZKaiTi_12_0024:
+ 1218 0000 00387CFC 		.ascii	"\0008|\374xx<\376\374|8\000"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 21
+
+
+ 1218      78783CFE 
+ 1218      FC7C3800 
+ 1219              		.section	.rodata.acFontHZKaiTi_12_0025,"a"
+ 1220              		.align	2
+ 1223              	acFontHZKaiTi_12_0025:
+ 1224 0000 0000FCFC 		.ascii	"\000\000\374\374\370\374>>~~\000\000"
+ 1224      F8FC3E3E 
+ 1224      7E7E0000 
+ 1225              		.section	.rodata.acFontHZKaiTi_12_0026,"a"
+ 1226              		.align	2
+ 1229              	acFontHZKaiTi_12_0026:
+ 1230 0000 00307C7C 		.ascii	"\0000||xp\376\376\376~\000\000"
+ 1230      7870FEFE 
+ 1230      FE7E0000 
+ 1231              		.section	.rodata.acFontHZKaiTi_12_0027,"a"
+ 1232              		.align	2
+ 1235              	acFontHZKaiTi_12_0027:
+ 1236 0000 00303030 		.ascii	"\000000\000\000\000\000\000\000\000\000"
+ 1236      00000000 
+ 1236      00000000 
+ 1237              		.section	.rodata.acFontHZKaiTi_12_0028,"a"
+ 1238              		.align	2
+ 1241              	acFontHZKaiTi_12_0028:
+ 1242 0000 000E1C18 		.ascii	"\000\016\034\030888\030\030\034\016\000"
+ 1242      38383818 
+ 1242      181C0E00 
+ 1243              		.section	.rodata.acFontHZKaiTi_12_0029,"a"
+ 1244              		.align	2
+ 1247              	acFontHZKaiTi_12_0029:
+ 1248 0000 00E07030 		.ascii	"\000\340p00880p`\340\000"
+ 1248      30383830 
+ 1248      7060E000 
+ 1249              		.section	.rodata.acFontHZKaiTi_12_002a,"a"
+ 1250              		.align	2
+ 1253              	acFontHZKaiTi_12_002a:
+ 1254 0000 001038FE 		.ascii	"\000\0208\376|\37688\000\000\000\000"
+ 1254      7CFE3838 
+ 1254      00000000 
+ 1255              		.section	.rodata.acFontHZKaiTi_12_002b,"a"
+ 1256              		.align	2
+ 1259              	acFontHZKaiTi_12_002b:
+ 1260 0000 00000038 		.ascii	"\000\000\00088\37688\020\000\000\000"
+ 1260      38FE3838 
+ 1260      10000000 
+ 1261              		.section	.rodata.acFontHZKaiTi_12_002c,"a"
+ 1262              		.align	2
+ 1265              	acFontHZKaiTi_12_002c:
+ 1266 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000`pp@"
+ 1266      00000000 
+ 1266      60707040 
+ 1267              		.section	.rodata.acFontHZKaiTi_12_002d,"a"
+ 1268              		.align	2
+ 1271              	acFontHZKaiTi_12_002d:
+ 1272 0000 00000000 		.ascii	"\000\000\000\000\000\376\000\000\000\000\000\000"
+ 1272      00FE0000 
+ 1272      00000000 
+ 1273              		.section	.rodata.acFontHZKaiTi_12_002e,"a"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 22
+
+
+ 1274              		.align	2
+ 1277              	acFontHZKaiTi_12_002e:
+ 1278 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000``\000\000"
+ 1278      00000000 
+ 1278      60600000 
+ 1279              		.section	.rodata.acFontHZKaiTi_12_002f,"a"
+ 1280              		.align	2
+ 1283              	acFontHZKaiTi_12_002f:
+ 1284 0000 00060C1C 		.ascii	"\000\006\014\034\03080p`\340\000\000"
+ 1284      18383070 
+ 1284      60E00000 
+ 1285              		.section	.rodata.acFontHZKaiTi_12_0030,"a"
+ 1286              		.align	2
+ 1289              	acFontHZKaiTi_12_0030:
+ 1290 0000 00387CEE 		.ascii	"\0008|\356\356\356\356\356|x\000\000"
+ 1290      EEEEEEEE 
+ 1290      7C780000 
+ 1291              		.section	.rodata.acFontHZKaiTi_12_0031,"a"
+ 1292              		.align	2
+ 1295              	acFontHZKaiTi_12_0031:
+ 1296 0000 00003878 		.ascii	"\000\0008x888888\000\000"
+ 1296      38383838 
+ 1296      38380000 
+ 1297              		.section	.rodata.acFontHZKaiTi_12_0032,"a"
+ 1298              		.align	2
+ 1301              	acFontHZKaiTi_12_0032:
+ 1302 0000 00387CEE 		.ascii	"\0008|\356\014\03488p\376\000\000"
+ 1302      0C1C3838 
+ 1302      70FE0000 
+ 1303              		.section	.rodata.acFontHZKaiTi_12_0033,"a"
+ 1304              		.align	2
+ 1307              	acFontHZKaiTi_12_0033:
+ 1308 0000 00387CEE 		.ascii	"\0008|\356\014<\016N\376|\000\000"
+ 1308      0C3C0E4E 
+ 1308      FE7C0000 
+ 1309              		.section	.rodata.acFontHZKaiTi_12_0034,"a"
+ 1310              		.align	2
+ 1313              	acFontHZKaiTi_12_0034:
+ 1314 0000 000C1C3C 		.ascii	"\000\014\034<<|\374\376\034\034\000\000"
+ 1314      3C7CFCFE 
+ 1314      1C1C0000 
+ 1315              		.section	.rodata.acFontHZKaiTi_12_0035,"a"
+ 1316              		.align	2
+ 1319              	acFontHZKaiTi_12_0035:
+ 1320 0000 00007C60 		.ascii	"\000\000|`\370\374\016\316\374x\000\000"
+ 1320      F8FC0ECE 
+ 1320      FC780000 
+ 1321              		.section	.rodata.acFontHZKaiTi_12_0036,"a"
+ 1322              		.align	2
+ 1325              	acFontHZKaiTi_12_0036:
+ 1326 0000 00183838 		.ascii	"\000\03088x\376\356\356\376|\000\000"
+ 1326      78FEEEEE 
+ 1326      FE7C0000 
+ 1327              		.section	.rodata.acFontHZKaiTi_12_0037,"a"
+ 1328              		.align	2
+ 1331              	acFontHZKaiTi_12_0037:
+ 1332 0000 0000FE0C 		.ascii	"\000\000\376\014\034\030880p\000\000"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 23
+
+
+ 1332      1C183838 
+ 1332      30700000 
+ 1333              		.section	.rodata.acFontHZKaiTi_12_0038,"a"
+ 1334              		.align	2
+ 1337              	acFontHZKaiTi_12_0038:
+ 1338 0000 00307CEE 		.ascii	"\0000|\356\374|\376\356\376|\000\000"
+ 1338      FC7CFEEE 
+ 1338      FE7C0000 
+ 1339              		.section	.rodata.acFontHZKaiTi_12_0039,"a"
+ 1340              		.align	2
+ 1343              	acFontHZKaiTi_12_0039:
+ 1344 0000 0038FCEE 		.ascii	"\0008\374\356\356\374|88p\000\000"
+ 1344      EEFC7C38 
+ 1344      38700000 
+ 1345              		.section	.rodata.acFontHZKaiTi_12_003a,"a"
+ 1346              		.align	2
+ 1349              	acFontHZKaiTi_12_003a:
+ 1350 0000 00000000 		.ascii	"\000\000\000\000\00080\00008\000\000"
+ 1350      00383000 
+ 1350      30380000 
+ 1351              		.section	.rodata.acFontHZKaiTi_12_003b,"a"
+ 1352              		.align	2
+ 1355              	acFontHZKaiTi_12_003b:
+ 1356 0000 00000000 		.ascii	"\000\000\000\000\00080\0000880"
+ 1356      00383000 
+ 1356      30383830 
+ 1357              		.section	.rodata.acFontHZKaiTi_12_003c,"a"
+ 1358              		.align	2
+ 1361              	acFontHZKaiTi_12_003c:
+ 1362 0000 00040C38 		.ascii	"\000\004\0148p\340p8\034\016\000\000"
+ 1362      70E07038 
+ 1362      1C0E0000 
+ 1363              		.section	.rodata.acFontHZKaiTi_12_003d,"a"
+ 1364              		.align	2
+ 1367              	acFontHZKaiTi_12_003d:
+ 1368 0000 00000000 		.ascii	"\000\000\000\000\376\000\374\374\000\000\000\000"
+ 1368      FE00FCFC 
+ 1368      00000000 
+ 1369              		.section	.rodata.acFontHZKaiTi_12_003e,"a"
+ 1370              		.align	2
+ 1373              	acFontHZKaiTi_12_003e:
+ 1374 0000 00406030 		.ascii	"\000@`0\034\016\0348p\340\000\000"
+ 1374      1C0E1C38 
+ 1374      70E00000 
+ 1375              		.section	.rodata.acFontHZKaiTi_12_003f,"a"
+ 1376              		.align	2
+ 1379              	acFontHZKaiTi_12_003f:
+ 1380 0000 00387CEE 		.ascii	"\0008|\356\034\0348\00008\000\000"
+ 1380      1C1C3800 
+ 1380      30380000 
+ 1381              		.section	.rodata.acFontHZKaiTi_12_0040,"a"
+ 1382              		.align	2
+ 1385              	acFontHZKaiTi_12_0040:
+ 1386 0000 00187CFE 		.ascii	"\000\030|\376\376\376\376\374\340|\000\000"
+ 1386      FEFEFEFC 
+ 1386      E07C0000 
+ 1387              		.section	.rodata.acFontHZKaiTi_12_0041,"a"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 24
+
+
+ 1388              		.align	2
+ 1391              	acFontHZKaiTi_12_0041:
+ 1392 0000 00103838 		.ascii	"\000\02088|||\376\356\356\000\000"
+ 1392      7C7C7CFE 
+ 1392      EEEE0000 
+ 1393              		.section	.rodata.acFontHZKaiTi_12_0042,"a"
+ 1394              		.align	2
+ 1397              	acFontHZKaiTi_12_0042:
+ 1398 0000 0000FCEE 		.ascii	"\000\000\374\356\356\374\356\356\376\374\000\000"
+ 1398      EEFCEEEE 
+ 1398      FEFC0000 
+ 1399              		.section	.rodata.acFontHZKaiTi_12_0043,"a"
+ 1400              		.align	2
+ 1403              	acFontHZKaiTi_12_0043:
+ 1404 0000 00187CEE 		.ascii	"\000\030|\356\356\340\344\356\376|\000\000"
+ 1404      EEE0E4EE 
+ 1404      FE7C0000 
+ 1405              		.section	.rodata.acFontHZKaiTi_12_0044,"a"
+ 1406              		.align	2
+ 1409              	acFontHZKaiTi_12_0044:
+ 1410 0000 0000FCFE 		.ascii	"\000\000\374\376\356\356\356\356\374\370\000\000"
+ 1410      EEEEEEEE 
+ 1410      FCF80000 
+ 1411              		.section	.rodata.acFontHZKaiTi_12_0045,"a"
+ 1412              		.align	2
+ 1415              	acFontHZKaiTi_12_0045:
+ 1416 0000 0000FCE0 		.ascii	"\000\000\374\340\340\374\340\340\340\376\000\000"
+ 1416      E0FCE0E0 
+ 1416      E0FE0000 
+ 1417              		.section	.rodata.acFontHZKaiTi_12_0046,"a"
+ 1418              		.align	2
+ 1421              	acFontHZKaiTi_12_0046:
+ 1422 0000 0000FEE0 		.ascii	"\000\000\376\340\340\374\340\340\340\340\000\000"
+ 1422      E0FCE0E0 
+ 1422      E0E00000 
+ 1423              		.section	.rodata.acFontHZKaiTi_12_0047,"a"
+ 1424              		.align	2
+ 1427              	acFontHZKaiTi_12_0047:
+ 1428 0000 00387CEE 		.ascii	"\0008|\356\356\340\376\356\376~\000\000"
+ 1428      EEE0FEEE 
+ 1428      FE7E0000 
+ 1429              		.section	.rodata.acFontHZKaiTi_12_0048,"a"
+ 1430              		.align	2
+ 1433              	acFontHZKaiTi_12_0048:
+ 1434 0000 0000EEEE 		.ascii	"\000\000\356\356\356\376\356\356\356\356\000\000"
+ 1434      EEFEEEEE 
+ 1434      EEEE0000 
+ 1435              		.section	.rodata.acFontHZKaiTi_12_0049,"a"
+ 1436              		.align	2
+ 1439              	acFontHZKaiTi_12_0049:
+ 1440 0000 00003838 		.ascii	"\000\00088888888\000\000"
+ 1440      38383838 
+ 1440      38380000 
+ 1441              		.section	.rodata.acFontHZKaiTi_12_004a,"a"
+ 1442              		.align	2
+ 1445              	acFontHZKaiTi_12_004a:
+ 1446 0000 00000E0E 		.ascii	"\000\000\016\016\016\016n\356\374|\000\000"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 25
+
+
+ 1446      0E0E6EEE 
+ 1446      FC7C0000 
+ 1447              		.section	.rodata.acFontHZKaiTi_12_004b,"a"
+ 1448              		.align	2
+ 1451              	acFontHZKaiTi_12_004b:
+ 1452 0000 0000FCFC 		.ascii	"\000\000\374\374\370\370\370\374\374\356\000\000"
+ 1452      F8F8F8FC 
+ 1452      FCEE0000 
+ 1453              		.section	.rodata.acFontHZKaiTi_12_004c,"a"
+ 1454              		.align	2
+ 1457              	acFontHZKaiTi_12_004c:
+ 1458 0000 0000E0E0 		.ascii	"\000\000\340\340\340\340\340\340\340\376\000\000"
+ 1458      E0E0E0E0 
+ 1458      E0FE0000 
+ 1459              		.section	.rodata.acFontHZKaiTi_12_004d,"a"
+ 1460              		.align	2
+ 1463              	acFontHZKaiTi_12_004d:
+ 1464 0000 0000FEFE 		.ascii	"\000\000\376\376\376\376\376\376\376\376\000\000"
+ 1464      FEFEFEFE 
+ 1464      FEFE0000 
+ 1465              		.section	.rodata.acFontHZKaiTi_12_004e,"a"
+ 1466              		.align	2
+ 1469              	acFontHZKaiTi_12_004e:
+ 1470 0000 0000EEFE 		.ascii	"\000\000\356\376\376\376\376\376\376\356\000\000"
+ 1470      FEFEFEFE 
+ 1470      FEEE0000 
+ 1471              		.section	.rodata.acFontHZKaiTi_12_004f,"a"
+ 1472              		.align	2
+ 1475              	acFontHZKaiTi_12_004f:
+ 1476 0000 00387CEE 		.ascii	"\0008|\356\356\356\356\356\374|\000\000"
+ 1476      EEEEEEEE 
+ 1476      FC7C0000 
+ 1477              		.section	.rodata.acFontHZKaiTi_12_0050,"a"
+ 1478              		.align	2
+ 1481              	acFontHZKaiTi_12_0050:
+ 1482 0000 0000FCEE 		.ascii	"\000\000\374\356\356\376\370\340\340\340\000\000"
+ 1482      EEFEF8E0 
+ 1482      E0E00000 
+ 1483              		.section	.rodata.acFontHZKaiTi_12_0051,"a"
+ 1484              		.align	2
+ 1487              	acFontHZKaiTi_12_0051:
+ 1488 0000 00387CEE 		.ascii	"\0008|\356\356\356\376\376\374|\000\000"
+ 1488      EEEEFEFE 
+ 1488      FC7C0000 
+ 1489              		.section	.rodata.acFontHZKaiTi_12_0052,"a"
+ 1490              		.align	2
+ 1493              	acFontHZKaiTi_12_0052:
+ 1494 0000 0000FCEE 		.ascii	"\000\000\374\356\356\374\370\374\374\356\000\000"
+ 1494      EEFCF8FC 
+ 1494      FCEE0000 
+ 1495              		.section	.rodata.acFontHZKaiTi_12_0053,"a"
+ 1496              		.align	2
+ 1499              	acFontHZKaiTi_12_0053:
+ 1500 0000 00387CEE 		.ascii	"\0008|\356\340x\036\356\376|\000\000"
+ 1500      E0781EEE 
+ 1500      FE7C0000 
+ 1501              		.section	.rodata.acFontHZKaiTi_12_0054,"a"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 26
+
+
+ 1502              		.align	2
+ 1505              	acFontHZKaiTi_12_0054:
+ 1506 0000 0000FE38 		.ascii	"\000\000\3768888888\000\000"
+ 1506      38383838 
+ 1506      38380000 
+ 1507              		.section	.rodata.acFontHZKaiTi_12_0055,"a"
+ 1508              		.align	2
+ 1511              	acFontHZKaiTi_12_0055:
+ 1512 0000 0000EEEE 		.ascii	"\000\000\356\356\356\356\356\356\376|\000\000"
+ 1512      EEEEEEEE 
+ 1512      FE7C0000 
+ 1513              		.section	.rodata.acFontHZKaiTi_12_0056,"a"
+ 1514              		.align	2
+ 1517              	acFontHZKaiTi_12_0056:
+ 1518 0000 0000EEEE 		.ascii	"\000\000\356\356\374||x88\000\000"
+ 1518      FC7C7C78 
+ 1518      38380000 
+ 1519              		.section	.rodata.acFontHZKaiTi_12_0057,"a"
+ 1520              		.align	2
+ 1523              	acFontHZKaiTi_12_0057:
+ 1524 0000 0000FEFE 		.ascii	"\000\000\376\376\376\376\376\374\374|\000\000"
+ 1524      FEFEFEFC 
+ 1524      FC7C0000 
+ 1525              		.section	.rodata.acFontHZKaiTi_12_0058,"a"
+ 1526              		.align	2
+ 1529              	acFontHZKaiTi_12_0058:
+ 1530 0000 0000FC7C 		.ascii	"\000\000\374|x8x|\374\356\000\000"
+ 1530      7838787C 
+ 1530      FCEE0000 
+ 1531              		.section	.rodata.acFontHZKaiTi_12_0059,"a"
+ 1532              		.align	2
+ 1535              	acFontHZKaiTi_12_0059:
+ 1536 0000 0000EE7C 		.ascii	"\000\000\356||88888\000\000"
+ 1536      7C383838 
+ 1536      38380000 
+ 1537              		.section	.rodata.acFontHZKaiTi_12_005a,"a"
+ 1538              		.align	2
+ 1541              	acFontHZKaiTi_12_005a:
+ 1542 0000 0000FE1C 		.ascii	"\000\000\376\034\0348pp\340\376\000\000"
+ 1542      1C387070 
+ 1542      E0FE0000 
+ 1543              		.section	.rodata.acFontHZKaiTi_12_005b,"a"
+ 1544              		.align	2
+ 1547              	acFontHZKaiTi_12_005b:
+ 1548 0000 3C383838 		.ascii	"<888888888>\000"
+ 1548      38383838 
+ 1548      38383E00 
+ 1549              		.section	.rodata.acFontHZKaiTi_12_005c,"a"
+ 1550              		.align	2
+ 1553              	acFontHZKaiTi_12_005c:
+ 1554 0000 00606070 		.ascii	"\000``pp08\030\034\034\014\000"
+ 1554      70303818 
+ 1554      1C1C0C00 
+ 1555              		.section	.rodata.acFontHZKaiTi_12_005d,"a"
+ 1556              		.align	2
+ 1559              	acFontHZKaiTi_12_005d:
+ 1560 0000 70383838 		.ascii	"p888888888\370\000"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 27
+
+
+ 1560      38383838 
+ 1560      3838F800 
+ 1561              		.section	.rodata.acFontHZKaiTi_12_005e,"a"
+ 1562              		.align	2
+ 1565              	acFontHZKaiTi_12_005e:
+ 1566 0000 387C0000 		.ascii	"8|\000\000\000\000\000\000\000\000\000\000"
+ 1566      00000000 
+ 1566      00000000 
+ 1567              		.section	.rodata.acFontHZKaiTi_12_005f,"a"
+ 1568              		.align	2
+ 1571              	acFontHZKaiTi_12_005f:
+ 1572 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\376"
+ 1572      00000000 
+ 1572      000000FE 
+ 1573              		.section	.rodata.acFontHZKaiTi_12_0060,"a"
+ 1574              		.align	2
+ 1577              	acFontHZKaiTi_12_0060:
+ 1578 0000 30381800 		.ascii	"08\030\000\000\000\000\000\000\000\000\000"
+ 1578      00000000 
+ 1578      00000000 
+ 1579              		.section	.rodata.acFontHZKaiTi_12_0061,"a"
+ 1580              		.align	2
+ 1583              	acFontHZKaiTi_12_0061:
+ 1584 0000 00000000 		.ascii	"\000\000\000\0008\374<\374\374~\000\000"
+ 1584      38FC3CFC 
+ 1584      FC7E0000 
+ 1585              		.section	.rodata.acFontHZKaiTi_12_0062,"a"
+ 1586              		.align	2
+ 1589              	acFontHZKaiTi_12_0062:
+ 1590 0000 0000E0E0 		.ascii	"\000\000\340\340\370\374\356\356\374\374\000\000"
+ 1590      F8FCEEEE 
+ 1590      FCFC0000 
+ 1591              		.section	.rodata.acFontHZKaiTi_12_0063,"a"
+ 1592              		.align	2
+ 1595              	acFontHZKaiTi_12_0063:
+ 1596 0000 00000000 		.ascii	"\000\000\000\0008\374\340\354\376|\000\000"
+ 1596      38FCE0EC 
+ 1596      FE7C0000 
+ 1597              		.section	.rodata.acFontHZKaiTi_12_0064,"a"
+ 1598              		.align	2
+ 1601              	acFontHZKaiTi_12_0064:
+ 1602 0000 00000E0E 		.ascii	"\000\000\016\016>\376\356\356\376~\000\000"
+ 1602      3EFEEEEE 
+ 1602      FE7E0000 
+ 1603              		.section	.rodata.acFontHZKaiTi_12_0065,"a"
+ 1604              		.align	2
+ 1607              	acFontHZKaiTi_12_0065:
+ 1608 0000 00000000 		.ascii	"\000\000\000\0008\374\376\340\376|\000\000"
+ 1608      38FCFEE0 
+ 1608      FE7C0000 
+ 1609              		.section	.rodata.acFontHZKaiTi_12_0066,"a"
+ 1610              		.align	2
+ 1613              	acFontHZKaiTi_12_0066:
+ 1614 0000 001C3E30 		.ascii	"\000\034>0|x0000\000\000"
+ 1614      7C783030 
+ 1614      30300000 
+ 1615              		.section	.rodata.acFontHZKaiTi_12_0067,"a"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 28
+
+
+ 1616              		.align	2
+ 1619              	acFontHZKaiTi_12_0067:
+ 1620 0000 00000000 		.ascii	"\000\000\000\000>|\374|\360\376\356x"
+ 1620      3E7CFC7C 
+ 1620      F0FEEE78 
+ 1621              		.section	.rodata.acFontHZKaiTi_12_0068,"a"
+ 1622              		.align	2
+ 1625              	acFontHZKaiTi_12_0068:
+ 1626 0000 0000E0E0 		.ascii	"\000\000\340\340\374\376\356\356\356\356\000\000"
+ 1626      FCFEEEEE 
+ 1626      EEEE0000 
+ 1627              		.section	.rodata.acFontHZKaiTi_12_0069,"a"
+ 1628              		.align	2
+ 1631              	acFontHZKaiTi_12_0069:
+ 1632 0000 00003800 		.ascii	"\000\0008\000\02088888\000\000"
+ 1632      10383838 
+ 1632      38380000 
+ 1633              		.section	.rodata.acFontHZKaiTi_12_006a,"a"
+ 1634              		.align	2
+ 1637              	acFontHZKaiTi_12_006a:
+ 1638 0000 00001C00 		.ascii	"\000\000\034\000\030\034\034\034\034\034|p"
+ 1638      181C1C1C 
+ 1638      1C1C7C70 
+ 1639              		.section	.rodata.acFontHZKaiTi_12_006b,"a"
+ 1640              		.align	2
+ 1643              	acFontHZKaiTi_12_006b:
+ 1644 0000 0000E0E0 		.ascii	"\000\000\340\340\354\374\370\370\374\356\000\000"
+ 1644      ECFCF8F8 
+ 1644      FCEE0000 
+ 1645              		.section	.rodata.acFontHZKaiTi_12_006c,"a"
+ 1646              		.align	2
+ 1649              	acFontHZKaiTi_12_006c:
+ 1650 0000 00003838 		.ascii	"\000\00088888888\000\000"
+ 1650      38383838 
+ 1650      38380000 
+ 1651              		.section	.rodata.acFontHZKaiTi_12_006d,"a"
+ 1652              		.align	2
+ 1655              	acFontHZKaiTi_12_006d:
+ 1656 0000 00000000 		.ascii	"\000\000\000\000\374\376\376\376\376\376\000\000"
+ 1656      FCFEFEFE 
+ 1656      FEFE0000 
+ 1657              		.section	.rodata.acFontHZKaiTi_12_006e,"a"
+ 1658              		.align	2
+ 1661              	acFontHZKaiTi_12_006e:
+ 1662 0000 00000000 		.ascii	"\000\000\000\000|\376\356\356\356\356\000\000"
+ 1662      7CFEEEEE 
+ 1662      EEEE0000 
+ 1663              		.section	.rodata.acFontHZKaiTi_12_006f,"a"
+ 1664              		.align	2
+ 1667              	acFontHZKaiTi_12_006f:
+ 1668 0000 00000000 		.ascii	"\000\000\000\0008\374\356\356\376|\000\000"
+ 1668      38FCEEEE 
+ 1668      FE7C0000 
+ 1669              		.section	.rodata.acFontHZKaiTi_12_0070,"a"
+ 1670              		.align	2
+ 1673              	acFontHZKaiTi_12_0070:
+ 1674 0000 00000000 		.ascii	"\000\000\000\000x\374\356\356\374\374\340\340"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 29
+
+
+ 1674      78FCEEEE 
+ 1674      FCFCE0E0 
+ 1675              		.section	.rodata.acFontHZKaiTi_12_0071,"a"
+ 1676              		.align	2
+ 1679              	acFontHZKaiTi_12_0071:
+ 1680 0000 00000000 		.ascii	"\000\000\000\000<\376\356\356\376~\016\014"
+ 1680      3CFEEEEE 
+ 1680      FE7E0E0C 
+ 1681              		.section	.rodata.acFontHZKaiTi_12_0072,"a"
+ 1682              		.align	2
+ 1685              	acFontHZKaiTi_12_0072:
+ 1686 0000 00000000 		.ascii	"\000\000\000\000||pppp\000\000"
+ 1686      7C7C7070 
+ 1686      70700000 
+ 1687              		.section	.rodata.acFontHZKaiTi_12_0073,"a"
+ 1688              		.align	2
+ 1691              	acFontHZKaiTi_12_0073:
+ 1692 0000 00000000 		.ascii	"\000\000\000\0008|p<\376|\000\000"
+ 1692      387C703C 
+ 1692      FE7C0000 
+ 1693              		.section	.rodata.acFontHZKaiTi_12_0074,"a"
+ 1694              		.align	2
+ 1697              	acFontHZKaiTi_12_0074:
+ 1698 0000 00003030 		.ascii	"\000\00000\374x008<\000\000"
+ 1698      FC783030 
+ 1698      383C0000 
+ 1699              		.section	.rodata.acFontHZKaiTi_12_0075,"a"
+ 1700              		.align	2
+ 1703              	acFontHZKaiTi_12_0075:
+ 1704 0000 00000000 		.ascii	"\000\000\000\000l\356\356\356\376~\000\000"
+ 1704      6CEEEEEE 
+ 1704      FE7E0000 
+ 1705              		.section	.rodata.acFontHZKaiTi_12_0076,"a"
+ 1706              		.align	2
+ 1709              	acFontHZKaiTi_12_0076:
+ 1710 0000 00000000 		.ascii	"\000\000\000\000L\354||x8\000\000"
+ 1710      4CEC7C7C 
+ 1710      78380000 
+ 1711              		.section	.rodata.acFontHZKaiTi_12_0077,"a"
+ 1712              		.align	2
+ 1715              	acFontHZKaiTi_12_0077:
+ 1716 0000 00000000 		.ascii	"\000\000\000\000\376\376\376\376||\000\000"
+ 1716      FEFEFEFE 
+ 1716      7C7C0000 
+ 1717              		.section	.rodata.acFontHZKaiTi_12_0078,"a"
+ 1718              		.align	2
+ 1721              	acFontHZKaiTi_12_0078:
+ 1722 0000 00000000 		.ascii	"\000\000\000\000l|88|\354\000\000"
+ 1722      6C7C3838 
+ 1722      7CEC0000 
+ 1723              		.section	.rodata.acFontHZKaiTi_12_0079,"a"
+ 1724              		.align	2
+ 1727              	acFontHZKaiTi_12_0079:
+ 1728 0000 00000000 		.ascii	"\000\000\000\000L\354||x8xp"
+ 1728      4CEC7C7C 
+ 1728      78387870 
+ 1729              		.section	.rodata.acFontHZKaiTi_12_007a,"a"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 30
+
+
+ 1730              		.align	2
+ 1733              	acFontHZKaiTi_12_007a:
+ 1734 0000 00000000 		.ascii	"\000\000\000\000|\03480p\376\000\000"
+ 1734      7C1C3830 
+ 1734      70FE0000 
+ 1735              		.section	.rodata.acFontHZKaiTi_12_007b,"a"
+ 1736              		.align	2
+ 1739              	acFontHZKaiTi_12_007b:
+ 1740 0000 0C1C1C1C 		.ascii	"\014\034\034\034\0348\034\034\034\034\034\000"
+ 1740      1C381C1C 
+ 1740      1C1C1C00 
+ 1741              		.section	.rodata.acFontHZKaiTi_12_007c,"a"
+ 1742              		.align	2
+ 1745              	acFontHZKaiTi_12_007c:
+ 1746 0000 38383838 		.ascii	"888888888888"
+ 1746      38383838 
+ 1746      38383838 
+ 1747              		.section	.rodata.acFontHZKaiTi_12_007d,"a"
+ 1748              		.align	2
+ 1751              	acFontHZKaiTi_12_007d:
+ 1752 0000 60707070 		.ascii	"`ppppppppp\360\000"
+ 1752      70707070 
+ 1752      7070F000 
+ 1753              		.section	.rodata.acFontHZKaiTi_12_007e,"a"
+ 1754              		.align	2
+ 1757              	acFontHZKaiTi_12_007e:
+ 1758 0000 7E7C0000 		.ascii	"~|\000\000\000\000\000\000\000\000\000\000"
+ 1758      00000000 
+ 1758      00000000 
+ 1759              		.section	.rodata.acFontHZKaiTi_12_007f,"a"
+ 1760              		.align	2
+ 1763              	acFontHZKaiTi_12_007f:
+ 1764 0000 000000F0 		.ascii	"\000\000\000\360\360\360\360\360\360\360\000\000"
+ 1764      F0F0F0F0 
+ 1764      F0F00000 
+ 1765              		.section	.rodata.acFontHZKaiTi_12_b2ce,"a"
+ 1766              		.align	2
+ 1769              	acFontHZKaiTi_12_b2ce:
+ 1770 0000 06000F80 		.ascii	"\006\000\017\200\037\300\017\300?\000\037\200?\340\177"
+ 1770      1FC00FC0 
+ 1770      3F001F80 
+ 1770      3FE07F
+ 1771 000f F00F8007 		.ascii	"\360\017\200\007\000\014\000\000\000"
+ 1771      000C0000 
+ 1771      00
+ 1772              		.section	.rodata.acFontHZKaiTi_12_b2e2,"a"
+ 1773              		.align	2
+ 1776              	acFontHZKaiTi_12_b2e2:
+ 1777 0000 00003370 		.ascii	"\000\0003p?\360\017\360\177\360?\360?\360\177p\177\360"
+ 1777      3FF00FF0 
+ 1777      7FF03FF0 
+ 1777      3FF07F70 
+ 1777      7FF0
+ 1778 0012 00700020 		.ascii	"\000p\000 \000\000"
+ 1778      0000
+ 1779              		.section	.rodata.acFontHZKaiTi_12_b3c2,"a"
+ 1780              		.align	2
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 31
+
+
+ 1783              	acFontHZKaiTi_12_b3c2:
+ 1784 0000 00001D80 		.ascii	"\000\000\035\200\177\340\177\300\177\200\177\340\177"
+ 1784      7FE07FC0 
+ 1784      7F807FE0 
+ 1784      7F
+ 1785 000d 8077E07F 		.ascii	"\200w\340\177\360\177\260\001\200\000\000"
+ 1785      F07FB001 
+ 1785      800000
+ 1786              		.section	.rodata.acFontHZKaiTi_12_b4f3,"a"
+ 1787              		.align	2
+ 1790              	acFontHZKaiTi_12_b4f3:
+ 1791 0000 00000700 		.ascii	"\000\000\007\000\006\000\006\000\017\340\036\000\007"
+ 1791      06000600 
+ 1791      0FE01E00 
+ 1791      07
+ 1792 000d 000F000F 		.ascii	"\000\017\000\017\200\031\340\000\360\000\000"
+ 1792      8019E000 
+ 1792      F00000
+ 1793              		.section	.rodata.acFontHZKaiTi_12_b5c1,"a"
+ 1794              		.align	2
+ 1797              	acFontHZKaiTi_12_b5c1:
+ 1798 0000 00000300 		.ascii	"\000\000\003\000\037\340\007\300\017\200?\300<\360?"
+ 1798      1FE007C0 
+ 1798      0F803FC0 
+ 1798      3CF03F
+ 1799 000f E01FC01F 		.ascii	"\340\037\300\037\360p\000\000\000"
+ 1799      F0700000 
+ 1799      00
+ 1800              		.section	.rodata.acFontHZKaiTi_12_b5e7,"a"
+ 1801              		.align	2
+ 1804              	acFontHZKaiTi_12_b5e7:
+ 1805 0000 00000E00 		.ascii	"\000\000\016\000\017\200?\340?\300?\300?\200\036\000"
+ 1805      0F803FE0 
+ 1805      3FC03FC0 
+ 1805      3F801E00 
+ 1806 0010 0E3007F0 		.ascii	"\0160\007\360\000\000\000\000"
+ 1806      00000000 
+ 1807              		.section	.rodata.acFontHZKaiTi_12_b7c0,"a"
+ 1808              		.align	2
+ 1811              	acFontHZKaiTi_12_b7c0:
+ 1812 0000 00001DC0 		.ascii	"\000\000\035\300|\200x\360\177\200\177\300s\340v\340"
+ 1812      7C8078F0 
+ 1812      7F807FC0 
+ 1812      73E076E0 
+ 1813 0010 7CC07BC0 		.ascii	"|\300{\300\001\200\000\000"
+ 1813      01800000 
+ 1814              		.section	.rodata.acFontHZKaiTi_12_babc,"a"
+ 1815              		.align	2
+ 1818              	acFontHZKaiTi_12_babc:
+ 1819 0000 18001980 		.ascii	"\030\000\031\200\030\200\035\340\177\000?\300?\300{"
+ 1819      18801DE0 
+ 1819      7F003FC0 
+ 1819      3FC07B
+ 1820 000f C07FF81F 		.ascii	"\300\177\370\037\370\030\000\000\000"
+ 1820      F8180000 
+ 1820      00
+ 1821              		.section	.rodata.acFontHZKaiTi_12_bbf0,"a"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 32
+
+
+ 1822              		.align	2
+ 1825              	acFontHZKaiTi_12_bbf0:
+ 1826 0000 00000E00 		.ascii	"\000\000\016\000\006\000\006\340\037\300\037\000\017"
+ 1826      060006E0 
+ 1826      1FC01F00 
+ 1826      0F
+ 1827 000d 000F801D 		.ascii	"\000\017\200\035\3008\360 \000\000\000"
+ 1827      C038F020 
+ 1827      000000
+ 1828              		.section	.rodata.acFontHZKaiTi_12_bcbc,"a"
+ 1829              		.align	2
+ 1832              	acFontHZKaiTi_12_bcbc:
+ 1833 0000 18001DC0 		.ascii	"\030\000\035\300\035\300\037\3009\200\037\340?\300{"
+ 1833      1DC01FC0 
+ 1833      39801FE0 
+ 1833      3FC07B
+ 1834 000f C01DC03F 		.ascii	"\300\035\300?\360\000\000\000\000"
+ 1834      F0000000 
+ 1834      00
+ 1835              		.section	.rodata.acFontHZKaiTi_12_bce0,"a"
+ 1836              		.align	2
+ 1839              	acFontHZKaiTi_12_bce0:
+ 1840 0000 00000F80 		.ascii	"\000\000\017\200?\200\037\300\037\200>\300\017\300\037"
+ 1840      3F801FC0 
+ 1840      1F803EC0 
+ 1840      0FC01F
+ 1841 000f E01FC03F 		.ascii	"\340\037\300?\360p\000\000\000"
+ 1841      F0700000 
+ 1841      00
+ 1842              		.section	.rodata.acFontHZKaiTi_12_bde1,"a"
+ 1843              		.align	2
+ 1846              	acFontHZKaiTi_12_bde1:
+ 1847 0000 00001DC0 		.ascii	"\000\000\035\300\031\300?\360\177\300\031\340;\200\017"
+ 1847      19C03FF0 
+ 1847      7FC019E0 
+ 1847      3B800F
+ 1848 000f F07B6063 		.ascii	"\360{`c\340\000\000\000\000"
+ 1848      E0000000 
+ 1848      00
+ 1849              		.section	.rodata.acFontHZKaiTi_12_bedd,"a"
+ 1850              		.align	2
+ 1853              	acFontHZKaiTi_12_bedd:
+ 1854 0000 00001CE0 		.ascii	"\000\000\034\340\037\340\037\340\177\300\037\370?\300"
+ 1854      1FE01FE0 
+ 1854      7FC01FF8 
+ 1854      3FC0
+ 1855 000e FFF01FF0 		.ascii	"\377\360\037\360?\340\010\000\000\000"
+ 1855      3FE00800 
+ 1855      0000
+ 1856              		.section	.rodata.acFontHZKaiTi_12_bfaa,"a"
+ 1857              		.align	2
+ 1860              	acFontHZKaiTi_12_bfaa:
+ 1861 0000 000001C0 		.ascii	"\000\000\001\300\037\200\017\200\017\360\177\200\015"
+ 1861      1F800F80 
+ 1861      0FF07F80 
+ 1861      0D
+ 1862 000d 801D8019 		.ascii	"\200\035\200\031\2001\200\001\200\000\000"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 33
+
+
+ 1862      80318001 
+ 1862      800000
+ 1863              		.section	.rodata.acFontHZKaiTi_12_bfc6,"a"
+ 1864              		.align	2
+ 1867              	acFontHZKaiTi_12_bfc6:
+ 1868 0000 00C00EE0 		.ascii	"\000\300\016\340\037\300\035\300\177\300|\370?\300|"
+ 1868      1FC01DC0 
+ 1868      7FC07CF8 
+ 1868      3FC07C
+ 1869 000f C01CC01C 		.ascii	"\300\034\300\034\300\000\300\000\000"
+ 1869      C000C000 
+ 1869      00
+ 1870              		.section	.rodata.acFontHZKaiTi_12_c6f7,"a"
+ 1871              		.align	2
+ 1874              	acFontHZKaiTi_12_c6f7:
+ 1875 0000 00003FE0 		.ascii	"\000\000?\340?\300?\300\017\340\037\000\017\3008\340"
+ 1875      3FC03FC0 
+ 1875      0FE01F00 
+ 1875      0FC038E0 
+ 1876 0010 3FE03FE0 		.ascii	"?\340?\340\020\000\000\000"
+ 1876      10000000 
+ 1877              		.section	.rodata.acFontHZKaiTi_12_c7fa,"a"
+ 1878              		.align	2
+ 1881              	acFontHZKaiTi_12_c7fa:
+ 1882 0000 03000F80 		.ascii	"\003\000\017\200\017\000\017\340?`?\340?`?\340?\340"
+ 1882      0F000FE0 
+ 1882      3F603FE0 
+ 1882      3F603FE0 
+ 1882      3FE0
+ 1883 0012 00E00000 		.ascii	"\000\340\000\000\000\000"
+ 1883      0000
+ 1884              		.section	.rodata.acFontHZKaiTi_12_c8f3,"a"
+ 1885              		.align	2
+ 1888              	acFontHZKaiTi_12_c8f3:
+ 1889 0000 00003E60 		.ascii	"\000\000>`\033\360\015\360\177\360?\360=\360?\360|p"
+ 1889      1BF00DF0 
+ 1889      7FF03FF0 
+ 1889      3DF03FF0 
+ 1889      7C70
+ 1890 0012 6C700000 		.ascii	"lp\000\000\000\000"
+ 1890      0000
+ 1891              		.section	.rodata.acFontHZKaiTi_12_c9e8,"a"
+ 1892              		.align	2
+ 1895              	acFontHZKaiTi_12_c9e8:
+ 1896 0000 00003FC0 		.ascii	"\000\000?\300\037\300\007\300?\340{\300?\300?\300;\300"
+ 1896      1FC007C0 
+ 1896      3FE07BC0 
+ 1896      3FC03FC0 
+ 1896      3BC0
+ 1897 0012 3FE00070 		.ascii	"?\340\000p\000\000"
+ 1897      0000
+ 1898              		.section	.rodata.acFontHZKaiTi_12_cab1,"a"
+ 1899              		.align	2
+ 1902              	acFontHZKaiTi_12_cab1:
+ 1903 0000 000001C0 		.ascii	"\000\000\001\300|\300|\360\177\360|\300\177\300|\300"
+ 1903      7CC07CF0 
+ 1903      7FF07CC0 
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 34
+
+
+ 1903      7FC07CC0 
+ 1904 0010 7CC001C0 		.ascii	"|\300\001\300\001\300\000\000"
+ 1904      01C00000 
+ 1905              		.section	.rodata.acFontHZKaiTi_12_cab5,"a"
+ 1906              		.align	2
+ 1909              	acFontHZKaiTi_12_cab5:
+ 1910 0000 06000700 		.ascii	"\006\000\007\000?\340?\300\017\000\037\000\017\360~"
+ 1910      3FE03FC0 
+ 1910      0F001F00 
+ 1910      0FF07E
+ 1911 000f 000FC01C 		.ascii	"\000\017\300\034\3408`\000\000"
+ 1911      E0386000 
+ 1911      00
+ 1912              		.section	.rodata.acFontHZKaiTi_12_cabc,"a"
+ 1913              		.align	2
+ 1916              	acFontHZKaiTi_12_cabc:
+ 1917 0000 000019C0 		.ascii	"\000\000\031\300\031\200\031\340\037\360\177\300<\000"
+ 1917      198019E0 
+ 1917      1FF07FC0 
+ 1917      3C00
+ 1918 000e 1FF01F60 		.ascii	"\037\360\037`3\340\000\000\000\000"
+ 1918      33E00000 
+ 1918      0000
+ 1919              		.section	.rodata.acFontHZKaiTi_12_caf8,"a"
+ 1920              		.align	2
+ 1923              	acFontHZKaiTi_12_caf8:
+ 1924 0000 06000700 		.ascii	"\006\000\007\000\017\000\007\300?\300\037\200\037\000"
+ 1924      0F0007C0 
+ 1924      3FC01F80 
+ 1924      1F00
+ 1925 000e 1F803FE0 		.ascii	"\037\200?\340fp\006\000\000\000"
+ 1925      66700600 
+ 1925      0000
+ 1926              		.section	.rodata.acFontHZKaiTi_12_cafd,"a"
+ 1927              		.align	2
+ 1930              	acFontHZKaiTi_12_cafd:
+ 1931 0000 00001C80 		.ascii	"\000\000\034\200?\300\037\200?\340?\300?\300\177\300"
+ 1931      3FC01F80 
+ 1931      3FE03FC0 
+ 1931      3FC07FC0 
+ 1932 0010 1FC01FE0 		.ascii	"\037\300\037\340pp\000\000"
+ 1932      70700000 
+ 1933              		.section	.rodata.acFontHZKaiTi_12_cda8,"a"
+ 1934              		.align	2
+ 1937              	acFontHZKaiTi_12_cda8:
+ 1938 0000 000007E0 		.ascii	"\000\000\007\340;\300\003\340\007\340\177\3407\340?"
+ 1938      3BC003E0 
+ 1938      07E07FE0 
+ 1938      37E03F
+ 1939 000f E07FE007 		.ascii	"\340\177\340\007\370\001\340\000\000"
+ 1939      F801E000 
+ 1939      00
+ 1940              		.section	.rodata.acFontHZKaiTi_12_cede,"a"
+ 1941              		.align	2
+ 1944              	acFontHZKaiTi_12_cede:
+ 1945 0000 00000380 		.ascii	"\000\000\003\200\017\000\006\000?\300\017\000\017\000"
+ 1945      0F000600 
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 35
+
+
+ 1945      3FC00F00 
+ 1945      0F00
+ 1946 000e 1F003F30 		.ascii	"\037\000?0c\360\000\000\000\000"
+ 1946      63F00000 
+ 1946      0000
+ 1947              		.section	.rodata.acFontHZKaiTi_12_cfdf,"a"
+ 1948              		.align	2
+ 1951              	acFontHZKaiTi_12_cfdf:
+ 1952 0000 00001FE0 		.ascii	"\000\000\037\340\033\000?\300\177\340?\340=\3401\300"
+ 1952      1B003FC0 
+ 1952      7FE03FE0 
+ 1952      3DE031C0 
+ 1953 0010 1FE030F0 		.ascii	"\037\3400\360\0000\000\000"
+ 1953      00300000 
+ 1954              		.section	.rodata.acFontHZKaiTi_12_d0c5,"a"
+ 1955              		.align	2
+ 1958              	acFontHZKaiTi_12_d0c5:
+ 1959 0000 00001FC0 		.ascii	"\000\000\037\300\030\300?\3609\300y\000{\300\031\340"
+ 1959      18C03FF0 
+ 1959      39C07900 
+ 1959      7BC019E0 
+ 1960 0010 3FE03FE0 		.ascii	"?\340?\340\020\000\000\000"
+ 1960      10000000 
+ 1961              		.section	.rodata.acFontHZKaiTi_12_d1a7,"a"
+ 1962              		.align	2
+ 1965              	acFontHZKaiTi_12_d1a7:
+ 1966 0000 01C01FC0 		.ascii	"\001\300\037\300\017\200?\360w\340\177\000\007\340\177"
+ 1966      0F803FF0 
+ 1966      77E07F00 
+ 1966      07E07F
+ 1967 000f 00030007 		.ascii	"\000\003\000\007\000\007\000\000\000"
+ 1967      00070000 
+ 1967      00
+ 1968              		.section	.rodata.acFontHZKaiTi_12_d4f8,"a"
+ 1969              		.align	2
+ 1972              	acFontHZKaiTi_12_d4f8:
+ 1973 0000 01801F80 		.ascii	"\001\200\037\200\017\340?\340?\300\037\000\037\300\037"
+ 1973      0FE03FE0 
+ 1973      3FC01F00 
+ 1973      1FC01F
+ 1974 000f 801D801F 		.ascii	"\200\035\200\037\200\001\200\000\000"
+ 1974      80018000 
+ 1974      00
+ 1975              		.section	.rodata.acFontHZKaiTi_12_d6c3,"a"
+ 1976              		.align	2
+ 1979              	acFontHZKaiTi_12_d6c3:
+ 1980 0000 00001FE0 		.ascii	"\000\000\037\340\037\300\037\000\037\300\017\200\017"
+ 1980      1FC01F00 
+ 1980      1FC00F80 
+ 1980      0F
+ 1981 000d 800F800F 		.ascii	"\200\017\200\017\200\037\360p\000\000\000"
+ 1981      801FF070 
+ 1981      000000
+ 1982              		.section	.rodata.acFontHZKaiTi_12_d6dd,"a"
+ 1983              		.align	2
+ 1986              	acFontHZKaiTi_12_d6dd:
+ 1987 0000 00C010E0 		.ascii	"\000\300\020\340\037`\033`?\340\177\340?`\037`:`p\340"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 36
+
+
+ 1987      1F601B60 
+ 1987      3FE07FE0 
+ 1987      3F601F60 
+ 1987      3A6070E0 
+ 1988 0014 00600000 		.ascii	"\000`\000\000"
+ 1989              		.section	.rodata.acFontHZKaiTi_12_d7d3,"a"
+ 1990              		.align	2
+ 1993              	acFontHZKaiTi_12_d7d3:
+ 1994 0000 000007C0 		.ascii	"\000\000\007\300\017\200\007\000\007\360\177\000\003"
+ 1994      0F800700 
+ 1994      07F07F00 
+ 1994      03
+ 1995 000d 00030003 		.ascii	"\000\003\000\003\000\017\000\007\000\000\000"
+ 1995      000F0007 
+ 1995      000000
+ 1996              		.section	.rodata.acFontHZKaiTi_12_d8b9,"a"
+ 1997              		.align	2
+ 2000              	acFontHZKaiTi_12_d8b9:
+ 2001 0000 000019C0 		.ascii	"\000\000\031\300>\3603\300?\340?\340\377\340\177\340"
+ 2001      3EF033C0 
+ 2001      3FE03FE0 
+ 2001      FFE07FE0 
+ 2002 0010 6FE01FF8 		.ascii	"o\340\037\370\000\000\000\000"
+ 2002      00000000 
+ 2003              		.section	.rodata.acFontHZKaiTi_12_ecc5,"a"
+ 2004              		.align	2
+ 2007              	acFontHZKaiTi_12_ecc5:
+ 2008 0000 00001B80 		.ascii	"\000\000\033\200\035\200\037\360\177\200{\340?\300="
+ 2008      1D801FF0 
+ 2008      7F807BE0 
+ 2008      3FC03D
+ 2009 000f C03FE077 		.ascii	"\300?\340wp@\000\000\000"
+ 2009      70400000 
+ 2009      00
+ 2010              		.text
+ 2011              	.Letext0:
+ 2012              		.file 1 "Drivers/STemWin/inc/GUI_Type.h"
+ 2013              		.file 2 "Core/Src/KaiTi_12.c"
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 37
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 KaiTi_12.c
+F:\msys64\tmp\ccxS5uw3.s:1176   .rodata.GUI_FontHZ_KaiTi_12:00000000 GUI_FontHZ_KaiTi_12
+F:\msys64\tmp\ccxS5uw3.s:852    .rodata.GUI_FontHZKaiTi_12_Prop0020:00000000 GUI_FontHZKaiTi_12_Prop0020
+F:\msys64\tmp\ccxS5uw3.s:861    .rodata.GUI_FontHZKaiTi_12_Propb2ce:00000000 GUI_FontHZKaiTi_12_Propb2ce
+F:\msys64\tmp\ccxS5uw3.s:870    .rodata.GUI_FontHZKaiTi_12_Propb2e2:00000000 GUI_FontHZKaiTi_12_Propb2e2
+F:\msys64\tmp\ccxS5uw3.s:879    .rodata.GUI_FontHZKaiTi_12_Propb3c2:00000000 GUI_FontHZKaiTi_12_Propb3c2
+F:\msys64\tmp\ccxS5uw3.s:888    .rodata.GUI_FontHZKaiTi_12_Propb4f3:00000000 GUI_FontHZKaiTi_12_Propb4f3
+F:\msys64\tmp\ccxS5uw3.s:897    .rodata.GUI_FontHZKaiTi_12_Propb5c1:00000000 GUI_FontHZKaiTi_12_Propb5c1
+F:\msys64\tmp\ccxS5uw3.s:906    .rodata.GUI_FontHZKaiTi_12_Propb5e7:00000000 GUI_FontHZKaiTi_12_Propb5e7
+F:\msys64\tmp\ccxS5uw3.s:915    .rodata.GUI_FontHZKaiTi_12_Propb7c0:00000000 GUI_FontHZKaiTi_12_Propb7c0
+F:\msys64\tmp\ccxS5uw3.s:924    .rodata.GUI_FontHZKaiTi_12_Propbabc:00000000 GUI_FontHZKaiTi_12_Propbabc
+F:\msys64\tmp\ccxS5uw3.s:933    .rodata.GUI_FontHZKaiTi_12_Propbbf0:00000000 GUI_FontHZKaiTi_12_Propbbf0
+F:\msys64\tmp\ccxS5uw3.s:942    .rodata.GUI_FontHZKaiTi_12_Propbcbc:00000000 GUI_FontHZKaiTi_12_Propbcbc
+F:\msys64\tmp\ccxS5uw3.s:951    .rodata.GUI_FontHZKaiTi_12_Propbce0:00000000 GUI_FontHZKaiTi_12_Propbce0
+F:\msys64\tmp\ccxS5uw3.s:960    .rodata.GUI_FontHZKaiTi_12_Propbde1:00000000 GUI_FontHZKaiTi_12_Propbde1
+F:\msys64\tmp\ccxS5uw3.s:969    .rodata.GUI_FontHZKaiTi_12_Propbedd:00000000 GUI_FontHZKaiTi_12_Propbedd
+F:\msys64\tmp\ccxS5uw3.s:978    .rodata.GUI_FontHZKaiTi_12_Propbfaa:00000000 GUI_FontHZKaiTi_12_Propbfaa
+F:\msys64\tmp\ccxS5uw3.s:987    .rodata.GUI_FontHZKaiTi_12_Propbfc6:00000000 GUI_FontHZKaiTi_12_Propbfc6
+F:\msys64\tmp\ccxS5uw3.s:996    .rodata.GUI_FontHZKaiTi_12_Propc6f7:00000000 GUI_FontHZKaiTi_12_Propc6f7
+F:\msys64\tmp\ccxS5uw3.s:1005   .rodata.GUI_FontHZKaiTi_12_Propc7fa:00000000 GUI_FontHZKaiTi_12_Propc7fa
+F:\msys64\tmp\ccxS5uw3.s:1014   .rodata.GUI_FontHZKaiTi_12_Propc8f3:00000000 GUI_FontHZKaiTi_12_Propc8f3
+F:\msys64\tmp\ccxS5uw3.s:1023   .rodata.GUI_FontHZKaiTi_12_Propc9e8:00000000 GUI_FontHZKaiTi_12_Propc9e8
+F:\msys64\tmp\ccxS5uw3.s:1032   .rodata.GUI_FontHZKaiTi_12_Propcab1:00000000 GUI_FontHZKaiTi_12_Propcab1
+F:\msys64\tmp\ccxS5uw3.s:1041   .rodata.GUI_FontHZKaiTi_12_Propcab5:00000000 GUI_FontHZKaiTi_12_Propcab5
+F:\msys64\tmp\ccxS5uw3.s:1050   .rodata.GUI_FontHZKaiTi_12_Propcabc:00000000 GUI_FontHZKaiTi_12_Propcabc
+F:\msys64\tmp\ccxS5uw3.s:1059   .rodata.GUI_FontHZKaiTi_12_Propcaf8:00000000 GUI_FontHZKaiTi_12_Propcaf8
+F:\msys64\tmp\ccxS5uw3.s:1068   .rodata.GUI_FontHZKaiTi_12_Propcafd:00000000 GUI_FontHZKaiTi_12_Propcafd
+F:\msys64\tmp\ccxS5uw3.s:1077   .rodata.GUI_FontHZKaiTi_12_Propcda8:00000000 GUI_FontHZKaiTi_12_Propcda8
+F:\msys64\tmp\ccxS5uw3.s:1086   .rodata.GUI_FontHZKaiTi_12_Propcede:00000000 GUI_FontHZKaiTi_12_Propcede
+F:\msys64\tmp\ccxS5uw3.s:1095   .rodata.GUI_FontHZKaiTi_12_Propcfdf:00000000 GUI_FontHZKaiTi_12_Propcfdf
+F:\msys64\tmp\ccxS5uw3.s:1104   .rodata.GUI_FontHZKaiTi_12_Propd0c5:00000000 GUI_FontHZKaiTi_12_Propd0c5
+F:\msys64\tmp\ccxS5uw3.s:1113   .rodata.GUI_FontHZKaiTi_12_Propd1a7:00000000 GUI_FontHZKaiTi_12_Propd1a7
+F:\msys64\tmp\ccxS5uw3.s:1122   .rodata.GUI_FontHZKaiTi_12_Propd4f8:00000000 GUI_FontHZKaiTi_12_Propd4f8
+F:\msys64\tmp\ccxS5uw3.s:1131   .rodata.GUI_FontHZKaiTi_12_Propd6c3:00000000 GUI_FontHZKaiTi_12_Propd6c3
+F:\msys64\tmp\ccxS5uw3.s:1140   .rodata.GUI_FontHZKaiTi_12_Propd6dd:00000000 GUI_FontHZKaiTi_12_Propd6dd
+F:\msys64\tmp\ccxS5uw3.s:1149   .rodata.GUI_FontHZKaiTi_12_Propd7d3:00000000 GUI_FontHZKaiTi_12_Propd7d3
+F:\msys64\tmp\ccxS5uw3.s:1158   .rodata.GUI_FontHZKaiTi_12_Propd8b9:00000000 GUI_FontHZKaiTi_12_Propd8b9
+F:\msys64\tmp\ccxS5uw3.s:1167   .rodata.GUI_FontHZKaiTi_12_Propecc5:00000000 GUI_FontHZKaiTi_12_Propecc5
+F:\msys64\tmp\ccxS5uw3.s:192    .rodata.GUI_FontHZKaiTi_12_CharInfo:00000000 GUI_FontHZKaiTi_12_CharInfo
+F:\msys64\tmp\ccxS5uw3.s:2007   .rodata.acFontHZKaiTi_12_ecc5:00000000 acFontHZKaiTi_12_ecc5
+F:\msys64\tmp\ccxS5uw3.s:2000   .rodata.acFontHZKaiTi_12_d8b9:00000000 acFontHZKaiTi_12_d8b9
+F:\msys64\tmp\ccxS5uw3.s:1993   .rodata.acFontHZKaiTi_12_d7d3:00000000 acFontHZKaiTi_12_d7d3
+F:\msys64\tmp\ccxS5uw3.s:1986   .rodata.acFontHZKaiTi_12_d6dd:00000000 acFontHZKaiTi_12_d6dd
+F:\msys64\tmp\ccxS5uw3.s:1979   .rodata.acFontHZKaiTi_12_d6c3:00000000 acFontHZKaiTi_12_d6c3
+F:\msys64\tmp\ccxS5uw3.s:1972   .rodata.acFontHZKaiTi_12_d4f8:00000000 acFontHZKaiTi_12_d4f8
+F:\msys64\tmp\ccxS5uw3.s:1965   .rodata.acFontHZKaiTi_12_d1a7:00000000 acFontHZKaiTi_12_d1a7
+F:\msys64\tmp\ccxS5uw3.s:1958   .rodata.acFontHZKaiTi_12_d0c5:00000000 acFontHZKaiTi_12_d0c5
+F:\msys64\tmp\ccxS5uw3.s:1951   .rodata.acFontHZKaiTi_12_cfdf:00000000 acFontHZKaiTi_12_cfdf
+F:\msys64\tmp\ccxS5uw3.s:1944   .rodata.acFontHZKaiTi_12_cede:00000000 acFontHZKaiTi_12_cede
+F:\msys64\tmp\ccxS5uw3.s:1937   .rodata.acFontHZKaiTi_12_cda8:00000000 acFontHZKaiTi_12_cda8
+F:\msys64\tmp\ccxS5uw3.s:1930   .rodata.acFontHZKaiTi_12_cafd:00000000 acFontHZKaiTi_12_cafd
+F:\msys64\tmp\ccxS5uw3.s:1923   .rodata.acFontHZKaiTi_12_caf8:00000000 acFontHZKaiTi_12_caf8
+F:\msys64\tmp\ccxS5uw3.s:1916   .rodata.acFontHZKaiTi_12_cabc:00000000 acFontHZKaiTi_12_cabc
+F:\msys64\tmp\ccxS5uw3.s:1909   .rodata.acFontHZKaiTi_12_cab5:00000000 acFontHZKaiTi_12_cab5
+F:\msys64\tmp\ccxS5uw3.s:1902   .rodata.acFontHZKaiTi_12_cab1:00000000 acFontHZKaiTi_12_cab1
+F:\msys64\tmp\ccxS5uw3.s:1895   .rodata.acFontHZKaiTi_12_c9e8:00000000 acFontHZKaiTi_12_c9e8
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 38
+
+
+F:\msys64\tmp\ccxS5uw3.s:1888   .rodata.acFontHZKaiTi_12_c8f3:00000000 acFontHZKaiTi_12_c8f3
+F:\msys64\tmp\ccxS5uw3.s:1881   .rodata.acFontHZKaiTi_12_c7fa:00000000 acFontHZKaiTi_12_c7fa
+F:\msys64\tmp\ccxS5uw3.s:1874   .rodata.acFontHZKaiTi_12_c6f7:00000000 acFontHZKaiTi_12_c6f7
+F:\msys64\tmp\ccxS5uw3.s:1867   .rodata.acFontHZKaiTi_12_bfc6:00000000 acFontHZKaiTi_12_bfc6
+F:\msys64\tmp\ccxS5uw3.s:1860   .rodata.acFontHZKaiTi_12_bfaa:00000000 acFontHZKaiTi_12_bfaa
+F:\msys64\tmp\ccxS5uw3.s:1853   .rodata.acFontHZKaiTi_12_bedd:00000000 acFontHZKaiTi_12_bedd
+F:\msys64\tmp\ccxS5uw3.s:1846   .rodata.acFontHZKaiTi_12_bde1:00000000 acFontHZKaiTi_12_bde1
+F:\msys64\tmp\ccxS5uw3.s:1839   .rodata.acFontHZKaiTi_12_bce0:00000000 acFontHZKaiTi_12_bce0
+F:\msys64\tmp\ccxS5uw3.s:1832   .rodata.acFontHZKaiTi_12_bcbc:00000000 acFontHZKaiTi_12_bcbc
+F:\msys64\tmp\ccxS5uw3.s:1825   .rodata.acFontHZKaiTi_12_bbf0:00000000 acFontHZKaiTi_12_bbf0
+F:\msys64\tmp\ccxS5uw3.s:1818   .rodata.acFontHZKaiTi_12_babc:00000000 acFontHZKaiTi_12_babc
+F:\msys64\tmp\ccxS5uw3.s:1811   .rodata.acFontHZKaiTi_12_b7c0:00000000 acFontHZKaiTi_12_b7c0
+F:\msys64\tmp\ccxS5uw3.s:1804   .rodata.acFontHZKaiTi_12_b5e7:00000000 acFontHZKaiTi_12_b5e7
+F:\msys64\tmp\ccxS5uw3.s:1797   .rodata.acFontHZKaiTi_12_b5c1:00000000 acFontHZKaiTi_12_b5c1
+F:\msys64\tmp\ccxS5uw3.s:1790   .rodata.acFontHZKaiTi_12_b4f3:00000000 acFontHZKaiTi_12_b4f3
+F:\msys64\tmp\ccxS5uw3.s:1783   .rodata.acFontHZKaiTi_12_b3c2:00000000 acFontHZKaiTi_12_b3c2
+F:\msys64\tmp\ccxS5uw3.s:1776   .rodata.acFontHZKaiTi_12_b2e2:00000000 acFontHZKaiTi_12_b2e2
+F:\msys64\tmp\ccxS5uw3.s:1769   .rodata.acFontHZKaiTi_12_b2ce:00000000 acFontHZKaiTi_12_b2ce
+F:\msys64\tmp\ccxS5uw3.s:1763   .rodata.acFontHZKaiTi_12_007f:00000000 acFontHZKaiTi_12_007f
+F:\msys64\tmp\ccxS5uw3.s:1757   .rodata.acFontHZKaiTi_12_007e:00000000 acFontHZKaiTi_12_007e
+F:\msys64\tmp\ccxS5uw3.s:1751   .rodata.acFontHZKaiTi_12_007d:00000000 acFontHZKaiTi_12_007d
+F:\msys64\tmp\ccxS5uw3.s:1745   .rodata.acFontHZKaiTi_12_007c:00000000 acFontHZKaiTi_12_007c
+F:\msys64\tmp\ccxS5uw3.s:1739   .rodata.acFontHZKaiTi_12_007b:00000000 acFontHZKaiTi_12_007b
+F:\msys64\tmp\ccxS5uw3.s:1733   .rodata.acFontHZKaiTi_12_007a:00000000 acFontHZKaiTi_12_007a
+F:\msys64\tmp\ccxS5uw3.s:1727   .rodata.acFontHZKaiTi_12_0079:00000000 acFontHZKaiTi_12_0079
+F:\msys64\tmp\ccxS5uw3.s:1721   .rodata.acFontHZKaiTi_12_0078:00000000 acFontHZKaiTi_12_0078
+F:\msys64\tmp\ccxS5uw3.s:1715   .rodata.acFontHZKaiTi_12_0077:00000000 acFontHZKaiTi_12_0077
+F:\msys64\tmp\ccxS5uw3.s:1709   .rodata.acFontHZKaiTi_12_0076:00000000 acFontHZKaiTi_12_0076
+F:\msys64\tmp\ccxS5uw3.s:1703   .rodata.acFontHZKaiTi_12_0075:00000000 acFontHZKaiTi_12_0075
+F:\msys64\tmp\ccxS5uw3.s:1697   .rodata.acFontHZKaiTi_12_0074:00000000 acFontHZKaiTi_12_0074
+F:\msys64\tmp\ccxS5uw3.s:1691   .rodata.acFontHZKaiTi_12_0073:00000000 acFontHZKaiTi_12_0073
+F:\msys64\tmp\ccxS5uw3.s:1685   .rodata.acFontHZKaiTi_12_0072:00000000 acFontHZKaiTi_12_0072
+F:\msys64\tmp\ccxS5uw3.s:1679   .rodata.acFontHZKaiTi_12_0071:00000000 acFontHZKaiTi_12_0071
+F:\msys64\tmp\ccxS5uw3.s:1673   .rodata.acFontHZKaiTi_12_0070:00000000 acFontHZKaiTi_12_0070
+F:\msys64\tmp\ccxS5uw3.s:1667   .rodata.acFontHZKaiTi_12_006f:00000000 acFontHZKaiTi_12_006f
+F:\msys64\tmp\ccxS5uw3.s:1661   .rodata.acFontHZKaiTi_12_006e:00000000 acFontHZKaiTi_12_006e
+F:\msys64\tmp\ccxS5uw3.s:1655   .rodata.acFontHZKaiTi_12_006d:00000000 acFontHZKaiTi_12_006d
+F:\msys64\tmp\ccxS5uw3.s:1649   .rodata.acFontHZKaiTi_12_006c:00000000 acFontHZKaiTi_12_006c
+F:\msys64\tmp\ccxS5uw3.s:1643   .rodata.acFontHZKaiTi_12_006b:00000000 acFontHZKaiTi_12_006b
+F:\msys64\tmp\ccxS5uw3.s:1637   .rodata.acFontHZKaiTi_12_006a:00000000 acFontHZKaiTi_12_006a
+F:\msys64\tmp\ccxS5uw3.s:1631   .rodata.acFontHZKaiTi_12_0069:00000000 acFontHZKaiTi_12_0069
+F:\msys64\tmp\ccxS5uw3.s:1625   .rodata.acFontHZKaiTi_12_0068:00000000 acFontHZKaiTi_12_0068
+F:\msys64\tmp\ccxS5uw3.s:1619   .rodata.acFontHZKaiTi_12_0067:00000000 acFontHZKaiTi_12_0067
+F:\msys64\tmp\ccxS5uw3.s:1613   .rodata.acFontHZKaiTi_12_0066:00000000 acFontHZKaiTi_12_0066
+F:\msys64\tmp\ccxS5uw3.s:1607   .rodata.acFontHZKaiTi_12_0065:00000000 acFontHZKaiTi_12_0065
+F:\msys64\tmp\ccxS5uw3.s:1601   .rodata.acFontHZKaiTi_12_0064:00000000 acFontHZKaiTi_12_0064
+F:\msys64\tmp\ccxS5uw3.s:1595   .rodata.acFontHZKaiTi_12_0063:00000000 acFontHZKaiTi_12_0063
+F:\msys64\tmp\ccxS5uw3.s:1589   .rodata.acFontHZKaiTi_12_0062:00000000 acFontHZKaiTi_12_0062
+F:\msys64\tmp\ccxS5uw3.s:1583   .rodata.acFontHZKaiTi_12_0061:00000000 acFontHZKaiTi_12_0061
+F:\msys64\tmp\ccxS5uw3.s:1577   .rodata.acFontHZKaiTi_12_0060:00000000 acFontHZKaiTi_12_0060
+F:\msys64\tmp\ccxS5uw3.s:1571   .rodata.acFontHZKaiTi_12_005f:00000000 acFontHZKaiTi_12_005f
+F:\msys64\tmp\ccxS5uw3.s:1565   .rodata.acFontHZKaiTi_12_005e:00000000 acFontHZKaiTi_12_005e
+F:\msys64\tmp\ccxS5uw3.s:1559   .rodata.acFontHZKaiTi_12_005d:00000000 acFontHZKaiTi_12_005d
+F:\msys64\tmp\ccxS5uw3.s:1553   .rodata.acFontHZKaiTi_12_005c:00000000 acFontHZKaiTi_12_005c
+F:\msys64\tmp\ccxS5uw3.s:1547   .rodata.acFontHZKaiTi_12_005b:00000000 acFontHZKaiTi_12_005b
+F:\msys64\tmp\ccxS5uw3.s:1541   .rodata.acFontHZKaiTi_12_005a:00000000 acFontHZKaiTi_12_005a
+F:\msys64\tmp\ccxS5uw3.s:1535   .rodata.acFontHZKaiTi_12_0059:00000000 acFontHZKaiTi_12_0059
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 39
+
+
+F:\msys64\tmp\ccxS5uw3.s:1529   .rodata.acFontHZKaiTi_12_0058:00000000 acFontHZKaiTi_12_0058
+F:\msys64\tmp\ccxS5uw3.s:1523   .rodata.acFontHZKaiTi_12_0057:00000000 acFontHZKaiTi_12_0057
+F:\msys64\tmp\ccxS5uw3.s:1517   .rodata.acFontHZKaiTi_12_0056:00000000 acFontHZKaiTi_12_0056
+F:\msys64\tmp\ccxS5uw3.s:1511   .rodata.acFontHZKaiTi_12_0055:00000000 acFontHZKaiTi_12_0055
+F:\msys64\tmp\ccxS5uw3.s:1505   .rodata.acFontHZKaiTi_12_0054:00000000 acFontHZKaiTi_12_0054
+F:\msys64\tmp\ccxS5uw3.s:1499   .rodata.acFontHZKaiTi_12_0053:00000000 acFontHZKaiTi_12_0053
+F:\msys64\tmp\ccxS5uw3.s:1493   .rodata.acFontHZKaiTi_12_0052:00000000 acFontHZKaiTi_12_0052
+F:\msys64\tmp\ccxS5uw3.s:1487   .rodata.acFontHZKaiTi_12_0051:00000000 acFontHZKaiTi_12_0051
+F:\msys64\tmp\ccxS5uw3.s:1481   .rodata.acFontHZKaiTi_12_0050:00000000 acFontHZKaiTi_12_0050
+F:\msys64\tmp\ccxS5uw3.s:1475   .rodata.acFontHZKaiTi_12_004f:00000000 acFontHZKaiTi_12_004f
+F:\msys64\tmp\ccxS5uw3.s:1469   .rodata.acFontHZKaiTi_12_004e:00000000 acFontHZKaiTi_12_004e
+F:\msys64\tmp\ccxS5uw3.s:1463   .rodata.acFontHZKaiTi_12_004d:00000000 acFontHZKaiTi_12_004d
+F:\msys64\tmp\ccxS5uw3.s:1457   .rodata.acFontHZKaiTi_12_004c:00000000 acFontHZKaiTi_12_004c
+F:\msys64\tmp\ccxS5uw3.s:1451   .rodata.acFontHZKaiTi_12_004b:00000000 acFontHZKaiTi_12_004b
+F:\msys64\tmp\ccxS5uw3.s:1445   .rodata.acFontHZKaiTi_12_004a:00000000 acFontHZKaiTi_12_004a
+F:\msys64\tmp\ccxS5uw3.s:1439   .rodata.acFontHZKaiTi_12_0049:00000000 acFontHZKaiTi_12_0049
+F:\msys64\tmp\ccxS5uw3.s:1433   .rodata.acFontHZKaiTi_12_0048:00000000 acFontHZKaiTi_12_0048
+F:\msys64\tmp\ccxS5uw3.s:1427   .rodata.acFontHZKaiTi_12_0047:00000000 acFontHZKaiTi_12_0047
+F:\msys64\tmp\ccxS5uw3.s:1421   .rodata.acFontHZKaiTi_12_0046:00000000 acFontHZKaiTi_12_0046
+F:\msys64\tmp\ccxS5uw3.s:1415   .rodata.acFontHZKaiTi_12_0045:00000000 acFontHZKaiTi_12_0045
+F:\msys64\tmp\ccxS5uw3.s:1409   .rodata.acFontHZKaiTi_12_0044:00000000 acFontHZKaiTi_12_0044
+F:\msys64\tmp\ccxS5uw3.s:1403   .rodata.acFontHZKaiTi_12_0043:00000000 acFontHZKaiTi_12_0043
+F:\msys64\tmp\ccxS5uw3.s:1397   .rodata.acFontHZKaiTi_12_0042:00000000 acFontHZKaiTi_12_0042
+F:\msys64\tmp\ccxS5uw3.s:1391   .rodata.acFontHZKaiTi_12_0041:00000000 acFontHZKaiTi_12_0041
+F:\msys64\tmp\ccxS5uw3.s:1385   .rodata.acFontHZKaiTi_12_0040:00000000 acFontHZKaiTi_12_0040
+F:\msys64\tmp\ccxS5uw3.s:1379   .rodata.acFontHZKaiTi_12_003f:00000000 acFontHZKaiTi_12_003f
+F:\msys64\tmp\ccxS5uw3.s:1373   .rodata.acFontHZKaiTi_12_003e:00000000 acFontHZKaiTi_12_003e
+F:\msys64\tmp\ccxS5uw3.s:1367   .rodata.acFontHZKaiTi_12_003d:00000000 acFontHZKaiTi_12_003d
+F:\msys64\tmp\ccxS5uw3.s:1361   .rodata.acFontHZKaiTi_12_003c:00000000 acFontHZKaiTi_12_003c
+F:\msys64\tmp\ccxS5uw3.s:1355   .rodata.acFontHZKaiTi_12_003b:00000000 acFontHZKaiTi_12_003b
+F:\msys64\tmp\ccxS5uw3.s:1349   .rodata.acFontHZKaiTi_12_003a:00000000 acFontHZKaiTi_12_003a
+F:\msys64\tmp\ccxS5uw3.s:1343   .rodata.acFontHZKaiTi_12_0039:00000000 acFontHZKaiTi_12_0039
+F:\msys64\tmp\ccxS5uw3.s:1337   .rodata.acFontHZKaiTi_12_0038:00000000 acFontHZKaiTi_12_0038
+F:\msys64\tmp\ccxS5uw3.s:1331   .rodata.acFontHZKaiTi_12_0037:00000000 acFontHZKaiTi_12_0037
+F:\msys64\tmp\ccxS5uw3.s:1325   .rodata.acFontHZKaiTi_12_0036:00000000 acFontHZKaiTi_12_0036
+F:\msys64\tmp\ccxS5uw3.s:1319   .rodata.acFontHZKaiTi_12_0035:00000000 acFontHZKaiTi_12_0035
+F:\msys64\tmp\ccxS5uw3.s:1313   .rodata.acFontHZKaiTi_12_0034:00000000 acFontHZKaiTi_12_0034
+F:\msys64\tmp\ccxS5uw3.s:1307   .rodata.acFontHZKaiTi_12_0033:00000000 acFontHZKaiTi_12_0033
+F:\msys64\tmp\ccxS5uw3.s:1301   .rodata.acFontHZKaiTi_12_0032:00000000 acFontHZKaiTi_12_0032
+F:\msys64\tmp\ccxS5uw3.s:1295   .rodata.acFontHZKaiTi_12_0031:00000000 acFontHZKaiTi_12_0031
+F:\msys64\tmp\ccxS5uw3.s:1289   .rodata.acFontHZKaiTi_12_0030:00000000 acFontHZKaiTi_12_0030
+F:\msys64\tmp\ccxS5uw3.s:1283   .rodata.acFontHZKaiTi_12_002f:00000000 acFontHZKaiTi_12_002f
+F:\msys64\tmp\ccxS5uw3.s:1277   .rodata.acFontHZKaiTi_12_002e:00000000 acFontHZKaiTi_12_002e
+F:\msys64\tmp\ccxS5uw3.s:1271   .rodata.acFontHZKaiTi_12_002d:00000000 acFontHZKaiTi_12_002d
+F:\msys64\tmp\ccxS5uw3.s:1265   .rodata.acFontHZKaiTi_12_002c:00000000 acFontHZKaiTi_12_002c
+F:\msys64\tmp\ccxS5uw3.s:1259   .rodata.acFontHZKaiTi_12_002b:00000000 acFontHZKaiTi_12_002b
+F:\msys64\tmp\ccxS5uw3.s:1253   .rodata.acFontHZKaiTi_12_002a:00000000 acFontHZKaiTi_12_002a
+F:\msys64\tmp\ccxS5uw3.s:1247   .rodata.acFontHZKaiTi_12_0029:00000000 acFontHZKaiTi_12_0029
+F:\msys64\tmp\ccxS5uw3.s:1241   .rodata.acFontHZKaiTi_12_0028:00000000 acFontHZKaiTi_12_0028
+F:\msys64\tmp\ccxS5uw3.s:1235   .rodata.acFontHZKaiTi_12_0027:00000000 acFontHZKaiTi_12_0027
+F:\msys64\tmp\ccxS5uw3.s:1229   .rodata.acFontHZKaiTi_12_0026:00000000 acFontHZKaiTi_12_0026
+F:\msys64\tmp\ccxS5uw3.s:1223   .rodata.acFontHZKaiTi_12_0025:00000000 acFontHZKaiTi_12_0025
+F:\msys64\tmp\ccxS5uw3.s:1217   .rodata.acFontHZKaiTi_12_0024:00000000 acFontHZKaiTi_12_0024
+F:\msys64\tmp\ccxS5uw3.s:1211   .rodata.acFontHZKaiTi_12_0023:00000000 acFontHZKaiTi_12_0023
+F:\msys64\tmp\ccxS5uw3.s:1205   .rodata.acFontHZKaiTi_12_0022:00000000 acFontHZKaiTi_12_0022
+F:\msys64\tmp\ccxS5uw3.s:1199   .rodata.acFontHZKaiTi_12_0021:00000000 acFontHZKaiTi_12_0021
+F:\msys64\tmp\ccxS5uw3.s:1193   .rodata.acFontHZKaiTi_12_0020:00000000 acFontHZKaiTi_12_0020
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 40
+
+
+F:\msys64\tmp\ccxS5uw3.s:189    .rodata.GUI_FontHZKaiTi_12_CharInfo:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:849    .rodata.GUI_FontHZKaiTi_12_Prop0020:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:858    .rodata.GUI_FontHZKaiTi_12_Propb2ce:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:867    .rodata.GUI_FontHZKaiTi_12_Propb2e2:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:876    .rodata.GUI_FontHZKaiTi_12_Propb3c2:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:885    .rodata.GUI_FontHZKaiTi_12_Propb4f3:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:894    .rodata.GUI_FontHZKaiTi_12_Propb5c1:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:903    .rodata.GUI_FontHZKaiTi_12_Propb5e7:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:912    .rodata.GUI_FontHZKaiTi_12_Propb7c0:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:921    .rodata.GUI_FontHZKaiTi_12_Propbabc:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:930    .rodata.GUI_FontHZKaiTi_12_Propbbf0:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:939    .rodata.GUI_FontHZKaiTi_12_Propbcbc:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:948    .rodata.GUI_FontHZKaiTi_12_Propbce0:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:957    .rodata.GUI_FontHZKaiTi_12_Propbde1:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:966    .rodata.GUI_FontHZKaiTi_12_Propbedd:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:975    .rodata.GUI_FontHZKaiTi_12_Propbfaa:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:984    .rodata.GUI_FontHZKaiTi_12_Propbfc6:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:993    .rodata.GUI_FontHZKaiTi_12_Propc6f7:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1002   .rodata.GUI_FontHZKaiTi_12_Propc7fa:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1011   .rodata.GUI_FontHZKaiTi_12_Propc8f3:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1020   .rodata.GUI_FontHZKaiTi_12_Propc9e8:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1029   .rodata.GUI_FontHZKaiTi_12_Propcab1:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1038   .rodata.GUI_FontHZKaiTi_12_Propcab5:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1047   .rodata.GUI_FontHZKaiTi_12_Propcabc:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1056   .rodata.GUI_FontHZKaiTi_12_Propcaf8:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1065   .rodata.GUI_FontHZKaiTi_12_Propcafd:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1074   .rodata.GUI_FontHZKaiTi_12_Propcda8:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1083   .rodata.GUI_FontHZKaiTi_12_Propcede:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1092   .rodata.GUI_FontHZKaiTi_12_Propcfdf:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1101   .rodata.GUI_FontHZKaiTi_12_Propd0c5:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1110   .rodata.GUI_FontHZKaiTi_12_Propd1a7:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1119   .rodata.GUI_FontHZKaiTi_12_Propd4f8:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1128   .rodata.GUI_FontHZKaiTi_12_Propd6c3:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1137   .rodata.GUI_FontHZKaiTi_12_Propd6dd:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1146   .rodata.GUI_FontHZKaiTi_12_Propd7d3:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1155   .rodata.GUI_FontHZKaiTi_12_Propd8b9:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1164   .rodata.GUI_FontHZKaiTi_12_Propecc5:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1173   .rodata.GUI_FontHZ_KaiTi_12:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1190   .rodata.acFontHZKaiTi_12_0020:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1196   .rodata.acFontHZKaiTi_12_0021:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1202   .rodata.acFontHZKaiTi_12_0022:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1208   .rodata.acFontHZKaiTi_12_0023:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1214   .rodata.acFontHZKaiTi_12_0024:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1220   .rodata.acFontHZKaiTi_12_0025:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1226   .rodata.acFontHZKaiTi_12_0026:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1232   .rodata.acFontHZKaiTi_12_0027:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1238   .rodata.acFontHZKaiTi_12_0028:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1244   .rodata.acFontHZKaiTi_12_0029:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1250   .rodata.acFontHZKaiTi_12_002a:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1256   .rodata.acFontHZKaiTi_12_002b:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1262   .rodata.acFontHZKaiTi_12_002c:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1268   .rodata.acFontHZKaiTi_12_002d:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1274   .rodata.acFontHZKaiTi_12_002e:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1280   .rodata.acFontHZKaiTi_12_002f:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1286   .rodata.acFontHZKaiTi_12_0030:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1292   .rodata.acFontHZKaiTi_12_0031:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1298   .rodata.acFontHZKaiTi_12_0032:00000000 $d
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 41
+
+
+F:\msys64\tmp\ccxS5uw3.s:1304   .rodata.acFontHZKaiTi_12_0033:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1310   .rodata.acFontHZKaiTi_12_0034:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1316   .rodata.acFontHZKaiTi_12_0035:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1322   .rodata.acFontHZKaiTi_12_0036:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1328   .rodata.acFontHZKaiTi_12_0037:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1334   .rodata.acFontHZKaiTi_12_0038:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1340   .rodata.acFontHZKaiTi_12_0039:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1346   .rodata.acFontHZKaiTi_12_003a:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1352   .rodata.acFontHZKaiTi_12_003b:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1358   .rodata.acFontHZKaiTi_12_003c:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1364   .rodata.acFontHZKaiTi_12_003d:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1370   .rodata.acFontHZKaiTi_12_003e:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1376   .rodata.acFontHZKaiTi_12_003f:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1382   .rodata.acFontHZKaiTi_12_0040:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1388   .rodata.acFontHZKaiTi_12_0041:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1394   .rodata.acFontHZKaiTi_12_0042:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1400   .rodata.acFontHZKaiTi_12_0043:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1406   .rodata.acFontHZKaiTi_12_0044:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1412   .rodata.acFontHZKaiTi_12_0045:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1418   .rodata.acFontHZKaiTi_12_0046:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1424   .rodata.acFontHZKaiTi_12_0047:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1430   .rodata.acFontHZKaiTi_12_0048:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1436   .rodata.acFontHZKaiTi_12_0049:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1442   .rodata.acFontHZKaiTi_12_004a:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1448   .rodata.acFontHZKaiTi_12_004b:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1454   .rodata.acFontHZKaiTi_12_004c:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1460   .rodata.acFontHZKaiTi_12_004d:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1466   .rodata.acFontHZKaiTi_12_004e:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1472   .rodata.acFontHZKaiTi_12_004f:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1478   .rodata.acFontHZKaiTi_12_0050:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1484   .rodata.acFontHZKaiTi_12_0051:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1490   .rodata.acFontHZKaiTi_12_0052:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1496   .rodata.acFontHZKaiTi_12_0053:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1502   .rodata.acFontHZKaiTi_12_0054:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1508   .rodata.acFontHZKaiTi_12_0055:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1514   .rodata.acFontHZKaiTi_12_0056:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1520   .rodata.acFontHZKaiTi_12_0057:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1526   .rodata.acFontHZKaiTi_12_0058:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1532   .rodata.acFontHZKaiTi_12_0059:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1538   .rodata.acFontHZKaiTi_12_005a:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1544   .rodata.acFontHZKaiTi_12_005b:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1550   .rodata.acFontHZKaiTi_12_005c:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1556   .rodata.acFontHZKaiTi_12_005d:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1562   .rodata.acFontHZKaiTi_12_005e:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1568   .rodata.acFontHZKaiTi_12_005f:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1574   .rodata.acFontHZKaiTi_12_0060:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1580   .rodata.acFontHZKaiTi_12_0061:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1586   .rodata.acFontHZKaiTi_12_0062:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1592   .rodata.acFontHZKaiTi_12_0063:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1598   .rodata.acFontHZKaiTi_12_0064:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1604   .rodata.acFontHZKaiTi_12_0065:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1610   .rodata.acFontHZKaiTi_12_0066:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1616   .rodata.acFontHZKaiTi_12_0067:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1622   .rodata.acFontHZKaiTi_12_0068:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1628   .rodata.acFontHZKaiTi_12_0069:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1634   .rodata.acFontHZKaiTi_12_006a:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1640   .rodata.acFontHZKaiTi_12_006b:00000000 $d
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 42
+
+
+F:\msys64\tmp\ccxS5uw3.s:1646   .rodata.acFontHZKaiTi_12_006c:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1652   .rodata.acFontHZKaiTi_12_006d:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1658   .rodata.acFontHZKaiTi_12_006e:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1664   .rodata.acFontHZKaiTi_12_006f:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1670   .rodata.acFontHZKaiTi_12_0070:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1676   .rodata.acFontHZKaiTi_12_0071:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1682   .rodata.acFontHZKaiTi_12_0072:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1688   .rodata.acFontHZKaiTi_12_0073:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1694   .rodata.acFontHZKaiTi_12_0074:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1700   .rodata.acFontHZKaiTi_12_0075:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1706   .rodata.acFontHZKaiTi_12_0076:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1712   .rodata.acFontHZKaiTi_12_0077:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1718   .rodata.acFontHZKaiTi_12_0078:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1724   .rodata.acFontHZKaiTi_12_0079:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1730   .rodata.acFontHZKaiTi_12_007a:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1736   .rodata.acFontHZKaiTi_12_007b:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1742   .rodata.acFontHZKaiTi_12_007c:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1748   .rodata.acFontHZKaiTi_12_007d:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1754   .rodata.acFontHZKaiTi_12_007e:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1760   .rodata.acFontHZKaiTi_12_007f:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1766   .rodata.acFontHZKaiTi_12_b2ce:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1773   .rodata.acFontHZKaiTi_12_b2e2:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1780   .rodata.acFontHZKaiTi_12_b3c2:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1787   .rodata.acFontHZKaiTi_12_b4f3:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1794   .rodata.acFontHZKaiTi_12_b5c1:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1801   .rodata.acFontHZKaiTi_12_b5e7:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1808   .rodata.acFontHZKaiTi_12_b7c0:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1815   .rodata.acFontHZKaiTi_12_babc:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1822   .rodata.acFontHZKaiTi_12_bbf0:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1829   .rodata.acFontHZKaiTi_12_bcbc:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1836   .rodata.acFontHZKaiTi_12_bce0:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1843   .rodata.acFontHZKaiTi_12_bde1:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1850   .rodata.acFontHZKaiTi_12_bedd:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1857   .rodata.acFontHZKaiTi_12_bfaa:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1864   .rodata.acFontHZKaiTi_12_bfc6:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1871   .rodata.acFontHZKaiTi_12_c6f7:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1878   .rodata.acFontHZKaiTi_12_c7fa:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1885   .rodata.acFontHZKaiTi_12_c8f3:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1892   .rodata.acFontHZKaiTi_12_c9e8:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1899   .rodata.acFontHZKaiTi_12_cab1:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1906   .rodata.acFontHZKaiTi_12_cab5:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1913   .rodata.acFontHZKaiTi_12_cabc:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1920   .rodata.acFontHZKaiTi_12_caf8:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1927   .rodata.acFontHZKaiTi_12_cafd:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1934   .rodata.acFontHZKaiTi_12_cda8:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1941   .rodata.acFontHZKaiTi_12_cede:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1948   .rodata.acFontHZKaiTi_12_cfdf:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1955   .rodata.acFontHZKaiTi_12_d0c5:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1962   .rodata.acFontHZKaiTi_12_d1a7:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1969   .rodata.acFontHZKaiTi_12_d4f8:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1976   .rodata.acFontHZKaiTi_12_d6c3:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1983   .rodata.acFontHZKaiTi_12_d6dd:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1990   .rodata.acFontHZKaiTi_12_d7d3:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:1997   .rodata.acFontHZKaiTi_12_d8b9:00000000 $d
+F:\msys64\tmp\ccxS5uw3.s:2004   .rodata.acFontHZKaiTi_12_ecc5:00000000 $d
+
+UNDEFINED SYMBOLS
+ARM GAS  F:\msys64\tmp\ccxS5uw3.s 			page 43
+
+
+GUIPROP_DispChar
+GUIPROP_GetCharDistX
+GUIPROP_GetFontInfo
+GUIPROP_IsInFont
+GUI_ENC_APIList_SJIS

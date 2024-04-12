@@ -1,0 +1,1614 @@
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"STM32_I2C.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.I2C_delay,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	I2C_delay:
+  26              	.LFB555:
+  27              		.file 1 "Drivers/MPU6050/STM32_I2C.c"
+   1:Drivers/MPU6050/STM32_I2C.c **** #include "STM32_I2C.h"
+   2:Drivers/MPU6050/STM32_I2C.c **** 
+   3:Drivers/MPU6050/STM32_I2C.c **** #define PIN_SCL		I2C_SCL_Pin
+   4:Drivers/MPU6050/STM32_I2C.c **** #define PIN_SDA		I2C_SDA_Pin
+   5:Drivers/MPU6050/STM32_I2C.c **** #define I2C_GPIO	I2C_SCL_GPIO_Port
+   6:Drivers/MPU6050/STM32_I2C.c **** 
+   7:Drivers/MPU6050/STM32_I2C.c **** #define SCL_H         HAL_GPIO_WritePin(I2C_GPIO,PIN_SCL,GPIO_PIN_SET)
+   8:Drivers/MPU6050/STM32_I2C.c **** #define SCL_L         HAL_GPIO_WritePin(I2C_GPIO, PIN_SCL,GPIO_PIN_RESET)
+   9:Drivers/MPU6050/STM32_I2C.c **** 
+  10:Drivers/MPU6050/STM32_I2C.c **** #define SDA_H         HAL_GPIO_WritePin(I2C_GPIO, PIN_SDA,GPIO_PIN_SET)
+  11:Drivers/MPU6050/STM32_I2C.c **** #define SDA_L         HAL_GPIO_WritePin(I2C_GPIO, PIN_SDA,GPIO_PIN_RESET)
+  12:Drivers/MPU6050/STM32_I2C.c **** 
+  13:Drivers/MPU6050/STM32_I2C.c **** #define SCL_read      HAL_GPIO_ReadPin(I2C_GPIO, PIN_SCL)
+  14:Drivers/MPU6050/STM32_I2C.c **** #define SDA_read      HAL_GPIO_ReadPin(I2C_GPIO, PIN_SDA)
+  15:Drivers/MPU6050/STM32_I2C.c **** 
+  16:Drivers/MPU6050/STM32_I2C.c **** static void I2C_delay(void)
+  17:Drivers/MPU6050/STM32_I2C.c **** {
+  28              		.loc 1 17 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33 0000 82B0     		sub	sp, sp, #8
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  18:Drivers/MPU6050/STM32_I2C.c ****     volatile int i = 10;
+  36              		.loc 1 18 5 view .LVU1
+  37              		.loc 1 18 18 is_stmt 0 view .LVU2
+  38 0002 0A23     		movs	r3, #10
+  39 0004 0193     		str	r3, [sp, #4]
+  19:Drivers/MPU6050/STM32_I2C.c ****     while (i)
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 2
+
+
+  40              		.loc 1 19 5 is_stmt 1 view .LVU3
+  41              		.loc 1 19 11 is_stmt 0 view .LVU4
+  42 0006 02E0     		b	.L2
+  43              	.L3:
+  20:Drivers/MPU6050/STM32_I2C.c ****         i--;
+  44              		.loc 1 20 9 is_stmt 1 view .LVU5
+  45              		.loc 1 20 10 is_stmt 0 view .LVU6
+  46 0008 019B     		ldr	r3, [sp, #4]
+  47 000a 013B     		subs	r3, r3, #1
+  48 000c 0193     		str	r3, [sp, #4]
+  49              	.L2:
+  19:Drivers/MPU6050/STM32_I2C.c ****     while (i)
+  50              		.loc 1 19 11 is_stmt 1 view .LVU7
+  19:Drivers/MPU6050/STM32_I2C.c ****     while (i)
+  51              		.loc 1 19 12 is_stmt 0 view .LVU8
+  52 000e 019B     		ldr	r3, [sp, #4]
+  19:Drivers/MPU6050/STM32_I2C.c ****     while (i)
+  53              		.loc 1 19 11 view .LVU9
+  54 0010 002B     		cmp	r3, #0
+  55 0012 F9D1     		bne	.L3
+  21:Drivers/MPU6050/STM32_I2C.c **** }
+  56              		.loc 1 21 1 view .LVU10
+  57 0014 02B0     		add	sp, sp, #8
+  58              	.LCFI1:
+  59              		.cfi_def_cfa_offset 0
+  60              		@ sp needed
+  61 0016 7047     		bx	lr
+  62              		.cfi_endproc
+  63              	.LFE555:
+  65              		.section	.text.I2C_SendByte,"ax",%progbits
+  66              		.align	1
+  67              		.syntax unified
+  68              		.thumb
+  69              		.thumb_func
+  71              	I2C_SendByte:
+  72              	.LVL0:
+  73              	.LFB561:
+  22:Drivers/MPU6050/STM32_I2C.c **** 
+  23:Drivers/MPU6050/STM32_I2C.c **** static bool I2C_Start(void)
+  24:Drivers/MPU6050/STM32_I2C.c **** {
+  25:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+  26:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+  27:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  28:Drivers/MPU6050/STM32_I2C.c ****     if (!SDA_read)
+  29:Drivers/MPU6050/STM32_I2C.c ****         return false;
+  30:Drivers/MPU6050/STM32_I2C.c ****     SDA_L;
+  31:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  32:Drivers/MPU6050/STM32_I2C.c ****     if (SDA_read)
+  33:Drivers/MPU6050/STM32_I2C.c ****         return false;
+  34:Drivers/MPU6050/STM32_I2C.c ****     SDA_L;
+  35:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  36:Drivers/MPU6050/STM32_I2C.c ****     return true;
+  37:Drivers/MPU6050/STM32_I2C.c **** }
+  38:Drivers/MPU6050/STM32_I2C.c **** 
+  39:Drivers/MPU6050/STM32_I2C.c **** static void I2C_Stop(void)
+  40:Drivers/MPU6050/STM32_I2C.c **** {
+  41:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 3
+
+
+  42:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  43:Drivers/MPU6050/STM32_I2C.c ****     SDA_L;
+  44:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  45:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+  46:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  47:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+  48:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  49:Drivers/MPU6050/STM32_I2C.c **** }
+  50:Drivers/MPU6050/STM32_I2C.c **** 
+  51:Drivers/MPU6050/STM32_I2C.c **** static void I2C_Ack(void)
+  52:Drivers/MPU6050/STM32_I2C.c **** {
+  53:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+  54:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  55:Drivers/MPU6050/STM32_I2C.c ****     SDA_L;
+  56:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  57:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+  58:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  59:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+  60:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  61:Drivers/MPU6050/STM32_I2C.c **** }
+  62:Drivers/MPU6050/STM32_I2C.c **** 
+  63:Drivers/MPU6050/STM32_I2C.c **** static void I2C_NoAck(void)
+  64:Drivers/MPU6050/STM32_I2C.c **** {
+  65:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+  66:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  67:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+  68:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  69:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+  70:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  71:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+  72:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  73:Drivers/MPU6050/STM32_I2C.c **** }
+  74:Drivers/MPU6050/STM32_I2C.c **** 
+  75:Drivers/MPU6050/STM32_I2C.c **** static bool I2C_WaitAck(void)
+  76:Drivers/MPU6050/STM32_I2C.c **** {
+  77:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+  78:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  79:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+  80:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  81:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+  82:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+  83:Drivers/MPU6050/STM32_I2C.c ****     if (SDA_read) {
+  84:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+  85:Drivers/MPU6050/STM32_I2C.c ****         return false;
+  86:Drivers/MPU6050/STM32_I2C.c ****     }
+  87:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+  88:Drivers/MPU6050/STM32_I2C.c ****     return true;
+  89:Drivers/MPU6050/STM32_I2C.c **** }
+  90:Drivers/MPU6050/STM32_I2C.c **** 
+  91:Drivers/MPU6050/STM32_I2C.c **** static void I2C_SendByte(uint8_t byte)
+  92:Drivers/MPU6050/STM32_I2C.c **** {
+  74              		.loc 1 92 1 is_stmt 1 view -0
+  75              		.cfi_startproc
+  76              		@ args = 0, pretend = 0, frame = 0
+  77              		@ frame_needed = 0, uses_anonymous_args = 0
+  78              		.loc 1 92 1 is_stmt 0 view .LVU12
+  79 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 4
+
+
+  80              	.LCFI2:
+  81              		.cfi_def_cfa_offset 16
+  82              		.cfi_offset 3, -16
+  83              		.cfi_offset 4, -12
+  84              		.cfi_offset 5, -8
+  85              		.cfi_offset 14, -4
+  86 0002 0446     		mov	r4, r0
+  93:Drivers/MPU6050/STM32_I2C.c ****     uint8_t i = 8;
+  87              		.loc 1 93 5 is_stmt 1 view .LVU13
+  88              	.LVL1:
+  94:Drivers/MPU6050/STM32_I2C.c ****     while (i--) {
+  89              		.loc 1 94 5 view .LVU14
+  93:Drivers/MPU6050/STM32_I2C.c ****     uint8_t i = 8;
+  90              		.loc 1 93 13 is_stmt 0 view .LVU15
+  91 0004 0822     		movs	r2, #8
+  92              		.loc 1 94 11 view .LVU16
+  93 0006 10E0     		b	.L6
+  94              	.LVL2:
+  95              	.L7:
+  95:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+  96:Drivers/MPU6050/STM32_I2C.c ****         I2C_delay();
+  97:Drivers/MPU6050/STM32_I2C.c ****         if (byte & 0x80)
+  98:Drivers/MPU6050/STM32_I2C.c ****             SDA_H;
+  99:Drivers/MPU6050/STM32_I2C.c ****         else
+ 100:Drivers/MPU6050/STM32_I2C.c ****             SDA_L;
+  96              		.loc 1 100 13 is_stmt 1 view .LVU17
+  97 0008 0022     		movs	r2, #0
+  98 000a 8021     		movs	r1, #128
+  99 000c 1348     		ldr	r0, .L12
+ 100 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 101              	.LVL3:
+ 102              	.L8:
+ 101:Drivers/MPU6050/STM32_I2C.c ****         byte <<= 1;
+ 103              		.loc 1 101 9 view .LVU18
+ 104              		.loc 1 101 14 is_stmt 0 view .LVU19
+ 105 0012 6400     		lsls	r4, r4, #1
+ 106              	.LVL4:
+ 107              		.loc 1 101 14 view .LVU20
+ 108 0014 E4B2     		uxtb	r4, r4
+ 109              	.LVL5:
+ 102:Drivers/MPU6050/STM32_I2C.c ****         I2C_delay();
+ 110              		.loc 1 102 9 is_stmt 1 view .LVU21
+ 111 0016 FFF7FEFF 		bl	I2C_delay
+ 112              	.LVL6:
+ 103:Drivers/MPU6050/STM32_I2C.c ****         SCL_H;
+ 113              		.loc 1 103 9 view .LVU22
+ 114 001a 0122     		movs	r2, #1
+ 115 001c 4021     		movs	r1, #64
+ 116 001e 0F48     		ldr	r0, .L12
+ 117 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 118              	.LVL7:
+ 104:Drivers/MPU6050/STM32_I2C.c ****         I2C_delay();
+ 119              		.loc 1 104 9 view .LVU23
+ 120 0024 FFF7FEFF 		bl	I2C_delay
+ 121              	.LVL8:
+  94:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+ 122              		.loc 1 94 13 is_stmt 0 view .LVU24
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 5
+
+
+ 123 0028 2A46     		mov	r2, r5
+ 124              	.LVL9:
+ 125              	.L6:
+  94:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+ 126              		.loc 1 94 11 is_stmt 1 view .LVU25
+  94:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+ 127              		.loc 1 94 13 is_stmt 0 view .LVU26
+ 128 002a 531E     		subs	r3, r2, #1
+ 129 002c DDB2     		uxtb	r5, r3
+ 130              	.LVL10:
+  94:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+ 131              		.loc 1 94 11 view .LVU27
+ 132 002e 7AB1     		cbz	r2, .L11
+  95:Drivers/MPU6050/STM32_I2C.c ****         I2C_delay();
+ 133              		.loc 1 95 9 is_stmt 1 view .LVU28
+ 134 0030 0022     		movs	r2, #0
+ 135 0032 4021     		movs	r1, #64
+ 136 0034 0948     		ldr	r0, .L12
+ 137 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 138              	.LVL11:
+  96:Drivers/MPU6050/STM32_I2C.c ****         if (byte & 0x80)
+ 139              		.loc 1 96 9 view .LVU29
+ 140 003a FFF7FEFF 		bl	I2C_delay
+ 141              	.LVL12:
+  97:Drivers/MPU6050/STM32_I2C.c ****             SDA_H;
+ 142              		.loc 1 97 9 view .LVU30
+  97:Drivers/MPU6050/STM32_I2C.c ****             SDA_H;
+ 143              		.loc 1 97 12 is_stmt 0 view .LVU31
+ 144 003e 14F0800F 		tst	r4, #128
+ 145 0042 E1D0     		beq	.L7
+  98:Drivers/MPU6050/STM32_I2C.c ****         else
+ 146              		.loc 1 98 13 is_stmt 1 view .LVU32
+ 147 0044 0122     		movs	r2, #1
+ 148 0046 8021     		movs	r1, #128
+ 149 0048 0448     		ldr	r0, .L12
+ 150 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 151              	.LVL13:
+ 152 004e E0E7     		b	.L8
+ 153              	.L11:
+ 105:Drivers/MPU6050/STM32_I2C.c ****     }
+ 106:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ 154              		.loc 1 106 5 view .LVU33
+ 155 0050 4021     		movs	r1, #64
+ 156 0052 0248     		ldr	r0, .L12
+ 157 0054 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 158              	.LVL14:
+ 107:Drivers/MPU6050/STM32_I2C.c **** }
+ 159              		.loc 1 107 1 is_stmt 0 view .LVU34
+ 160 0058 38BD     		pop	{r3, r4, r5, pc}
+ 161              	.LVL15:
+ 162              	.L13:
+ 163              		.loc 1 107 1 view .LVU35
+ 164 005a 00BF     		.align	2
+ 165              	.L12:
+ 166 005c 00040240 		.word	1073873920
+ 167              		.cfi_endproc
+ 168              	.LFE561:
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 6
+
+
+ 170              		.section	.text.I2C_Stop,"ax",%progbits
+ 171              		.align	1
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 176              	I2C_Stop:
+ 177              	.LFB557:
+  40:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ 178              		.loc 1 40 1 is_stmt 1 view -0
+ 179              		.cfi_startproc
+ 180              		@ args = 0, pretend = 0, frame = 0
+ 181              		@ frame_needed = 0, uses_anonymous_args = 0
+ 182 0000 10B5     		push	{r4, lr}
+ 183              	.LCFI3:
+ 184              		.cfi_def_cfa_offset 8
+ 185              		.cfi_offset 4, -8
+ 186              		.cfi_offset 14, -4
+  41:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 187              		.loc 1 41 5 view .LVU37
+ 188 0002 0F4C     		ldr	r4, .L16
+ 189 0004 0022     		movs	r2, #0
+ 190 0006 4021     		movs	r1, #64
+ 191 0008 2046     		mov	r0, r4
+ 192 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 193              	.LVL16:
+  42:Drivers/MPU6050/STM32_I2C.c ****     SDA_L;
+ 194              		.loc 1 42 5 view .LVU38
+ 195 000e FFF7FEFF 		bl	I2C_delay
+ 196              	.LVL17:
+  43:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 197              		.loc 1 43 5 view .LVU39
+ 198 0012 0022     		movs	r2, #0
+ 199 0014 8021     		movs	r1, #128
+ 200 0016 2046     		mov	r0, r4
+ 201 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 202              	.LVL18:
+  44:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+ 203              		.loc 1 44 5 view .LVU40
+ 204 001c FFF7FEFF 		bl	I2C_delay
+ 205              	.LVL19:
+  45:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 206              		.loc 1 45 5 view .LVU41
+ 207 0020 0122     		movs	r2, #1
+ 208 0022 4021     		movs	r1, #64
+ 209 0024 2046     		mov	r0, r4
+ 210 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 211              	.LVL20:
+  46:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+ 212              		.loc 1 46 5 view .LVU42
+ 213 002a FFF7FEFF 		bl	I2C_delay
+ 214              	.LVL21:
+  47:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 215              		.loc 1 47 5 view .LVU43
+ 216 002e 0122     		movs	r2, #1
+ 217 0030 8021     		movs	r1, #128
+ 218 0032 2046     		mov	r0, r4
+ 219 0034 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 7
+
+
+ 220              	.LVL22:
+  48:Drivers/MPU6050/STM32_I2C.c **** }
+ 221              		.loc 1 48 5 view .LVU44
+ 222 0038 FFF7FEFF 		bl	I2C_delay
+ 223              	.LVL23:
+  49:Drivers/MPU6050/STM32_I2C.c **** 
+ 224              		.loc 1 49 1 is_stmt 0 view .LVU45
+ 225 003c 10BD     		pop	{r4, pc}
+ 226              	.L17:
+ 227 003e 00BF     		.align	2
+ 228              	.L16:
+ 229 0040 00040240 		.word	1073873920
+ 230              		.cfi_endproc
+ 231              	.LFE557:
+ 233              		.section	.text.I2C_NoAck,"ax",%progbits
+ 234              		.align	1
+ 235              		.syntax unified
+ 236              		.thumb
+ 237              		.thumb_func
+ 239              	I2C_NoAck:
+ 240              	.LFB559:
+  64:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ 241              		.loc 1 64 1 is_stmt 1 view -0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 0
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245 0000 10B5     		push	{r4, lr}
+ 246              	.LCFI4:
+ 247              		.cfi_def_cfa_offset 8
+ 248              		.cfi_offset 4, -8
+ 249              		.cfi_offset 14, -4
+  65:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 250              		.loc 1 65 5 view .LVU47
+ 251 0002 0F4C     		ldr	r4, .L20
+ 252 0004 0022     		movs	r2, #0
+ 253 0006 4021     		movs	r1, #64
+ 254 0008 2046     		mov	r0, r4
+ 255 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 256              	.LVL24:
+  66:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+ 257              		.loc 1 66 5 view .LVU48
+ 258 000e FFF7FEFF 		bl	I2C_delay
+ 259              	.LVL25:
+  67:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 260              		.loc 1 67 5 view .LVU49
+ 261 0012 0122     		movs	r2, #1
+ 262 0014 8021     		movs	r1, #128
+ 263 0016 2046     		mov	r0, r4
+ 264 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 265              	.LVL26:
+  68:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+ 266              		.loc 1 68 5 view .LVU50
+ 267 001c FFF7FEFF 		bl	I2C_delay
+ 268              	.LVL27:
+  69:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 269              		.loc 1 69 5 view .LVU51
+ 270 0020 0122     		movs	r2, #1
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 8
+
+
+ 271 0022 4021     		movs	r1, #64
+ 272 0024 2046     		mov	r0, r4
+ 273 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 274              	.LVL28:
+  70:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ 275              		.loc 1 70 5 view .LVU52
+ 276 002a FFF7FEFF 		bl	I2C_delay
+ 277              	.LVL29:
+  71:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 278              		.loc 1 71 5 view .LVU53
+ 279 002e 0022     		movs	r2, #0
+ 280 0030 4021     		movs	r1, #64
+ 281 0032 2046     		mov	r0, r4
+ 282 0034 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 283              	.LVL30:
+  72:Drivers/MPU6050/STM32_I2C.c **** }
+ 284              		.loc 1 72 5 view .LVU54
+ 285 0038 FFF7FEFF 		bl	I2C_delay
+ 286              	.LVL31:
+  73:Drivers/MPU6050/STM32_I2C.c **** 
+ 287              		.loc 1 73 1 is_stmt 0 view .LVU55
+ 288 003c 10BD     		pop	{r4, pc}
+ 289              	.L21:
+ 290 003e 00BF     		.align	2
+ 291              	.L20:
+ 292 0040 00040240 		.word	1073873920
+ 293              		.cfi_endproc
+ 294              	.LFE559:
+ 296              		.section	.text.I2C_Ack,"ax",%progbits
+ 297              		.align	1
+ 298              		.syntax unified
+ 299              		.thumb
+ 300              		.thumb_func
+ 302              	I2C_Ack:
+ 303              	.LFB558:
+  52:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ 304              		.loc 1 52 1 is_stmt 1 view -0
+ 305              		.cfi_startproc
+ 306              		@ args = 0, pretend = 0, frame = 0
+ 307              		@ frame_needed = 0, uses_anonymous_args = 0
+ 308 0000 10B5     		push	{r4, lr}
+ 309              	.LCFI5:
+ 310              		.cfi_def_cfa_offset 8
+ 311              		.cfi_offset 4, -8
+ 312              		.cfi_offset 14, -4
+  53:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 313              		.loc 1 53 5 view .LVU57
+ 314 0002 0F4C     		ldr	r4, .L24
+ 315 0004 0022     		movs	r2, #0
+ 316 0006 4021     		movs	r1, #64
+ 317 0008 2046     		mov	r0, r4
+ 318 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 319              	.LVL32:
+  54:Drivers/MPU6050/STM32_I2C.c ****     SDA_L;
+ 320              		.loc 1 54 5 view .LVU58
+ 321 000e FFF7FEFF 		bl	I2C_delay
+ 322              	.LVL33:
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 9
+
+
+  55:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 323              		.loc 1 55 5 view .LVU59
+ 324 0012 0022     		movs	r2, #0
+ 325 0014 8021     		movs	r1, #128
+ 326 0016 2046     		mov	r0, r4
+ 327 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 328              	.LVL34:
+  56:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+ 329              		.loc 1 56 5 view .LVU60
+ 330 001c FFF7FEFF 		bl	I2C_delay
+ 331              	.LVL35:
+  57:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 332              		.loc 1 57 5 view .LVU61
+ 333 0020 0122     		movs	r2, #1
+ 334 0022 4021     		movs	r1, #64
+ 335 0024 2046     		mov	r0, r4
+ 336 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 337              	.LVL36:
+  58:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ 338              		.loc 1 58 5 view .LVU62
+ 339 002a FFF7FEFF 		bl	I2C_delay
+ 340              	.LVL37:
+  59:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 341              		.loc 1 59 5 view .LVU63
+ 342 002e 0022     		movs	r2, #0
+ 343 0030 4021     		movs	r1, #64
+ 344 0032 2046     		mov	r0, r4
+ 345 0034 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 346              	.LVL38:
+  60:Drivers/MPU6050/STM32_I2C.c **** }
+ 347              		.loc 1 60 5 view .LVU64
+ 348 0038 FFF7FEFF 		bl	I2C_delay
+ 349              	.LVL39:
+  61:Drivers/MPU6050/STM32_I2C.c **** 
+ 350              		.loc 1 61 1 is_stmt 0 view .LVU65
+ 351 003c 10BD     		pop	{r4, pc}
+ 352              	.L25:
+ 353 003e 00BF     		.align	2
+ 354              	.L24:
+ 355 0040 00040240 		.word	1073873920
+ 356              		.cfi_endproc
+ 357              	.LFE558:
+ 359              		.section	.text.I2C_Start,"ax",%progbits
+ 360              		.align	1
+ 361              		.syntax unified
+ 362              		.thumb
+ 363              		.thumb_func
+ 365              	I2C_Start:
+ 366              	.LFB556:
+  24:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+ 367              		.loc 1 24 1 is_stmt 1 view -0
+ 368              		.cfi_startproc
+ 369              		@ args = 0, pretend = 0, frame = 0
+ 370              		@ frame_needed = 0, uses_anonymous_args = 0
+ 371 0000 10B5     		push	{r4, lr}
+ 372              	.LCFI6:
+ 373              		.cfi_def_cfa_offset 8
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 10
+
+
+ 374              		.cfi_offset 4, -8
+ 375              		.cfi_offset 14, -4
+  25:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+ 376              		.loc 1 25 5 view .LVU67
+ 377 0002 154C     		ldr	r4, .L32
+ 378 0004 0122     		movs	r2, #1
+ 379 0006 8021     		movs	r1, #128
+ 380 0008 2046     		mov	r0, r4
+ 381 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 382              	.LVL40:
+  26:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 383              		.loc 1 26 5 view .LVU68
+ 384 000e 0122     		movs	r2, #1
+ 385 0010 4021     		movs	r1, #64
+ 386 0012 2046     		mov	r0, r4
+ 387 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 388              	.LVL41:
+  27:Drivers/MPU6050/STM32_I2C.c ****     if (!SDA_read)
+ 389              		.loc 1 27 5 view .LVU69
+ 390 0018 FFF7FEFF 		bl	I2C_delay
+ 391              	.LVL42:
+  28:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 392              		.loc 1 28 5 view .LVU70
+  28:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 393              		.loc 1 28 10 is_stmt 0 view .LVU71
+ 394 001c 8021     		movs	r1, #128
+ 395 001e 2046     		mov	r0, r4
+ 396 0020 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 397              	.LVL43:
+  28:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 398              		.loc 1 28 8 view .LVU72
+ 399 0024 00B9     		cbnz	r0, .L30
+ 400              	.L27:
+  37:Drivers/MPU6050/STM32_I2C.c **** 
+ 401              		.loc 1 37 1 view .LVU73
+ 402 0026 10BD     		pop	{r4, pc}
+ 403              	.L30:
+  30:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 404              		.loc 1 30 5 is_stmt 1 view .LVU74
+ 405 0028 0022     		movs	r2, #0
+ 406 002a 8021     		movs	r1, #128
+ 407 002c 2046     		mov	r0, r4
+ 408 002e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 409              	.LVL44:
+  31:Drivers/MPU6050/STM32_I2C.c ****     if (SDA_read)
+ 410              		.loc 1 31 5 view .LVU75
+ 411 0032 FFF7FEFF 		bl	I2C_delay
+ 412              	.LVL45:
+  32:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 413              		.loc 1 32 5 view .LVU76
+  32:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 414              		.loc 1 32 9 is_stmt 0 view .LVU77
+ 415 0036 8021     		movs	r1, #128
+ 416 0038 2046     		mov	r0, r4
+ 417 003a FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 418              	.LVL46:
+  32:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 11
+
+
+ 419              		.loc 1 32 8 view .LVU78
+ 420 003e 08B1     		cbz	r0, .L31
+  33:Drivers/MPU6050/STM32_I2C.c ****     SDA_L;
+ 421              		.loc 1 33 16 view .LVU79
+ 422 0040 0020     		movs	r0, #0
+ 423 0042 F0E7     		b	.L27
+ 424              	.L31:
+  34:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 425              		.loc 1 34 5 is_stmt 1 view .LVU80
+ 426 0044 0022     		movs	r2, #0
+ 427 0046 8021     		movs	r1, #128
+ 428 0048 2046     		mov	r0, r4
+ 429 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 430              	.LVL47:
+  35:Drivers/MPU6050/STM32_I2C.c ****     return true;
+ 431              		.loc 1 35 5 view .LVU81
+ 432 004e FFF7FEFF 		bl	I2C_delay
+ 433              	.LVL48:
+  36:Drivers/MPU6050/STM32_I2C.c **** }
+ 434              		.loc 1 36 5 view .LVU82
+  36:Drivers/MPU6050/STM32_I2C.c **** }
+ 435              		.loc 1 36 12 is_stmt 0 view .LVU83
+ 436 0052 0120     		movs	r0, #1
+ 437 0054 E7E7     		b	.L27
+ 438              	.L33:
+ 439 0056 00BF     		.align	2
+ 440              	.L32:
+ 441 0058 00040240 		.word	1073873920
+ 442              		.cfi_endproc
+ 443              	.LFE556:
+ 445              		.section	.text.I2C_WaitAck,"ax",%progbits
+ 446              		.align	1
+ 447              		.syntax unified
+ 448              		.thumb
+ 449              		.thumb_func
+ 451              	I2C_WaitAck:
+ 452              	.LFB560:
+  76:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ 453              		.loc 1 76 1 is_stmt 1 view -0
+ 454              		.cfi_startproc
+ 455              		@ args = 0, pretend = 0, frame = 0
+ 456              		@ frame_needed = 0, uses_anonymous_args = 0
+ 457 0000 10B5     		push	{r4, lr}
+ 458              	.LCFI7:
+ 459              		.cfi_def_cfa_offset 8
+ 460              		.cfi_offset 4, -8
+ 461              		.cfi_offset 14, -4
+  77:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 462              		.loc 1 77 5 view .LVU85
+ 463 0002 144C     		ldr	r4, .L39
+ 464 0004 0022     		movs	r2, #0
+ 465 0006 4021     		movs	r1, #64
+ 466 0008 2046     		mov	r0, r4
+ 467 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 468              	.LVL49:
+  78:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+ 469              		.loc 1 78 5 view .LVU86
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 12
+
+
+ 470 000e FFF7FEFF 		bl	I2C_delay
+ 471              	.LVL50:
+  79:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 472              		.loc 1 79 5 view .LVU87
+ 473 0012 0122     		movs	r2, #1
+ 474 0014 8021     		movs	r1, #128
+ 475 0016 2046     		mov	r0, r4
+ 476 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 477              	.LVL51:
+  80:Drivers/MPU6050/STM32_I2C.c ****     SCL_H;
+ 478              		.loc 1 80 5 view .LVU88
+ 479 001c FFF7FEFF 		bl	I2C_delay
+ 480              	.LVL52:
+  81:Drivers/MPU6050/STM32_I2C.c ****     I2C_delay();
+ 481              		.loc 1 81 5 view .LVU89
+ 482 0020 0122     		movs	r2, #1
+ 483 0022 4021     		movs	r1, #64
+ 484 0024 2046     		mov	r0, r4
+ 485 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 486              	.LVL53:
+  82:Drivers/MPU6050/STM32_I2C.c ****     if (SDA_read) {
+ 487              		.loc 1 82 5 view .LVU90
+ 488 002a FFF7FEFF 		bl	I2C_delay
+ 489              	.LVL54:
+  83:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+ 490              		.loc 1 83 5 view .LVU91
+  83:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+ 491              		.loc 1 83 9 is_stmt 0 view .LVU92
+ 492 002e 8021     		movs	r1, #128
+ 493 0030 2046     		mov	r0, r4
+ 494 0032 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 495              	.LVL55:
+  83:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+ 496              		.loc 1 83 8 view .LVU93
+ 497 0036 30B9     		cbnz	r0, .L38
+  87:Drivers/MPU6050/STM32_I2C.c ****     return true;
+ 498              		.loc 1 87 5 is_stmt 1 view .LVU94
+ 499 0038 0022     		movs	r2, #0
+ 500 003a 4021     		movs	r1, #64
+ 501 003c 0548     		ldr	r0, .L39
+ 502 003e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 503              	.LVL56:
+  88:Drivers/MPU6050/STM32_I2C.c **** }
+ 504              		.loc 1 88 5 view .LVU95
+  88:Drivers/MPU6050/STM32_I2C.c **** }
+ 505              		.loc 1 88 12 is_stmt 0 view .LVU96
+ 506 0042 0120     		movs	r0, #1
+ 507              	.L36:
+  89:Drivers/MPU6050/STM32_I2C.c **** 
+ 508              		.loc 1 89 1 view .LVU97
+ 509 0044 10BD     		pop	{r4, pc}
+ 510              	.L38:
+  84:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 511              		.loc 1 84 9 is_stmt 1 view .LVU98
+ 512 0046 0022     		movs	r2, #0
+ 513 0048 4021     		movs	r1, #64
+ 514 004a 2046     		mov	r0, r4
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 13
+
+
+ 515 004c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 516              	.LVL57:
+  85:Drivers/MPU6050/STM32_I2C.c ****     }
+ 517              		.loc 1 85 9 view .LVU99
+  85:Drivers/MPU6050/STM32_I2C.c ****     }
+ 518              		.loc 1 85 16 is_stmt 0 view .LVU100
+ 519 0050 0020     		movs	r0, #0
+ 520 0052 F7E7     		b	.L36
+ 521              	.L40:
+ 522              		.align	2
+ 523              	.L39:
+ 524 0054 00040240 		.word	1073873920
+ 525              		.cfi_endproc
+ 526              	.LFE560:
+ 528              		.section	.text.I2C_ReceiveByte,"ax",%progbits
+ 529              		.align	1
+ 530              		.syntax unified
+ 531              		.thumb
+ 532              		.thumb_func
+ 534              	I2C_ReceiveByte:
+ 535              	.LFB562:
+ 108:Drivers/MPU6050/STM32_I2C.c **** 
+ 109:Drivers/MPU6050/STM32_I2C.c **** static uint8_t I2C_ReceiveByte(void)
+ 110:Drivers/MPU6050/STM32_I2C.c **** {
+ 536              		.loc 1 110 1 is_stmt 1 view -0
+ 537              		.cfi_startproc
+ 538              		@ args = 0, pretend = 0, frame = 0
+ 539              		@ frame_needed = 0, uses_anonymous_args = 0
+ 540 0000 70B5     		push	{r4, r5, r6, lr}
+ 541              	.LCFI8:
+ 542              		.cfi_def_cfa_offset 16
+ 543              		.cfi_offset 4, -16
+ 544              		.cfi_offset 5, -12
+ 545              		.cfi_offset 6, -8
+ 546              		.cfi_offset 14, -4
+ 111:Drivers/MPU6050/STM32_I2C.c ****     uint8_t i = 8;
+ 547              		.loc 1 111 5 view .LVU102
+ 548              	.LVL58:
+ 112:Drivers/MPU6050/STM32_I2C.c ****     uint8_t byte = 0;
+ 549              		.loc 1 112 5 view .LVU103
+ 113:Drivers/MPU6050/STM32_I2C.c **** 
+ 114:Drivers/MPU6050/STM32_I2C.c ****     SDA_H;
+ 550              		.loc 1 114 5 view .LVU104
+ 551 0002 0122     		movs	r2, #1
+ 552 0004 8021     		movs	r1, #128
+ 553 0006 1548     		ldr	r0, .L47
+ 554 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 555              	.LVL59:
+ 115:Drivers/MPU6050/STM32_I2C.c ****     while (i--) {
+ 556              		.loc 1 115 5 view .LVU105
+ 112:Drivers/MPU6050/STM32_I2C.c ****     uint8_t byte = 0;
+ 557              		.loc 1 112 13 is_stmt 0 view .LVU106
+ 558 000c 0024     		movs	r4, #0
+ 111:Drivers/MPU6050/STM32_I2C.c ****     uint8_t byte = 0;
+ 559              		.loc 1 111 13 view .LVU107
+ 560 000e 0822     		movs	r2, #8
+ 561              		.loc 1 115 11 view .LVU108
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 14
+
+
+ 562 0010 00E0     		b	.L42
+ 563              	.LVL60:
+ 564              	.L43:
+ 110:Drivers/MPU6050/STM32_I2C.c ****     uint8_t i = 8;
+ 565              		.loc 1 110 1 view .LVU109
+ 566 0012 2A46     		mov	r2, r5
+ 567              	.LVL61:
+ 568              	.L42:
+ 569              		.loc 1 115 11 is_stmt 1 view .LVU110
+ 570              		.loc 1 115 13 is_stmt 0 view .LVU111
+ 571 0014 531E     		subs	r3, r2, #1
+ 572 0016 DDB2     		uxtb	r5, r3
+ 573              	.LVL62:
+ 574              		.loc 1 115 11 view .LVU112
+ 575 0018 CAB1     		cbz	r2, .L46
+ 116:Drivers/MPU6050/STM32_I2C.c ****         byte <<= 1;
+ 576              		.loc 1 116 9 is_stmt 1 view .LVU113
+ 577              		.loc 1 116 14 is_stmt 0 view .LVU114
+ 578 001a 6400     		lsls	r4, r4, #1
+ 579              	.LVL63:
+ 580              		.loc 1 116 14 view .LVU115
+ 581 001c E4B2     		uxtb	r4, r4
+ 582              	.LVL64:
+ 117:Drivers/MPU6050/STM32_I2C.c ****         SCL_L;
+ 583              		.loc 1 117 9 is_stmt 1 view .LVU116
+ 584 001e 0F4E     		ldr	r6, .L47
+ 585 0020 0022     		movs	r2, #0
+ 586 0022 4021     		movs	r1, #64
+ 587 0024 3046     		mov	r0, r6
+ 588 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 589              	.LVL65:
+ 118:Drivers/MPU6050/STM32_I2C.c ****         I2C_delay();
+ 590              		.loc 1 118 9 view .LVU117
+ 591 002a FFF7FEFF 		bl	I2C_delay
+ 592              	.LVL66:
+ 119:Drivers/MPU6050/STM32_I2C.c ****         SCL_H;
+ 593              		.loc 1 119 9 view .LVU118
+ 594 002e 0122     		movs	r2, #1
+ 595 0030 4021     		movs	r1, #64
+ 596 0032 3046     		mov	r0, r6
+ 597 0034 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 598              	.LVL67:
+ 120:Drivers/MPU6050/STM32_I2C.c ****         I2C_delay();
+ 599              		.loc 1 120 9 view .LVU119
+ 600 0038 FFF7FEFF 		bl	I2C_delay
+ 601              	.LVL68:
+ 121:Drivers/MPU6050/STM32_I2C.c ****         if (SDA_read) {
+ 602              		.loc 1 121 9 view .LVU120
+ 603              		.loc 1 121 13 is_stmt 0 view .LVU121
+ 604 003c 8021     		movs	r1, #128
+ 605 003e 3046     		mov	r0, r6
+ 606 0040 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 607              	.LVL69:
+ 608              		.loc 1 121 12 view .LVU122
+ 609 0044 0028     		cmp	r0, #0
+ 610 0046 E4D0     		beq	.L43
+ 122:Drivers/MPU6050/STM32_I2C.c ****             byte |= 0x01;
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 15
+
+
+ 611              		.loc 1 122 13 is_stmt 1 view .LVU123
+ 612              		.loc 1 122 18 is_stmt 0 view .LVU124
+ 613 0048 44F00104 		orr	r4, r4, #1
+ 614              	.LVL70:
+ 615              		.loc 1 122 18 view .LVU125
+ 616 004c E1E7     		b	.L43
+ 617              	.L46:
+ 123:Drivers/MPU6050/STM32_I2C.c ****         }
+ 124:Drivers/MPU6050/STM32_I2C.c ****     }
+ 125:Drivers/MPU6050/STM32_I2C.c ****     SCL_L;
+ 618              		.loc 1 125 5 is_stmt 1 view .LVU126
+ 619 004e 4021     		movs	r1, #64
+ 620 0050 0248     		ldr	r0, .L47
+ 621 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 622              	.LVL71:
+ 126:Drivers/MPU6050/STM32_I2C.c ****     return byte;
+ 623              		.loc 1 126 5 view .LVU127
+ 127:Drivers/MPU6050/STM32_I2C.c **** }
+ 624              		.loc 1 127 1 is_stmt 0 view .LVU128
+ 625 0056 2046     		mov	r0, r4
+ 626 0058 70BD     		pop	{r4, r5, r6, pc}
+ 627              	.LVL72:
+ 628              	.L48:
+ 629              		.loc 1 127 1 view .LVU129
+ 630 005a 00BF     		.align	2
+ 631              	.L47:
+ 632 005c 00040240 		.word	1073873920
+ 633              		.cfi_endproc
+ 634              	.LFE562:
+ 636              		.section	.text.i2cInit,"ax",%progbits
+ 637              		.align	1
+ 638              		.global	i2cInit
+ 639              		.syntax unified
+ 640              		.thumb
+ 641              		.thumb_func
+ 643              	i2cInit:
+ 644              	.LFB563:
+ 128:Drivers/MPU6050/STM32_I2C.c **** 
+ 129:Drivers/MPU6050/STM32_I2C.c **** void i2cInit(void)
+ 130:Drivers/MPU6050/STM32_I2C.c **** {
+ 645              		.loc 1 130 1 is_stmt 1 view -0
+ 646              		.cfi_startproc
+ 647              		@ args = 0, pretend = 0, frame = 24
+ 648              		@ frame_needed = 0, uses_anonymous_args = 0
+ 649 0000 00B5     		push	{lr}
+ 650              	.LCFI9:
+ 651              		.cfi_def_cfa_offset 4
+ 652              		.cfi_offset 14, -4
+ 653 0002 87B0     		sub	sp, sp, #28
+ 654              	.LCFI10:
+ 655              		.cfi_def_cfa_offset 32
+ 131:Drivers/MPU6050/STM32_I2C.c ****     GPIO_InitTypeDef gpio;
+ 656              		.loc 1 131 5 view .LVU131
+ 132:Drivers/MPU6050/STM32_I2C.c **** 	//ÒÑ¸ü¸Ä
+ 133:Drivers/MPU6050/STM32_I2C.c ****     gpio.Pin = PIN_SCL | PIN_SDA;
+ 657              		.loc 1 133 5 view .LVU132
+ 658              		.loc 1 133 14 is_stmt 0 view .LVU133
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 16
+
+
+ 659 0004 C023     		movs	r3, #192
+ 660 0006 0193     		str	r3, [sp, #4]
+ 134:Drivers/MPU6050/STM32_I2C.c ****     gpio.Speed = GPIO_SPEED_FREQ_MEDIUM;
+ 661              		.loc 1 134 5 is_stmt 1 view .LVU134
+ 662              		.loc 1 134 16 is_stmt 0 view .LVU135
+ 663 0008 0123     		movs	r3, #1
+ 664 000a 0493     		str	r3, [sp, #16]
+ 135:Drivers/MPU6050/STM32_I2C.c ****     gpio.Mode = GPIO_MODE_OUTPUT_OD;
+ 665              		.loc 1 135 5 is_stmt 1 view .LVU136
+ 666              		.loc 1 135 15 is_stmt 0 view .LVU137
+ 667 000c 1123     		movs	r3, #17
+ 668 000e 0293     		str	r3, [sp, #8]
+ 136:Drivers/MPU6050/STM32_I2C.c ****     HAL_GPIO_Init(I2C_GPIO, &gpio);
+ 669              		.loc 1 136 5 is_stmt 1 view .LVU138
+ 670 0010 01A9     		add	r1, sp, #4
+ 671 0012 0348     		ldr	r0, .L51
+ 672 0014 FFF7FEFF 		bl	HAL_GPIO_Init
+ 673              	.LVL73:
+ 137:Drivers/MPU6050/STM32_I2C.c **** }
+ 674              		.loc 1 137 1 is_stmt 0 view .LVU139
+ 675 0018 07B0     		add	sp, sp, #28
+ 676              	.LCFI11:
+ 677              		.cfi_def_cfa_offset 4
+ 678              		@ sp needed
+ 679 001a 5DF804FB 		ldr	pc, [sp], #4
+ 680              	.L52:
+ 681 001e 00BF     		.align	2
+ 682              	.L51:
+ 683 0020 00040240 		.word	1073873920
+ 684              		.cfi_endproc
+ 685              	.LFE563:
+ 687              		.section	.text.i2cWriteBuffer,"ax",%progbits
+ 688              		.align	1
+ 689              		.global	i2cWriteBuffer
+ 690              		.syntax unified
+ 691              		.thumb
+ 692              		.thumb_func
+ 694              	i2cWriteBuffer:
+ 695              	.LVL74:
+ 696              	.LFB564:
+ 138:Drivers/MPU6050/STM32_I2C.c **** 
+ 139:Drivers/MPU6050/STM32_I2C.c **** bool i2cWriteBuffer(uint8_t addr, uint8_t reg, uint8_t len, uint8_t * data)
+ 140:Drivers/MPU6050/STM32_I2C.c **** {
+ 697              		.loc 1 140 1 is_stmt 1 view -0
+ 698              		.cfi_startproc
+ 699              		@ args = 0, pretend = 0, frame = 0
+ 700              		@ frame_needed = 0, uses_anonymous_args = 0
+ 701              		.loc 1 140 1 is_stmt 0 view .LVU141
+ 702 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 703              	.LCFI12:
+ 704              		.cfi_def_cfa_offset 24
+ 705              		.cfi_offset 4, -24
+ 706              		.cfi_offset 5, -20
+ 707              		.cfi_offset 6, -16
+ 708              		.cfi_offset 7, -12
+ 709              		.cfi_offset 8, -8
+ 710              		.cfi_offset 14, -4
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 17
+
+
+ 711 0004 0446     		mov	r4, r0
+ 712 0006 8846     		mov	r8, r1
+ 713 0008 1546     		mov	r5, r2
+ 714 000a 1E46     		mov	r6, r3
+ 141:Drivers/MPU6050/STM32_I2C.c ****     int i;
+ 715              		.loc 1 141 5 is_stmt 1 view .LVU142
+ 142:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_Start())
+ 716              		.loc 1 142 5 view .LVU143
+ 717              		.loc 1 142 10 is_stmt 0 view .LVU144
+ 718 000c FFF7FEFF 		bl	I2C_Start
+ 719              	.LVL75:
+ 720              		.loc 1 142 8 view .LVU145
+ 721 0010 0746     		mov	r7, r0
+ 722 0012 10B9     		cbnz	r0, .L60
+ 723              	.L54:
+ 143:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 144:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(addr << 1 | I2C_Direction_Transmitter);
+ 145:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_WaitAck()) {
+ 146:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 147:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 148:Drivers/MPU6050/STM32_I2C.c ****     }
+ 149:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(reg);
+ 150:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 151:Drivers/MPU6050/STM32_I2C.c ****     for (i = 0; i < len; i++) {
+ 152:Drivers/MPU6050/STM32_I2C.c ****         I2C_SendByte(data[i]);
+ 153:Drivers/MPU6050/STM32_I2C.c ****         if (!I2C_WaitAck()) {
+ 154:Drivers/MPU6050/STM32_I2C.c ****             I2C_Stop();
+ 155:Drivers/MPU6050/STM32_I2C.c ****             return false;
+ 156:Drivers/MPU6050/STM32_I2C.c ****         }
+ 157:Drivers/MPU6050/STM32_I2C.c ****     }
+ 158:Drivers/MPU6050/STM32_I2C.c ****     I2C_Stop();
+ 159:Drivers/MPU6050/STM32_I2C.c ****     return true;
+ 160:Drivers/MPU6050/STM32_I2C.c **** }
+ 724              		.loc 1 160 1 view .LVU146
+ 725 0014 3846     		mov	r0, r7
+ 726 0016 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 727              	.LVL76:
+ 728              	.L60:
+ 144:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_WaitAck()) {
+ 729              		.loc 1 144 5 is_stmt 1 view .LVU147
+ 730 001a 6000     		lsls	r0, r4, #1
+ 731 001c 00F0FE00 		and	r0, r0, #254
+ 732 0020 FFF7FEFF 		bl	I2C_SendByte
+ 733              	.LVL77:
+ 145:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 734              		.loc 1 145 5 view .LVU148
+ 145:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 735              		.loc 1 145 10 is_stmt 0 view .LVU149
+ 736 0024 FFF7FEFF 		bl	I2C_WaitAck
+ 737              	.LVL78:
+ 145:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 738              		.loc 1 145 8 view .LVU150
+ 739 0028 0746     		mov	r7, r0
+ 740 002a 80B1     		cbz	r0, .L61
+ 149:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 741              		.loc 1 149 5 is_stmt 1 view .LVU151
+ 742 002c 4046     		mov	r0, r8
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 18
+
+
+ 743 002e FFF7FEFF 		bl	I2C_SendByte
+ 744              	.LVL79:
+ 150:Drivers/MPU6050/STM32_I2C.c ****     for (i = 0; i < len; i++) {
+ 745              		.loc 1 150 5 view .LVU152
+ 746 0032 FFF7FEFF 		bl	I2C_WaitAck
+ 747              	.LVL80:
+ 151:Drivers/MPU6050/STM32_I2C.c ****         I2C_SendByte(data[i]);
+ 748              		.loc 1 151 5 view .LVU153
+ 151:Drivers/MPU6050/STM32_I2C.c ****         I2C_SendByte(data[i]);
+ 749              		.loc 1 151 12 is_stmt 0 view .LVU154
+ 750 0036 0024     		movs	r4, #0
+ 751              	.LVL81:
+ 752              	.L56:
+ 151:Drivers/MPU6050/STM32_I2C.c ****         I2C_SendByte(data[i]);
+ 753              		.loc 1 151 17 is_stmt 1 discriminator 1 view .LVU155
+ 151:Drivers/MPU6050/STM32_I2C.c ****         I2C_SendByte(data[i]);
+ 754              		.loc 1 151 5 is_stmt 0 discriminator 1 view .LVU156
+ 755 0038 A542     		cmp	r5, r4
+ 756 003a 0EDD     		ble	.L62
+ 152:Drivers/MPU6050/STM32_I2C.c ****         if (!I2C_WaitAck()) {
+ 757              		.loc 1 152 9 is_stmt 1 view .LVU157
+ 758 003c 305D     		ldrb	r0, [r6, r4]	@ zero_extendqisi2
+ 759 003e FFF7FEFF 		bl	I2C_SendByte
+ 760              	.LVL82:
+ 153:Drivers/MPU6050/STM32_I2C.c ****             I2C_Stop();
+ 761              		.loc 1 153 9 view .LVU158
+ 153:Drivers/MPU6050/STM32_I2C.c ****             I2C_Stop();
+ 762              		.loc 1 153 14 is_stmt 0 view .LVU159
+ 763 0042 FFF7FEFF 		bl	I2C_WaitAck
+ 764              	.LVL83:
+ 153:Drivers/MPU6050/STM32_I2C.c ****             I2C_Stop();
+ 765              		.loc 1 153 12 view .LVU160
+ 766 0046 0746     		mov	r7, r0
+ 767 0048 20B1     		cbz	r0, .L63
+ 151:Drivers/MPU6050/STM32_I2C.c ****         I2C_SendByte(data[i]);
+ 768              		.loc 1 151 26 is_stmt 1 discriminator 2 view .LVU161
+ 151:Drivers/MPU6050/STM32_I2C.c ****         I2C_SendByte(data[i]);
+ 769              		.loc 1 151 27 is_stmt 0 discriminator 2 view .LVU162
+ 770 004a 0134     		adds	r4, r4, #1
+ 771              	.LVL84:
+ 151:Drivers/MPU6050/STM32_I2C.c ****         I2C_SendByte(data[i]);
+ 772              		.loc 1 151 27 discriminator 2 view .LVU163
+ 773 004c F4E7     		b	.L56
+ 774              	.LVL85:
+ 775              	.L61:
+ 146:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 776              		.loc 1 146 9 is_stmt 1 view .LVU164
+ 777 004e FFF7FEFF 		bl	I2C_Stop
+ 778              	.LVL86:
+ 147:Drivers/MPU6050/STM32_I2C.c ****     }
+ 779              		.loc 1 147 9 view .LVU165
+ 147:Drivers/MPU6050/STM32_I2C.c ****     }
+ 780              		.loc 1 147 16 is_stmt 0 view .LVU166
+ 781 0052 DFE7     		b	.L54
+ 782              	.LVL87:
+ 783              	.L63:
+ 154:Drivers/MPU6050/STM32_I2C.c ****             return false;
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 19
+
+
+ 784              		.loc 1 154 13 is_stmt 1 view .LVU167
+ 785 0054 FFF7FEFF 		bl	I2C_Stop
+ 786              	.LVL88:
+ 155:Drivers/MPU6050/STM32_I2C.c ****         }
+ 787              		.loc 1 155 13 view .LVU168
+ 155:Drivers/MPU6050/STM32_I2C.c ****         }
+ 788              		.loc 1 155 20 is_stmt 0 view .LVU169
+ 789 0058 DCE7     		b	.L54
+ 790              	.L62:
+ 158:Drivers/MPU6050/STM32_I2C.c ****     return true;
+ 791              		.loc 1 158 5 is_stmt 1 view .LVU170
+ 792 005a FFF7FEFF 		bl	I2C_Stop
+ 793              	.LVL89:
+ 159:Drivers/MPU6050/STM32_I2C.c **** }
+ 794              		.loc 1 159 5 view .LVU171
+ 159:Drivers/MPU6050/STM32_I2C.c **** }
+ 795              		.loc 1 159 12 is_stmt 0 view .LVU172
+ 796 005e 0127     		movs	r7, #1
+ 797 0060 D8E7     		b	.L54
+ 798              		.cfi_endproc
+ 799              	.LFE564:
+ 801              		.section	.text.i2cwrite,"ax",%progbits
+ 802              		.align	1
+ 803              		.global	i2cwrite
+ 804              		.syntax unified
+ 805              		.thumb
+ 806              		.thumb_func
+ 808              	i2cwrite:
+ 809              	.LVL90:
+ 810              	.LFB565:
+ 161:Drivers/MPU6050/STM32_I2C.c **** /////////////////////////////////////////////////////////////////////////////////
+ 162:Drivers/MPU6050/STM32_I2C.c **** int8_t i2cwrite(uint8_t addr, uint8_t reg, uint8_t len, uint8_t * data)
+ 163:Drivers/MPU6050/STM32_I2C.c **** {
+ 811              		.loc 1 163 1 is_stmt 1 view -0
+ 812              		.cfi_startproc
+ 813              		@ args = 0, pretend = 0, frame = 0
+ 814              		@ frame_needed = 0, uses_anonymous_args = 0
+ 815              		.loc 1 163 1 is_stmt 0 view .LVU174
+ 816 0000 08B5     		push	{r3, lr}
+ 817              	.LCFI13:
+ 818              		.cfi_def_cfa_offset 8
+ 819              		.cfi_offset 3, -8
+ 820              		.cfi_offset 14, -4
+ 164:Drivers/MPU6050/STM32_I2C.c **** 	if(i2cWriteBuffer(addr,reg,len,data))
+ 821              		.loc 1 164 2 is_stmt 1 view .LVU175
+ 822              		.loc 1 164 5 is_stmt 0 view .LVU176
+ 823 0002 FFF7FEFF 		bl	i2cWriteBuffer
+ 824              	.LVL91:
+ 825              		.loc 1 164 4 view .LVU177
+ 826 0006 08B1     		cbz	r0, .L66
+ 165:Drivers/MPU6050/STM32_I2C.c **** 	{
+ 166:Drivers/MPU6050/STM32_I2C.c **** 		return TRUE;
+ 827              		.loc 1 166 10 view .LVU178
+ 828 0008 0020     		movs	r0, #0
+ 829              	.L65:
+ 167:Drivers/MPU6050/STM32_I2C.c **** 	}
+ 168:Drivers/MPU6050/STM32_I2C.c **** 	else
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 20
+
+
+ 169:Drivers/MPU6050/STM32_I2C.c **** 	{
+ 170:Drivers/MPU6050/STM32_I2C.c **** 		return FALSE;
+ 171:Drivers/MPU6050/STM32_I2C.c **** 	}
+ 172:Drivers/MPU6050/STM32_I2C.c **** 	//return FALSE;
+ 173:Drivers/MPU6050/STM32_I2C.c **** }
+ 830              		.loc 1 173 1 view .LVU179
+ 831 000a 08BD     		pop	{r3, pc}
+ 832              	.L66:
+ 170:Drivers/MPU6050/STM32_I2C.c **** 	}
+ 833              		.loc 1 170 10 view .LVU180
+ 834 000c 4FF0FF30 		mov	r0, #-1
+ 835 0010 FBE7     		b	.L65
+ 836              		.cfi_endproc
+ 837              	.LFE565:
+ 839              		.section	.text.i2cWrite,"ax",%progbits
+ 840              		.align	1
+ 841              		.global	i2cWrite
+ 842              		.syntax unified
+ 843              		.thumb
+ 844              		.thumb_func
+ 846              	i2cWrite:
+ 847              	.LVL92:
+ 848              	.LFB567:
+ 174:Drivers/MPU6050/STM32_I2C.c **** int8_t i2cread(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf)
+ 175:Drivers/MPU6050/STM32_I2C.c **** {
+ 176:Drivers/MPU6050/STM32_I2C.c **** 	if(i2cRead(addr,reg,len,buf))
+ 177:Drivers/MPU6050/STM32_I2C.c **** 	{
+ 178:Drivers/MPU6050/STM32_I2C.c **** 		return TRUE;
+ 179:Drivers/MPU6050/STM32_I2C.c **** 	}
+ 180:Drivers/MPU6050/STM32_I2C.c **** 	else
+ 181:Drivers/MPU6050/STM32_I2C.c **** 	{
+ 182:Drivers/MPU6050/STM32_I2C.c **** 		return FALSE;
+ 183:Drivers/MPU6050/STM32_I2C.c **** 	}
+ 184:Drivers/MPU6050/STM32_I2C.c **** 	//return FALSE;
+ 185:Drivers/MPU6050/STM32_I2C.c **** }
+ 186:Drivers/MPU6050/STM32_I2C.c **** //////////////////////////////////////////////////////////////////////////////////
+ 187:Drivers/MPU6050/STM32_I2C.c **** bool i2cWrite(uint8_t addr, uint8_t reg, uint8_t data)
+ 188:Drivers/MPU6050/STM32_I2C.c **** {
+ 849              		.loc 1 188 1 is_stmt 1 view -0
+ 850              		.cfi_startproc
+ 851              		@ args = 0, pretend = 0, frame = 0
+ 852              		@ frame_needed = 0, uses_anonymous_args = 0
+ 853              		.loc 1 188 1 is_stmt 0 view .LVU182
+ 854 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 855              	.LCFI14:
+ 856              		.cfi_def_cfa_offset 24
+ 857              		.cfi_offset 3, -24
+ 858              		.cfi_offset 4, -20
+ 859              		.cfi_offset 5, -16
+ 860              		.cfi_offset 6, -12
+ 861              		.cfi_offset 7, -8
+ 862              		.cfi_offset 14, -4
+ 863 0002 0446     		mov	r4, r0
+ 864 0004 0E46     		mov	r6, r1
+ 865 0006 1546     		mov	r5, r2
+ 189:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_Start())
+ 866              		.loc 1 189 5 is_stmt 1 view .LVU183
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 21
+
+
+ 867              		.loc 1 189 10 is_stmt 0 view .LVU184
+ 868 0008 FFF7FEFF 		bl	I2C_Start
+ 869              	.LVL93:
+ 870              		.loc 1 189 8 view .LVU185
+ 871 000c 0746     		mov	r7, r0
+ 872 000e 08B9     		cbnz	r0, .L72
+ 873              	.L69:
+ 190:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 191:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(addr << 1 | I2C_Direction_Transmitter);
+ 192:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_WaitAck()) {
+ 193:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 194:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 195:Drivers/MPU6050/STM32_I2C.c ****     }
+ 196:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(reg);
+ 197:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 198:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(data);
+ 199:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 200:Drivers/MPU6050/STM32_I2C.c ****     I2C_Stop();
+ 201:Drivers/MPU6050/STM32_I2C.c ****     return true;
+ 202:Drivers/MPU6050/STM32_I2C.c **** }
+ 874              		.loc 1 202 1 view .LVU186
+ 875 0010 3846     		mov	r0, r7
+ 876 0012 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 877              	.L72:
+ 191:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_WaitAck()) {
+ 878              		.loc 1 191 5 is_stmt 1 view .LVU187
+ 879 0014 6000     		lsls	r0, r4, #1
+ 880 0016 00F0FE00 		and	r0, r0, #254
+ 881 001a FFF7FEFF 		bl	I2C_SendByte
+ 882              	.LVL94:
+ 192:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 883              		.loc 1 192 5 view .LVU188
+ 192:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 884              		.loc 1 192 10 is_stmt 0 view .LVU189
+ 885 001e FFF7FEFF 		bl	I2C_WaitAck
+ 886              	.LVL95:
+ 192:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 887              		.loc 1 192 8 view .LVU190
+ 888 0022 0746     		mov	r7, r0
+ 889 0024 68B1     		cbz	r0, .L73
+ 196:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 890              		.loc 1 196 5 is_stmt 1 view .LVU191
+ 891 0026 3046     		mov	r0, r6
+ 892 0028 FFF7FEFF 		bl	I2C_SendByte
+ 893              	.LVL96:
+ 197:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(data);
+ 894              		.loc 1 197 5 view .LVU192
+ 895 002c FFF7FEFF 		bl	I2C_WaitAck
+ 896              	.LVL97:
+ 198:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 897              		.loc 1 198 5 view .LVU193
+ 898 0030 2846     		mov	r0, r5
+ 899 0032 FFF7FEFF 		bl	I2C_SendByte
+ 900              	.LVL98:
+ 199:Drivers/MPU6050/STM32_I2C.c ****     I2C_Stop();
+ 901              		.loc 1 199 5 view .LVU194
+ 902 0036 FFF7FEFF 		bl	I2C_WaitAck
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 22
+
+
+ 903              	.LVL99:
+ 200:Drivers/MPU6050/STM32_I2C.c ****     return true;
+ 904              		.loc 1 200 5 view .LVU195
+ 905 003a FFF7FEFF 		bl	I2C_Stop
+ 906              	.LVL100:
+ 201:Drivers/MPU6050/STM32_I2C.c **** }
+ 907              		.loc 1 201 5 view .LVU196
+ 201:Drivers/MPU6050/STM32_I2C.c **** }
+ 908              		.loc 1 201 12 is_stmt 0 view .LVU197
+ 909 003e 0127     		movs	r7, #1
+ 910 0040 E6E7     		b	.L69
+ 911              	.L73:
+ 193:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 912              		.loc 1 193 9 is_stmt 1 view .LVU198
+ 913 0042 FFF7FEFF 		bl	I2C_Stop
+ 914              	.LVL101:
+ 194:Drivers/MPU6050/STM32_I2C.c ****     }
+ 915              		.loc 1 194 9 view .LVU199
+ 194:Drivers/MPU6050/STM32_I2C.c ****     }
+ 916              		.loc 1 194 16 is_stmt 0 view .LVU200
+ 917 0046 E3E7     		b	.L69
+ 918              		.cfi_endproc
+ 919              	.LFE567:
+ 921              		.section	.text.i2cRead,"ax",%progbits
+ 922              		.align	1
+ 923              		.global	i2cRead
+ 924              		.syntax unified
+ 925              		.thumb
+ 926              		.thumb_func
+ 928              	i2cRead:
+ 929              	.LVL102:
+ 930              	.LFB568:
+ 203:Drivers/MPU6050/STM32_I2C.c **** 
+ 204:Drivers/MPU6050/STM32_I2C.c **** bool i2cRead(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf)
+ 205:Drivers/MPU6050/STM32_I2C.c **** {
+ 931              		.loc 1 205 1 is_stmt 1 view -0
+ 932              		.cfi_startproc
+ 933              		@ args = 0, pretend = 0, frame = 0
+ 934              		@ frame_needed = 0, uses_anonymous_args = 0
+ 935              		.loc 1 205 1 is_stmt 0 view .LVU202
+ 936 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 937              	.LCFI15:
+ 938              		.cfi_def_cfa_offset 24
+ 939              		.cfi_offset 4, -24
+ 940              		.cfi_offset 5, -20
+ 941              		.cfi_offset 6, -16
+ 942              		.cfi_offset 7, -12
+ 943              		.cfi_offset 8, -8
+ 944              		.cfi_offset 14, -4
+ 945 0004 0646     		mov	r6, r0
+ 946 0006 8846     		mov	r8, r1
+ 947 0008 1446     		mov	r4, r2
+ 948 000a 1D46     		mov	r5, r3
+ 206:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_Start())
+ 949              		.loc 1 206 5 is_stmt 1 view .LVU203
+ 950              		.loc 1 206 10 is_stmt 0 view .LVU204
+ 951 000c FFF7FEFF 		bl	I2C_Start
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 23
+
+
+ 952              	.LVL103:
+ 953              		.loc 1 206 8 view .LVU205
+ 954 0010 0746     		mov	r7, r0
+ 955 0012 10B9     		cbnz	r0, .L82
+ 956              	.LVL104:
+ 957              	.L75:
+ 207:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 208:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(addr << 1 | I2C_Direction_Transmitter);
+ 209:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_WaitAck()) {
+ 210:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 211:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 212:Drivers/MPU6050/STM32_I2C.c ****     }
+ 213:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(reg);
+ 214:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 215:Drivers/MPU6050/STM32_I2C.c ****     I2C_Start();
+ 216:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(addr << 1 | I2C_Direction_Receiver);
+ 217:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 218:Drivers/MPU6050/STM32_I2C.c ****     while (len) {
+ 219:Drivers/MPU6050/STM32_I2C.c ****         *buf = I2C_ReceiveByte();
+ 220:Drivers/MPU6050/STM32_I2C.c ****         if (len == 1)
+ 221:Drivers/MPU6050/STM32_I2C.c ****             I2C_NoAck();
+ 222:Drivers/MPU6050/STM32_I2C.c ****         else
+ 223:Drivers/MPU6050/STM32_I2C.c ****             I2C_Ack();
+ 224:Drivers/MPU6050/STM32_I2C.c ****         buf++;
+ 225:Drivers/MPU6050/STM32_I2C.c ****         len--;
+ 226:Drivers/MPU6050/STM32_I2C.c ****     }
+ 227:Drivers/MPU6050/STM32_I2C.c ****     I2C_Stop();
+ 228:Drivers/MPU6050/STM32_I2C.c ****     return true;
+ 229:Drivers/MPU6050/STM32_I2C.c **** }
+ 958              		.loc 1 229 1 view .LVU206
+ 959 0014 3846     		mov	r0, r7
+ 960 0016 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 961              	.LVL105:
+ 962              	.L82:
+ 208:Drivers/MPU6050/STM32_I2C.c ****     if (!I2C_WaitAck()) {
+ 963              		.loc 1 208 5 is_stmt 1 view .LVU207
+ 964 001a 7000     		lsls	r0, r6, #1
+ 965 001c 00F0FE00 		and	r0, r0, #254
+ 966 0020 FFF7FEFF 		bl	I2C_SendByte
+ 967              	.LVL106:
+ 209:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 968              		.loc 1 209 5 view .LVU208
+ 209:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 969              		.loc 1 209 10 is_stmt 0 view .LVU209
+ 970 0024 FFF7FEFF 		bl	I2C_WaitAck
+ 971              	.LVL107:
+ 209:Drivers/MPU6050/STM32_I2C.c ****         I2C_Stop();
+ 972              		.loc 1 209 8 view .LVU210
+ 973 0028 0746     		mov	r7, r0
+ 974 002a 78B1     		cbz	r0, .L83
+ 213:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 975              		.loc 1 213 5 is_stmt 1 view .LVU211
+ 976 002c 4046     		mov	r0, r8
+ 977 002e FFF7FEFF 		bl	I2C_SendByte
+ 978              	.LVL108:
+ 214:Drivers/MPU6050/STM32_I2C.c ****     I2C_Start();
+ 979              		.loc 1 214 5 view .LVU212
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 24
+
+
+ 980 0032 FFF7FEFF 		bl	I2C_WaitAck
+ 981              	.LVL109:
+ 215:Drivers/MPU6050/STM32_I2C.c ****     I2C_SendByte(addr << 1 | I2C_Direction_Receiver);
+ 982              		.loc 1 215 5 view .LVU213
+ 983 0036 FFF7FEFF 		bl	I2C_Start
+ 984              	.LVL110:
+ 216:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 985              		.loc 1 216 5 view .LVU214
+ 216:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 986              		.loc 1 216 23 is_stmt 0 view .LVU215
+ 987 003a 7000     		lsls	r0, r6, #1
+ 216:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 988              		.loc 1 216 28 view .LVU216
+ 989 003c 40F00100 		orr	r0, r0, #1
+ 216:Drivers/MPU6050/STM32_I2C.c ****     I2C_WaitAck();
+ 990              		.loc 1 216 5 view .LVU217
+ 991 0040 C0B2     		uxtb	r0, r0
+ 992 0042 FFF7FEFF 		bl	I2C_SendByte
+ 993              	.LVL111:
+ 217:Drivers/MPU6050/STM32_I2C.c ****     while (len) {
+ 994              		.loc 1 217 5 is_stmt 1 view .LVU218
+ 995 0046 FFF7FEFF 		bl	I2C_WaitAck
+ 996              	.LVL112:
+ 218:Drivers/MPU6050/STM32_I2C.c ****         *buf = I2C_ReceiveByte();
+ 997              		.loc 1 218 5 view .LVU219
+ 218:Drivers/MPU6050/STM32_I2C.c ****         *buf = I2C_ReceiveByte();
+ 998              		.loc 1 218 11 is_stmt 0 view .LVU220
+ 999 004a 07E0     		b	.L77
+ 1000              	.L83:
+ 210:Drivers/MPU6050/STM32_I2C.c ****         return false;
+ 1001              		.loc 1 210 9 is_stmt 1 view .LVU221
+ 1002 004c FFF7FEFF 		bl	I2C_Stop
+ 1003              	.LVL113:
+ 211:Drivers/MPU6050/STM32_I2C.c ****     }
+ 1004              		.loc 1 211 9 view .LVU222
+ 211:Drivers/MPU6050/STM32_I2C.c ****     }
+ 1005              		.loc 1 211 16 is_stmt 0 view .LVU223
+ 1006 0050 E0E7     		b	.L75
+ 1007              	.LVL114:
+ 1008              	.L85:
+ 221:Drivers/MPU6050/STM32_I2C.c ****         else
+ 1009              		.loc 1 221 13 is_stmt 1 view .LVU224
+ 1010 0052 FFF7FEFF 		bl	I2C_NoAck
+ 1011              	.LVL115:
+ 1012              	.L79:
+ 224:Drivers/MPU6050/STM32_I2C.c ****         len--;
+ 1013              		.loc 1 224 9 view .LVU225
+ 224:Drivers/MPU6050/STM32_I2C.c ****         len--;
+ 1014              		.loc 1 224 12 is_stmt 0 view .LVU226
+ 1015 0056 0135     		adds	r5, r5, #1
+ 1016              	.LVL116:
+ 225:Drivers/MPU6050/STM32_I2C.c ****     }
+ 1017              		.loc 1 225 9 is_stmt 1 view .LVU227
+ 225:Drivers/MPU6050/STM32_I2C.c ****     }
+ 1018              		.loc 1 225 12 is_stmt 0 view .LVU228
+ 1019 0058 013C     		subs	r4, r4, #1
+ 1020              	.LVL117:
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 25
+
+
+ 225:Drivers/MPU6050/STM32_I2C.c ****     }
+ 1021              		.loc 1 225 12 view .LVU229
+ 1022 005a E4B2     		uxtb	r4, r4
+ 1023              	.LVL118:
+ 1024              	.L77:
+ 218:Drivers/MPU6050/STM32_I2C.c ****         *buf = I2C_ReceiveByte();
+ 1025              		.loc 1 218 11 is_stmt 1 view .LVU230
+ 1026 005c 3CB1     		cbz	r4, .L84
+ 219:Drivers/MPU6050/STM32_I2C.c ****         if (len == 1)
+ 1027              		.loc 1 219 9 view .LVU231
+ 219:Drivers/MPU6050/STM32_I2C.c ****         if (len == 1)
+ 1028              		.loc 1 219 16 is_stmt 0 view .LVU232
+ 1029 005e FFF7FEFF 		bl	I2C_ReceiveByte
+ 1030              	.LVL119:
+ 219:Drivers/MPU6050/STM32_I2C.c ****         if (len == 1)
+ 1031              		.loc 1 219 14 view .LVU233
+ 1032 0062 2870     		strb	r0, [r5]
+ 220:Drivers/MPU6050/STM32_I2C.c ****             I2C_NoAck();
+ 1033              		.loc 1 220 9 is_stmt 1 view .LVU234
+ 220:Drivers/MPU6050/STM32_I2C.c ****             I2C_NoAck();
+ 1034              		.loc 1 220 12 is_stmt 0 view .LVU235
+ 1035 0064 012C     		cmp	r4, #1
+ 1036 0066 F4D0     		beq	.L85
+ 223:Drivers/MPU6050/STM32_I2C.c ****         buf++;
+ 1037              		.loc 1 223 13 is_stmt 1 view .LVU236
+ 1038 0068 FFF7FEFF 		bl	I2C_Ack
+ 1039              	.LVL120:
+ 1040 006c F3E7     		b	.L79
+ 1041              	.L84:
+ 227:Drivers/MPU6050/STM32_I2C.c ****     return true;
+ 1042              		.loc 1 227 5 view .LVU237
+ 1043 006e FFF7FEFF 		bl	I2C_Stop
+ 1044              	.LVL121:
+ 228:Drivers/MPU6050/STM32_I2C.c **** }
+ 1045              		.loc 1 228 5 view .LVU238
+ 228:Drivers/MPU6050/STM32_I2C.c **** }
+ 1046              		.loc 1 228 12 is_stmt 0 view .LVU239
+ 1047 0072 0127     		movs	r7, #1
+ 1048 0074 CEE7     		b	.L75
+ 1049              		.cfi_endproc
+ 1050              	.LFE568:
+ 1052              		.section	.text.i2cread,"ax",%progbits
+ 1053              		.align	1
+ 1054              		.global	i2cread
+ 1055              		.syntax unified
+ 1056              		.thumb
+ 1057              		.thumb_func
+ 1059              	i2cread:
+ 1060              	.LVL122:
+ 1061              	.LFB566:
+ 175:Drivers/MPU6050/STM32_I2C.c **** 	if(i2cRead(addr,reg,len,buf))
+ 1062              		.loc 1 175 1 is_stmt 1 view -0
+ 1063              		.cfi_startproc
+ 1064              		@ args = 0, pretend = 0, frame = 0
+ 1065              		@ frame_needed = 0, uses_anonymous_args = 0
+ 175:Drivers/MPU6050/STM32_I2C.c **** 	if(i2cRead(addr,reg,len,buf))
+ 1066              		.loc 1 175 1 is_stmt 0 view .LVU241
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 26
+
+
+ 1067 0000 08B5     		push	{r3, lr}
+ 1068              	.LCFI16:
+ 1069              		.cfi_def_cfa_offset 8
+ 1070              		.cfi_offset 3, -8
+ 1071              		.cfi_offset 14, -4
+ 176:Drivers/MPU6050/STM32_I2C.c **** 	{
+ 1072              		.loc 1 176 2 is_stmt 1 view .LVU242
+ 176:Drivers/MPU6050/STM32_I2C.c **** 	{
+ 1073              		.loc 1 176 5 is_stmt 0 view .LVU243
+ 1074 0002 FFF7FEFF 		bl	i2cRead
+ 1075              	.LVL123:
+ 176:Drivers/MPU6050/STM32_I2C.c **** 	{
+ 1076              		.loc 1 176 4 view .LVU244
+ 1077 0006 08B1     		cbz	r0, .L88
+ 178:Drivers/MPU6050/STM32_I2C.c **** 	}
+ 1078              		.loc 1 178 10 view .LVU245
+ 1079 0008 0020     		movs	r0, #0
+ 1080              	.L87:
+ 185:Drivers/MPU6050/STM32_I2C.c **** //////////////////////////////////////////////////////////////////////////////////
+ 1081              		.loc 1 185 1 view .LVU246
+ 1082 000a 08BD     		pop	{r3, pc}
+ 1083              	.L88:
+ 182:Drivers/MPU6050/STM32_I2C.c **** 	}
+ 1084              		.loc 1 182 10 view .LVU247
+ 1085 000c 4FF0FF30 		mov	r0, #-1
+ 1086 0010 FBE7     		b	.L87
+ 1087              		.cfi_endproc
+ 1088              	.LFE566:
+ 1090              		.section	.text.i2cGetErrorCounter,"ax",%progbits
+ 1091              		.align	1
+ 1092              		.global	i2cGetErrorCounter
+ 1093              		.syntax unified
+ 1094              		.thumb
+ 1095              		.thumb_func
+ 1097              	i2cGetErrorCounter:
+ 1098              	.LFB569:
+ 230:Drivers/MPU6050/STM32_I2C.c **** 
+ 231:Drivers/MPU6050/STM32_I2C.c **** uint16_t i2cGetErrorCounter(void)
+ 232:Drivers/MPU6050/STM32_I2C.c **** {
+ 1099              		.loc 1 232 1 is_stmt 1 view -0
+ 1100              		.cfi_startproc
+ 1101              		@ args = 0, pretend = 0, frame = 0
+ 1102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1103              		@ link register save eliminated.
+ 233:Drivers/MPU6050/STM32_I2C.c ****     // TODO maybe fix this, but since this is test code, doesn't matter.
+ 234:Drivers/MPU6050/STM32_I2C.c ****     return 0;
+ 1104              		.loc 1 234 5 view .LVU249
+ 235:Drivers/MPU6050/STM32_I2C.c **** }
+ 1105              		.loc 1 235 1 is_stmt 0 view .LVU250
+ 1106 0000 0020     		movs	r0, #0
+ 1107 0002 7047     		bx	lr
+ 1108              		.cfi_endproc
+ 1109              	.LFE569:
+ 1111              		.text
+ 1112              	.Letext0:
+ 1113              		.file 2 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\machine\\_default_ty
+ 1114              		.file 3 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\sys\\_stdint.h"
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 27
+
+
+ 1115              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1116              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1117              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ARM GAS  F:\msys64\tmp\cc4GCHvP.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 STM32_I2C.c
+F:\msys64\tmp\cc4GCHvP.s:20     .text.I2C_delay:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:25     .text.I2C_delay:00000000 I2C_delay
+F:\msys64\tmp\cc4GCHvP.s:66     .text.I2C_SendByte:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:71     .text.I2C_SendByte:00000000 I2C_SendByte
+F:\msys64\tmp\cc4GCHvP.s:166    .text.I2C_SendByte:0000005c $d
+F:\msys64\tmp\cc4GCHvP.s:171    .text.I2C_Stop:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:176    .text.I2C_Stop:00000000 I2C_Stop
+F:\msys64\tmp\cc4GCHvP.s:229    .text.I2C_Stop:00000040 $d
+F:\msys64\tmp\cc4GCHvP.s:234    .text.I2C_NoAck:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:239    .text.I2C_NoAck:00000000 I2C_NoAck
+F:\msys64\tmp\cc4GCHvP.s:292    .text.I2C_NoAck:00000040 $d
+F:\msys64\tmp\cc4GCHvP.s:297    .text.I2C_Ack:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:302    .text.I2C_Ack:00000000 I2C_Ack
+F:\msys64\tmp\cc4GCHvP.s:355    .text.I2C_Ack:00000040 $d
+F:\msys64\tmp\cc4GCHvP.s:360    .text.I2C_Start:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:365    .text.I2C_Start:00000000 I2C_Start
+F:\msys64\tmp\cc4GCHvP.s:441    .text.I2C_Start:00000058 $d
+F:\msys64\tmp\cc4GCHvP.s:446    .text.I2C_WaitAck:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:451    .text.I2C_WaitAck:00000000 I2C_WaitAck
+F:\msys64\tmp\cc4GCHvP.s:524    .text.I2C_WaitAck:00000054 $d
+F:\msys64\tmp\cc4GCHvP.s:529    .text.I2C_ReceiveByte:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:534    .text.I2C_ReceiveByte:00000000 I2C_ReceiveByte
+F:\msys64\tmp\cc4GCHvP.s:632    .text.I2C_ReceiveByte:0000005c $d
+F:\msys64\tmp\cc4GCHvP.s:637    .text.i2cInit:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:643    .text.i2cInit:00000000 i2cInit
+F:\msys64\tmp\cc4GCHvP.s:683    .text.i2cInit:00000020 $d
+F:\msys64\tmp\cc4GCHvP.s:688    .text.i2cWriteBuffer:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:694    .text.i2cWriteBuffer:00000000 i2cWriteBuffer
+F:\msys64\tmp\cc4GCHvP.s:802    .text.i2cwrite:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:808    .text.i2cwrite:00000000 i2cwrite
+F:\msys64\tmp\cc4GCHvP.s:840    .text.i2cWrite:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:846    .text.i2cWrite:00000000 i2cWrite
+F:\msys64\tmp\cc4GCHvP.s:922    .text.i2cRead:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:928    .text.i2cRead:00000000 i2cRead
+F:\msys64\tmp\cc4GCHvP.s:1053   .text.i2cread:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:1059   .text.i2cread:00000000 i2cread
+F:\msys64\tmp\cc4GCHvP.s:1091   .text.i2cGetErrorCounter:00000000 $t
+F:\msys64\tmp\cc4GCHvP.s:1097   .text.i2cGetErrorCounter:00000000 i2cGetErrorCounter
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_GPIO_ReadPin
+HAL_GPIO_Init

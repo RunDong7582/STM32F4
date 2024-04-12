@@ -1,0 +1,1406 @@
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"lcd_drv.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.LCD_Rst,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	LCD_Rst:
+  26              	.LFB555:
+  27              		.file 1 "Drivers/LCD/lcd_drv.c"
+   1:Drivers/LCD/lcd_drv.c **** #include "lcd_drv.h"
+   2:Drivers/LCD/lcd_drv.c **** 
+   3:Drivers/LCD/lcd_drv.c **** #define LCD_delay HAL_Delay
+   4:Drivers/LCD/lcd_drv.c **** 
+   5:Drivers/LCD/lcd_drv.c **** static void LCD_Rst(void)
+   6:Drivers/LCD/lcd_drv.c **** {
+  28              		.loc 1 6 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 4, -8
+  36              		.cfi_offset 14, -4
+   7:Drivers/LCD/lcd_drv.c ****     HAL_GPIO_WritePin(LCD_RST_GPIO_Port, LCD_RST_Pin, GPIO_PIN_RESET);
+  37              		.loc 1 7 5 view .LVU1
+  38 0002 0A4C     		ldr	r4, .L3
+  39 0004 0022     		movs	r2, #0
+  40 0006 4FF40051 		mov	r1, #8192
+  41 000a 2046     		mov	r0, r4
+  42 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  43              	.LVL0:
+   8:Drivers/LCD/lcd_drv.c ****     LCD_delay(100);
+  44              		.loc 1 8 5 view .LVU2
+  45 0010 6420     		movs	r0, #100
+  46 0012 FFF7FEFF 		bl	HAL_Delay
+  47              	.LVL1:
+   9:Drivers/LCD/lcd_drv.c ****     HAL_GPIO_WritePin(LCD_RST_GPIO_Port, LCD_RST_Pin, GPIO_PIN_SET);
+  48              		.loc 1 9 5 view .LVU3
+  49 0016 0122     		movs	r2, #1
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 2
+
+
+  50 0018 4FF40051 		mov	r1, #8192
+  51 001c 2046     		mov	r0, r4
+  52 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  53              	.LVL2:
+  10:Drivers/LCD/lcd_drv.c ****     LCD_delay(100);
+  54              		.loc 1 10 5 view .LVU4
+  55 0022 6420     		movs	r0, #100
+  56 0024 FFF7FEFF 		bl	HAL_Delay
+  57              	.LVL3:
+  11:Drivers/LCD/lcd_drv.c **** }
+  58              		.loc 1 11 1 is_stmt 0 view .LVU5
+  59 0028 10BD     		pop	{r4, pc}
+  60              	.L4:
+  61 002a 00BF     		.align	2
+  62              	.L3:
+  63 002c 000C0240 		.word	1073875968
+  64              		.cfi_endproc
+  65              	.LFE555:
+  67              		.section	.text.WriteComm,"ax",%progbits
+  68              		.align	1
+  69              		.global	WriteComm
+  70              		.syntax unified
+  71              		.thumb
+  72              		.thumb_func
+  74              	WriteComm:
+  75              	.LVL4:
+  76              	.LFB556:
+  12:Drivers/LCD/lcd_drv.c **** void WriteComm(uint16_t CMD)
+  13:Drivers/LCD/lcd_drv.c **** {
+  77              		.loc 1 13 1 is_stmt 1 view -0
+  78              		.cfi_startproc
+  79              		@ args = 0, pretend = 0, frame = 0
+  80              		@ frame_needed = 0, uses_anonymous_args = 0
+  81              		@ link register save eliminated.
+  14:Drivers/LCD/lcd_drv.c ****     *(__IO uint16_t *) (Bank1_LCD_C) = CMD;
+  82              		.loc 1 14 5 view .LVU7
+  83              		.loc 1 14 38 is_stmt 0 view .LVU8
+  84 0000 4FF0C043 		mov	r3, #1610612736
+  85 0004 1880     		strh	r0, [r3]	@ movhi
+  15:Drivers/LCD/lcd_drv.c **** }
+  86              		.loc 1 15 1 view .LVU9
+  87 0006 7047     		bx	lr
+  88              		.cfi_endproc
+  89              	.LFE556:
+  91              		.section	.text.WriteData,"ax",%progbits
+  92              		.align	1
+  93              		.global	WriteData
+  94              		.syntax unified
+  95              		.thumb
+  96              		.thumb_func
+  98              	WriteData:
+  99              	.LVL5:
+ 100              	.LFB557:
+  16:Drivers/LCD/lcd_drv.c **** void WriteData(uint16_t tem_data)
+  17:Drivers/LCD/lcd_drv.c **** {
+ 101              		.loc 1 17 1 is_stmt 1 view -0
+ 102              		.cfi_startproc
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 3
+
+
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105              		@ link register save eliminated.
+  18:Drivers/LCD/lcd_drv.c ****     *(__IO uint16_t *) (Bank1_LCD_D) = tem_data;
+ 106              		.loc 1 18 5 view .LVU11
+ 107              		.loc 1 18 38 is_stmt 0 view .LVU12
+ 108 0000 014B     		ldr	r3, .L7
+ 109 0002 1880     		strh	r0, [r3]	@ movhi
+  19:Drivers/LCD/lcd_drv.c **** }
+ 110              		.loc 1 19 1 view .LVU13
+ 111 0004 7047     		bx	lr
+ 112              	.L8:
+ 113 0006 00BF     		.align	2
+ 114              	.L7:
+ 115 0008 00000260 		.word	1610743808
+ 116              		.cfi_endproc
+ 117              	.LFE557:
+ 119              		.section	.text.LCD_WR_REG,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	LCD_WR_REG
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 126              	LCD_WR_REG:
+ 127              	.LVL6:
+ 128              	.LFB559:
+  20:Drivers/LCD/lcd_drv.c **** 
+  21:Drivers/LCD/lcd_drv.c **** /**********************************************
+  22:Drivers/LCD/lcd_drv.c **** Lcd初始化函数
+  23:Drivers/LCD/lcd_drv.c **** ***********************************************/
+  24:Drivers/LCD/lcd_drv.c **** void Lcd_Initialize(void)
+  25:Drivers/LCD/lcd_drv.c **** {
+  26:Drivers/LCD/lcd_drv.c ****     LCD_Rst();
+  27:Drivers/LCD/lcd_drv.c **** 
+  28:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x11,0x2004);
+  29:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0xCC00);
+  30:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x15,0x2600);
+  31:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x14,0x252A);
+  32:Drivers/LCD/lcd_drv.c **** //	LCD_WR_REG(0x14,0x002A);
+  33:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x12,0x0033);
+  34:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0xCC04);
+  35:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+  36:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0xCC06);
+  37:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+  38:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0xCC4F);
+  39:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+  40:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0x674F);
+  41:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x11,0x2003);
+  42:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+  43:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x30,0x2609);
+  44:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x31,0x242C);
+  45:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x32,0x1F23);
+  46:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x33,0x2425);
+  47:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x34,0x2226);
+  48:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x35,0x2523);
+  49:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x36,0x1C1A);
+  50:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x37,0x131D);
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 4
+
+
+  51:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x38,0x0B11);
+  52:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x39,0x1210);
+  53:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x3A,0x1315);
+  54:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x3B,0x3619);
+  55:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x3C,0x0D00);
+  56:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x3D,0x000D);
+  57:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x16,0x0007);
+  58:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x02,0x0013);
+  59:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x03,0x0008);
+  60:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x01,0x1027);
+  61:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+  62:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x08,0x0303);
+  63:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x0A,0x000B);
+  64:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x0B,0x0003);
+  65:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x0C,0x0000);
+  66:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x41,0x0000);
+  67:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x50,0x0000);
+  68:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x60,0x0005);
+  69:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x70,0x000B);
+  70:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x71,0x0000);
+  71:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x78,0x0000);
+  72:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x7A,0x0000);
+  73:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x79,0x0007);
+  74:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x07,0x0051);
+  75:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+  76:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x07,0x0053);
+  77:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x79,0x0000);
+  78:Drivers/LCD/lcd_drv.c ****     WriteComm(0x22);
+  79:Drivers/LCD/lcd_drv.c **** 
+  80:Drivers/LCD/lcd_drv.c **** 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);;
+  81:Drivers/LCD/lcd_drv.c **** 
+  82:Drivers/LCD/lcd_drv.c **** 	Lcd_ColorBox(0, 0, 320, 240, 0);
+  83:Drivers/LCD/lcd_drv.c **** }
+  84:Drivers/LCD/lcd_drv.c **** /******************************************
+  85:Drivers/LCD/lcd_drv.c **** 函数名：Lcd写命令函数
+  86:Drivers/LCD/lcd_drv.c **** 功能：向Lcd指定位置写入应有命令或数据
+  87:Drivers/LCD/lcd_drv.c **** 入口参数：Index 要寻址的寄存器地址
+  88:Drivers/LCD/lcd_drv.c ****           ConfigTemp 写入的数据或命令值
+  89:Drivers/LCD/lcd_drv.c **** ******************************************/
+  90:Drivers/LCD/lcd_drv.c **** void LCD_WR_REG(uint16_t Index,uint16_t CongfigTemp)
+  91:Drivers/LCD/lcd_drv.c **** {
+ 129              		.loc 1 91 1 is_stmt 1 view -0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133              		@ link register save eliminated.
+  92:Drivers/LCD/lcd_drv.c ****     *(__IO uint16_t *) (Bank1_LCD_C) = Index;
+ 134              		.loc 1 92 5 view .LVU15
+ 135              		.loc 1 92 38 is_stmt 0 view .LVU16
+ 136 0000 4FF0C043 		mov	r3, #1610612736
+ 137 0004 1880     		strh	r0, [r3]	@ movhi
+  93:Drivers/LCD/lcd_drv.c ****     *(__IO uint16_t *) (Bank1_LCD_D) = CongfigTemp;
+ 138              		.loc 1 93 5 is_stmt 1 view .LVU17
+ 139              		.loc 1 93 38 is_stmt 0 view .LVU18
+ 140 0006 03F50033 		add	r3, r3, #131072
+ 141 000a 1980     		strh	r1, [r3]	@ movhi
+  94:Drivers/LCD/lcd_drv.c **** }
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 5
+
+
+ 142              		.loc 1 94 1 view .LVU19
+ 143 000c 7047     		bx	lr
+ 144              		.cfi_endproc
+ 145              	.LFE559:
+ 147              		.section	.text.Lcd_WR_Start,"ax",%progbits
+ 148              		.align	1
+ 149              		.global	Lcd_WR_Start
+ 150              		.syntax unified
+ 151              		.thumb
+ 152              		.thumb_func
+ 154              	Lcd_WR_Start:
+ 155              	.LFB560:
+  95:Drivers/LCD/lcd_drv.c **** /************************************************
+  96:Drivers/LCD/lcd_drv.c **** 函数名：Lcd写开始函数
+  97:Drivers/LCD/lcd_drv.c **** 功能：控制Lcd控制引脚 执行写操作
+  98:Drivers/LCD/lcd_drv.c **** ************************************************/
+  99:Drivers/LCD/lcd_drv.c **** void Lcd_WR_Start(void)
+ 100:Drivers/LCD/lcd_drv.c **** {
+ 156              		.loc 1 100 1 is_stmt 1 view -0
+ 157              		.cfi_startproc
+ 158              		@ args = 0, pretend = 0, frame = 0
+ 159              		@ frame_needed = 0, uses_anonymous_args = 0
+ 160              		@ link register save eliminated.
+ 101:Drivers/LCD/lcd_drv.c ****     *(__IO uint16_t *) (Bank1_LCD_C) = 0x22;
+ 161              		.loc 1 101 5 view .LVU21
+ 162              		.loc 1 101 38 is_stmt 0 view .LVU22
+ 163 0000 4FF0C043 		mov	r3, #1610612736
+ 164 0004 2222     		movs	r2, #34
+ 165 0006 1A80     		strh	r2, [r3]	@ movhi
+ 102:Drivers/LCD/lcd_drv.c **** }
+ 166              		.loc 1 102 1 view .LVU23
+ 167 0008 7047     		bx	lr
+ 168              		.cfi_endproc
+ 169              	.LFE560:
+ 171              		.section	.text.Lcd_SetCursor,"ax",%progbits
+ 172              		.align	1
+ 173              		.global	Lcd_SetCursor
+ 174              		.syntax unified
+ 175              		.thumb
+ 176              		.thumb_func
+ 178              	Lcd_SetCursor:
+ 179              	.LVL7:
+ 180              	.LFB561:
+ 103:Drivers/LCD/lcd_drv.c **** /*************************************************
+ 104:Drivers/LCD/lcd_drv.c **** 函数名：Lcd光标起点定位函数
+ 105:Drivers/LCD/lcd_drv.c **** 功能：指定320240液晶上的一点作为写数据的起始点
+ 106:Drivers/LCD/lcd_drv.c **** 入口参数：x 坐标 0~239
+ 107:Drivers/LCD/lcd_drv.c ****           y 坐标 0~319
+ 108:Drivers/LCD/lcd_drv.c **** 返回值：无
+ 109:Drivers/LCD/lcd_drv.c **** *************************************************/
+ 110:Drivers/LCD/lcd_drv.c **** void Lcd_SetCursor(uint16_t x,uint16_t y)
+ 111:Drivers/LCD/lcd_drv.c **** {
+ 181              		.loc 1 111 1 is_stmt 1 view -0
+ 182              		.cfi_startproc
+ 183              		@ args = 0, pretend = 0, frame = 0
+ 184              		@ frame_needed = 0, uses_anonymous_args = 0
+ 185              		.loc 1 111 1 is_stmt 0 view .LVU25
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 6
+
+
+ 186 0000 10B5     		push	{r4, lr}
+ 187              	.LCFI1:
+ 188              		.cfi_def_cfa_offset 8
+ 189              		.cfi_offset 4, -8
+ 190              		.cfi_offset 14, -4
+ 191 0002 0446     		mov	r4, r0
+ 112:Drivers/LCD/lcd_drv.c ****     //坐标调转
+ 113:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x20,y);//水平坐标
+ 192              		.loc 1 113 5 is_stmt 1 view .LVU26
+ 193 0004 2020     		movs	r0, #32
+ 194              	.LVL8:
+ 195              		.loc 1 113 5 is_stmt 0 view .LVU27
+ 196 0006 FFF7FEFF 		bl	LCD_WR_REG
+ 197              	.LVL9:
+ 114:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x21,x);//垂直坐标
+ 198              		.loc 1 114 5 is_stmt 1 view .LVU28
+ 199 000a 2146     		mov	r1, r4
+ 200 000c 2120     		movs	r0, #33
+ 201 000e FFF7FEFF 		bl	LCD_WR_REG
+ 202              	.LVL10:
+ 115:Drivers/LCD/lcd_drv.c **** }
+ 203              		.loc 1 115 1 is_stmt 0 view .LVU29
+ 204 0012 10BD     		pop	{r4, pc}
+ 205              		.cfi_endproc
+ 206              	.LFE561:
+ 208              		.section	.text.BlockWrite,"ax",%progbits
+ 209              		.align	1
+ 210              		.global	BlockWrite
+ 211              		.syntax unified
+ 212              		.thumb
+ 213              		.thumb_func
+ 215              	BlockWrite:
+ 216              	.LVL11:
+ 217              	.LFB562:
+ 116:Drivers/LCD/lcd_drv.c **** 
+ 117:Drivers/LCD/lcd_drv.c **** /**********************************************
+ 118:Drivers/LCD/lcd_drv.c **** 函数名：Lcd块选函数
+ 119:Drivers/LCD/lcd_drv.c **** 功能：选定Lcd上指定的矩形区域
+ 120:Drivers/LCD/lcd_drv.c **** 
+ 121:Drivers/LCD/lcd_drv.c **** 注意：xStart、yStart、Xend、Yend随着屏幕的旋转而改变，位置是矩形框的四个角
+ 122:Drivers/LCD/lcd_drv.c **** 
+ 123:Drivers/LCD/lcd_drv.c **** 入口参数：xStart x方向的起始点
+ 124:Drivers/LCD/lcd_drv.c ****           ySrart y方向的起始点
+ 125:Drivers/LCD/lcd_drv.c ****           Xend   y方向的终止点
+ 126:Drivers/LCD/lcd_drv.c ****           Yend   y方向的终止点
+ 127:Drivers/LCD/lcd_drv.c **** 返回值：无
+ 128:Drivers/LCD/lcd_drv.c **** ***********************************************/
+ 129:Drivers/LCD/lcd_drv.c **** void BlockWrite(unsigned int Xstart,unsigned int Xend,unsigned int Ystart,unsigned int Yend)
+ 130:Drivers/LCD/lcd_drv.c **** {
+ 218              		.loc 1 130 1 is_stmt 1 view -0
+ 219              		.cfi_startproc
+ 220              		@ args = 0, pretend = 0, frame = 0
+ 221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 222              		.loc 1 130 1 is_stmt 0 view .LVU31
+ 223 0000 70B5     		push	{r4, r5, r6, lr}
+ 224              	.LCFI2:
+ 225              		.cfi_def_cfa_offset 16
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 7
+
+
+ 226              		.cfi_offset 4, -16
+ 227              		.cfi_offset 5, -12
+ 228              		.cfi_offset 6, -8
+ 229              		.cfi_offset 14, -4
+ 131:Drivers/LCD/lcd_drv.c **** 	uint16_t t;
+ 230              		.loc 1 131 2 is_stmt 1 view .LVU32
+ 132:Drivers/LCD/lcd_drv.c **** 	while (Xstart >= 320)
+ 231              		.loc 1 132 2 view .LVU33
+ 232              		.loc 1 132 8 is_stmt 0 view .LVU34
+ 233 0002 01E0     		b	.L14
+ 234              	.L15:
+ 133:Drivers/LCD/lcd_drv.c **** 		Xstart -= 320;
+ 235              		.loc 1 133 3 is_stmt 1 view .LVU35
+ 236              		.loc 1 133 10 is_stmt 0 view .LVU36
+ 237 0004 A0F5A070 		sub	r0, r0, #320
+ 238              	.LVL12:
+ 239              	.L14:
+ 132:Drivers/LCD/lcd_drv.c **** 	while (Xstart >= 320)
+ 240              		.loc 1 132 8 is_stmt 1 view .LVU37
+ 241 0008 B0F5A07F 		cmp	r0, #320
+ 242 000c FAD2     		bcs	.L15
+ 132:Drivers/LCD/lcd_drv.c **** 	while (Xstart >= 320)
+ 243              		.loc 1 132 8 is_stmt 0 view .LVU38
+ 244 000e 00E0     		b	.L16
+ 245              	.L17:
+ 134:Drivers/LCD/lcd_drv.c **** 	while (Ystart >= 240)
+ 135:Drivers/LCD/lcd_drv.c **** 		Ystart -= 240;
+ 246              		.loc 1 135 3 is_stmt 1 view .LVU39
+ 247              		.loc 1 135 10 is_stmt 0 view .LVU40
+ 248 0010 F03A     		subs	r2, r2, #240
+ 249              	.LVL13:
+ 250              	.L16:
+ 134:Drivers/LCD/lcd_drv.c **** 	while (Ystart >= 240)
+ 251              		.loc 1 134 8 is_stmt 1 view .LVU41
+ 252 0012 EF2A     		cmp	r2, #239
+ 253 0014 FCD8     		bhi	.L17
+ 136:Drivers/LCD/lcd_drv.c **** 	Xstart = 320 - Xstart - 1;
+ 254              		.loc 1 136 2 view .LVU42
+ 255              		.loc 1 136 9 is_stmt 0 view .LVU43
+ 256 0016 C0F59F74 		rsb	r4, r0, #318
+ 257 001a 0134     		adds	r4, r4, #1
+ 258              	.LVL14:
+ 137:Drivers/LCD/lcd_drv.c **** 	Ystart = 240 - Ystart - 1;
+ 259              		.loc 1 137 2 is_stmt 1 view .LVU44
+ 260              		.loc 1 137 9 is_stmt 0 view .LVU45
+ 261 001c C2F1EF02 		rsb	r2, r2, #239
+ 262              	.LVL15:
+ 138:Drivers/LCD/lcd_drv.c **** 
+ 139:Drivers/LCD/lcd_drv.c **** 	while (Xend >= 320)
+ 263              		.loc 1 139 2 is_stmt 1 view .LVU46
+ 264              		.loc 1 139 8 is_stmt 0 view .LVU47
+ 265 0020 01E0     		b	.L18
+ 266              	.L19:
+ 140:Drivers/LCD/lcd_drv.c **** 		Xend -= 320;
+ 267              		.loc 1 140 3 is_stmt 1 view .LVU48
+ 268              		.loc 1 140 8 is_stmt 0 view .LVU49
+ 269 0022 A1F5A071 		sub	r1, r1, #320
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 8
+
+
+ 270              	.LVL16:
+ 271              	.L18:
+ 139:Drivers/LCD/lcd_drv.c **** 		Xend -= 320;
+ 272              		.loc 1 139 8 is_stmt 1 view .LVU50
+ 273 0026 B1F5A07F 		cmp	r1, #320
+ 274 002a FAD2     		bcs	.L19
+ 139:Drivers/LCD/lcd_drv.c **** 		Xend -= 320;
+ 275              		.loc 1 139 8 is_stmt 0 view .LVU51
+ 276 002c 00E0     		b	.L20
+ 277              	.L21:
+ 141:Drivers/LCD/lcd_drv.c **** 	while (Yend >= 240)
+ 142:Drivers/LCD/lcd_drv.c **** 		Yend -= 240;
+ 278              		.loc 1 142 3 is_stmt 1 view .LVU52
+ 279              		.loc 1 142 8 is_stmt 0 view .LVU53
+ 280 002e F03B     		subs	r3, r3, #240
+ 281              	.LVL17:
+ 282              	.L20:
+ 141:Drivers/LCD/lcd_drv.c **** 	while (Yend >= 240)
+ 283              		.loc 1 141 8 is_stmt 1 view .LVU54
+ 284 0030 EF2B     		cmp	r3, #239
+ 285 0032 FCD8     		bhi	.L21
+ 143:Drivers/LCD/lcd_drv.c **** 	Xend = 320 - Xend - 1;
+ 286              		.loc 1 143 2 view .LVU55
+ 287              		.loc 1 143 7 is_stmt 0 view .LVU56
+ 288 0034 C1F59F76 		rsb	r6, r1, #318
+ 289 0038 0136     		adds	r6, r6, #1
+ 290              	.LVL18:
+ 144:Drivers/LCD/lcd_drv.c **** 	Yend = 240 - Yend - 1;
+ 291              		.loc 1 144 2 is_stmt 1 view .LVU57
+ 292              		.loc 1 144 7 is_stmt 0 view .LVU58
+ 293 003a C3F1EF03 		rsb	r3, r3, #239
+ 294              	.LVL19:
+ 145:Drivers/LCD/lcd_drv.c **** 	
+ 146:Drivers/LCD/lcd_drv.c **** 	if (Yend < Ystart)
+ 295              		.loc 1 146 2 is_stmt 1 view .LVU59
+ 296              		.loc 1 146 5 is_stmt 0 view .LVU60
+ 297 003e 9A42     		cmp	r2, r3
+ 298 0040 02D9     		bls	.L22
+ 147:Drivers/LCD/lcd_drv.c **** 	{
+ 148:Drivers/LCD/lcd_drv.c **** 		t = Ystart;
+ 299              		.loc 1 148 3 is_stmt 1 view .LVU61
+ 300              	.LVL20:
+ 149:Drivers/LCD/lcd_drv.c **** 		Ystart = Yend;
+ 301              		.loc 1 149 3 view .LVU62
+ 150:Drivers/LCD/lcd_drv.c **** 		Yend = t;
+ 302              		.loc 1 150 3 view .LVU63
+ 303 0042 91B2     		uxth	r1, r2
+ 304              	.LVL21:
+ 149:Drivers/LCD/lcd_drv.c **** 		Ystart = Yend;
+ 305              		.loc 1 149 10 is_stmt 0 view .LVU64
+ 306 0044 1A46     		mov	r2, r3
+ 307              	.LVL22:
+ 308              		.loc 1 150 8 view .LVU65
+ 309 0046 0B46     		mov	r3, r1
+ 310              	.LVL23:
+ 311              	.L22:
+ 151:Drivers/LCD/lcd_drv.c **** 	}
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 9
+
+
+ 152:Drivers/LCD/lcd_drv.c **** 	if (Xend < Xstart)
+ 312              		.loc 1 152 2 is_stmt 1 view .LVU66
+ 313              		.loc 1 152 5 is_stmt 0 view .LVU67
+ 314 0048 B442     		cmp	r4, r6
+ 315 004a 02D9     		bls	.L23
+ 153:Drivers/LCD/lcd_drv.c **** 	{
+ 154:Drivers/LCD/lcd_drv.c **** 		t = Xstart;
+ 316              		.loc 1 154 3 is_stmt 1 view .LVU68
+ 317              	.LVL24:
+ 155:Drivers/LCD/lcd_drv.c **** 		Xstart = Xend;
+ 318              		.loc 1 155 3 view .LVU69
+ 156:Drivers/LCD/lcd_drv.c **** 		Xend = t;
+ 319              		.loc 1 156 3 view .LVU70
+ 320 004c A1B2     		uxth	r1, r4
+ 321              	.LVL25:
+ 155:Drivers/LCD/lcd_drv.c **** 		Xstart = Xend;
+ 322              		.loc 1 155 10 is_stmt 0 view .LVU71
+ 323 004e 3446     		mov	r4, r6
+ 324              	.LVL26:
+ 325              		.loc 1 156 8 view .LVU72
+ 326 0050 0E46     		mov	r6, r1
+ 327              	.LVL27:
+ 328              	.L23:
+ 157:Drivers/LCD/lcd_drv.c **** 	}
+ 158:Drivers/LCD/lcd_drv.c **** 
+ 159:Drivers/LCD/lcd_drv.c **** 	//x与y交换
+ 160:Drivers/LCD/lcd_drv.c **** 	LCD_WR_REG(0x0046,(Yend<<8)|Ystart);//水平GRAM终止，起始位置
+ 329              		.loc 1 160 2 is_stmt 1 view .LVU73
+ 330              		.loc 1 160 25 is_stmt 0 view .LVU74
+ 331 0052 1B02     		lsls	r3, r3, #8
+ 332              	.LVL28:
+ 333              		.loc 1 160 25 view .LVU75
+ 334 0054 99B2     		uxth	r1, r3
+ 335              		.loc 1 160 2 view .LVU76
+ 336 0056 95B2     		uxth	r5, r2
+ 337 0058 2943     		orrs	r1, r1, r5
+ 338 005a 4620     		movs	r0, #70
+ 339 005c FFF7FEFF 		bl	LCD_WR_REG
+ 340              	.LVL29:
+ 161:Drivers/LCD/lcd_drv.c **** 	LCD_WR_REG(0x0047,Xend);//垂直GRAM终止位置
+ 341              		.loc 1 161 2 is_stmt 1 view .LVU77
+ 342 0060 B1B2     		uxth	r1, r6
+ 343 0062 4720     		movs	r0, #71
+ 344 0064 FFF7FEFF 		bl	LCD_WR_REG
+ 345              	.LVL30:
+ 162:Drivers/LCD/lcd_drv.c **** 	LCD_WR_REG(0x0048,Xstart);//垂直 GRAM起始位置
+ 346              		.loc 1 162 2 view .LVU78
+ 347 0068 A4B2     		uxth	r4, r4
+ 348              	.LVL31:
+ 349              		.loc 1 162 2 is_stmt 0 view .LVU79
+ 350 006a 2146     		mov	r1, r4
+ 351 006c 4820     		movs	r0, #72
+ 352 006e FFF7FEFF 		bl	LCD_WR_REG
+ 353              	.LVL32:
+ 163:Drivers/LCD/lcd_drv.c **** 
+ 164:Drivers/LCD/lcd_drv.c **** 	Lcd_SetCursor(Xstart, Ystart);
+ 354              		.loc 1 164 2 is_stmt 1 view .LVU80
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 10
+
+
+ 355 0072 2946     		mov	r1, r5
+ 356 0074 2046     		mov	r0, r4
+ 357 0076 FFF7FEFF 		bl	Lcd_SetCursor
+ 358              	.LVL33:
+ 165:Drivers/LCD/lcd_drv.c **** 
+ 166:Drivers/LCD/lcd_drv.c **** 	WriteComm(0x022);
+ 359              		.loc 1 166 2 view .LVU81
+ 360 007a 2220     		movs	r0, #34
+ 361 007c FFF7FEFF 		bl	WriteComm
+ 362              	.LVL34:
+ 167:Drivers/LCD/lcd_drv.c **** }
+ 363              		.loc 1 167 1 is_stmt 0 view .LVU82
+ 364 0080 70BD     		pop	{r4, r5, r6, pc}
+ 365              		.loc 1 167 1 view .LVU83
+ 366              		.cfi_endproc
+ 367              	.LFE562:
+ 369              		.section	.text.GetPoint,"ax",%progbits
+ 370              		.align	1
+ 371              		.global	GetPoint
+ 372              		.syntax unified
+ 373              		.thumb
+ 374              		.thumb_func
+ 376              	GetPoint:
+ 377              	.LVL35:
+ 378              	.LFB563:
+ 168:Drivers/LCD/lcd_drv.c **** uint16_t GetPoint(uint16_t x,uint16_t y)
+ 169:Drivers/LCD/lcd_drv.c **** {
+ 379              		.loc 1 169 1 is_stmt 1 view -0
+ 380              		.cfi_startproc
+ 381              		@ args = 0, pretend = 0, frame = 0
+ 382              		@ frame_needed = 0, uses_anonymous_args = 0
+ 383              		.loc 1 169 1 is_stmt 0 view .LVU85
+ 384 0000 08B5     		push	{r3, lr}
+ 385              	.LCFI3:
+ 386              		.cfi_def_cfa_offset 8
+ 387              		.cfi_offset 3, -8
+ 388              		.cfi_offset 14, -4
+ 170:Drivers/LCD/lcd_drv.c **** 	if (x < 320)
+ 389              		.loc 1 170 2 is_stmt 1 view .LVU86
+ 390              		.loc 1 170 5 is_stmt 0 view .LVU87
+ 391 0002 B0F5A07F 		cmp	r0, #320
+ 392 0006 02D2     		bcs	.L26
+ 171:Drivers/LCD/lcd_drv.c **** 		x = 320 - x;
+ 393              		.loc 1 171 3 is_stmt 1 view .LVU88
+ 394              		.loc 1 171 5 is_stmt 0 view .LVU89
+ 395 0008 C0F5A070 		rsb	r0, r0, #320
+ 396              	.LVL36:
+ 397              		.loc 1 171 5 view .LVU90
+ 398 000c 80B2     		uxth	r0, r0
+ 399              	.LVL37:
+ 400              	.L26:
+ 172:Drivers/LCD/lcd_drv.c **** 	if (y < 240)
+ 401              		.loc 1 172 2 is_stmt 1 view .LVU91
+ 402              		.loc 1 172 5 is_stmt 0 view .LVU92
+ 403 000e EF29     		cmp	r1, #239
+ 404 0010 02D8     		bhi	.L27
+ 173:Drivers/LCD/lcd_drv.c **** 		y = 240 - y;
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 11
+
+
+ 405              		.loc 1 173 3 is_stmt 1 view .LVU93
+ 406              		.loc 1 173 5 is_stmt 0 view .LVU94
+ 407 0012 C1F1F001 		rsb	r1, r1, #240
+ 408              	.LVL38:
+ 409              		.loc 1 173 5 view .LVU95
+ 410 0016 89B2     		uxth	r1, r1
+ 411              	.LVL39:
+ 412              	.L27:
+ 174:Drivers/LCD/lcd_drv.c **** 	Lcd_SetCursor(x, y);
+ 413              		.loc 1 174 2 is_stmt 1 view .LVU96
+ 414 0018 FFF7FEFF 		bl	Lcd_SetCursor
+ 415              	.LVL40:
+ 175:Drivers/LCD/lcd_drv.c **** 	WriteComm(0x022);
+ 416              		.loc 1 175 2 view .LVU97
+ 417 001c 2220     		movs	r0, #34
+ 418 001e FFF7FEFF 		bl	WriteComm
+ 419              	.LVL41:
+ 176:Drivers/LCD/lcd_drv.c **** 	x = *(__IO uint16_t *) (Bank1_LCD_D);
+ 420              		.loc 1 176 2 view .LVU98
+ 421              		.loc 1 176 4 is_stmt 0 view .LVU99
+ 422 0022 024B     		ldr	r3, .L29
+ 423 0024 1A88     		ldrh	r2, [r3]
+ 177:Drivers/LCD/lcd_drv.c **** 	return  *(__IO uint16_t *) (Bank1_LCD_D);
+ 424              		.loc 1 177 2 is_stmt 1 view .LVU100
+ 425              		.loc 1 177 10 is_stmt 0 view .LVU101
+ 426 0026 1888     		ldrh	r0, [r3]
+ 178:Drivers/LCD/lcd_drv.c **** }
+ 427              		.loc 1 178 1 view .LVU102
+ 428 0028 80B2     		uxth	r0, r0
+ 429 002a 08BD     		pop	{r3, pc}
+ 430              	.L30:
+ 431              		.align	2
+ 432              	.L29:
+ 433 002c 00000260 		.word	1610743808
+ 434              		.cfi_endproc
+ 435              	.LFE563:
+ 437              		.section	.text.Lcd_ColorBox,"ax",%progbits
+ 438              		.align	1
+ 439              		.global	Lcd_ColorBox
+ 440              		.syntax unified
+ 441              		.thumb
+ 442              		.thumb_func
+ 444              	Lcd_ColorBox:
+ 445              	.LVL42:
+ 446              	.LFB564:
+ 179:Drivers/LCD/lcd_drv.c **** /**********************************************
+ 180:Drivers/LCD/lcd_drv.c **** 函数名：Lcd块选函数
+ 181:Drivers/LCD/lcd_drv.c **** 功能：选定Lcd上指定的矩形区域
+ 182:Drivers/LCD/lcd_drv.c **** 
+ 183:Drivers/LCD/lcd_drv.c **** 注意：xStart和 yStart随着屏幕的旋转而改变，位置是矩形框的四个角
+ 184:Drivers/LCD/lcd_drv.c **** 
+ 185:Drivers/LCD/lcd_drv.c **** 入口参数：xStart x方向的起始点
+ 186:Drivers/LCD/lcd_drv.c ****           ySrart y方向的终止点
+ 187:Drivers/LCD/lcd_drv.c ****           xLong 要选定矩形的x方向长度
+ 188:Drivers/LCD/lcd_drv.c ****           yLong  要选定矩形的y方向长度
+ 189:Drivers/LCD/lcd_drv.c **** 返回值：无
+ 190:Drivers/LCD/lcd_drv.c **** ***********************************************/
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 12
+
+
+ 191:Drivers/LCD/lcd_drv.c **** void Lcd_ColorBox(uint16_t xStart,uint16_t yStart,uint16_t xLong,uint16_t yLong,uint16_t Color)
+ 192:Drivers/LCD/lcd_drv.c **** {
+ 447              		.loc 1 192 1 is_stmt 1 view -0
+ 448              		.cfi_startproc
+ 449              		@ args = 4, pretend = 0, frame = 0
+ 450              		@ frame_needed = 0, uses_anonymous_args = 0
+ 451              		.loc 1 192 1 is_stmt 0 view .LVU104
+ 452 0000 70B5     		push	{r4, r5, r6, lr}
+ 453              	.LCFI4:
+ 454              		.cfi_def_cfa_offset 16
+ 455              		.cfi_offset 4, -16
+ 456              		.cfi_offset 5, -12
+ 457              		.cfi_offset 6, -8
+ 458              		.cfi_offset 14, -4
+ 459 0002 1546     		mov	r5, r2
+ 460 0004 1C46     		mov	r4, r3
+ 461 0006 BDF81060 		ldrh	r6, [sp, #16]
+ 193:Drivers/LCD/lcd_drv.c ****     uint32_t temp;
+ 462              		.loc 1 193 5 is_stmt 1 view .LVU105
+ 194:Drivers/LCD/lcd_drv.c **** 
+ 195:Drivers/LCD/lcd_drv.c ****     BlockWrite(xStart,xStart+xLong-1,yStart,yStart+yLong-1);
+ 463              		.loc 1 195 5 view .LVU106
+ 464              		.loc 1 195 29 is_stmt 0 view .LVU107
+ 465 000a 00EB020C 		add	ip, r0, r2
+ 466              		.loc 1 195 51 view .LVU108
+ 467 000e CB18     		adds	r3, r1, r3
+ 468              	.LVL43:
+ 469              		.loc 1 195 5 view .LVU109
+ 470 0010 013B     		subs	r3, r3, #1
+ 471 0012 0A46     		mov	r2, r1
+ 472              	.LVL44:
+ 473              		.loc 1 195 5 view .LVU110
+ 474 0014 0CF1FF31 		add	r1, ip, #-1
+ 475              	.LVL45:
+ 476              		.loc 1 195 5 view .LVU111
+ 477 0018 FFF7FEFF 		bl	BlockWrite
+ 478              	.LVL46:
+ 196:Drivers/LCD/lcd_drv.c ****     for (temp=0; temp<xLong*yLong; temp++)
+ 479              		.loc 1 196 5 is_stmt 1 view .LVU112
+ 480              		.loc 1 196 14 is_stmt 0 view .LVU113
+ 481 001c 0021     		movs	r1, #0
+ 482              		.loc 1 196 5 view .LVU114
+ 483 001e 02E0     		b	.L32
+ 484              	.LVL47:
+ 485              	.L33:
+ 197:Drivers/LCD/lcd_drv.c ****     {
+ 198:Drivers/LCD/lcd_drv.c ****         *(__IO uint16_t *) (Bank1_LCD_D) = Color;
+ 486              		.loc 1 198 9 is_stmt 1 discriminator 3 view .LVU115
+ 487              		.loc 1 198 42 is_stmt 0 discriminator 3 view .LVU116
+ 488 0020 0348     		ldr	r0, .L35
+ 489 0022 0680     		strh	r6, [r0]	@ movhi
+ 196:Drivers/LCD/lcd_drv.c ****     for (temp=0; temp<xLong*yLong; temp++)
+ 490              		.loc 1 196 36 is_stmt 1 discriminator 3 view .LVU117
+ 196:Drivers/LCD/lcd_drv.c ****     for (temp=0; temp<xLong*yLong; temp++)
+ 491              		.loc 1 196 40 is_stmt 0 discriminator 3 view .LVU118
+ 492 0024 0131     		adds	r1, r1, #1
+ 493              	.LVL48:
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 13
+
+
+ 494              	.L32:
+ 196:Drivers/LCD/lcd_drv.c ****     for (temp=0; temp<xLong*yLong; temp++)
+ 495              		.loc 1 196 18 is_stmt 1 discriminator 1 view .LVU119
+ 196:Drivers/LCD/lcd_drv.c ****     for (temp=0; temp<xLong*yLong; temp++)
+ 496              		.loc 1 196 28 is_stmt 0 discriminator 1 view .LVU120
+ 497 0026 04FB05F0 		mul	r0, r4, r5
+ 196:Drivers/LCD/lcd_drv.c ****     for (temp=0; temp<xLong*yLong; temp++)
+ 498              		.loc 1 196 5 discriminator 1 view .LVU121
+ 499 002a 8842     		cmp	r0, r1
+ 500 002c F8D8     		bhi	.L33
+ 199:Drivers/LCD/lcd_drv.c ****     }
+ 200:Drivers/LCD/lcd_drv.c **** }
+ 501              		.loc 1 200 1 view .LVU122
+ 502 002e 70BD     		pop	{r4, r5, r6, pc}
+ 503              	.L36:
+ 504              		.align	2
+ 505              	.L35:
+ 506 0030 00000260 		.word	1610743808
+ 507              		.cfi_endproc
+ 508              	.LFE564:
+ 510              		.section	.text.Lcd_Initialize,"ax",%progbits
+ 511              		.align	1
+ 512              		.global	Lcd_Initialize
+ 513              		.syntax unified
+ 514              		.thumb
+ 515              		.thumb_func
+ 517              	Lcd_Initialize:
+ 518              	.LFB558:
+  25:Drivers/LCD/lcd_drv.c ****     LCD_Rst();
+ 519              		.loc 1 25 1 is_stmt 1 view -0
+ 520              		.cfi_startproc
+ 521              		@ args = 0, pretend = 0, frame = 0
+ 522              		@ frame_needed = 0, uses_anonymous_args = 0
+ 523 0000 00B5     		push	{lr}
+ 524              	.LCFI5:
+ 525              		.cfi_def_cfa_offset 4
+ 526              		.cfi_offset 14, -4
+ 527 0002 83B0     		sub	sp, sp, #12
+ 528              	.LCFI6:
+ 529              		.cfi_def_cfa_offset 16
+  26:Drivers/LCD/lcd_drv.c **** 
+ 530              		.loc 1 26 5 view .LVU124
+ 531 0004 FFF7FEFF 		bl	LCD_Rst
+ 532              	.LVL49:
+  28:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0xCC00);
+ 533              		.loc 1 28 5 view .LVU125
+ 534 0008 42F20401 		movw	r1, #8196
+ 535 000c 1120     		movs	r0, #17
+ 536 000e FFF7FEFF 		bl	LCD_WR_REG
+ 537              	.LVL50:
+  29:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x15,0x2600);
+ 538              		.loc 1 29 5 view .LVU126
+ 539 0012 4FF44C41 		mov	r1, #52224
+ 540 0016 1320     		movs	r0, #19
+ 541 0018 FFF7FEFF 		bl	LCD_WR_REG
+ 542              	.LVL51:
+  30:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x14,0x252A);
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 14
+
+
+ 543              		.loc 1 30 5 view .LVU127
+ 544 001c 4FF41851 		mov	r1, #9728
+ 545 0020 1520     		movs	r0, #21
+ 546 0022 FFF7FEFF 		bl	LCD_WR_REG
+ 547              	.LVL52:
+  31:Drivers/LCD/lcd_drv.c **** //	LCD_WR_REG(0x14,0x002A);
+ 548              		.loc 1 31 5 view .LVU128
+ 549 0026 42F22A51 		movw	r1, #9514
+ 550 002a 1420     		movs	r0, #20
+ 551 002c FFF7FEFF 		bl	LCD_WR_REG
+ 552              	.LVL53:
+  33:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0xCC04);
+ 553              		.loc 1 33 5 view .LVU129
+ 554 0030 3321     		movs	r1, #51
+ 555 0032 1220     		movs	r0, #18
+ 556 0034 FFF7FEFF 		bl	LCD_WR_REG
+ 557              	.LVL54:
+  34:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+ 558              		.loc 1 34 5 view .LVU130
+ 559 0038 4CF60441 		movw	r1, #52228
+ 560 003c 1320     		movs	r0, #19
+ 561 003e FFF7FEFF 		bl	LCD_WR_REG
+ 562              	.LVL55:
+  35:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0xCC06);
+ 563              		.loc 1 35 5 view .LVU131
+ 564 0042 0120     		movs	r0, #1
+ 565 0044 FFF7FEFF 		bl	HAL_Delay
+ 566              	.LVL56:
+  36:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+ 567              		.loc 1 36 5 view .LVU132
+ 568 0048 4CF60641 		movw	r1, #52230
+ 569 004c 1320     		movs	r0, #19
+ 570 004e FFF7FEFF 		bl	LCD_WR_REG
+ 571              	.LVL57:
+  37:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0xCC4F);
+ 572              		.loc 1 37 5 view .LVU133
+ 573 0052 0120     		movs	r0, #1
+ 574 0054 FFF7FEFF 		bl	HAL_Delay
+ 575              	.LVL58:
+  38:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+ 576              		.loc 1 38 5 view .LVU134
+ 577 0058 4CF64F41 		movw	r1, #52303
+ 578 005c 1320     		movs	r0, #19
+ 579 005e FFF7FEFF 		bl	LCD_WR_REG
+ 580              	.LVL59:
+  39:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x13,0x674F);
+ 581              		.loc 1 39 5 view .LVU135
+ 582 0062 0120     		movs	r0, #1
+ 583 0064 FFF7FEFF 		bl	HAL_Delay
+ 584              	.LVL60:
+  40:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x11,0x2003);
+ 585              		.loc 1 40 5 view .LVU136
+ 586 0068 46F24F71 		movw	r1, #26447
+ 587 006c 1320     		movs	r0, #19
+ 588 006e FFF7FEFF 		bl	LCD_WR_REG
+ 589              	.LVL61:
+  41:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 15
+
+
+ 590              		.loc 1 41 5 view .LVU137
+ 591 0072 42F20301 		movw	r1, #8195
+ 592 0076 1120     		movs	r0, #17
+ 593 0078 FFF7FEFF 		bl	LCD_WR_REG
+ 594              	.LVL62:
+  42:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x30,0x2609);
+ 595              		.loc 1 42 5 view .LVU138
+ 596 007c 0120     		movs	r0, #1
+ 597 007e FFF7FEFF 		bl	HAL_Delay
+ 598              	.LVL63:
+  43:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x31,0x242C);
+ 599              		.loc 1 43 5 view .LVU139
+ 600 0082 42F20961 		movw	r1, #9737
+ 601 0086 3020     		movs	r0, #48
+ 602 0088 FFF7FEFF 		bl	LCD_WR_REG
+ 603              	.LVL64:
+  44:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x32,0x1F23);
+ 604              		.loc 1 44 5 view .LVU140
+ 605 008c 42F22C41 		movw	r1, #9260
+ 606 0090 3120     		movs	r0, #49
+ 607 0092 FFF7FEFF 		bl	LCD_WR_REG
+ 608              	.LVL65:
+  45:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x33,0x2425);
+ 609              		.loc 1 45 5 view .LVU141
+ 610 0096 41F62371 		movw	r1, #7971
+ 611 009a 3220     		movs	r0, #50
+ 612 009c FFF7FEFF 		bl	LCD_WR_REG
+ 613              	.LVL66:
+  46:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x34,0x2226);
+ 614              		.loc 1 46 5 view .LVU142
+ 615 00a0 42F22541 		movw	r1, #9253
+ 616 00a4 3320     		movs	r0, #51
+ 617 00a6 FFF7FEFF 		bl	LCD_WR_REG
+ 618              	.LVL67:
+  47:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x35,0x2523);
+ 619              		.loc 1 47 5 view .LVU143
+ 620 00aa 42F22621 		movw	r1, #8742
+ 621 00ae 3420     		movs	r0, #52
+ 622 00b0 FFF7FEFF 		bl	LCD_WR_REG
+ 623              	.LVL68:
+  48:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x36,0x1C1A);
+ 624              		.loc 1 48 5 view .LVU144
+ 625 00b4 42F22351 		movw	r1, #9507
+ 626 00b8 3520     		movs	r0, #53
+ 627 00ba FFF7FEFF 		bl	LCD_WR_REG
+ 628              	.LVL69:
+  49:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x37,0x131D);
+ 629              		.loc 1 49 5 view .LVU145
+ 630 00be 41F61A41 		movw	r1, #7194
+ 631 00c2 3620     		movs	r0, #54
+ 632 00c4 FFF7FEFF 		bl	LCD_WR_REG
+ 633              	.LVL70:
+  50:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x38,0x0B11);
+ 634              		.loc 1 50 5 view .LVU146
+ 635 00c8 41F21D31 		movw	r1, #4893
+ 636 00cc 3720     		movs	r0, #55
+ 637 00ce FFF7FEFF 		bl	LCD_WR_REG
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 16
+
+
+ 638              	.LVL71:
+  51:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x39,0x1210);
+ 639              		.loc 1 51 5 view .LVU147
+ 640 00d2 40F61131 		movw	r1, #2833
+ 641 00d6 3820     		movs	r0, #56
+ 642 00d8 FFF7FEFF 		bl	LCD_WR_REG
+ 643              	.LVL72:
+  52:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x3A,0x1315);
+ 644              		.loc 1 52 5 view .LVU148
+ 645 00dc 41F21021 		movw	r1, #4624
+ 646 00e0 3920     		movs	r0, #57
+ 647 00e2 FFF7FEFF 		bl	LCD_WR_REG
+ 648              	.LVL73:
+  53:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x3B,0x3619);
+ 649              		.loc 1 53 5 view .LVU149
+ 650 00e6 41F21531 		movw	r1, #4885
+ 651 00ea 3A20     		movs	r0, #58
+ 652 00ec FFF7FEFF 		bl	LCD_WR_REG
+ 653              	.LVL74:
+  54:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x3C,0x0D00);
+ 654              		.loc 1 54 5 view .LVU150
+ 655 00f0 43F21961 		movw	r1, #13849
+ 656 00f4 3B20     		movs	r0, #59
+ 657 00f6 FFF7FEFF 		bl	LCD_WR_REG
+ 658              	.LVL75:
+  55:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x3D,0x000D);
+ 659              		.loc 1 55 5 view .LVU151
+ 660 00fa 4FF45061 		mov	r1, #3328
+ 661 00fe 3C20     		movs	r0, #60
+ 662 0100 FFF7FEFF 		bl	LCD_WR_REG
+ 663              	.LVL76:
+  56:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x16,0x0007);
+ 664              		.loc 1 56 5 view .LVU152
+ 665 0104 0D21     		movs	r1, #13
+ 666 0106 3D20     		movs	r0, #61
+ 667 0108 FFF7FEFF 		bl	LCD_WR_REG
+ 668              	.LVL77:
+  57:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x02,0x0013);
+ 669              		.loc 1 57 5 view .LVU153
+ 670 010c 0721     		movs	r1, #7
+ 671 010e 1620     		movs	r0, #22
+ 672 0110 FFF7FEFF 		bl	LCD_WR_REG
+ 673              	.LVL78:
+  58:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x03,0x0008);
+ 674              		.loc 1 58 5 view .LVU154
+ 675 0114 1321     		movs	r1, #19
+ 676 0116 0220     		movs	r0, #2
+ 677 0118 FFF7FEFF 		bl	LCD_WR_REG
+ 678              	.LVL79:
+  59:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x01,0x1027);
+ 679              		.loc 1 59 5 view .LVU155
+ 680 011c 0821     		movs	r1, #8
+ 681 011e 0320     		movs	r0, #3
+ 682 0120 FFF7FEFF 		bl	LCD_WR_REG
+ 683              	.LVL80:
+  60:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+ 684              		.loc 1 60 5 view .LVU156
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 17
+
+
+ 685 0124 41F22701 		movw	r1, #4135
+ 686 0128 0120     		movs	r0, #1
+ 687 012a FFF7FEFF 		bl	LCD_WR_REG
+ 688              	.LVL81:
+  61:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x08,0x0303);
+ 689              		.loc 1 61 5 view .LVU157
+ 690 012e 0120     		movs	r0, #1
+ 691 0130 FFF7FEFF 		bl	HAL_Delay
+ 692              	.LVL82:
+  62:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x0A,0x000B);
+ 693              		.loc 1 62 5 view .LVU158
+ 694 0134 40F20331 		movw	r1, #771
+ 695 0138 0820     		movs	r0, #8
+ 696 013a FFF7FEFF 		bl	LCD_WR_REG
+ 697              	.LVL83:
+  63:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x0B,0x0003);
+ 698              		.loc 1 63 5 view .LVU159
+ 699 013e 0B21     		movs	r1, #11
+ 700 0140 0A20     		movs	r0, #10
+ 701 0142 FFF7FEFF 		bl	LCD_WR_REG
+ 702              	.LVL84:
+  64:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x0C,0x0000);
+ 703              		.loc 1 64 5 view .LVU160
+ 704 0146 0321     		movs	r1, #3
+ 705 0148 0B20     		movs	r0, #11
+ 706 014a FFF7FEFF 		bl	LCD_WR_REG
+ 707              	.LVL85:
+  65:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x41,0x0000);
+ 708              		.loc 1 65 5 view .LVU161
+ 709 014e 0021     		movs	r1, #0
+ 710 0150 0C20     		movs	r0, #12
+ 711 0152 FFF7FEFF 		bl	LCD_WR_REG
+ 712              	.LVL86:
+  66:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x50,0x0000);
+ 713              		.loc 1 66 5 view .LVU162
+ 714 0156 0021     		movs	r1, #0
+ 715 0158 4120     		movs	r0, #65
+ 716 015a FFF7FEFF 		bl	LCD_WR_REG
+ 717              	.LVL87:
+  67:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x60,0x0005);
+ 718              		.loc 1 67 5 view .LVU163
+ 719 015e 0021     		movs	r1, #0
+ 720 0160 5020     		movs	r0, #80
+ 721 0162 FFF7FEFF 		bl	LCD_WR_REG
+ 722              	.LVL88:
+  68:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x70,0x000B);
+ 723              		.loc 1 68 5 view .LVU164
+ 724 0166 0521     		movs	r1, #5
+ 725 0168 6020     		movs	r0, #96
+ 726 016a FFF7FEFF 		bl	LCD_WR_REG
+ 727              	.LVL89:
+  69:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x71,0x0000);
+ 728              		.loc 1 69 5 view .LVU165
+ 729 016e 0B21     		movs	r1, #11
+ 730 0170 7020     		movs	r0, #112
+ 731 0172 FFF7FEFF 		bl	LCD_WR_REG
+ 732              	.LVL90:
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 18
+
+
+  70:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x78,0x0000);
+ 733              		.loc 1 70 5 view .LVU166
+ 734 0176 0021     		movs	r1, #0
+ 735 0178 7120     		movs	r0, #113
+ 736 017a FFF7FEFF 		bl	LCD_WR_REG
+ 737              	.LVL91:
+  71:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x7A,0x0000);
+ 738              		.loc 1 71 5 view .LVU167
+ 739 017e 0021     		movs	r1, #0
+ 740 0180 7820     		movs	r0, #120
+ 741 0182 FFF7FEFF 		bl	LCD_WR_REG
+ 742              	.LVL92:
+  72:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x79,0x0007);
+ 743              		.loc 1 72 5 view .LVU168
+ 744 0186 0021     		movs	r1, #0
+ 745 0188 7A20     		movs	r0, #122
+ 746 018a FFF7FEFF 		bl	LCD_WR_REG
+ 747              	.LVL93:
+  73:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x07,0x0051);
+ 748              		.loc 1 73 5 view .LVU169
+ 749 018e 0721     		movs	r1, #7
+ 750 0190 7920     		movs	r0, #121
+ 751 0192 FFF7FEFF 		bl	LCD_WR_REG
+ 752              	.LVL94:
+  74:Drivers/LCD/lcd_drv.c ****     LCD_delay(1);
+ 753              		.loc 1 74 5 view .LVU170
+ 754 0196 5121     		movs	r1, #81
+ 755 0198 0720     		movs	r0, #7
+ 756 019a FFF7FEFF 		bl	LCD_WR_REG
+ 757              	.LVL95:
+  75:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x07,0x0053);
+ 758              		.loc 1 75 5 view .LVU171
+ 759 019e 0120     		movs	r0, #1
+ 760 01a0 FFF7FEFF 		bl	HAL_Delay
+ 761              	.LVL96:
+  76:Drivers/LCD/lcd_drv.c ****     LCD_WR_REG(0x79,0x0000);
+ 762              		.loc 1 76 5 view .LVU172
+ 763 01a4 5321     		movs	r1, #83
+ 764 01a6 0720     		movs	r0, #7
+ 765 01a8 FFF7FEFF 		bl	LCD_WR_REG
+ 766              	.LVL97:
+  77:Drivers/LCD/lcd_drv.c ****     WriteComm(0x22);
+ 767              		.loc 1 77 5 view .LVU173
+ 768 01ac 0021     		movs	r1, #0
+ 769 01ae 7920     		movs	r0, #121
+ 770 01b0 FFF7FEFF 		bl	LCD_WR_REG
+ 771              	.LVL98:
+  78:Drivers/LCD/lcd_drv.c **** 
+ 772              		.loc 1 78 5 view .LVU174
+ 773 01b4 2220     		movs	r0, #34
+ 774 01b6 FFF7FEFF 		bl	WriteComm
+ 775              	.LVL99:
+  80:Drivers/LCD/lcd_drv.c **** 
+ 776              		.loc 1 80 2 view .LVU175
+ 777 01ba 0122     		movs	r2, #1
+ 778 01bc 4FF48061 		mov	r1, #1024
+ 779 01c0 0648     		ldr	r0, .L39
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 19
+
+
+ 780 01c2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 781              	.LVL100:
+  80:Drivers/LCD/lcd_drv.c **** 
+ 782              		.loc 1 80 54 view .LVU176
+  82:Drivers/LCD/lcd_drv.c **** }
+ 783              		.loc 1 82 2 view .LVU177
+ 784 01c6 0020     		movs	r0, #0
+ 785 01c8 0090     		str	r0, [sp]
+ 786 01ca F023     		movs	r3, #240
+ 787 01cc 4FF4A072 		mov	r2, #320
+ 788 01d0 0146     		mov	r1, r0
+ 789 01d2 FFF7FEFF 		bl	Lcd_ColorBox
+ 790              	.LVL101:
+  83:Drivers/LCD/lcd_drv.c **** /******************************************
+ 791              		.loc 1 83 1 is_stmt 0 view .LVU178
+ 792 01d6 03B0     		add	sp, sp, #12
+ 793              	.LCFI7:
+ 794              		.cfi_def_cfa_offset 4
+ 795              		@ sp needed
+ 796 01d8 5DF804FB 		ldr	pc, [sp], #4
+ 797              	.L40:
+ 798              		.align	2
+ 799              	.L39:
+ 800 01dc 00040240 		.word	1073873920
+ 801              		.cfi_endproc
+ 802              	.LFE558:
+ 804              		.section	.text.LCD_Fill_Pic,"ax",%progbits
+ 805              		.align	1
+ 806              		.global	LCD_Fill_Pic
+ 807              		.syntax unified
+ 808              		.thumb
+ 809              		.thumb_func
+ 811              	LCD_Fill_Pic:
+ 812              	.LVL102:
+ 813              	.LFB565:
+ 201:Drivers/LCD/lcd_drv.c **** 
+ 202:Drivers/LCD/lcd_drv.c **** /******************************************
+ 203:Drivers/LCD/lcd_drv.c **** 函数名：Lcd图像填充100*100
+ 204:Drivers/LCD/lcd_drv.c **** 功能：向Lcd指定位置填充图像
+ 205:Drivers/LCD/lcd_drv.c **** 入口参数：Index 要寻址的寄存器地址
+ 206:Drivers/LCD/lcd_drv.c ****           ConfigTemp 写入的数据或命令值
+ 207:Drivers/LCD/lcd_drv.c **** ******************************************/
+ 208:Drivers/LCD/lcd_drv.c **** void LCD_Fill_Pic(uint16_t x, uint16_t y,uint16_t pic_H, uint16_t pic_V, const unsigned char* pic)
+ 209:Drivers/LCD/lcd_drv.c **** {
+ 814              		.loc 1 209 1 is_stmt 1 view -0
+ 815              		.cfi_startproc
+ 816              		@ args = 4, pretend = 0, frame = 0
+ 817              		@ frame_needed = 0, uses_anonymous_args = 0
+ 818              		.loc 1 209 1 is_stmt 0 view .LVU180
+ 819 0000 38B5     		push	{r3, r4, r5, lr}
+ 820              	.LCFI8:
+ 821              		.cfi_def_cfa_offset 16
+ 822              		.cfi_offset 3, -16
+ 823              		.cfi_offset 4, -12
+ 824              		.cfi_offset 5, -8
+ 825              		.cfi_offset 14, -4
+ 826 0002 049C     		ldr	r4, [sp, #16]
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 20
+
+
+ 210:Drivers/LCD/lcd_drv.c **** 	int cnt = pic_H * pic_V;
+ 827              		.loc 1 210 2 is_stmt 1 view .LVU181
+ 828              		.loc 1 210 6 is_stmt 0 view .LVU182
+ 829 0004 03FB02F5 		mul	r5, r3, r2
+ 830              	.LVL103:
+ 211:Drivers/LCD/lcd_drv.c **** 	uint16_t *pDat = (uint16_t *)pic;
+ 831              		.loc 1 211 2 is_stmt 1 view .LVU183
+ 212:Drivers/LCD/lcd_drv.c **** 	BlockWrite(x, x + pic_H - 1, y, y + pic_V - 1);
+ 832              		.loc 1 212 2 view .LVU184
+ 833              		.loc 1 212 18 is_stmt 0 view .LVU185
+ 834 0008 00EB020C 		add	ip, r0, r2
+ 835              		.loc 1 212 36 view .LVU186
+ 836 000c 0B44     		add	r3, r3, r1
+ 837              	.LVL104:
+ 838              		.loc 1 212 2 view .LVU187
+ 839 000e 013B     		subs	r3, r3, #1
+ 840 0010 0A46     		mov	r2, r1
+ 841              	.LVL105:
+ 842              		.loc 1 212 2 view .LVU188
+ 843 0012 0CF1FF31 		add	r1, ip, #-1
+ 844              	.LVL106:
+ 845              		.loc 1 212 2 view .LVU189
+ 846 0016 FFF7FEFF 		bl	BlockWrite
+ 847              	.LVL107:
+ 213:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 848              		.loc 1 213 2 is_stmt 1 view .LVU190
+ 849              		.loc 1 213 8 is_stmt 0 view .LVU191
+ 850 001a 06E0     		b	.L42
+ 851              	.LVL108:
+ 852              	.L43:
+ 214:Drivers/LCD/lcd_drv.c **** 			*(__IO uint16_t *) (Bank1_LCD_D) = *pDat++;
+ 853              		.loc 1 214 4 is_stmt 1 view .LVU192
+ 854              		.loc 1 214 44 is_stmt 0 view .LVU193
+ 855 001c 2346     		mov	r3, r4
+ 856              	.LVL109:
+ 857              		.loc 1 214 39 view .LVU194
+ 858 001e 33F8020B 		ldrh	r0, [r3], #2
+ 859              	.LVL110:
+ 860              		.loc 1 214 37 view .LVU195
+ 861 0022 0449     		ldr	r1, .L45
+ 862 0024 0880     		strh	r0, [r1]	@ movhi
+ 863              		.loc 1 214 44 view .LVU196
+ 864 0026 1C46     		mov	r4, r3
+ 213:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 865              		.loc 1 213 12 view .LVU197
+ 866 0028 1546     		mov	r5, r2
+ 867              	.LVL111:
+ 868              	.L42:
+ 213:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 869              		.loc 1 213 8 is_stmt 1 view .LVU198
+ 213:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 870              		.loc 1 213 12 is_stmt 0 view .LVU199
+ 871 002a 6A1E     		subs	r2, r5, #1
+ 872              	.LVL112:
+ 213:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 873              		.loc 1 213 8 view .LVU200
+ 874 002c 002D     		cmp	r5, #0
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 21
+
+
+ 875 002e F5DC     		bgt	.L43
+ 215:Drivers/LCD/lcd_drv.c **** }
+ 876              		.loc 1 215 1 view .LVU201
+ 877 0030 38BD     		pop	{r3, r4, r5, pc}
+ 878              	.LVL113:
+ 879              	.L46:
+ 880              		.loc 1 215 1 view .LVU202
+ 881 0032 00BF     		.align	2
+ 882              	.L45:
+ 883 0034 00000260 		.word	1610743808
+ 884              		.cfi_endproc
+ 885              	.LFE565:
+ 887              		.section	.text.LCD_Fill,"ax",%progbits
+ 888              		.align	1
+ 889              		.global	LCD_Fill
+ 890              		.syntax unified
+ 891              		.thumb
+ 892              		.thumb_func
+ 894              	LCD_Fill:
+ 895              	.LVL114:
+ 896              	.LFB566:
+ 216:Drivers/LCD/lcd_drv.c **** void LCD_Fill(uint16_t x, uint16_t y,uint16_t pic_H, uint16_t pic_V,  uint16_t Color)
+ 217:Drivers/LCD/lcd_drv.c **** {
+ 897              		.loc 1 217 1 is_stmt 1 view -0
+ 898              		.cfi_startproc
+ 899              		@ args = 4, pretend = 0, frame = 0
+ 900              		@ frame_needed = 0, uses_anonymous_args = 0
+ 901              		.loc 1 217 1 is_stmt 0 view .LVU204
+ 902 0000 38B5     		push	{r3, r4, r5, lr}
+ 903              	.LCFI9:
+ 904              		.cfi_def_cfa_offset 16
+ 905              		.cfi_offset 3, -16
+ 906              		.cfi_offset 4, -12
+ 907              		.cfi_offset 5, -8
+ 908              		.cfi_offset 14, -4
+ 909 0002 BDF81050 		ldrh	r5, [sp, #16]
+ 218:Drivers/LCD/lcd_drv.c **** 	int cnt = pic_H * pic_V;
+ 910              		.loc 1 218 2 is_stmt 1 view .LVU205
+ 911              		.loc 1 218 6 is_stmt 0 view .LVU206
+ 912 0006 03FB02F4 		mul	r4, r3, r2
+ 913              	.LVL115:
+ 219:Drivers/LCD/lcd_drv.c **** 	//uint16_t *pDat = (uint16_t *)pic;
+ 220:Drivers/LCD/lcd_drv.c **** 	BlockWrite(x, x + pic_H - 1, y, y + pic_V - 1);
+ 914              		.loc 1 220 2 is_stmt 1 view .LVU207
+ 915              		.loc 1 220 18 is_stmt 0 view .LVU208
+ 916 000a 00EB020C 		add	ip, r0, r2
+ 917              		.loc 1 220 36 view .LVU209
+ 918 000e 0B44     		add	r3, r3, r1
+ 919              	.LVL116:
+ 920              		.loc 1 220 2 view .LVU210
+ 921 0010 013B     		subs	r3, r3, #1
+ 922 0012 0A46     		mov	r2, r1
+ 923              	.LVL117:
+ 924              		.loc 1 220 2 view .LVU211
+ 925 0014 0CF1FF31 		add	r1, ip, #-1
+ 926              	.LVL118:
+ 927              		.loc 1 220 2 view .LVU212
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 22
+
+
+ 928 0018 FFF7FEFF 		bl	BlockWrite
+ 929              	.LVL119:
+ 221:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 930              		.loc 1 221 2 is_stmt 1 view .LVU213
+ 931              		.loc 1 221 8 is_stmt 0 view .LVU214
+ 932 001c 02E0     		b	.L48
+ 933              	.LVL120:
+ 934              	.L49:
+ 222:Drivers/LCD/lcd_drv.c **** 			*(__IO uint16_t *) (Bank1_LCD_D) = Color;
+ 935              		.loc 1 222 4 is_stmt 1 view .LVU215
+ 936              		.loc 1 222 37 is_stmt 0 view .LVU216
+ 937 001e 034A     		ldr	r2, .L51
+ 938 0020 1580     		strh	r5, [r2]	@ movhi
+ 221:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 939              		.loc 1 221 12 view .LVU217
+ 940 0022 1C46     		mov	r4, r3
+ 941              	.LVL121:
+ 942              	.L48:
+ 221:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 943              		.loc 1 221 8 is_stmt 1 view .LVU218
+ 221:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 944              		.loc 1 221 12 is_stmt 0 view .LVU219
+ 945 0024 631E     		subs	r3, r4, #1
+ 946              	.LVL122:
+ 221:Drivers/LCD/lcd_drv.c **** 	while (cnt-- > 0)
+ 947              		.loc 1 221 8 view .LVU220
+ 948 0026 002C     		cmp	r4, #0
+ 949 0028 F9DC     		bgt	.L49
+ 223:Drivers/LCD/lcd_drv.c **** }
+ 950              		.loc 1 223 1 view .LVU221
+ 951 002a 38BD     		pop	{r3, r4, r5, pc}
+ 952              	.LVL123:
+ 953              	.L52:
+ 954              		.loc 1 223 1 view .LVU222
+ 955              		.align	2
+ 956              	.L51:
+ 957 002c 00000260 		.word	1610743808
+ 958              		.cfi_endproc
+ 959              	.LFE566:
+ 961              		.section	.text.DrawPixel,"ax",%progbits
+ 962              		.align	1
+ 963              		.global	DrawPixel
+ 964              		.syntax unified
+ 965              		.thumb
+ 966              		.thumb_func
+ 968              	DrawPixel:
+ 969              	.LVL124:
+ 970              	.LFB567:
+ 224:Drivers/LCD/lcd_drv.c **** 
+ 225:Drivers/LCD/lcd_drv.c **** //在指定座标上打一个点
+ 226:Drivers/LCD/lcd_drv.c **** void DrawPixel(uint16_t x, uint16_t y, uint16_t Color)
+ 227:Drivers/LCD/lcd_drv.c **** {
+ 971              		.loc 1 227 1 is_stmt 1 view -0
+ 972              		.cfi_startproc
+ 973              		@ args = 0, pretend = 0, frame = 0
+ 974              		@ frame_needed = 0, uses_anonymous_args = 0
+ 975              		.loc 1 227 1 is_stmt 0 view .LVU224
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 23
+
+
+ 976 0000 10B5     		push	{r4, lr}
+ 977              	.LCFI10:
+ 978              		.cfi_def_cfa_offset 8
+ 979              		.cfi_offset 4, -8
+ 980              		.cfi_offset 14, -4
+ 981 0002 0B46     		mov	r3, r1
+ 982 0004 1446     		mov	r4, r2
+ 228:Drivers/LCD/lcd_drv.c ****     BlockWrite(x,x,y,y);
+ 983              		.loc 1 228 5 is_stmt 1 view .LVU225
+ 984 0006 0A46     		mov	r2, r1
+ 985              	.LVL125:
+ 986              		.loc 1 228 5 is_stmt 0 view .LVU226
+ 987 0008 0146     		mov	r1, r0
+ 988              	.LVL126:
+ 989              		.loc 1 228 5 view .LVU227
+ 990 000a FFF7FEFF 		bl	BlockWrite
+ 991              	.LVL127:
+ 229:Drivers/LCD/lcd_drv.c **** 
+ 230:Drivers/LCD/lcd_drv.c ****     *(__IO uint16_t *) (Bank1_LCD_D) = Color;
+ 992              		.loc 1 230 5 is_stmt 1 view .LVU228
+ 993              		.loc 1 230 38 is_stmt 0 view .LVU229
+ 994 000e 014B     		ldr	r3, .L55
+ 995 0010 1C80     		strh	r4, [r3]	@ movhi
+ 231:Drivers/LCD/lcd_drv.c **** }
+ 996              		.loc 1 231 1 view .LVU230
+ 997 0012 10BD     		pop	{r4, pc}
+ 998              	.L56:
+ 999              		.align	2
+ 1000              	.L55:
+ 1001 0014 00000260 		.word	1610743808
+ 1002              		.cfi_endproc
+ 1003              	.LFE567:
+ 1005              		.text
+ 1006              	.Letext0:
+ 1007              		.file 2 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\machine\\_default_ty
+ 1008              		.file 3 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 1009              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1010              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 1011              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1012              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ARM GAS  F:\msys64\tmp\cc3iTkF2.s 			page 24
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 lcd_drv.c
+F:\msys64\tmp\cc3iTkF2.s:20     .text.LCD_Rst:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:25     .text.LCD_Rst:00000000 LCD_Rst
+F:\msys64\tmp\cc3iTkF2.s:63     .text.LCD_Rst:0000002c $d
+F:\msys64\tmp\cc3iTkF2.s:68     .text.WriteComm:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:74     .text.WriteComm:00000000 WriteComm
+F:\msys64\tmp\cc3iTkF2.s:92     .text.WriteData:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:98     .text.WriteData:00000000 WriteData
+F:\msys64\tmp\cc3iTkF2.s:115    .text.WriteData:00000008 $d
+F:\msys64\tmp\cc3iTkF2.s:120    .text.LCD_WR_REG:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:126    .text.LCD_WR_REG:00000000 LCD_WR_REG
+F:\msys64\tmp\cc3iTkF2.s:148    .text.Lcd_WR_Start:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:154    .text.Lcd_WR_Start:00000000 Lcd_WR_Start
+F:\msys64\tmp\cc3iTkF2.s:172    .text.Lcd_SetCursor:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:178    .text.Lcd_SetCursor:00000000 Lcd_SetCursor
+F:\msys64\tmp\cc3iTkF2.s:209    .text.BlockWrite:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:215    .text.BlockWrite:00000000 BlockWrite
+F:\msys64\tmp\cc3iTkF2.s:370    .text.GetPoint:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:376    .text.GetPoint:00000000 GetPoint
+F:\msys64\tmp\cc3iTkF2.s:433    .text.GetPoint:0000002c $d
+F:\msys64\tmp\cc3iTkF2.s:438    .text.Lcd_ColorBox:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:444    .text.Lcd_ColorBox:00000000 Lcd_ColorBox
+F:\msys64\tmp\cc3iTkF2.s:506    .text.Lcd_ColorBox:00000030 $d
+F:\msys64\tmp\cc3iTkF2.s:511    .text.Lcd_Initialize:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:517    .text.Lcd_Initialize:00000000 Lcd_Initialize
+F:\msys64\tmp\cc3iTkF2.s:800    .text.Lcd_Initialize:000001dc $d
+F:\msys64\tmp\cc3iTkF2.s:805    .text.LCD_Fill_Pic:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:811    .text.LCD_Fill_Pic:00000000 LCD_Fill_Pic
+F:\msys64\tmp\cc3iTkF2.s:883    .text.LCD_Fill_Pic:00000034 $d
+F:\msys64\tmp\cc3iTkF2.s:888    .text.LCD_Fill:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:894    .text.LCD_Fill:00000000 LCD_Fill
+F:\msys64\tmp\cc3iTkF2.s:957    .text.LCD_Fill:0000002c $d
+F:\msys64\tmp\cc3iTkF2.s:962    .text.DrawPixel:00000000 $t
+F:\msys64\tmp\cc3iTkF2.s:968    .text.DrawPixel:00000000 DrawPixel
+F:\msys64\tmp\cc3iTkF2.s:1001   .text.DrawPixel:00000014 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_Delay

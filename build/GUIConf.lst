@@ -1,0 +1,181 @@
+ARM GAS  F:\msys64\tmp\ccwFjpmZ.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"GUIConf.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.GUI_X_Config,"ax",%progbits
+  20              		.align	1
+  21              		.global	GUI_X_Config
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	GUI_X_Config:
+  27              	.LFB0:
+  28              		.file 1 "Drivers/STemWin/Config/GUIConf.c"
+   1:Drivers/STemWin/Config/GUIConf.c **** /*********************************************************************
+   2:Drivers/STemWin/Config/GUIConf.c **** *                SEGGER Microcontroller GmbH & Co. KG                *
+   3:Drivers/STemWin/Config/GUIConf.c **** *        Solutions for real time microcontroller applications        *
+   4:Drivers/STemWin/Config/GUIConf.c **** **********************************************************************
+   5:Drivers/STemWin/Config/GUIConf.c **** *                                                                    *
+   6:Drivers/STemWin/Config/GUIConf.c **** *        (c) 1996 - 2017  SEGGER Microcontroller GmbH & Co. KG       *
+   7:Drivers/STemWin/Config/GUIConf.c **** *                                                                    *
+   8:Drivers/STemWin/Config/GUIConf.c **** *        Internet: www.segger.com    Support:  support@segger.com    *
+   9:Drivers/STemWin/Config/GUIConf.c **** *                                                                    *
+  10:Drivers/STemWin/Config/GUIConf.c **** **********************************************************************
+  11:Drivers/STemWin/Config/GUIConf.c **** 
+  12:Drivers/STemWin/Config/GUIConf.c **** ** emWin V5.44 - Graphical user interface for embedded applications **
+  13:Drivers/STemWin/Config/GUIConf.c **** All  Intellectual Property rights  in the Software belongs to  SEGGER.
+  14:Drivers/STemWin/Config/GUIConf.c **** emWin is protected by  international copyright laws.  Knowledge of the
+  15:Drivers/STemWin/Config/GUIConf.c **** source code may not be used to write a similar product.  This file may
+  16:Drivers/STemWin/Config/GUIConf.c **** only be used in accordance with the following terms:
+  17:Drivers/STemWin/Config/GUIConf.c **** 
+  18:Drivers/STemWin/Config/GUIConf.c **** The  software has  been licensed  to STMicroelectronics International
+  19:Drivers/STemWin/Config/GUIConf.c **** N.V. a Dutch company with a Swiss branch and its headquarters in Plan-
+  20:Drivers/STemWin/Config/GUIConf.c **** les-Ouates, Geneva, 39 Chemin du Champ des Filles, Switzerland for the
+  21:Drivers/STemWin/Config/GUIConf.c **** purposes of creating libraries for ARM Cortex-M-based 32-bit microcon_
+  22:Drivers/STemWin/Config/GUIConf.c **** troller products commercialized by Licensee only, sublicensed and dis_
+  23:Drivers/STemWin/Config/GUIConf.c **** tributed under the terms and conditions of the End User License Agree_
+  24:Drivers/STemWin/Config/GUIConf.c **** ment supplied by STMicroelectronics International N.V.
+  25:Drivers/STemWin/Config/GUIConf.c **** Full source code is available at: www.segger.com
+  26:Drivers/STemWin/Config/GUIConf.c **** 
+  27:Drivers/STemWin/Config/GUIConf.c **** We appreciate your understanding and fairness.
+  28:Drivers/STemWin/Config/GUIConf.c **** ----------------------------------------------------------------------
+  29:Drivers/STemWin/Config/GUIConf.c **** File        : GUIConf.c
+  30:Drivers/STemWin/Config/GUIConf.c **** Purpose     : Display controller initialization
+ARM GAS  F:\msys64\tmp\ccwFjpmZ.s 			page 2
+
+
+  31:Drivers/STemWin/Config/GUIConf.c **** ---------------------------END-OF-HEADER------------------------------
+  32:Drivers/STemWin/Config/GUIConf.c **** */
+  33:Drivers/STemWin/Config/GUIConf.c **** 
+  34:Drivers/STemWin/Config/GUIConf.c **** /**
+  35:Drivers/STemWin/Config/GUIConf.c ****   ******************************************************************************
+  36:Drivers/STemWin/Config/GUIConf.c ****   * @attention
+  37:Drivers/STemWin/Config/GUIConf.c ****   *
+  38:Drivers/STemWin/Config/GUIConf.c ****   * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics. 
+  39:Drivers/STemWin/Config/GUIConf.c ****   * All rights reserved.</center></h2>
+  40:Drivers/STemWin/Config/GUIConf.c ****   *
+  41:Drivers/STemWin/Config/GUIConf.c ****   * This software component is licensed by ST under Ultimate Liberty license SLA0044,
+  42:Drivers/STemWin/Config/GUIConf.c ****   * the "License"; You may not use this file except in compliance with the License.
+  43:Drivers/STemWin/Config/GUIConf.c ****   * You may obtain a copy of the License at:
+  44:Drivers/STemWin/Config/GUIConf.c ****   *                      http://www.st.com/SLA0044
+  45:Drivers/STemWin/Config/GUIConf.c ****   *
+  46:Drivers/STemWin/Config/GUIConf.c ****   ******************************************************************************
+  47:Drivers/STemWin/Config/GUIConf.c ****   */
+  48:Drivers/STemWin/Config/GUIConf.c **** 
+  49:Drivers/STemWin/Config/GUIConf.c **** #include "GUI.h"
+  50:Drivers/STemWin/Config/GUIConf.c **** 
+  51:Drivers/STemWin/Config/GUIConf.c **** /*********************************************************************
+  52:Drivers/STemWin/Config/GUIConf.c **** *
+  53:Drivers/STemWin/Config/GUIConf.c **** *       Defines
+  54:Drivers/STemWin/Config/GUIConf.c **** *
+  55:Drivers/STemWin/Config/GUIConf.c **** **********************************************************************
+  56:Drivers/STemWin/Config/GUIConf.c **** */
+  57:Drivers/STemWin/Config/GUIConf.c **** //
+  58:Drivers/STemWin/Config/GUIConf.c **** // Define the available number of bytes available for the GUI
+  59:Drivers/STemWin/Config/GUIConf.c **** //
+  60:Drivers/STemWin/Config/GUIConf.c **** //#define GUI_NUMBYTES  0x200000
+  61:Drivers/STemWin/Config/GUIConf.c **** #define GUI_NUMBYTES  (1024 * 50)
+  62:Drivers/STemWin/Config/GUIConf.c **** 
+  63:Drivers/STemWin/Config/GUIConf.c **** /*********************************************************************
+  64:Drivers/STemWin/Config/GUIConf.c **** *
+  65:Drivers/STemWin/Config/GUIConf.c **** *       Public code
+  66:Drivers/STemWin/Config/GUIConf.c **** *
+  67:Drivers/STemWin/Config/GUIConf.c **** **********************************************************************
+  68:Drivers/STemWin/Config/GUIConf.c **** */
+  69:Drivers/STemWin/Config/GUIConf.c **** /*********************************************************************
+  70:Drivers/STemWin/Config/GUIConf.c **** *
+  71:Drivers/STemWin/Config/GUIConf.c **** *       GUI_X_Config
+  72:Drivers/STemWin/Config/GUIConf.c **** *
+  73:Drivers/STemWin/Config/GUIConf.c **** * Purpose:
+  74:Drivers/STemWin/Config/GUIConf.c **** *   Called during the initialization process in order to set up the
+  75:Drivers/STemWin/Config/GUIConf.c **** *   available memory for the GUI.
+  76:Drivers/STemWin/Config/GUIConf.c **** */
+  77:Drivers/STemWin/Config/GUIConf.c **** void GUI_X_Config(void) {
+  29              		.loc 1 77 25 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  78:Drivers/STemWin/Config/GUIConf.c ****   //
+ARM GAS  F:\msys64\tmp\ccwFjpmZ.s 			page 3
+
+
+  79:Drivers/STemWin/Config/GUIConf.c ****   // 32 bit aligned memory area
+  80:Drivers/STemWin/Config/GUIConf.c ****   //
+  81:Drivers/STemWin/Config/GUIConf.c ****   static U32 aMemory[GUI_NUMBYTES / 4];
+  38              		.loc 1 81 3 view .LVU1
+  82:Drivers/STemWin/Config/GUIConf.c ****   //
+  83:Drivers/STemWin/Config/GUIConf.c ****   // Assign memory to emWin
+  84:Drivers/STemWin/Config/GUIConf.c ****   //
+  85:Drivers/STemWin/Config/GUIConf.c ****   GUI_ALLOC_AssignMemory(aMemory, GUI_NUMBYTES);
+  39              		.loc 1 85 3 view .LVU2
+  40 0002 4FF44841 		mov	r1, #51200
+  41 0006 0348     		ldr	r0, .L3
+  42 0008 FFF7FEFF 		bl	GUI_ALLOC_AssignMemory
+  43              	.LVL0:
+  86:Drivers/STemWin/Config/GUIConf.c ****   //
+  87:Drivers/STemWin/Config/GUIConf.c ****   // Set default font
+  88:Drivers/STemWin/Config/GUIConf.c ****   //
+  89:Drivers/STemWin/Config/GUIConf.c ****   GUI_SetDefaultFont(GUI_FONT_6X8);
+  44              		.loc 1 89 3 view .LVU3
+  45 000c 0248     		ldr	r0, .L3+4
+  46 000e FFF7FEFF 		bl	GUI_SetDefaultFont
+  47              	.LVL1:
+  90:Drivers/STemWin/Config/GUIConf.c **** }
+  48              		.loc 1 90 1 is_stmt 0 view .LVU4
+  49 0012 08BD     		pop	{r3, pc}
+  50              	.L4:
+  51              		.align	2
+  52              	.L3:
+  53 0014 00000000 		.word	aMemory.0
+  54 0018 00000000 		.word	GUI_Font6x8
+  55              		.cfi_endproc
+  56              	.LFE0:
+  58              		.section	.bss.aMemory.0,"aw",%nobits
+  59              		.align	2
+  62              	aMemory.0:
+  63 0000 00000000 		.space	51200
+  63      00000000 
+  63      00000000 
+  63      00000000 
+  63      00000000 
+  64              		.text
+  65              	.Letext0:
+  66              		.file 2 "Drivers/STemWin/inc/GUI_Type.h"
+  67              		.file 3 "Drivers/STemWin/inc/GUI.h"
+ARM GAS  F:\msys64\tmp\ccwFjpmZ.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 GUIConf.c
+F:\msys64\tmp\ccwFjpmZ.s:20     .text.GUI_X_Config:00000000 $t
+F:\msys64\tmp\ccwFjpmZ.s:26     .text.GUI_X_Config:00000000 GUI_X_Config
+F:\msys64\tmp\ccwFjpmZ.s:53     .text.GUI_X_Config:00000014 $d
+F:\msys64\tmp\ccwFjpmZ.s:62     .bss.aMemory.0:00000000 aMemory.0
+F:\msys64\tmp\ccwFjpmZ.s:59     .bss.aMemory.0:00000000 $d
+
+UNDEFINED SYMBOLS
+GUI_ALLOC_AssignMemory
+GUI_SetDefaultFont
+GUI_Font6x8

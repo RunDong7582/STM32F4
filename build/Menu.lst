@@ -1,0 +1,2676 @@
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"Menu.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.rodata.fun_c1.str1.4,"aMS",%progbits,1
+  20              		.align	2
+  21              	.LC0:
+  22 0000 53544D33 		.ascii	"STM32\000"
+  22      3200
+  23 0006 0000     		.align	2
+  24              	.LC1:
+  25 0008 4D756C74 		.ascii	"Multi Menu Test\000"
+  25      69204D65 
+  25      6E752054 
+  25      65737400 
+  26              		.align	2
+  27              	.LC2:
+  28 0018 00       		.ascii	"\000"
+  29 0019 000000   		.align	2
+  30              	.LC3:
+  31 001c 456E7465 		.ascii	"Enter to Test\000"
+  31      7220746F 
+  31      20546573 
+  31      7400
+  32              		.section	.text.fun_c1,"ax",%progbits
+  33              		.align	1
+  34              		.global	fun_c1
+  35              		.syntax unified
+  36              		.thumb
+  37              		.thumb_func
+  39              	fun_c1:
+  40              	.LFB4:
+  41              		.file 1 "API/Menu.c"
+   1:API/Menu.c    **** #include "Menu.h"
+   2:API/Menu.c    **** #include "GUI.h"
+   3:API/Menu.c    **** 
+   4:API/Menu.c    **** extern GUI_CONST_STORAGE GUI_BITMAP bmhdu;
+   5:API/Menu.c    **** extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm;
+   6:API/Menu.c    **** extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarmbw;
+   7:API/Menu.c    **** extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm30;
+   8:API/Menu.c    **** extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm60;
+   9:API/Menu.c    **** extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm82;
+  10:API/Menu.c    **** 
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 2
+
+
+  11:API/Menu.c    **** extern const GUI_FONT GUI_FontHZ_KaiTi_20;
+  12:API/Menu.c    **** extern const GUI_FONT GUI_FontHZ_KaiTi_32;
+  13:API/Menu.c    **** extern const GUI_FONT GUI_FontHZ_YouYuan_24;
+  14:API/Menu.c    **** 
+  15:API/Menu.c    **** extern float g_tmp;
+  16:API/Menu.c    **** 
+  17:API/Menu.c    **** KEY_TABLE table[30]=
+  18:API/Menu.c    **** {
+  19:API/Menu.c    **** 	//启动界面
+  20:API/Menu.c    **** 	{0,0,0,1,(*Boot)},  // press K6, BACK into BOOT
+  21:API/Menu.c    **** 
+  22:API/Menu.c    **** 	//主界面
+  23:API/Menu.c    ****     {1,1,1,2,(*Main_menu)},
+  24:API/Menu.c    **** 
+  25:API/Menu.c    ****     //实时检测
+  26:API/Menu.c    ****     {2,5,3, 6,(*RT_Monitor)},  
+  27:API/Menu.c    ****     {3,2,4,10,(*fun_b1)},
+  28:API/Menu.c    ****     {4,3,5,11,(*fun_c1)},
+  29:API/Menu.c    ****     {5,4,2, 1,(*fun_d1)}, //no actual function or content ,just return the last
+  30:API/Menu.c    **** 
+  31:API/Menu.c    ****     //the index_2
+  32:API/Menu.c    ****     {5,8,6,17,(*fun_a21)},                  
+  33:API/Menu.c    ****     {6,5,7,18,(*fun_a22)},
+  34:API/Menu.c    ****     {7,6,8,19,(*fun_a23)},                                          
+  35:API/Menu.c    ****     {8,7,5, 1,(*fun_a24)},
+  36:API/Menu.c    ****     
+  37:API/Menu.c    ****     { 9,12,10,20,(*fun_b21)},                   
+  38:API/Menu.c    ****     {10, 9,11,21,(*fun_b22)},
+  39:API/Menu.c    ****     {11,10,12,22,(*fun_b23)},                                           
+  40:API/Menu.c    ****     {12,11, 9, 2,(*fun_b24)},
+  41:API/Menu.c    ****     
+  42:API/Menu.c    ****     {13,16,14,23,(*fun_c21)},                   
+  43:API/Menu.c    ****     {14,13,15,24,(*fun_c22)},                                   
+  44:API/Menu.c    ****     {15,14,16,25,(*fun_c23)},                                   
+  45:API/Menu.c    ****     {16,15,13, 3,(*fun_c24)},
+  46:API/Menu.c    ****     
+  47:API/Menu.c    ****     //the index_3
+  48:API/Menu.c    ****     {17,17,17,5,(*fun_a31)},                                
+  49:API/Menu.c    ****     {18,18,18,6,(*fun_a32)},                            
+  50:API/Menu.c    ****     {19,19,19,7,(*fun_a33)},
+  51:API/Menu.c    ****     
+  52:API/Menu.c    ****     {20,20,20, 9,(*fun_b31)},                                   
+  53:API/Menu.c    ****     {21,21,21,10,(*fun_b32)},                               
+  54:API/Menu.c    ****     {22,22,22,11,(*fun_b33)},
+  55:API/Menu.c    **** 
+  56:API/Menu.c    ****     {23,23,23,13,(*fun_c31)},                               
+  57:API/Menu.c    ****     {24,24,24,14,(*fun_c32)},                           
+  58:API/Menu.c    ****     {25,25,25,15,(*fun_c33)},               
+  59:API/Menu.c    **** 
+  60:API/Menu.c    **** };                                          
+  61:API/Menu.c    **** 
+  62:API/Menu.c    **** /**
+  63:API/Menu.c    ****  * 	Boot 
+  64:API/Menu.c    ****  * 
+  65:API/Menu.c    **** */
+  66:API/Menu.c    **** void Boot()
+  67:API/Menu.c    **** {
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 3
+
+
+  68:API/Menu.c    ****     GUI_SetBkColor(GUI_BLACK);
+  69:API/Menu.c    **** 	GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+  70:API/Menu.c    ****     for(int i = 0; i < 61; i++) {
+  71:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+  72:API/Menu.c    ****         GUI_ClearRect(88,48,216,176);
+  73:API/Menu.c    ****       else if ( i % 5 == 1)
+  74:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm30, 88, 48);
+  75:API/Menu.c    ****       else if ( i % 5 == 2)
+  76:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm60, 88, 48);
+  77:API/Menu.c    ****       else if ( i % 5 == 3)
+  78:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm82, 88, 48);
+  79:API/Menu.c    ****       else if ( i % 5 == 4)
+  80:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm, 88, 48);
+  81:API/Menu.c    ****       GUI_SetColor(GUI_YELLOW);
+  82:API/Menu.c    ****       GUI_FillRect(40,200,4*i+40,220);
+  83:API/Menu.c    ****       GUI_DrawRect(40,200,280,220);
+  84:API/Menu.c    ****       if( i == 60 ){
+  85:API/Menu.c    ****          GUI_SetColor(GUI_BROWN);
+  86:API/Menu.c    ****          GUI_SetFont(GUI_FONT_20_ASCII);
+  87:API/Menu.c    ****          GUI_DispStringAt("100%", 132, 204);
+  88:API/Menu.c    ****          osDelay(500);
+  89:API/Menu.c    ****       }
+  90:API/Menu.c    ****       osDelay(20);
+  91:API/Menu.c    ****     }
+  92:API/Menu.c    ****     GUI_Clear();
+  93:API/Menu.c    ****     GUI_SetBkColor(GUI_GRAY_D0);
+  94:API/Menu.c    ****     GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+  95:API/Menu.c    ****     GUI_SetFont(&GUI_FontHZ_YouYuan_24);
+  96:API/Menu.c    ****     GUI_SetColor(GUI_RED);
+  97:API/Menu.c    ****     
+  98:API/Menu.c    ****     GUI_DrawBitmap(&bmhdu, 0, 0);
+  99:API/Menu.c    ****     GUI_DispStringAt("防火防盗监测器", 76, 96);
+ 100:API/Menu.c    ****     osDelay(1000);
+ 101:API/Menu.c    ****     GUI_Clear();
+ 102:API/Menu.c    ****     GUI_DispStringAt("21032311", 106, 96);
+ 103:API/Menu.c    ****     GUI_DispStringAt("陈炫润", 114, 126);
+ 104:API/Menu.c    ****     osDelay(2000);
+ 105:API/Menu.c    **** 	Beep(5,100);
+ 106:API/Menu.c    **** }
+ 107:API/Menu.c    **** 
+ 108:API/Menu.c    **** /*
+ 109:API/Menu.c    ****     Main Menu
+ 110:API/Menu.c    **** */
+ 111:API/Menu.c    **** 
+ 112:API/Menu.c    **** void Main_menu()
+ 113:API/Menu.c    **** {
+ 114:API/Menu.c    **** 	GUI_SetBkColor(GUI_GRAY_D0);
+ 115:API/Menu.c    **** 	GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+ 116:API/Menu.c    ****     GUI_SetColor(GUI_BROWN);
+ 117:API/Menu.c    ****     GUI_SetFont(&GUI_FontHZ_KaiTi_20);
+ 118:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,4,108,62,4,6);
+ 119:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,62,108,120,4,6);
+ 120:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,120,108,178,4,6);
+ 121:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,178,108,236,4,6);
+ 122:API/Menu.c    **** 
+ 123:API/Menu.c    **** 	GUI_SetColor(GUI_BLACK);
+ 124:API/Menu.c    **** 	GUI_DispStringAt("实时监测",16,24);
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 4
+
+
+ 125:API/Menu.c    **** 	GUI_DispStringAt("数据曲线",16,82);
+ 126:API/Menu.c    **** 	GUI_DispStringAt("无线通信",16,140);
+ 127:API/Menu.c    **** 	GUI_DispStringAt("参数设置",16,198);
+ 128:API/Menu.c    **** }
+ 129:API/Menu.c    **** 
+ 130:API/Menu.c    **** 
+ 131:API/Menu.c    **** 
+ 132:API/Menu.c    **** /*
+ 133:API/Menu.c    ****     Real Time Monitoring
+ 134:API/Menu.c    **** */
+ 135:API/Menu.c    **** void RT_Monitor()
+ 136:API/Menu.c    **** {
+ 137:API/Menu.c    ****  	// GUI_SetBkColor(GUI_GRAY_D0);
+ 138:API/Menu.c    ****     GUI_SetColor(GUI_BROWN);
+ 139:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,62,108,120,4,6);
+ 140:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,120,108,178,4,6);
+ 141:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,178,108,236,4,6);
+ 142:API/Menu.c    **** 	GUI_SetColor(GUI_RED);
+ 143:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,4,108,62,4,6);
+ 144:API/Menu.c    **** 
+ 145:API/Menu.c    **** 	GUI_SetColor(GUI_BLACK);
+ 146:API/Menu.c    **** 	GUI_DispStringAt("实时监测",16,24);
+ 147:API/Menu.c    **** 	GUI_DispStringAt("数据曲线",16,82);
+ 148:API/Menu.c    **** 	GUI_DispStringAt("无线通信",16,140);
+ 149:API/Menu.c    **** 	GUI_DispStringAt("参数设置",16,198);   
+ 150:API/Menu.c    **** 
+ 151:API/Menu.c    **** }
+ 152:API/Menu.c    **** void fun_b1()
+ 153:API/Menu.c    **** {
+ 154:API/Menu.c    **** 	GUI_SetColor(GUI_BLUE);
+ 155:API/Menu.c    **** 	GUI_DrawRoundedFrame(168,16,268,216,8,8);
+ 156:API/Menu.c    ****   	GUI_SetFont(&GUI_FontHZ_KaiTi_32);
+ 157:API/Menu.c    ****     
+ 158:API/Menu.c    **** }
+ 159:API/Menu.c    **** void fun_c1()
+ 160:API/Menu.c    **** {
+  42              		.loc 1 160 1 view -0
+  43              		.cfi_startproc
+  44              		@ args = 0, pretend = 0, frame = 0
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46 0000 08B5     		push	{r3, lr}
+  47              	.LCFI0:
+  48              		.cfi_def_cfa_offset 8
+  49              		.cfi_offset 3, -8
+  50              		.cfi_offset 14, -4
+ 161:API/Menu.c    **** 
+ 162:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+  51              		.loc 1 162 2 view .LVU1
+  52 0002 1022     		movs	r2, #16
+  53 0004 0021     		movs	r1, #0
+  54 0006 0948     		ldr	r0, .L3
+  55 0008 FFF7FEFF 		bl	GUI_DispStringAt
+  56              	.LVL0:
+ 163:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+  57              		.loc 1 163 2 view .LVU2
+  58 000c 2822     		movs	r2, #40
+  59 000e 0021     		movs	r1, #0
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 5
+
+
+  60 0010 0748     		ldr	r0, .L3+4
+  61 0012 FFF7FEFF 		bl	GUI_DispStringAt
+  62              	.LVL1:
+ 164:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+  63              		.loc 1 164 2 view .LVU3
+  64 0016 4022     		movs	r2, #64
+  65 0018 0021     		movs	r1, #0
+  66 001a 0648     		ldr	r0, .L3+8
+  67 001c FFF7FEFF 		bl	GUI_DispStringAt
+  68              	.LVL2:
+ 165:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);		
+  69              		.loc 1 165 2 view .LVU4
+  70 0020 5822     		movs	r2, #88
+  71 0022 0021     		movs	r1, #0
+  72 0024 0448     		ldr	r0, .L3+12
+  73 0026 FFF7FEFF 		bl	GUI_DispStringAt
+  74              	.LVL3:
+ 166:API/Menu.c    ****     
+ 167:API/Menu.c    **** }
+  75              		.loc 1 167 1 is_stmt 0 view .LVU5
+  76 002a 08BD     		pop	{r3, pc}
+  77              	.L4:
+  78              		.align	2
+  79              	.L3:
+  80 002c 00000000 		.word	.LC0
+  81 0030 08000000 		.word	.LC1
+  82 0034 18000000 		.word	.LC2
+  83 0038 1C000000 		.word	.LC3
+  84              		.cfi_endproc
+  85              	.LFE4:
+  87              		.section	.text.fun_d1,"ax",%progbits
+  88              		.align	1
+  89              		.global	fun_d1
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  94              	fun_d1:
+  95              	.LFB5:
+ 168:API/Menu.c    **** void fun_d1()
+ 169:API/Menu.c    **** {
+  96              		.loc 1 169 1 is_stmt 1 view -0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100 0000 08B5     		push	{r3, lr}
+ 101              	.LCFI1:
+ 102              		.cfi_def_cfa_offset 8
+ 103              		.cfi_offset 3, -8
+ 104              		.cfi_offset 14, -4
+ 170:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 105              		.loc 1 170 2 view .LVU7
+ 106 0002 1022     		movs	r2, #16
+ 107 0004 0021     		movs	r1, #0
+ 108 0006 0948     		ldr	r0, .L7
+ 109 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 110              	.LVL4:
+ 171:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 6
+
+
+ 111              		.loc 1 171 2 view .LVU8
+ 112 000c 2822     		movs	r2, #40
+ 113 000e 0021     		movs	r1, #0
+ 114 0010 0748     		ldr	r0, .L7+4
+ 115 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 116              	.LVL5:
+ 172:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 117              		.loc 1 172 2 view .LVU9
+ 118 0016 4022     		movs	r2, #64
+ 119 0018 0021     		movs	r1, #0
+ 120 001a 0648     		ldr	r0, .L7+8
+ 121 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 122              	.LVL6:
+ 173:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);	
+ 123              		.loc 1 173 2 view .LVU10
+ 124 0020 5822     		movs	r2, #88
+ 125 0022 0021     		movs	r1, #0
+ 126 0024 0448     		ldr	r0, .L7+12
+ 127 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 128              	.LVL7:
+ 174:API/Menu.c    **** }
+ 129              		.loc 1 174 1 is_stmt 0 view .LVU11
+ 130 002a 08BD     		pop	{r3, pc}
+ 131              	.L8:
+ 132              		.align	2
+ 133              	.L7:
+ 134 002c 00000000 		.word	.LC0
+ 135 0030 08000000 		.word	.LC1
+ 136 0034 18000000 		.word	.LC2
+ 137 0038 1C000000 		.word	.LC3
+ 138              		.cfi_endproc
+ 139              	.LFE5:
+ 141              		.section	.text.fun_a21,"ax",%progbits
+ 142              		.align	1
+ 143              		.global	fun_a21
+ 144              		.syntax unified
+ 145              		.thumb
+ 146              		.thumb_func
+ 148              	fun_a21:
+ 149              	.LFB6:
+ 175:API/Menu.c    **** 
+ 176:API/Menu.c    **** /*
+ 177:API/Menu.c    ****     ***** index_2 *****
+ 178:API/Menu.c    **** */
+ 179:API/Menu.c    **** 
+ 180:API/Menu.c    **** void fun_a21()     
+ 181:API/Menu.c    **** {	
+ 150              		.loc 1 181 1 is_stmt 1 view -0
+ 151              		.cfi_startproc
+ 152              		@ args = 0, pretend = 0, frame = 0
+ 153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154 0000 08B5     		push	{r3, lr}
+ 155              	.LCFI2:
+ 156              		.cfi_def_cfa_offset 8
+ 157              		.cfi_offset 3, -8
+ 158              		.cfi_offset 14, -4
+ 182:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 7
+
+
+ 159              		.loc 1 182 2 view .LVU13
+ 160 0002 1022     		movs	r2, #16
+ 161 0004 0021     		movs	r1, #0
+ 162 0006 0948     		ldr	r0, .L11
+ 163 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 164              	.LVL8:
+ 183:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 165              		.loc 1 183 2 view .LVU14
+ 166 000c 2822     		movs	r2, #40
+ 167 000e 0021     		movs	r1, #0
+ 168 0010 0748     		ldr	r0, .L11+4
+ 169 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 170              	.LVL9:
+ 184:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 171              		.loc 1 184 2 view .LVU15
+ 172 0016 4022     		movs	r2, #64
+ 173 0018 0021     		movs	r1, #0
+ 174 001a 0648     		ldr	r0, .L11+8
+ 175 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 176              	.LVL10:
+ 185:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																					
+ 177              		.loc 1 185 2 view .LVU16
+ 178 0020 5822     		movs	r2, #88
+ 179 0022 0021     		movs	r1, #0
+ 180 0024 0448     		ldr	r0, .L11+12
+ 181 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 182              	.LVL11:
+ 186:API/Menu.c    **** }
+ 183              		.loc 1 186 1 is_stmt 0 view .LVU17
+ 184 002a 08BD     		pop	{r3, pc}
+ 185              	.L12:
+ 186              		.align	2
+ 187              	.L11:
+ 188 002c 00000000 		.word	.LC0
+ 189 0030 08000000 		.word	.LC1
+ 190 0034 18000000 		.word	.LC2
+ 191 0038 1C000000 		.word	.LC3
+ 192              		.cfi_endproc
+ 193              	.LFE6:
+ 195              		.section	.text.fun_a22,"ax",%progbits
+ 196              		.align	1
+ 197              		.global	fun_a22
+ 198              		.syntax unified
+ 199              		.thumb
+ 200              		.thumb_func
+ 202              	fun_a22:
+ 203              	.LFB7:
+ 187:API/Menu.c    **** 
+ 188:API/Menu.c    **** void fun_a22()      
+ 189:API/Menu.c    **** {	
+ 204              		.loc 1 189 1 is_stmt 1 view -0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208 0000 08B5     		push	{r3, lr}
+ 209              	.LCFI3:
+ 210              		.cfi_def_cfa_offset 8
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 8
+
+
+ 211              		.cfi_offset 3, -8
+ 212              		.cfi_offset 14, -4
+ 190:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 213              		.loc 1 190 2 view .LVU19
+ 214 0002 1022     		movs	r2, #16
+ 215 0004 0021     		movs	r1, #0
+ 216 0006 0948     		ldr	r0, .L15
+ 217 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 218              	.LVL12:
+ 191:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 219              		.loc 1 191 2 view .LVU20
+ 220 000c 2822     		movs	r2, #40
+ 221 000e 0021     		movs	r1, #0
+ 222 0010 0748     		ldr	r0, .L15+4
+ 223 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 224              	.LVL13:
+ 192:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 225              		.loc 1 192 2 view .LVU21
+ 226 0016 4022     		movs	r2, #64
+ 227 0018 0021     		movs	r1, #0
+ 228 001a 0648     		ldr	r0, .L15+8
+ 229 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 230              	.LVL14:
+ 193:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 231              		.loc 1 193 2 view .LVU22
+ 232 0020 5822     		movs	r2, #88
+ 233 0022 0021     		movs	r1, #0
+ 234 0024 0448     		ldr	r0, .L15+12
+ 235 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 236              	.LVL15:
+ 194:API/Menu.c    **** }
+ 237              		.loc 1 194 1 is_stmt 0 view .LVU23
+ 238 002a 08BD     		pop	{r3, pc}
+ 239              	.L16:
+ 240              		.align	2
+ 241              	.L15:
+ 242 002c 00000000 		.word	.LC0
+ 243 0030 08000000 		.word	.LC1
+ 244 0034 18000000 		.word	.LC2
+ 245 0038 1C000000 		.word	.LC3
+ 246              		.cfi_endproc
+ 247              	.LFE7:
+ 249              		.section	.text.fun_a23,"ax",%progbits
+ 250              		.align	1
+ 251              		.global	fun_a23
+ 252              		.syntax unified
+ 253              		.thumb
+ 254              		.thumb_func
+ 256              	fun_a23:
+ 257              	.LFB8:
+ 195:API/Menu.c    **** 
+ 196:API/Menu.c    **** void fun_a23()    
+ 197:API/Menu.c    **** {	
+ 258              		.loc 1 197 1 is_stmt 1 view -0
+ 259              		.cfi_startproc
+ 260              		@ args = 0, pretend = 0, frame = 0
+ 261              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 9
+
+
+ 262 0000 08B5     		push	{r3, lr}
+ 263              	.LCFI4:
+ 264              		.cfi_def_cfa_offset 8
+ 265              		.cfi_offset 3, -8
+ 266              		.cfi_offset 14, -4
+ 198:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 267              		.loc 1 198 2 view .LVU25
+ 268 0002 1022     		movs	r2, #16
+ 269 0004 0021     		movs	r1, #0
+ 270 0006 0948     		ldr	r0, .L19
+ 271 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 272              	.LVL16:
+ 199:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 273              		.loc 1 199 2 view .LVU26
+ 274 000c 2822     		movs	r2, #40
+ 275 000e 0021     		movs	r1, #0
+ 276 0010 0748     		ldr	r0, .L19+4
+ 277 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 278              	.LVL17:
+ 200:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 279              		.loc 1 200 2 view .LVU27
+ 280 0016 4022     		movs	r2, #64
+ 281 0018 0021     		movs	r1, #0
+ 282 001a 0648     		ldr	r0, .L19+8
+ 283 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 284              	.LVL18:
+ 201:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 285              		.loc 1 201 2 view .LVU28
+ 286 0020 5822     		movs	r2, #88
+ 287 0022 0021     		movs	r1, #0
+ 288 0024 0448     		ldr	r0, .L19+12
+ 289 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 290              	.LVL19:
+ 202:API/Menu.c    **** }
+ 291              		.loc 1 202 1 is_stmt 0 view .LVU29
+ 292 002a 08BD     		pop	{r3, pc}
+ 293              	.L20:
+ 294              		.align	2
+ 295              	.L19:
+ 296 002c 00000000 		.word	.LC0
+ 297 0030 08000000 		.word	.LC1
+ 298 0034 18000000 		.word	.LC2
+ 299 0038 1C000000 		.word	.LC3
+ 300              		.cfi_endproc
+ 301              	.LFE8:
+ 303              		.section	.text.fun_a24,"ax",%progbits
+ 304              		.align	1
+ 305              		.global	fun_a24
+ 306              		.syntax unified
+ 307              		.thumb
+ 308              		.thumb_func
+ 310              	fun_a24:
+ 311              	.LFB9:
+ 203:API/Menu.c    **** 
+ 204:API/Menu.c    **** void fun_a24()    
+ 205:API/Menu.c    **** {	
+ 312              		.loc 1 205 1 is_stmt 1 view -0
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 10
+
+
+ 313              		.cfi_startproc
+ 314              		@ args = 0, pretend = 0, frame = 0
+ 315              		@ frame_needed = 0, uses_anonymous_args = 0
+ 316 0000 08B5     		push	{r3, lr}
+ 317              	.LCFI5:
+ 318              		.cfi_def_cfa_offset 8
+ 319              		.cfi_offset 3, -8
+ 320              		.cfi_offset 14, -4
+ 206:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 321              		.loc 1 206 2 view .LVU31
+ 322 0002 1022     		movs	r2, #16
+ 323 0004 0021     		movs	r1, #0
+ 324 0006 0948     		ldr	r0, .L23
+ 325 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 326              	.LVL20:
+ 207:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 327              		.loc 1 207 2 view .LVU32
+ 328 000c 2822     		movs	r2, #40
+ 329 000e 0021     		movs	r1, #0
+ 330 0010 0748     		ldr	r0, .L23+4
+ 331 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 332              	.LVL21:
+ 208:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 333              		.loc 1 208 2 view .LVU33
+ 334 0016 4022     		movs	r2, #64
+ 335 0018 0021     		movs	r1, #0
+ 336 001a 0648     		ldr	r0, .L23+8
+ 337 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 338              	.LVL22:
+ 209:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 339              		.loc 1 209 2 view .LVU34
+ 340 0020 5822     		movs	r2, #88
+ 341 0022 0021     		movs	r1, #0
+ 342 0024 0448     		ldr	r0, .L23+12
+ 343 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 344              	.LVL23:
+ 210:API/Menu.c    **** }
+ 345              		.loc 1 210 1 is_stmt 0 view .LVU35
+ 346 002a 08BD     		pop	{r3, pc}
+ 347              	.L24:
+ 348              		.align	2
+ 349              	.L23:
+ 350 002c 00000000 		.word	.LC0
+ 351 0030 08000000 		.word	.LC1
+ 352 0034 18000000 		.word	.LC2
+ 353 0038 1C000000 		.word	.LC3
+ 354              		.cfi_endproc
+ 355              	.LFE9:
+ 357              		.section	.text.fun_b21,"ax",%progbits
+ 358              		.align	1
+ 359              		.global	fun_b21
+ 360              		.syntax unified
+ 361              		.thumb
+ 362              		.thumb_func
+ 364              	fun_b21:
+ 365              	.LFB10:
+ 211:API/Menu.c    **** 
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 11
+
+
+ 212:API/Menu.c    **** void fun_b21()    
+ 213:API/Menu.c    **** {	
+ 366              		.loc 1 213 1 is_stmt 1 view -0
+ 367              		.cfi_startproc
+ 368              		@ args = 0, pretend = 0, frame = 0
+ 369              		@ frame_needed = 0, uses_anonymous_args = 0
+ 370 0000 08B5     		push	{r3, lr}
+ 371              	.LCFI6:
+ 372              		.cfi_def_cfa_offset 8
+ 373              		.cfi_offset 3, -8
+ 374              		.cfi_offset 14, -4
+ 214:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 375              		.loc 1 214 2 view .LVU37
+ 376 0002 1022     		movs	r2, #16
+ 377 0004 0021     		movs	r1, #0
+ 378 0006 0948     		ldr	r0, .L27
+ 379 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 380              	.LVL24:
+ 215:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 381              		.loc 1 215 2 view .LVU38
+ 382 000c 2822     		movs	r2, #40
+ 383 000e 0021     		movs	r1, #0
+ 384 0010 0748     		ldr	r0, .L27+4
+ 385 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 386              	.LVL25:
+ 216:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 387              		.loc 1 216 2 view .LVU39
+ 388 0016 4022     		movs	r2, #64
+ 389 0018 0021     		movs	r1, #0
+ 390 001a 0648     		ldr	r0, .L27+8
+ 391 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 392              	.LVL26:
+ 217:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 393              		.loc 1 217 2 view .LVU40
+ 394 0020 5822     		movs	r2, #88
+ 395 0022 0021     		movs	r1, #0
+ 396 0024 0448     		ldr	r0, .L27+12
+ 397 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 398              	.LVL27:
+ 218:API/Menu.c    **** }
+ 399              		.loc 1 218 1 is_stmt 0 view .LVU41
+ 400 002a 08BD     		pop	{r3, pc}
+ 401              	.L28:
+ 402              		.align	2
+ 403              	.L27:
+ 404 002c 00000000 		.word	.LC0
+ 405 0030 08000000 		.word	.LC1
+ 406 0034 18000000 		.word	.LC2
+ 407 0038 1C000000 		.word	.LC3
+ 408              		.cfi_endproc
+ 409              	.LFE10:
+ 411              		.section	.text.fun_b22,"ax",%progbits
+ 412              		.align	1
+ 413              		.global	fun_b22
+ 414              		.syntax unified
+ 415              		.thumb
+ 416              		.thumb_func
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 12
+
+
+ 418              	fun_b22:
+ 419              	.LFB11:
+ 219:API/Menu.c    **** 
+ 220:API/Menu.c    **** void fun_b22()    
+ 221:API/Menu.c    **** {	
+ 420              		.loc 1 221 1 is_stmt 1 view -0
+ 421              		.cfi_startproc
+ 422              		@ args = 0, pretend = 0, frame = 0
+ 423              		@ frame_needed = 0, uses_anonymous_args = 0
+ 424 0000 08B5     		push	{r3, lr}
+ 425              	.LCFI7:
+ 426              		.cfi_def_cfa_offset 8
+ 427              		.cfi_offset 3, -8
+ 428              		.cfi_offset 14, -4
+ 222:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 429              		.loc 1 222 2 view .LVU43
+ 430 0002 1022     		movs	r2, #16
+ 431 0004 0021     		movs	r1, #0
+ 432 0006 0948     		ldr	r0, .L31
+ 433 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 434              	.LVL28:
+ 223:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 435              		.loc 1 223 2 view .LVU44
+ 436 000c 2822     		movs	r2, #40
+ 437 000e 0021     		movs	r1, #0
+ 438 0010 0748     		ldr	r0, .L31+4
+ 439 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 440              	.LVL29:
+ 224:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 441              		.loc 1 224 2 view .LVU45
+ 442 0016 4022     		movs	r2, #64
+ 443 0018 0021     		movs	r1, #0
+ 444 001a 0648     		ldr	r0, .L31+8
+ 445 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 446              	.LVL30:
+ 225:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																								
+ 447              		.loc 1 225 2 view .LVU46
+ 448 0020 5822     		movs	r2, #88
+ 449 0022 0021     		movs	r1, #0
+ 450 0024 0448     		ldr	r0, .L31+12
+ 451 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 452              	.LVL31:
+ 226:API/Menu.c    **** }
+ 453              		.loc 1 226 1 is_stmt 0 view .LVU47
+ 454 002a 08BD     		pop	{r3, pc}
+ 455              	.L32:
+ 456              		.align	2
+ 457              	.L31:
+ 458 002c 00000000 		.word	.LC0
+ 459 0030 08000000 		.word	.LC1
+ 460 0034 18000000 		.word	.LC2
+ 461 0038 1C000000 		.word	.LC3
+ 462              		.cfi_endproc
+ 463              	.LFE11:
+ 465              		.section	.text.fun_b23,"ax",%progbits
+ 466              		.align	1
+ 467              		.global	fun_b23
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 13
+
+
+ 468              		.syntax unified
+ 469              		.thumb
+ 470              		.thumb_func
+ 472              	fun_b23:
+ 473              	.LFB12:
+ 227:API/Menu.c    **** 
+ 228:API/Menu.c    **** void fun_b23()    
+ 229:API/Menu.c    **** {	
+ 474              		.loc 1 229 1 is_stmt 1 view -0
+ 475              		.cfi_startproc
+ 476              		@ args = 0, pretend = 0, frame = 0
+ 477              		@ frame_needed = 0, uses_anonymous_args = 0
+ 478 0000 08B5     		push	{r3, lr}
+ 479              	.LCFI8:
+ 480              		.cfi_def_cfa_offset 8
+ 481              		.cfi_offset 3, -8
+ 482              		.cfi_offset 14, -4
+ 230:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 483              		.loc 1 230 2 view .LVU49
+ 484 0002 1022     		movs	r2, #16
+ 485 0004 0021     		movs	r1, #0
+ 486 0006 0948     		ldr	r0, .L35
+ 487 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 488              	.LVL32:
+ 231:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 489              		.loc 1 231 2 view .LVU50
+ 490 000c 2822     		movs	r2, #40
+ 491 000e 0021     		movs	r1, #0
+ 492 0010 0748     		ldr	r0, .L35+4
+ 493 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 494              	.LVL33:
+ 232:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 495              		.loc 1 232 2 view .LVU51
+ 496 0016 4022     		movs	r2, #64
+ 497 0018 0021     		movs	r1, #0
+ 498 001a 0648     		ldr	r0, .L35+8
+ 499 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 500              	.LVL34:
+ 233:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 501              		.loc 1 233 2 view .LVU52
+ 502 0020 5822     		movs	r2, #88
+ 503 0022 0021     		movs	r1, #0
+ 504 0024 0448     		ldr	r0, .L35+12
+ 505 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 506              	.LVL35:
+ 234:API/Menu.c    **** }
+ 507              		.loc 1 234 1 is_stmt 0 view .LVU53
+ 508 002a 08BD     		pop	{r3, pc}
+ 509              	.L36:
+ 510              		.align	2
+ 511              	.L35:
+ 512 002c 00000000 		.word	.LC0
+ 513 0030 08000000 		.word	.LC1
+ 514 0034 18000000 		.word	.LC2
+ 515 0038 1C000000 		.word	.LC3
+ 516              		.cfi_endproc
+ 517              	.LFE12:
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 14
+
+
+ 519              		.section	.text.fun_b24,"ax",%progbits
+ 520              		.align	1
+ 521              		.global	fun_b24
+ 522              		.syntax unified
+ 523              		.thumb
+ 524              		.thumb_func
+ 526              	fun_b24:
+ 527              	.LFB13:
+ 235:API/Menu.c    **** 
+ 236:API/Menu.c    **** void fun_b24()    
+ 237:API/Menu.c    **** {	
+ 528              		.loc 1 237 1 is_stmt 1 view -0
+ 529              		.cfi_startproc
+ 530              		@ args = 0, pretend = 0, frame = 0
+ 531              		@ frame_needed = 0, uses_anonymous_args = 0
+ 532 0000 08B5     		push	{r3, lr}
+ 533              	.LCFI9:
+ 534              		.cfi_def_cfa_offset 8
+ 535              		.cfi_offset 3, -8
+ 536              		.cfi_offset 14, -4
+ 238:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 537              		.loc 1 238 2 view .LVU55
+ 538 0002 1022     		movs	r2, #16
+ 539 0004 0021     		movs	r1, #0
+ 540 0006 0948     		ldr	r0, .L39
+ 541 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 542              	.LVL36:
+ 239:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 543              		.loc 1 239 2 view .LVU56
+ 544 000c 2822     		movs	r2, #40
+ 545 000e 0021     		movs	r1, #0
+ 546 0010 0748     		ldr	r0, .L39+4
+ 547 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 548              	.LVL37:
+ 240:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 549              		.loc 1 240 2 view .LVU57
+ 550 0016 4022     		movs	r2, #64
+ 551 0018 0021     		movs	r1, #0
+ 552 001a 0648     		ldr	r0, .L39+8
+ 553 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 554              	.LVL38:
+ 241:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																				
+ 555              		.loc 1 241 2 view .LVU58
+ 556 0020 5822     		movs	r2, #88
+ 557 0022 0021     		movs	r1, #0
+ 558 0024 0448     		ldr	r0, .L39+12
+ 559 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 560              	.LVL39:
+ 242:API/Menu.c    **** }
+ 561              		.loc 1 242 1 is_stmt 0 view .LVU59
+ 562 002a 08BD     		pop	{r3, pc}
+ 563              	.L40:
+ 564              		.align	2
+ 565              	.L39:
+ 566 002c 00000000 		.word	.LC0
+ 567 0030 08000000 		.word	.LC1
+ 568 0034 18000000 		.word	.LC2
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 15
+
+
+ 569 0038 1C000000 		.word	.LC3
+ 570              		.cfi_endproc
+ 571              	.LFE13:
+ 573              		.section	.text.fun_c21,"ax",%progbits
+ 574              		.align	1
+ 575              		.global	fun_c21
+ 576              		.syntax unified
+ 577              		.thumb
+ 578              		.thumb_func
+ 580              	fun_c21:
+ 581              	.LFB14:
+ 243:API/Menu.c    **** 
+ 244:API/Menu.c    **** void fun_c21()    
+ 245:API/Menu.c    **** {	
+ 582              		.loc 1 245 1 is_stmt 1 view -0
+ 583              		.cfi_startproc
+ 584              		@ args = 0, pretend = 0, frame = 0
+ 585              		@ frame_needed = 0, uses_anonymous_args = 0
+ 586 0000 08B5     		push	{r3, lr}
+ 587              	.LCFI10:
+ 588              		.cfi_def_cfa_offset 8
+ 589              		.cfi_offset 3, -8
+ 590              		.cfi_offset 14, -4
+ 246:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 591              		.loc 1 246 2 view .LVU61
+ 592 0002 1022     		movs	r2, #16
+ 593 0004 0021     		movs	r1, #0
+ 594 0006 0948     		ldr	r0, .L43
+ 595 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 596              	.LVL40:
+ 247:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 597              		.loc 1 247 2 view .LVU62
+ 598 000c 2822     		movs	r2, #40
+ 599 000e 0021     		movs	r1, #0
+ 600 0010 0748     		ldr	r0, .L43+4
+ 601 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 602              	.LVL41:
+ 248:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 603              		.loc 1 248 2 view .LVU63
+ 604 0016 4022     		movs	r2, #64
+ 605 0018 0021     		movs	r1, #0
+ 606 001a 0648     		ldr	r0, .L43+8
+ 607 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 608              	.LVL42:
+ 249:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																					
+ 609              		.loc 1 249 2 view .LVU64
+ 610 0020 5822     		movs	r2, #88
+ 611 0022 0021     		movs	r1, #0
+ 612 0024 0448     		ldr	r0, .L43+12
+ 613 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 614              	.LVL43:
+ 250:API/Menu.c    **** }
+ 615              		.loc 1 250 1 is_stmt 0 view .LVU65
+ 616 002a 08BD     		pop	{r3, pc}
+ 617              	.L44:
+ 618              		.align	2
+ 619              	.L43:
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 16
+
+
+ 620 002c 00000000 		.word	.LC0
+ 621 0030 08000000 		.word	.LC1
+ 622 0034 18000000 		.word	.LC2
+ 623 0038 1C000000 		.word	.LC3
+ 624              		.cfi_endproc
+ 625              	.LFE14:
+ 627              		.section	.text.fun_c22,"ax",%progbits
+ 628              		.align	1
+ 629              		.global	fun_c22
+ 630              		.syntax unified
+ 631              		.thumb
+ 632              		.thumb_func
+ 634              	fun_c22:
+ 635              	.LFB15:
+ 251:API/Menu.c    **** 
+ 252:API/Menu.c    **** void fun_c22()    
+ 253:API/Menu.c    **** {	
+ 636              		.loc 1 253 1 is_stmt 1 view -0
+ 637              		.cfi_startproc
+ 638              		@ args = 0, pretend = 0, frame = 0
+ 639              		@ frame_needed = 0, uses_anonymous_args = 0
+ 640 0000 08B5     		push	{r3, lr}
+ 641              	.LCFI11:
+ 642              		.cfi_def_cfa_offset 8
+ 643              		.cfi_offset 3, -8
+ 644              		.cfi_offset 14, -4
+ 254:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 645              		.loc 1 254 2 view .LVU67
+ 646 0002 1022     		movs	r2, #16
+ 647 0004 0021     		movs	r1, #0
+ 648 0006 0948     		ldr	r0, .L47
+ 649 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 650              	.LVL44:
+ 255:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 651              		.loc 1 255 2 view .LVU68
+ 652 000c 2822     		movs	r2, #40
+ 653 000e 0021     		movs	r1, #0
+ 654 0010 0748     		ldr	r0, .L47+4
+ 655 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 656              	.LVL45:
+ 256:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 657              		.loc 1 256 2 view .LVU69
+ 658 0016 4022     		movs	r2, #64
+ 659 0018 0021     		movs	r1, #0
+ 660 001a 0648     		ldr	r0, .L47+8
+ 661 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 662              	.LVL46:
+ 257:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 663              		.loc 1 257 2 view .LVU70
+ 664 0020 5822     		movs	r2, #88
+ 665 0022 0021     		movs	r1, #0
+ 666 0024 0448     		ldr	r0, .L47+12
+ 667 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 668              	.LVL47:
+ 258:API/Menu.c    **** }
+ 669              		.loc 1 258 1 is_stmt 0 view .LVU71
+ 670 002a 08BD     		pop	{r3, pc}
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 17
+
+
+ 671              	.L48:
+ 672              		.align	2
+ 673              	.L47:
+ 674 002c 00000000 		.word	.LC0
+ 675 0030 08000000 		.word	.LC1
+ 676 0034 18000000 		.word	.LC2
+ 677 0038 1C000000 		.word	.LC3
+ 678              		.cfi_endproc
+ 679              	.LFE15:
+ 681              		.section	.text.fun_c23,"ax",%progbits
+ 682              		.align	1
+ 683              		.global	fun_c23
+ 684              		.syntax unified
+ 685              		.thumb
+ 686              		.thumb_func
+ 688              	fun_c23:
+ 689              	.LFB16:
+ 259:API/Menu.c    **** 
+ 260:API/Menu.c    **** void fun_c23()    
+ 261:API/Menu.c    **** {	
+ 690              		.loc 1 261 1 is_stmt 1 view -0
+ 691              		.cfi_startproc
+ 692              		@ args = 0, pretend = 0, frame = 0
+ 693              		@ frame_needed = 0, uses_anonymous_args = 0
+ 694 0000 08B5     		push	{r3, lr}
+ 695              	.LCFI12:
+ 696              		.cfi_def_cfa_offset 8
+ 697              		.cfi_offset 3, -8
+ 698              		.cfi_offset 14, -4
+ 262:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 699              		.loc 1 262 2 view .LVU73
+ 700 0002 1022     		movs	r2, #16
+ 701 0004 0021     		movs	r1, #0
+ 702 0006 0948     		ldr	r0, .L51
+ 703 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 704              	.LVL48:
+ 263:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 705              		.loc 1 263 2 view .LVU74
+ 706 000c 2822     		movs	r2, #40
+ 707 000e 0021     		movs	r1, #0
+ 708 0010 0748     		ldr	r0, .L51+4
+ 709 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 710              	.LVL49:
+ 264:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 711              		.loc 1 264 2 view .LVU75
+ 712 0016 4022     		movs	r2, #64
+ 713 0018 0021     		movs	r1, #0
+ 714 001a 0648     		ldr	r0, .L51+8
+ 715 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 716              	.LVL50:
+ 265:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																						
+ 717              		.loc 1 265 2 view .LVU76
+ 718 0020 5822     		movs	r2, #88
+ 719 0022 0021     		movs	r1, #0
+ 720 0024 0448     		ldr	r0, .L51+12
+ 721 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 722              	.LVL51:
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 18
+
+
+ 266:API/Menu.c    **** }
+ 723              		.loc 1 266 1 is_stmt 0 view .LVU77
+ 724 002a 08BD     		pop	{r3, pc}
+ 725              	.L52:
+ 726              		.align	2
+ 727              	.L51:
+ 728 002c 00000000 		.word	.LC0
+ 729 0030 08000000 		.word	.LC1
+ 730 0034 18000000 		.word	.LC2
+ 731 0038 1C000000 		.word	.LC3
+ 732              		.cfi_endproc
+ 733              	.LFE16:
+ 735              		.section	.text.fun_c24,"ax",%progbits
+ 736              		.align	1
+ 737              		.global	fun_c24
+ 738              		.syntax unified
+ 739              		.thumb
+ 740              		.thumb_func
+ 742              	fun_c24:
+ 743              	.LFB17:
+ 267:API/Menu.c    **** 
+ 268:API/Menu.c    **** void fun_c24()    
+ 269:API/Menu.c    **** {	
+ 744              		.loc 1 269 1 is_stmt 1 view -0
+ 745              		.cfi_startproc
+ 746              		@ args = 0, pretend = 0, frame = 0
+ 747              		@ frame_needed = 0, uses_anonymous_args = 0
+ 748 0000 08B5     		push	{r3, lr}
+ 749              	.LCFI13:
+ 750              		.cfi_def_cfa_offset 8
+ 751              		.cfi_offset 3, -8
+ 752              		.cfi_offset 14, -4
+ 270:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 753              		.loc 1 270 2 view .LVU79
+ 754 0002 1022     		movs	r2, #16
+ 755 0004 0021     		movs	r1, #0
+ 756 0006 0948     		ldr	r0, .L55
+ 757 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 758              	.LVL52:
+ 271:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 759              		.loc 1 271 2 view .LVU80
+ 760 000c 2822     		movs	r2, #40
+ 761 000e 0021     		movs	r1, #0
+ 762 0010 0748     		ldr	r0, .L55+4
+ 763 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 764              	.LVL53:
+ 272:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 765              		.loc 1 272 2 view .LVU81
+ 766 0016 4022     		movs	r2, #64
+ 767 0018 0021     		movs	r1, #0
+ 768 001a 0648     		ldr	r0, .L55+8
+ 769 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 770              	.LVL54:
+ 273:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																				
+ 771              		.loc 1 273 2 view .LVU82
+ 772 0020 5822     		movs	r2, #88
+ 773 0022 0021     		movs	r1, #0
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 19
+
+
+ 774 0024 0448     		ldr	r0, .L55+12
+ 775 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 776              	.LVL55:
+ 274:API/Menu.c    **** }
+ 777              		.loc 1 274 1 is_stmt 0 view .LVU83
+ 778 002a 08BD     		pop	{r3, pc}
+ 779              	.L56:
+ 780              		.align	2
+ 781              	.L55:
+ 782 002c 00000000 		.word	.LC0
+ 783 0030 08000000 		.word	.LC1
+ 784 0034 18000000 		.word	.LC2
+ 785 0038 1C000000 		.word	.LC3
+ 786              		.cfi_endproc
+ 787              	.LFE17:
+ 789              		.section	.text.fun_a31,"ax",%progbits
+ 790              		.align	1
+ 791              		.global	fun_a31
+ 792              		.syntax unified
+ 793              		.thumb
+ 794              		.thumb_func
+ 796              	fun_a31:
+ 797              	.LFB18:
+ 275:API/Menu.c    **** 
+ 276:API/Menu.c    **** /*
+ 277:API/Menu.c    ****     ***** index_3 *****
+ 278:API/Menu.c    **** */
+ 279:API/Menu.c    **** 
+ 280:API/Menu.c    **** void fun_a31()    
+ 281:API/Menu.c    **** {	
+ 798              		.loc 1 281 1 is_stmt 1 view -0
+ 799              		.cfi_startproc
+ 800              		@ args = 0, pretend = 0, frame = 0
+ 801              		@ frame_needed = 0, uses_anonymous_args = 0
+ 802 0000 08B5     		push	{r3, lr}
+ 803              	.LCFI14:
+ 804              		.cfi_def_cfa_offset 8
+ 805              		.cfi_offset 3, -8
+ 806              		.cfi_offset 14, -4
+ 282:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 807              		.loc 1 282 2 view .LVU85
+ 808 0002 1022     		movs	r2, #16
+ 809 0004 0021     		movs	r1, #0
+ 810 0006 0948     		ldr	r0, .L59
+ 811 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 812              	.LVL56:
+ 283:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 813              		.loc 1 283 2 view .LVU86
+ 814 000c 2822     		movs	r2, #40
+ 815 000e 0021     		movs	r1, #0
+ 816 0010 0748     		ldr	r0, .L59+4
+ 817 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 818              	.LVL57:
+ 284:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 819              		.loc 1 284 2 view .LVU87
+ 820 0016 4022     		movs	r2, #64
+ 821 0018 0021     		movs	r1, #0
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 20
+
+
+ 822 001a 0648     		ldr	r0, .L59+8
+ 823 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 824              	.LVL58:
+ 285:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																						
+ 825              		.loc 1 285 2 view .LVU88
+ 826 0020 5822     		movs	r2, #88
+ 827 0022 0021     		movs	r1, #0
+ 828 0024 0448     		ldr	r0, .L59+12
+ 829 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 830              	.LVL59:
+ 286:API/Menu.c    **** }
+ 831              		.loc 1 286 1 is_stmt 0 view .LVU89
+ 832 002a 08BD     		pop	{r3, pc}
+ 833              	.L60:
+ 834              		.align	2
+ 835              	.L59:
+ 836 002c 00000000 		.word	.LC0
+ 837 0030 08000000 		.word	.LC1
+ 838 0034 18000000 		.word	.LC2
+ 839 0038 1C000000 		.word	.LC3
+ 840              		.cfi_endproc
+ 841              	.LFE18:
+ 843              		.section	.text.fun_a32,"ax",%progbits
+ 844              		.align	1
+ 845              		.global	fun_a32
+ 846              		.syntax unified
+ 847              		.thumb
+ 848              		.thumb_func
+ 850              	fun_a32:
+ 851              	.LFB19:
+ 287:API/Menu.c    **** 
+ 288:API/Menu.c    **** void fun_a32()    
+ 289:API/Menu.c    **** {	
+ 852              		.loc 1 289 1 is_stmt 1 view -0
+ 853              		.cfi_startproc
+ 854              		@ args = 0, pretend = 0, frame = 0
+ 855              		@ frame_needed = 0, uses_anonymous_args = 0
+ 856 0000 08B5     		push	{r3, lr}
+ 857              	.LCFI15:
+ 858              		.cfi_def_cfa_offset 8
+ 859              		.cfi_offset 3, -8
+ 860              		.cfi_offset 14, -4
+ 290:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 861              		.loc 1 290 2 view .LVU91
+ 862 0002 1022     		movs	r2, #16
+ 863 0004 0021     		movs	r1, #0
+ 864 0006 0948     		ldr	r0, .L63
+ 865 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 866              	.LVL60:
+ 291:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 867              		.loc 1 291 2 view .LVU92
+ 868 000c 2822     		movs	r2, #40
+ 869 000e 0021     		movs	r1, #0
+ 870 0010 0748     		ldr	r0, .L63+4
+ 871 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 872              	.LVL61:
+ 292:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 21
+
+
+ 873              		.loc 1 292 2 view .LVU93
+ 874 0016 4022     		movs	r2, #64
+ 875 0018 0021     		movs	r1, #0
+ 876 001a 0648     		ldr	r0, .L63+8
+ 877 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 878              	.LVL62:
+ 293:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																					
+ 879              		.loc 1 293 2 view .LVU94
+ 880 0020 5822     		movs	r2, #88
+ 881 0022 0021     		movs	r1, #0
+ 882 0024 0448     		ldr	r0, .L63+12
+ 883 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 884              	.LVL63:
+ 294:API/Menu.c    **** }
+ 885              		.loc 1 294 1 is_stmt 0 view .LVU95
+ 886 002a 08BD     		pop	{r3, pc}
+ 887              	.L64:
+ 888              		.align	2
+ 889              	.L63:
+ 890 002c 00000000 		.word	.LC0
+ 891 0030 08000000 		.word	.LC1
+ 892 0034 18000000 		.word	.LC2
+ 893 0038 1C000000 		.word	.LC3
+ 894              		.cfi_endproc
+ 895              	.LFE19:
+ 897              		.section	.text.fun_a33,"ax",%progbits
+ 898              		.align	1
+ 899              		.global	fun_a33
+ 900              		.syntax unified
+ 901              		.thumb
+ 902              		.thumb_func
+ 904              	fun_a33:
+ 905              	.LFB20:
+ 295:API/Menu.c    **** 
+ 296:API/Menu.c    **** void fun_a33()    
+ 297:API/Menu.c    **** {	
+ 906              		.loc 1 297 1 is_stmt 1 view -0
+ 907              		.cfi_startproc
+ 908              		@ args = 0, pretend = 0, frame = 0
+ 909              		@ frame_needed = 0, uses_anonymous_args = 0
+ 910 0000 08B5     		push	{r3, lr}
+ 911              	.LCFI16:
+ 912              		.cfi_def_cfa_offset 8
+ 913              		.cfi_offset 3, -8
+ 914              		.cfi_offset 14, -4
+ 298:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 915              		.loc 1 298 2 view .LVU97
+ 916 0002 1022     		movs	r2, #16
+ 917 0004 0021     		movs	r1, #0
+ 918 0006 0948     		ldr	r0, .L67
+ 919 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 920              	.LVL64:
+ 299:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 921              		.loc 1 299 2 view .LVU98
+ 922 000c 2822     		movs	r2, #40
+ 923 000e 0021     		movs	r1, #0
+ 924 0010 0748     		ldr	r0, .L67+4
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 22
+
+
+ 925 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 926              	.LVL65:
+ 300:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 927              		.loc 1 300 2 view .LVU99
+ 928 0016 4022     		movs	r2, #64
+ 929 0018 0021     		movs	r1, #0
+ 930 001a 0648     		ldr	r0, .L67+8
+ 931 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 932              	.LVL66:
+ 301:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 933              		.loc 1 301 2 view .LVU100
+ 934 0020 5822     		movs	r2, #88
+ 935 0022 0021     		movs	r1, #0
+ 936 0024 0448     		ldr	r0, .L67+12
+ 937 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 938              	.LVL67:
+ 302:API/Menu.c    **** }
+ 939              		.loc 1 302 1 is_stmt 0 view .LVU101
+ 940 002a 08BD     		pop	{r3, pc}
+ 941              	.L68:
+ 942              		.align	2
+ 943              	.L67:
+ 944 002c 00000000 		.word	.LC0
+ 945 0030 08000000 		.word	.LC1
+ 946 0034 18000000 		.word	.LC2
+ 947 0038 1C000000 		.word	.LC3
+ 948              		.cfi_endproc
+ 949              	.LFE20:
+ 951              		.section	.text.fun_b31,"ax",%progbits
+ 952              		.align	1
+ 953              		.global	fun_b31
+ 954              		.syntax unified
+ 955              		.thumb
+ 956              		.thumb_func
+ 958              	fun_b31:
+ 959              	.LFB21:
+ 303:API/Menu.c    **** 
+ 304:API/Menu.c    **** void fun_b31()    
+ 305:API/Menu.c    **** {	
+ 960              		.loc 1 305 1 is_stmt 1 view -0
+ 961              		.cfi_startproc
+ 962              		@ args = 0, pretend = 0, frame = 0
+ 963              		@ frame_needed = 0, uses_anonymous_args = 0
+ 964 0000 08B5     		push	{r3, lr}
+ 965              	.LCFI17:
+ 966              		.cfi_def_cfa_offset 8
+ 967              		.cfi_offset 3, -8
+ 968              		.cfi_offset 14, -4
+ 306:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 969              		.loc 1 306 2 view .LVU103
+ 970 0002 1022     		movs	r2, #16
+ 971 0004 0021     		movs	r1, #0
+ 972 0006 0948     		ldr	r0, .L71
+ 973 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 974              	.LVL68:
+ 307:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 975              		.loc 1 307 2 view .LVU104
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 23
+
+
+ 976 000c 2822     		movs	r2, #40
+ 977 000e 0021     		movs	r1, #0
+ 978 0010 0748     		ldr	r0, .L71+4
+ 979 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 980              	.LVL69:
+ 308:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 981              		.loc 1 308 2 view .LVU105
+ 982 0016 4022     		movs	r2, #64
+ 983 0018 0021     		movs	r1, #0
+ 984 001a 0648     		ldr	r0, .L71+8
+ 985 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 986              	.LVL70:
+ 309:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 987              		.loc 1 309 2 view .LVU106
+ 988 0020 5822     		movs	r2, #88
+ 989 0022 0021     		movs	r1, #0
+ 990 0024 0448     		ldr	r0, .L71+12
+ 991 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 992              	.LVL71:
+ 310:API/Menu.c    **** }
+ 993              		.loc 1 310 1 is_stmt 0 view .LVU107
+ 994 002a 08BD     		pop	{r3, pc}
+ 995              	.L72:
+ 996              		.align	2
+ 997              	.L71:
+ 998 002c 00000000 		.word	.LC0
+ 999 0030 08000000 		.word	.LC1
+ 1000 0034 18000000 		.word	.LC2
+ 1001 0038 1C000000 		.word	.LC3
+ 1002              		.cfi_endproc
+ 1003              	.LFE21:
+ 1005              		.section	.text.fun_b32,"ax",%progbits
+ 1006              		.align	1
+ 1007              		.global	fun_b32
+ 1008              		.syntax unified
+ 1009              		.thumb
+ 1010              		.thumb_func
+ 1012              	fun_b32:
+ 1013              	.LFB22:
+ 311:API/Menu.c    **** 
+ 312:API/Menu.c    **** void fun_b32()    
+ 313:API/Menu.c    **** {	
+ 1014              		.loc 1 313 1 is_stmt 1 view -0
+ 1015              		.cfi_startproc
+ 1016              		@ args = 0, pretend = 0, frame = 0
+ 1017              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1018 0000 08B5     		push	{r3, lr}
+ 1019              	.LCFI18:
+ 1020              		.cfi_def_cfa_offset 8
+ 1021              		.cfi_offset 3, -8
+ 1022              		.cfi_offset 14, -4
+ 314:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 1023              		.loc 1 314 2 view .LVU109
+ 1024 0002 1022     		movs	r2, #16
+ 1025 0004 0021     		movs	r1, #0
+ 1026 0006 0948     		ldr	r0, .L75
+ 1027 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 24
+
+
+ 1028              	.LVL72:
+ 315:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 1029              		.loc 1 315 2 view .LVU110
+ 1030 000c 2822     		movs	r2, #40
+ 1031 000e 0021     		movs	r1, #0
+ 1032 0010 0748     		ldr	r0, .L75+4
+ 1033 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 1034              	.LVL73:
+ 316:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 1035              		.loc 1 316 2 view .LVU111
+ 1036 0016 4022     		movs	r2, #64
+ 1037 0018 0021     		movs	r1, #0
+ 1038 001a 0648     		ldr	r0, .L75+8
+ 1039 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 1040              	.LVL74:
+ 317:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 1041              		.loc 1 317 2 view .LVU112
+ 1042 0020 5822     		movs	r2, #88
+ 1043 0022 0021     		movs	r1, #0
+ 1044 0024 0448     		ldr	r0, .L75+12
+ 1045 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 1046              	.LVL75:
+ 318:API/Menu.c    **** }
+ 1047              		.loc 1 318 1 is_stmt 0 view .LVU113
+ 1048 002a 08BD     		pop	{r3, pc}
+ 1049              	.L76:
+ 1050              		.align	2
+ 1051              	.L75:
+ 1052 002c 00000000 		.word	.LC0
+ 1053 0030 08000000 		.word	.LC1
+ 1054 0034 18000000 		.word	.LC2
+ 1055 0038 1C000000 		.word	.LC3
+ 1056              		.cfi_endproc
+ 1057              	.LFE22:
+ 1059              		.section	.text.fun_b33,"ax",%progbits
+ 1060              		.align	1
+ 1061              		.global	fun_b33
+ 1062              		.syntax unified
+ 1063              		.thumb
+ 1064              		.thumb_func
+ 1066              	fun_b33:
+ 1067              	.LFB23:
+ 319:API/Menu.c    **** 
+ 320:API/Menu.c    **** void fun_b33()    
+ 321:API/Menu.c    **** {	
+ 1068              		.loc 1 321 1 is_stmt 1 view -0
+ 1069              		.cfi_startproc
+ 1070              		@ args = 0, pretend = 0, frame = 0
+ 1071              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1072 0000 08B5     		push	{r3, lr}
+ 1073              	.LCFI19:
+ 1074              		.cfi_def_cfa_offset 8
+ 1075              		.cfi_offset 3, -8
+ 1076              		.cfi_offset 14, -4
+ 322:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 1077              		.loc 1 322 2 view .LVU115
+ 1078 0002 1022     		movs	r2, #16
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 25
+
+
+ 1079 0004 0021     		movs	r1, #0
+ 1080 0006 0948     		ldr	r0, .L79
+ 1081 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 1082              	.LVL76:
+ 323:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 1083              		.loc 1 323 2 view .LVU116
+ 1084 000c 2822     		movs	r2, #40
+ 1085 000e 0021     		movs	r1, #0
+ 1086 0010 0748     		ldr	r0, .L79+4
+ 1087 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 1088              	.LVL77:
+ 324:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 1089              		.loc 1 324 2 view .LVU117
+ 1090 0016 4022     		movs	r2, #64
+ 1091 0018 0021     		movs	r1, #0
+ 1092 001a 0648     		ldr	r0, .L79+8
+ 1093 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 1094              	.LVL78:
+ 325:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																								
+ 1095              		.loc 1 325 2 view .LVU118
+ 1096 0020 5822     		movs	r2, #88
+ 1097 0022 0021     		movs	r1, #0
+ 1098 0024 0448     		ldr	r0, .L79+12
+ 1099 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 1100              	.LVL79:
+ 326:API/Menu.c    **** }
+ 1101              		.loc 1 326 1 is_stmt 0 view .LVU119
+ 1102 002a 08BD     		pop	{r3, pc}
+ 1103              	.L80:
+ 1104              		.align	2
+ 1105              	.L79:
+ 1106 002c 00000000 		.word	.LC0
+ 1107 0030 08000000 		.word	.LC1
+ 1108 0034 18000000 		.word	.LC2
+ 1109 0038 1C000000 		.word	.LC3
+ 1110              		.cfi_endproc
+ 1111              	.LFE23:
+ 1113              		.section	.text.fun_c31,"ax",%progbits
+ 1114              		.align	1
+ 1115              		.global	fun_c31
+ 1116              		.syntax unified
+ 1117              		.thumb
+ 1118              		.thumb_func
+ 1120              	fun_c31:
+ 1121              	.LFB24:
+ 327:API/Menu.c    **** 
+ 328:API/Menu.c    **** void fun_c31()    
+ 329:API/Menu.c    **** {	
+ 1122              		.loc 1 329 1 is_stmt 1 view -0
+ 1123              		.cfi_startproc
+ 1124              		@ args = 0, pretend = 0, frame = 0
+ 1125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1126 0000 08B5     		push	{r3, lr}
+ 1127              	.LCFI20:
+ 1128              		.cfi_def_cfa_offset 8
+ 1129              		.cfi_offset 3, -8
+ 1130              		.cfi_offset 14, -4
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 26
+
+
+ 330:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 1131              		.loc 1 330 2 view .LVU121
+ 1132 0002 1022     		movs	r2, #16
+ 1133 0004 0021     		movs	r1, #0
+ 1134 0006 0948     		ldr	r0, .L83
+ 1135 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 1136              	.LVL80:
+ 331:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 1137              		.loc 1 331 2 view .LVU122
+ 1138 000c 2822     		movs	r2, #40
+ 1139 000e 0021     		movs	r1, #0
+ 1140 0010 0748     		ldr	r0, .L83+4
+ 1141 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 1142              	.LVL81:
+ 332:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 1143              		.loc 1 332 2 view .LVU123
+ 1144 0016 4022     		movs	r2, #64
+ 1145 0018 0021     		movs	r1, #0
+ 1146 001a 0648     		ldr	r0, .L83+8
+ 1147 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 1148              	.LVL82:
+ 333:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																							
+ 1149              		.loc 1 333 2 view .LVU124
+ 1150 0020 5822     		movs	r2, #88
+ 1151 0022 0021     		movs	r1, #0
+ 1152 0024 0448     		ldr	r0, .L83+12
+ 1153 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 1154              	.LVL83:
+ 334:API/Menu.c    **** }
+ 1155              		.loc 1 334 1 is_stmt 0 view .LVU125
+ 1156 002a 08BD     		pop	{r3, pc}
+ 1157              	.L84:
+ 1158              		.align	2
+ 1159              	.L83:
+ 1160 002c 00000000 		.word	.LC0
+ 1161 0030 08000000 		.word	.LC1
+ 1162 0034 18000000 		.word	.LC2
+ 1163 0038 1C000000 		.word	.LC3
+ 1164              		.cfi_endproc
+ 1165              	.LFE24:
+ 1167              		.section	.text.fun_c32,"ax",%progbits
+ 1168              		.align	1
+ 1169              		.global	fun_c32
+ 1170              		.syntax unified
+ 1171              		.thumb
+ 1172              		.thumb_func
+ 1174              	fun_c32:
+ 1175              	.LFB25:
+ 335:API/Menu.c    **** 
+ 336:API/Menu.c    **** void fun_c32()    
+ 337:API/Menu.c    **** {	
+ 1176              		.loc 1 337 1 is_stmt 1 view -0
+ 1177              		.cfi_startproc
+ 1178              		@ args = 0, pretend = 0, frame = 0
+ 1179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1180 0000 08B5     		push	{r3, lr}
+ 1181              	.LCFI21:
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 27
+
+
+ 1182              		.cfi_def_cfa_offset 8
+ 1183              		.cfi_offset 3, -8
+ 1184              		.cfi_offset 14, -4
+ 338:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 1185              		.loc 1 338 2 view .LVU127
+ 1186 0002 1022     		movs	r2, #16
+ 1187 0004 0021     		movs	r1, #0
+ 1188 0006 0948     		ldr	r0, .L87
+ 1189 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 1190              	.LVL84:
+ 339:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 1191              		.loc 1 339 2 view .LVU128
+ 1192 000c 2822     		movs	r2, #40
+ 1193 000e 0021     		movs	r1, #0
+ 1194 0010 0748     		ldr	r0, .L87+4
+ 1195 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 1196              	.LVL85:
+ 340:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 1197              		.loc 1 340 2 view .LVU129
+ 1198 0016 4022     		movs	r2, #64
+ 1199 0018 0021     		movs	r1, #0
+ 1200 001a 0648     		ldr	r0, .L87+8
+ 1201 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 1202              	.LVL86:
+ 341:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																						
+ 1203              		.loc 1 341 2 view .LVU130
+ 1204 0020 5822     		movs	r2, #88
+ 1205 0022 0021     		movs	r1, #0
+ 1206 0024 0448     		ldr	r0, .L87+12
+ 1207 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 1208              	.LVL87:
+ 342:API/Menu.c    **** }
+ 1209              		.loc 1 342 1 is_stmt 0 view .LVU131
+ 1210 002a 08BD     		pop	{r3, pc}
+ 1211              	.L88:
+ 1212              		.align	2
+ 1213              	.L87:
+ 1214 002c 00000000 		.word	.LC0
+ 1215 0030 08000000 		.word	.LC1
+ 1216 0034 18000000 		.word	.LC2
+ 1217 0038 1C000000 		.word	.LC3
+ 1218              		.cfi_endproc
+ 1219              	.LFE25:
+ 1221              		.section	.text.fun_c33,"ax",%progbits
+ 1222              		.align	1
+ 1223              		.global	fun_c33
+ 1224              		.syntax unified
+ 1225              		.thumb
+ 1226              		.thumb_func
+ 1228              	fun_c33:
+ 1229              	.LFB26:
+ 343:API/Menu.c    **** 
+ 344:API/Menu.c    **** void fun_c33()    
+ 345:API/Menu.c    **** {	
+ 1230              		.loc 1 345 1 is_stmt 1 view -0
+ 1231              		.cfi_startproc
+ 1232              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 28
+
+
+ 1233              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1234 0000 08B5     		push	{r3, lr}
+ 1235              	.LCFI22:
+ 1236              		.cfi_def_cfa_offset 8
+ 1237              		.cfi_offset 3, -8
+ 1238              		.cfi_offset 14, -4
+ 346:API/Menu.c    **** 	GUI_DispStringAt("STM32",0,16);
+ 1239              		.loc 1 346 2 view .LVU133
+ 1240 0002 1022     		movs	r2, #16
+ 1241 0004 0021     		movs	r1, #0
+ 1242 0006 0948     		ldr	r0, .L91
+ 1243 0008 FFF7FEFF 		bl	GUI_DispStringAt
+ 1244              	.LVL88:
+ 347:API/Menu.c    **** 	GUI_DispStringAt("Multi Menu Test",0,40);
+ 1245              		.loc 1 347 2 view .LVU134
+ 1246 000c 2822     		movs	r2, #40
+ 1247 000e 0021     		movs	r1, #0
+ 1248 0010 0748     		ldr	r0, .L91+4
+ 1249 0012 FFF7FEFF 		bl	GUI_DispStringAt
+ 1250              	.LVL89:
+ 348:API/Menu.c    **** 	GUI_DispStringAt("",0,64);
+ 1251              		.loc 1 348 2 view .LVU135
+ 1252 0016 4022     		movs	r2, #64
+ 1253 0018 0021     		movs	r1, #0
+ 1254 001a 0648     		ldr	r0, .L91+8
+ 1255 001c FFF7FEFF 		bl	GUI_DispStringAt
+ 1256              	.LVL90:
+ 349:API/Menu.c    **** 	GUI_DispStringAt("Enter to Test",0,88);																					
+ 1257              		.loc 1 349 2 view .LVU136
+ 1258 0020 5822     		movs	r2, #88
+ 1259 0022 0021     		movs	r1, #0
+ 1260 0024 0448     		ldr	r0, .L91+12
+ 1261 0026 FFF7FEFF 		bl	GUI_DispStringAt
+ 1262              	.LVL91:
+ 350:API/Menu.c    **** }
+ 1263              		.loc 1 350 1 is_stmt 0 view .LVU137
+ 1264 002a 08BD     		pop	{r3, pc}
+ 1265              	.L92:
+ 1266              		.align	2
+ 1267              	.L91:
+ 1268 002c 00000000 		.word	.LC0
+ 1269 0030 08000000 		.word	.LC1
+ 1270 0034 18000000 		.word	.LC2
+ 1271 0038 1C000000 		.word	.LC3
+ 1272              		.cfi_endproc
+ 1273              	.LFE26:
+ 1275              		.section	.rodata.Boot.str1.4,"aMS",%progbits,1
+ 1276              		.align	2
+ 1277              	.LC4:
+ 1278 0000 31303025 		.ascii	"100%\000"
+ 1278      00
+ 1279 0005 000000   		.align	2
+ 1280              	.LC5:
+ 1281 0008 B7C0BBF0 		.ascii	"\267\300\273\360\267\300\265\301\274\340\262\342\306"
+ 1281      B7C0B5C1 
+ 1281      BCE0B2E2 
+ 1281      C6
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 29
+
+
+ 1282 0015 F700     		.ascii	"\367\000"
+ 1283 0017 00       		.align	2
+ 1284              	.LC6:
+ 1285 0018 32313033 		.ascii	"21032311\000"
+ 1285      32333131 
+ 1285      00
+ 1286 0021 000000   		.align	2
+ 1287              	.LC7:
+ 1288 0024 B3C2ECC5 		.ascii	"\263\302\354\305\310\363\000"
+ 1288      C8F300
+ 1289              		.section	.text.Boot,"ax",%progbits
+ 1290              		.align	1
+ 1291              		.global	Boot
+ 1292              		.syntax unified
+ 1293              		.thumb
+ 1294              		.thumb_func
+ 1296              	Boot:
+ 1297              	.LFB0:
+  67:API/Menu.c    ****     GUI_SetBkColor(GUI_BLACK);
+ 1298              		.loc 1 67 1 is_stmt 1 view -0
+ 1299              		.cfi_startproc
+ 1300              		@ args = 0, pretend = 0, frame = 0
+ 1301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1302 0000 10B5     		push	{r4, lr}
+ 1303              	.LCFI23:
+ 1304              		.cfi_def_cfa_offset 8
+ 1305              		.cfi_offset 4, -8
+ 1306              		.cfi_offset 14, -4
+  68:API/Menu.c    **** 	GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+ 1307              		.loc 1 68 5 view .LVU139
+ 1308 0002 4FF07F40 		mov	r0, #-16777216
+ 1309 0006 FFF7FEFF 		bl	GUI_SetBkColor
+ 1310              	.LVL92:
+  69:API/Menu.c    ****     for(int i = 0; i < 61; i++) {
+ 1311              		.loc 1 69 2 view .LVU140
+ 1312 000a FFF7FEFF 		bl	LCD_GetXSize
+ 1313              	.LVL93:
+ 1314 000e 0446     		mov	r4, r0
+ 1315 0010 FFF7FEFF 		bl	LCD_GetYSize
+ 1316              	.LVL94:
+ 1317 0014 0346     		mov	r3, r0
+ 1318 0016 2246     		mov	r2, r4
+ 1319 0018 0021     		movs	r1, #0
+ 1320 001a 0846     		mov	r0, r1
+ 1321 001c FFF7FEFF 		bl	GUI_ClearRect
+ 1322              	.LVL95:
+  70:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+ 1323              		.loc 1 70 5 view .LVU141
+ 1324              	.LBB2:
+  70:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+ 1325              		.loc 1 70 9 view .LVU142
+  70:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+ 1326              		.loc 1 70 13 is_stmt 0 view .LVU143
+ 1327 0020 0024     		movs	r4, #0
+  70:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+ 1328              		.loc 1 70 5 view .LVU144
+ 1329 0022 20E0     		b	.L94
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 30
+
+
+ 1330              	.LVL96:
+ 1331              	.L95:
+ 1332              	.LBB3:
+  73:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm30, 88, 48);
+ 1333              		.loc 1 73 12 is_stmt 1 view .LVU145
+  73:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm30, 88, 48);
+ 1334              		.loc 1 73 15 is_stmt 0 view .LVU146
+ 1335 0024 012B     		cmp	r3, #1
+ 1336 0026 33D0     		beq	.L103
+  75:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm60, 88, 48);
+ 1337              		.loc 1 75 12 is_stmt 1 view .LVU147
+  75:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm60, 88, 48);
+ 1338              		.loc 1 75 15 is_stmt 0 view .LVU148
+ 1339 0028 022B     		cmp	r3, #2
+ 1340 002a 37D0     		beq	.L104
+  77:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm82, 88, 48);
+ 1341              		.loc 1 77 12 is_stmt 1 view .LVU149
+  77:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm82, 88, 48);
+ 1342              		.loc 1 77 15 is_stmt 0 view .LVU150
+ 1343 002c 032B     		cmp	r3, #3
+ 1344 002e 3BD0     		beq	.L105
+  79:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm, 88, 48);
+ 1345              		.loc 1 79 12 is_stmt 1 view .LVU151
+  79:API/Menu.c    ****         GUI_DrawBitmap(&bmfirealarm, 88, 48);
+ 1346              		.loc 1 79 15 is_stmt 0 view .LVU152
+ 1347 0030 042B     		cmp	r3, #4
+ 1348 0032 3FD0     		beq	.L106
+ 1349              	.L96:
+  81:API/Menu.c    ****       GUI_FillRect(40,200,4*i+40,220);
+ 1350              		.loc 1 81 7 is_stmt 1 view .LVU153
+ 1351 0034 6FF0FF00 		mvn	r0, #255
+ 1352 0038 FFF7FEFF 		bl	GUI_SetColor
+ 1353              	.LVL97:
+  82:API/Menu.c    ****       GUI_DrawRect(40,200,280,220);
+ 1354              		.loc 1 82 7 view .LVU154
+  82:API/Menu.c    ****       GUI_DrawRect(40,200,280,220);
+ 1355              		.loc 1 82 30 is_stmt 0 view .LVU155
+ 1356 003c 04F10A02 		add	r2, r4, #10
+  82:API/Menu.c    ****       GUI_DrawRect(40,200,280,220);
+ 1357              		.loc 1 82 7 view .LVU156
+ 1358 0040 DC23     		movs	r3, #220
+ 1359 0042 9200     		lsls	r2, r2, #2
+ 1360 0044 C821     		movs	r1, #200
+ 1361 0046 2820     		movs	r0, #40
+ 1362 0048 FFF7FEFF 		bl	GUI_FillRect
+ 1363              	.LVL98:
+  83:API/Menu.c    ****       if( i == 60 ){
+ 1364              		.loc 1 83 7 is_stmt 1 view .LVU157
+ 1365 004c DC23     		movs	r3, #220
+ 1366 004e 4FF48C72 		mov	r2, #280
+ 1367 0052 C821     		movs	r1, #200
+ 1368 0054 2820     		movs	r0, #40
+ 1369 0056 FFF7FEFF 		bl	GUI_DrawRect
+ 1370              	.LVL99:
+  84:API/Menu.c    ****          GUI_SetColor(GUI_BROWN);
+ 1371              		.loc 1 84 7 view .LVU158
+  84:API/Menu.c    ****          GUI_SetColor(GUI_BROWN);
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 31
+
+
+ 1372              		.loc 1 84 9 is_stmt 0 view .LVU159
+ 1373 005a 3C2C     		cmp	r4, #60
+ 1374 005c 30D0     		beq	.L107
+ 1375              	.L100:
+  90:API/Menu.c    ****     }
+ 1376              		.loc 1 90 7 is_stmt 1 discriminator 2 view .LVU160
+ 1377 005e 1420     		movs	r0, #20
+ 1378 0060 FFF7FEFF 		bl	osDelay
+ 1379              	.LVL100:
+ 1380              	.LBE3:
+  70:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+ 1381              		.loc 1 70 28 discriminator 2 view .LVU161
+  70:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+ 1382              		.loc 1 70 29 is_stmt 0 discriminator 2 view .LVU162
+ 1383 0064 0134     		adds	r4, r4, #1
+ 1384              	.LVL101:
+ 1385              	.L94:
+  70:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+ 1386              		.loc 1 70 20 is_stmt 1 discriminator 1 view .LVU163
+  70:API/Menu.c    ****       if ( i % 5 == 0 && i!=60 )
+ 1387              		.loc 1 70 5 is_stmt 0 discriminator 1 view .LVU164
+ 1388 0066 3C2C     		cmp	r4, #60
+ 1389 0068 3ADC     		bgt	.L108
+ 1390              	.LBB5:
+  71:API/Menu.c    ****         GUI_ClearRect(88,48,216,176);
+ 1391              		.loc 1 71 7 is_stmt 1 view .LVU165
+  71:API/Menu.c    ****         GUI_ClearRect(88,48,216,176);
+ 1392              		.loc 1 71 14 is_stmt 0 view .LVU166
+ 1393 006a 3A4A     		ldr	r2, .L109
+ 1394 006c 82FB0432 		smull	r3, r2, r2, r4
+ 1395 0070 E317     		asrs	r3, r4, #31
+ 1396 0072 C3EB6203 		rsb	r3, r3, r2, asr #1
+ 1397 0076 03EB8303 		add	r3, r3, r3, lsl #2
+  71:API/Menu.c    ****         GUI_ClearRect(88,48,216,176);
+ 1398              		.loc 1 71 10 view .LVU167
+ 1399 007a E31A     		subs	r3, r4, r3
+ 1400 007c D2D1     		bne	.L95
+  71:API/Menu.c    ****         GUI_ClearRect(88,48,216,176);
+ 1401              		.loc 1 71 23 discriminator 1 view .LVU168
+ 1402 007e 3C2C     		cmp	r4, #60
+ 1403 0080 D0D0     		beq	.L95
+  72:API/Menu.c    ****       else if ( i % 5 == 1)
+ 1404              		.loc 1 72 9 is_stmt 1 view .LVU169
+ 1405 0082 B023     		movs	r3, #176
+ 1406 0084 D822     		movs	r2, #216
+ 1407 0086 3021     		movs	r1, #48
+ 1408 0088 5820     		movs	r0, #88
+ 1409 008a FFF7FEFF 		bl	GUI_ClearRect
+ 1410              	.LVL102:
+ 1411 008e D1E7     		b	.L96
+ 1412              	.L103:
+  74:API/Menu.c    ****       else if ( i % 5 == 2)
+ 1413              		.loc 1 74 9 view .LVU170
+ 1414 0090 3022     		movs	r2, #48
+ 1415 0092 5821     		movs	r1, #88
+ 1416 0094 3048     		ldr	r0, .L109+4
+ 1417 0096 FFF7FEFF 		bl	GUI_DrawBitmap
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 32
+
+
+ 1418              	.LVL103:
+ 1419 009a CBE7     		b	.L96
+ 1420              	.L104:
+  76:API/Menu.c    ****       else if ( i % 5 == 3)
+ 1421              		.loc 1 76 9 view .LVU171
+ 1422 009c 3022     		movs	r2, #48
+ 1423 009e 5821     		movs	r1, #88
+ 1424 00a0 2E48     		ldr	r0, .L109+8
+ 1425 00a2 FFF7FEFF 		bl	GUI_DrawBitmap
+ 1426              	.LVL104:
+ 1427 00a6 C5E7     		b	.L96
+ 1428              	.L105:
+  78:API/Menu.c    ****       else if ( i % 5 == 4)
+ 1429              		.loc 1 78 9 view .LVU172
+ 1430 00a8 3022     		movs	r2, #48
+ 1431 00aa 5821     		movs	r1, #88
+ 1432 00ac 2C48     		ldr	r0, .L109+12
+ 1433 00ae FFF7FEFF 		bl	GUI_DrawBitmap
+ 1434              	.LVL105:
+ 1435 00b2 BFE7     		b	.L96
+ 1436              	.L106:
+  80:API/Menu.c    ****       GUI_SetColor(GUI_YELLOW);
+ 1437              		.loc 1 80 9 view .LVU173
+ 1438 00b4 3022     		movs	r2, #48
+ 1439 00b6 5821     		movs	r1, #88
+ 1440 00b8 2A48     		ldr	r0, .L109+16
+ 1441 00ba FFF7FEFF 		bl	GUI_DrawBitmap
+ 1442              	.LVL106:
+ 1443 00be B9E7     		b	.L96
+ 1444              	.L107:
+ 1445              	.LBB4:
+  85:API/Menu.c    ****          GUI_SetFont(GUI_FONT_20_ASCII);
+ 1446              		.loc 1 85 10 view .LVU174
+ 1447 00c0 2948     		ldr	r0, .L109+20
+ 1448 00c2 FFF7FEFF 		bl	GUI_SetColor
+ 1449              	.LVL107:
+  86:API/Menu.c    ****          GUI_DispStringAt("100%", 132, 204);
+ 1450              		.loc 1 86 10 view .LVU175
+ 1451 00c6 2948     		ldr	r0, .L109+24
+ 1452 00c8 FFF7FEFF 		bl	GUI_SetFont
+ 1453              	.LVL108:
+  87:API/Menu.c    ****          osDelay(500);
+ 1454              		.loc 1 87 10 view .LVU176
+ 1455 00cc CC22     		movs	r2, #204
+ 1456 00ce 8421     		movs	r1, #132
+ 1457 00d0 2748     		ldr	r0, .L109+28
+ 1458 00d2 FFF7FEFF 		bl	GUI_DispStringAt
+ 1459              	.LVL109:
+  88:API/Menu.c    ****       }
+ 1460              		.loc 1 88 10 view .LVU177
+ 1461 00d6 4FF4FA70 		mov	r0, #500
+ 1462 00da FFF7FEFF 		bl	osDelay
+ 1463              	.LVL110:
+ 1464 00de BEE7     		b	.L100
+ 1465              	.L108:
+  88:API/Menu.c    ****       }
+ 1466              		.loc 1 88 10 is_stmt 0 view .LVU178
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 33
+
+
+ 1467              	.LBE4:
+ 1468              	.LBE5:
+ 1469              	.LBE2:
+  92:API/Menu.c    ****     GUI_SetBkColor(GUI_GRAY_D0);
+ 1470              		.loc 1 92 5 is_stmt 1 view .LVU179
+ 1471 00e0 FFF7FEFF 		bl	GUI_Clear
+ 1472              	.LVL111:
+  93:API/Menu.c    ****     GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+ 1473              		.loc 1 93 5 view .LVU180
+ 1474 00e4 2348     		ldr	r0, .L109+32
+ 1475 00e6 FFF7FEFF 		bl	GUI_SetBkColor
+ 1476              	.LVL112:
+  94:API/Menu.c    ****     GUI_SetFont(&GUI_FontHZ_YouYuan_24);
+ 1477              		.loc 1 94 5 view .LVU181
+ 1478 00ea FFF7FEFF 		bl	LCD_GetXSize
+ 1479              	.LVL113:
+ 1480 00ee 0446     		mov	r4, r0
+ 1481              	.LVL114:
+  94:API/Menu.c    ****     GUI_SetFont(&GUI_FontHZ_YouYuan_24);
+ 1482              		.loc 1 94 5 is_stmt 0 view .LVU182
+ 1483 00f0 FFF7FEFF 		bl	LCD_GetYSize
+ 1484              	.LVL115:
+ 1485 00f4 0346     		mov	r3, r0
+ 1486 00f6 2246     		mov	r2, r4
+ 1487 00f8 0021     		movs	r1, #0
+ 1488 00fa 0846     		mov	r0, r1
+ 1489 00fc FFF7FEFF 		bl	GUI_ClearRect
+ 1490              	.LVL116:
+  95:API/Menu.c    ****     GUI_SetColor(GUI_RED);
+ 1491              		.loc 1 95 5 is_stmt 1 view .LVU183
+ 1492 0100 1D48     		ldr	r0, .L109+36
+ 1493 0102 FFF7FEFF 		bl	GUI_SetFont
+ 1494              	.LVL117:
+  96:API/Menu.c    ****     
+ 1495              		.loc 1 96 5 view .LVU184
+ 1496 0106 1D48     		ldr	r0, .L109+40
+ 1497 0108 FFF7FEFF 		bl	GUI_SetColor
+ 1498              	.LVL118:
+  98:API/Menu.c    ****     GUI_DispStringAt("防火防盗监测器", 76, 96);
+ 1499              		.loc 1 98 5 view .LVU185
+ 1500 010c 0022     		movs	r2, #0
+ 1501 010e 1146     		mov	r1, r2
+ 1502 0110 1B48     		ldr	r0, .L109+44
+ 1503 0112 FFF7FEFF 		bl	GUI_DrawBitmap
+ 1504              	.LVL119:
+  99:API/Menu.c    ****     osDelay(1000);
+ 1505              		.loc 1 99 5 view .LVU186
+ 1506 0116 6022     		movs	r2, #96
+ 1507 0118 4C21     		movs	r1, #76
+ 1508 011a 1A48     		ldr	r0, .L109+48
+ 1509 011c FFF7FEFF 		bl	GUI_DispStringAt
+ 1510              	.LVL120:
+ 100:API/Menu.c    ****     GUI_Clear();
+ 1511              		.loc 1 100 5 view .LVU187
+ 1512 0120 4FF47A70 		mov	r0, #1000
+ 1513 0124 FFF7FEFF 		bl	osDelay
+ 1514              	.LVL121:
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 34
+
+
+ 101:API/Menu.c    ****     GUI_DispStringAt("21032311", 106, 96);
+ 1515              		.loc 1 101 5 view .LVU188
+ 1516 0128 FFF7FEFF 		bl	GUI_Clear
+ 1517              	.LVL122:
+ 102:API/Menu.c    ****     GUI_DispStringAt("陈炫润", 114, 126);
+ 1518              		.loc 1 102 5 view .LVU189
+ 1519 012c 6022     		movs	r2, #96
+ 1520 012e 6A21     		movs	r1, #106
+ 1521 0130 1548     		ldr	r0, .L109+52
+ 1522 0132 FFF7FEFF 		bl	GUI_DispStringAt
+ 1523              	.LVL123:
+ 103:API/Menu.c    ****     osDelay(2000);
+ 1524              		.loc 1 103 5 view .LVU190
+ 1525 0136 7E22     		movs	r2, #126
+ 1526 0138 7221     		movs	r1, #114
+ 1527 013a 1448     		ldr	r0, .L109+56
+ 1528 013c FFF7FEFF 		bl	GUI_DispStringAt
+ 1529              	.LVL124:
+ 104:API/Menu.c    **** 	Beep(5,100);
+ 1530              		.loc 1 104 5 view .LVU191
+ 1531 0140 4FF4FA60 		mov	r0, #2000
+ 1532 0144 FFF7FEFF 		bl	osDelay
+ 1533              	.LVL125:
+ 105:API/Menu.c    **** }
+ 1534              		.loc 1 105 2 view .LVU192
+ 1535 0148 6421     		movs	r1, #100
+ 1536 014a 0520     		movs	r0, #5
+ 1537 014c FFF7FEFF 		bl	Beep
+ 1538              	.LVL126:
+ 106:API/Menu.c    **** 
+ 1539              		.loc 1 106 1 is_stmt 0 view .LVU193
+ 1540 0150 10BD     		pop	{r4, pc}
+ 1541              	.L110:
+ 1542 0152 00BF     		.align	2
+ 1543              	.L109:
+ 1544 0154 67666666 		.word	1717986919
+ 1545 0158 00000000 		.word	bmfirealarm30
+ 1546 015c 00000000 		.word	bmfirealarm60
+ 1547 0160 00000000 		.word	bmfirealarm82
+ 1548 0164 00000000 		.word	bmfirealarm
+ 1549 0168 2A2AA5FF 		.word	-5952982
+ 1550 016c 00000000 		.word	GUI_Font20_ASCII
+ 1551 0170 00000000 		.word	.LC4
+ 1552 0174 D0D0D0FF 		.word	-3092272
+ 1553 0178 00000000 		.word	GUI_FontHZ_YouYuan_24
+ 1554 017c 0000FFFF 		.word	-65536
+ 1555 0180 00000000 		.word	bmhdu
+ 1556 0184 08000000 		.word	.LC5
+ 1557 0188 18000000 		.word	.LC6
+ 1558 018c 24000000 		.word	.LC7
+ 1559              		.cfi_endproc
+ 1560              	.LFE0:
+ 1562              		.section	.rodata.Main_menu.str1.4,"aMS",%progbits,1
+ 1563              		.align	2
+ 1564              	.LC8:
+ 1565 0000 CAB5CAB1 		.ascii	"\312\265\312\261\274\340\262\342\000"
+ 1565      BCE0B2E2 
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 35
+
+
+ 1565      00
+ 1566 0009 000000   		.align	2
+ 1567              	.LC9:
+ 1568 000c CAFDBEDD 		.ascii	"\312\375\276\335\307\372\317\337\000"
+ 1568      C7FACFDF 
+ 1568      00
+ 1569 0015 000000   		.align	2
+ 1570              	.LC10:
+ 1571 0018 CEDECFDF 		.ascii	"\316\336\317\337\315\250\320\305\000"
+ 1571      CDA8D0C5 
+ 1571      00
+ 1572 0021 000000   		.align	2
+ 1573              	.LC11:
+ 1574 0024 B2CECAFD 		.ascii	"\262\316\312\375\311\350\326\303\000"
+ 1574      C9E8D6C3 
+ 1574      00
+ 1575              		.section	.text.Main_menu,"ax",%progbits
+ 1576              		.align	1
+ 1577              		.global	Main_menu
+ 1578              		.syntax unified
+ 1579              		.thumb
+ 1580              		.thumb_func
+ 1582              	Main_menu:
+ 1583              	.LFB1:
+ 113:API/Menu.c    **** 	GUI_SetBkColor(GUI_GRAY_D0);
+ 1584              		.loc 1 113 1 is_stmt 1 view -0
+ 1585              		.cfi_startproc
+ 1586              		@ args = 0, pretend = 0, frame = 0
+ 1587              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1588 0000 30B5     		push	{r4, r5, lr}
+ 1589              	.LCFI24:
+ 1590              		.cfi_def_cfa_offset 12
+ 1591              		.cfi_offset 4, -12
+ 1592              		.cfi_offset 5, -8
+ 1593              		.cfi_offset 14, -4
+ 1594 0002 83B0     		sub	sp, sp, #12
+ 1595              	.LCFI25:
+ 1596              		.cfi_def_cfa_offset 24
+ 114:API/Menu.c    **** 	GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+ 1597              		.loc 1 114 2 view .LVU195
+ 1598 0004 2748     		ldr	r0, .L113
+ 1599 0006 FFF7FEFF 		bl	GUI_SetBkColor
+ 1600              	.LVL127:
+ 115:API/Menu.c    ****     GUI_SetColor(GUI_BROWN);
+ 1601              		.loc 1 115 2 view .LVU196
+ 1602 000a FFF7FEFF 		bl	LCD_GetXSize
+ 1603              	.LVL128:
+ 1604 000e 0446     		mov	r4, r0
+ 1605 0010 FFF7FEFF 		bl	LCD_GetYSize
+ 1606              	.LVL129:
+ 1607 0014 0346     		mov	r3, r0
+ 1608 0016 2246     		mov	r2, r4
+ 1609 0018 0021     		movs	r1, #0
+ 1610 001a 0846     		mov	r0, r1
+ 1611 001c FFF7FEFF 		bl	GUI_ClearRect
+ 1612              	.LVL130:
+ 116:API/Menu.c    ****     GUI_SetFont(&GUI_FontHZ_KaiTi_20);
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 36
+
+
+ 1613              		.loc 1 116 5 view .LVU197
+ 1614 0020 2148     		ldr	r0, .L113+4
+ 1615 0022 FFF7FEFF 		bl	GUI_SetColor
+ 1616              	.LVL131:
+ 117:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,4,108,62,4,6);
+ 1617              		.loc 1 117 5 view .LVU198
+ 1618 0026 2148     		ldr	r0, .L113+8
+ 1619 0028 FFF7FEFF 		bl	GUI_SetFont
+ 1620              	.LVL132:
+ 118:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,62,108,120,4,6);
+ 1621              		.loc 1 118 2 view .LVU199
+ 1622 002c 0625     		movs	r5, #6
+ 1623 002e 0195     		str	r5, [sp, #4]
+ 1624 0030 0424     		movs	r4, #4
+ 1625 0032 0094     		str	r4, [sp]
+ 1626 0034 3E23     		movs	r3, #62
+ 1627 0036 6C22     		movs	r2, #108
+ 1628 0038 2146     		mov	r1, r4
+ 1629 003a 0820     		movs	r0, #8
+ 1630 003c FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1631              	.LVL133:
+ 119:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,120,108,178,4,6);
+ 1632              		.loc 1 119 2 view .LVU200
+ 1633 0040 0195     		str	r5, [sp, #4]
+ 1634 0042 0094     		str	r4, [sp]
+ 1635 0044 7823     		movs	r3, #120
+ 1636 0046 6C22     		movs	r2, #108
+ 1637 0048 3E21     		movs	r1, #62
+ 1638 004a 0820     		movs	r0, #8
+ 1639 004c FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1640              	.LVL134:
+ 120:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,178,108,236,4,6);
+ 1641              		.loc 1 120 2 view .LVU201
+ 1642 0050 0195     		str	r5, [sp, #4]
+ 1643 0052 0094     		str	r4, [sp]
+ 1644 0054 B223     		movs	r3, #178
+ 1645 0056 6C22     		movs	r2, #108
+ 1646 0058 7821     		movs	r1, #120
+ 1647 005a 0820     		movs	r0, #8
+ 1648 005c FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1649              	.LVL135:
+ 121:API/Menu.c    **** 
+ 1650              		.loc 1 121 2 view .LVU202
+ 1651 0060 0195     		str	r5, [sp, #4]
+ 1652 0062 0094     		str	r4, [sp]
+ 1653 0064 EC23     		movs	r3, #236
+ 1654 0066 6C22     		movs	r2, #108
+ 1655 0068 B221     		movs	r1, #178
+ 1656 006a 0820     		movs	r0, #8
+ 1657 006c FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1658              	.LVL136:
+ 123:API/Menu.c    **** 	GUI_DispStringAt("实时监测",16,24);
+ 1659              		.loc 1 123 2 view .LVU203
+ 1660 0070 4FF07F40 		mov	r0, #-16777216
+ 1661 0074 FFF7FEFF 		bl	GUI_SetColor
+ 1662              	.LVL137:
+ 124:API/Menu.c    **** 	GUI_DispStringAt("数据曲线",16,82);
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 37
+
+
+ 1663              		.loc 1 124 2 view .LVU204
+ 1664 0078 1822     		movs	r2, #24
+ 1665 007a 1021     		movs	r1, #16
+ 1666 007c 0C48     		ldr	r0, .L113+12
+ 1667 007e FFF7FEFF 		bl	GUI_DispStringAt
+ 1668              	.LVL138:
+ 125:API/Menu.c    **** 	GUI_DispStringAt("无线通信",16,140);
+ 1669              		.loc 1 125 2 view .LVU205
+ 1670 0082 5222     		movs	r2, #82
+ 1671 0084 1021     		movs	r1, #16
+ 1672 0086 0B48     		ldr	r0, .L113+16
+ 1673 0088 FFF7FEFF 		bl	GUI_DispStringAt
+ 1674              	.LVL139:
+ 126:API/Menu.c    **** 	GUI_DispStringAt("参数设置",16,198);
+ 1675              		.loc 1 126 2 view .LVU206
+ 1676 008c 8C22     		movs	r2, #140
+ 1677 008e 1021     		movs	r1, #16
+ 1678 0090 0948     		ldr	r0, .L113+20
+ 1679 0092 FFF7FEFF 		bl	GUI_DispStringAt
+ 1680              	.LVL140:
+ 127:API/Menu.c    **** }
+ 1681              		.loc 1 127 2 view .LVU207
+ 1682 0096 C622     		movs	r2, #198
+ 1683 0098 1021     		movs	r1, #16
+ 1684 009a 0848     		ldr	r0, .L113+24
+ 1685 009c FFF7FEFF 		bl	GUI_DispStringAt
+ 1686              	.LVL141:
+ 128:API/Menu.c    **** 
+ 1687              		.loc 1 128 1 is_stmt 0 view .LVU208
+ 1688 00a0 03B0     		add	sp, sp, #12
+ 1689              	.LCFI26:
+ 1690              		.cfi_def_cfa_offset 12
+ 1691              		@ sp needed
+ 1692 00a2 30BD     		pop	{r4, r5, pc}
+ 1693              	.L114:
+ 1694              		.align	2
+ 1695              	.L113:
+ 1696 00a4 D0D0D0FF 		.word	-3092272
+ 1697 00a8 2A2AA5FF 		.word	-5952982
+ 1698 00ac 00000000 		.word	GUI_FontHZ_KaiTi_20
+ 1699 00b0 00000000 		.word	.LC8
+ 1700 00b4 0C000000 		.word	.LC9
+ 1701 00b8 18000000 		.word	.LC10
+ 1702 00bc 24000000 		.word	.LC11
+ 1703              		.cfi_endproc
+ 1704              	.LFE1:
+ 1706              		.section	.text.RT_Monitor,"ax",%progbits
+ 1707              		.align	1
+ 1708              		.global	RT_Monitor
+ 1709              		.syntax unified
+ 1710              		.thumb
+ 1711              		.thumb_func
+ 1713              	RT_Monitor:
+ 1714              	.LFB2:
+ 136:API/Menu.c    ****  	// GUI_SetBkColor(GUI_GRAY_D0);
+ 1715              		.loc 1 136 1 is_stmt 1 view -0
+ 1716              		.cfi_startproc
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 38
+
+
+ 1717              		@ args = 0, pretend = 0, frame = 0
+ 1718              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1719 0000 30B5     		push	{r4, r5, lr}
+ 1720              	.LCFI27:
+ 1721              		.cfi_def_cfa_offset 12
+ 1722              		.cfi_offset 4, -12
+ 1723              		.cfi_offset 5, -8
+ 1724              		.cfi_offset 14, -4
+ 1725 0002 83B0     		sub	sp, sp, #12
+ 1726              	.LCFI28:
+ 1727              		.cfi_def_cfa_offset 24
+ 138:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,62,108,120,4,6);
+ 1728              		.loc 1 138 5 view .LVU210
+ 1729 0004 2048     		ldr	r0, .L117
+ 1730 0006 FFF7FEFF 		bl	GUI_SetColor
+ 1731              	.LVL142:
+ 139:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,120,108,178,4,6);
+ 1732              		.loc 1 139 2 view .LVU211
+ 1733 000a 0625     		movs	r5, #6
+ 1734 000c 0195     		str	r5, [sp, #4]
+ 1735 000e 0424     		movs	r4, #4
+ 1736 0010 0094     		str	r4, [sp]
+ 1737 0012 7823     		movs	r3, #120
+ 1738 0014 6C22     		movs	r2, #108
+ 1739 0016 3E21     		movs	r1, #62
+ 1740 0018 0820     		movs	r0, #8
+ 1741 001a FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1742              	.LVL143:
+ 140:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,178,108,236,4,6);
+ 1743              		.loc 1 140 2 view .LVU212
+ 1744 001e 0195     		str	r5, [sp, #4]
+ 1745 0020 0094     		str	r4, [sp]
+ 1746 0022 B223     		movs	r3, #178
+ 1747 0024 6C22     		movs	r2, #108
+ 1748 0026 7821     		movs	r1, #120
+ 1749 0028 0820     		movs	r0, #8
+ 1750 002a FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1751              	.LVL144:
+ 141:API/Menu.c    **** 	GUI_SetColor(GUI_RED);
+ 1752              		.loc 1 141 2 view .LVU213
+ 1753 002e 0195     		str	r5, [sp, #4]
+ 1754 0030 0094     		str	r4, [sp]
+ 1755 0032 EC23     		movs	r3, #236
+ 1756 0034 6C22     		movs	r2, #108
+ 1757 0036 B221     		movs	r1, #178
+ 1758 0038 0820     		movs	r0, #8
+ 1759 003a FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1760              	.LVL145:
+ 142:API/Menu.c    **** 	GUI_DrawRoundedFrame(8,4,108,62,4,6);
+ 1761              		.loc 1 142 2 view .LVU214
+ 1762 003e 1348     		ldr	r0, .L117+4
+ 1763 0040 FFF7FEFF 		bl	GUI_SetColor
+ 1764              	.LVL146:
+ 143:API/Menu.c    **** 
+ 1765              		.loc 1 143 2 view .LVU215
+ 1766 0044 0195     		str	r5, [sp, #4]
+ 1767 0046 0094     		str	r4, [sp]
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 39
+
+
+ 1768 0048 3E23     		movs	r3, #62
+ 1769 004a 6C22     		movs	r2, #108
+ 1770 004c 2146     		mov	r1, r4
+ 1771 004e 0820     		movs	r0, #8
+ 1772 0050 FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1773              	.LVL147:
+ 145:API/Menu.c    **** 	GUI_DispStringAt("实时监测",16,24);
+ 1774              		.loc 1 145 2 view .LVU216
+ 1775 0054 4FF07F40 		mov	r0, #-16777216
+ 1776 0058 FFF7FEFF 		bl	GUI_SetColor
+ 1777              	.LVL148:
+ 146:API/Menu.c    **** 	GUI_DispStringAt("数据曲线",16,82);
+ 1778              		.loc 1 146 2 view .LVU217
+ 1779 005c 1822     		movs	r2, #24
+ 1780 005e 1021     		movs	r1, #16
+ 1781 0060 0B48     		ldr	r0, .L117+8
+ 1782 0062 FFF7FEFF 		bl	GUI_DispStringAt
+ 1783              	.LVL149:
+ 147:API/Menu.c    **** 	GUI_DispStringAt("无线通信",16,140);
+ 1784              		.loc 1 147 2 view .LVU218
+ 1785 0066 5222     		movs	r2, #82
+ 1786 0068 1021     		movs	r1, #16
+ 1787 006a 0A48     		ldr	r0, .L117+12
+ 1788 006c FFF7FEFF 		bl	GUI_DispStringAt
+ 1789              	.LVL150:
+ 148:API/Menu.c    **** 	GUI_DispStringAt("参数设置",16,198);   
+ 1790              		.loc 1 148 2 view .LVU219
+ 1791 0070 8C22     		movs	r2, #140
+ 1792 0072 1021     		movs	r1, #16
+ 1793 0074 0848     		ldr	r0, .L117+16
+ 1794 0076 FFF7FEFF 		bl	GUI_DispStringAt
+ 1795              	.LVL151:
+ 149:API/Menu.c    **** 
+ 1796              		.loc 1 149 2 view .LVU220
+ 1797 007a C622     		movs	r2, #198
+ 1798 007c 1021     		movs	r1, #16
+ 1799 007e 0748     		ldr	r0, .L117+20
+ 1800 0080 FFF7FEFF 		bl	GUI_DispStringAt
+ 1801              	.LVL152:
+ 151:API/Menu.c    **** void fun_b1()
+ 1802              		.loc 1 151 1 is_stmt 0 view .LVU221
+ 1803 0084 03B0     		add	sp, sp, #12
+ 1804              	.LCFI29:
+ 1805              		.cfi_def_cfa_offset 12
+ 1806              		@ sp needed
+ 1807 0086 30BD     		pop	{r4, r5, pc}
+ 1808              	.L118:
+ 1809              		.align	2
+ 1810              	.L117:
+ 1811 0088 2A2AA5FF 		.word	-5952982
+ 1812 008c 0000FFFF 		.word	-65536
+ 1813 0090 00000000 		.word	.LC8
+ 1814 0094 0C000000 		.word	.LC9
+ 1815 0098 18000000 		.word	.LC10
+ 1816 009c 24000000 		.word	.LC11
+ 1817              		.cfi_endproc
+ 1818              	.LFE2:
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 40
+
+
+ 1820              		.section	.text.fun_b1,"ax",%progbits
+ 1821              		.align	1
+ 1822              		.global	fun_b1
+ 1823              		.syntax unified
+ 1824              		.thumb
+ 1825              		.thumb_func
+ 1827              	fun_b1:
+ 1828              	.LFB3:
+ 153:API/Menu.c    **** 	GUI_SetColor(GUI_BLUE);
+ 1829              		.loc 1 153 1 is_stmt 1 view -0
+ 1830              		.cfi_startproc
+ 1831              		@ args = 0, pretend = 0, frame = 0
+ 1832              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1833 0000 00B5     		push	{lr}
+ 1834              	.LCFI30:
+ 1835              		.cfi_def_cfa_offset 4
+ 1836              		.cfi_offset 14, -4
+ 1837 0002 83B0     		sub	sp, sp, #12
+ 1838              	.LCFI31:
+ 1839              		.cfi_def_cfa_offset 16
+ 154:API/Menu.c    **** 	GUI_DrawRoundedFrame(168,16,268,216,8,8);
+ 1840              		.loc 1 154 2 view .LVU223
+ 1841 0004 0948     		ldr	r0, .L121
+ 1842 0006 FFF7FEFF 		bl	GUI_SetColor
+ 1843              	.LVL153:
+ 155:API/Menu.c    ****   	GUI_SetFont(&GUI_FontHZ_KaiTi_32);
+ 1844              		.loc 1 155 2 view .LVU224
+ 1845 000a 0823     		movs	r3, #8
+ 1846 000c 0193     		str	r3, [sp, #4]
+ 1847 000e 0093     		str	r3, [sp]
+ 1848 0010 D823     		movs	r3, #216
+ 1849 0012 4FF48672 		mov	r2, #268
+ 1850 0016 1021     		movs	r1, #16
+ 1851 0018 A820     		movs	r0, #168
+ 1852 001a FFF7FEFF 		bl	GUI_DrawRoundedFrame
+ 1853              	.LVL154:
+ 156:API/Menu.c    ****     
+ 1854              		.loc 1 156 4 view .LVU225
+ 1855 001e 0448     		ldr	r0, .L121+4
+ 1856 0020 FFF7FEFF 		bl	GUI_SetFont
+ 1857              	.LVL155:
+ 158:API/Menu.c    **** void fun_c1()
+ 1858              		.loc 1 158 1 is_stmt 0 view .LVU226
+ 1859 0024 03B0     		add	sp, sp, #12
+ 1860              	.LCFI32:
+ 1861              		.cfi_def_cfa_offset 4
+ 1862              		@ sp needed
+ 1863 0026 5DF804FB 		ldr	pc, [sp], #4
+ 1864              	.L122:
+ 1865 002a 00BF     		.align	2
+ 1866              	.L121:
+ 1867 002c FF0000FF 		.word	-16776961
+ 1868 0030 00000000 		.word	GUI_FontHZ_KaiTi_32
+ 1869              		.cfi_endproc
+ 1870              	.LFE3:
+ 1872              		.global	table
+ 1873              		.section	.data.table,"aw"
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 41
+
+
+ 1874              		.align	2
+ 1877              	table:
+ 1878 0000 00       		.byte	0
+ 1879 0001 00       		.byte	0
+ 1880 0002 00       		.byte	0
+ 1881 0003 01       		.byte	1
+ 1882 0004 00000000 		.word	Boot
+ 1883 0008 01       		.byte	1
+ 1884 0009 01       		.byte	1
+ 1885 000a 01       		.byte	1
+ 1886 000b 02       		.byte	2
+ 1887 000c 00000000 		.word	Main_menu
+ 1888 0010 02       		.byte	2
+ 1889 0011 05       		.byte	5
+ 1890 0012 03       		.byte	3
+ 1891 0013 06       		.byte	6
+ 1892 0014 00000000 		.word	RT_Monitor
+ 1893 0018 03       		.byte	3
+ 1894 0019 02       		.byte	2
+ 1895 001a 04       		.byte	4
+ 1896 001b 0A       		.byte	10
+ 1897 001c 00000000 		.word	fun_b1
+ 1898 0020 04       		.byte	4
+ 1899 0021 03       		.byte	3
+ 1900 0022 05       		.byte	5
+ 1901 0023 0B       		.byte	11
+ 1902 0024 00000000 		.word	fun_c1
+ 1903 0028 05       		.byte	5
+ 1904 0029 04       		.byte	4
+ 1905 002a 02       		.byte	2
+ 1906 002b 01       		.byte	1
+ 1907 002c 00000000 		.word	fun_d1
+ 1908 0030 05       		.byte	5
+ 1909 0031 08       		.byte	8
+ 1910 0032 06       		.byte	6
+ 1911 0033 11       		.byte	17
+ 1912 0034 00000000 		.word	fun_a21
+ 1913 0038 06       		.byte	6
+ 1914 0039 05       		.byte	5
+ 1915 003a 07       		.byte	7
+ 1916 003b 12       		.byte	18
+ 1917 003c 00000000 		.word	fun_a22
+ 1918 0040 07       		.byte	7
+ 1919 0041 06       		.byte	6
+ 1920 0042 08       		.byte	8
+ 1921 0043 13       		.byte	19
+ 1922 0044 00000000 		.word	fun_a23
+ 1923 0048 08       		.byte	8
+ 1924 0049 07       		.byte	7
+ 1925 004a 05       		.byte	5
+ 1926 004b 01       		.byte	1
+ 1927 004c 00000000 		.word	fun_a24
+ 1928 0050 09       		.byte	9
+ 1929 0051 0C       		.byte	12
+ 1930 0052 0A       		.byte	10
+ 1931 0053 14       		.byte	20
+ 1932 0054 00000000 		.word	fun_b21
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 42
+
+
+ 1933 0058 0A       		.byte	10
+ 1934 0059 09       		.byte	9
+ 1935 005a 0B       		.byte	11
+ 1936 005b 15       		.byte	21
+ 1937 005c 00000000 		.word	fun_b22
+ 1938 0060 0B       		.byte	11
+ 1939 0061 0A       		.byte	10
+ 1940 0062 0C       		.byte	12
+ 1941 0063 16       		.byte	22
+ 1942 0064 00000000 		.word	fun_b23
+ 1943 0068 0C       		.byte	12
+ 1944 0069 0B       		.byte	11
+ 1945 006a 09       		.byte	9
+ 1946 006b 02       		.byte	2
+ 1947 006c 00000000 		.word	fun_b24
+ 1948 0070 0D       		.byte	13
+ 1949 0071 10       		.byte	16
+ 1950 0072 0E       		.byte	14
+ 1951 0073 17       		.byte	23
+ 1952 0074 00000000 		.word	fun_c21
+ 1953 0078 0E       		.byte	14
+ 1954 0079 0D       		.byte	13
+ 1955 007a 0F       		.byte	15
+ 1956 007b 18       		.byte	24
+ 1957 007c 00000000 		.word	fun_c22
+ 1958 0080 0F       		.byte	15
+ 1959 0081 0E       		.byte	14
+ 1960 0082 10       		.byte	16
+ 1961 0083 19       		.byte	25
+ 1962 0084 00000000 		.word	fun_c23
+ 1963 0088 10       		.byte	16
+ 1964 0089 0F       		.byte	15
+ 1965 008a 0D       		.byte	13
+ 1966 008b 03       		.byte	3
+ 1967 008c 00000000 		.word	fun_c24
+ 1968 0090 11       		.byte	17
+ 1969 0091 11       		.byte	17
+ 1970 0092 11       		.byte	17
+ 1971 0093 05       		.byte	5
+ 1972 0094 00000000 		.word	fun_a31
+ 1973 0098 12       		.byte	18
+ 1974 0099 12       		.byte	18
+ 1975 009a 12       		.byte	18
+ 1976 009b 06       		.byte	6
+ 1977 009c 00000000 		.word	fun_a32
+ 1978 00a0 13       		.byte	19
+ 1979 00a1 13       		.byte	19
+ 1980 00a2 13       		.byte	19
+ 1981 00a3 07       		.byte	7
+ 1982 00a4 00000000 		.word	fun_a33
+ 1983 00a8 14       		.byte	20
+ 1984 00a9 14       		.byte	20
+ 1985 00aa 14       		.byte	20
+ 1986 00ab 09       		.byte	9
+ 1987 00ac 00000000 		.word	fun_b31
+ 1988 00b0 15       		.byte	21
+ 1989 00b1 15       		.byte	21
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 43
+
+
+ 1990 00b2 15       		.byte	21
+ 1991 00b3 0A       		.byte	10
+ 1992 00b4 00000000 		.word	fun_b32
+ 1993 00b8 16       		.byte	22
+ 1994 00b9 16       		.byte	22
+ 1995 00ba 16       		.byte	22
+ 1996 00bb 0B       		.byte	11
+ 1997 00bc 00000000 		.word	fun_b33
+ 1998 00c0 17       		.byte	23
+ 1999 00c1 17       		.byte	23
+ 2000 00c2 17       		.byte	23
+ 2001 00c3 0D       		.byte	13
+ 2002 00c4 00000000 		.word	fun_c31
+ 2003 00c8 18       		.byte	24
+ 2004 00c9 18       		.byte	24
+ 2005 00ca 18       		.byte	24
+ 2006 00cb 0E       		.byte	14
+ 2007 00cc 00000000 		.word	fun_c32
+ 2008 00d0 19       		.byte	25
+ 2009 00d1 19       		.byte	25
+ 2010 00d2 19       		.byte	25
+ 2011 00d3 0F       		.byte	15
+ 2012 00d4 00000000 		.word	fun_c33
+ 2013 00d8 00000000 		.space	24
+ 2013      00000000 
+ 2013      00000000 
+ 2013      00000000 
+ 2013      00000000 
+ 2014              		.text
+ 2015              	.Letext0:
+ 2016              		.file 2 "Drivers/STemWin/inc/LCD.h"
+ 2017              		.file 3 "Drivers/STemWin/inc/GUI_Type.h"
+ 2018              		.file 4 "API/Menu.h"
+ 2019              		.file 5 "Drivers/STemWin/inc/GUI.h"
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 44
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Menu.c
+F:\msys64\tmp\ccqkp3Wu.s:20     .rodata.fun_c1.str1.4:00000000 $d
+F:\msys64\tmp\ccqkp3Wu.s:33     .text.fun_c1:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:39     .text.fun_c1:00000000 fun_c1
+F:\msys64\tmp\ccqkp3Wu.s:80     .text.fun_c1:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:88     .text.fun_d1:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:94     .text.fun_d1:00000000 fun_d1
+F:\msys64\tmp\ccqkp3Wu.s:134    .text.fun_d1:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:142    .text.fun_a21:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:148    .text.fun_a21:00000000 fun_a21
+F:\msys64\tmp\ccqkp3Wu.s:188    .text.fun_a21:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:196    .text.fun_a22:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:202    .text.fun_a22:00000000 fun_a22
+F:\msys64\tmp\ccqkp3Wu.s:242    .text.fun_a22:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:250    .text.fun_a23:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:256    .text.fun_a23:00000000 fun_a23
+F:\msys64\tmp\ccqkp3Wu.s:296    .text.fun_a23:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:304    .text.fun_a24:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:310    .text.fun_a24:00000000 fun_a24
+F:\msys64\tmp\ccqkp3Wu.s:350    .text.fun_a24:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:358    .text.fun_b21:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:364    .text.fun_b21:00000000 fun_b21
+F:\msys64\tmp\ccqkp3Wu.s:404    .text.fun_b21:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:412    .text.fun_b22:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:418    .text.fun_b22:00000000 fun_b22
+F:\msys64\tmp\ccqkp3Wu.s:458    .text.fun_b22:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:466    .text.fun_b23:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:472    .text.fun_b23:00000000 fun_b23
+F:\msys64\tmp\ccqkp3Wu.s:512    .text.fun_b23:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:520    .text.fun_b24:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:526    .text.fun_b24:00000000 fun_b24
+F:\msys64\tmp\ccqkp3Wu.s:566    .text.fun_b24:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:574    .text.fun_c21:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:580    .text.fun_c21:00000000 fun_c21
+F:\msys64\tmp\ccqkp3Wu.s:620    .text.fun_c21:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:628    .text.fun_c22:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:634    .text.fun_c22:00000000 fun_c22
+F:\msys64\tmp\ccqkp3Wu.s:674    .text.fun_c22:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:682    .text.fun_c23:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:688    .text.fun_c23:00000000 fun_c23
+F:\msys64\tmp\ccqkp3Wu.s:728    .text.fun_c23:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:736    .text.fun_c24:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:742    .text.fun_c24:00000000 fun_c24
+F:\msys64\tmp\ccqkp3Wu.s:782    .text.fun_c24:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:790    .text.fun_a31:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:796    .text.fun_a31:00000000 fun_a31
+F:\msys64\tmp\ccqkp3Wu.s:836    .text.fun_a31:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:844    .text.fun_a32:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:850    .text.fun_a32:00000000 fun_a32
+F:\msys64\tmp\ccqkp3Wu.s:890    .text.fun_a32:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:898    .text.fun_a33:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:904    .text.fun_a33:00000000 fun_a33
+F:\msys64\tmp\ccqkp3Wu.s:944    .text.fun_a33:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:952    .text.fun_b31:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:958    .text.fun_b31:00000000 fun_b31
+F:\msys64\tmp\ccqkp3Wu.s:998    .text.fun_b31:0000002c $d
+ARM GAS  F:\msys64\tmp\ccqkp3Wu.s 			page 45
+
+
+F:\msys64\tmp\ccqkp3Wu.s:1006   .text.fun_b32:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1012   .text.fun_b32:00000000 fun_b32
+F:\msys64\tmp\ccqkp3Wu.s:1052   .text.fun_b32:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:1060   .text.fun_b33:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1066   .text.fun_b33:00000000 fun_b33
+F:\msys64\tmp\ccqkp3Wu.s:1106   .text.fun_b33:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:1114   .text.fun_c31:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1120   .text.fun_c31:00000000 fun_c31
+F:\msys64\tmp\ccqkp3Wu.s:1160   .text.fun_c31:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:1168   .text.fun_c32:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1174   .text.fun_c32:00000000 fun_c32
+F:\msys64\tmp\ccqkp3Wu.s:1214   .text.fun_c32:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:1222   .text.fun_c33:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1228   .text.fun_c33:00000000 fun_c33
+F:\msys64\tmp\ccqkp3Wu.s:1268   .text.fun_c33:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:1276   .rodata.Boot.str1.4:00000000 $d
+F:\msys64\tmp\ccqkp3Wu.s:1290   .text.Boot:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1296   .text.Boot:00000000 Boot
+F:\msys64\tmp\ccqkp3Wu.s:1544   .text.Boot:00000154 $d
+F:\msys64\tmp\ccqkp3Wu.s:1563   .rodata.Main_menu.str1.4:00000000 $d
+F:\msys64\tmp\ccqkp3Wu.s:1576   .text.Main_menu:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1582   .text.Main_menu:00000000 Main_menu
+F:\msys64\tmp\ccqkp3Wu.s:1696   .text.Main_menu:000000a4 $d
+F:\msys64\tmp\ccqkp3Wu.s:1707   .text.RT_Monitor:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1713   .text.RT_Monitor:00000000 RT_Monitor
+F:\msys64\tmp\ccqkp3Wu.s:1811   .text.RT_Monitor:00000088 $d
+F:\msys64\tmp\ccqkp3Wu.s:1821   .text.fun_b1:00000000 $t
+F:\msys64\tmp\ccqkp3Wu.s:1827   .text.fun_b1:00000000 fun_b1
+F:\msys64\tmp\ccqkp3Wu.s:1867   .text.fun_b1:0000002c $d
+F:\msys64\tmp\ccqkp3Wu.s:1877   .data.table:00000000 table
+F:\msys64\tmp\ccqkp3Wu.s:1874   .data.table:00000000 $d
+
+UNDEFINED SYMBOLS
+GUI_DispStringAt
+GUI_SetBkColor
+LCD_GetXSize
+LCD_GetYSize
+GUI_ClearRect
+GUI_SetColor
+GUI_FillRect
+GUI_DrawRect
+osDelay
+GUI_DrawBitmap
+GUI_SetFont
+GUI_Clear
+Beep
+bmfirealarm30
+bmfirealarm60
+bmfirealarm82
+bmfirealarm
+GUI_Font20_ASCII
+GUI_FontHZ_YouYuan_24
+bmhdu
+GUI_DrawRoundedFrame
+GUI_FontHZ_KaiTi_20
+GUI_FontHZ_KaiTi_32

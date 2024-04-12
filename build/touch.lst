@@ -1,0 +1,1594 @@
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"touch.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.GUI_TOUCH_X_ActivateX,"ax",%progbits
+  20              		.align	1
+  21              		.global	GUI_TOUCH_X_ActivateX
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	GUI_TOUCH_X_ActivateX:
+  27              	.LFB555:
+  28              		.file 1 "Drivers/LCD/touch.c"
+   1:Drivers/LCD/touch.c **** #include "touch.h"
+   2:Drivers/LCD/touch.c **** #include "spi.h"
+   3:Drivers/LCD/touch.c **** #include "GUI.h"
+   4:Drivers/LCD/touch.c **** 
+   5:Drivers/LCD/touch.c **** 
+   6:Drivers/LCD/touch.c **** void GUI_TOUCH_X_ActivateX(void) {}
+  29              		.loc 1 6 34 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              		.loc 1 6 35 view .LVU1
+  35 0000 7047     		bx	lr
+  36              		.cfi_endproc
+  37              	.LFE555:
+  39              		.section	.text.GUI_TOUCH_X_ActivateY,"ax",%progbits
+  40              		.align	1
+  41              		.global	GUI_TOUCH_X_ActivateY
+  42              		.syntax unified
+  43              		.thumb
+  44              		.thumb_func
+  46              	GUI_TOUCH_X_ActivateY:
+  47              	.LFB556:
+   7:Drivers/LCD/touch.c **** void GUI_TOUCH_X_ActivateY(void) {}
+  48              		.loc 1 7 34 view -0
+  49              		.cfi_startproc
+  50              		@ args = 0, pretend = 0, frame = 0
+  51              		@ frame_needed = 0, uses_anonymous_args = 0
+  52              		@ link register save eliminated.
+  53              		.loc 1 7 35 view .LVU3
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 2
+
+
+  54 0000 7047     		bx	lr
+  55              		.cfi_endproc
+  56              	.LFE556:
+  58              		.section	.text.SpiDelay,"ax",%progbits
+  59              		.align	1
+  60              		.global	SpiDelay
+  61              		.syntax unified
+  62              		.thumb
+  63              		.thumb_func
+  65              	SpiDelay:
+  66              	.LVL0:
+  67              	.LFB557:
+   8:Drivers/LCD/touch.c **** 
+   9:Drivers/LCD/touch.c **** /****************************************************************************
+  10:Drivers/LCD/touch.c **** * 名    称：void SpiDelay(unsigned int DelayCnt) 
+  11:Drivers/LCD/touch.c **** * 功    能：SPI1 写延时函数
+  12:Drivers/LCD/touch.c **** * 入口参数：无
+  13:Drivers/LCD/touch.c **** * 出口参数：无
+  14:Drivers/LCD/touch.c **** * 说    明：
+  15:Drivers/LCD/touch.c **** * 调用方法：
+  16:Drivers/LCD/touch.c **** ****************************************************************************/  
+  17:Drivers/LCD/touch.c **** void SpiDelay(unsigned int DelayCnt)
+  18:Drivers/LCD/touch.c **** {
+  68              		.loc 1 18 1 view -0
+  69              		.cfi_startproc
+  70              		@ args = 0, pretend = 0, frame = 0
+  71              		@ frame_needed = 0, uses_anonymous_args = 0
+  72              		@ link register save eliminated.
+  19:Drivers/LCD/touch.c **** // unsigned int i;
+  20:Drivers/LCD/touch.c **** // for(i=0;i < DelayCnt;i++);
+  21:Drivers/LCD/touch.c **** }
+  73              		.loc 1 21 1 view .LVU5
+  74 0000 7047     		bx	lr
+  75              		.cfi_endproc
+  76              	.LFE557:
+  78              		.section	.text.SPI_WriteByte,"ax",%progbits
+  79              		.align	1
+  80              		.global	SPI_WriteByte
+  81              		.syntax unified
+  82              		.thumb
+  83              		.thumb_func
+  85              	SPI_WriteByte:
+  86              	.LVL1:
+  87              	.LFB558:
+  22:Drivers/LCD/touch.c **** /****************************************************************************
+  23:Drivers/LCD/touch.c **** * 名    称：unsigned char SPI_WriteByte(unsigned char data) 
+  24:Drivers/LCD/touch.c **** * 功    能：SPI1 写函数
+  25:Drivers/LCD/touch.c **** * 入口参数：无
+  26:Drivers/LCD/touch.c **** * 出口参数：无
+  27:Drivers/LCD/touch.c **** * 说    明：
+  28:Drivers/LCD/touch.c **** * 调用方法：
+  29:Drivers/LCD/touch.c **** ****************************************************************************/  
+  30:Drivers/LCD/touch.c **** unsigned char SPI_WriteByte(unsigned char data) 
+  31:Drivers/LCD/touch.c **** { 
+  88              		.loc 1 31 1 view -0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 16
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 3
+
+
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92              		.loc 1 31 1 is_stmt 0 view .LVU7
+  93 0000 00B5     		push	{lr}
+  94              	.LCFI0:
+  95              		.cfi_def_cfa_offset 4
+  96              		.cfi_offset 14, -4
+  97 0002 85B0     		sub	sp, sp, #20
+  98              	.LCFI1:
+  99              		.cfi_def_cfa_offset 24
+ 100 0004 8DF80700 		strb	r0, [sp, #7]
+  32:Drivers/LCD/touch.c **** 	unsigned char Data = 0; 
+ 101              		.loc 1 32 2 is_stmt 1 view .LVU8
+ 102              		.loc 1 32 16 is_stmt 0 view .LVU9
+ 103 0008 0023     		movs	r3, #0
+ 104 000a 8DF80F30 		strb	r3, [sp, #15]
+  33:Drivers/LCD/touch.c ****   // Send the byte  
+  34:Drivers/LCD/touch.c ****   if (HAL_SPI_Transmit(&hspi2, &data, 1, 10) == HAL_OK)
+ 105              		.loc 1 34 3 is_stmt 1 view .LVU10
+ 106              		.loc 1 34 7 is_stmt 0 view .LVU11
+ 107 000e 0A23     		movs	r3, #10
+ 108 0010 0122     		movs	r2, #1
+ 109 0012 0DF10701 		add	r1, sp, #7
+ 110 0016 0A48     		ldr	r0, .L9
+ 111              	.LVL2:
+ 112              		.loc 1 34 7 view .LVU12
+ 113 0018 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 114              	.LVL3:
+ 115              		.loc 1 34 6 view .LVU13
+ 116 001c 20B1     		cbz	r0, .L8
+ 117              	.L5:
+  35:Drivers/LCD/touch.c **** 	{
+  36:Drivers/LCD/touch.c **** 		if (HAL_SPI_Receive(&hspi2, &Data, 1, 10) == HAL_OK)
+  37:Drivers/LCD/touch.c **** 		{
+  38:Drivers/LCD/touch.c **** 			return Data; 
+  39:Drivers/LCD/touch.c **** 		}
+  40:Drivers/LCD/touch.c **** 	}
+  41:Drivers/LCD/touch.c **** 	
+  42:Drivers/LCD/touch.c ****   // Return the shifted data 
+  43:Drivers/LCD/touch.c ****   return Data; 
+ 118              		.loc 1 43 3 is_stmt 1 view .LVU14
+ 119              		.loc 1 43 10 is_stmt 0 view .LVU15
+ 120 001e 9DF80F00 		ldrb	r0, [sp, #15]	@ zero_extendqisi2
+ 121              	.L6:
+  44:Drivers/LCD/touch.c **** }  
+ 122              		.loc 1 44 1 view .LVU16
+ 123 0022 05B0     		add	sp, sp, #20
+ 124              	.LCFI2:
+ 125              		.cfi_remember_state
+ 126              		.cfi_def_cfa_offset 4
+ 127              		@ sp needed
+ 128 0024 5DF804FB 		ldr	pc, [sp], #4
+ 129              	.L8:
+ 130              	.LCFI3:
+ 131              		.cfi_restore_state
+  36:Drivers/LCD/touch.c **** 		{
+ 132              		.loc 1 36 3 is_stmt 1 view .LVU17
+  36:Drivers/LCD/touch.c **** 		{
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 4
+
+
+ 133              		.loc 1 36 7 is_stmt 0 view .LVU18
+ 134 0028 0A23     		movs	r3, #10
+ 135 002a 0122     		movs	r2, #1
+ 136 002c 0DF10F01 		add	r1, sp, #15
+ 137 0030 0348     		ldr	r0, .L9
+ 138 0032 FFF7FEFF 		bl	HAL_SPI_Receive
+ 139              	.LVL4:
+  36:Drivers/LCD/touch.c **** 		{
+ 140              		.loc 1 36 6 view .LVU19
+ 141 0036 0028     		cmp	r0, #0
+ 142 0038 F1D1     		bne	.L5
+  38:Drivers/LCD/touch.c **** 		}
+ 143              		.loc 1 38 4 is_stmt 1 view .LVU20
+  38:Drivers/LCD/touch.c **** 		}
+ 144              		.loc 1 38 11 is_stmt 0 view .LVU21
+ 145 003a 9DF80F00 		ldrb	r0, [sp, #15]	@ zero_extendqisi2
+ 146 003e F0E7     		b	.L6
+ 147              	.L10:
+ 148              		.align	2
+ 149              	.L9:
+ 150 0040 00000000 		.word	hspi2
+ 151              		.cfi_endproc
+ 152              	.LFE558:
+ 154              		.section	.text.SPI_ReadWriteByte,"ax",%progbits
+ 155              		.align	1
+ 156              		.global	SPI_ReadWriteByte
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	SPI_ReadWriteByte:
+ 162              	.LVL5:
+ 163              	.LFB559:
+  45:Drivers/LCD/touch.c **** 
+  46:Drivers/LCD/touch.c **** uint8_t SPI_ReadWriteByte(uint8_t TxData) { 
+ 164              		.loc 1 46 43 is_stmt 1 view -0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 8
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              		.loc 1 46 43 is_stmt 0 view .LVU23
+ 169 0000 00B5     		push	{lr}
+ 170              	.LCFI4:
+ 171              		.cfi_def_cfa_offset 4
+ 172              		.cfi_offset 14, -4
+ 173 0002 85B0     		sub	sp, sp, #20
+ 174              	.LCFI5:
+ 175              		.cfi_def_cfa_offset 24
+  47:Drivers/LCD/touch.c **** 	uint8_t In_res=0;
+ 176              		.loc 1 47 2 is_stmt 1 view .LVU24
+ 177              		.loc 1 47 10 is_stmt 0 view .LVU25
+ 178 0004 0023     		movs	r3, #0
+ 179 0006 8DF80F30 		strb	r3, [sp, #15]
+  48:Drivers/LCD/touch.c **** 	uint8_t Out_res=0;
+ 180              		.loc 1 48 2 is_stmt 1 view .LVU26
+ 181              		.loc 1 48 10 is_stmt 0 view .LVU27
+ 182 000a 8DF80E30 		strb	r3, [sp, #14]
+  49:Drivers/LCD/touch.c **** 	In_res = TxData;
+ 183              		.loc 1 49 2 is_stmt 1 view .LVU28
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 5
+
+
+ 184              		.loc 1 49 9 is_stmt 0 view .LVU29
+ 185 000e 8DF80F00 		strb	r0, [sp, #15]
+  50:Drivers/LCD/touch.c **** 	HAL_SPI_TransmitReceive(&hspi2, &In_res, &Out_res, 1, 1); 
+ 186              		.loc 1 50 2 is_stmt 1 view .LVU30
+ 187 0012 0123     		movs	r3, #1
+ 188 0014 0093     		str	r3, [sp]
+ 189 0016 0DF10E02 		add	r2, sp, #14
+ 190 001a 0DF10F01 		add	r1, sp, #15
+ 191 001e 0448     		ldr	r0, .L13
+ 192              	.LVL6:
+ 193              		.loc 1 50 2 is_stmt 0 view .LVU31
+ 194 0020 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 195              	.LVL7:
+  51:Drivers/LCD/touch.c **** 	return Out_res; 
+ 196              		.loc 1 51 2 is_stmt 1 view .LVU32
+  52:Drivers/LCD/touch.c **** }
+ 197              		.loc 1 52 1 is_stmt 0 view .LVU33
+ 198 0024 9DF80E00 		ldrb	r0, [sp, #14]	@ zero_extendqisi2
+ 199 0028 05B0     		add	sp, sp, #20
+ 200              	.LCFI6:
+ 201              		.cfi_def_cfa_offset 4
+ 202              		@ sp needed
+ 203 002a 5DF804FB 		ldr	pc, [sp], #4
+ 204              	.L14:
+ 205 002e 00BF     		.align	2
+ 206              	.L13:
+ 207 0030 00000000 		.word	hspi2
+ 208              		.cfi_endproc
+ 209              	.LFE559:
+ 211              		.section	.text.SPI_Flash_ReadID,"ax",%progbits
+ 212              		.align	1
+ 213              		.global	SPI_Flash_ReadID
+ 214              		.syntax unified
+ 215              		.thumb
+ 216              		.thumb_func
+ 218              	SPI_Flash_ReadID:
+ 219              	.LFB560:
+  53:Drivers/LCD/touch.c **** 
+  54:Drivers/LCD/touch.c **** uint16_t SPI_Flash_ReadID(void)
+  55:Drivers/LCD/touch.c **** {
+ 220              		.loc 1 55 1 is_stmt 1 view -0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224 0000 70B5     		push	{r4, r5, r6, lr}
+ 225              	.LCFI7:
+ 226              		.cfi_def_cfa_offset 16
+ 227              		.cfi_offset 4, -16
+ 228              		.cfi_offset 5, -12
+ 229              		.cfi_offset 6, -8
+ 230              		.cfi_offset 14, -4
+  56:Drivers/LCD/touch.c **** 	uint16_t Temp = 0;	  
+ 231              		.loc 1 56 2 view .LVU35
+ 232              	.LVL8:
+  57:Drivers/LCD/touch.c **** 	TP_CS(0); 		    
+ 233              		.loc 1 57 2 view .LVU36
+ 234              		.loc 1 57 2 view .LVU37
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 6
+
+
+ 235              		.loc 1 57 2 view .LVU38
+ 236 0002 124E     		ldr	r6, .L17
+ 237 0004 0022     		movs	r2, #0
+ 238 0006 4FF48051 		mov	r1, #4096
+ 239 000a 3046     		mov	r0, r6
+ 240 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 241              	.LVL9:
+ 242              		.loc 1 57 2 view .LVU39
+  58:Drivers/LCD/touch.c **** 	SPI_ReadWriteByte(0x90);//发送读取ID命令	    
+ 243              		.loc 1 58 2 view .LVU40
+ 244 0010 9020     		movs	r0, #144
+ 245 0012 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 246              	.LVL10:
+  59:Drivers/LCD/touch.c **** 	SPI_ReadWriteByte(0x00); 	    
+ 247              		.loc 1 59 2 view .LVU41
+ 248 0016 0020     		movs	r0, #0
+ 249 0018 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 250              	.LVL11:
+  60:Drivers/LCD/touch.c **** 	SPI_ReadWriteByte(0x00); 	    
+ 251              		.loc 1 60 2 view .LVU42
+ 252 001c 0020     		movs	r0, #0
+ 253 001e FFF7FEFF 		bl	SPI_ReadWriteByte
+ 254              	.LVL12:
+  61:Drivers/LCD/touch.c **** 	SPI_ReadWriteByte(0x00); 	 			   
+ 255              		.loc 1 61 2 view .LVU43
+ 256 0022 0020     		movs	r0, #0
+ 257 0024 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 258              	.LVL13:
+  62:Drivers/LCD/touch.c **** 	Temp|=SPI_ReadWriteByte(0xFF)<<8;  
+ 259              		.loc 1 62 2 view .LVU44
+ 260              		.loc 1 62 8 is_stmt 0 view .LVU45
+ 261 0028 FF20     		movs	r0, #255
+ 262 002a FFF7FEFF 		bl	SPI_ReadWriteByte
+ 263              	.LVL14:
+ 264              		.loc 1 62 31 view .LVU46
+ 265 002e 0402     		lsls	r4, r0, #8
+ 266              		.loc 1 62 6 view .LVU47
+ 267 0030 A5B2     		uxth	r5, r4
+ 268              	.LVL15:
+  63:Drivers/LCD/touch.c **** 	Temp|=SPI_ReadWriteByte(0xFF);	 
+ 269              		.loc 1 63 2 is_stmt 1 view .LVU48
+ 270              		.loc 1 63 8 is_stmt 0 view .LVU49
+ 271 0032 FF20     		movs	r0, #255
+ 272 0034 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 273              	.LVL16:
+ 274 0038 84B2     		uxth	r4, r0
+ 275              		.loc 1 63 6 view .LVU50
+ 276 003a 2C43     		orrs	r4, r4, r5
+ 277              	.LVL17:
+  64:Drivers/LCD/touch.c **** 	TP_CS(1); 	    
+ 278              		.loc 1 64 2 is_stmt 1 view .LVU51
+ 279              		.loc 1 64 2 view .LVU52
+ 280              		.loc 1 64 2 view .LVU53
+ 281 003c 0122     		movs	r2, #1
+ 282 003e 4FF48051 		mov	r1, #4096
+ 283 0042 3046     		mov	r0, r6
+ 284 0044 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 7
+
+
+ 285              	.LVL18:
+ 286              		.loc 1 64 2 view .LVU54
+  65:Drivers/LCD/touch.c **** 	return Temp;
+ 287              		.loc 1 65 2 view .LVU55
+  66:Drivers/LCD/touch.c **** } 
+ 288              		.loc 1 66 1 is_stmt 0 view .LVU56
+ 289 0048 2046     		mov	r0, r4
+ 290 004a 70BD     		pop	{r4, r5, r6, pc}
+ 291              	.LVL19:
+ 292              	.L18:
+ 293              		.loc 1 66 1 view .LVU57
+ 294              		.align	2
+ 295              	.L17:
+ 296 004c 00040240 		.word	1073873920
+ 297              		.cfi_endproc
+ 298              	.LFE560:
+ 300              		.section	.text.TPReadY,"ax",%progbits
+ 301              		.align	1
+ 302              		.global	TPReadY
+ 303              		.syntax unified
+ 304              		.thumb
+ 305              		.thumb_func
+ 307              	TPReadY:
+ 308              	.LFB561:
+  67:Drivers/LCD/touch.c **** 
+  68:Drivers/LCD/touch.c **** /****************************************************************************
+  69:Drivers/LCD/touch.c **** * 名    称：uint16_t TPReadX(void) 
+  70:Drivers/LCD/touch.c **** * 功    能：触摸屏X轴数据读出
+  71:Drivers/LCD/touch.c **** * 入口参数：无
+  72:Drivers/LCD/touch.c **** * 出口参数：无
+  73:Drivers/LCD/touch.c **** * 说    明：
+  74:Drivers/LCD/touch.c **** * 调用方法：
+  75:Drivers/LCD/touch.c **** ****************************************************************************/  
+  76:Drivers/LCD/touch.c **** uint16_t TPReadY(void)
+  77:Drivers/LCD/touch.c **** { 
+ 309              		.loc 1 77 1 is_stmt 1 view -0
+ 310              		.cfi_startproc
+ 311              		@ args = 0, pretend = 0, frame = 0
+ 312              		@ frame_needed = 0, uses_anonymous_args = 0
+ 313 0000 38B5     		push	{r3, r4, r5, lr}
+ 314              	.LCFI8:
+ 315              		.cfi_def_cfa_offset 16
+ 316              		.cfi_offset 3, -16
+ 317              		.cfi_offset 4, -12
+ 318              		.cfi_offset 5, -8
+ 319              		.cfi_offset 14, -4
+  78:Drivers/LCD/touch.c ****    uint16_t x=0;
+ 320              		.loc 1 78 4 view .LVU59
+ 321              	.LVL20:
+  79:Drivers/LCD/touch.c ****    TP_CS(0);	            //选择XPT2046 
+ 322              		.loc 1 79 4 view .LVU60
+ 323              		.loc 1 79 4 view .LVU61
+ 324              		.loc 1 79 4 view .LVU62
+ 325 0002 0F4D     		ldr	r5, .L21
+ 326 0004 0022     		movs	r2, #0
+ 327 0006 4FF48051 		mov	r1, #4096
+ 328 000a 2846     		mov	r0, r5
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 8
+
+
+ 329 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 330              	.LVL21:
+ 331              		.loc 1 79 4 view .LVU63
+  80:Drivers/LCD/touch.c **** //   SpiDelay(1);					//延时
+  81:Drivers/LCD/touch.c ****    SPI_ReadWriteByte(0xD0);		//设置X轴读取标志
+ 332              		.loc 1 81 4 view .LVU64
+ 333 0010 D020     		movs	r0, #208
+ 334 0012 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 335              	.LVL22:
+  82:Drivers/LCD/touch.c **** //   SpiDelay(1);					//延时
+  83:Drivers/LCD/touch.c ****    x=SPI_ReadWriteByte(0x00);	//连续读取16位的数据 
+ 336              		.loc 1 83 4 view .LVU65
+ 337              		.loc 1 83 6 is_stmt 0 view .LVU66
+ 338 0016 0020     		movs	r0, #0
+ 339 0018 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 340              	.LVL23:
+ 341              		.loc 1 83 5 view .LVU67
+ 342 001c 84B2     		uxth	r4, r0
+ 343              	.LVL24:
+  84:Drivers/LCD/touch.c ****    x<<=8;
+ 344              		.loc 1 84 4 is_stmt 1 view .LVU68
+ 345              		.loc 1 84 5 is_stmt 0 view .LVU69
+ 346 001e 2402     		lsls	r4, r4, #8
+ 347              	.LVL25:
+ 348              		.loc 1 84 5 view .LVU70
+ 349 0020 A4B2     		uxth	r4, r4
+ 350              	.LVL26:
+  85:Drivers/LCD/touch.c ****    x+=SPI_ReadWriteByte(0x00);
+ 351              		.loc 1 85 4 is_stmt 1 view .LVU71
+ 352              		.loc 1 85 7 is_stmt 0 view .LVU72
+ 353 0022 0020     		movs	r0, #0
+ 354 0024 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 355              	.LVL27:
+ 356              		.loc 1 85 5 view .LVU73
+ 357 0028 14FA80F4 		uxtah	r4, r4, r0
+ 358              	.LVL28:
+ 359              		.loc 1 85 5 view .LVU74
+ 360 002c A4B2     		uxth	r4, r4
+ 361              	.LVL29:
+  86:Drivers/LCD/touch.c **** //   SpiDelay(1);					//禁止XPT2046
+  87:Drivers/LCD/touch.c ****    TP_CS(1); 					    								  
+ 362              		.loc 1 87 4 is_stmt 1 view .LVU75
+ 363              		.loc 1 87 4 view .LVU76
+ 364              		.loc 1 87 4 view .LVU77
+ 365 002e 0122     		movs	r2, #1
+ 366 0030 4FF48051 		mov	r1, #4096
+ 367 0034 2846     		mov	r0, r5
+ 368 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 369              	.LVL30:
+ 370              		.loc 1 87 4 view .LVU78
+  88:Drivers/LCD/touch.c ****    x = x>>3;						//移位换算成12位的有效数据0-4095
+ 371              		.loc 1 88 4 view .LVU79
+  89:Drivers/LCD/touch.c ****    return (x);
+ 372              		.loc 1 89 4 view .LVU80
+  90:Drivers/LCD/touch.c **** }
+ 373              		.loc 1 90 1 is_stmt 0 view .LVU81
+ 374 003a E008     		lsrs	r0, r4, #3
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 9
+
+
+ 375 003c 38BD     		pop	{r3, r4, r5, pc}
+ 376              	.LVL31:
+ 377              	.L22:
+ 378              		.loc 1 90 1 view .LVU82
+ 379 003e 00BF     		.align	2
+ 380              	.L21:
+ 381 0040 00040240 		.word	1073873920
+ 382              		.cfi_endproc
+ 383              	.LFE561:
+ 385              		.section	.text.TPReadX,"ax",%progbits
+ 386              		.align	1
+ 387              		.global	TPReadX
+ 388              		.syntax unified
+ 389              		.thumb
+ 390              		.thumb_func
+ 392              	TPReadX:
+ 393              	.LFB562:
+  91:Drivers/LCD/touch.c **** /****************************************************************************
+  92:Drivers/LCD/touch.c **** * 名    称：uint16_t TPReadX(void)
+  93:Drivers/LCD/touch.c **** * 功    能：触摸屏Y轴数据读出
+  94:Drivers/LCD/touch.c **** * 入口参数：无
+  95:Drivers/LCD/touch.c **** * 出口参数：无
+  96:Drivers/LCD/touch.c **** * 说    明：
+  97:Drivers/LCD/touch.c **** * 调用方法：
+  98:Drivers/LCD/touch.c **** ****************************************************************************/
+  99:Drivers/LCD/touch.c **** uint16_t TPReadX(void)
+ 100:Drivers/LCD/touch.c **** {
+ 394              		.loc 1 100 1 is_stmt 1 view -0
+ 395              		.cfi_startproc
+ 396              		@ args = 0, pretend = 0, frame = 0
+ 397              		@ frame_needed = 0, uses_anonymous_args = 0
+ 398 0000 38B5     		push	{r3, r4, r5, lr}
+ 399              	.LCFI9:
+ 400              		.cfi_def_cfa_offset 16
+ 401              		.cfi_offset 3, -16
+ 402              		.cfi_offset 4, -12
+ 403              		.cfi_offset 5, -8
+ 404              		.cfi_offset 14, -4
+ 101:Drivers/LCD/touch.c ****    uint16_t y=0;
+ 405              		.loc 1 101 4 view .LVU84
+ 406              	.LVL32:
+ 102:Drivers/LCD/touch.c ****    TP_CS(0);	                        //选择XPT2046 
+ 407              		.loc 1 102 4 view .LVU85
+ 408              		.loc 1 102 4 view .LVU86
+ 409              		.loc 1 102 4 view .LVU87
+ 410 0002 0F4D     		ldr	r5, .L25
+ 411 0004 0022     		movs	r2, #0
+ 412 0006 4FF48051 		mov	r1, #4096
+ 413 000a 2846     		mov	r0, r5
+ 414 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 415              	.LVL33:
+ 416              		.loc 1 102 4 view .LVU88
+ 103:Drivers/LCD/touch.c **** //   SpiDelay(1);									//延时
+ 104:Drivers/LCD/touch.c ****    SPI_ReadWriteByte(0x90);				//设置Y轴读取标志
+ 417              		.loc 1 104 4 view .LVU89
+ 418 0010 9020     		movs	r0, #144
+ 419 0012 FFF7FEFF 		bl	SPI_ReadWriteByte
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 10
+
+
+ 420              	.LVL34:
+ 105:Drivers/LCD/touch.c **** //   SpiDelay(1);									//延时
+ 106:Drivers/LCD/touch.c ****    y=SPI_ReadWriteByte(0x00);			//连续读取16位的数据 
+ 421              		.loc 1 106 4 view .LVU90
+ 422              		.loc 1 106 6 is_stmt 0 view .LVU91
+ 423 0016 0020     		movs	r0, #0
+ 424 0018 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 425              	.LVL35:
+ 426              		.loc 1 106 5 view .LVU92
+ 427 001c 84B2     		uxth	r4, r0
+ 428              	.LVL36:
+ 107:Drivers/LCD/touch.c ****    y<<=8;
+ 429              		.loc 1 107 4 is_stmt 1 view .LVU93
+ 430              		.loc 1 107 5 is_stmt 0 view .LVU94
+ 431 001e 2402     		lsls	r4, r4, #8
+ 432              	.LVL37:
+ 433              		.loc 1 107 5 view .LVU95
+ 434 0020 A4B2     		uxth	r4, r4
+ 435              	.LVL38:
+ 108:Drivers/LCD/touch.c ****    y+=SPI_ReadWriteByte(0x00);
+ 436              		.loc 1 108 4 is_stmt 1 view .LVU96
+ 437              		.loc 1 108 7 is_stmt 0 view .LVU97
+ 438 0022 0020     		movs	r0, #0
+ 439 0024 FFF7FEFF 		bl	SPI_ReadWriteByte
+ 440              	.LVL39:
+ 441              		.loc 1 108 5 view .LVU98
+ 442 0028 14FA80F4 		uxtah	r4, r4, r0
+ 443              	.LVL40:
+ 444              		.loc 1 108 5 view .LVU99
+ 445 002c A4B2     		uxth	r4, r4
+ 446              	.LVL41:
+ 109:Drivers/LCD/touch.c **** //   SpiDelay(1);					//禁止XPT2046
+ 110:Drivers/LCD/touch.c ****    TP_CS(1); 					    								  
+ 447              		.loc 1 110 4 is_stmt 1 view .LVU100
+ 448              		.loc 1 110 4 view .LVU101
+ 449              		.loc 1 110 4 view .LVU102
+ 450 002e 0122     		movs	r2, #1
+ 451 0030 4FF48051 		mov	r1, #4096
+ 452 0034 2846     		mov	r0, r5
+ 453 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 454              	.LVL42:
+ 455              		.loc 1 110 4 view .LVU103
+ 111:Drivers/LCD/touch.c ****    y = y>>3;						//移位换算成12位的有效数据0-4095
+ 456              		.loc 1 111 4 view .LVU104
+ 112:Drivers/LCD/touch.c ****    return (y);
+ 457              		.loc 1 112 4 view .LVU105
+ 113:Drivers/LCD/touch.c **** }
+ 458              		.loc 1 113 1 is_stmt 0 view .LVU106
+ 459 003a E008     		lsrs	r0, r4, #3
+ 460 003c 38BD     		pop	{r3, r4, r5, pc}
+ 461              	.LVL43:
+ 462              	.L26:
+ 463              		.loc 1 113 1 view .LVU107
+ 464 003e 00BF     		.align	2
+ 465              	.L25:
+ 466 0040 00040240 		.word	1073873920
+ 467              		.cfi_endproc
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 11
+
+
+ 468              	.LFE562:
+ 470              		.section	.text.GUI_TOUCH_X_MeasureX,"ax",%progbits
+ 471              		.align	1
+ 472              		.global	GUI_TOUCH_X_MeasureX
+ 473              		.syntax unified
+ 474              		.thumb
+ 475              		.thumb_func
+ 477              	GUI_TOUCH_X_MeasureX:
+ 478              	.LFB563:
+ 114:Drivers/LCD/touch.c **** 
+ 115:Drivers/LCD/touch.c **** int  GUI_TOUCH_X_MeasureX(void) 
+ 116:Drivers/LCD/touch.c **** {
+ 479              		.loc 1 116 1 is_stmt 1 view -0
+ 480              		.cfi_startproc
+ 481              		@ args = 0, pretend = 0, frame = 24
+ 482              		@ frame_needed = 0, uses_anonymous_args = 0
+ 483 0000 30B5     		push	{r4, r5, lr}
+ 484              	.LCFI10:
+ 485              		.cfi_def_cfa_offset 12
+ 486              		.cfi_offset 4, -12
+ 487              		.cfi_offset 5, -8
+ 488              		.cfi_offset 14, -4
+ 489 0002 87B0     		sub	sp, sp, #28
+ 490              	.LCFI11:
+ 491              		.cfi_def_cfa_offset 40
+ 117:Drivers/LCD/touch.c **** 	unsigned char t=0,t1,count=0;
+ 492              		.loc 1 117 2 view .LVU109
+ 493              	.LVL44:
+ 118:Drivers/LCD/touch.c **** 	unsigned short int databuffer[10]={5,7,9,3,2,6,4,0,3,1};//数据组
+ 494              		.loc 1 118 2 view .LVU110
+ 495              		.loc 1 118 21 is_stmt 0 view .LVU111
+ 496 0004 01AC     		add	r4, sp, #4
+ 497 0006 234D     		ldr	r5, .L38
+ 498 0008 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 499 000a 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 500 000c 2B68     		ldr	r3, [r5]
+ 501 000e 2360     		str	r3, [r4]
+ 119:Drivers/LCD/touch.c **** 	unsigned short temp=0,X=0;	
+ 502              		.loc 1 119 2 is_stmt 1 view .LVU112
+ 503              	.LVL45:
+ 120:Drivers/LCD/touch.c ****  	
+ 121:Drivers/LCD/touch.c **** 	while(/*GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)==0&&*/count<10)//循环读数10次
+ 504              		.loc 1 121 2 view .LVU113
+ 117:Drivers/LCD/touch.c **** 	unsigned short int databuffer[10]={5,7,9,3,2,6,4,0,3,1};//数据组
+ 505              		.loc 1 117 23 is_stmt 0 view .LVU114
+ 506 0010 0024     		movs	r4, #0
+ 507              		.loc 1 121 7 view .LVU115
+ 508 0012 08E0     		b	.L28
+ 509              	.LVL46:
+ 510              	.L29:
+ 122:Drivers/LCD/touch.c **** 	{	   	  
+ 123:Drivers/LCD/touch.c **** 		databuffer[count]=TPReadX();
+ 511              		.loc 1 123 3 is_stmt 1 view .LVU116
+ 512              		.loc 1 123 21 is_stmt 0 view .LVU117
+ 513 0014 FFF7FEFF 		bl	TPReadX
+ 514              	.LVL47:
+ 515              		.loc 1 123 20 view .LVU118
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 12
+
+
+ 516 0018 06AB     		add	r3, sp, #24
+ 517 001a 03EB4403 		add	r3, r3, r4, lsl #1
+ 518 001e 23F8140C 		strh	r0, [r3, #-20]	@ movhi
+ 124:Drivers/LCD/touch.c **** 		count++; 
+ 519              		.loc 1 124 3 is_stmt 1 view .LVU119
+ 520              		.loc 1 124 8 is_stmt 0 view .LVU120
+ 521 0022 0134     		adds	r4, r4, #1
+ 522              	.LVL48:
+ 523              		.loc 1 124 8 view .LVU121
+ 524 0024 E4B2     		uxtb	r4, r4
+ 525              	.LVL49:
+ 526              	.L28:
+ 121:Drivers/LCD/touch.c **** 	{	   	  
+ 527              		.loc 1 121 7 is_stmt 1 view .LVU122
+ 528 0026 092C     		cmp	r4, #9
+ 529 0028 F4D9     		bls	.L29
+ 125:Drivers/LCD/touch.c **** 	}  
+ 126:Drivers/LCD/touch.c **** 	if(count==10)//一定要读到10次数据,否则丢弃
+ 530              		.loc 1 126 2 view .LVU123
+ 531              		.loc 1 126 4 is_stmt 0 view .LVU124
+ 532 002a 0A2C     		cmp	r4, #10
+ 533 002c 02D0     		beq	.L34
+ 119:Drivers/LCD/touch.c ****  	
+ 534              		.loc 1 119 24 view .LVU125
+ 535 002e 0020     		movs	r0, #0
+ 536              	.LVL50:
+ 537              	.L30:
+ 127:Drivers/LCD/touch.c **** 	{  
+ 128:Drivers/LCD/touch.c **** 	    do//将数据X升序排列
+ 129:Drivers/LCD/touch.c **** 		{	
+ 130:Drivers/LCD/touch.c **** 			t1=0;		  
+ 131:Drivers/LCD/touch.c **** 			for(t=0;t<count-1;t++)
+ 132:Drivers/LCD/touch.c **** 			{
+ 133:Drivers/LCD/touch.c **** 				if(databuffer[t]>databuffer[t+1])//升序排列
+ 134:Drivers/LCD/touch.c **** 				{
+ 135:Drivers/LCD/touch.c **** 					temp=databuffer[t+1];
+ 136:Drivers/LCD/touch.c **** 					databuffer[t+1]=databuffer[t];
+ 137:Drivers/LCD/touch.c **** 					databuffer[t]=temp;
+ 138:Drivers/LCD/touch.c **** 					t1=1; 
+ 139:Drivers/LCD/touch.c **** 				}  
+ 140:Drivers/LCD/touch.c **** 			}
+ 141:Drivers/LCD/touch.c **** 		}while(t1); 	    		 	 		  
+ 142:Drivers/LCD/touch.c **** 		X=(databuffer[3]+databuffer[4]+databuffer[5])/3;	  
+ 143:Drivers/LCD/touch.c **** 	}
+ 144:Drivers/LCD/touch.c **** 	return(X);  
+ 538              		.loc 1 144 2 is_stmt 1 view .LVU126
+ 145:Drivers/LCD/touch.c **** }
+ 539              		.loc 1 145 1 is_stmt 0 view .LVU127
+ 540 0030 07B0     		add	sp, sp, #28
+ 541              	.LCFI12:
+ 542              		.cfi_remember_state
+ 543              		.cfi_def_cfa_offset 12
+ 544              		@ sp needed
+ 545 0032 30BD     		pop	{r4, r5, pc}
+ 546              	.LVL51:
+ 547              	.L34:
+ 548              	.LCFI13:
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 13
+
+
+ 549              		.cfi_restore_state
+ 128:Drivers/LCD/touch.c **** 		{	
+ 550              		.loc 1 128 6 is_stmt 1 view .LVU128
+ 130:Drivers/LCD/touch.c **** 			for(t=0;t<count-1;t++)
+ 551              		.loc 1 130 4 view .LVU129
+ 131:Drivers/LCD/touch.c **** 			{
+ 552              		.loc 1 131 4 view .LVU130
+ 130:Drivers/LCD/touch.c **** 			for(t=0;t<count-1;t++)
+ 553              		.loc 1 130 6 is_stmt 0 view .LVU131
+ 554 0034 0025     		movs	r5, #0
+ 131:Drivers/LCD/touch.c **** 			{
+ 555              		.loc 1 131 9 view .LVU132
+ 556 0036 2B46     		mov	r3, r5
+ 131:Drivers/LCD/touch.c **** 			{
+ 557              		.loc 1 131 4 view .LVU133
+ 558 0038 01E0     		b	.L31
+ 559              	.LVL52:
+ 560              	.L32:
+ 131:Drivers/LCD/touch.c **** 			{
+ 561              		.loc 1 131 22 is_stmt 1 discriminator 2 view .LVU134
+ 131:Drivers/LCD/touch.c **** 			{
+ 562              		.loc 1 131 23 is_stmt 0 discriminator 2 view .LVU135
+ 563 003a 0133     		adds	r3, r3, #1
+ 564              	.LVL53:
+ 131:Drivers/LCD/touch.c **** 			{
+ 565              		.loc 1 131 23 discriminator 2 view .LVU136
+ 566 003c DBB2     		uxtb	r3, r3
+ 567              	.LVL54:
+ 568              	.L31:
+ 131:Drivers/LCD/touch.c **** 			{
+ 569              		.loc 1 131 12 is_stmt 1 discriminator 1 view .LVU137
+ 131:Drivers/LCD/touch.c **** 			{
+ 570              		.loc 1 131 13 is_stmt 0 discriminator 1 view .LVU138
+ 571 003e 1946     		mov	r1, r3
+ 131:Drivers/LCD/touch.c **** 			{
+ 572              		.loc 1 131 19 discriminator 1 view .LVU139
+ 573 0040 621E     		subs	r2, r4, #1
+ 131:Drivers/LCD/touch.c **** 			{
+ 574              		.loc 1 131 4 discriminator 1 view .LVU140
+ 575 0042 9342     		cmp	r3, r2
+ 576 0044 17DA     		bge	.L37
+ 133:Drivers/LCD/touch.c **** 				{
+ 577              		.loc 1 133 5 is_stmt 1 view .LVU141
+ 133:Drivers/LCD/touch.c **** 				{
+ 578              		.loc 1 133 18 is_stmt 0 view .LVU142
+ 579 0046 06AA     		add	r2, sp, #24
+ 580 0048 02EB4302 		add	r2, r2, r3, lsl #1
+ 581 004c 32F814CC 		ldrh	ip, [r2, #-20]
+ 133:Drivers/LCD/touch.c **** 				{
+ 582              		.loc 1 133 34 view .LVU143
+ 583 0050 5A1C     		adds	r2, r3, #1
+ 133:Drivers/LCD/touch.c **** 				{
+ 584              		.loc 1 133 32 view .LVU144
+ 585 0052 06A8     		add	r0, sp, #24
+ 586 0054 00EB4200 		add	r0, r0, r2, lsl #1
+ 587 0058 30F8140C 		ldrh	r0, [r0, #-20]
+ 133:Drivers/LCD/touch.c **** 				{
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 14
+
+
+ 588              		.loc 1 133 7 view .LVU145
+ 589 005c 8445     		cmp	ip, r0
+ 590 005e ECD9     		bls	.L32
+ 135:Drivers/LCD/touch.c **** 					databuffer[t+1]=databuffer[t];
+ 591              		.loc 1 135 6 is_stmt 1 view .LVU146
+ 592              	.LVL55:
+ 136:Drivers/LCD/touch.c **** 					databuffer[t]=temp;
+ 593              		.loc 1 136 6 view .LVU147
+ 136:Drivers/LCD/touch.c **** 					databuffer[t]=temp;
+ 594              		.loc 1 136 21 is_stmt 0 view .LVU148
+ 595 0060 06AD     		add	r5, sp, #24
+ 596              	.LVL56:
+ 136:Drivers/LCD/touch.c **** 					databuffer[t]=temp;
+ 597              		.loc 1 136 21 view .LVU149
+ 598 0062 05EB4202 		add	r2, r5, r2, lsl #1
+ 599 0066 22F814CC 		strh	ip, [r2, #-20]	@ movhi
+ 137:Drivers/LCD/touch.c **** 					t1=1; 
+ 600              		.loc 1 137 6 is_stmt 1 view .LVU150
+ 137:Drivers/LCD/touch.c **** 					t1=1; 
+ 601              		.loc 1 137 19 is_stmt 0 view .LVU151
+ 602 006a 05EB4101 		add	r1, r5, r1, lsl #1
+ 603 006e 21F8140C 		strh	r0, [r1, #-20]	@ movhi
+ 138:Drivers/LCD/touch.c **** 				}  
+ 604              		.loc 1 138 6 is_stmt 1 view .LVU152
+ 605              	.LVL57:
+ 138:Drivers/LCD/touch.c **** 				}  
+ 606              		.loc 1 138 8 is_stmt 0 view .LVU153
+ 607 0072 0125     		movs	r5, #1
+ 608 0074 E1E7     		b	.L32
+ 609              	.LVL58:
+ 610              	.L37:
+ 141:Drivers/LCD/touch.c **** 		X=(databuffer[3]+databuffer[4]+databuffer[5])/3;	  
+ 611              		.loc 1 141 9 is_stmt 1 view .LVU154
+ 141:Drivers/LCD/touch.c **** 		X=(databuffer[3]+databuffer[4]+databuffer[5])/3;	  
+ 612              		.loc 1 141 3 is_stmt 0 view .LVU155
+ 613 0076 002D     		cmp	r5, #0
+ 614 0078 DCD1     		bne	.L34
+ 142:Drivers/LCD/touch.c **** 	}
+ 615              		.loc 1 142 3 is_stmt 1 view .LVU156
+ 142:Drivers/LCD/touch.c **** 	}
+ 616              		.loc 1 142 16 is_stmt 0 view .LVU157
+ 617 007a BDF80A00 		ldrh	r0, [sp, #10]
+ 142:Drivers/LCD/touch.c **** 	}
+ 618              		.loc 1 142 30 view .LVU158
+ 619 007e BDF80C30 		ldrh	r3, [sp, #12]
+ 620              	.LVL59:
+ 142:Drivers/LCD/touch.c **** 	}
+ 621              		.loc 1 142 19 view .LVU159
+ 622 0082 1844     		add	r0, r0, r3
+ 142:Drivers/LCD/touch.c **** 	}
+ 623              		.loc 1 142 44 view .LVU160
+ 624 0084 BDF80E30 		ldrh	r3, [sp, #14]
+ 142:Drivers/LCD/touch.c **** 	}
+ 625              		.loc 1 142 33 view .LVU161
+ 626 0088 1844     		add	r0, r0, r3
+ 142:Drivers/LCD/touch.c **** 	}
+ 627              		.loc 1 142 48 view .LVU162
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 15
+
+
+ 628 008a 034B     		ldr	r3, .L38+4
+ 629 008c 83FB0030 		smull	r3, r0, r3, r0
+ 142:Drivers/LCD/touch.c **** 	}
+ 630              		.loc 1 142 4 view .LVU163
+ 631 0090 80B2     		uxth	r0, r0
+ 632              	.LVL60:
+ 142:Drivers/LCD/touch.c **** 	}
+ 633              		.loc 1 142 4 view .LVU164
+ 634 0092 CDE7     		b	.L30
+ 635              	.L39:
+ 636              		.align	2
+ 637              	.L38:
+ 638 0094 00000000 		.word	.LANCHOR0
+ 639 0098 56555555 		.word	1431655766
+ 640              		.cfi_endproc
+ 641              	.LFE563:
+ 643              		.section	.text.GUI_TOUCH_X_MeasureY,"ax",%progbits
+ 644              		.align	1
+ 645              		.global	GUI_TOUCH_X_MeasureY
+ 646              		.syntax unified
+ 647              		.thumb
+ 648              		.thumb_func
+ 650              	GUI_TOUCH_X_MeasureY:
+ 651              	.LFB564:
+ 146:Drivers/LCD/touch.c **** 
+ 147:Drivers/LCD/touch.c **** int  GUI_TOUCH_X_MeasureY(void) {
+ 652              		.loc 1 147 33 is_stmt 1 view -0
+ 653              		.cfi_startproc
+ 654              		@ args = 0, pretend = 0, frame = 24
+ 655              		@ frame_needed = 0, uses_anonymous_args = 0
+ 656 0000 30B5     		push	{r4, r5, lr}
+ 657              	.LCFI14:
+ 658              		.cfi_def_cfa_offset 12
+ 659              		.cfi_offset 4, -12
+ 660              		.cfi_offset 5, -8
+ 661              		.cfi_offset 14, -4
+ 662 0002 87B0     		sub	sp, sp, #28
+ 663              	.LCFI15:
+ 664              		.cfi_def_cfa_offset 40
+ 148:Drivers/LCD/touch.c ****   	unsigned char t=0,t1,count=0;
+ 665              		.loc 1 148 4 view .LVU166
+ 666              	.LVL61:
+ 149:Drivers/LCD/touch.c **** 	unsigned short int databuffer[10]={5,7,9,3,2,6,4,0,3,1};//数据组
+ 667              		.loc 1 149 2 view .LVU167
+ 668              		.loc 1 149 21 is_stmt 0 view .LVU168
+ 669 0004 01AC     		add	r4, sp, #4
+ 670 0006 234D     		ldr	r5, .L51
+ 671 0008 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 672 000a 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 673 000c 2B68     		ldr	r3, [r5]
+ 674 000e 2360     		str	r3, [r4]
+ 150:Drivers/LCD/touch.c **** 	unsigned short temp=0,Y=0;	
+ 675              		.loc 1 150 2 is_stmt 1 view .LVU169
+ 676              	.LVL62:
+ 151:Drivers/LCD/touch.c ****  
+ 152:Drivers/LCD/touch.c ****     while(/*GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)==0&&*/count<10)	//循环读数10次
+ 677              		.loc 1 152 5 view .LVU170
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 16
+
+
+ 148:Drivers/LCD/touch.c **** 	unsigned short int databuffer[10]={5,7,9,3,2,6,4,0,3,1};//数据组
+ 678              		.loc 1 148 25 is_stmt 0 view .LVU171
+ 679 0010 0024     		movs	r4, #0
+ 680              		.loc 1 152 10 view .LVU172
+ 681 0012 08E0     		b	.L41
+ 682              	.LVL63:
+ 683              	.L42:
+ 153:Drivers/LCD/touch.c **** 	{	   	  
+ 154:Drivers/LCD/touch.c **** 		databuffer[count]=TPReadY();
+ 684              		.loc 1 154 3 is_stmt 1 view .LVU173
+ 685              		.loc 1 154 21 is_stmt 0 view .LVU174
+ 686 0014 FFF7FEFF 		bl	TPReadY
+ 687              	.LVL64:
+ 688              		.loc 1 154 20 view .LVU175
+ 689 0018 06AB     		add	r3, sp, #24
+ 690 001a 03EB4403 		add	r3, r3, r4, lsl #1
+ 691 001e 23F8140C 		strh	r0, [r3, #-20]	@ movhi
+ 155:Drivers/LCD/touch.c **** 		count++;  
+ 692              		.loc 1 155 3 is_stmt 1 view .LVU176
+ 693              		.loc 1 155 8 is_stmt 0 view .LVU177
+ 694 0022 0134     		adds	r4, r4, #1
+ 695              	.LVL65:
+ 696              		.loc 1 155 8 view .LVU178
+ 697 0024 E4B2     		uxtb	r4, r4
+ 698              	.LVL66:
+ 699              	.L41:
+ 152:Drivers/LCD/touch.c **** 	{	   	  
+ 700              		.loc 1 152 10 is_stmt 1 view .LVU179
+ 701 0026 092C     		cmp	r4, #9
+ 702 0028 F4D9     		bls	.L42
+ 156:Drivers/LCD/touch.c **** 	}  
+ 157:Drivers/LCD/touch.c **** 	if(count==10)//一定要读到10次数据,否则丢弃
+ 703              		.loc 1 157 2 view .LVU180
+ 704              		.loc 1 157 4 is_stmt 0 view .LVU181
+ 705 002a 0A2C     		cmp	r4, #10
+ 706 002c 02D0     		beq	.L47
+ 150:Drivers/LCD/touch.c ****  
+ 707              		.loc 1 150 24 view .LVU182
+ 708 002e 0020     		movs	r0, #0
+ 709              	.LVL67:
+ 710              	.L43:
+ 158:Drivers/LCD/touch.c **** 	{  
+ 159:Drivers/LCD/touch.c **** 	    do//将数据X升序排列
+ 160:Drivers/LCD/touch.c **** 		{	
+ 161:Drivers/LCD/touch.c **** 			t1=0;		  
+ 162:Drivers/LCD/touch.c **** 			for(t=0;t<count-1;t++)
+ 163:Drivers/LCD/touch.c **** 			{
+ 164:Drivers/LCD/touch.c **** 				if(databuffer[t]>databuffer[t+1])//升序排列
+ 165:Drivers/LCD/touch.c **** 				{
+ 166:Drivers/LCD/touch.c **** 					temp=databuffer[t+1];
+ 167:Drivers/LCD/touch.c **** 					databuffer[t+1]=databuffer[t];
+ 168:Drivers/LCD/touch.c **** 					databuffer[t]=temp;
+ 169:Drivers/LCD/touch.c **** 					t1=1; 
+ 170:Drivers/LCD/touch.c **** 				}  
+ 171:Drivers/LCD/touch.c **** 			}
+ 172:Drivers/LCD/touch.c **** 		}while(t1); 	    		 	 		  
+ 173:Drivers/LCD/touch.c **** 		Y=(databuffer[3]+databuffer[4]+databuffer[5])/3;	    
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 17
+
+
+ 174:Drivers/LCD/touch.c **** 	}
+ 175:Drivers/LCD/touch.c **** 	return(Y); 
+ 711              		.loc 1 175 2 is_stmt 1 view .LVU183
+ 176:Drivers/LCD/touch.c **** }
+ 712              		.loc 1 176 1 is_stmt 0 view .LVU184
+ 713 0030 07B0     		add	sp, sp, #28
+ 714              	.LCFI16:
+ 715              		.cfi_remember_state
+ 716              		.cfi_def_cfa_offset 12
+ 717              		@ sp needed
+ 718 0032 30BD     		pop	{r4, r5, pc}
+ 719              	.LVL68:
+ 720              	.L47:
+ 721              	.LCFI17:
+ 722              		.cfi_restore_state
+ 159:Drivers/LCD/touch.c **** 		{	
+ 723              		.loc 1 159 6 is_stmt 1 view .LVU185
+ 161:Drivers/LCD/touch.c **** 			for(t=0;t<count-1;t++)
+ 724              		.loc 1 161 4 view .LVU186
+ 162:Drivers/LCD/touch.c **** 			{
+ 725              		.loc 1 162 4 view .LVU187
+ 161:Drivers/LCD/touch.c **** 			for(t=0;t<count-1;t++)
+ 726              		.loc 1 161 6 is_stmt 0 view .LVU188
+ 727 0034 0025     		movs	r5, #0
+ 162:Drivers/LCD/touch.c **** 			{
+ 728              		.loc 1 162 9 view .LVU189
+ 729 0036 2B46     		mov	r3, r5
+ 162:Drivers/LCD/touch.c **** 			{
+ 730              		.loc 1 162 4 view .LVU190
+ 731 0038 01E0     		b	.L44
+ 732              	.LVL69:
+ 733              	.L45:
+ 162:Drivers/LCD/touch.c **** 			{
+ 734              		.loc 1 162 22 is_stmt 1 discriminator 2 view .LVU191
+ 162:Drivers/LCD/touch.c **** 			{
+ 735              		.loc 1 162 23 is_stmt 0 discriminator 2 view .LVU192
+ 736 003a 0133     		adds	r3, r3, #1
+ 737              	.LVL70:
+ 162:Drivers/LCD/touch.c **** 			{
+ 738              		.loc 1 162 23 discriminator 2 view .LVU193
+ 739 003c DBB2     		uxtb	r3, r3
+ 740              	.LVL71:
+ 741              	.L44:
+ 162:Drivers/LCD/touch.c **** 			{
+ 742              		.loc 1 162 12 is_stmt 1 discriminator 1 view .LVU194
+ 162:Drivers/LCD/touch.c **** 			{
+ 743              		.loc 1 162 13 is_stmt 0 discriminator 1 view .LVU195
+ 744 003e 1946     		mov	r1, r3
+ 162:Drivers/LCD/touch.c **** 			{
+ 745              		.loc 1 162 19 discriminator 1 view .LVU196
+ 746 0040 621E     		subs	r2, r4, #1
+ 162:Drivers/LCD/touch.c **** 			{
+ 747              		.loc 1 162 4 discriminator 1 view .LVU197
+ 748 0042 9342     		cmp	r3, r2
+ 749 0044 17DA     		bge	.L50
+ 164:Drivers/LCD/touch.c **** 				{
+ 750              		.loc 1 164 5 is_stmt 1 view .LVU198
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 18
+
+
+ 164:Drivers/LCD/touch.c **** 				{
+ 751              		.loc 1 164 18 is_stmt 0 view .LVU199
+ 752 0046 06AA     		add	r2, sp, #24
+ 753 0048 02EB4302 		add	r2, r2, r3, lsl #1
+ 754 004c 32F814CC 		ldrh	ip, [r2, #-20]
+ 164:Drivers/LCD/touch.c **** 				{
+ 755              		.loc 1 164 34 view .LVU200
+ 756 0050 5A1C     		adds	r2, r3, #1
+ 164:Drivers/LCD/touch.c **** 				{
+ 757              		.loc 1 164 32 view .LVU201
+ 758 0052 06A8     		add	r0, sp, #24
+ 759 0054 00EB4200 		add	r0, r0, r2, lsl #1
+ 760 0058 30F8140C 		ldrh	r0, [r0, #-20]
+ 164:Drivers/LCD/touch.c **** 				{
+ 761              		.loc 1 164 7 view .LVU202
+ 762 005c 8445     		cmp	ip, r0
+ 763 005e ECD9     		bls	.L45
+ 166:Drivers/LCD/touch.c **** 					databuffer[t+1]=databuffer[t];
+ 764              		.loc 1 166 6 is_stmt 1 view .LVU203
+ 765              	.LVL72:
+ 167:Drivers/LCD/touch.c **** 					databuffer[t]=temp;
+ 766              		.loc 1 167 6 view .LVU204
+ 167:Drivers/LCD/touch.c **** 					databuffer[t]=temp;
+ 767              		.loc 1 167 21 is_stmt 0 view .LVU205
+ 768 0060 06AD     		add	r5, sp, #24
+ 769              	.LVL73:
+ 167:Drivers/LCD/touch.c **** 					databuffer[t]=temp;
+ 770              		.loc 1 167 21 view .LVU206
+ 771 0062 05EB4202 		add	r2, r5, r2, lsl #1
+ 772 0066 22F814CC 		strh	ip, [r2, #-20]	@ movhi
+ 168:Drivers/LCD/touch.c **** 					t1=1; 
+ 773              		.loc 1 168 6 is_stmt 1 view .LVU207
+ 168:Drivers/LCD/touch.c **** 					t1=1; 
+ 774              		.loc 1 168 19 is_stmt 0 view .LVU208
+ 775 006a 05EB4101 		add	r1, r5, r1, lsl #1
+ 776 006e 21F8140C 		strh	r0, [r1, #-20]	@ movhi
+ 169:Drivers/LCD/touch.c **** 				}  
+ 777              		.loc 1 169 6 is_stmt 1 view .LVU209
+ 778              	.LVL74:
+ 169:Drivers/LCD/touch.c **** 				}  
+ 779              		.loc 1 169 8 is_stmt 0 view .LVU210
+ 780 0072 0125     		movs	r5, #1
+ 781 0074 E1E7     		b	.L45
+ 782              	.LVL75:
+ 783              	.L50:
+ 172:Drivers/LCD/touch.c **** 		Y=(databuffer[3]+databuffer[4]+databuffer[5])/3;	    
+ 784              		.loc 1 172 9 is_stmt 1 view .LVU211
+ 172:Drivers/LCD/touch.c **** 		Y=(databuffer[3]+databuffer[4]+databuffer[5])/3;	    
+ 785              		.loc 1 172 3 is_stmt 0 view .LVU212
+ 786 0076 002D     		cmp	r5, #0
+ 787 0078 DCD1     		bne	.L47
+ 173:Drivers/LCD/touch.c **** 	}
+ 788              		.loc 1 173 3 is_stmt 1 view .LVU213
+ 173:Drivers/LCD/touch.c **** 	}
+ 789              		.loc 1 173 16 is_stmt 0 view .LVU214
+ 790 007a BDF80A00 		ldrh	r0, [sp, #10]
+ 173:Drivers/LCD/touch.c **** 	}
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 19
+
+
+ 791              		.loc 1 173 30 view .LVU215
+ 792 007e BDF80C30 		ldrh	r3, [sp, #12]
+ 793              	.LVL76:
+ 173:Drivers/LCD/touch.c **** 	}
+ 794              		.loc 1 173 19 view .LVU216
+ 795 0082 1844     		add	r0, r0, r3
+ 173:Drivers/LCD/touch.c **** 	}
+ 796              		.loc 1 173 44 view .LVU217
+ 797 0084 BDF80E30 		ldrh	r3, [sp, #14]
+ 173:Drivers/LCD/touch.c **** 	}
+ 798              		.loc 1 173 33 view .LVU218
+ 799 0088 1844     		add	r0, r0, r3
+ 173:Drivers/LCD/touch.c **** 	}
+ 800              		.loc 1 173 48 view .LVU219
+ 801 008a 034B     		ldr	r3, .L51+4
+ 802 008c 83FB0030 		smull	r3, r0, r3, r0
+ 173:Drivers/LCD/touch.c **** 	}
+ 803              		.loc 1 173 4 view .LVU220
+ 804 0090 80B2     		uxth	r0, r0
+ 805              	.LVL77:
+ 173:Drivers/LCD/touch.c **** 	}
+ 806              		.loc 1 173 4 view .LVU221
+ 807 0092 CDE7     		b	.L43
+ 808              	.L52:
+ 809              		.align	2
+ 810              	.L51:
+ 811 0094 00000000 		.word	.LANCHOR0
+ 812 0098 56555555 		.word	1431655766
+ 813              		.cfi_endproc
+ 814              	.LFE564:
+ 816              		.global	__aeabi_ui2d
+ 817              		.global	__aeabi_ddiv
+ 818              		.global	__aeabi_d2uiz
+ 819              		.section	.text.TOUCH_X,"ax",%progbits
+ 820              		.align	1
+ 821              		.global	TOUCH_X
+ 822              		.syntax unified
+ 823              		.thumb
+ 824              		.thumb_func
+ 826              	TOUCH_X:
+ 827              	.LFB565:
+ 177:Drivers/LCD/touch.c **** 
+ 178:Drivers/LCD/touch.c **** 
+ 179:Drivers/LCD/touch.c **** //Left:3950  Right:200 Up:200  Down:3700
+ 180:Drivers/LCD/touch.c **** unsigned int TOUCH_X(void)
+ 181:Drivers/LCD/touch.c **** {
+ 828              		.loc 1 181 1 is_stmt 1 view -0
+ 829              		.cfi_startproc
+ 830              		@ args = 0, pretend = 0, frame = 0
+ 831              		@ frame_needed = 0, uses_anonymous_args = 0
+ 832 0000 08B5     		push	{r3, lr}
+ 833              	.LCFI18:
+ 834              		.cfi_def_cfa_offset 8
+ 835              		.cfi_offset 3, -8
+ 836              		.cfi_offset 14, -4
+ 182:Drivers/LCD/touch.c **** 	unsigned int i;
+ 837              		.loc 1 182 2 view .LVU223
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 20
+
+
+ 183:Drivers/LCD/touch.c **** 	i=GUI_TOUCH_X_MeasureX();
+ 838              		.loc 1 183 2 view .LVU224
+ 839              		.loc 1 183 4 is_stmt 0 view .LVU225
+ 840 0002 FFF7FEFF 		bl	GUI_TOUCH_X_MeasureX
+ 841              	.LVL78:
+ 184:Drivers/LCD/touch.c **** //	if(i!=4095)
+ 185:Drivers/LCD/touch.c **** //	printf("x:%d\r\n",i);
+ 186:Drivers/LCD/touch.c **** 	if(i<200||i>3950)return 0;
+ 842              		.loc 1 186 2 is_stmt 1 view .LVU226
+ 843              		.loc 1 186 10 is_stmt 0 view .LVU227
+ 844 0006 A0F1C802 		sub	r2, r0, #200
+ 845              		.loc 1 186 4 view .LVU228
+ 846 000a 40F6A663 		movw	r3, #3750
+ 847 000e 9A42     		cmp	r2, r3
+ 848 0010 0BD8     		bhi	.L55
+ 187:Drivers/LCD/touch.c **** 		else return (3950-i)/11.5;
+ 849              		.loc 1 187 8 is_stmt 1 view .LVU229
+ 850              		.loc 1 187 23 is_stmt 0 view .LVU230
+ 851 0012 C0F57660 		rsb	r0, r0, #3936
+ 852              	.LVL79:
+ 853              		.loc 1 187 23 view .LVU231
+ 854 0016 0E30     		adds	r0, r0, #14
+ 855 0018 FFF7FEFF 		bl	__aeabi_ui2d
+ 856              	.LVL80:
+ 857              		.loc 1 187 23 view .LVU232
+ 858 001c 0022     		movs	r2, #0
+ 859 001e 044B     		ldr	r3, .L57
+ 860 0020 FFF7FEFF 		bl	__aeabi_ddiv
+ 861              	.LVL81:
+ 862 0024 FFF7FEFF 		bl	__aeabi_d2uiz
+ 863              	.LVL82:
+ 864              	.L53:
+ 188:Drivers/LCD/touch.c **** } 
+ 865              		.loc 1 188 1 view .LVU233
+ 866 0028 08BD     		pop	{r3, pc}
+ 867              	.LVL83:
+ 868              	.L55:
+ 186:Drivers/LCD/touch.c **** 		else return (3950-i)/11.5;
+ 869              		.loc 1 186 26 view .LVU234
+ 870 002a 0020     		movs	r0, #0
+ 871              	.LVL84:
+ 186:Drivers/LCD/touch.c **** 		else return (3950-i)/11.5;
+ 872              		.loc 1 186 26 view .LVU235
+ 873 002c FCE7     		b	.L53
+ 874              	.L58:
+ 875 002e 00BF     		.align	2
+ 876              	.L57:
+ 877 0030 00002740 		.word	1076297728
+ 878              		.cfi_endproc
+ 879              	.LFE565:
+ 881              		.section	.text.TOUCH_Y,"ax",%progbits
+ 882              		.align	1
+ 883              		.global	TOUCH_Y
+ 884              		.syntax unified
+ 885              		.thumb
+ 886              		.thumb_func
+ 888              	TOUCH_Y:
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 21
+
+
+ 889              	.LFB566:
+ 189:Drivers/LCD/touch.c **** unsigned int TOUCH_Y(void)
+ 190:Drivers/LCD/touch.c **** {
+ 890              		.loc 1 190 1 is_stmt 1 view -0
+ 891              		.cfi_startproc
+ 892              		@ args = 0, pretend = 0, frame = 0
+ 893              		@ frame_needed = 0, uses_anonymous_args = 0
+ 894 0000 08B5     		push	{r3, lr}
+ 895              	.LCFI19:
+ 896              		.cfi_def_cfa_offset 8
+ 897              		.cfi_offset 3, -8
+ 898              		.cfi_offset 14, -4
+ 191:Drivers/LCD/touch.c **** 	unsigned int i;
+ 899              		.loc 1 191 2 view .LVU237
+ 192:Drivers/LCD/touch.c **** 	i=GUI_TOUCH_X_MeasureY();
+ 900              		.loc 1 192 2 view .LVU238
+ 901              		.loc 1 192 4 is_stmt 0 view .LVU239
+ 902 0002 FFF7FEFF 		bl	GUI_TOUCH_X_MeasureY
+ 903              	.LVL85:
+ 193:Drivers/LCD/touch.c **** //	printf("y:%d\r\n",i);
+ 194:Drivers/LCD/touch.c **** 	if(i<200||i>3750)return 0;
+ 904              		.loc 1 194 2 is_stmt 1 view .LVU240
+ 905              		.loc 1 194 10 is_stmt 0 view .LVU241
+ 906 0006 A0F1C802 		sub	r2, r0, #200
+ 907              		.loc 1 194 4 view .LVU242
+ 908 000a 40F6DE53 		movw	r3, #3550
+ 909 000e 9A42     		cmp	r2, r3
+ 910 0010 0BD8     		bhi	.L61
+ 195:Drivers/LCD/touch.c **** 		else return (3750-i)/15.5;
+ 911              		.loc 1 195 8 is_stmt 1 view .LVU243
+ 912              		.loc 1 195 23 is_stmt 0 view .LVU244
+ 913 0012 C0F56A60 		rsb	r0, r0, #3744
+ 914              	.LVL86:
+ 915              		.loc 1 195 23 view .LVU245
+ 916 0016 0630     		adds	r0, r0, #6
+ 917 0018 FFF7FEFF 		bl	__aeabi_ui2d
+ 918              	.LVL87:
+ 919              		.loc 1 195 23 view .LVU246
+ 920 001c 0022     		movs	r2, #0
+ 921 001e 044B     		ldr	r3, .L63
+ 922 0020 FFF7FEFF 		bl	__aeabi_ddiv
+ 923              	.LVL88:
+ 924 0024 FFF7FEFF 		bl	__aeabi_d2uiz
+ 925              	.LVL89:
+ 926              	.L59:
+ 196:Drivers/LCD/touch.c **** }
+ 927              		.loc 1 196 1 view .LVU247
+ 928 0028 08BD     		pop	{r3, pc}
+ 929              	.LVL90:
+ 930              	.L61:
+ 194:Drivers/LCD/touch.c **** 		else return (3750-i)/15.5;
+ 931              		.loc 1 194 26 view .LVU248
+ 932 002a 0020     		movs	r0, #0
+ 933              	.LVL91:
+ 194:Drivers/LCD/touch.c **** 		else return (3750-i)/15.5;
+ 934              		.loc 1 194 26 view .LVU249
+ 935 002c FCE7     		b	.L59
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 22
+
+
+ 936              	.L64:
+ 937 002e 00BF     		.align	2
+ 938              	.L63:
+ 939 0030 00002F40 		.word	1076822016
+ 940              		.cfi_endproc
+ 941              	.LFE566:
+ 943              		.section	.text.Touch_Poll,"ax",%progbits
+ 944              		.align	1
+ 945              		.global	Touch_Poll
+ 946              		.syntax unified
+ 947              		.thumb
+ 948              		.thumb_func
+ 950              	Touch_Poll:
+ 951              	.LVL92:
+ 952              	.LFB567:
+ 197:Drivers/LCD/touch.c **** uint8_t Touch_Poll(int32_t *x,int32_t *y)
+ 198:Drivers/LCD/touch.c **** {
+ 953              		.loc 1 198 1 is_stmt 1 view -0
+ 954              		.cfi_startproc
+ 955              		@ args = 0, pretend = 0, frame = 0
+ 956              		@ frame_needed = 0, uses_anonymous_args = 0
+ 957              		.loc 1 198 1 is_stmt 0 view .LVU251
+ 958 0000 70B5     		push	{r4, r5, r6, lr}
+ 959              	.LCFI20:
+ 960              		.cfi_def_cfa_offset 16
+ 961              		.cfi_offset 4, -16
+ 962              		.cfi_offset 5, -12
+ 963              		.cfi_offset 6, -8
+ 964              		.cfi_offset 14, -4
+ 965 0002 0546     		mov	r5, r0
+ 966 0004 0C46     		mov	r4, r1
+ 199:Drivers/LCD/touch.c **** 	unsigned int tempf_x,tempf_y;
+ 967              		.loc 1 199 2 is_stmt 1 view .LVU252
+ 200:Drivers/LCD/touch.c **** 	if(TOUCH_X()&&TOUCH_Y())
+ 968              		.loc 1 200 2 view .LVU253
+ 969              		.loc 1 200 5 is_stmt 0 view .LVU254
+ 970 0006 FFF7FEFF 		bl	TOUCH_X
+ 971              	.LVL93:
+ 972              		.loc 1 200 4 view .LVU255
+ 973 000a 08B9     		cbnz	r0, .L69
+ 974              	.L66:
+ 201:Drivers/LCD/touch.c **** 	{
+ 202:Drivers/LCD/touch.c **** 		tempf_x = TOUCH_X();
+ 203:Drivers/LCD/touch.c **** 		tempf_y = TOUCH_Y();
+ 204:Drivers/LCD/touch.c **** 		*x = (int32_t)tempf_x;
+ 205:Drivers/LCD/touch.c **** 		*y = (int32_t)tempf_y;
+ 206:Drivers/LCD/touch.c **** 		return 1;
+ 207:Drivers/LCD/touch.c **** 	}
+ 208:Drivers/LCD/touch.c **** 	else{
+ 209:Drivers/LCD/touch.c **** 		return 0;
+ 975              		.loc 1 209 3 is_stmt 1 view .LVU256
+ 976              		.loc 1 209 10 is_stmt 0 view .LVU257
+ 977 000c 0020     		movs	r0, #0
+ 978              	.L67:
+ 210:Drivers/LCD/touch.c **** 	}
+ 211:Drivers/LCD/touch.c **** }
+ 979              		.loc 1 211 1 view .LVU258
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 23
+
+
+ 980 000e 70BD     		pop	{r4, r5, r6, pc}
+ 981              	.LVL94:
+ 982              	.L69:
+ 200:Drivers/LCD/touch.c **** 	{
+ 983              		.loc 1 200 16 discriminator 1 view .LVU259
+ 984 0010 FFF7FEFF 		bl	TOUCH_Y
+ 985              	.LVL95:
+ 200:Drivers/LCD/touch.c **** 	{
+ 986              		.loc 1 200 14 discriminator 1 view .LVU260
+ 987 0014 0028     		cmp	r0, #0
+ 988 0016 F9D0     		beq	.L66
+ 202:Drivers/LCD/touch.c **** 		tempf_y = TOUCH_Y();
+ 989              		.loc 1 202 3 is_stmt 1 view .LVU261
+ 202:Drivers/LCD/touch.c **** 		tempf_y = TOUCH_Y();
+ 990              		.loc 1 202 13 is_stmt 0 view .LVU262
+ 991 0018 FFF7FEFF 		bl	TOUCH_X
+ 992              	.LVL96:
+ 993 001c 0646     		mov	r6, r0
+ 994              	.LVL97:
+ 203:Drivers/LCD/touch.c **** 		*x = (int32_t)tempf_x;
+ 995              		.loc 1 203 3 is_stmt 1 view .LVU263
+ 203:Drivers/LCD/touch.c **** 		*x = (int32_t)tempf_x;
+ 996              		.loc 1 203 13 is_stmt 0 view .LVU264
+ 997 001e FFF7FEFF 		bl	TOUCH_Y
+ 998              	.LVL98:
+ 204:Drivers/LCD/touch.c **** 		*y = (int32_t)tempf_y;
+ 999              		.loc 1 204 3 is_stmt 1 view .LVU265
+ 204:Drivers/LCD/touch.c **** 		*y = (int32_t)tempf_y;
+ 1000              		.loc 1 204 6 is_stmt 0 view .LVU266
+ 1001 0022 2E60     		str	r6, [r5]
+ 205:Drivers/LCD/touch.c **** 		return 1;
+ 1002              		.loc 1 205 3 is_stmt 1 view .LVU267
+ 205:Drivers/LCD/touch.c **** 		return 1;
+ 1003              		.loc 1 205 6 is_stmt 0 view .LVU268
+ 1004 0024 2060     		str	r0, [r4]
+ 206:Drivers/LCD/touch.c **** 	}
+ 1005              		.loc 1 206 3 is_stmt 1 view .LVU269
+ 206:Drivers/LCD/touch.c **** 	}
+ 1006              		.loc 1 206 10 is_stmt 0 view .LVU270
+ 1007 0026 0120     		movs	r0, #1
+ 1008              	.LVL99:
+ 206:Drivers/LCD/touch.c **** 	}
+ 1009              		.loc 1 206 10 view .LVU271
+ 1010 0028 F1E7     		b	.L67
+ 1011              		.cfi_endproc
+ 1012              	.LFE567:
+ 1014              		.section	.text.TouchProcess,"ax",%progbits
+ 1015              		.align	1
+ 1016              		.global	TouchProcess
+ 1017              		.syntax unified
+ 1018              		.thumb
+ 1019              		.thumb_func
+ 1021              	TouchProcess:
+ 1022              	.LFB568:
+ 212:Drivers/LCD/touch.c **** void TouchProcess(void)
+ 213:Drivers/LCD/touch.c **** {
+ 1023              		.loc 1 213 1 is_stmt 1 view -0
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 24
+
+
+ 1024              		.cfi_startproc
+ 1025              		@ args = 0, pretend = 0, frame = 16
+ 1026              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1027 0000 10B5     		push	{r4, lr}
+ 1028              	.LCFI21:
+ 1029              		.cfi_def_cfa_offset 8
+ 1030              		.cfi_offset 4, -8
+ 1031              		.cfi_offset 14, -4
+ 1032 0002 84B0     		sub	sp, sp, #16
+ 1033              	.LCFI22:
+ 1034              		.cfi_def_cfa_offset 24
+ 214:Drivers/LCD/touch.c **** 	GUI_PID_STATE State;
+ 1035              		.loc 1 214 2 view .LVU273
+ 215:Drivers/LCD/touch.c **** 	unsigned int tempf_x,tempf_y;
+ 1036              		.loc 1 215 2 view .LVU274
+ 216:Drivers/LCD/touch.c **** 	if(TOUCH_X()&&TOUCH_Y())
+ 1037              		.loc 1 216 2 view .LVU275
+ 1038              		.loc 1 216 5 is_stmt 0 view .LVU276
+ 1039 0004 FFF7FEFF 		bl	TOUCH_X
+ 1040              	.LVL100:
+ 1041              		.loc 1 216 4 view .LVU277
+ 1042 0008 10B1     		cbz	r0, .L71
+ 1043              		.loc 1 216 16 discriminator 1 view .LVU278
+ 1044 000a FFF7FEFF 		bl	TOUCH_Y
+ 1045              	.LVL101:
+ 1046              		.loc 1 216 14 discriminator 1 view .LVU279
+ 1047 000e 68B9     		cbnz	r0, .L74
+ 1048              	.L71:
+ 217:Drivers/LCD/touch.c **** 	{
+ 218:Drivers/LCD/touch.c **** 		tempf_x = TOUCH_X();
+ 219:Drivers/LCD/touch.c **** 		tempf_y = TOUCH_Y();		
+ 220:Drivers/LCD/touch.c **** 		State.x = (int)tempf_x;
+ 221:Drivers/LCD/touch.c **** 		State.y = (int)tempf_y;
+ 222:Drivers/LCD/touch.c **** 		State.Pressed = 1;
+ 223:Drivers/LCD/touch.c **** 		State.Layer = 0;
+ 224:Drivers/LCD/touch.c **** 		GUI_PID_StoreState(&State);	
+ 225:Drivers/LCD/touch.c **** 	}
+ 226:Drivers/LCD/touch.c **** 	else
+ 227:Drivers/LCD/touch.c **** 	{
+ 228:Drivers/LCD/touch.c **** 		State.x = -1;
+ 1049              		.loc 1 228 3 is_stmt 1 view .LVU280
+ 1050              		.loc 1 228 11 is_stmt 0 view .LVU281
+ 1051 0010 4FF0FF33 		mov	r3, #-1
+ 1052 0014 0193     		str	r3, [sp, #4]
+ 229:Drivers/LCD/touch.c **** 		State.y = -1;
+ 1053              		.loc 1 229 3 is_stmt 1 view .LVU282
+ 1054              		.loc 1 229 11 is_stmt 0 view .LVU283
+ 1055 0016 0293     		str	r3, [sp, #8]
+ 230:Drivers/LCD/touch.c **** 		State.Pressed = 0;
+ 1056              		.loc 1 230 3 is_stmt 1 view .LVU284
+ 1057              		.loc 1 230 17 is_stmt 0 view .LVU285
+ 1058 0018 0023     		movs	r3, #0
+ 1059 001a 8DF80C30 		strb	r3, [sp, #12]
+ 231:Drivers/LCD/touch.c **** 		State.Layer = 0;	
+ 1060              		.loc 1 231 3 is_stmt 1 view .LVU286
+ 1061              		.loc 1 231 15 is_stmt 0 view .LVU287
+ 1062 001e 8DF80D30 		strb	r3, [sp, #13]
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 25
+
+
+ 232:Drivers/LCD/touch.c **** 		GUI_PID_StoreState(&State);		
+ 1063              		.loc 1 232 3 is_stmt 1 view .LVU288
+ 1064 0022 01A8     		add	r0, sp, #4
+ 1065 0024 FFF7FEFF 		bl	GUI_PID_StoreState
+ 1066              	.LVL102:
+ 1067              	.L70:
+ 233:Drivers/LCD/touch.c **** 	}
+ 234:Drivers/LCD/touch.c **** }
+ 1068              		.loc 1 234 1 is_stmt 0 view .LVU289
+ 1069 0028 04B0     		add	sp, sp, #16
+ 1070              	.LCFI23:
+ 1071              		.cfi_remember_state
+ 1072              		.cfi_def_cfa_offset 8
+ 1073              		@ sp needed
+ 1074 002a 10BD     		pop	{r4, pc}
+ 1075              	.L74:
+ 1076              	.LCFI24:
+ 1077              		.cfi_restore_state
+ 218:Drivers/LCD/touch.c **** 		tempf_y = TOUCH_Y();		
+ 1078              		.loc 1 218 3 is_stmt 1 view .LVU290
+ 218:Drivers/LCD/touch.c **** 		tempf_y = TOUCH_Y();		
+ 1079              		.loc 1 218 13 is_stmt 0 view .LVU291
+ 1080 002c FFF7FEFF 		bl	TOUCH_X
+ 1081              	.LVL103:
+ 1082 0030 0446     		mov	r4, r0
+ 1083              	.LVL104:
+ 219:Drivers/LCD/touch.c **** 		State.x = (int)tempf_x;
+ 1084              		.loc 1 219 3 is_stmt 1 view .LVU292
+ 219:Drivers/LCD/touch.c **** 		State.x = (int)tempf_x;
+ 1085              		.loc 1 219 13 is_stmt 0 view .LVU293
+ 1086 0032 FFF7FEFF 		bl	TOUCH_Y
+ 1087              	.LVL105:
+ 220:Drivers/LCD/touch.c **** 		State.y = (int)tempf_y;
+ 1088              		.loc 1 220 3 is_stmt 1 view .LVU294
+ 220:Drivers/LCD/touch.c **** 		State.y = (int)tempf_y;
+ 1089              		.loc 1 220 11 is_stmt 0 view .LVU295
+ 1090 0036 0194     		str	r4, [sp, #4]
+ 221:Drivers/LCD/touch.c **** 		State.Pressed = 1;
+ 1091              		.loc 1 221 3 is_stmt 1 view .LVU296
+ 221:Drivers/LCD/touch.c **** 		State.Pressed = 1;
+ 1092              		.loc 1 221 11 is_stmt 0 view .LVU297
+ 1093 0038 0290     		str	r0, [sp, #8]
+ 222:Drivers/LCD/touch.c **** 		State.Layer = 0;
+ 1094              		.loc 1 222 3 is_stmt 1 view .LVU298
+ 222:Drivers/LCD/touch.c **** 		State.Layer = 0;
+ 1095              		.loc 1 222 17 is_stmt 0 view .LVU299
+ 1096 003a 0123     		movs	r3, #1
+ 1097 003c 8DF80C30 		strb	r3, [sp, #12]
+ 223:Drivers/LCD/touch.c **** 		GUI_PID_StoreState(&State);	
+ 1098              		.loc 1 223 3 is_stmt 1 view .LVU300
+ 223:Drivers/LCD/touch.c **** 		GUI_PID_StoreState(&State);	
+ 1099              		.loc 1 223 15 is_stmt 0 view .LVU301
+ 1100 0040 0023     		movs	r3, #0
+ 1101 0042 8DF80D30 		strb	r3, [sp, #13]
+ 224:Drivers/LCD/touch.c **** 	}
+ 1102              		.loc 1 224 3 is_stmt 1 view .LVU302
+ 1103 0046 01A8     		add	r0, sp, #4
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 26
+
+
+ 1104              	.LVL106:
+ 224:Drivers/LCD/touch.c **** 	}
+ 1105              		.loc 1 224 3 is_stmt 0 view .LVU303
+ 1106 0048 FFF7FEFF 		bl	GUI_PID_StoreState
+ 1107              	.LVL107:
+ 224:Drivers/LCD/touch.c **** 	}
+ 1108              		.loc 1 224 3 view .LVU304
+ 1109 004c ECE7     		b	.L70
+ 1110              		.cfi_endproc
+ 1111              	.LFE568:
+ 1113              		.section	.rodata
+ 1114              		.align	2
+ 1115              		.set	.LANCHOR0,. + 0
+ 1116              	.LC0:
+ 1117 0000 0500     		.short	5
+ 1118 0002 0700     		.short	7
+ 1119 0004 0900     		.short	9
+ 1120 0006 0300     		.short	3
+ 1121 0008 0200     		.short	2
+ 1122 000a 0600     		.short	6
+ 1123 000c 0400     		.short	4
+ 1124 000e 0000     		.short	0
+ 1125 0010 0300     		.short	3
+ 1126 0012 0100     		.short	1
+ 1127              		.text
+ 1128              	.Letext0:
+ 1129              		.file 2 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\machine\\_default_ty
+ 1130              		.file 3 "f:\\stm32\\win-dev-tools\\gcc-arm-none-eabi\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 1131              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1132              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1133              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1134              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1135              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 1136              		.file 9 "Drivers/STemWin/inc/GUI_Type.h"
+ 1137              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ 1138              		.file 11 "Core/Inc/spi.h"
+ 1139              		.file 12 "Drivers/STemWin/inc/GUI.h"
+ARM GAS  F:\msys64\tmp\ccohsrOr.s 			page 27
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 touch.c
+F:\msys64\tmp\ccohsrOr.s:20     .text.GUI_TOUCH_X_ActivateX:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:26     .text.GUI_TOUCH_X_ActivateX:00000000 GUI_TOUCH_X_ActivateX
+F:\msys64\tmp\ccohsrOr.s:40     .text.GUI_TOUCH_X_ActivateY:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:46     .text.GUI_TOUCH_X_ActivateY:00000000 GUI_TOUCH_X_ActivateY
+F:\msys64\tmp\ccohsrOr.s:59     .text.SpiDelay:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:65     .text.SpiDelay:00000000 SpiDelay
+F:\msys64\tmp\ccohsrOr.s:79     .text.SPI_WriteByte:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:85     .text.SPI_WriteByte:00000000 SPI_WriteByte
+F:\msys64\tmp\ccohsrOr.s:150    .text.SPI_WriteByte:00000040 $d
+F:\msys64\tmp\ccohsrOr.s:155    .text.SPI_ReadWriteByte:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:161    .text.SPI_ReadWriteByte:00000000 SPI_ReadWriteByte
+F:\msys64\tmp\ccohsrOr.s:207    .text.SPI_ReadWriteByte:00000030 $d
+F:\msys64\tmp\ccohsrOr.s:212    .text.SPI_Flash_ReadID:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:218    .text.SPI_Flash_ReadID:00000000 SPI_Flash_ReadID
+F:\msys64\tmp\ccohsrOr.s:296    .text.SPI_Flash_ReadID:0000004c $d
+F:\msys64\tmp\ccohsrOr.s:301    .text.TPReadY:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:307    .text.TPReadY:00000000 TPReadY
+F:\msys64\tmp\ccohsrOr.s:381    .text.TPReadY:00000040 $d
+F:\msys64\tmp\ccohsrOr.s:386    .text.TPReadX:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:392    .text.TPReadX:00000000 TPReadX
+F:\msys64\tmp\ccohsrOr.s:466    .text.TPReadX:00000040 $d
+F:\msys64\tmp\ccohsrOr.s:471    .text.GUI_TOUCH_X_MeasureX:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:477    .text.GUI_TOUCH_X_MeasureX:00000000 GUI_TOUCH_X_MeasureX
+F:\msys64\tmp\ccohsrOr.s:638    .text.GUI_TOUCH_X_MeasureX:00000094 $d
+F:\msys64\tmp\ccohsrOr.s:644    .text.GUI_TOUCH_X_MeasureY:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:650    .text.GUI_TOUCH_X_MeasureY:00000000 GUI_TOUCH_X_MeasureY
+F:\msys64\tmp\ccohsrOr.s:811    .text.GUI_TOUCH_X_MeasureY:00000094 $d
+F:\msys64\tmp\ccohsrOr.s:820    .text.TOUCH_X:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:826    .text.TOUCH_X:00000000 TOUCH_X
+F:\msys64\tmp\ccohsrOr.s:877    .text.TOUCH_X:00000030 $d
+F:\msys64\tmp\ccohsrOr.s:882    .text.TOUCH_Y:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:888    .text.TOUCH_Y:00000000 TOUCH_Y
+F:\msys64\tmp\ccohsrOr.s:939    .text.TOUCH_Y:00000030 $d
+F:\msys64\tmp\ccohsrOr.s:944    .text.Touch_Poll:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:950    .text.Touch_Poll:00000000 Touch_Poll
+F:\msys64\tmp\ccohsrOr.s:1015   .text.TouchProcess:00000000 $t
+F:\msys64\tmp\ccohsrOr.s:1021   .text.TouchProcess:00000000 TouchProcess
+F:\msys64\tmp\ccohsrOr.s:1114   .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_Transmit
+HAL_SPI_Receive
+hspi2
+HAL_SPI_TransmitReceive
+HAL_GPIO_WritePin
+__aeabi_ui2d
+__aeabi_ddiv
+__aeabi_d2uiz
+GUI_PID_StoreState
