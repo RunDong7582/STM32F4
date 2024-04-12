@@ -120,8 +120,8 @@
 
 void _putchar(char character)
 {
-    ITM_SendChar(character);
-    // HAL_UART_Transmit(&huart1 ,(uint8_t*)&character, 1, HAL_MAX_DELAY);
+    // ITM_SendChar(character);
+    HAL_UART_Transmit(&huart1 ,(uint8_t*)&character, 1, HAL_MAX_DELAY);
     // send char to console etc.
 }
 

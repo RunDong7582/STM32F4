@@ -1,8 +1,4 @@
-build/Menu.o: API/Menu.c API/Menu.h Drivers/STemWin/inc/GUI.h \
- Drivers/STemWin/inc/GUI_ConfDefaults.h Drivers/STemWin/Config/GUIConf.h \
- Drivers/STemWin/inc/GUI_Type.h Drivers/STemWin/inc/LCD.h \
- Drivers/STemWin/inc/Global.h Drivers/STemWin/inc/GUI_Version.h \
- Core/Inc/printf.h Core/Inc/usart.h Core/Inc/main.h \
+build/ESP01.o: Core/Src/ESP01.c Core/Inc/ESP01.h Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Core/Inc/stm32f4xx_hal_conf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,7 +28,7 @@ build/Menu.o: API/Menu.c API/Menu.h Drivers/STemWin/inc/GUI.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Core/Inc/ESP01.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Core/Inc/usart.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  Core/Inc/FreeRTOSConfig.h \
@@ -44,17 +40,9 @@ build/Menu.o: API/Menu.c API/Menu.h Drivers/STemWin/inc/GUI.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
-API/Menu.h:
-Drivers/STemWin/inc/GUI.h:
-Drivers/STemWin/inc/GUI_ConfDefaults.h:
-Drivers/STemWin/Config/GUIConf.h:
-Drivers/STemWin/inc/GUI_Type.h:
-Drivers/STemWin/inc/LCD.h:
-Drivers/STemWin/inc/Global.h:
-Drivers/STemWin/inc/GUI_Version.h:
-Core/Inc/printf.h:
-Core/Inc/usart.h:
+ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
+ Core/Inc/printf.h
+Core/Inc/ESP01.h:
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Inc/stm32f4xx_hal_conf.h:
@@ -88,7 +76,7 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-Core/Inc/ESP01.h:
+Core/Inc/usart.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:
@@ -101,3 +89,4 @@ Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
+Core/Inc/printf.h:

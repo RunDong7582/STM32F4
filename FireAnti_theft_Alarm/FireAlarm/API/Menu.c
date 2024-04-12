@@ -40,6 +40,9 @@ void Book_Priorswitch ( uchar cur )
 		case 2:
 			Book.Priority = TEMP_CURVE;
 		break;
+		case 3:
+			Book.Priority =  WIFI_ESP;
+		break;
 		case 5:
 			Book.Priority = MPU_FIRST;
 		break;
@@ -143,7 +146,7 @@ void Boot ( Temperature temp , MPUpacket mpu )
 			if (!Book.button) 
         		osDelay(2000);
 		}
-		// Beep(5,100);
+		Beep(5,100);
 }
 
 /*
@@ -307,14 +310,14 @@ void DT_Curve_P1 ( Temperature temp, MPUpacket mpu )
 	GUI_DispStringAt("参数设置",16,198); 
 
 	GUI_SetColor(GUI_BROWN);
-	GUI_DrawRoundedFrame(170, 70, 290, 210,5,6);
+	GUI_DrawRoundedFrame(140, 10, 300, 210,5,6);
 
 	char buf[36];
 	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
 	GUI_SetColor(GUI_DARKRED);
-	sprintf(buf, "温度:%.1f℃",temp.new);
-	GUI_DispStringAt(buf, 180, 30);
-	GUI_TempDrawCurve(10);
+	sprintf(buf, "温度:%.1f℃", temp.new);
+	GUI_DispStringAt(buf, 162, 20);
+	GUI_TempDrawCurve(30);
 }
 
 void DT_Curve_P2 ( Temperature temp, MPUpacket mpu )
@@ -335,13 +338,14 @@ void DT_Curve_P2 ( Temperature temp, MPUpacket mpu )
 	GUI_DispStringAt("参数设置",16,198); 
 
 	GUI_SetColor(GUI_DARKCYAN);
-	GUI_DrawRoundedFrame(120, 70, 310, 230, 5, 6);
+	GUI_DrawRoundedFrame(140, 10, 300, 210, 5, 6);
+
 	char buf[36];
 	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
 	GUI_SetColor(GUI_BLUE);
 	sprintf(buf, "俯仰角:%.1f℃", mpu.fAX);
-	GUI_DispStringAt(buf, 160, 20);
-	GUI_PitchDrawCurve(45);
+	GUI_DispStringAt(buf, 150, 20);
+	GUI_PitchDrawCurve(30);
 }
 
 void DT_Curve_P3 ( Temperature temp, MPUpacket mpu )
@@ -362,14 +366,14 @@ void DT_Curve_P3 ( Temperature temp, MPUpacket mpu )
 	GUI_DispStringAt("参数设置",16,198); 
 
 	GUI_SetColor(GUI_DARKCYAN);
-	GUI_DrawRoundedFrame(120, 50, 290, 230, 5, 6);
+	GUI_DrawRoundedFrame(140, 10, 300, 210, 5, 6);
 
 	char buf[36];
 	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
 	GUI_SetColor(GUI_BLUE);
 	sprintf(buf, "滚转角:%.1f℃", mpu.fAY);
-	GUI_DispStringAt(buf, 160, 20);
-	GUI_RollDrawCurve(40);
+	GUI_DispStringAt(buf, 150, 20);
+	GUI_RollDrawCurve(30);
 }
 
 void DT_Curve_P4 ( Temperature temp, MPUpacket mpu )
@@ -390,25 +394,66 @@ void DT_Curve_P4 ( Temperature temp, MPUpacket mpu )
 	GUI_DispStringAt("参数设置",16,198); 
 
 	GUI_SetColor(GUI_DARKCYAN);
-	GUI_DrawRoundedFrame(120, 70, 290, 230, 5, 6);
+	GUI_DrawRoundedFrame(140, 10, 300, 210, 5, 6);
 
 	char buf[36];
 	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
 	GUI_SetColor(GUI_BLUE);
 	sprintf(buf, "偏航角:%.1f℃", mpu.fAZ);
-	GUI_DispStringAt(buf, 160, 20);
-	GUI_YawDrawCurve(50);
+	GUI_DispStringAt(buf, 150, 20);
+	GUI_YawDrawCurve(30);
 }
 
 
-void RF_Msg_P1(void)
+void RF_Msg_P1 (Temperature temp , MPUpacket mpu)
 {
+	GUI_SetBkColor(GUI_GRAY_D0);
+    GUI_SetColor(GUI_BROWN);
+	GUI_SetFont(&GUI_FontHZ_KaiTi_20);
+	GUI_DrawRoundedFrame(8,4,108,62,4,6);
+	GUI_DrawRoundedFrame(8,62,108,120,4,6);
+	GUI_DrawRoundedFrame(8,178,108,236,4,6);
+	GUI_SetColor(GUI_RED);
+	GUI_DrawRoundedFrame(8,120,108,178,4,6);
+
+	GUI_SetColor(GUI_BLACK);
+	GUI_DispStringAt("实时监测",16,24);
+	GUI_DispStringAt("数据曲线",16,82);
+	GUI_DispStringAt("无线通信",16,140);
+	GUI_DispStringAt("参数设置",16,198); 
+
+	char buf[30];
+	GUI_SetColor(GUI_DARKGREEN);
+	GUI_SetFont(GUI_FONT_20_ASCII);
+	GUI_DispStringAt(g_esp01.strESPName, 120, 10);
+	GUI_DispStringAt(g_esp01.strAPName , 120, 40);
+	GUI_DispStringAt(TCP_SERVER , 120, 70);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+	sprintf(buf, "端口号:%d", TCP_PORT);
+	GUI_DispStringAt(buf , 120, 100);
+	GUI_DispStringAt(g_esp01.bConnect ? "OK" : "ERR", 120, 130);
+	GUI_SetColor(GUI_BLUE_98);
+	GUI_DispStringAt(SensorPack.button ? "上传中" : "未上传", 240, 210);
+
 
 }
 
-void ST_Para_P1(void)
+void ST_Para_P1 (Temperature temp , MPUpacket mpu)
 {
+	GUI_SetBkColor(GUI_GRAY_D0);
+    GUI_SetColor(GUI_BROWN);
+	GUI_SetFont(&GUI_FontHZ_KaiTi_20);
+	GUI_DrawRoundedFrame(8,4,108,62,4,6);
+	GUI_DrawRoundedFrame(8,62,108,120,4,6);
+	GUI_DrawRoundedFrame(8,120,108,178,4,6);
+	GUI_SetColor(GUI_RED);
+	GUI_DrawRoundedFrame(8,178,108,236,4,6);
 
+	GUI_SetColor(GUI_BLACK);
+	GUI_DispStringAt("实时监测",16,24);
+	GUI_DispStringAt("数据曲线",16,82);
+	GUI_DispStringAt("无线通信",16,140);
+	GUI_DispStringAt("参数设置",16,198); 
 }
 
 void GUI_TempDrawCurve (uint8_t margin)
@@ -421,8 +466,8 @@ void GUI_TempDrawCurve (uint8_t margin)
 	float tmpMax = 35.0f;
 	float tmpThresh = 30.0f;
 	int sh = LCD_GetYSize() - 2 * margin;
-	int sw = LCD_GetXSize() - 170;
-	int ox = 170;
+	int sw = LCD_GetXSize() - 140;
+	int ox = 140;
 	int oy = margin + sh;
 
     float coef = sh / (tmpMax - tmpMin);   
@@ -448,12 +493,11 @@ void GUI_PitchDrawCurve (uint8_t margin)
 	float angmax =  90.0f;
 
 	int sh = LCD_GetYSize() - 2 * margin;
-	int sw = LCD_GetXSize() - 130;
-	int ox = 130;
+	int sw = LCD_GetXSize() - 140;
+	int ox = 140;
 	int oy = margin + sh;
 
     float coef = sh / (angmax - angmin);   
-	GUI_DrawHLine(oy + angmin * coef, ox, ox + sw);
 
 	for ( i = 1; i < mpu.cnt && i < pPLOT_NUM; ++i ) 
 	{
@@ -471,12 +515,11 @@ void GUI_RollDrawCurve (uint8_t margin)
 	float angmax =  60.0f;
 
 	int sh = LCD_GetYSize() - 2 * margin;
-	int sw = LCD_GetXSize() - 130;
-	int ox = 130;
+	int sw = LCD_GetXSize() - 140;
+	int ox = 140;
 	int oy = margin + sh;
 
     float coef = sh / (angmax - angmin);   
-	GUI_DrawHLine(oy + angmin * coef, ox, ox + sw);
 
 	for ( i = 1; i < mpu.cnt && i < rPLOT_NUM ; ++i )
 	{
@@ -494,12 +537,11 @@ void GUI_YawDrawCurve (uint8_t margin)
 	float angmax =  60.0f;
 
 	int sh = LCD_GetYSize() - 2 * margin;
-	int sw = LCD_GetXSize() - 130;
-	int ox = 130;
+	int sw = LCD_GetXSize() - 140;
+	int ox = 140;
 	int oy = margin + sh;
 
     float coef = sh / (angmax - angmin);   
-	GUI_DrawHLine(oy + angmin * coef, ox, ox + sw);
 
 	for (i = 1; i < mpu.cnt && i < yPLOT_NUM; ++i) 
 	{

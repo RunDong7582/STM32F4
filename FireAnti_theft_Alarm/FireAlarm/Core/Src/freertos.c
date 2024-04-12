@@ -31,6 +31,7 @@
 #include "../inc/gpio.h"
 #include "../inc/tim.h"
 #include "../inc/usart.h"
+#include "../inc/ESP01.h"
 
 #include "DS18B20.h"
 #include "MPU6050.h"
@@ -69,7 +70,6 @@ Temperature gtemp = {
     0.0f,
        0,
        0,
-       0,
        0
 };
 
@@ -95,15 +95,21 @@ TEMP_CURVE,
         1,
 };
 
+WifiPacket SensorPack = {
+        1,
+      100,
+      "",
+};
+
 uint32_t beeptick = 0;
 
 
 /* USER CODE END Variables */
-/* Definitions for MainTask */
-osThreadId_t MainTaskHandle;
-const osThreadAttr_t MainTask_attributes = {
-  .name = "MainTask",
-  .stack_size = 1024 * 4,
+/* Definitions for TempTask */
+osThreadId_t TempTaskHandle;
+const osThreadAttr_t TempTask_attributes = {
+  .name = "TempTask",
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for KeyTask */
@@ -113,10 +119,10 @@ const osThreadAttr_t KeyTask_attributes = {
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for UartTask */
-osThreadId_t UartTaskHandle;
-const osThreadAttr_t UartTask_attributes = {
-  .name = "UartTask",
+/* Definitions for MPUTask */
+osThreadId_t MPUTaskHandle;
+const osThreadAttr_t MPUTask_attributes = {
+  .name = "MPUTask",
   .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
@@ -124,6 +130,13 @@ const osThreadAttr_t UartTask_attributes = {
 osThreadId_t GUITaskHandle;
 const osThreadAttr_t GUITask_attributes = {
   .name = "GUITask",
+  .stack_size = 512 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for WifiTask */
+osThreadId_t WifiTaskHandle;
+const osThreadAttr_t WifiTask_attributes = {
+  .name = "WifiTask",
   .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
@@ -135,10 +148,11 @@ void Beep(uint8_t tune, uint16_t time);
 void BeepDone(void);
 /* USER CODE END FunctionPrototypes */
 
-void DefaultMainTask(void *argument);
+void StartTempTask(void *argument);
 void StartKeyTask(void *argument);
-void StartUartTask(void *argument);
+void StartMPUTask(void *argument);
 void StartGUITask(void *argument);
+void StartWifiTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -169,17 +183,20 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of MainTask */
-  MainTaskHandle = osThreadNew(DefaultMainTask, NULL, &MainTask_attributes);
+  /* creation of TempTask */
+  TempTaskHandle = osThreadNew(StartTempTask, NULL, &TempTask_attributes);
 
   /* creation of KeyTask */
   KeyTaskHandle = osThreadNew(StartKeyTask, NULL, &KeyTask_attributes);
 
-  /* creation of UartTask */
-  UartTaskHandle = osThreadNew(StartUartTask, NULL, &UartTask_attributes);
+  /* creation of MPUTask */
+  MPUTaskHandle = osThreadNew(StartMPUTask, NULL, &MPUTask_attributes);
 
   /* creation of GUITask */
   GUITaskHandle = osThreadNew(StartGUITask, NULL, &GUITask_attributes);
+
+  /* creation of WifiTask */
+  WifiTaskHandle = osThreadNew(StartWifiTask, NULL, &WifiTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -191,21 +208,21 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-/* USER CODE BEGIN Header_DefaultMainTask */
+/* USER CODE BEGIN Header_StartTempTask */
 /**
-  * @brief  Function implementing the MainTask thread.
+  * @brief  Function implementing the TempTask thread.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_DefaultMainTask */
-void DefaultMainTask(void *argument)
+/* USER CODE END Header_StartTempTask */
+void StartTempTask(void *argument)
 {
-  /* USER CODE BEGIN DefaultMainTask */
+  /* USER CODE BEGIN StartTempTask */
   /* Infinite loop */
   ds18b20_init();
   for(;;)
   {
-      if ( Book.Priority == TEMP_FIRST ) 
+      if ( Book.Priority == TEMP_FIRST || Book.Priority == WIFI_ESP ) 
       {
 
           osThreadFlagsWait(0x0001, osFlagsWaitAny, osWaitForever);
@@ -235,7 +252,7 @@ void DefaultMainTask(void *argument)
           }
       }
   }
-  /* USER CODE END DefaultMainTask */
+  /* USER CODE END StartTempTask */
 }
 
 /* USER CODE BEGIN Header_StartKeyTask */
@@ -251,8 +268,7 @@ void StartKeyTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-		uint16_t key = ScanKey();
-
+		  uint16_t key = ScanKey();
       if ( key > 0 )
       {
           switch ( key )
@@ -272,24 +288,50 @@ void StartKeyTask(void *argument)
               break;
 
               case K2_Pin:
-                Book.cur = MENU[Book.cur].left;  
+                if ( Book.Priority != WIFI_ESP ) 
+                {
+                    Book.cur = MENU[Book.cur].left;  
 
-                Book_Priorswitch (Book.cur);  
-                osDelay(500);
+                    Book_Priorswitch (Book.cur);  
+                    osDelay(500);
+                }
+                else
+                {
+                    SensorPack.button = 1; 
+                    // transmitting SensorDataPack;
+                }
               break;
 
-              case K3_Pin:    
-                Book.cur = MENU[Book.cur].right; 
+              case K3_Pin:   
+                if ( Book.Priority != WIFI_ESP ) 
+                { 
+                    Book.cur = MENU[Book.cur].right; 
 
-                Book_Priorswitch (Book.cur);   
-                osDelay(500);
+                    Book_Priorswitch (Book.cur);   
+                    osDelay(500);
+                }
+                else
+                {
+                    SensorPack.button = 0;
+                    // close
+                }
               break;
 
               case K5_Pin:
-                Book.cur = MENU[Book.cur].enter;
 
-                Book_Priorswitch (Book.cur);   
-                osDelay(500);
+                if ( Book.Priority != WIFI_ESP ) 
+                {
+                    Book.cur = MENU[Book.cur].enter;
+
+                    Book_Priorswitch (Book.cur);   
+                    osDelay(500);
+                }
+
+                else
+                {
+                    InitEsp01(&huart6);
+                }
+
               break;
 
               case K6_Pin:
@@ -309,33 +351,39 @@ void StartKeyTask(void *argument)
   /* USER CODE END StartKeyTask */
 }
 
-/* USER CODE BEGIN Header_StartUartTask */
+/* USER CODE BEGIN Header_StartMPUTask */
 /**
-* @brief Function implementing the UartTask thread.
+* @brief Function implementing the MPUTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartUartTask */
-void StartUartTask(void *argument)
+/* USER CODE END Header_StartMPUTask */
+void StartMPUTask(void *argument)
 {
-  /* USER CODE BEGIN StartUartTask */
-	
+  /* USER CODE BEGIN StartMPUTask */
+  /* Infinite loop */
+  	
   mpu.ok = MPU_init();
 
-  if ( mpu.ok ) 
-  {
-      GUI_ClearRect(72,20,252,50);
-      GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
-      GUI_SetColor(GUI_LIGHTRED);
-      GUI_DispStringAt("MPU初始化成功!",72,20);
-      osDelay(700);
-      GUI_ClearRect(72,20,252,50);
-  }
+  osDelay(500);
+  InitEsp01(&huart6);
+
+  /*
+    if ( mpu.ok ) 
+    {
+        GUI_ClearRect(72,20,252,50);
+        GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+        GUI_SetColor(GUI_LIGHTRED);
+        GUI_DispStringAt("MPU初始化成功!",72,20);
+        osDelay(700);
+        GUI_ClearRect(72,20,252,50);
+    }
+  */
 
   /* Infinite loop */
   for(;;)
   {    
-      if ( mpu.ok && Book.Priority == MPU_FIRST ) 
+      if ( mpu.ok && (Book.Priority == MPU_FIRST || Book.Priority == WIFI_ESP ) )
       {
           osThreadFlagsWait(0x0002, osFlagsWaitAny, osWaitForever);
 
@@ -425,9 +473,18 @@ void StartUartTask(void *argument)
         mpu.warn = 0;
         // BeepDone();
       }
+
+      if ( SensorPack.button ) 
+      {
+          osDelay(SensorPack.interval);
+          sprintf(SensorPack.buf, "Temp:%5.1f, axyz:%6d %6d %6d, gxyz:%6d %6d %6d, ang:%6.1f %6.1f %6.1f\n", 
+                  gtemp.old, mpu.ax, mpu.ay, mpu.az, mpu.gx, mpu.gy, mpu.gz, mpu.fAX, mpu.fAY, mpu.fAZ);
+          SendEspStr(SensorPack.buf);
+      }
+
       osDelay(50);
   }
-  /* USER CODE END StartUartTask */
+  /* USER CODE END StartMPUTask */
 }
 
 /* USER CODE BEGIN Header_StartGUITask */
@@ -446,9 +503,9 @@ void StartGUITask(void *argument)
   GUI_Init();
   GUI_Start();
 
-  printf("Hello STM32F407!\n");
-
-  osThreadFlagsSet(MainTaskHandle , 0x0001);
+  // printf("Hello STM32F407!\n");
+  static uint16_t Subprioity = TEMP_FIRST;
+  osThreadFlagsSet(TempTaskHandle , 0x0001);
   osDelay(2U);
 
   for(;;)
@@ -484,7 +541,7 @@ void StartGUITask(void *argument)
                   else if ( gtemp.new == gtemp.old ) 
                   {
                     gtemp.update = 0;
-                    osThreadFlagsSet(MainTaskHandle , 0x0001);
+                    osThreadFlagsSet(TempTaskHandle , 0x0001);
 
                     osDelay(2U);
                   }
@@ -500,16 +557,16 @@ void StartGUITask(void *argument)
                   }
                   if ( !mpu.update ) 
                   {
-                    osThreadFlagsSet ( UartTaskHandle , 0x0002 );
+                    osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
 
-                    osDelay(100U);
+                    osDelay(2U);
                   }
 
               break;
 
               case  TEMP_CURVE:
 
-                  osThreadFlagsSet ( MainTaskHandle , 0x0001 );
+                  osThreadFlagsSet ( TempTaskHandle , 0x0001 );
                   osDelay(2U);
                   Book_Pageturn ( Book.cur, gtemp, mpu );
 
@@ -517,7 +574,7 @@ void StartGUITask(void *argument)
 
               case   MPU_YAW:
 
-                  osThreadFlagsSet ( UartTaskHandle , 0x0002 );
+                  osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
                   osDelay(2U);
                   Book_Pageturn ( Book.cur, gtemp, mpu );
 
@@ -525,7 +582,7 @@ void StartGUITask(void *argument)
 
               case   MPU_ROLL:
 
-                  osThreadFlagsSet ( UartTaskHandle , 0x0002 );
+                  osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
                   osDelay(2U);
                   Book_Pageturn ( Book.cur, gtemp, mpu );
 
@@ -533,12 +590,55 @@ void StartGUITask(void *argument)
 
               case   MPU_PITCH:
 
-                  osThreadFlagsSet ( UartTaskHandle , 0x0002 );
+                  osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
                   osDelay(2U);
                   Book_Pageturn ( Book.cur, gtemp, mpu );
 
               break;
 
+              case  WIFI_ESP:
+
+                  switch (Subprioity)
+                  {
+                    case TEMP_FIRST:
+
+                        if ( gtemp.new != gtemp.old ) 
+                        {
+                          gtemp.update = 1;
+                          Book_Pageturn ( Book.cur, gtemp, mpu );
+                          gtemp.old = gtemp.new;
+                        } 
+
+                        else if ( gtemp.new == gtemp.old ) 
+                        {
+                          gtemp.update = 0;
+                          osThreadFlagsSet(TempTaskHandle , 0x0001);
+
+                          osDelay(2U);
+                        }
+                        Subprioity = MPU_FIRST;
+                        osDelay(50);
+                    break;
+                    case MPU_FIRST:
+                    
+                        if ( mpu.update ) 
+                        {
+                          Book_Pageturn ( Book.cur, gtemp, mpu );
+                          mpu.update = 0;
+                        }
+                        if ( !mpu.update ) 
+                        {
+                          osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
+
+                          osDelay(2U);
+                        }
+                        Subprioity = TEMP_FIRST;
+                        osDelay(50);
+                    default:
+                    break;
+                  }
+      
+              break;
               default:
               break;
           }
@@ -550,6 +650,30 @@ void StartGUITask(void *argument)
       osDelay(100);
   }
   /* USER CODE END StartGUITask */
+}
+
+/* USER CODE BEGIN Header_StartWifiTask */
+/**
+* @brief Function implementing the WifiTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartWifiTask */
+void StartWifiTask(void *argument)
+{
+  /* USER CODE BEGIN StartWifiTask */
+  /* Infinite loop */
+
+  for(;;)
+  {
+    
+    if ( EspRxDataOk() )
+    {
+      // 接收数据处理
+    }
+    osDelay(1);
+  }
+  /* USER CODE END StartWifiTask */
 }
 
 /* Private application code --------------------------------------------------*/
@@ -636,7 +760,7 @@ static void GUI_Start()
           osDelay(2000);
 
     }
-    // Beep(7,100);
+    Beep(7,100);
 }
 
 void Beep(uint8_t tune, uint16_t time)

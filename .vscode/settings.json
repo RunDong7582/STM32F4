@@ -9,6 +9,15 @@
         "stm32f4xx_ll_gpio.h": "c",
         "touch.h": "c",
         "stm32_i2c.h": "c",
-        "inv_mpu.h": "c"
+        "inv_mpu.h": "c",
+        "gpio.h": "c",
+        "tim.h": "c",
+        "usart.h": "c",
+        "ds18b20.h": "c",
+        "menu.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "esp01.h": "c"
     }
 }
