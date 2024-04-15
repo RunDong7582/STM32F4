@@ -33,6 +33,7 @@
 #include "../inc/usart.h"
 #include "../inc/ESP01.h"
 
+#include "w25qxx.h"
 #include "DS18B20.h"
 #include "MPU6050.h"
 #include "GUI.h"
@@ -48,8 +49,12 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define TH 125.0
-#define TW 28.0
+
+#define TH          90.0
+#define SEV            9
+#define ALARM_MAX     60
+#define UPLOAD_MAX 10000
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -65,40 +70,52 @@ float  vTemp[tPLOT_NUM]  = {0.0f};
 float  vRoll[rPLOT_NUM]  = {0.0f};
 float   vYaw[yPLOT_NUM]  = {0.0f};
 
+PARA_list   para  = {
+       5,         /*    Sensitivity level (0~9)         */
+      30,         /*    Alarm duration(s) (0~60)        */
+    1000,         /*    Upload interval (100~10000ms)   */
+    30.0f         /*    temp thresh (0~90) degree       */
+};
+
 Temperature gtemp = {
-    0.0f, 
-    0.0f,
-       0,
-       0,
-       0
+    0.0f,         /*  new temperature    */
+    0.0f,         /*  old temperature    */
+       0,         /*  temperature update */
+       0,         /*  temperature warn   */
+       0,         /*  temperature cnt    */
+    30.0f         /*  temperature thresh */
 };
 
 MPUpacket mpu = {
-       1,         // ax
-       0,         // ay
-      -1,         // az
-       1,         // gx
-       0,         // gy
-      -1,         // gz
-       0,         // ok
-       0,         // theft-warn
-       1,         // update
-       0          // Plot counter
+       1,         /*    ax    */ 
+       0,         /*    ay    */
+      -1,         /*    az    */
+       1,         /*    gx    */
+       0,         /*    gy    */
+      -1,         /*    gz    */
+    0.0f,         /*   fAX    */
+    0.0f,         /*   fAY    */
+    0.0f,         /*   fAZ    */
+       0,         /*    ok    */ 
+       0,         /*  warn    */ 
+       1,         /*  update  */
+       0          /*  counter */ 
 };
 
 Page_t Book = {
-        1, 
-      127, 
-        0,
-TEMP_FIRST,
-TEMP_CURVE,
-        1,
+        1,        /*    cur  page     */
+      127,        /*    last page     */
+        0,        /*    skip button   */
+TEMP_FIRST,       /*    Priority      */
+TEMP_CURVE,       /*    prev-Priority */
+        1,        /*    turn page     */
+        0,        /*  PARA SET-order  */
 };
 
 WifiPacket SensorPack = {
-        1,
-      100,
-      "",
+        1,        /*    Deliever to TCP     */
+      100,        /*    Deliever interval   */
+      "",         /*    Sensor Data Buffer  */
 };
 
 uint32_t beeptick = 0;
@@ -248,7 +265,8 @@ void StartTempTask(void *argument)
                   vTemp[tPLOT_NUM -1] = gtemp.new;
               }
 
-              if ( gtemp.new >= TW ) { gtemp.warn = 1;}
+              if ( gtemp.new >= gtemp.thresh ) { gtemp.warn = 1;Beep(4,200);}
+              else                             { gtemp.warn = 0; BeepDone();}
           }
       }
   }
@@ -274,60 +292,205 @@ void StartKeyTask(void *argument)
           switch ( key )
           {
               case K1_Pin:
+
                 Book.cur = MENU[Book.cur].up;
 
                 Book_Priorswitch (Book.cur);     
-                osDelay(500);
+                osDelay(300);
+
               break;
 
               case K4_Pin:
+
                 Book.cur = MENU[Book.cur].down;
 
                 Book_Priorswitch (Book.cur);    
-                osDelay(500);
+                osDelay(300);
+
               break;
 
               case K2_Pin:
-                if ( Book.Priority != WIFI_ESP ) 
-                {
-                    Book.cur = MENU[Book.cur].left;  
 
-                    Book_Priorswitch (Book.cur);  
-                    osDelay(500);
-                }
-                else
+                if ( Book.Priority == WIFI_ESP ) 
                 {
                     SensorPack.button = 1; 
                     // transmitting SensorDataPack;
                 }
-              break;
+                else if ( Book.Priority == PARA_SET )
+                {
+                  
+                    osDelay(300);
 
-              case K3_Pin:   
-                if ( Book.Priority != WIFI_ESP ) 
-                { 
-                    Book.cur = MENU[Book.cur].right; 
+                    switch ( Book.gpara )
+                    {
+                      case 0:
 
-                    Book_Priorswitch (Book.cur);   
-                    osDelay(500);
+                          if ( para.maxtemp < TH )
+                          {
+                              para.maxtemp += 0.1f;
+                          }
+                          else
+                          {
+                              para.maxtemp = (float)TH;
+                          }
+
+                      break;
+
+                      case 1:
+
+                          if ( para.sensitivity < SEV )
+                          {
+                              para.sensitivity += 1;
+                          }
+                          else
+                          {
+                              para.sensitivity = SEV;
+                          }
+
+                      break;
+
+                      case 2:
+                          
+                          if ( para.alarm < ALARM_MAX )
+                          {
+                              para.alarm   += 1;
+                          }
+                          else
+                          {
+                              para.alarm = ALARM_MAX;
+                          }
+
+                      break;
+
+                      case 3:
+
+                          if ( para.upload < UPLOAD_MAX )
+                          {
+                              para.upload  += 100;
+                          }
+                          else
+                          {
+                              para.upload = UPLOAD_MAX;
+                          }
+
+                      break;
+
+                      default:
+                      break;
+                    }
+
                 }
                 else
                 {
+                    Book.cur = MENU[Book.cur].left;  
+
+                    Book_Priorswitch (Book.cur);  
+                    osDelay(300);
+                }
+
+              break;
+
+              case K3_Pin:   
+
+                if ( Book.Priority == WIFI_ESP ) 
+                { 
                     SensorPack.button = 0;
                     // close
                 }
+                else if ( Book.Priority == PARA_SET )
+                {
+
+                    osDelay(300);
+
+                    switch ( Book.gpara )
+                    {
+                      case 0:
+
+                          if ( para.maxtemp > 0.0f )
+                          {
+                              para.maxtemp -= 0.1f;
+                          }
+                          else
+                          {
+                              para.maxtemp = 0.0f;
+                          }
+
+                      break;
+
+                      case 1:
+
+                          if ( para.sensitivity > 0 )
+                          {
+                              para.sensitivity -= 1;
+                          }
+                          else
+                          {
+                              para.sensitivity = 0;
+                          }
+
+                      break;
+
+                      case 2:
+                          
+                          if ( para.alarm > 0 )
+                          {
+                              para.alarm -= 1;
+                          }
+                          else
+                          {
+                              para.alarm = 0;
+                          }
+
+                      break;
+
+                      case 3:
+
+                          if ( para.upload > 100 )
+                          {
+                              para.upload -= 100;
+                          }
+                          else
+                          {
+                              para.upload = 100;
+                          }
+
+                      break;
+                      
+                      default:
+                      break;
+                    }
+
+                }
+                else
+                {
+
+                    Book.cur = MENU[Book.cur].right; 
+
+                    Book_Priorswitch (Book.cur);   
+                    osDelay(300);
+
+                }
+                
               break;
 
               case K5_Pin:
 
-                if ( Book.Priority != WIFI_ESP ) 
+                if ( Book.Priority != WIFI_ESP && Book.Priority != PARA_SET ) 
                 {
                     Book.cur = MENU[Book.cur].enter;
 
                     Book_Priorswitch (Book.cur);   
+                    osDelay(300);
+                }
+
+                else if ( Book.Priority == PARA_SET )
+                {
+                    Book.gpara += 1;
+                    Book.gpara %= 4;
                     osDelay(500);
                 }
 
-                else
+                else if ( Book.Priority == WIFI_ESP )
                 {
                     InitEsp01(&huart6);
                 }
@@ -335,10 +498,12 @@ void StartKeyTask(void *argument)
               break;
 
               case K6_Pin:
+
                 Book.cur = MENU[Book.cur].back;
 
                 Book_Priorswitch (Book.cur);   
-                osDelay(500);
+                osDelay(300);
+
               break;
 
               default:
@@ -368,17 +533,16 @@ void StartMPUTask(void *argument)
   osDelay(500);
   InitEsp01(&huart6);
 
-  /*
-    if ( mpu.ok ) 
-    {
-        GUI_ClearRect(72,20,252,50);
-        GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
-        GUI_SetColor(GUI_LIGHTRED);
-        GUI_DispStringAt("MPU初始化成功!",72,20);
-        osDelay(700);
-        GUI_ClearRect(72,20,252,50);
-    }
-  */
+
+  // if ( mpu.ok ) 
+  // {
+  //     GUI_ClearRect(72,20,252,50);
+  //     GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+  //     GUI_SetColor(GUI_LIGHTRED);
+  //     GUI_DispStringAt("MPU初始化成功!",72,20);
+  //     osDelay(100);
+  //     GUI_ClearRect(72,20,252,50);
+  // }
 
   /* Infinite loop */
   for(;;)
@@ -639,6 +803,13 @@ void StartGUITask(void *argument)
                   }
       
               break;
+
+              case   PARA_SET:
+
+                  Book_Pageturn ( Book.cur, gtemp, mpu );
+                  osDelay(200);
+
+              break;
               default:
               break;
           }
@@ -740,7 +911,7 @@ static void GUI_Start()
       osDelay(20);
     }
 
-    if (!Book.button) 
+    if ( !Book.button ) 
     {
 
         GUI_Clear();
@@ -760,7 +931,7 @@ static void GUI_Start()
           osDelay(2000);
 
     }
-    Beep(7,100);
+    // Beep(7,100);
 }
 
 void Beep(uint8_t tune, uint16_t time)
@@ -796,7 +967,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     switch (GPIO_Pin)
     {
         case K5_Pin:
-          if (HAL_GPIO_ReadPin(K5_GPIO_Port, K5_Pin) == SET)
+          if (HAL_GPIO_ReadPin(K5_GPIO_Port, K5_Pin) == SET && Book.Priority != WIFI_ESP && Book.Priority != PARA_SET )
           {
               Book.cur  = MENU[Book.cur].enter;
               Book.last = 0;

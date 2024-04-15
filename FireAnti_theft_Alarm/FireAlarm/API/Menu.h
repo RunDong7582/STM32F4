@@ -8,15 +8,18 @@
 #define   MPU_ROLL 0b1001
 #define    MPU_YAW 0b1010
 #define   WIFI_ESP 0b1100
+#define   PARA_SET 0b1101
 
 #include "GUI.h"
 #include "printf.h"
 #include "ESP01.h"
+
 extern const GUI_FONT GUI_FontHZ_YouYuan_24;
 extern const GUI_FONT GUI_FontHZ_KaiTi_32;
 extern const GUI_FONT GUI_FontHZ_KaiTi_20;
 extern const GUI_FONT GUI_FontHZ_KaiTi_12;
 extern const GUI_FONT GUI_FontHZ_Zhongyuan_HZ_24;
+extern const GUI_FONT GUI_FontHZ_Zhongyuan_HZ_16;
 extern GUI_CONST_STORAGE GUI_BITMAP bmhdu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarm;
 extern GUI_CONST_STORAGE GUI_BITMAP bmfirealarmbw;
@@ -42,14 +45,16 @@ typedef struct {
     uint16_t Priority;
     uint16_t Prev_Priority;
     uint16_t update;
+    uint16_t gpara;
 }Page_t;
 
 typedef struct {
     float new;
     float old;
-    __IO int update;
-    __IO int warn;
-    __IO int cnt;
+    __IO int   update;
+    __IO int   warn;
+    __IO int   cnt;
+    __IO float thresh;
 }Temperature;
 
 typedef struct {
@@ -75,6 +80,14 @@ typedef struct
     char buf[Len];
 }WifiPacket;
 
+typedef struct 
+{
+    int sensitivity;
+    int alarm;
+    int upload;
+  float maxtemp;
+
+} PARA_list;
 
 typedef void (*current_page) ( Temperature temp, MPUpacket mpu );
 typedef struct
@@ -95,6 +108,8 @@ extern MENU_Table  MENU[PAGE_MAX];
 extern Page_t      Book;
 extern Temperature gtemp;
 extern WifiPacket  SensorPack;
+extern PARA_list   para;
+
 
 void Book_Priorswitch (uchar cur);
 void Book_Pageturn    (uchar cur, 
@@ -111,7 +126,7 @@ void DT_Curve_P3   (Temperature temp , MPUpacket mpu);
 void DT_Curve_P4   (Temperature temp , MPUpacket mpu);
 
 void RF_Msg_P1     (Temperature temp , MPUpacket mpu);
-void ST_Para_P1    (Temperature temp , MPUpacket mpu);
+void ST_Para_P1    (void);
 
 void GUI_TempDrawCurve  (uint8_t margin);
 void GUI_PitchDrawCurve (uint8_t margin);

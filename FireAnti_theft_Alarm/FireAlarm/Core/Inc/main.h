@@ -68,6 +68,8 @@ void Error_Handler(void);
 #define K5_EXTI_IRQn EXTI9_5_IRQn
 #define K6_Pin GPIO_PIN_6
 #define K6_GPIO_Port GPIOE
+#define SPI1_CS_Pin GPIO_PIN_4
+#define SPI1_CS_GPIO_Port GPIOC
 #define LCD_BL_Pin GPIO_PIN_10
 #define LCD_BL_GPIO_Port GPIOB
 #define T_CS_Pin GPIO_PIN_12

@@ -11,19 +11,19 @@ MENU_Table MENU[PAGE_MAX]=
 	{0,0,0,0,0,1,0,(*Boot)},  
 
 	//主界面 - 默认为实时监测
-    {1,4,2,1,5,1, 0,(*RT_Monitor_P1)},
-	{2,1,3,2,7,2, 0,(*DT_Curve_P1)},
-	{3,2,4,3,10,3,0,(*RF_Msg_P1)},
-	{4,3,1,4,11,4,0,(*ST_Para_P1)},
+    {1,4,2,1,5,1, 0, ( *RT_Monitor_P1 )},
+	{2,1,3,2,7,2, 0, (   *DT_Curve_P1 )},
+	{3,2,4,3,3,3, 0, ( 	 *RF_Msg_P1	  )},
+	{4,3,1,4,4,4 ,0, ( 	 *ST_Para_P1  )},
   
 	//子菜单 - 实时监测 
-    {5,5,5,1,6,5,0,(*RT_Monitor_P2)},
-    {6,6,6,5,1,6,0,(*RT_Monitor_P3)},
+    {5,5,5,1,6,5,0,	 ( *RT_Monitor_P2 )},
+    {6,6,6,5,1,6,0,  ( *RT_Monitor_P3 )},
 
 	//子菜单 - 数据曲线
-	{7,7,7,2,8,7, 0,(*DT_Curve_P2)},
-	{8,8,8,9,9,8, 0,(*DT_Curve_P3)},
-	{9,9,9,7,2,9, 0,(*DT_Curve_P4)},
+	{7,7,7,2,8,7, 0, ( *DT_Curve_P2 )},
+	{8,8,8,9,9,8, 0, ( *DT_Curve_P3 )},
+	{9,9,9,7,2,9, 0, ( *DT_Curve_P4 )},
 };                                          
 
 void Book_Priorswitch ( uchar cur ) 
@@ -42,6 +42,9 @@ void Book_Priorswitch ( uchar cur )
 		break;
 		case 3:
 			Book.Priority =  WIFI_ESP;
+		break;
+		case 4:
+			Book.Priority =  PARA_SET;
 		break;
 		case 5:
 			Book.Priority = MPU_FIRST;
@@ -95,7 +98,7 @@ void Boot ( Temperature temp , MPUpacket mpu )
 		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
 		for (int i = 0; i < 61; i++) {
 
-			if(Book.button) 
+			if ( Book.button ) 
 			{	
 				GUI_Clear();
 				GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
@@ -114,6 +117,28 @@ void Boot ( Temperature temp , MPUpacket mpu )
 			else if ( i % 5 == 4)
 				GUI_DrawBitmap(&bmfirealarm, 88, 48);
 
+			if ( i % 10 == 3) {
+				GUI_ClearRect(250,170,310,190);
+				GUI_SetColor(GUI_LIGHTRED);
+				GUI_SetFont(GUI_FONT_24B_1);
+				GUI_DispStringAt("K5",250,170);
+				osDelay(10);
+			} 
+			if ( i % 10 == 6) {
+				GUI_ClearRect(250,170,310,190);
+				GUI_SetColor(GUI_LIGHTRED);
+				GUI_SetFont(GUI_FONT_24B_1);
+				GUI_DispStringAt("K5>",250,170);
+				osDelay(10);
+			}
+			if ( i % 10 == 9) {
+				GUI_ClearRect(250,170,310,190);
+				GUI_SetColor(GUI_LIGHTRED);
+				GUI_SetFont(GUI_FONT_24B_1);
+				GUI_DispStringAt("K5>>",250,170);
+				osDelay(10);
+			}
+
 			GUI_SetColor(GUI_YELLOW);
 			GUI_FillRect(40,200,4*i+40,220);
 			GUI_DrawRect(40,200,280,220);
@@ -129,13 +154,15 @@ void Boot ( Temperature temp , MPUpacket mpu )
 			osDelay(20);
 		}
 
-		if (!Book.button) 
+		if ( !Book.button ) 
 		{
+
 			GUI_Clear();
 			GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
 			GUI_SetBkColor(GUI_GRAY_D0);
 			GUI_SetFont(&GUI_FontHZ_YouYuan_24);
 			GUI_SetColor(GUI_RED);	
+
 			GUI_DrawBitmap(&bmhdu, 0, 0);
 			GUI_DispStringAt("防火防盗监测器", 76, 96);
 			if (!Book.button) 
@@ -175,6 +202,15 @@ void RT_Monitor_P1 ( Temperature temp, MPUpacket mpu )
 	GUI_DispStringAt("无线通信",16,140);
 	GUI_DispStringAt("参数设置",16,198); 
 	
+	GUI_SetColor(GUI_BLACK);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_16);
+
+	GUI_DispStringAt("K1↑", 132, 220);
+	GUI_DispStringAt("K4↓", 168, 220);
+	GUI_DispStringAt("K2←", 204, 220);
+	GUI_DispStringAt("K3→", 240, 220);
+	GUI_DispStringAt("K6" , 276, 220);
+	
 	if (!temp.update || Book.update) 
 		GUI_ClearRect(150, 20, 310,220);
 
@@ -199,7 +235,8 @@ void RT_Monitor_P1 ( Temperature temp, MPUpacket mpu )
 	GUI_SetColor(GUI_DARKMAGENTA);
 	GUI_DispStringAt("震动报警", 156 ,52);
 	GUI_DispStringAt(mpu.warn ? "有":"无", 208,108);
-
+	GUI_SetColor(GUI_LIGHTYELLOW);
+	GUI_DispStringAt("P1", 280, 30);
 }
 
 void RT_Monitor_P2 ( Temperature temp, MPUpacket mpu )
@@ -222,6 +259,7 @@ void RT_Monitor_P2 ( Temperature temp, MPUpacket mpu )
 		GUI_DispStringAt("数据曲线",16,82);
 		GUI_DispStringAt("无线通信",16,140);
 		GUI_DispStringAt("参数设置",16,198); 
+	
 	
 	if (!mpu.update) 
 		GUI_ClearRect(150, 20, 310,220);
@@ -267,7 +305,7 @@ void RT_Monitor_P3 ( Temperature temp, MPUpacket mpu )
 		GUI_DispStringAt("数据曲线",16,82);
 		GUI_DispStringAt("无线通信",16,140);
 		GUI_DispStringAt("参数设置",16,198); 
-	
+
 	if (!mpu.update) 
 		GUI_ClearRect(150, 20, 310,220);
 
@@ -405,7 +443,7 @@ void DT_Curve_P4 ( Temperature temp, MPUpacket mpu )
 }
 
 
-void RF_Msg_P1 (Temperature temp , MPUpacket mpu)
+void RF_Msg_P1 ( Temperature temp , MPUpacket mpu )
 {
 	GUI_SetBkColor(GUI_GRAY_D0);
     GUI_SetColor(GUI_BROWN);
@@ -426,6 +464,7 @@ void RF_Msg_P1 (Temperature temp , MPUpacket mpu)
 	GUI_SetColor(GUI_DARKGREEN);
 	GUI_SetFont(GUI_FONT_20_ASCII);
 	GUI_DispStringAt(g_esp01.strESPName, 120, 10);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_16);
 	GUI_DispStringAt(g_esp01.strAPName , 120, 40);
 	GUI_DispStringAt(TCP_SERVER , 120, 70);
 	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
@@ -438,8 +477,10 @@ void RF_Msg_P1 (Temperature temp , MPUpacket mpu)
 
 }
 
-void ST_Para_P1 (Temperature temp , MPUpacket mpu)
+void ST_Para_P1 ( void )
 {
+	char buf[36];
+	
 	GUI_SetBkColor(GUI_GRAY_D0);
     GUI_SetColor(GUI_BROWN);
 	GUI_SetFont(&GUI_FontHZ_KaiTi_20);
@@ -454,6 +495,31 @@ void ST_Para_P1 (Temperature temp , MPUpacket mpu)
 	GUI_DispStringAt("数据曲线",16,82);
 	GUI_DispStringAt("无线通信",16,140);
 	GUI_DispStringAt("参数设置",16,198); 
+
+	// GUI_SetColor(GUI_BROWN);
+	// GUI_AA_FillRoundedRect(120, 0, 310,220,4);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+
+	GUI_SetColor (Book.gpara == 0 ? GUI_DARKCYAN:GUI_DARKYELLOW );
+	GUI_DispStringAt("温度上限:",130,12);
+	sprintf(buf, "%.1f℃", para.maxtemp);
+	GUI_DispStringAt(buf, 230, 12);
+
+	GUI_SetColor (Book.gpara == 1 ? GUI_DARKCYAN:GUI_DARKYELLOW );
+	GUI_DispStringAt("震动灵敏度:",130,72);
+	sprintf(buf, "%d", para.sensitivity);
+	GUI_DispStringAt(buf, 260, 72);
+	
+	GUI_SetColor (Book.gpara == 2 ? GUI_DARKCYAN:GUI_DARKYELLOW );
+	GUI_DispStringAt("报警时长:",130,132);
+	sprintf(buf, "%d秒", para.alarm);
+	GUI_DispStringAt(buf, 230, 132);
+
+	GUI_SetColor (Book.gpara == 3 ? GUI_DARKCYAN:GUI_DARKYELLOW );
+	GUI_DispStringAt("上传间隔:",130,192);
+	sprintf(buf, "%.1f", para.upload / 1000.0f);
+	GUI_DispStringAt(buf, 230, 192);
+
 }
 
 void GUI_TempDrawCurve (uint8_t margin)
