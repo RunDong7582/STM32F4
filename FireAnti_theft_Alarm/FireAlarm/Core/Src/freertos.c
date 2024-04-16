@@ -77,6 +77,8 @@ PARA_list   para  = {
     30.0f         /*    temp thresh (0~90) degree       */
 };
 
+PARA_list set;
+
 Temperature gtemp = {
     0.0f,         /*  new temperature    */
     0.0f,         /*  old temperature    */
@@ -119,7 +121,8 @@ WifiPacket SensorPack = {
 };
 
 uint32_t beeptick = 0;
-
+uint32_t warntick = 0;
+uint16_t num[4];
 
 /* USER CODE END Variables */
 /* Definitions for TempTask */
@@ -265,10 +268,39 @@ void StartTempTask(void *argument)
                   vTemp[tPLOT_NUM -1] = gtemp.new;
               }
 
-              if ( gtemp.new >= gtemp.thresh ) { gtemp.warn = 1;Beep(4,200);}
-              else                             { gtemp.warn = 0; BeepDone();}
+              if ( gtemp.new >= gtemp.thresh ) { gtemp.warn = 1;}
+              else                             { gtemp.warn = 0;}
           }
       }
+
+      if ( ( gtemp.warn || mpu.warn ) && para.alarm > 0 ) 
+      {
+          if ( 0 == warntick )
+              warntick = osKernelGetTickCount();
+          else if ( para.alarm == 0 || osKernelGetTickCount() >= warntick + para.alarm * 1000 ) 
+          {
+              gtemp.warn = mpu.warn = 0;
+              warntick = 0;
+          }
+          else
+          {
+              uint32_t tic = warntick + 30000 - osKernelGetTickCount();
+              num[0] =  (tic / 10000) % 10;
+              num[1] =  (tic / 1000) % 10;
+              num[2] =  (tic / 100) % 10;
+              num[3] =  (tic / 10) % 10;
+
+              if (num[2] == 1 || num[2] == 3 || num[2] == 5)
+              {
+                  Beep(num[2],100);
+              }
+          } 
+      }
+      else
+        num[0] = num[1] = num[2] = num[3] = ' ';
+    
+      BeepDone();
+      osDelay(1);
   }
   /* USER CODE END StartTempTask */
 }
@@ -387,6 +419,7 @@ void StartKeyTask(void *argument)
                     Book_Priorswitch (Book.cur);  
                     osDelay(300);
                 }
+
 
               break;
 
@@ -508,7 +541,15 @@ void StartKeyTask(void *argument)
 
               default:
               break;
-          }
+        }
+
+        if ( memcpy(&set, &para, sizeof(para) ) )
+        {
+            printf("Save %.1f¡æ, %d, %dÃë, %.1fºÁÃë\n", para.maxtemp, para.sensitivity,
+                    para.alarm, para.upload);
+            W25QXX_Write( (uint8_t *)&para , 0, sizeof(para) );        
+        }
+
       }
 
     osDelay(1);
@@ -533,17 +574,18 @@ void StartMPUTask(void *argument)
   osDelay(500);
   InitEsp01(&huart6);
 
+  W25QXX_Init();
 
-  // if ( mpu.ok ) 
-  // {
-  //     GUI_ClearRect(72,20,252,50);
-  //     GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
-  //     GUI_SetColor(GUI_LIGHTRED);
-  //     GUI_DispStringAt("MPU³õÊ¼»¯³É¹¦!",72,20);
-  //     osDelay(100);
-  //     GUI_ClearRect(72,20,252,50);
-  // }
-
+  W25QXX_Read(&set, 0, sizeof(set));
+  if (( set.maxtemp  >= 0.0f && set.maxtemp <= TH       ) &&
+      ( set.sensitivity >= 0 && set.sensitivity <= SEV  ) &&
+      ( set.alarm       >= 0 && set.alarm   <= ALARM_MAX) &&
+      ( set.upload   >= 100  && set.upload <= UPLOAD_MAX)  )
+  {
+        memcpy(&para, &set, sizeof(set));
+        printf("Load %.1f¡æ, %d, %dÃë, %.1fºÁÃë\n", para.maxtemp, para.sensitivity,
+                            para.alarm, para.upload);
+  }
   /* Infinite loop */
   for(;;)
   {    
@@ -629,16 +671,14 @@ void StartMPUTask(void *argument)
               break;            
           }
       }
-      if ( gx * gx + gy * gy + gz * gz > 2500 ) 
+      if ( gx * gx + gy * gy + gz * gz > 2000 * ( 10 - para.sensitivity ) ) 
       {
         mpu.warn = 1;
-        // Beep(1,100);
       } else {
         mpu.warn = 0;
-        // BeepDone();
       }
 
-      if ( SensorPack.button ) 
+      if ( SensorPack.button && g_esp01.bConnect == 3 ) 
       {
           osDelay(SensorPack.interval);
           sprintf(SensorPack.buf, "Temp:%5.1f, axyz:%6d %6d %6d, gxyz:%6d %6d %6d, ang:%6.1f %6.1f %6.1f\n", 
@@ -931,7 +971,7 @@ static void GUI_Start()
           osDelay(2000);
 
     }
-    // Beep(7,100);
+    Beep(7,100);
 }
 
 void Beep(uint8_t tune, uint16_t time)

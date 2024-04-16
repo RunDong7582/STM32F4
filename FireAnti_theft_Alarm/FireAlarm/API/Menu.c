@@ -530,7 +530,7 @@ void GUI_TempDrawCurve (uint8_t margin)
 
 	float tmpMin = 20.0f;
 	float tmpMax = 35.0f;
-	float tmpThresh = 30.0f;
+	float tmpThresh = para.maxtemp;
 	int sh = LCD_GetYSize() - 2 * margin;
 	int sw = LCD_GetXSize() - 140;
 	int ox = 140;
