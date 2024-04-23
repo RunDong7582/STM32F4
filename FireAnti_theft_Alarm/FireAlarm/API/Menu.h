@@ -9,6 +9,9 @@
 #define    MPU_YAW 0b1010
 #define   WIFI_ESP 0b1100
 #define   PARA_SET 0b1101
+#define  TEMP_WARN 0b1111
+#define   MPU_WARN 0b1110
+
 
 #include "GUI.h"
 #include "printf.h"
@@ -76,7 +79,7 @@ typedef struct {
 typedef struct 
 {
     uint16_t button;
-    uint16_t interval;
+    float interval;
     char buf[Len];
 }WifiPacket;
 
@@ -84,7 +87,7 @@ typedef struct
 {
     int sensitivity;
     int alarm;
-    int upload;
+  float upload;
   float maxtemp;
 
 } PARA_list;
@@ -102,6 +105,12 @@ typedef struct
     current_page display // current index to execute display function
 }MENU_Table;
 
+typedef struct 
+{
+    uint16_t priority;
+    uint16_t prev;
+}warn_t;
+
 
 extern MPUpacket   mpu;
 extern MENU_Table  MENU[PAGE_MAX];
@@ -109,7 +118,7 @@ extern Page_t      Book;
 extern Temperature gtemp;
 extern WifiPacket  SensorPack;
 extern PARA_list   para;
-
+extern warn_t warnsource;
 
 void Book_Priorswitch (uchar cur);
 void Book_Pageturn    (uchar cur, 

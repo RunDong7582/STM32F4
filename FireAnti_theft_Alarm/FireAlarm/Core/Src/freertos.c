@@ -50,10 +50,10 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define TH          90.0
-#define SEV            9
-#define ALARM_MAX     60
-#define UPLOAD_MAX 10000
+#define TH            90.0f
+#define SEV              9
+#define ALARM_MAX       60
+#define UPLOAD_MAX 10000.0f
 
 /* USER CODE END PD */
 
@@ -73,11 +73,13 @@ float   vYaw[yPLOT_NUM]  = {0.0f};
 PARA_list   para  = {
        5,         /*    Sensitivity level (0~9)         */
       30,         /*    Alarm duration(s) (0~60)        */
-    1000,         /*    Upload interval (100~10000ms)   */
+  1000.0f,         /*    Upload interval (100~10000ms)   */
     30.0f         /*    temp thresh (0~90) degree       */
 };
 
 PARA_list set;
+
+warn_t warnsource = { 0, -1 };
 
 Temperature gtemp = {
     0.0f,         /*  new temperature    */
@@ -116,7 +118,7 @@ TEMP_CURVE,       /*    prev-Priority */
 
 WifiPacket SensorPack = {
         1,        /*    Deliever to TCP     */
-      100,        /*    Deliever interval   */
+   100.0f,        /*    Deliever interval   */
       "",         /*    Sensor Data Buffer  */
 };
 
@@ -239,21 +241,30 @@ void StartTempTask(void *argument)
 {
   /* USER CODE BEGIN StartTempTask */
   /* Infinite loop */
+
   ds18b20_init();
+
   for(;;)
   {
-      if ( Book.Priority == TEMP_FIRST || Book.Priority == WIFI_ESP ) 
+      if ( Book.Priority == TEMP_FIRST || Book.Priority == WIFI_ESP || Book.Priority == PARA_SET) 
       {
 
-          osThreadFlagsWait(0x0001, osFlagsWaitAny, osWaitForever);
+          osThreadFlagsWait(0x0001, osFlagsWaitAny, 2);
 
-          osDelay(1000);
+          osDelay(10);
           gtemp.new  = ds18b20_read();
 
+          if ( gtemp.new < TH )
+          {
+              if ( gtemp.new >= gtemp.thresh ) 
+              { 
+                  gtemp.warn = 1;
+              }
+          }
       }
       else if ( Book.Priority == TEMP_CURVE ) 
       {
-          osThreadFlagsWait(0x0001, osFlagsWaitAny, osWaitForever);
+          osThreadFlagsWait(0x0001, osFlagsWaitAny, 2);
           
           osDelay(100);
           gtemp.new  = ds18b20_read();
@@ -268,8 +279,10 @@ void StartTempTask(void *argument)
                   vTemp[tPLOT_NUM -1] = gtemp.new;
               }
 
-              if ( gtemp.new >= gtemp.thresh ) { gtemp.warn = 1;}
-              else                             { gtemp.warn = 0;}
+              if ( gtemp.new >= gtemp.thresh ) 
+              { 
+                  gtemp.warn = 1;
+              }
           }
       }
 
@@ -279,7 +292,8 @@ void StartTempTask(void *argument)
               warntick = osKernelGetTickCount();
           else if ( para.alarm == 0 || osKernelGetTickCount() >= warntick + para.alarm * 1000 ) 
           {
-              gtemp.warn = mpu.warn = 0;
+              gtemp.warn = 0;
+              mpu.warn = 0;
               warntick = 0;
           }
           else
@@ -299,6 +313,7 @@ void StartTempTask(void *argument)
       else
         num[0] = num[1] = num[2] = num[3] = ' ';
     
+
       BeepDone();
       osDelay(1);
   }
@@ -348,7 +363,7 @@ void StartKeyTask(void *argument)
                     SensorPack.button = 1; 
                     // transmitting SensorDataPack;
                 }
-                else if ( Book.Priority == PARA_SET )
+                else if ( Book.Priority == PARA_SET && (gtemp.warn != 1 && mpu.warn != 1) )
                 {
                   
                     osDelay(300);
@@ -430,7 +445,7 @@ void StartKeyTask(void *argument)
                     SensorPack.button = 0;
                     // close
                 }
-                else if ( Book.Priority == PARA_SET )
+                else if ( Book.Priority == PARA_SET && (gtemp.warn != 1 && mpu.warn != 1) )
                 {
 
                     osDelay(300);
@@ -543,11 +558,16 @@ void StartKeyTask(void *argument)
               break;
         }
 
-        if ( memcpy(&set, &para, sizeof(para) ) )
+        if ( Book.Priority == PARA_SET && (key == K2_Pin || key == K3_Pin) )
         {
-            printf("Save %.1f℃, %d, %d秒, %.1f毫秒\n", para.maxtemp, para.sensitivity,
-                    para.alarm, para.upload);
-            W25QXX_Write( (uint8_t *)&para , 0, sizeof(para) );        
+          if ( memcpy(&set, &para, sizeof(para) ) )
+          {
+              printf("Save %.1f℃, %d, %d秒, %.1f毫秒\n", para.maxtemp, para.sensitivity,
+                      para.alarm, para.upload);
+              W25QXX_Write( (uint8_t *)&para , 0, sizeof(para) );       
+              gtemp.thresh = para.maxtemp;
+              SensorPack.interval = para.upload; 
+          }
         }
 
       }
@@ -568,7 +588,7 @@ void StartMPUTask(void *argument)
 {
   /* USER CODE BEGIN StartMPUTask */
   /* Infinite loop */
-  	
+  uint32_t tick = 0;
   mpu.ok = MPU_init();
 
   osDelay(500);
@@ -580,18 +600,20 @@ void StartMPUTask(void *argument)
   if (( set.maxtemp  >= 0.0f && set.maxtemp <= TH       ) &&
       ( set.sensitivity >= 0 && set.sensitivity <= SEV  ) &&
       ( set.alarm       >= 0 && set.alarm   <= ALARM_MAX) &&
-      ( set.upload   >= 100  && set.upload <= UPLOAD_MAX)  )
+      ( set.upload   >= 100.0f  && set.upload <= UPLOAD_MAX)  )
   {
         memcpy(&para, &set, sizeof(set));
         printf("Load %.1f℃, %d, %d秒, %.1f毫秒\n", para.maxtemp, para.sensitivity,
                             para.alarm, para.upload);
+        gtemp.thresh = para.maxtemp;
+        SensorPack.interval = para.upload;
   }
   /* Infinite loop */
   for(;;)
   {    
-      if ( mpu.ok && (Book.Priority == MPU_FIRST || Book.Priority == WIFI_ESP ) )
+      if ( mpu.ok && (Book.Priority == MPU_FIRST || Book.Priority == WIFI_ESP || Book.Priority == PARA_SET || Book.Priority == TEMP_FIRST ) )
       {
-          osThreadFlagsWait(0x0002, osFlagsWaitAny, osWaitForever);
+          osThreadFlagsWait(0x0002, osFlagsWaitAny, 2);
 
           MPU_getdata();
               mpu.ax = ax;
@@ -606,13 +628,13 @@ void StartMPUTask(void *argument)
               mpu.update = 1;
 
           // SWV output
-          // printf("MPU Data:%4.1f %4.1f %4.1f, %5d %5d %5d, %5d %5d %5d\n", fAX, fAY, fAZ, ax, ay, az, gx, gy, gz);
+          printf("MPU Data:%4.1f %4.1f %4.1f, %5d %5d %5d, %5d %5d %5d\n", fAX, fAY, fAZ, ax, ay, az, gx, gy, gz);
       }
 
       else if ( mpu.ok && Book.Priority > TEMP_CURVE )
       {
           
-          osThreadFlagsWait(0x0002, osFlagsWaitAny, osWaitForever);
+          osThreadFlagsWait(0x0002, osFlagsWaitAny, 2);
 
           MPU_getdata();
               mpu.ax = ax;
@@ -670,23 +692,23 @@ void StartMPUTask(void *argument)
 
               break;            
           }
+          osDelay(50);
       }
+
       if ( gx * gx + gy * gy + gz * gz > 2000 * ( 10 - para.sensitivity ) ) 
       {
-        mpu.warn = 1;
-      } else {
-        mpu.warn = 0;
-      }
+          mpu.warn = 1;
+      } 
 
       if ( SensorPack.button && g_esp01.bConnect == 3 ) 
       {
-          osDelay(SensorPack.interval);
-          sprintf(SensorPack.buf, "Temp:%5.1f, axyz:%6d %6d %6d, gxyz:%6d %6d %6d, ang:%6.1f %6.1f %6.1f\n", 
-                  gtemp.old, mpu.ax, mpu.ay, mpu.az, mpu.gx, mpu.gy, mpu.gz, mpu.fAX, mpu.fAY, mpu.fAZ);
-          SendEspStr(SensorPack.buf);
+            osDelay(SensorPack.interval);
+            sprintf(SensorPack.buf, "Temp:%5.1f, axyz:%6d %6d %6d, gxyz:%6d %6d %6d, ang:%6.1f %6.1f %6.1f\n", 
+                    gtemp.new, mpu.ax, mpu.ay, mpu.az, mpu.gx, mpu.gy, mpu.gz, mpu.fAX, mpu.fAY, mpu.fAZ);
+            SendEspStr(SensorPack.buf);
       }
 
-      osDelay(50);
+      osDelay(1);
   }
   /* USER CODE END StartMPUTask */
 }
@@ -809,7 +831,6 @@ void StartGUITask(void *argument)
                         if ( gtemp.new != gtemp.old ) 
                         {
                           gtemp.update = 1;
-                          Book_Pageturn ( Book.cur, gtemp, mpu );
                           gtemp.old = gtemp.new;
                         } 
 
@@ -820,8 +841,9 @@ void StartGUITask(void *argument)
 
                           osDelay(2U);
                         }
+
                         Subprioity = MPU_FIRST;
-                        osDelay(50);
+                        osDelay(10);
                     break;
                     case MPU_FIRST:
                     
@@ -836,8 +858,10 @@ void StartGUITask(void *argument)
 
                           osDelay(2U);
                         }
+
                         Subprioity = TEMP_FIRST;
-                        osDelay(50);
+                        osDelay(10);
+
                     default:
                     break;
                   }
@@ -877,7 +901,6 @@ void StartWifiTask(void *argument)
 
   for(;;)
   {
-    
     if ( EspRxDataOk() )
     {
       // 接收数据处理
@@ -915,26 +938,30 @@ static void GUI_Start()
       else if ( i % 5 == 4)
         GUI_DrawBitmap(&bmfirealarm, 88, 48);
 
-      if ( i % 10 == 3) {
-        GUI_ClearRect(250,170,310,190);
-        GUI_SetColor(GUI_LIGHTRED);
-        GUI_SetFont(GUI_FONT_24B_1);
-        GUI_DispStringAt("K5",250,170);
-        osDelay(10);
-      } 
-      if ( i % 10 == 6) {
-        GUI_ClearRect(250,170,310,190);
-        GUI_SetColor(GUI_LIGHTRED);
-        GUI_SetFont(GUI_FONT_24B_1);
-        GUI_DispStringAt("K5>",250,170);
-        osDelay(10);
-      }
-      if ( i % 10 == 9) {
-        GUI_ClearRect(250,170,310,190);
-        GUI_SetColor(GUI_LIGHTRED);
-        GUI_SetFont(GUI_FONT_24B_1);
-        GUI_DispStringAt("K5>>",250,170);
-        osDelay(10);
+      if ( mpu.ok ) {
+        
+        if ( i % 10 == 3) {
+          GUI_ClearRect(250,170,310,190);
+          GUI_SetColor(GUI_LIGHTRED);
+          GUI_SetFont(GUI_FONT_24B_1);
+          GUI_DispStringAt("K5",250,170);
+          osDelay(10);
+        } 
+        if ( i % 10 == 6) {
+          GUI_ClearRect(250,170,310,190);
+          GUI_SetColor(GUI_LIGHTRED);
+          GUI_SetFont(GUI_FONT_24B_1);
+          GUI_DispStringAt("K5>",250,170);
+          osDelay(10);
+        }
+        if ( i % 10 == 9) {
+          GUI_ClearRect(250,170,310,190);
+          GUI_SetColor(GUI_LIGHTRED);
+          GUI_SetFont(GUI_FONT_24B_1);
+          GUI_DispStringAt("K5>>",250,170);
+          osDelay(10);
+        }
+        
       }
 
       GUI_SetColor(GUI_ORANGE);
@@ -1021,4 +1048,3 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 }
 
 /* USER CODE END Application */
-

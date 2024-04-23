@@ -102,7 +102,7 @@ void Boot ( Temperature temp , MPUpacket mpu )
 			{	
 				GUI_Clear();
 				GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
-				GUI_SetDefaultBkColor(GUI_GRAY_D0);
+				GUI_SetBkColor(GUI_GRAY_D0);
 				break;
 			}
 
@@ -117,26 +117,30 @@ void Boot ( Temperature temp , MPUpacket mpu )
 			else if ( i % 5 == 4)
 				GUI_DrawBitmap(&bmfirealarm, 88, 48);
 
-			if ( i % 10 == 3) {
+			if ( mpu.ok ) {
+				
+				if ( i % 10 == 3) {
 				GUI_ClearRect(250,170,310,190);
 				GUI_SetColor(GUI_LIGHTRED);
 				GUI_SetFont(GUI_FONT_24B_1);
 				GUI_DispStringAt("K5",250,170);
 				osDelay(10);
-			} 
-			if ( i % 10 == 6) {
+				} 
+				if ( i % 10 == 6) {
 				GUI_ClearRect(250,170,310,190);
 				GUI_SetColor(GUI_LIGHTRED);
 				GUI_SetFont(GUI_FONT_24B_1);
 				GUI_DispStringAt("K5>",250,170);
 				osDelay(10);
-			}
-			if ( i % 10 == 9) {
+				}
+				if ( i % 10 == 9) {
 				GUI_ClearRect(250,170,310,190);
 				GUI_SetColor(GUI_LIGHTRED);
 				GUI_SetFont(GUI_FONT_24B_1);
 				GUI_DispStringAt("K5>>",250,170);
 				osDelay(10);
+				}
+				
 			}
 
 			GUI_SetColor(GUI_YELLOW);
@@ -183,6 +187,11 @@ void Boot ( Temperature temp , MPUpacket mpu )
 void RT_Monitor_P1 ( Temperature temp, MPUpacket mpu )
 {
 	if ( !temp.update || Book.update ) 
+	{
+		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
+	}
+
+	if ( Book.button )
 	{
 		GUI_ClearRect(0, 0, LCD_GetXSize(), LCD_GetYSize());
 	}
