@@ -162,6 +162,13 @@ const osThreadAttr_t WifiTask_attributes = {
   .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for DefaultTask */
+osThreadId_t DefaultTaskHandle;
+const osThreadAttr_t DefaultTask_attributes = {
+  .name = "DefaultTask",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityAboveNormal,
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -175,6 +182,7 @@ void StartKeyTask(void *argument);
 void StartMPUTask(void *argument);
 void StartGUITask(void *argument);
 void StartWifiTask(void *argument);
+void StartMainTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -220,6 +228,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of WifiTask */
   WifiTaskHandle = osThreadNew(StartWifiTask, NULL, &WifiTask_attributes);
 
+  /* creation of DefaultTask */
+  DefaultTaskHandle = osThreadNew(StartMainTask, NULL, &DefaultTask_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -249,14 +260,14 @@ void StartTempTask(void *argument)
       if ( Book.Priority == TEMP_FIRST || Book.Priority == WIFI_ESP || Book.Priority == PARA_SET) 
       {
 
-          osThreadFlagsWait(0x0001, osFlagsWaitAny, 2);
+          // osThreadFlagsWait(0x0001, osFlagsWaitAny, 5);
 
-          osDelay(10);
+          osDelay(100);
           gtemp.new  = ds18b20_read();
 
           if ( gtemp.new < TH )
           {
-              if ( gtemp.new >= gtemp.thresh ) 
+              if ( gtemp.new >= gtemp.thresh && warntick == 0 ) 
               { 
                   gtemp.warn = 1;
               }
@@ -285,7 +296,6 @@ void StartTempTask(void *argument)
               }
           }
       }
-
       if ( ( gtemp.warn || mpu.warn ) && para.alarm > 0 ) 
       {
           if ( 0 == warntick )
@@ -591,7 +601,7 @@ void StartMPUTask(void *argument)
   uint32_t tick = 0;
   mpu.ok = MPU_init();
 
-  osDelay(500);
+  osDelay(150);
   InitEsp01(&huart6);
 
   W25QXX_Init();
@@ -611,9 +621,9 @@ void StartMPUTask(void *argument)
   /* Infinite loop */
   for(;;)
   {    
-      if ( mpu.ok && (Book.Priority == MPU_FIRST || Book.Priority == WIFI_ESP || Book.Priority == PARA_SET || Book.Priority == TEMP_FIRST ) )
+      if ( mpu.ok && ( Book.Priority == MPU_FIRST || Book.Priority == WIFI_ESP || Book.Priority == PARA_SET || Book.Priority == TEMP_FIRST ) )
       {
-          osThreadFlagsWait(0x0002, osFlagsWaitAny, 2);
+          // osThreadFlagsWait(0x0002, osFlagsWaitAny, 5);
 
           MPU_getdata();
               mpu.ax = ax;
@@ -628,10 +638,10 @@ void StartMPUTask(void *argument)
               mpu.update = 1;
 
           // SWV output
-          printf("MPU Data:%4.1f %4.1f %4.1f, %5d %5d %5d, %5d %5d %5d\n", fAX, fAY, fAZ, ax, ay, az, gx, gy, gz);
+          // printf("MPU Data:%4.1f %4.1f %4.1f, %5d %5d %5d, %5d %5d %5d\n", fAX, fAY, fAZ, ax, ay, az, gx, gy, gz);
       }
 
-      else if ( mpu.ok && Book.Priority > TEMP_CURVE )
+      else if ( mpu.ok && ( Book.Priority == MPU_PITCH || Book.Priority == MPU_ROLL || Book.Priority == MPU_YAW ) )
       {
           
           osThreadFlagsWait(0x0002, osFlagsWaitAny, 2);
@@ -700,14 +710,6 @@ void StartMPUTask(void *argument)
           mpu.warn = 1;
       } 
 
-      if ( SensorPack.button && g_esp01.bConnect == 3 ) 
-      {
-            osDelay(SensorPack.interval);
-            sprintf(SensorPack.buf, "Temp:%5.1f, axyz:%6d %6d %6d, gxyz:%6d %6d %6d, ang:%6.1f %6.1f %6.1f\n", 
-                    gtemp.new, mpu.ax, mpu.ay, mpu.az, mpu.gx, mpu.gy, mpu.gz, mpu.fAX, mpu.fAY, mpu.fAZ);
-            SendEspStr(SensorPack.buf);
-      }
-
       osDelay(1);
   }
   /* USER CODE END StartMPUTask */
@@ -731,8 +733,8 @@ void StartGUITask(void *argument)
 
   // printf("Hello STM32F407!\n");
   static uint16_t Subprioity = TEMP_FIRST;
-  osThreadFlagsSet(TempTaskHandle , 0x0001);
-  osDelay(2U);
+  // osThreadFlagsSet(TempTaskHandle , 0x0001);
+  // osDelay(2U);
 
   for(;;)
   {
@@ -767,7 +769,7 @@ void StartGUITask(void *argument)
                   else if ( gtemp.new == gtemp.old ) 
                   {
                     gtemp.update = 0;
-                    osThreadFlagsSet(TempTaskHandle , 0x0001);
+                    // osThreadFlagsSet(TempTaskHandle , 0x0001);
 
                     osDelay(2U);
                   }
@@ -781,12 +783,12 @@ void StartGUITask(void *argument)
                     Book_Pageturn ( Book.cur, gtemp, mpu );
                     mpu.update = 0;
                   }
-                  if ( !mpu.update ) 
-                  {
-                    osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
+                  // if ( !mpu.update ) 
+                  // {
+                  //   // osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
 
-                    osDelay(2U);
-                  }
+                  //   osDelay(2U);
+                  // }
 
               break;
 
@@ -837,7 +839,7 @@ void StartGUITask(void *argument)
                         else if ( gtemp.new == gtemp.old ) 
                         {
                           gtemp.update = 0;
-                          osThreadFlagsSet(TempTaskHandle , 0x0001);
+                          // osThreadFlagsSet(TempTaskHandle , 0x0001);
 
                           osDelay(2U);
                         }
@@ -852,12 +854,12 @@ void StartGUITask(void *argument)
                           Book_Pageturn ( Book.cur, gtemp, mpu );
                           mpu.update = 0;
                         }
-                        if ( !mpu.update ) 
-                        {
-                          osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
+                        // if ( !mpu.update ) 
+                        // {
+                        //   osThreadFlagsSet ( MPUTaskHandle , 0x0002 );
 
-                          osDelay(2U);
-                        }
+                        //   osDelay(2U);
+                        // }
 
                         Subprioity = TEMP_FIRST;
                         osDelay(10);
@@ -871,7 +873,7 @@ void StartGUITask(void *argument)
               case   PARA_SET:
 
                   Book_Pageturn ( Book.cur, gtemp, mpu );
-                  osDelay(200);
+                  osDelay(100);
 
               break;
               default:
@@ -908,6 +910,31 @@ void StartWifiTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END StartWifiTask */
+}
+
+/* USER CODE BEGIN Header_StartMainTask */
+/**
+* @brief Function implementing the DefaultTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartMainTask */
+void StartMainTask(void *argument)
+{
+  /* USER CODE BEGIN StartMainTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    if ( SensorPack.button && g_esp01.bConnect == 3 ) 
+    {
+          osDelay(SensorPack.interval);
+          sprintf(SensorPack.buf, "Temp:%5.1f, axyz:%6d %6d %6d, gxyz:%6d %6d %6d, ang:%6.1f %6.1f %6.1f\n", 
+                  gtemp.new, mpu.ax, mpu.ay, mpu.az, mpu.gx, mpu.gy, mpu.gz, mpu.fAX, mpu.fAY, mpu.fAZ);
+          SendEspStr(SensorPack.buf);
+    }
+    osDelay(1);
+  }
+  /* USER CODE END StartMainTask */
 }
 
 /* Private application code --------------------------------------------------*/
@@ -1048,3 +1075,4 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 }
 
 /* USER CODE END Application */
+
