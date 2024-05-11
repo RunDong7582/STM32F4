@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdlib.h"
 #include "printf.h"
 #include "string.h"
 #include "../../API/Menu.h"
@@ -55,6 +56,7 @@
 #define ALARM_MAX       60
 #define UPLOAD_MAX 10000.0f
 
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -78,8 +80,6 @@ PARA_list   para  = {
 };
 
 PARA_list set;
-
-warn_t warnsource = { 0, -1 };
 
 Temperature gtemp = {
     0.0f,         /*  new temperature    */
@@ -114,6 +114,8 @@ TEMP_FIRST,       /*    Priority      */
 TEMP_CURVE,       /*    prev-Priority */
         1,        /*    turn page     */
         0,        /*  PARA SET-order  */
+        0,        /*  fetch thresh    */
+        0         /*  to kill beep    */
 };
 
 WifiPacket SensorPack = {
@@ -122,8 +124,10 @@ WifiPacket SensorPack = {
       "",         /*    Sensor Data Buffer  */
 };
 
+uint32_t current_tick = 0;
 uint32_t beeptick = 0;
 uint32_t warntick = 0;
+uint16_t key = 0;
 uint16_t num[4];
 
 /* USER CODE END Variables */
@@ -132,48 +136,49 @@ osThreadId_t TempTaskHandle;
 const osThreadAttr_t TempTask_attributes = {
   .name = "TempTask",
   .stack_size = 512 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for KeyTask */
 osThreadId_t KeyTaskHandle;
 const osThreadAttr_t KeyTask_attributes = {
   .name = "KeyTask",
   .stack_size = 256 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityNormal2,
 };
 /* Definitions for MPUTask */
 osThreadId_t MPUTaskHandle;
 const osThreadAttr_t MPUTask_attributes = {
   .name = "MPUTask",
   .stack_size = 512 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityNormal1,
 };
 /* Definitions for GUITask */
 osThreadId_t GUITaskHandle;
 const osThreadAttr_t GUITask_attributes = {
   .name = "GUITask",
   .stack_size = 512 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityNormal2,
 };
 /* Definitions for WifiTask */
 osThreadId_t WifiTaskHandle;
 const osThreadAttr_t WifiTask_attributes = {
   .name = "WifiTask",
   .stack_size = 512 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityNormal2,
 };
 /* Definitions for DefaultTask */
 osThreadId_t DefaultTaskHandle;
 const osThreadAttr_t DefaultTask_attributes = {
   .name = "DefaultTask",
   .stack_size = 256 * 4,
-  .priority = (osPriority_t) osPriorityAboveNormal,
+  .priority = (osPriority_t) osPriorityNormal1,
 };
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 static void GUI_Start();
 void Beep(uint8_t tune, uint16_t time);
+void Beep_mpu(uint8_t tune, uint16_t time);
 void BeepDone(void);
 /* USER CODE END FunctionPrototypes */
 
@@ -262,12 +267,12 @@ void StartTempTask(void *argument)
 
           // osThreadFlagsWait(0x0001, osFlagsWaitAny, 5);
 
-          osDelay(100);
+          osDelay(20);
           gtemp.new  = ds18b20_read();
 
           if ( gtemp.new < TH )
           {
-              if ( gtemp.new >= gtemp.thresh && warntick == 0 ) 
+              if ( gtemp.new >= (float)gtemp.thresh ) 
               { 
                   gtemp.warn = 1;
               }
@@ -290,7 +295,7 @@ void StartTempTask(void *argument)
                   vTemp[tPLOT_NUM -1] = gtemp.new;
               }
 
-              if ( gtemp.new >= gtemp.thresh ) 
+              if ( gtemp.new >= (float) gtemp.thresh ) 
               { 
                   gtemp.warn = 1;
               }
@@ -300,7 +305,7 @@ void StartTempTask(void *argument)
       {
           if ( 0 == warntick )
               warntick = osKernelGetTickCount();
-          else if ( para.alarm == 0 || osKernelGetTickCount() >= warntick + para.alarm * 1000 ) 
+          else if ( para.alarm == 0 || osKernelGetTickCount() >= warntick + para.alarm * 1000 || !Book.set) 
           {
               gtemp.warn = 0;
               mpu.warn = 0;
@@ -314,9 +319,13 @@ void StartTempTask(void *argument)
               num[2] =  (tic / 100) % 10;
               num[3] =  (tic / 10) % 10;
 
-              if (num[2] == 1 || num[2] == 3 || num[2] == 5)
+              if ((num[2] == 1 || num[2] == 2 || num[2] == 7) && ( gtemp.warn && !mpu.warn && !Book.killbeep))
               {
                   Beep(num[2],100);
+              }
+              else if (( num[2] == 7 || num[2] == 2 || num[2] == 5 ) && ( !gtemp.warn && mpu.warn && !Book.killbeep ))
+              {
+                  Beep_mpu(num[2],100);
               }
           } 
       }
@@ -343,9 +352,33 @@ void StartKeyTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-		  uint16_t key = ScanKey();
+      if ( (gtemp.warn || mpu.warn ) && para.alarm > 0 )
+      {
+        key = ScanKey(1);
+        current_tick = 0;
+      }
+		  else 
+      {
+        key = ScanKey(0);
+        Book.killbeep = 0;
+      }
       if ( key > 0 )
       {
+          if ( key == KSUM )
+          {
+                current_tick = osKernelGetTickCount();
+
+                while ( key == KSUM )
+                {
+                    if ( osKernelGetTickCount() >= current_tick + 3000 )
+                    {
+                        Book.killbeep = 1;
+                        key = K_IDIE;
+                        break;
+                    }
+                    key = ScanKey(1);
+                }
+          }
           switch ( key )
           {
               case K1_Pin:
@@ -550,34 +583,43 @@ void StartKeyTask(void *argument)
 
                 else if ( Book.Priority == WIFI_ESP )
                 {
-                    InitEsp01(&huart6);
+                    if ( Book.cur != 11)   { InitEsp01(&huart6);}
+                    else                   { g_esp01.Sendbytes = 0; g_esp01.Recvbytes = 0; }
+
                 }
 
               break;
 
               case K6_Pin:
 
-                Book.cur = MENU[Book.cur].back;
+                if ( Book.Priority != WIFI_ESP )
+                  Book.cur = MENU[Book.cur].back;
+                else 
+                  Book.cur = MENU[Book.cur].right;
 
                 Book_Priorswitch (Book.cur);   
                 osDelay(300);
 
               break;
 
+              case K_IDIE:
+                printf("success brake beep!\n");
+                osDelay(100);
+              break;
               default:
               break;
         }
 
         if ( Book.Priority == PARA_SET && (key == K2_Pin || key == K3_Pin) )
         {
-          if ( memcpy(&set, &para, sizeof(para) ) )
-          {
-              printf("Save %.1f℃, %d, %d秒, %.1f毫秒\n", para.maxtemp, para.sensitivity,
-                      para.alarm, para.upload);
-              W25QXX_Write( (uint8_t *)&para , 0, sizeof(para) );       
-              gtemp.thresh = para.maxtemp;
-              SensorPack.interval = para.upload; 
-          }
+            if ( memcpy(&set, &para, sizeof(para) ) )
+            {
+                printf("Save %.1f℃, %d, %d秒, %.1f毫秒\n", para.maxtemp, para.sensitivity,
+                        para.alarm, para.upload);
+                W25QXX_Write( (uint8_t *)&para , 0, sizeof(para) );       
+                gtemp.thresh = (float)para.maxtemp;
+                SensorPack.interval = para.upload; 
+            }
         }
 
       }
@@ -600,8 +642,13 @@ void StartMPUTask(void *argument)
   /* Infinite loop */
   uint32_t tick = 0;
   mpu.ok = MPU_init();
-
-  osDelay(150);
+  
+  uint8_t cnt = 0;
+  while ( cnt++ < 3 && !mpu.ok)
+  {
+    osDelay(500);
+    mpu.ok = MPU_init();
+  }
   InitEsp01(&huart6);
 
   W25QXX_Init();
@@ -615,8 +662,9 @@ void StartMPUTask(void *argument)
         memcpy(&para, &set, sizeof(set));
         printf("Load %.1f℃, %d, %d秒, %.1f毫秒\n", para.maxtemp, para.sensitivity,
                             para.alarm, para.upload);
-        gtemp.thresh = para.maxtemp;
+        gtemp.thresh = (float)para.maxtemp;
         SensorPack.interval = para.upload;
+        Book.set = 1;
   }
   /* Infinite loop */
   for(;;)
@@ -705,7 +753,7 @@ void StartMPUTask(void *argument)
           osDelay(50);
       }
 
-      if ( gx * gx + gy * gy + gz * gz > 2000 * ( 10 - para.sensitivity ) ) 
+      if ( gx * gx + gy * gy + gz * gz > 5000 * ( 10 - para.sensitivity ) && para.alarm > 0 ) 
       {
           mpu.warn = 1;
       } 
@@ -905,6 +953,56 @@ void StartWifiTask(void *argument)
   {
     if ( EspRxDataOk() )
     {
+        if ( g_esp01.rxdata.rx_len > 0)
+        {
+          char *pstr = (char *) (g_esp01.rxdata.rx_buf);
+
+          if ( strstr(pstr, "UPON") == pstr )
+              SensorPack.button = 1;
+
+          else if ( strstr(pstr, "UPOFF") == pstr )
+              SensorPack.button = 0;
+              
+          else if (( strstr(pstr, "GETPARA") == pstr ) && ( SensorPack.button == 1 ))
+          { 
+            char upstr[50];
+            sprintf(upstr, "P:%d,%d,%d,%d\n",(int)para.maxtemp, para.sensitivity, para.alarm,(int)para.upload);
+            SendEspStr(upstr);
+          }
+          else if ( strstr(pstr, "PSET:") == pstr )
+          {
+            PARA_list set_s;
+            char *p = pstr + 5;
+            set_s.maxtemp = atoi(p);
+            p = strstr(p, ",");
+            if ( p > pstr )
+            {
+              set_s.sensitivity = atoi(p + 1);
+              p = strstr(p + 1 , ",");
+              if ( p > pstr )
+              {
+                set_s.alarm = atoi(p + 1);
+                p = strstr(p + 1, ",");
+                if ( p > pstr )
+                {
+                  set_s.upload = atoi(p + 1);
+                  if (( set_s.maxtemp     >= 0 && set_s.maxtemp <= 90     ) &&
+                      ( set_s.sensitivity >= 0 && set_s.sensitivity <= 9  ) &&
+                      ( set_s.alarm       >= 0 && set_s.alarm <= 60       ) &&
+                      ( set_s.upload      >= 100.0  && set_s.upload <= 10000 ))
+                  {
+                      memcpy(&para, &set_s, sizeof(set_s));
+                      printf("Save %.1f℃, %d, %d秒, %.1f毫秒\n", para.maxtemp, para.sensitivity,
+                      para.alarm, para.upload);
+                      W25QXX_Write( (uint8_t *)&para , 0, sizeof(para) );    
+                      gtemp.thresh = (float)para.maxtemp;
+                      SensorPack.interval = para.upload; 
+                  }
+                }
+              }
+            }
+          }
+        }
       // 接收数据处理
     }
     osDelay(1);
@@ -928,8 +1026,8 @@ void StartMainTask(void *argument)
     if ( SensorPack.button && g_esp01.bConnect == 3 ) 
     {
           osDelay(SensorPack.interval);
-          sprintf(SensorPack.buf, "Temp:%5.1f, axyz:%6d %6d %6d, gxyz:%6d %6d %6d, ang:%6.1f %6.1f %6.1f\n", 
-                  gtemp.new, mpu.ax, mpu.ay, mpu.az, mpu.gx, mpu.gy, mpu.gz, mpu.fAX, mpu.fAY, mpu.fAZ);
+          sprintf(SensorPack.buf, "T:%5.1f, A:%6d %6d %6d, G:%6d %6d %6d, F:%6.1f %6.1f %6.1f, W:%d\n", 
+                  gtemp.new, mpu.ax, mpu.ay, mpu.az, mpu.gx, mpu.gy, mpu.gz, mpu.fAX, mpu.fAY, mpu.fAZ, gtemp.warn + mpu.warn * 2);
           SendEspStr(SensorPack.buf);
     }
     osDelay(1);
@@ -1021,8 +1119,17 @@ static void GUI_Start()
         GUI_Clear();
         GUI_DispStringAt("21032311", 106, 96);
         GUI_DispStringAt("陈炫润", 114, 126);
-        if (!Book.button) 
+        if (!Book.button)
+        {
           osDelay(2000);
+          GUI_Clear();
+          GUI_SetBkColor(GUI_GRAY_D0);
+          GUI_SetColor(GUI_DARKCYAN);
+          GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
+          GUI_DispStringAt("电子设计综合实践", 60, 30);
+          GUI_DrawBitmap(&bmcxr, 120, 70);
+          osDelay(1000);
+        } 
 
     }
     Beep(7,100);
@@ -1032,6 +1139,19 @@ void Beep(uint8_t tune, uint16_t time)
 {
     static uint16_t TAB[] = {494, 523, 588, 660, 698, 784, 880, 988};
 
+    if (tune >=1  && tune <= 7) {
+      int pre = 1000000 / TAB[tune];
+      __HAL_TIM_SET_AUTORELOAD(&htim3,pre);
+      __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, pre/2);
+      
+      beeptick = osKernelGetTickCount() + time;
+      HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+    }
+}
+
+void Beep_mpu(uint8_t tune, uint16_t time)
+{
+    static uint16_t TAB[] = {262, 294, 330, 349, 392, 440, 494, 523};
     if (tune >=1  && tune <= 7) {
       int pre = 1000000 / TAB[tune];
       __HAL_TIM_SET_AUTORELOAD(&htim3,pre);
@@ -1073,6 +1193,5 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         break;
     }
 }
-
 /* USER CODE END Application */
 

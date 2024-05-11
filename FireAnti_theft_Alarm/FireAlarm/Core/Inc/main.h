@@ -86,7 +86,8 @@ void Error_Handler(void);
 #define K1_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
-
+#define KSUM ((K1_Pin) | (K2_Pin) | (K3_Pin) | (K4_Pin))
+#define K_IDIE 0x0080
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

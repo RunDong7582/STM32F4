@@ -5,6 +5,9 @@ extern float  vTemp[tPLOT_NUM];
 extern float  vRoll[rPLOT_NUM];
 extern float   vYaw[yPLOT_NUM];
 
+uint32_t Byte_sent;
+uint32_t Byte_recvd;
+
 MENU_Table MENU[PAGE_MAX]=
 {
 	//启动界面
@@ -13,7 +16,7 @@ MENU_Table MENU[PAGE_MAX]=
 	//主界面 - 默认为实时监测
     {1,4,2,1,5,1, 0, ( *RT_Monitor_P1 )},
 	{2,1,3,2,7,2, 0, (   *DT_Curve_P1 )},
-	{3,2,4,3,3,3, 0, ( 	 *RF_Msg_P1	  )},
+	{3,2,4,3,11,3,0,( 	 *RF_Msg_P1	  )},
 	{4,3,1,4,4,4 ,0, ( 	 *ST_Para_P1  )},
   
 	//子菜单 - 实时监测 
@@ -21,9 +24,15 @@ MENU_Table MENU[PAGE_MAX]=
     {6,6,6,5,1,6,0,  ( *RT_Monitor_P3 )},
 
 	//子菜单 - 数据曲线
-	{7,7,7,2,8,7, 0, ( *DT_Curve_P2 )},
-	{8,8,8,9,9,8, 0, ( *DT_Curve_P3 )},
-	{9,9,9,7,2,9, 0, ( *DT_Curve_P4 )},
+	{7,7,7,2,8,7, 	  0, ( *DT_Curve_P2 )},
+	{8,8,8,7,9,8, 	  0, ( *DT_Curve_P3 )},
+	{9,9,9,8,10,9, 	  0, ( *DT_Curve_P4 )},
+	{10,10,10,9,2,10, 0, ( *DT_Curve_3D )},
+
+	//子菜单 - 无线通信
+	{11,11,11,11,3,11,0, (   *RF_Msg_P2  )}
+
+
 };                                          
 
 void Book_Priorswitch ( uchar cur ) 
@@ -232,7 +241,7 @@ void RT_Monitor_P1 ( Temperature temp, MPUpacket mpu )
 	GUI_SetFont(&GUI_FontComic24B_ASCII);
 	GUI_SetColor(GUI_BLACK);
 	if ( temp.update ) GUI_SetBkColor(GUI_LIGHTBLUE);
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
 
 	char buf[10];
 	sprintf ( buf, "%.1f" , temp.update?temp.new:temp.old);
@@ -279,19 +288,26 @@ void RT_Monitor_P2 ( Temperature temp, MPUpacket mpu )
 		GUI_ClearRect(170,100,240,190);
 
 	GUI_AA_FillRoundedRect(150, 20, 310, 220, 5);
-	GUI_SetFont(&GUI_FontComic24B_ASCII);
-	GUI_SetColor(GUI_DARKYELLOW);
+	GUI_SetFont(GUI_FONT_20B_ASCII);
+	GUI_SetColor(GUI_DARKGREEN);
 	// GUI_SetBkColor(GUI_LIGHTBLUE);
 
 	char bufA[40];
 	sprintf(bufA,"ax: %5d",mpu.ax);
-	GUI_DispStringAt(bufA, 170 ,100);
+	GUI_DispStringAt(bufA, 170 ,40);
 	char bufB[40];
 	sprintf(bufB,"ay: %5d",mpu.ay);
-	GUI_DispStringAt(bufB, 170 ,130);
+	GUI_DispStringAt(bufB, 170 ,70);
 	char bufC[40];
 	sprintf(bufC,"az: %5d",mpu.az);
-	GUI_DispStringAt(bufC, 170 ,160);
+	GUI_DispStringAt(bufC, 170 ,100);
+	
+	GUI_SetColor(GUI_YELLOW);
+	GUI_FillRect(170, 130, 170 + mpu.ax / AX * 10, 150);
+	GUI_FillRect(170, 160, 170 + mpu.ay / AY * 10, 180);
+	GUI_FillRect(170, 190, 170 + mpu.az / AZ * 10, 210);
+
+
 }
 
 void RT_Monitor_P3 ( Temperature temp, MPUpacket mpu )
@@ -324,18 +340,24 @@ void RT_Monitor_P3 ( Temperature temp, MPUpacket mpu )
 		GUI_ClearRect(170,100,240,190);
 
 	GUI_AA_FillRoundedRect(150, 20, 310, 220, 5);
-	GUI_SetFont(&GUI_FontComic24B_ASCII);
-	GUI_SetColor(GUI_DARKYELLOW);
+	GUI_SetFont(GUI_FONT_20B_ASCII);
+	GUI_SetColor(GUI_DARKGREEN);
 
 	char bufA[40];
 	sprintf(bufA,"gx: %5d",mpu.gx);
-	GUI_DispStringAt(bufA, 170 ,100);
+	GUI_DispStringAt(bufA, 170 ,40);
 	char bufB[40];
 	sprintf(bufB,"gy: %5d",mpu.gy);
-	GUI_DispStringAt(bufB, 170 ,130);
+	GUI_DispStringAt(bufB, 170 ,70);
 	char bufC[40];
 	sprintf(bufC,"gz: %5d",mpu.gz);
-	GUI_DispStringAt(bufC, 170 ,160);
+	GUI_DispStringAt(bufC, 170 ,100);
+
+	GUI_SetColor(GUI_YELLOW);
+	GUI_FillRect(170, 130, 170 + mpu.gx / GX * 10, 150);
+	GUI_FillRect(170, 160, 170 + mpu.gy / GY * 10, 180);
+	GUI_FillRect(170, 190, 170 + mpu.gz / GZ * 10, 210);
+
 }
 
 void DT_Curve_P1 ( Temperature temp, MPUpacket mpu )
@@ -360,7 +382,7 @@ void DT_Curve_P1 ( Temperature temp, MPUpacket mpu )
 	GUI_DrawRoundedFrame(140, 10, 300, 210,5,6);
 
 	char buf[36];
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
 	GUI_SetColor(GUI_DARKRED);
 	sprintf(buf, "温度:%.1f℃", temp.new);
 	GUI_DispStringAt(buf, 162, 20);
@@ -388,7 +410,7 @@ void DT_Curve_P2 ( Temperature temp, MPUpacket mpu )
 	GUI_DrawRoundedFrame(140, 10, 300, 210, 5, 6);
 
 	char buf[36];
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
 	GUI_SetColor(GUI_BLUE);
 	sprintf(buf, "俯仰角:%.1f℃", mpu.fAX);
 	GUI_DispStringAt(buf, 150, 20);
@@ -416,7 +438,7 @@ void DT_Curve_P3 ( Temperature temp, MPUpacket mpu )
 	GUI_DrawRoundedFrame(140, 10, 300, 210, 5, 6);
 
 	char buf[36];
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
 	GUI_SetColor(GUI_BLUE);
 	sprintf(buf, "滚转角:%.1f℃", mpu.fAY);
 	GUI_DispStringAt(buf, 150, 20);
@@ -444,13 +466,18 @@ void DT_Curve_P4 ( Temperature temp, MPUpacket mpu )
 	GUI_DrawRoundedFrame(140, 10, 300, 210, 5, 6);
 
 	char buf[36];
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
 	GUI_SetColor(GUI_BLUE);
 	sprintf(buf, "偏航角:%.1f℃", mpu.fAZ);
 	GUI_DispStringAt(buf, 150, 20);
 	GUI_YawDrawCurve(30);
 }
 
+void DT_Curve_3D (Temperature temp , MPUpacket mpu)
+{
+	GUI_SetBkColor(GUI_BLACK);
+	Draw_Cube(mpu.fAX,mpu.fAY,mpu.fAZ);
+}
 
 void RF_Msg_P1 ( Temperature temp , MPUpacket mpu )
 {
@@ -476,7 +503,7 @@ void RF_Msg_P1 ( Temperature temp , MPUpacket mpu )
 	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_16);
 	GUI_DispStringAt(g_esp01.strAPName , 120, 40);
 	GUI_DispStringAt(TCP_SERVER , 120, 70);
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
 	sprintf(buf, "端口号:%d", TCP_PORT);
 	GUI_DispStringAt(buf , 120, 100);
 	GUI_DispStringAt(g_esp01.bConnect ? "OK" : "ERR", 120, 130);
@@ -484,6 +511,62 @@ void RF_Msg_P1 ( Temperature temp , MPUpacket mpu )
 	GUI_DispStringAt(SensorPack.button ? "上传中" : "未上传", 240, 210);
 
 
+}
+
+void RF_Msg_P2 (Temperature temp , MPUpacket mpu)
+{
+	static uint8_t sc = 0;
+	static uint8_t kc = 0;
+
+	if ( Byte_sent  != g_esp01.Sendbytes )
+	{
+		GUI_SetColor(GUI_CYAN);
+		GUI_FillRect(130,140,190,190);
+		GUI_SetColor(GUI_BLUE);
+		for ( int k = 0 ; k < 3 ; k++ )
+		{
+			GUI_DrawArc(160,180,15+k*10, 15+k*10,45,135);
+		}
+		GUI_FillCircle(160,180,6);
+	} 
+	if ( Byte_recvd != g_esp01.Recvbytes )
+	{
+		GUI_SetColor(GUI_ORANGE);
+		GUI_FillRect(200,140,260,190);
+		GUI_SetColor(GUI_RED);
+		for ( int t = 0 ; t < 3 ; t++ )
+		{
+			GUI_DrawArc(230,180,20+t*10, 20+t*10,45,135);
+		}
+		GUI_FillCircle(230,180,6);
+	} 
+	GUI_SetBkColor(GUI_GRAY_D0);
+    GUI_SetColor(GUI_BROWN);
+	GUI_SetFont(&GUI_FontHZ_KaiTi_20);
+	GUI_DrawRoundedFrame(8,4,108,62,4,6);
+	GUI_DrawRoundedFrame(8,62,108,120,4,6);
+	GUI_DrawRoundedFrame(8,178,108,236,4,6);
+	GUI_SetColor(GUI_RED);
+	GUI_DrawRoundedFrame(8,120,108,178,4,6);
+
+	GUI_SetColor(GUI_BLACK);
+	GUI_DispStringAt("实时监测",16,24);
+	GUI_DispStringAt("数据曲线",16,82);
+	GUI_DispStringAt("无线通信",16,140);
+	GUI_DispStringAt("参数设置",16,198); 
+
+	char buf[30];
+	GUI_SetColor(GUI_DARKMAGENTA);
+	GUI_SetFont(GUI_FONT_20_ASCII);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
+	sprintf(buf, "已发送:%d", g_esp01.Sendbytes);
+	GUI_DispStringAt(buf , 120, 40);
+	char rev[30];
+	sprintf(rev, "已接受:%d", g_esp01.Recvbytes);
+	GUI_DispStringAt(rev , 120, 70);
+	
+	Byte_sent  = g_esp01.Sendbytes;
+	Byte_recvd = g_esp01.Recvbytes;
 }
 
 void ST_Para_P1 ( void )
@@ -507,7 +590,7 @@ void ST_Para_P1 ( void )
 
 	// GUI_SetColor(GUI_BROWN);
 	// GUI_AA_FillRoundedRect(120, 0, 310,220,4);
-	GUI_SetFont(&GUI_FontHZ_Zhongyuan_HZ_24);
+	GUI_SetFont(&GUI_FontHZ_Zhongyuan_Hz_24);
 
 	GUI_SetColor (Book.gpara == 0 ? GUI_DARKCYAN:GUI_DARKYELLOW );
 	GUI_DispStringAt("温度上限:",130,12);

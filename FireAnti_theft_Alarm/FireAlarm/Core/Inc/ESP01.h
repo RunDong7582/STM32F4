@@ -40,6 +40,8 @@ typedef struct {
 	uint8_t bConnect;
 	char strAPName[20];
 	char strESPName[20];
+	uint32_t Sendbytes;
+	uint32_t Recvbytes;
 } ESP01;
 
 extern ESP01 g_esp01;

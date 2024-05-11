@@ -15,6 +15,7 @@ void SendATCmd(char *cmd, int waitms)
 {
 	if (NULL != cmd)
 	{
+		g_esp01.Sendbytes += (uint32_t) strlen(cmd);
 		HAL_UART_Transmit(pESPHandle, (uint8_t *)cmd, strlen(cmd), 0xFFFF);
 		osDelay(waitms);
 	}
@@ -24,6 +25,7 @@ void SendEspStr(char *str)
 {
 	if (NULL != str)
 		HAL_UART_Transmit(pESPHandle, (uint8_t *)str, strlen(str), 0xFFFF);
+	g_esp01.Sendbytes += (uint32_t) strlen(str);
 }
 
 void InitEsp01(UART_HandleTypeDef* pUartHandle)
@@ -34,6 +36,9 @@ void InitEsp01(UART_HandleTypeDef* pUartHandle)
 		return;
 	
 	pESPHandle = pUartHandle;
+	g_esp01.Sendbytes = 0;
+	g_esp01.Recvbytes = 0;
+
 	if (!EspQueueHandle)
 		EspQueueHandle = osMessageQueueNew (8, RXBUF_SIZE, &EspQueue_attributes);
 	HAL_UART_Receive_IT(pESPHandle, g_esp01.rxdata.rx_buf, sizeof(g_esp01.rxdata.rx_buf) - 1);
@@ -106,6 +111,7 @@ void RxEvent(UART_HandleTypeDef *huart, uint16_t Size)
 		{
 			g_esp01.rxdata.rx_buf[Size] = '\0';
 			g_esp01.rxdata.rx_len = Size;
+			g_esp01.Recvbytes += (uint32_t)g_esp01.rxdata.rx_len;
 			osMessageQueuePut(EspQueueHandle, &g_esp01.rxdata, NULL, 0);
 		}
 		

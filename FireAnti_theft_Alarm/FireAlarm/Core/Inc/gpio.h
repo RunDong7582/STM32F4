@@ -39,7 +39,7 @@ extern "C" {
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-uint16_t ScanKey(void);
+uint16_t ScanKey( uint16_t mode );
 
 // extern uint16_t beep_time;
 /* USER CODE END Prototypes */

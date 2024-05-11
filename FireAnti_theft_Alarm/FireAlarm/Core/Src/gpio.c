@@ -126,41 +126,70 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 2 */
 
-uint16_t ScanKey(void) {
-		uint16_t key = 0;
-		if (HAL_GPIO_ReadPin(K1_GPIO_Port,K1_Pin) == GPIO_PIN_RESET)
-			  key |= K1_Pin;
-		if (HAL_GPIO_ReadPin(K2_GPIO_Port,K2_Pin) == GPIO_PIN_RESET)
-			  key |= K2_Pin;
-		if (HAL_GPIO_ReadPin(K3_GPIO_Port,K3_Pin) == GPIO_PIN_RESET)
-			  key |= K3_Pin;
-		if (HAL_GPIO_ReadPin(K4_GPIO_Port,K4_Pin) == GPIO_PIN_RESET)
-			  key |= K4_Pin;
-		if (HAL_GPIO_ReadPin(K5_GPIO_Port,K5_Pin) == GPIO_PIN_SET)
-			  key |= K5_Pin;
-		if (HAL_GPIO_ReadPin(K6_GPIO_Port,K6_Pin) == GPIO_PIN_SET)
-			  key |= K6_Pin;
-		if (key > 0){
-			  osDelay(10);
-			  uint16_t key2 = 0;
-		    if (HAL_GPIO_ReadPin(K1_GPIO_Port,K1_Pin) == GPIO_PIN_RESET)
-			      key2 |= K1_Pin;
-		    if (HAL_GPIO_ReadPin(K2_GPIO_Port,K2_Pin) == GPIO_PIN_RESET)
-			      key2 |= K2_Pin;
-		    if (HAL_GPIO_ReadPin(K3_GPIO_Port,K3_Pin) == GPIO_PIN_RESET)
-			      key2 |= K3_Pin;
-		    if (HAL_GPIO_ReadPin(K4_GPIO_Port,K4_Pin) == GPIO_PIN_RESET)
-			      key2 |= K4_Pin;
-		    if (HAL_GPIO_ReadPin(K5_GPIO_Port,K5_Pin) == GPIO_PIN_SET)
-			      key2 |= K5_Pin;
-		    if (HAL_GPIO_ReadPin(K6_GPIO_Port,K6_Pin) == GPIO_PIN_SET)
-			      key2 |= K6_Pin;
-				if (key == key2)
-					  return key;
-				else
-					  return 0;
-		}
-		return 0;
-	}
+uint16_t ScanKey ( uint16_t mode ) {
+    if ( mode == 0 )
+    {
+        uint16_t key = 0;
+        if (HAL_GPIO_ReadPin(K1_GPIO_Port,K1_Pin) == GPIO_PIN_RESET)
+            key |= K1_Pin;
+        if (HAL_GPIO_ReadPin(K2_GPIO_Port,K2_Pin) == GPIO_PIN_RESET)
+            key |= K2_Pin;
+        if (HAL_GPIO_ReadPin(K3_GPIO_Port,K3_Pin) == GPIO_PIN_RESET)
+            key |= K3_Pin;
+        if (HAL_GPIO_ReadPin(K4_GPIO_Port,K4_Pin) == GPIO_PIN_RESET)
+            key |= K4_Pin;
+        if (HAL_GPIO_ReadPin(K5_GPIO_Port,K5_Pin) == GPIO_PIN_SET)
+            key |= K5_Pin;
+        if (HAL_GPIO_ReadPin(K6_GPIO_Port,K6_Pin) == GPIO_PIN_SET)
+            key |= K6_Pin;
+        if (key > 0){
+            osDelay(10);
+            uint16_t key2 = 0;
+            if (HAL_GPIO_ReadPin(K1_GPIO_Port,K1_Pin) == GPIO_PIN_RESET)
+                key2 |= K1_Pin;
+            if (HAL_GPIO_ReadPin(K2_GPIO_Port,K2_Pin) == GPIO_PIN_RESET)
+                key2 |= K2_Pin;
+            if (HAL_GPIO_ReadPin(K3_GPIO_Port,K3_Pin) == GPIO_PIN_RESET)
+                key2 |= K3_Pin;
+            if (HAL_GPIO_ReadPin(K4_GPIO_Port,K4_Pin) == GPIO_PIN_RESET)
+                key2 |= K4_Pin;
+            if (HAL_GPIO_ReadPin(K5_GPIO_Port,K5_Pin) == GPIO_PIN_SET)
+                key2 |= K5_Pin;
+            if (HAL_GPIO_ReadPin(K6_GPIO_Port,K6_Pin) == GPIO_PIN_SET)
+                key2 |= K6_Pin;
+            if (key == key2)
+                return key;
+            else
+                return 0;
+        }
+        return 0;
+    } else if ( mode == 1) {
+      uint16_t key1 = 0;
+      if ((HAL_GPIO_ReadPin(K1_GPIO_Port,K1_Pin) == GPIO_PIN_RESET) &&
+          (HAL_GPIO_ReadPin(K2_GPIO_Port,K2_Pin) == GPIO_PIN_RESET) &&
+          (HAL_GPIO_ReadPin(K3_GPIO_Port,K3_Pin) == GPIO_PIN_RESET) &&
+          (HAL_GPIO_ReadPin(K4_GPIO_Port,K4_Pin) == GPIO_PIN_RESET))
+      {
+        key1 = KSUM;
+      }
+
+      if ( key1 > 0) {
+          osDelay(20);
+          uint16_t key2 = 0;
+          if ((HAL_GPIO_ReadPin(K1_GPIO_Port,K1_Pin) == GPIO_PIN_RESET) &&
+              (HAL_GPIO_ReadPin(K2_GPIO_Port,K2_Pin) == GPIO_PIN_RESET) &&
+              (HAL_GPIO_ReadPin(K3_GPIO_Port,K3_Pin) == GPIO_PIN_RESET) &&
+              (HAL_GPIO_ReadPin(K4_GPIO_Port,K4_Pin) == GPIO_PIN_RESET))
+          {
+              key2 = KSUM;
+          }
+          if (key1 == key2)
+              return key1;
+          else
+              return 0;
+      }
+      return 0;
+    }
+}
 
 /* USER CODE END 2 */
