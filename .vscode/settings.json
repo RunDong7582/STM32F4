@@ -18,6 +18,8 @@
         "array": "c",
         "string": "c",
         "string_view": "c",
-        "esp01.h": "c"
+        "esp01.h": "c",
+        "cstdlib": "c",
+        "rotate_cube.h": "c"
     }
 }

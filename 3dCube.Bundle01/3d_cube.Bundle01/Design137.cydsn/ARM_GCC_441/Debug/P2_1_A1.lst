@@ -1,0 +1,910 @@
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"P2_1_A1.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 C9000000 		.text
+  19      02006000 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.text.P2_1_A1_Write,"ax",%progbits
+  23              		.align	1
+  24              		.global	P2_1_A1_Write
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	P2_1_A1_Write, %function
+  28              	P2_1_A1_Write:
+  29              	.LFB0:
+  30              		.file 1 ".\\Generated_Source\\PSoC4\\P2_1_A1.c"
+   1:.\Generated_Source\PSoC4/P2_1_A1.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/P2_1_A1.c **** * File Name: P2_1_A1.c  
+   3:.\Generated_Source\PSoC4/P2_1_A1.c **** * Version 1.90
+   4:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+   5:.\Generated_Source\PSoC4/P2_1_A1.c **** * Description:
+   6:.\Generated_Source\PSoC4/P2_1_A1.c **** *  This file contains API to enable firmware control of a Pins component.
+   7:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+   8:.\Generated_Source\PSoC4/P2_1_A1.c **** * Note:
+   9:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  10:.\Generated_Source\PSoC4/P2_1_A1.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC4/P2_1_A1.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC4/P2_1_A1.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:.\Generated_Source\PSoC4/P2_1_A1.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:.\Generated_Source\PSoC4/P2_1_A1.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC4/P2_1_A1.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  17:.\Generated_Source\PSoC4/P2_1_A1.c **** #include "cytypes.h"
+  18:.\Generated_Source\PSoC4/P2_1_A1.c **** #include "P2_1_A1.h"
+  19:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  20:.\Generated_Source\PSoC4/P2_1_A1.c **** #define SetP4PinDriveMode(shift, mode)  \
+  21:.\Generated_Source\PSoC4/P2_1_A1.c ****     do { \
+  22:.\Generated_Source\PSoC4/P2_1_A1.c ****         P2_1_A1_PC =   (P2_1_A1_PC & \
+  23:.\Generated_Source\PSoC4/P2_1_A1.c ****                                 (uint32)(~(uint32)(P2_1_A1_DRIVE_MODE_IND_MASK << (P2_1_A1_DRIVE_MO
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 2
+
+
+  24:.\Generated_Source\PSoC4/P2_1_A1.c ****                                 (uint32)((uint32)(mode) << (P2_1_A1_DRIVE_MODE_BITS * (shift))); \
+  25:.\Generated_Source\PSoC4/P2_1_A1.c ****     } while (0)
+  26:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  27:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  28:.\Generated_Source\PSoC4/P2_1_A1.c **** /*******************************************************************************
+  29:.\Generated_Source\PSoC4/P2_1_A1.c **** * Function Name: P2_1_A1_Write
+  30:.\Generated_Source\PSoC4/P2_1_A1.c **** ********************************************************************************
+  31:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  32:.\Generated_Source\PSoC4/P2_1_A1.c **** * Summary:
+  33:.\Generated_Source\PSoC4/P2_1_A1.c **** *  Assign a new value to the digital port's data output register.  
+  34:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  35:.\Generated_Source\PSoC4/P2_1_A1.c **** * Parameters:  
+  36:.\Generated_Source\PSoC4/P2_1_A1.c **** *  prtValue:  The value to be assigned to the Digital Port. 
+  37:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  38:.\Generated_Source\PSoC4/P2_1_A1.c **** * Return: 
+  39:.\Generated_Source\PSoC4/P2_1_A1.c **** *  None 
+  40:.\Generated_Source\PSoC4/P2_1_A1.c **** *  
+  41:.\Generated_Source\PSoC4/P2_1_A1.c **** *******************************************************************************/
+  42:.\Generated_Source\PSoC4/P2_1_A1.c **** void P2_1_A1_Write(uint8 value) 
+  43:.\Generated_Source\PSoC4/P2_1_A1.c **** {
+  31              		.loc 1 43 0
+  32              		.cfi_startproc
+  33              	.LVL0:
+  44:.\Generated_Source\PSoC4/P2_1_A1.c ****     uint8 drVal = (uint8)(P2_1_A1_DR & (uint8)(~P2_1_A1_MASK));
+  34              		.loc 1 44 0
+  35 0000 044B     		ldr	r3, .L3
+  36 0002 FD22     		mov	r2, #253
+  37 0004 1968     		ldr	r1, [r3]
+  45:.\Generated_Source\PSoC4/P2_1_A1.c ****     drVal = (drVal | ((uint8)(value << P2_1_A1_SHIFT) & P2_1_A1_MASK));
+  46:.\Generated_Source\PSoC4/P2_1_A1.c ****     P2_1_A1_DR = (uint32)drVal;
+  38              		.loc 1 46 0
+  39 0006 4000     		lsl	r0, r0, #1
+  40              	.LVL1:
+  41              		.loc 1 44 0
+  42 0008 0A40     		and	r2, r2, r1
+  43              	.LVL2:
+  44              		.loc 1 46 0
+  45 000a 0221     		mov	r1, #2
+  46 000c 0840     		and	r0, r0, r1
+  47 000e 1043     		orr	r0, r0, r2
+  48 0010 1860     		str	r0, [r3]
+  47:.\Generated_Source\PSoC4/P2_1_A1.c **** }
+  49              		.loc 1 47 0
+  50              		@ sp needed for prologue
+  51 0012 7047     		bx	lr
+  52              	.L4:
+  53              		.align	2
+  54              	.L3:
+  55 0014 00020440 		.word	1074004480
+  56              		.cfi_endproc
+  57              	.LFE0:
+  58              		.size	P2_1_A1_Write, .-P2_1_A1_Write
+  59              		.section	.text.P2_1_A1_SetDriveMode,"ax",%progbits
+  60              		.align	1
+  61              		.global	P2_1_A1_SetDriveMode
+  62              		.code	16
+  63              		.thumb_func
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 3
+
+
+  64              		.type	P2_1_A1_SetDriveMode, %function
+  65              	P2_1_A1_SetDriveMode:
+  66              	.LFB1:
+  48:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  49:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  50:.\Generated_Source\PSoC4/P2_1_A1.c **** /*******************************************************************************
+  51:.\Generated_Source\PSoC4/P2_1_A1.c **** * Function Name: P2_1_A1_SetDriveMode
+  52:.\Generated_Source\PSoC4/P2_1_A1.c **** ********************************************************************************
+  53:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  54:.\Generated_Source\PSoC4/P2_1_A1.c **** * Summary:
+  55:.\Generated_Source\PSoC4/P2_1_A1.c **** *  Change the drive mode on the pins of the port.
+  56:.\Generated_Source\PSoC4/P2_1_A1.c **** * 
+  57:.\Generated_Source\PSoC4/P2_1_A1.c **** * Parameters:  
+  58:.\Generated_Source\PSoC4/P2_1_A1.c **** *  mode:  Change the pins to this drive mode.
+  59:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  60:.\Generated_Source\PSoC4/P2_1_A1.c **** * Return: 
+  61:.\Generated_Source\PSoC4/P2_1_A1.c **** *  None
+  62:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  63:.\Generated_Source\PSoC4/P2_1_A1.c **** *******************************************************************************/
+  64:.\Generated_Source\PSoC4/P2_1_A1.c **** void P2_1_A1_SetDriveMode(uint8 mode) 
+  65:.\Generated_Source\PSoC4/P2_1_A1.c **** {
+  67              		.loc 1 65 0
+  68              		.cfi_startproc
+  69              	.LVL3:
+  66:.\Generated_Source\PSoC4/P2_1_A1.c **** 	SetP4PinDriveMode(P2_1_A1__0__SHIFT, mode);
+  70              		.loc 1 66 0
+  71 0000 044B     		ldr	r3, .L7
+  72 0002 C200     		lsl	r2, r0, #3
+  73 0004 1968     		ldr	r1, [r3]
+  74 0006 3820     		mov	r0, #56
+  75              	.LVL4:
+  76 0008 8143     		bic	r1, r1, r0
+  77 000a 081C     		mov	r0, r1
+  78 000c 1043     		orr	r0, r0, r2
+  79 000e 1860     		str	r0, [r3]
+  67:.\Generated_Source\PSoC4/P2_1_A1.c **** }
+  80              		.loc 1 67 0
+  81              		@ sp needed for prologue
+  82 0010 7047     		bx	lr
+  83              	.L8:
+  84 0012 C046     		.align	2
+  85              	.L7:
+  86 0014 08020440 		.word	1074004488
+  87              		.cfi_endproc
+  88              	.LFE1:
+  89              		.size	P2_1_A1_SetDriveMode, .-P2_1_A1_SetDriveMode
+  90              		.section	.text.P2_1_A1_Read,"ax",%progbits
+  91              		.align	1
+  92              		.global	P2_1_A1_Read
+  93              		.code	16
+  94              		.thumb_func
+  95              		.type	P2_1_A1_Read, %function
+  96              	P2_1_A1_Read:
+  97              	.LFB2:
+  68:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  69:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  70:.\Generated_Source\PSoC4/P2_1_A1.c **** /*******************************************************************************
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 4
+
+
+  71:.\Generated_Source\PSoC4/P2_1_A1.c **** * Function Name: P2_1_A1_Read
+  72:.\Generated_Source\PSoC4/P2_1_A1.c **** ********************************************************************************
+  73:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  74:.\Generated_Source\PSoC4/P2_1_A1.c **** * Summary:
+  75:.\Generated_Source\PSoC4/P2_1_A1.c **** *  Read the current value on the pins of the Digital Port in right justified 
+  76:.\Generated_Source\PSoC4/P2_1_A1.c **** *  form.
+  77:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  78:.\Generated_Source\PSoC4/P2_1_A1.c **** * Parameters:  
+  79:.\Generated_Source\PSoC4/P2_1_A1.c **** *  None 
+  80:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  81:.\Generated_Source\PSoC4/P2_1_A1.c **** * Return: 
+  82:.\Generated_Source\PSoC4/P2_1_A1.c **** *  Returns the current value of the Digital Port as a right justified number
+  83:.\Generated_Source\PSoC4/P2_1_A1.c **** *  
+  84:.\Generated_Source\PSoC4/P2_1_A1.c **** * Note:
+  85:.\Generated_Source\PSoC4/P2_1_A1.c **** *  Macro P2_1_A1_ReadPS calls this function. 
+  86:.\Generated_Source\PSoC4/P2_1_A1.c **** *  
+  87:.\Generated_Source\PSoC4/P2_1_A1.c **** *******************************************************************************/
+  88:.\Generated_Source\PSoC4/P2_1_A1.c **** uint8 P2_1_A1_Read(void) 
+  89:.\Generated_Source\PSoC4/P2_1_A1.c **** {
+  98              		.loc 1 89 0
+  99              		.cfi_startproc
+  90:.\Generated_Source\PSoC4/P2_1_A1.c ****     return (uint8)((P2_1_A1_PS & P2_1_A1_MASK) >> P2_1_A1_SHIFT);
+ 100              		.loc 1 90 0
+ 101 0000 024B     		ldr	r3, .L11
+  91:.\Generated_Source\PSoC4/P2_1_A1.c **** }
+ 102              		.loc 1 91 0
+ 103              		@ sp needed for prologue
+ 104              		.loc 1 90 0
+ 105 0002 1868     		ldr	r0, [r3]
+ 106 0004 8007     		lsl	r0, r0, #30
+ 107 0006 C00F     		lsr	r0, r0, #31
+ 108              		.loc 1 91 0
+ 109 0008 7047     		bx	lr
+ 110              	.L12:
+ 111 000a C046     		.align	2
+ 112              	.L11:
+ 113 000c 04020440 		.word	1074004484
+ 114              		.cfi_endproc
+ 115              	.LFE2:
+ 116              		.size	P2_1_A1_Read, .-P2_1_A1_Read
+ 117              		.section	.text.P2_1_A1_ReadDataReg,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	P2_1_A1_ReadDataReg
+ 120              		.code	16
+ 121              		.thumb_func
+ 122              		.type	P2_1_A1_ReadDataReg, %function
+ 123              	P2_1_A1_ReadDataReg:
+ 124              	.LFB3:
+  92:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  93:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+  94:.\Generated_Source\PSoC4/P2_1_A1.c **** /*******************************************************************************
+  95:.\Generated_Source\PSoC4/P2_1_A1.c **** * Function Name: P2_1_A1_ReadDataReg
+  96:.\Generated_Source\PSoC4/P2_1_A1.c **** ********************************************************************************
+  97:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+  98:.\Generated_Source\PSoC4/P2_1_A1.c **** * Summary:
+  99:.\Generated_Source\PSoC4/P2_1_A1.c **** *  Read the current value assigned to a Digital Port's data output register
+ 100:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 5
+
+
+ 101:.\Generated_Source\PSoC4/P2_1_A1.c **** * Parameters:  
+ 102:.\Generated_Source\PSoC4/P2_1_A1.c **** *  None 
+ 103:.\Generated_Source\PSoC4/P2_1_A1.c **** *
+ 104:.\Generated_Source\PSoC4/P2_1_A1.c **** * Return: 
+ 105:.\Generated_Source\PSoC4/P2_1_A1.c **** *  Returns the current value assigned to the Digital Port's data output register
+ 106:.\Generated_Source\PSoC4/P2_1_A1.c **** *  
+ 107:.\Generated_Source\PSoC4/P2_1_A1.c **** *******************************************************************************/
+ 108:.\Generated_Source\PSoC4/P2_1_A1.c **** uint8 P2_1_A1_ReadDataReg(void) 
+ 109:.\Generated_Source\PSoC4/P2_1_A1.c **** {
+ 125              		.loc 1 109 0
+ 126              		.cfi_startproc
+ 110:.\Generated_Source\PSoC4/P2_1_A1.c ****     return (uint8)((P2_1_A1_DR & P2_1_A1_MASK) >> P2_1_A1_SHIFT);
+ 127              		.loc 1 110 0
+ 128 0000 024B     		ldr	r3, .L15
+ 111:.\Generated_Source\PSoC4/P2_1_A1.c **** }
+ 129              		.loc 1 111 0
+ 130              		@ sp needed for prologue
+ 131              		.loc 1 110 0
+ 132 0002 1868     		ldr	r0, [r3]
+ 133 0004 8007     		lsl	r0, r0, #30
+ 134 0006 C00F     		lsr	r0, r0, #31
+ 135              		.loc 1 111 0
+ 136 0008 7047     		bx	lr
+ 137              	.L16:
+ 138 000a C046     		.align	2
+ 139              	.L15:
+ 140 000c 00020440 		.word	1074004480
+ 141              		.cfi_endproc
+ 142              	.LFE3:
+ 143              		.size	P2_1_A1_ReadDataReg, .-P2_1_A1_ReadDataReg
+ 144              		.section	.text.P2_1_A1_ClearInterrupt,"ax",%progbits
+ 145              		.align	1
+ 146              		.global	P2_1_A1_ClearInterrupt
+ 147              		.code	16
+ 148              		.thumb_func
+ 149              		.type	P2_1_A1_ClearInterrupt, %function
+ 150              	P2_1_A1_ClearInterrupt:
+ 151              	.LFB4:
+ 112:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+ 113:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+ 114:.\Generated_Source\PSoC4/P2_1_A1.c **** /* If Interrupts Are Enabled for this Pins component */ 
+ 115:.\Generated_Source\PSoC4/P2_1_A1.c **** #if defined(P2_1_A1_INTSTAT) 
+ 116:.\Generated_Source\PSoC4/P2_1_A1.c **** 
+ 117:.\Generated_Source\PSoC4/P2_1_A1.c ****     /*******************************************************************************
+ 118:.\Generated_Source\PSoC4/P2_1_A1.c ****     * Function Name: P2_1_A1_ClearInterrupt
+ 119:.\Generated_Source\PSoC4/P2_1_A1.c ****     ********************************************************************************
+ 120:.\Generated_Source\PSoC4/P2_1_A1.c ****     *
+ 121:.\Generated_Source\PSoC4/P2_1_A1.c ****     * Summary:
+ 122:.\Generated_Source\PSoC4/P2_1_A1.c ****     *  Clears any active interrupts attached to port and returns the value of the 
+ 123:.\Generated_Source\PSoC4/P2_1_A1.c ****     *  interrupt status register.
+ 124:.\Generated_Source\PSoC4/P2_1_A1.c ****     *
+ 125:.\Generated_Source\PSoC4/P2_1_A1.c ****     * Parameters:  
+ 126:.\Generated_Source\PSoC4/P2_1_A1.c ****     *  None 
+ 127:.\Generated_Source\PSoC4/P2_1_A1.c ****     *
+ 128:.\Generated_Source\PSoC4/P2_1_A1.c ****     * Return: 
+ 129:.\Generated_Source\PSoC4/P2_1_A1.c ****     *  Returns the value of the interrupt status register
+ 130:.\Generated_Source\PSoC4/P2_1_A1.c ****     *  
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 6
+
+
+ 131:.\Generated_Source\PSoC4/P2_1_A1.c ****     *******************************************************************************/
+ 132:.\Generated_Source\PSoC4/P2_1_A1.c ****     uint8 P2_1_A1_ClearInterrupt(void) 
+ 133:.\Generated_Source\PSoC4/P2_1_A1.c ****     {
+ 152              		.loc 1 133 0
+ 153              		.cfi_startproc
+ 134:.\Generated_Source\PSoC4/P2_1_A1.c **** 		uint8 maskedStatus = (uint8)(P2_1_A1_INTSTAT & P2_1_A1_MASK);
+ 154              		.loc 1 134 0
+ 155 0000 034B     		ldr	r3, .L19
+ 156 0002 0222     		mov	r2, #2
+ 157 0004 1868     		ldr	r0, [r3]
+ 135:.\Generated_Source\PSoC4/P2_1_A1.c **** 		P2_1_A1_INTSTAT = maskedStatus;
+ 136:.\Generated_Source\PSoC4/P2_1_A1.c ****         return maskedStatus >> P2_1_A1_SHIFT;
+ 137:.\Generated_Source\PSoC4/P2_1_A1.c ****     }
+ 158              		.loc 1 137 0
+ 159              		@ sp needed for prologue
+ 160              		.loc 1 134 0
+ 161 0006 1040     		and	r0, r0, r2
+ 162              	.LVL5:
+ 163              		.loc 1 135 0
+ 164 0008 1860     		str	r0, [r3]
+ 165 000a 4008     		lsr	r0, r0, #1
+ 166              	.LVL6:
+ 167 000c C0B2     		uxtb	r0, r0
+ 168              		.loc 1 137 0
+ 169 000e 7047     		bx	lr
+ 170              	.L20:
+ 171              		.align	2
+ 172              	.L19:
+ 173 0010 10020440 		.word	1074004496
+ 174              		.cfi_endproc
+ 175              	.LFE4:
+ 176              		.size	P2_1_A1_ClearInterrupt, .-P2_1_A1_ClearInterrupt
+ 177              		.text
+ 178              	.Letext0:
+ 179              		.section	.debug_loc,"",%progbits
+ 180              	.Ldebug_loc0:
+ 181              	.LLST1:
+ 182 0000 00000000 		.4byte	.LVL0
+ 183 0004 08000000 		.4byte	.LVL1
+ 184 0008 0100     		.2byte	0x1
+ 185 000a 50       		.byte	0x50
+ 186 000b 00000000 		.4byte	0x0
+ 187 000f 00000000 		.4byte	0x0
+ 188              	.LLST3:
+ 189 0013 00000000 		.4byte	.LVL3
+ 190 0017 08000000 		.4byte	.LVL4
+ 191 001b 0100     		.2byte	0x1
+ 192 001d 50       		.byte	0x50
+ 193 001e 00000000 		.4byte	0x0
+ 194 0022 00000000 		.4byte	0x0
+ 195              	.LLST7:
+ 196 0026 08000000 		.4byte	.LVL5
+ 197 002a 0C000000 		.4byte	.LVL6
+ 198 002e 0100     		.2byte	0x1
+ 199 0030 50       		.byte	0x50
+ 200 0031 00000000 		.4byte	0x0
+ 201 0035 00000000 		.4byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 7
+
+
+ 202              		.file 2 ".\\Generated_Source\\PSoC4\\/cytypes.h"
+ 203              		.section	.debug_info
+ 204 0000 3C010000 		.4byte	0x13c
+ 205 0004 0200     		.2byte	0x2
+ 206 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 207 000a 04       		.byte	0x4
+ 208 000b 01       		.uleb128 0x1
+ 209 000c BD000000 		.4byte	.LASF21
+ 210 0010 01       		.byte	0x1
+ 211 0011 7D010000 		.4byte	.LASF22
+ 212 0015 F4000000 		.4byte	.LASF23
+ 213 0019 00000000 		.4byte	0x0
+ 214 001d 00000000 		.4byte	0x0
+ 215 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 216 0025 00000000 		.4byte	.Ldebug_line0
+ 217 0029 02       		.uleb128 0x2
+ 218 002a 01       		.byte	0x1
+ 219 002b 06       		.byte	0x6
+ 220 002c 50010000 		.4byte	.LASF0
+ 221 0030 02       		.uleb128 0x2
+ 222 0031 01       		.byte	0x1
+ 223 0032 08       		.byte	0x8
+ 224 0033 2F000000 		.4byte	.LASF1
+ 225 0037 02       		.uleb128 0x2
+ 226 0038 02       		.byte	0x2
+ 227 0039 05       		.byte	0x5
+ 228 003a DB000000 		.4byte	.LASF2
+ 229 003e 02       		.uleb128 0x2
+ 230 003f 02       		.byte	0x2
+ 231 0040 07       		.byte	0x7
+ 232 0041 55000000 		.4byte	.LASF3
+ 233 0045 02       		.uleb128 0x2
+ 234 0046 04       		.byte	0x4
+ 235 0047 05       		.byte	0x5
+ 236 0048 EB000000 		.4byte	.LASF4
+ 237 004c 02       		.uleb128 0x2
+ 238 004d 04       		.byte	0x4
+ 239 004e 07       		.byte	0x7
+ 240 004f 43000000 		.4byte	.LASF5
+ 241 0053 02       		.uleb128 0x2
+ 242 0054 08       		.byte	0x8
+ 243 0055 05       		.byte	0x5
+ 244 0056 00000000 		.4byte	.LASF6
+ 245 005a 02       		.uleb128 0x2
+ 246 005b 08       		.byte	0x8
+ 247 005c 07       		.byte	0x7
+ 248 005d 7C000000 		.4byte	.LASF7
+ 249 0061 03       		.uleb128 0x3
+ 250 0062 04       		.byte	0x4
+ 251 0063 05       		.byte	0x5
+ 252 0064 696E7400 		.ascii	"int\000"
+ 253 0068 02       		.uleb128 0x2
+ 254 0069 04       		.byte	0x4
+ 255 006a 07       		.byte	0x7
+ 256 006b 6F000000 		.4byte	.LASF8
+ 257 006f 04       		.uleb128 0x4
+ 258 0070 E5000000 		.4byte	.LASF24
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 8
+
+
+ 259 0074 02       		.byte	0x2
+ 260 0075 4C       		.byte	0x4c
+ 261 0076 30000000 		.4byte	0x30
+ 262 007a 02       		.uleb128 0x2
+ 263 007b 04       		.byte	0x4
+ 264 007c 04       		.byte	0x4
+ 265 007d 29000000 		.4byte	.LASF9
+ 266 0081 02       		.uleb128 0x2
+ 267 0082 08       		.byte	0x8
+ 268 0083 04       		.byte	0x4
+ 269 0084 68000000 		.4byte	.LASF10
+ 270 0088 02       		.uleb128 0x2
+ 271 0089 01       		.byte	0x1
+ 272 008a 08       		.byte	0x8
+ 273 008b D6000000 		.4byte	.LASF11
+ 274 008f 05       		.uleb128 0x5
+ 275 0090 01       		.byte	0x1
+ 276 0091 93000000 		.4byte	.LASF12
+ 277 0095 01       		.byte	0x1
+ 278 0096 2A       		.byte	0x2a
+ 279 0097 01       		.byte	0x1
+ 280 0098 00000000 		.4byte	.LFB0
+ 281 009c 18000000 		.4byte	.LFE0
+ 282 00a0 01       		.byte	0x1
+ 283 00a1 5D       		.byte	0x5d
+ 284 00a2 C3000000 		.4byte	0xc3
+ 285 00a6 06       		.uleb128 0x6
+ 286 00a7 23000000 		.4byte	.LASF14
+ 287 00ab 01       		.byte	0x1
+ 288 00ac 2A       		.byte	0x2a
+ 289 00ad 6F000000 		.4byte	0x6f
+ 290 00b1 00000000 		.4byte	.LLST1
+ 291 00b5 07       		.uleb128 0x7
+ 292 00b6 3D000000 		.4byte	.LASF19
+ 293 00ba 01       		.byte	0x1
+ 294 00bb 2C       		.byte	0x2c
+ 295 00bc 6F000000 		.4byte	0x6f
+ 296 00c0 01       		.byte	0x1
+ 297 00c1 52       		.byte	0x52
+ 298 00c2 00       		.byte	0x0
+ 299 00c3 05       		.uleb128 0x5
+ 300 00c4 01       		.byte	0x1
+ 301 00c5 0E000000 		.4byte	.LASF13
+ 302 00c9 01       		.byte	0x1
+ 303 00ca 40       		.byte	0x40
+ 304 00cb 01       		.byte	0x1
+ 305 00cc 00000000 		.4byte	.LFB1
+ 306 00d0 18000000 		.4byte	.LFE1
+ 307 00d4 01       		.byte	0x1
+ 308 00d5 5D       		.byte	0x5d
+ 309 00d6 EA000000 		.4byte	0xea
+ 310 00da 06       		.uleb128 0x6
+ 311 00db A1000000 		.4byte	.LASF15
+ 312 00df 01       		.byte	0x1
+ 313 00e0 40       		.byte	0x40
+ 314 00e1 6F000000 		.4byte	0x6f
+ 315 00e5 13000000 		.4byte	.LLST3
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 9
+
+
+ 316 00e9 00       		.byte	0x0
+ 317 00ea 08       		.uleb128 0x8
+ 318 00eb 01       		.byte	0x1
+ 319 00ec 70010000 		.4byte	.LASF16
+ 320 00f0 01       		.byte	0x1
+ 321 00f1 58       		.byte	0x58
+ 322 00f2 01       		.byte	0x1
+ 323 00f3 6F000000 		.4byte	0x6f
+ 324 00f7 00000000 		.4byte	.LFB2
+ 325 00fb 10000000 		.4byte	.LFE2
+ 326 00ff 01       		.byte	0x1
+ 327 0100 5D       		.byte	0x5d
+ 328 0101 08       		.uleb128 0x8
+ 329 0102 01       		.byte	0x1
+ 330 0103 5C010000 		.4byte	.LASF17
+ 331 0107 01       		.byte	0x1
+ 332 0108 6C       		.byte	0x6c
+ 333 0109 01       		.byte	0x1
+ 334 010a 6F000000 		.4byte	0x6f
+ 335 010e 00000000 		.4byte	.LFB3
+ 336 0112 10000000 		.4byte	.LFE3
+ 337 0116 01       		.byte	0x1
+ 338 0117 5D       		.byte	0x5d
+ 339 0118 09       		.uleb128 0x9
+ 340 0119 01       		.byte	0x1
+ 341 011a A6000000 		.4byte	.LASF18
+ 342 011e 01       		.byte	0x1
+ 343 011f 84       		.byte	0x84
+ 344 0120 01       		.byte	0x1
+ 345 0121 6F000000 		.4byte	0x6f
+ 346 0125 00000000 		.4byte	.LFB4
+ 347 0129 14000000 		.4byte	.LFE4
+ 348 012d 01       		.byte	0x1
+ 349 012e 5D       		.byte	0x5d
+ 350 012f 0A       		.uleb128 0xa
+ 351 0130 C9000000 		.4byte	.LASF20
+ 352 0134 01       		.byte	0x1
+ 353 0135 86       		.byte	0x86
+ 354 0136 6F000000 		.4byte	0x6f
+ 355 013a 26000000 		.4byte	.LLST7
+ 356 013e 00       		.byte	0x0
+ 357 013f 00       		.byte	0x0
+ 358              		.section	.debug_abbrev
+ 359 0000 01       		.uleb128 0x1
+ 360 0001 11       		.uleb128 0x11
+ 361 0002 01       		.byte	0x1
+ 362 0003 25       		.uleb128 0x25
+ 363 0004 0E       		.uleb128 0xe
+ 364 0005 13       		.uleb128 0x13
+ 365 0006 0B       		.uleb128 0xb
+ 366 0007 03       		.uleb128 0x3
+ 367 0008 0E       		.uleb128 0xe
+ 368 0009 1B       		.uleb128 0x1b
+ 369 000a 0E       		.uleb128 0xe
+ 370 000b 11       		.uleb128 0x11
+ 371 000c 01       		.uleb128 0x1
+ 372 000d 52       		.uleb128 0x52
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 10
+
+
+ 373 000e 01       		.uleb128 0x1
+ 374 000f 55       		.uleb128 0x55
+ 375 0010 06       		.uleb128 0x6
+ 376 0011 10       		.uleb128 0x10
+ 377 0012 06       		.uleb128 0x6
+ 378 0013 00       		.byte	0x0
+ 379 0014 00       		.byte	0x0
+ 380 0015 02       		.uleb128 0x2
+ 381 0016 24       		.uleb128 0x24
+ 382 0017 00       		.byte	0x0
+ 383 0018 0B       		.uleb128 0xb
+ 384 0019 0B       		.uleb128 0xb
+ 385 001a 3E       		.uleb128 0x3e
+ 386 001b 0B       		.uleb128 0xb
+ 387 001c 03       		.uleb128 0x3
+ 388 001d 0E       		.uleb128 0xe
+ 389 001e 00       		.byte	0x0
+ 390 001f 00       		.byte	0x0
+ 391 0020 03       		.uleb128 0x3
+ 392 0021 24       		.uleb128 0x24
+ 393 0022 00       		.byte	0x0
+ 394 0023 0B       		.uleb128 0xb
+ 395 0024 0B       		.uleb128 0xb
+ 396 0025 3E       		.uleb128 0x3e
+ 397 0026 0B       		.uleb128 0xb
+ 398 0027 03       		.uleb128 0x3
+ 399 0028 08       		.uleb128 0x8
+ 400 0029 00       		.byte	0x0
+ 401 002a 00       		.byte	0x0
+ 402 002b 04       		.uleb128 0x4
+ 403 002c 16       		.uleb128 0x16
+ 404 002d 00       		.byte	0x0
+ 405 002e 03       		.uleb128 0x3
+ 406 002f 0E       		.uleb128 0xe
+ 407 0030 3A       		.uleb128 0x3a
+ 408 0031 0B       		.uleb128 0xb
+ 409 0032 3B       		.uleb128 0x3b
+ 410 0033 0B       		.uleb128 0xb
+ 411 0034 49       		.uleb128 0x49
+ 412 0035 13       		.uleb128 0x13
+ 413 0036 00       		.byte	0x0
+ 414 0037 00       		.byte	0x0
+ 415 0038 05       		.uleb128 0x5
+ 416 0039 2E       		.uleb128 0x2e
+ 417 003a 01       		.byte	0x1
+ 418 003b 3F       		.uleb128 0x3f
+ 419 003c 0C       		.uleb128 0xc
+ 420 003d 03       		.uleb128 0x3
+ 421 003e 0E       		.uleb128 0xe
+ 422 003f 3A       		.uleb128 0x3a
+ 423 0040 0B       		.uleb128 0xb
+ 424 0041 3B       		.uleb128 0x3b
+ 425 0042 0B       		.uleb128 0xb
+ 426 0043 27       		.uleb128 0x27
+ 427 0044 0C       		.uleb128 0xc
+ 428 0045 11       		.uleb128 0x11
+ 429 0046 01       		.uleb128 0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 11
+
+
+ 430 0047 12       		.uleb128 0x12
+ 431 0048 01       		.uleb128 0x1
+ 432 0049 40       		.uleb128 0x40
+ 433 004a 0A       		.uleb128 0xa
+ 434 004b 01       		.uleb128 0x1
+ 435 004c 13       		.uleb128 0x13
+ 436 004d 00       		.byte	0x0
+ 437 004e 00       		.byte	0x0
+ 438 004f 06       		.uleb128 0x6
+ 439 0050 05       		.uleb128 0x5
+ 440 0051 00       		.byte	0x0
+ 441 0052 03       		.uleb128 0x3
+ 442 0053 0E       		.uleb128 0xe
+ 443 0054 3A       		.uleb128 0x3a
+ 444 0055 0B       		.uleb128 0xb
+ 445 0056 3B       		.uleb128 0x3b
+ 446 0057 0B       		.uleb128 0xb
+ 447 0058 49       		.uleb128 0x49
+ 448 0059 13       		.uleb128 0x13
+ 449 005a 02       		.uleb128 0x2
+ 450 005b 06       		.uleb128 0x6
+ 451 005c 00       		.byte	0x0
+ 452 005d 00       		.byte	0x0
+ 453 005e 07       		.uleb128 0x7
+ 454 005f 34       		.uleb128 0x34
+ 455 0060 00       		.byte	0x0
+ 456 0061 03       		.uleb128 0x3
+ 457 0062 0E       		.uleb128 0xe
+ 458 0063 3A       		.uleb128 0x3a
+ 459 0064 0B       		.uleb128 0xb
+ 460 0065 3B       		.uleb128 0x3b
+ 461 0066 0B       		.uleb128 0xb
+ 462 0067 49       		.uleb128 0x49
+ 463 0068 13       		.uleb128 0x13
+ 464 0069 02       		.uleb128 0x2
+ 465 006a 0A       		.uleb128 0xa
+ 466 006b 00       		.byte	0x0
+ 467 006c 00       		.byte	0x0
+ 468 006d 08       		.uleb128 0x8
+ 469 006e 2E       		.uleb128 0x2e
+ 470 006f 00       		.byte	0x0
+ 471 0070 3F       		.uleb128 0x3f
+ 472 0071 0C       		.uleb128 0xc
+ 473 0072 03       		.uleb128 0x3
+ 474 0073 0E       		.uleb128 0xe
+ 475 0074 3A       		.uleb128 0x3a
+ 476 0075 0B       		.uleb128 0xb
+ 477 0076 3B       		.uleb128 0x3b
+ 478 0077 0B       		.uleb128 0xb
+ 479 0078 27       		.uleb128 0x27
+ 480 0079 0C       		.uleb128 0xc
+ 481 007a 49       		.uleb128 0x49
+ 482 007b 13       		.uleb128 0x13
+ 483 007c 11       		.uleb128 0x11
+ 484 007d 01       		.uleb128 0x1
+ 485 007e 12       		.uleb128 0x12
+ 486 007f 01       		.uleb128 0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 12
+
+
+ 487 0080 40       		.uleb128 0x40
+ 488 0081 0A       		.uleb128 0xa
+ 489 0082 00       		.byte	0x0
+ 490 0083 00       		.byte	0x0
+ 491 0084 09       		.uleb128 0x9
+ 492 0085 2E       		.uleb128 0x2e
+ 493 0086 01       		.byte	0x1
+ 494 0087 3F       		.uleb128 0x3f
+ 495 0088 0C       		.uleb128 0xc
+ 496 0089 03       		.uleb128 0x3
+ 497 008a 0E       		.uleb128 0xe
+ 498 008b 3A       		.uleb128 0x3a
+ 499 008c 0B       		.uleb128 0xb
+ 500 008d 3B       		.uleb128 0x3b
+ 501 008e 0B       		.uleb128 0xb
+ 502 008f 27       		.uleb128 0x27
+ 503 0090 0C       		.uleb128 0xc
+ 504 0091 49       		.uleb128 0x49
+ 505 0092 13       		.uleb128 0x13
+ 506 0093 11       		.uleb128 0x11
+ 507 0094 01       		.uleb128 0x1
+ 508 0095 12       		.uleb128 0x12
+ 509 0096 01       		.uleb128 0x1
+ 510 0097 40       		.uleb128 0x40
+ 511 0098 0A       		.uleb128 0xa
+ 512 0099 00       		.byte	0x0
+ 513 009a 00       		.byte	0x0
+ 514 009b 0A       		.uleb128 0xa
+ 515 009c 34       		.uleb128 0x34
+ 516 009d 00       		.byte	0x0
+ 517 009e 03       		.uleb128 0x3
+ 518 009f 0E       		.uleb128 0xe
+ 519 00a0 3A       		.uleb128 0x3a
+ 520 00a1 0B       		.uleb128 0xb
+ 521 00a2 3B       		.uleb128 0x3b
+ 522 00a3 0B       		.uleb128 0xb
+ 523 00a4 49       		.uleb128 0x49
+ 524 00a5 13       		.uleb128 0x13
+ 525 00a6 02       		.uleb128 0x2
+ 526 00a7 06       		.uleb128 0x6
+ 527 00a8 00       		.byte	0x0
+ 528 00a9 00       		.byte	0x0
+ 529 00aa 00       		.byte	0x0
+ 530              		.section	.debug_pubnames,"",%progbits
+ 531 0000 7D000000 		.4byte	0x7d
+ 532 0004 0200     		.2byte	0x2
+ 533 0006 00000000 		.4byte	.Ldebug_info0
+ 534 000a 40010000 		.4byte	0x140
+ 535 000e 8F000000 		.4byte	0x8f
+ 536 0012 50325F31 		.ascii	"P2_1_A1_Write\000"
+ 536      5F41315F 
+ 536      57726974 
+ 536      6500
+ 537 0020 C3000000 		.4byte	0xc3
+ 538 0024 50325F31 		.ascii	"P2_1_A1_SetDriveMode\000"
+ 538      5F41315F 
+ 538      53657444 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 13
+
+
+ 538      72697665 
+ 538      4D6F6465 
+ 539 0039 EA000000 		.4byte	0xea
+ 540 003d 50325F31 		.ascii	"P2_1_A1_Read\000"
+ 540      5F41315F 
+ 540      52656164 
+ 540      00
+ 541 004a 01010000 		.4byte	0x101
+ 542 004e 50325F31 		.ascii	"P2_1_A1_ReadDataReg\000"
+ 542      5F41315F 
+ 542      52656164 
+ 542      44617461 
+ 542      52656700 
+ 543 0062 18010000 		.4byte	0x118
+ 544 0066 50325F31 		.ascii	"P2_1_A1_ClearInterrupt\000"
+ 544      5F41315F 
+ 544      436C6561 
+ 544      72496E74 
+ 544      65727275 
+ 545 007d 00000000 		.4byte	0x0
+ 546              		.section	.debug_aranges,"",%progbits
+ 547 0000 3C000000 		.4byte	0x3c
+ 548 0004 0200     		.2byte	0x2
+ 549 0006 00000000 		.4byte	.Ldebug_info0
+ 550 000a 04       		.byte	0x4
+ 551 000b 00       		.byte	0x0
+ 552 000c 0000     		.2byte	0x0
+ 553 000e 0000     		.2byte	0x0
+ 554 0010 00000000 		.4byte	.LFB0
+ 555 0014 18000000 		.4byte	.LFE0-.LFB0
+ 556 0018 00000000 		.4byte	.LFB1
+ 557 001c 18000000 		.4byte	.LFE1-.LFB1
+ 558 0020 00000000 		.4byte	.LFB2
+ 559 0024 10000000 		.4byte	.LFE2-.LFB2
+ 560 0028 00000000 		.4byte	.LFB3
+ 561 002c 10000000 		.4byte	.LFE3-.LFB3
+ 562 0030 00000000 		.4byte	.LFB4
+ 563 0034 14000000 		.4byte	.LFE4-.LFB4
+ 564 0038 00000000 		.4byte	0x0
+ 565 003c 00000000 		.4byte	0x0
+ 566              		.section	.debug_ranges,"",%progbits
+ 567              	.Ldebug_ranges0:
+ 568 0000 00000000 		.4byte	.Ltext0
+ 569 0004 00000000 		.4byte	.Letext0
+ 570 0008 00000000 		.4byte	.LFB0
+ 571 000c 18000000 		.4byte	.LFE0
+ 572 0010 00000000 		.4byte	.LFB1
+ 573 0014 18000000 		.4byte	.LFE1
+ 574 0018 00000000 		.4byte	.LFB2
+ 575 001c 10000000 		.4byte	.LFE2
+ 576 0020 00000000 		.4byte	.LFB3
+ 577 0024 10000000 		.4byte	.LFE3
+ 578 0028 00000000 		.4byte	.LFB4
+ 579 002c 14000000 		.4byte	.LFE4
+ 580 0030 00000000 		.4byte	0x0
+ 581 0034 00000000 		.4byte	0x0
+ 582              		.section	.debug_str,"MS",%progbits,1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 14
+
+
+ 583              	.LASF6:
+ 584 0000 6C6F6E67 		.ascii	"long long int\000"
+ 584      206C6F6E 
+ 584      6720696E 
+ 584      7400
+ 585              	.LASF13:
+ 586 000e 50325F31 		.ascii	"P2_1_A1_SetDriveMode\000"
+ 586      5F41315F 
+ 586      53657444 
+ 586      72697665 
+ 586      4D6F6465 
+ 587              	.LASF14:
+ 588 0023 76616C75 		.ascii	"value\000"
+ 588      6500
+ 589              	.LASF9:
+ 590 0029 666C6F61 		.ascii	"float\000"
+ 590      7400
+ 591              	.LASF1:
+ 592 002f 756E7369 		.ascii	"unsigned char\000"
+ 592      676E6564 
+ 592      20636861 
+ 592      7200
+ 593              	.LASF19:
+ 594 003d 64725661 		.ascii	"drVal\000"
+ 594      6C00
+ 595              	.LASF5:
+ 596 0043 6C6F6E67 		.ascii	"long unsigned int\000"
+ 596      20756E73 
+ 596      69676E65 
+ 596      6420696E 
+ 596      7400
+ 597              	.LASF3:
+ 598 0055 73686F72 		.ascii	"short unsigned int\000"
+ 598      7420756E 
+ 598      7369676E 
+ 598      65642069 
+ 598      6E7400
+ 599              	.LASF10:
+ 600 0068 646F7562 		.ascii	"double\000"
+ 600      6C6500
+ 601              	.LASF8:
+ 602 006f 756E7369 		.ascii	"unsigned int\000"
+ 602      676E6564 
+ 602      20696E74 
+ 602      00
+ 603              	.LASF7:
+ 604 007c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 604      206C6F6E 
+ 604      6720756E 
+ 604      7369676E 
+ 604      65642069 
+ 605              	.LASF12:
+ 606 0093 50325F31 		.ascii	"P2_1_A1_Write\000"
+ 606      5F41315F 
+ 606      57726974 
+ 606      6500
+ 607              	.LASF15:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 15
+
+
+ 608 00a1 6D6F6465 		.ascii	"mode\000"
+ 608      00
+ 609              	.LASF18:
+ 610 00a6 50325F31 		.ascii	"P2_1_A1_ClearInterrupt\000"
+ 610      5F41315F 
+ 610      436C6561 
+ 610      72496E74 
+ 610      65727275 
+ 611              	.LASF21:
+ 612 00bd 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 612      4320342E 
+ 612      342E3100 
+ 613              	.LASF20:
+ 614 00c9 6D61736B 		.ascii	"maskedStatus\000"
+ 614      65645374 
+ 614      61747573 
+ 614      00
+ 615              	.LASF11:
+ 616 00d6 63686172 		.ascii	"char\000"
+ 616      00
+ 617              	.LASF2:
+ 618 00db 73686F72 		.ascii	"short int\000"
+ 618      7420696E 
+ 618      7400
+ 619              	.LASF24:
+ 620 00e5 75696E74 		.ascii	"uint8\000"
+ 620      3800
+ 621              	.LASF4:
+ 622 00eb 6C6F6E67 		.ascii	"long int\000"
+ 622      20696E74 
+ 622      00
+ 623              	.LASF23:
+ 624 00f4 433A5C55 		.ascii	"C:\\Users\\kees\\Documents\\test_projects\\My fun s"
+ 624      73657273 
+ 624      5C6B6565 
+ 624      735C446F 
+ 624      63756D65 
+ 625 0122 74756666 		.ascii	"tuff\\3d_cube\\3d_cube.Bundle01\\Design137.cydsn\000"
+ 625      5C33645F 
+ 625      63756265 
+ 625      5C33645F 
+ 625      63756265 
+ 626              	.LASF0:
+ 627 0150 7369676E 		.ascii	"signed char\000"
+ 627      65642063 
+ 627      68617200 
+ 628              	.LASF17:
+ 629 015c 50325F31 		.ascii	"P2_1_A1_ReadDataReg\000"
+ 629      5F41315F 
+ 629      52656164 
+ 629      44617461 
+ 629      52656700 
+ 630              	.LASF16:
+ 631 0170 50325F31 		.ascii	"P2_1_A1_Read\000"
+ 631      5F41315F 
+ 631      52656164 
+ 631      00
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccIoDkES.s 			page 16
+
+
+ 632              	.LASF22:
+ 633 017d 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\P2_1_A1.c\000"
+ 633      6E657261 
+ 633      7465645F 
+ 633      536F7572 
+ 633      63655C50 
+ 634              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

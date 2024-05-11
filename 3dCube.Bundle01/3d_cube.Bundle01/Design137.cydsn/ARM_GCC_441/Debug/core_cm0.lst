@@ -1,0 +1,1614 @@
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"core_cm0.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 B4010000 		.text
+  19      0200E000 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.text.__get_PSP,"ax",%progbits
+  23              		.align	1
+  24              		.global	__get_PSP
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	__get_PSP, %function
+  28              	__get_PSP:
+  29              	.LFB0:
+  30              		.file 1 ".\\Generated_Source\\PSoC4\\core_cm0.c"
+   1:.\Generated_Source\PSoC4/core_cm0.c **** /******************************************************************************
+   2:.\Generated_Source\PSoC4/core_cm0.c ****  * @file     core_cm0.c
+   3:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief    CMSIS Cortex-M0 Core Peripheral Access Layer Source File
+   4:.\Generated_Source\PSoC4/core_cm0.c ****  * @version  V1.30
+   5:.\Generated_Source\PSoC4/core_cm0.c ****  * @date     30. October 2009
+   6:.\Generated_Source\PSoC4/core_cm0.c ****  *
+   7:.\Generated_Source\PSoC4/core_cm0.c ****  * @note
+   8:.\Generated_Source\PSoC4/core_cm0.c ****  * Copyright (C) 2009 ARM Limited. All rights reserved.
+   9:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  10:.\Generated_Source\PSoC4/core_cm0.c ****  * @par
+  11:.\Generated_Source\PSoC4/core_cm0.c ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M
+  12:.\Generated_Source\PSoC4/core_cm0.c ****  * processor based microcontrollers.  This file can be freely distributed
+  13:.\Generated_Source\PSoC4/core_cm0.c ****  * within development tools that are supporting such ARM based processors.
+  14:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  15:.\Generated_Source\PSoC4/core_cm0.c ****  * @par
+  16:.\Generated_Source\PSoC4/core_cm0.c ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  17:.\Generated_Source\PSoC4/core_cm0.c ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  18:.\Generated_Source\PSoC4/core_cm0.c ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  19:.\Generated_Source\PSoC4/core_cm0.c ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+  20:.\Generated_Source\PSoC4/core_cm0.c ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  21:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  22:.\Generated_Source\PSoC4/core_cm0.c ****  ******************************************************************************/
+  23:.\Generated_Source\PSoC4/core_cm0.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 2
+
+
+  24:.\Generated_Source\PSoC4/core_cm0.c **** #include <stdint.h>
+  25:.\Generated_Source\PSoC4/core_cm0.c **** 
+  26:.\Generated_Source\PSoC4/core_cm0.c **** /* define compiler specific symbols */
+  27:.\Generated_Source\PSoC4/core_cm0.c **** #if defined ( __CC_ARM   )
+  28:.\Generated_Source\PSoC4/core_cm0.c ****   #define __ASM            __asm                                      /*!< asm keyword for ARM Comp
+  29:.\Generated_Source\PSoC4/core_cm0.c ****   #define __INLINE         __inline                                   /*!< inline keyword for ARM C
+  30:.\Generated_Source\PSoC4/core_cm0.c **** 
+  31:.\Generated_Source\PSoC4/core_cm0.c **** #elif defined ( __ICCARM__ )
+  32:.\Generated_Source\PSoC4/core_cm0.c ****   #define __ASM           __asm                                       /*!< asm keyword for IAR Comp
+  33:.\Generated_Source\PSoC4/core_cm0.c ****   #define __INLINE        inline                                      /*!< inline keyword for IAR C
+  34:.\Generated_Source\PSoC4/core_cm0.c **** 
+  35:.\Generated_Source\PSoC4/core_cm0.c **** #elif defined   (  __GNUC__  )
+  36:.\Generated_Source\PSoC4/core_cm0.c ****   #define __ASM            __asm                                      /*!< asm keyword for GNU Comp
+  37:.\Generated_Source\PSoC4/core_cm0.c ****   #define __INLINE         inline                                     /*!< inline keyword for GNU C
+  38:.\Generated_Source\PSoC4/core_cm0.c **** 
+  39:.\Generated_Source\PSoC4/core_cm0.c **** #elif defined   (  __TASKING__  )
+  40:.\Generated_Source\PSoC4/core_cm0.c ****   #define __ASM            __asm                                      /*!< asm keyword for TASKING 
+  41:.\Generated_Source\PSoC4/core_cm0.c ****   #define __INLINE         inline                                     /*!< inline keyword for TASKI
+  42:.\Generated_Source\PSoC4/core_cm0.c **** 
+  43:.\Generated_Source\PSoC4/core_cm0.c **** #endif
+  44:.\Generated_Source\PSoC4/core_cm0.c **** 
+  45:.\Generated_Source\PSoC4/core_cm0.c **** 
+  46:.\Generated_Source\PSoC4/core_cm0.c **** /* ###################  Compiler specific Intrinsics  ########################### */
+  47:.\Generated_Source\PSoC4/core_cm0.c **** 
+  48:.\Generated_Source\PSoC4/core_cm0.c **** #if defined ( __CC_ARM   ) /*------------------RealView Compiler -----------------*/
+  49:.\Generated_Source\PSoC4/core_cm0.c **** /* ARM armcc specific functions */
+  50:.\Generated_Source\PSoC4/core_cm0.c **** 
+  51:.\Generated_Source\PSoC4/core_cm0.c **** /**
+  52:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Process Stack Pointer
+  53:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  54:.\Generated_Source\PSoC4/core_cm0.c ****  * @return ProcessStackPointer
+  55:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  56:.\Generated_Source\PSoC4/core_cm0.c ****  * Return the actual process stack pointer
+  57:.\Generated_Source\PSoC4/core_cm0.c ****  */
+  58:.\Generated_Source\PSoC4/core_cm0.c **** __ASM uint32_t __get_PSP(void)
+  59:.\Generated_Source\PSoC4/core_cm0.c **** {
+  60:.\Generated_Source\PSoC4/core_cm0.c ****   mrs r0, psp
+  61:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+  62:.\Generated_Source\PSoC4/core_cm0.c **** }
+  63:.\Generated_Source\PSoC4/core_cm0.c **** 
+  64:.\Generated_Source\PSoC4/core_cm0.c **** /**
+  65:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Process Stack Pointer
+  66:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  67:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  topOfProcStack  Process Stack Pointer
+  68:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  69:.\Generated_Source\PSoC4/core_cm0.c ****  * Assign the value ProcessStackPointer to the MSP
+  70:.\Generated_Source\PSoC4/core_cm0.c ****  * (process stack pointer) Cortex processor register
+  71:.\Generated_Source\PSoC4/core_cm0.c ****  */
+  72:.\Generated_Source\PSoC4/core_cm0.c **** __ASM void __set_PSP(uint32_t topOfProcStack)
+  73:.\Generated_Source\PSoC4/core_cm0.c **** {
+  74:.\Generated_Source\PSoC4/core_cm0.c ****   msr psp, r0
+  75:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+  76:.\Generated_Source\PSoC4/core_cm0.c **** }
+  77:.\Generated_Source\PSoC4/core_cm0.c **** 
+  78:.\Generated_Source\PSoC4/core_cm0.c **** /**
+  79:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Main Stack Pointer
+  80:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 3
+
+
+  81:.\Generated_Source\PSoC4/core_cm0.c ****  * @return Main Stack Pointer
+  82:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  83:.\Generated_Source\PSoC4/core_cm0.c ****  * Return the current value of the MSP (main stack pointer)
+  84:.\Generated_Source\PSoC4/core_cm0.c ****  * Cortex processor register
+  85:.\Generated_Source\PSoC4/core_cm0.c ****  */
+  86:.\Generated_Source\PSoC4/core_cm0.c **** __ASM uint32_t __get_MSP(void)
+  87:.\Generated_Source\PSoC4/core_cm0.c **** {
+  88:.\Generated_Source\PSoC4/core_cm0.c ****   mrs r0, msp
+  89:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+  90:.\Generated_Source\PSoC4/core_cm0.c **** }
+  91:.\Generated_Source\PSoC4/core_cm0.c **** 
+  92:.\Generated_Source\PSoC4/core_cm0.c **** /**
+  93:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Main Stack Pointer
+  94:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  95:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  topOfMainStack  Main Stack Pointer
+  96:.\Generated_Source\PSoC4/core_cm0.c ****  *
+  97:.\Generated_Source\PSoC4/core_cm0.c ****  * Assign the value mainStackPointer to the MSP
+  98:.\Generated_Source\PSoC4/core_cm0.c ****  * (main stack pointer) Cortex processor register
+  99:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 100:.\Generated_Source\PSoC4/core_cm0.c **** __ASM void __set_MSP(uint32_t mainStackPointer)
+ 101:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 102:.\Generated_Source\PSoC4/core_cm0.c ****   msr msp, r0
+ 103:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+ 104:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 105:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 106:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 107:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Reverse byte order in unsigned short value
+ 108:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 109:.\Generated_Source\PSoC4/core_cm0.c ****  * @param   value  value to reverse
+ 110:.\Generated_Source\PSoC4/core_cm0.c ****  * @return         reversed value
+ 111:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 112:.\Generated_Source\PSoC4/core_cm0.c ****  * Reverse byte order in unsigned short value
+ 113:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 114:.\Generated_Source\PSoC4/core_cm0.c **** __ASM uint32_t __REV16(uint16_t value)
+ 115:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 116:.\Generated_Source\PSoC4/core_cm0.c ****   rev16 r0, r0
+ 117:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+ 118:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 119:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 120:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 121:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Reverse byte order in signed short value with sign extension to integer
+ 122:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 123:.\Generated_Source\PSoC4/core_cm0.c ****  * @param   value  value to reverse
+ 124:.\Generated_Source\PSoC4/core_cm0.c ****  * @return         reversed value
+ 125:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 126:.\Generated_Source\PSoC4/core_cm0.c ****  * Reverse byte order in signed short value with sign extension to integer
+ 127:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 128:.\Generated_Source\PSoC4/core_cm0.c **** __ASM int32_t __REVSH(int16_t value)
+ 129:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 130:.\Generated_Source\PSoC4/core_cm0.c ****   revsh r0, r0
+ 131:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+ 132:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 133:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 134:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 135:.\Generated_Source\PSoC4/core_cm0.c **** #if (__ARMCC_VERSION < 400000)
+ 136:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 137:.\Generated_Source\PSoC4/core_cm0.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 4
+
+
+ 138:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 139:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Priority Mask value
+ 140:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 141:.\Generated_Source\PSoC4/core_cm0.c ****  * @return PriMask
+ 142:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 143:.\Generated_Source\PSoC4/core_cm0.c ****  * Return state of the priority mask bit from the priority mask register
+ 144:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 145:.\Generated_Source\PSoC4/core_cm0.c **** __ASM uint32_t __get_PRIMASK(void)
+ 146:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 147:.\Generated_Source\PSoC4/core_cm0.c ****   mrs r0, primask
+ 148:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+ 149:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 150:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 151:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 152:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Priority Mask value
+ 153:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 154:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  priMask  PriMask
+ 155:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 156:.\Generated_Source\PSoC4/core_cm0.c ****  * Set the priority mask bit in the priority mask register
+ 157:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 158:.\Generated_Source\PSoC4/core_cm0.c **** __ASM void __set_PRIMASK(uint32_t priMask)
+ 159:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 160:.\Generated_Source\PSoC4/core_cm0.c ****   msr primask, r0
+ 161:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+ 162:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 163:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 164:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 165:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Control Register value
+ 166:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 167:.\Generated_Source\PSoC4/core_cm0.c ****  * @return Control value
+ 168:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 169:.\Generated_Source\PSoC4/core_cm0.c ****  * Return the content of the control register
+ 170:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 171:.\Generated_Source\PSoC4/core_cm0.c **** __ASM uint32_t __get_CONTROL(void)
+ 172:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 173:.\Generated_Source\PSoC4/core_cm0.c ****   mrs r0, control
+ 174:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+ 175:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 176:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 177:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 178:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Control Register value
+ 179:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 180:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  control  Control value
+ 181:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 182:.\Generated_Source\PSoC4/core_cm0.c ****  * Set the control register
+ 183:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 184:.\Generated_Source\PSoC4/core_cm0.c **** __ASM void __set_CONTROL(uint32_t control)
+ 185:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 186:.\Generated_Source\PSoC4/core_cm0.c ****   msr control, r0
+ 187:.\Generated_Source\PSoC4/core_cm0.c ****   bx lr
+ 188:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 189:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 190:.\Generated_Source\PSoC4/core_cm0.c **** #endif /* __ARMCC_VERSION  */
+ 191:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 192:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 193:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 194:.\Generated_Source\PSoC4/core_cm0.c **** #elif (defined (__ICCARM__)) /*------------------ ICC Compiler -------------------*/
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 5
+
+
+ 195:.\Generated_Source\PSoC4/core_cm0.c **** /* IAR iccarm specific functions */
+ 196:.\Generated_Source\PSoC4/core_cm0.c **** #pragma diag_suppress=Pe940
+ 197:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 198:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 199:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Process Stack Pointer
+ 200:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 201:.\Generated_Source\PSoC4/core_cm0.c ****  * @return ProcessStackPointer
+ 202:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 203:.\Generated_Source\PSoC4/core_cm0.c ****  * Return the actual process stack pointer
+ 204:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 205:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __get_PSP(void)
+ 206:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 207:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("mrs r0, psp");
+ 208:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("bx lr");
+ 209:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 210:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 211:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 212:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Process Stack Pointer
+ 213:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 214:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  topOfProcStack  Process Stack Pointer
+ 215:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 216:.\Generated_Source\PSoC4/core_cm0.c ****  * Assign the value ProcessStackPointer to the MSP
+ 217:.\Generated_Source\PSoC4/core_cm0.c ****  * (process stack pointer) Cortex processor register
+ 218:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 219:.\Generated_Source\PSoC4/core_cm0.c **** void __set_PSP(uint32_t topOfProcStack)
+ 220:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 221:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("msr psp, r0");
+ 222:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("bx lr");
+ 223:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 224:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 225:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 226:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Main Stack Pointer
+ 227:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 228:.\Generated_Source\PSoC4/core_cm0.c ****  * @return Main Stack Pointer
+ 229:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 230:.\Generated_Source\PSoC4/core_cm0.c ****  * Return the current value of the MSP (main stack pointer)
+ 231:.\Generated_Source\PSoC4/core_cm0.c ****  * Cortex processor register
+ 232:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 233:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __get_MSP(void)
+ 234:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 235:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("mrs r0, msp");
+ 236:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("bx lr");
+ 237:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 238:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 239:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 240:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Main Stack Pointer
+ 241:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 242:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  topOfMainStack  Main Stack Pointer
+ 243:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 244:.\Generated_Source\PSoC4/core_cm0.c ****  * Assign the value mainStackPointer to the MSP
+ 245:.\Generated_Source\PSoC4/core_cm0.c ****  * (main stack pointer) Cortex processor register
+ 246:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 247:.\Generated_Source\PSoC4/core_cm0.c **** void __set_MSP(uint32_t topOfMainStack)
+ 248:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 249:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("msr msp, r0");
+ 250:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("bx lr");
+ 251:.\Generated_Source\PSoC4/core_cm0.c **** }
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 6
+
+
+ 252:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 253:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 254:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Reverse byte order in unsigned short value
+ 255:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 256:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  value  value to reverse
+ 257:.\Generated_Source\PSoC4/core_cm0.c ****  * @return        reversed value
+ 258:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 259:.\Generated_Source\PSoC4/core_cm0.c ****  * Reverse byte order in unsigned short value
+ 260:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 261:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __REV16(uint16_t value)
+ 262:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 263:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("rev16 r0, r0");
+ 264:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM("bx lr");
+ 265:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 266:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 267:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 268:.\Generated_Source\PSoC4/core_cm0.c **** #pragma diag_default=Pe940
+ 269:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 270:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 271:.\Generated_Source\PSoC4/core_cm0.c **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
+ 272:.\Generated_Source\PSoC4/core_cm0.c **** /* GNU gcc specific functions */
+ 273:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 274:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 275:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Process Stack Pointer
+ 276:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 277:.\Generated_Source\PSoC4/core_cm0.c ****  * @return ProcessStackPointer
+ 278:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 279:.\Generated_Source\PSoC4/core_cm0.c ****  * Return the actual process stack pointer
+ 280:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 281:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __get_PSP(void) __attribute__( ( naked ) );
+ 282:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __get_PSP(void)
+ 283:.\Generated_Source\PSoC4/core_cm0.c **** {
+  31              		.loc 1 283 0
+  32              		.cfi_startproc
+ 284:.\Generated_Source\PSoC4/core_cm0.c ****   uint32_t result=0;
+ 285:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 286:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("MRS %0, psp\n\t"
+  33              		.loc 1 286 0
+  34              	@ 286 ".\Generated_Source\PSoC4\core_cm0.c" 1
+  35 0000 EFF30980 		MRS r0, psp
+  36 0004 001C     		MOV r0, r0 
+  37 0006 7047     		BX  lr     
+  38              		
+  39              	@ 0 "" 2
+  40              	.LVL0:
+  41              	.LVL1:
+ 287:.\Generated_Source\PSoC4/core_cm0.c ****                   "MOV r0, %0 \n\t"
+ 288:.\Generated_Source\PSoC4/core_cm0.c ****                   "BX  lr     \n\t"  : "=r" (result) );
+ 289:.\Generated_Source\PSoC4/core_cm0.c ****   return(result);
+ 290:.\Generated_Source\PSoC4/core_cm0.c **** }
+  42              		.loc 1 290 0
+  43              		.code	16
+  44              		.cfi_endproc
+  45              	.LFE0:
+  46              		.size	__get_PSP, .-__get_PSP
+  47              		.section	.text.__set_PSP,"ax",%progbits
+  48              		.align	1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 7
+
+
+  49              		.global	__set_PSP
+  50              		.code	16
+  51              		.thumb_func
+  52              		.type	__set_PSP, %function
+  53              	__set_PSP:
+  54              	.LFB1:
+ 291:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 292:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 293:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Process Stack Pointer
+ 294:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 295:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  topOfProcStack  Process Stack Pointer
+ 296:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 297:.\Generated_Source\PSoC4/core_cm0.c ****  * Assign the value ProcessStackPointer to the MSP
+ 298:.\Generated_Source\PSoC4/core_cm0.c ****  * (process stack pointer) Cortex processor register
+ 299:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 300:.\Generated_Source\PSoC4/core_cm0.c **** void __set_PSP(uint32_t topOfProcStack) __attribute__( ( naked ) );
+ 301:.\Generated_Source\PSoC4/core_cm0.c **** void __set_PSP(uint32_t topOfProcStack)
+ 302:.\Generated_Source\PSoC4/core_cm0.c **** {
+  55              		.loc 1 302 0
+  56              		.cfi_startproc
+  57              	.LVL2:
+ 303:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("MSR psp, %0\n\t"
+  58              		.loc 1 303 0
+  59              	@ 303 ".\Generated_Source\PSoC4\core_cm0.c" 1
+  60 0000 80F30988 		MSR psp, r0
+  61 0004 7047     		BX  lr     
+  62              		
+  63              	@ 0 "" 2
+ 304:.\Generated_Source\PSoC4/core_cm0.c ****                   "BX  lr     \n\t" : : "r" (topOfProcStack) );
+ 305:.\Generated_Source\PSoC4/core_cm0.c **** }
+  64              		.loc 1 305 0
+  65              		.code	16
+  66              		.cfi_endproc
+  67              	.LFE1:
+  68              		.size	__set_PSP, .-__set_PSP
+  69              		.section	.text.__get_MSP,"ax",%progbits
+  70              		.align	1
+  71              		.global	__get_MSP
+  72              		.code	16
+  73              		.thumb_func
+  74              		.type	__get_MSP, %function
+  75              	__get_MSP:
+  76              	.LFB2:
+ 306:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 307:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 308:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Main Stack Pointer
+ 309:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 310:.\Generated_Source\PSoC4/core_cm0.c ****  * @return Main Stack Pointer
+ 311:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 312:.\Generated_Source\PSoC4/core_cm0.c ****  * Return the current value of the MSP (main stack pointer)
+ 313:.\Generated_Source\PSoC4/core_cm0.c ****  * Cortex processor register
+ 314:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 315:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __get_MSP(void) __attribute__( ( naked ) );
+ 316:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __get_MSP(void)
+ 317:.\Generated_Source\PSoC4/core_cm0.c **** {
+  77              		.loc 1 317 0
+  78              		.cfi_startproc
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 8
+
+
+ 318:.\Generated_Source\PSoC4/core_cm0.c ****   uint32_t result=0;
+ 319:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 320:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("MRS %0, msp\n\t"
+  79              		.loc 1 320 0
+  80              	@ 320 ".\Generated_Source\PSoC4\core_cm0.c" 1
+  81 0000 EFF30880 		MRS r0, msp
+  82 0004 001C     		MOV r0, r0 
+  83 0006 7047     		BX  lr     
+  84              		
+  85              	@ 0 "" 2
+  86              	.LVL3:
+  87              	.LVL4:
+ 321:.\Generated_Source\PSoC4/core_cm0.c ****                   "MOV r0, %0 \n\t"
+ 322:.\Generated_Source\PSoC4/core_cm0.c ****                   "BX  lr     \n\t"  : "=r" (result) );
+ 323:.\Generated_Source\PSoC4/core_cm0.c ****   return(result);
+ 324:.\Generated_Source\PSoC4/core_cm0.c **** }
+  88              		.loc 1 324 0
+  89              		.code	16
+  90              		.cfi_endproc
+  91              	.LFE2:
+  92              		.size	__get_MSP, .-__get_MSP
+  93              		.section	.text.__set_MSP,"ax",%progbits
+  94              		.align	1
+  95              		.global	__set_MSP
+  96              		.code	16
+  97              		.thumb_func
+  98              		.type	__set_MSP, %function
+  99              	__set_MSP:
+ 100              	.LFB3:
+ 325:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 326:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 327:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Main Stack Pointer
+ 328:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 329:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  topOfMainStack  Main Stack Pointer
+ 330:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 331:.\Generated_Source\PSoC4/core_cm0.c ****  * Assign the value mainStackPointer to the MSP
+ 332:.\Generated_Source\PSoC4/core_cm0.c ****  * (main stack pointer) Cortex processor register
+ 333:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 334:.\Generated_Source\PSoC4/core_cm0.c **** void __set_MSP(uint32_t topOfMainStack) __attribute__( ( naked ) );
+ 335:.\Generated_Source\PSoC4/core_cm0.c **** void __set_MSP(uint32_t topOfMainStack)
+ 336:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 101              		.loc 1 336 0
+ 102              		.cfi_startproc
+ 103              	.LVL5:
+ 337:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("MSR msp, %0\n\t"
+ 104              		.loc 1 337 0
+ 105              	@ 337 ".\Generated_Source\PSoC4\core_cm0.c" 1
+ 106 0000 80F30888 		MSR msp, r0
+ 107 0004 7047     		BX  lr     
+ 108              		
+ 109              	@ 0 "" 2
+ 338:.\Generated_Source\PSoC4/core_cm0.c ****                   "BX  lr     \n\t" : : "r" (topOfMainStack) );
+ 339:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 110              		.loc 1 339 0
+ 111              		.code	16
+ 112              		.cfi_endproc
+ 113              	.LFE3:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 9
+
+
+ 114              		.size	__set_MSP, .-__set_MSP
+ 115              		.section	.text.__get_PRIMASK,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	__get_PRIMASK
+ 118              		.code	16
+ 119              		.thumb_func
+ 120              		.type	__get_PRIMASK, %function
+ 121              	__get_PRIMASK:
+ 122              	.LFB4:
+ 340:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 341:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 342:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 343:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Priority Mask value
+ 344:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 345:.\Generated_Source\PSoC4/core_cm0.c ****  * @return PriMask
+ 346:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 347:.\Generated_Source\PSoC4/core_cm0.c ****  * Return state of the priority mask bit from the priority mask register
+ 348:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 349:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __get_PRIMASK(void)
+ 350:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 123              		.loc 1 350 0
+ 124              		.cfi_startproc
+ 351:.\Generated_Source\PSoC4/core_cm0.c ****   uint32_t result=0;
+ 352:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 353:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("MRS %0, primask" : "=r" (result) );
+ 125              		.loc 1 353 0
+ 126              	@ 353 ".\Generated_Source\PSoC4\core_cm0.c" 1
+ 127 0000 EFF31080 		MRS r0, primask
+ 128              	@ 0 "" 2
+ 129              	.LVL6:
+ 130              	.LVL7:
+ 354:.\Generated_Source\PSoC4/core_cm0.c ****   return(result);
+ 355:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 131              		.loc 1 355 0
+ 132              		.code	16
+ 133              		@ sp needed for prologue
+ 134 0004 7047     		bx	lr
+ 135              		.cfi_endproc
+ 136              	.LFE4:
+ 137              		.size	__get_PRIMASK, .-__get_PRIMASK
+ 138              		.section	.text.__set_PRIMASK,"ax",%progbits
+ 139              		.align	1
+ 140              		.global	__set_PRIMASK
+ 141              		.code	16
+ 142              		.thumb_func
+ 143              		.type	__set_PRIMASK, %function
+ 144              	__set_PRIMASK:
+ 145              	.LFB5:
+ 356:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 357:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 358:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Priority Mask value
+ 359:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 360:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  priMask  PriMask
+ 361:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 362:.\Generated_Source\PSoC4/core_cm0.c ****  * Set the priority mask bit in the priority mask register
+ 363:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 364:.\Generated_Source\PSoC4/core_cm0.c **** void __set_PRIMASK(uint32_t priMask)
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 10
+
+
+ 365:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 146              		.loc 1 365 0
+ 147              		.cfi_startproc
+ 148              	.LVL8:
+ 366:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("MSR primask, %0" : : "r" (priMask) );
+ 149              		.loc 1 366 0
+ 150              	@ 366 ".\Generated_Source\PSoC4\core_cm0.c" 1
+ 151 0000 80F31088 		MSR primask, r0
+ 152              	@ 0 "" 2
+ 367:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 153              		.loc 1 367 0
+ 154              		.code	16
+ 155              		@ sp needed for prologue
+ 156 0004 7047     		bx	lr
+ 157              		.cfi_endproc
+ 158              	.LFE5:
+ 159              		.size	__set_PRIMASK, .-__set_PRIMASK
+ 160              		.section	.text.__get_CONTROL,"ax",%progbits
+ 161              		.align	1
+ 162              		.global	__get_CONTROL
+ 163              		.code	16
+ 164              		.thumb_func
+ 165              		.type	__get_CONTROL, %function
+ 166              	__get_CONTROL:
+ 167              	.LFB6:
+ 368:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 369:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 370:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Return the Control Register value
+ 371:.\Generated_Source\PSoC4/core_cm0.c **** *
+ 372:.\Generated_Source\PSoC4/core_cm0.c **** *  @return Control value
+ 373:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 374:.\Generated_Source\PSoC4/core_cm0.c ****  * Return the content of the control register
+ 375:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 376:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __get_CONTROL(void)
+ 377:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 168              		.loc 1 377 0
+ 169              		.cfi_startproc
+ 378:.\Generated_Source\PSoC4/core_cm0.c ****   uint32_t result=0;
+ 379:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 380:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("MRS %0, control" : "=r" (result) );
+ 170              		.loc 1 380 0
+ 171              	@ 380 ".\Generated_Source\PSoC4\core_cm0.c" 1
+ 172 0000 EFF31480 		MRS r0, control
+ 173              	@ 0 "" 2
+ 174              	.LVL9:
+ 175              	.LVL10:
+ 381:.\Generated_Source\PSoC4/core_cm0.c ****   return(result);
+ 382:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 176              		.loc 1 382 0
+ 177              		.code	16
+ 178              		@ sp needed for prologue
+ 179 0004 7047     		bx	lr
+ 180              		.cfi_endproc
+ 181              	.LFE6:
+ 182              		.size	__get_CONTROL, .-__get_CONTROL
+ 183              		.section	.text.__set_CONTROL,"ax",%progbits
+ 184              		.align	1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 11
+
+
+ 185              		.global	__set_CONTROL
+ 186              		.code	16
+ 187              		.thumb_func
+ 188              		.type	__set_CONTROL, %function
+ 189              	__set_CONTROL:
+ 190              	.LFB7:
+ 383:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 384:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 385:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Set the Control Register value
+ 386:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 387:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  control  Control value
+ 388:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 389:.\Generated_Source\PSoC4/core_cm0.c ****  * Set the control register
+ 390:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 391:.\Generated_Source\PSoC4/core_cm0.c **** void __set_CONTROL(uint32_t control)
+ 392:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 191              		.loc 1 392 0
+ 192              		.cfi_startproc
+ 193              	.LVL11:
+ 393:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("MSR control, %0" : : "r" (control) );
+ 194              		.loc 1 393 0
+ 195              	@ 393 ".\Generated_Source\PSoC4\core_cm0.c" 1
+ 196 0000 80F31488 		MSR control, r0
+ 197              	@ 0 "" 2
+ 394:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 198              		.loc 1 394 0
+ 199              		.code	16
+ 200              		@ sp needed for prologue
+ 201 0004 7047     		bx	lr
+ 202              		.cfi_endproc
+ 203              	.LFE7:
+ 204              		.size	__set_CONTROL, .-__set_CONTROL
+ 205              		.section	.text.__REV,"ax",%progbits
+ 206              		.align	1
+ 207              		.global	__REV
+ 208              		.code	16
+ 209              		.thumb_func
+ 210              		.type	__REV, %function
+ 211              	__REV:
+ 212              	.LFB8:
+ 395:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 396:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 397:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 398:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Reverse byte order in integer value
+ 399:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 400:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  value  value to reverse
+ 401:.\Generated_Source\PSoC4/core_cm0.c ****  * @return        reversed value
+ 402:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 403:.\Generated_Source\PSoC4/core_cm0.c ****  * Reverse byte order in integer value
+ 404:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 405:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __REV(uint32_t value)
+ 406:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 213              		.loc 1 406 0
+ 214              		.cfi_startproc
+ 215              	.LVL12:
+ 407:.\Generated_Source\PSoC4/core_cm0.c ****   uint32_t result=0;
+ 408:.\Generated_Source\PSoC4/core_cm0.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 12
+
+
+ 409:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("rev %0, %1" : "=r" (result) : "r" (value) );
+ 216              		.loc 1 409 0
+ 217              	@ 409 ".\Generated_Source\PSoC4\core_cm0.c" 1
+ 218 0000 00BA     		rev r0, r0
+ 219              	@ 0 "" 2
+ 220              	.LVL13:
+ 221              	.LVL14:
+ 410:.\Generated_Source\PSoC4/core_cm0.c ****   return(result);
+ 411:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 222              		.loc 1 411 0
+ 223              		.code	16
+ 224              		@ sp needed for prologue
+ 225 0002 7047     		bx	lr
+ 226              		.cfi_endproc
+ 227              	.LFE8:
+ 228              		.size	__REV, .-__REV
+ 229              		.section	.text.__REV16,"ax",%progbits
+ 230              		.align	1
+ 231              		.global	__REV16
+ 232              		.code	16
+ 233              		.thumb_func
+ 234              		.type	__REV16, %function
+ 235              	__REV16:
+ 236              	.LFB9:
+ 412:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 413:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 414:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Reverse byte order in unsigned short value
+ 415:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 416:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  value  value to reverse
+ 417:.\Generated_Source\PSoC4/core_cm0.c ****  * @return        reversed value
+ 418:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 419:.\Generated_Source\PSoC4/core_cm0.c ****  * Reverse byte order in unsigned short value
+ 420:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 421:.\Generated_Source\PSoC4/core_cm0.c **** uint32_t __REV16(uint16_t value)
+ 422:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 237              		.loc 1 422 0
+ 238              		.cfi_startproc
+ 239              	.LVL15:
+ 423:.\Generated_Source\PSoC4/core_cm0.c ****   uint32_t result=0;
+ 424:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 425:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("rev16 %0, %1" : "=r" (result) : "r" (value) );
+ 240              		.loc 1 425 0
+ 241              	@ 425 ".\Generated_Source\PSoC4\core_cm0.c" 1
+ 242 0000 40BA     		rev16 r0, r0
+ 243              	@ 0 "" 2
+ 244              	.LVL16:
+ 245              	.LVL17:
+ 426:.\Generated_Source\PSoC4/core_cm0.c ****   return(result);
+ 427:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 246              		.loc 1 427 0
+ 247              		.code	16
+ 248              		@ sp needed for prologue
+ 249 0002 7047     		bx	lr
+ 250              		.cfi_endproc
+ 251              	.LFE9:
+ 252              		.size	__REV16, .-__REV16
+ 253              		.section	.text.__REVSH,"ax",%progbits
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 13
+
+
+ 254              		.align	1
+ 255              		.global	__REVSH
+ 256              		.code	16
+ 257              		.thumb_func
+ 258              		.type	__REVSH, %function
+ 259              	__REVSH:
+ 260              	.LFB10:
+ 428:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 429:.\Generated_Source\PSoC4/core_cm0.c **** /**
+ 430:.\Generated_Source\PSoC4/core_cm0.c ****  * @brief  Reverse byte order in signed short value with sign extension to integer
+ 431:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 432:.\Generated_Source\PSoC4/core_cm0.c ****  * @param  value  value to reverse
+ 433:.\Generated_Source\PSoC4/core_cm0.c ****  * @return        reversed value
+ 434:.\Generated_Source\PSoC4/core_cm0.c ****  *
+ 435:.\Generated_Source\PSoC4/core_cm0.c ****  * Reverse byte order in signed short value with sign extension to integer
+ 436:.\Generated_Source\PSoC4/core_cm0.c ****  */
+ 437:.\Generated_Source\PSoC4/core_cm0.c **** int32_t __REVSH(int16_t value)
+ 438:.\Generated_Source\PSoC4/core_cm0.c **** {
+ 261              		.loc 1 438 0
+ 262              		.cfi_startproc
+ 263              	.LVL18:
+ 439:.\Generated_Source\PSoC4/core_cm0.c ****   uint32_t result=0;
+ 440:.\Generated_Source\PSoC4/core_cm0.c **** 
+ 441:.\Generated_Source\PSoC4/core_cm0.c ****   __ASM volatile ("revsh %0, %1" : "=r" (result) : "r" (value) );
+ 264              		.loc 1 441 0
+ 265              	@ 441 ".\Generated_Source\PSoC4\core_cm0.c" 1
+ 266 0000 C0BA     		revsh r0, r0
+ 267              	@ 0 "" 2
+ 268              	.LVL19:
+ 269              	.LVL20:
+ 442:.\Generated_Source\PSoC4/core_cm0.c ****   return(result);
+ 443:.\Generated_Source\PSoC4/core_cm0.c **** }
+ 270              		.loc 1 443 0
+ 271              		.code	16
+ 272              		@ sp needed for prologue
+ 273 0002 7047     		bx	lr
+ 274              		.cfi_endproc
+ 275              	.LFE10:
+ 276              		.size	__REVSH, .-__REVSH
+ 277              		.text
+ 278              	.Letext0:
+ 279              		.section	.debug_loc,"",%progbits
+ 280              	.Ldebug_loc0:
+ 281              	.LLST1:
+ 282 0000 08000000 		.4byte	.LVL0
+ 283 0004 08000000 		.4byte	.LVL1
+ 284 0008 0100     		.2byte	0x1
+ 285 000a 50       		.byte	0x50
+ 286 000b 00000000 		.4byte	0x0
+ 287 000f 00000000 		.4byte	0x0
+ 288              	.LLST4:
+ 289 0013 08000000 		.4byte	.LVL3
+ 290 0017 08000000 		.4byte	.LVL4
+ 291 001b 0100     		.2byte	0x1
+ 292 001d 50       		.byte	0x50
+ 293 001e 00000000 		.4byte	0x0
+ 294 0022 00000000 		.4byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 14
+
+
+ 295              	.LLST7:
+ 296 0026 04000000 		.4byte	.LVL6
+ 297 002a 04000000 		.4byte	.LVL7
+ 298 002e 0100     		.2byte	0x1
+ 299 0030 50       		.byte	0x50
+ 300 0031 00000000 		.4byte	0x0
+ 301 0035 00000000 		.4byte	0x0
+ 302              	.LLST10:
+ 303 0039 04000000 		.4byte	.LVL9
+ 304 003d 04000000 		.4byte	.LVL10
+ 305 0041 0100     		.2byte	0x1
+ 306 0043 50       		.byte	0x50
+ 307 0044 00000000 		.4byte	0x0
+ 308 0048 00000000 		.4byte	0x0
+ 309              	.LLST13:
+ 310 004c 00000000 		.4byte	.LVL12
+ 311 0050 02000000 		.4byte	.LVL13
+ 312 0054 0100     		.2byte	0x1
+ 313 0056 50       		.byte	0x50
+ 314 0057 00000000 		.4byte	0x0
+ 315 005b 00000000 		.4byte	0x0
+ 316              	.LLST14:
+ 317 005f 02000000 		.4byte	.LVL13
+ 318 0063 02000000 		.4byte	.LVL14
+ 319 0067 0100     		.2byte	0x1
+ 320 0069 50       		.byte	0x50
+ 321 006a 00000000 		.4byte	0x0
+ 322 006e 00000000 		.4byte	0x0
+ 323              	.LLST16:
+ 324 0072 00000000 		.4byte	.LVL15
+ 325 0076 02000000 		.4byte	.LVL16
+ 326 007a 0100     		.2byte	0x1
+ 327 007c 50       		.byte	0x50
+ 328 007d 00000000 		.4byte	0x0
+ 329 0081 00000000 		.4byte	0x0
+ 330              	.LLST17:
+ 331 0085 02000000 		.4byte	.LVL16
+ 332 0089 02000000 		.4byte	.LVL17
+ 333 008d 0100     		.2byte	0x1
+ 334 008f 50       		.byte	0x50
+ 335 0090 00000000 		.4byte	0x0
+ 336 0094 00000000 		.4byte	0x0
+ 337              	.LLST19:
+ 338 0098 00000000 		.4byte	.LVL18
+ 339 009c 02000000 		.4byte	.LVL19
+ 340 00a0 0100     		.2byte	0x1
+ 341 00a2 50       		.byte	0x50
+ 342 00a3 00000000 		.4byte	0x0
+ 343 00a7 00000000 		.4byte	0x0
+ 344              	.LLST20:
+ 345 00ab 02000000 		.4byte	.LVL19
+ 346 00af 02000000 		.4byte	.LVL20
+ 347 00b3 0100     		.2byte	0x1
+ 348 00b5 50       		.byte	0x50
+ 349 00b6 00000000 		.4byte	0x0
+ 350 00ba 00000000 		.4byte	0x0
+ 351              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\2.2\\psoc creator\\import\\gnu_cs\\arm\\4
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 15
+
+
+ 352              		.section	.debug_info
+ 353 0000 9B020000 		.4byte	0x29b
+ 354 0004 0200     		.2byte	0x2
+ 355 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 356 000a 04       		.byte	0x4
+ 357 000b 01       		.uleb128 0x1
+ 358 000c 04010000 		.4byte	.LASF30
+ 359 0010 01       		.byte	0x1
+ 360 0011 32010000 		.4byte	.LASF31
+ 361 0015 7B010000 		.4byte	.LASF32
+ 362 0019 00000000 		.4byte	0x0
+ 363 001d 00000000 		.4byte	0x0
+ 364 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 365 0025 00000000 		.4byte	.Ldebug_line0
+ 366 0029 02       		.uleb128 0x2
+ 367 002a 01       		.byte	0x1
+ 368 002b 06       		.byte	0x6
+ 369 002c D7010000 		.4byte	.LASF0
+ 370 0030 02       		.uleb128 0x2
+ 371 0031 01       		.byte	0x1
+ 372 0032 08       		.byte	0x8
+ 373 0033 69000000 		.4byte	.LASF1
+ 374 0037 03       		.uleb128 0x3
+ 375 0038 DD000000 		.4byte	.LASF3
+ 376 003c 02       		.byte	0x2
+ 377 003d 35       		.byte	0x35
+ 378 003e 42000000 		.4byte	0x42
+ 379 0042 02       		.uleb128 0x2
+ 380 0043 02       		.byte	0x2
+ 381 0044 05       		.byte	0x5
+ 382 0045 56010000 		.4byte	.LASF2
+ 383 0049 03       		.uleb128 0x3
+ 384 004a 60010000 		.4byte	.LASF4
+ 385 004e 02       		.byte	0x2
+ 386 004f 36       		.byte	0x36
+ 387 0050 54000000 		.4byte	0x54
+ 388 0054 02       		.uleb128 0x2
+ 389 0055 02       		.byte	0x2
+ 390 0056 07       		.byte	0x7
+ 391 0057 97000000 		.4byte	.LASF5
+ 392 005b 03       		.uleb128 0x3
+ 393 005c E5000000 		.4byte	.LASF6
+ 394 0060 02       		.byte	0x2
+ 395 0061 4F       		.byte	0x4f
+ 396 0062 66000000 		.4byte	0x66
+ 397 0066 02       		.uleb128 0x2
+ 398 0067 04       		.byte	0x4
+ 399 0068 05       		.byte	0x5
+ 400 0069 72010000 		.4byte	.LASF7
+ 401 006d 03       		.uleb128 0x3
+ 402 006e 69010000 		.4byte	.LASF8
+ 403 0072 02       		.byte	0x2
+ 404 0073 50       		.byte	0x50
+ 405 0074 78000000 		.4byte	0x78
+ 406 0078 02       		.uleb128 0x2
+ 407 0079 04       		.byte	0x4
+ 408 007a 07       		.byte	0x7
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 16
+
+
+ 409 007b 85000000 		.4byte	.LASF9
+ 410 007f 02       		.uleb128 0x2
+ 411 0080 08       		.byte	0x8
+ 412 0081 05       		.byte	0x5
+ 413 0082 00000000 		.4byte	.LASF10
+ 414 0086 02       		.uleb128 0x2
+ 415 0087 08       		.byte	0x8
+ 416 0088 07       		.byte	0x7
+ 417 0089 BF000000 		.4byte	.LASF11
+ 418 008d 04       		.uleb128 0x4
+ 419 008e 04       		.byte	0x4
+ 420 008f 05       		.byte	0x5
+ 421 0090 696E7400 		.ascii	"int\000"
+ 422 0094 02       		.uleb128 0x2
+ 423 0095 04       		.byte	0x4
+ 424 0096 07       		.byte	0x7
+ 425 0097 B2000000 		.4byte	.LASF12
+ 426 009b 05       		.uleb128 0x5
+ 427 009c 01       		.byte	0x1
+ 428 009d 4D000000 		.4byte	.LASF13
+ 429 00a1 01       		.byte	0x1
+ 430 00a2 1A01     		.2byte	0x11a
+ 431 00a4 01       		.byte	0x1
+ 432 00a5 6D000000 		.4byte	0x6d
+ 433 00a9 00000000 		.4byte	.LFB0
+ 434 00ad 08000000 		.4byte	.LFE0
+ 435 00b1 01       		.byte	0x1
+ 436 00b2 5D       		.byte	0x5d
+ 437 00b3 C8000000 		.4byte	0xc8
+ 438 00b7 06       		.uleb128 0x6
+ 439 00b8 D6000000 		.4byte	.LASF15
+ 440 00bc 01       		.byte	0x1
+ 441 00bd 1C01     		.2byte	0x11c
+ 442 00bf 6D000000 		.4byte	0x6d
+ 443 00c3 00000000 		.4byte	.LLST1
+ 444 00c7 00       		.byte	0x0
+ 445 00c8 07       		.uleb128 0x7
+ 446 00c9 01       		.byte	0x1
+ 447 00ca 57000000 		.4byte	.LASF16
+ 448 00ce 01       		.byte	0x1
+ 449 00cf 2D01     		.2byte	0x12d
+ 450 00d1 01       		.byte	0x1
+ 451 00d2 00000000 		.4byte	.LFB1
+ 452 00d6 06000000 		.4byte	.LFE1
+ 453 00da 01       		.byte	0x1
+ 454 00db 5D       		.byte	0x5d
+ 455 00dc EF000000 		.4byte	0xef
+ 456 00e0 08       		.uleb128 0x8
+ 457 00e1 2A000000 		.4byte	.LASF18
+ 458 00e5 01       		.byte	0x1
+ 459 00e6 2D01     		.2byte	0x12d
+ 460 00e8 6D000000 		.4byte	0x6d
+ 461 00ec 01       		.byte	0x1
+ 462 00ed 50       		.byte	0x50
+ 463 00ee 00       		.byte	0x0
+ 464 00ef 05       		.uleb128 0x5
+ 465 00f0 01       		.byte	0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 17
+
+
+ 466 00f1 39000000 		.4byte	.LASF14
+ 467 00f5 01       		.byte	0x1
+ 468 00f6 3C01     		.2byte	0x13c
+ 469 00f8 01       		.byte	0x1
+ 470 00f9 6D000000 		.4byte	0x6d
+ 471 00fd 00000000 		.4byte	.LFB2
+ 472 0101 08000000 		.4byte	.LFE2
+ 473 0105 01       		.byte	0x1
+ 474 0106 5D       		.byte	0x5d
+ 475 0107 1C010000 		.4byte	0x11c
+ 476 010b 06       		.uleb128 0x6
+ 477 010c D6000000 		.4byte	.LASF15
+ 478 0110 01       		.byte	0x1
+ 479 0111 3E01     		.2byte	0x13e
+ 480 0113 6D000000 		.4byte	0x6d
+ 481 0117 13000000 		.4byte	.LLST4
+ 482 011b 00       		.byte	0x0
+ 483 011c 07       		.uleb128 0x7
+ 484 011d 01       		.byte	0x1
+ 485 011e 43000000 		.4byte	.LASF17
+ 486 0122 01       		.byte	0x1
+ 487 0123 4F01     		.2byte	0x14f
+ 488 0125 01       		.byte	0x1
+ 489 0126 00000000 		.4byte	.LFB3
+ 490 012a 06000000 		.4byte	.LFE3
+ 491 012e 01       		.byte	0x1
+ 492 012f 5D       		.byte	0x5d
+ 493 0130 43010000 		.4byte	0x143
+ 494 0134 08       		.uleb128 0x8
+ 495 0135 F5000000 		.4byte	.LASF19
+ 496 0139 01       		.byte	0x1
+ 497 013a 4F01     		.2byte	0x14f
+ 498 013c 6D000000 		.4byte	0x6d
+ 499 0140 01       		.byte	0x1
+ 500 0141 50       		.byte	0x50
+ 501 0142 00       		.byte	0x0
+ 502 0143 05       		.uleb128 0x5
+ 503 0144 01       		.byte	0x1
+ 504 0145 77000000 		.4byte	.LASF20
+ 505 0149 01       		.byte	0x1
+ 506 014a 5D01     		.2byte	0x15d
+ 507 014c 01       		.byte	0x1
+ 508 014d 6D000000 		.4byte	0x6d
+ 509 0151 00000000 		.4byte	.LFB4
+ 510 0155 06000000 		.4byte	.LFE4
+ 511 0159 01       		.byte	0x1
+ 512 015a 5D       		.byte	0x5d
+ 513 015b 70010000 		.4byte	0x170
+ 514 015f 06       		.uleb128 0x6
+ 515 0160 D6000000 		.4byte	.LASF15
+ 516 0164 01       		.byte	0x1
+ 517 0165 5F01     		.2byte	0x15f
+ 518 0167 6D000000 		.4byte	0x6d
+ 519 016b 26000000 		.4byte	.LLST7
+ 520 016f 00       		.byte	0x0
+ 521 0170 07       		.uleb128 0x7
+ 522 0171 01       		.byte	0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 18
+
+
+ 523 0172 10010000 		.4byte	.LASF21
+ 524 0176 01       		.byte	0x1
+ 525 0177 6C01     		.2byte	0x16c
+ 526 0179 01       		.byte	0x1
+ 527 017a 00000000 		.4byte	.LFB5
+ 528 017e 06000000 		.4byte	.LFE5
+ 529 0182 01       		.byte	0x1
+ 530 0183 5D       		.byte	0x5d
+ 531 0184 97010000 		.4byte	0x197
+ 532 0188 08       		.uleb128 0x8
+ 533 0189 22000000 		.4byte	.LASF22
+ 534 018d 01       		.byte	0x1
+ 535 018e 6C01     		.2byte	0x16c
+ 536 0190 6D000000 		.4byte	0x6d
+ 537 0194 01       		.byte	0x1
+ 538 0195 50       		.byte	0x50
+ 539 0196 00       		.byte	0x0
+ 540 0197 05       		.uleb128 0x5
+ 541 0198 01       		.byte	0x1
+ 542 0199 24010000 		.4byte	.LASF23
+ 543 019d 01       		.byte	0x1
+ 544 019e 7801     		.2byte	0x178
+ 545 01a0 01       		.byte	0x1
+ 546 01a1 6D000000 		.4byte	0x6d
+ 547 01a5 00000000 		.4byte	.LFB6
+ 548 01a9 06000000 		.4byte	.LFE6
+ 549 01ad 01       		.byte	0x1
+ 550 01ae 5D       		.byte	0x5d
+ 551 01af C4010000 		.4byte	0x1c4
+ 552 01b3 06       		.uleb128 0x6
+ 553 01b4 D6000000 		.4byte	.LASF15
+ 554 01b8 01       		.byte	0x1
+ 555 01b9 7A01     		.2byte	0x17a
+ 556 01bb 6D000000 		.4byte	0x6d
+ 557 01bf 39000000 		.4byte	.LLST10
+ 558 01c3 00       		.byte	0x0
+ 559 01c4 07       		.uleb128 0x7
+ 560 01c5 01       		.byte	0x1
+ 561 01c6 0E000000 		.4byte	.LASF24
+ 562 01ca 01       		.byte	0x1
+ 563 01cb 8701     		.2byte	0x187
+ 564 01cd 01       		.byte	0x1
+ 565 01ce 00000000 		.4byte	.LFB7
+ 566 01d2 06000000 		.4byte	.LFE7
+ 567 01d6 01       		.byte	0x1
+ 568 01d7 5D       		.byte	0x5d
+ 569 01d8 EB010000 		.4byte	0x1eb
+ 570 01dc 08       		.uleb128 0x8
+ 571 01dd AA000000 		.4byte	.LASF25
+ 572 01e1 01       		.byte	0x1
+ 573 01e2 8701     		.2byte	0x187
+ 574 01e4 6D000000 		.4byte	0x6d
+ 575 01e8 01       		.byte	0x1
+ 576 01e9 50       		.byte	0x50
+ 577 01ea 00       		.byte	0x0
+ 578 01eb 05       		.uleb128 0x5
+ 579 01ec 01       		.byte	0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 19
+
+
+ 580 01ed 1E010000 		.4byte	.LASF26
+ 581 01f1 01       		.byte	0x1
+ 582 01f2 9501     		.2byte	0x195
+ 583 01f4 01       		.byte	0x1
+ 584 01f5 6D000000 		.4byte	0x6d
+ 585 01f9 00000000 		.4byte	.LFB8
+ 586 01fd 04000000 		.4byte	.LFE8
+ 587 0201 01       		.byte	0x1
+ 588 0202 5D       		.byte	0x5d
+ 589 0203 28020000 		.4byte	0x228
+ 590 0207 09       		.uleb128 0x9
+ 591 0208 1C000000 		.4byte	.LASF27
+ 592 020c 01       		.byte	0x1
+ 593 020d 9501     		.2byte	0x195
+ 594 020f 6D000000 		.4byte	0x6d
+ 595 0213 4C000000 		.4byte	.LLST13
+ 596 0217 06       		.uleb128 0x6
+ 597 0218 D6000000 		.4byte	.LASF15
+ 598 021c 01       		.byte	0x1
+ 599 021d 9701     		.2byte	0x197
+ 600 021f 6D000000 		.4byte	0x6d
+ 601 0223 5F000000 		.4byte	.LLST14
+ 602 0227 00       		.byte	0x0
+ 603 0228 05       		.uleb128 0x5
+ 604 0229 01       		.byte	0x1
+ 605 022a 61000000 		.4byte	.LASF28
+ 606 022e 01       		.byte	0x1
+ 607 022f A501     		.2byte	0x1a5
+ 608 0231 01       		.byte	0x1
+ 609 0232 6D000000 		.4byte	0x6d
+ 610 0236 00000000 		.4byte	.LFB9
+ 611 023a 04000000 		.4byte	.LFE9
+ 612 023e 01       		.byte	0x1
+ 613 023f 5D       		.byte	0x5d
+ 614 0240 65020000 		.4byte	0x265
+ 615 0244 09       		.uleb128 0x9
+ 616 0245 1C000000 		.4byte	.LASF27
+ 617 0249 01       		.byte	0x1
+ 618 024a A501     		.2byte	0x1a5
+ 619 024c 49000000 		.4byte	0x49
+ 620 0250 72000000 		.4byte	.LLST16
+ 621 0254 06       		.uleb128 0x6
+ 622 0255 D6000000 		.4byte	.LASF15
+ 623 0259 01       		.byte	0x1
+ 624 025a A701     		.2byte	0x1a7
+ 625 025c 6D000000 		.4byte	0x6d
+ 626 0260 85000000 		.4byte	.LLST17
+ 627 0264 00       		.byte	0x0
+ 628 0265 0A       		.uleb128 0xa
+ 629 0266 01       		.byte	0x1
+ 630 0267 ED000000 		.4byte	.LASF29
+ 631 026b 01       		.byte	0x1
+ 632 026c B501     		.2byte	0x1b5
+ 633 026e 01       		.byte	0x1
+ 634 026f 5B000000 		.4byte	0x5b
+ 635 0273 00000000 		.4byte	.LFB10
+ 636 0277 04000000 		.4byte	.LFE10
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 20
+
+
+ 637 027b 01       		.byte	0x1
+ 638 027c 5D       		.byte	0x5d
+ 639 027d 09       		.uleb128 0x9
+ 640 027e 1C000000 		.4byte	.LASF27
+ 641 0282 01       		.byte	0x1
+ 642 0283 B501     		.2byte	0x1b5
+ 643 0285 37000000 		.4byte	0x37
+ 644 0289 98000000 		.4byte	.LLST19
+ 645 028d 06       		.uleb128 0x6
+ 646 028e D6000000 		.4byte	.LASF15
+ 647 0292 01       		.byte	0x1
+ 648 0293 B701     		.2byte	0x1b7
+ 649 0295 6D000000 		.4byte	0x6d
+ 650 0299 AB000000 		.4byte	.LLST20
+ 651 029d 00       		.byte	0x0
+ 652 029e 00       		.byte	0x0
+ 653              		.section	.debug_abbrev
+ 654 0000 01       		.uleb128 0x1
+ 655 0001 11       		.uleb128 0x11
+ 656 0002 01       		.byte	0x1
+ 657 0003 25       		.uleb128 0x25
+ 658 0004 0E       		.uleb128 0xe
+ 659 0005 13       		.uleb128 0x13
+ 660 0006 0B       		.uleb128 0xb
+ 661 0007 03       		.uleb128 0x3
+ 662 0008 0E       		.uleb128 0xe
+ 663 0009 1B       		.uleb128 0x1b
+ 664 000a 0E       		.uleb128 0xe
+ 665 000b 11       		.uleb128 0x11
+ 666 000c 01       		.uleb128 0x1
+ 667 000d 52       		.uleb128 0x52
+ 668 000e 01       		.uleb128 0x1
+ 669 000f 55       		.uleb128 0x55
+ 670 0010 06       		.uleb128 0x6
+ 671 0011 10       		.uleb128 0x10
+ 672 0012 06       		.uleb128 0x6
+ 673 0013 00       		.byte	0x0
+ 674 0014 00       		.byte	0x0
+ 675 0015 02       		.uleb128 0x2
+ 676 0016 24       		.uleb128 0x24
+ 677 0017 00       		.byte	0x0
+ 678 0018 0B       		.uleb128 0xb
+ 679 0019 0B       		.uleb128 0xb
+ 680 001a 3E       		.uleb128 0x3e
+ 681 001b 0B       		.uleb128 0xb
+ 682 001c 03       		.uleb128 0x3
+ 683 001d 0E       		.uleb128 0xe
+ 684 001e 00       		.byte	0x0
+ 685 001f 00       		.byte	0x0
+ 686 0020 03       		.uleb128 0x3
+ 687 0021 16       		.uleb128 0x16
+ 688 0022 00       		.byte	0x0
+ 689 0023 03       		.uleb128 0x3
+ 690 0024 0E       		.uleb128 0xe
+ 691 0025 3A       		.uleb128 0x3a
+ 692 0026 0B       		.uleb128 0xb
+ 693 0027 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 21
+
+
+ 694 0028 0B       		.uleb128 0xb
+ 695 0029 49       		.uleb128 0x49
+ 696 002a 13       		.uleb128 0x13
+ 697 002b 00       		.byte	0x0
+ 698 002c 00       		.byte	0x0
+ 699 002d 04       		.uleb128 0x4
+ 700 002e 24       		.uleb128 0x24
+ 701 002f 00       		.byte	0x0
+ 702 0030 0B       		.uleb128 0xb
+ 703 0031 0B       		.uleb128 0xb
+ 704 0032 3E       		.uleb128 0x3e
+ 705 0033 0B       		.uleb128 0xb
+ 706 0034 03       		.uleb128 0x3
+ 707 0035 08       		.uleb128 0x8
+ 708 0036 00       		.byte	0x0
+ 709 0037 00       		.byte	0x0
+ 710 0038 05       		.uleb128 0x5
+ 711 0039 2E       		.uleb128 0x2e
+ 712 003a 01       		.byte	0x1
+ 713 003b 3F       		.uleb128 0x3f
+ 714 003c 0C       		.uleb128 0xc
+ 715 003d 03       		.uleb128 0x3
+ 716 003e 0E       		.uleb128 0xe
+ 717 003f 3A       		.uleb128 0x3a
+ 718 0040 0B       		.uleb128 0xb
+ 719 0041 3B       		.uleb128 0x3b
+ 720 0042 05       		.uleb128 0x5
+ 721 0043 27       		.uleb128 0x27
+ 722 0044 0C       		.uleb128 0xc
+ 723 0045 49       		.uleb128 0x49
+ 724 0046 13       		.uleb128 0x13
+ 725 0047 11       		.uleb128 0x11
+ 726 0048 01       		.uleb128 0x1
+ 727 0049 12       		.uleb128 0x12
+ 728 004a 01       		.uleb128 0x1
+ 729 004b 40       		.uleb128 0x40
+ 730 004c 0A       		.uleb128 0xa
+ 731 004d 01       		.uleb128 0x1
+ 732 004e 13       		.uleb128 0x13
+ 733 004f 00       		.byte	0x0
+ 734 0050 00       		.byte	0x0
+ 735 0051 06       		.uleb128 0x6
+ 736 0052 34       		.uleb128 0x34
+ 737 0053 00       		.byte	0x0
+ 738 0054 03       		.uleb128 0x3
+ 739 0055 0E       		.uleb128 0xe
+ 740 0056 3A       		.uleb128 0x3a
+ 741 0057 0B       		.uleb128 0xb
+ 742 0058 3B       		.uleb128 0x3b
+ 743 0059 05       		.uleb128 0x5
+ 744 005a 49       		.uleb128 0x49
+ 745 005b 13       		.uleb128 0x13
+ 746 005c 02       		.uleb128 0x2
+ 747 005d 06       		.uleb128 0x6
+ 748 005e 00       		.byte	0x0
+ 749 005f 00       		.byte	0x0
+ 750 0060 07       		.uleb128 0x7
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 22
+
+
+ 751 0061 2E       		.uleb128 0x2e
+ 752 0062 01       		.byte	0x1
+ 753 0063 3F       		.uleb128 0x3f
+ 754 0064 0C       		.uleb128 0xc
+ 755 0065 03       		.uleb128 0x3
+ 756 0066 0E       		.uleb128 0xe
+ 757 0067 3A       		.uleb128 0x3a
+ 758 0068 0B       		.uleb128 0xb
+ 759 0069 3B       		.uleb128 0x3b
+ 760 006a 05       		.uleb128 0x5
+ 761 006b 27       		.uleb128 0x27
+ 762 006c 0C       		.uleb128 0xc
+ 763 006d 11       		.uleb128 0x11
+ 764 006e 01       		.uleb128 0x1
+ 765 006f 12       		.uleb128 0x12
+ 766 0070 01       		.uleb128 0x1
+ 767 0071 40       		.uleb128 0x40
+ 768 0072 0A       		.uleb128 0xa
+ 769 0073 01       		.uleb128 0x1
+ 770 0074 13       		.uleb128 0x13
+ 771 0075 00       		.byte	0x0
+ 772 0076 00       		.byte	0x0
+ 773 0077 08       		.uleb128 0x8
+ 774 0078 05       		.uleb128 0x5
+ 775 0079 00       		.byte	0x0
+ 776 007a 03       		.uleb128 0x3
+ 777 007b 0E       		.uleb128 0xe
+ 778 007c 3A       		.uleb128 0x3a
+ 779 007d 0B       		.uleb128 0xb
+ 780 007e 3B       		.uleb128 0x3b
+ 781 007f 05       		.uleb128 0x5
+ 782 0080 49       		.uleb128 0x49
+ 783 0081 13       		.uleb128 0x13
+ 784 0082 02       		.uleb128 0x2
+ 785 0083 0A       		.uleb128 0xa
+ 786 0084 00       		.byte	0x0
+ 787 0085 00       		.byte	0x0
+ 788 0086 09       		.uleb128 0x9
+ 789 0087 05       		.uleb128 0x5
+ 790 0088 00       		.byte	0x0
+ 791 0089 03       		.uleb128 0x3
+ 792 008a 0E       		.uleb128 0xe
+ 793 008b 3A       		.uleb128 0x3a
+ 794 008c 0B       		.uleb128 0xb
+ 795 008d 3B       		.uleb128 0x3b
+ 796 008e 05       		.uleb128 0x5
+ 797 008f 49       		.uleb128 0x49
+ 798 0090 13       		.uleb128 0x13
+ 799 0091 02       		.uleb128 0x2
+ 800 0092 06       		.uleb128 0x6
+ 801 0093 00       		.byte	0x0
+ 802 0094 00       		.byte	0x0
+ 803 0095 0A       		.uleb128 0xa
+ 804 0096 2E       		.uleb128 0x2e
+ 805 0097 01       		.byte	0x1
+ 806 0098 3F       		.uleb128 0x3f
+ 807 0099 0C       		.uleb128 0xc
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 23
+
+
+ 808 009a 03       		.uleb128 0x3
+ 809 009b 0E       		.uleb128 0xe
+ 810 009c 3A       		.uleb128 0x3a
+ 811 009d 0B       		.uleb128 0xb
+ 812 009e 3B       		.uleb128 0x3b
+ 813 009f 05       		.uleb128 0x5
+ 814 00a0 27       		.uleb128 0x27
+ 815 00a1 0C       		.uleb128 0xc
+ 816 00a2 49       		.uleb128 0x49
+ 817 00a3 13       		.uleb128 0x13
+ 818 00a4 11       		.uleb128 0x11
+ 819 00a5 01       		.uleb128 0x1
+ 820 00a6 12       		.uleb128 0x12
+ 821 00a7 01       		.uleb128 0x1
+ 822 00a8 40       		.uleb128 0x40
+ 823 00a9 0A       		.uleb128 0xa
+ 824 00aa 00       		.byte	0x0
+ 825 00ab 00       		.byte	0x0
+ 826 00ac 00       		.byte	0x0
+ 827              		.section	.debug_pubnames,"",%progbits
+ 828 0000 B0000000 		.4byte	0xb0
+ 829 0004 0200     		.2byte	0x2
+ 830 0006 00000000 		.4byte	.Ldebug_info0
+ 831 000a 9F020000 		.4byte	0x29f
+ 832 000e 9B000000 		.4byte	0x9b
+ 833 0012 5F5F6765 		.ascii	"__get_PSP\000"
+ 833      745F5053 
+ 833      5000
+ 834 001c C8000000 		.4byte	0xc8
+ 835 0020 5F5F7365 		.ascii	"__set_PSP\000"
+ 835      745F5053 
+ 835      5000
+ 836 002a EF000000 		.4byte	0xef
+ 837 002e 5F5F6765 		.ascii	"__get_MSP\000"
+ 837      745F4D53 
+ 837      5000
+ 838 0038 1C010000 		.4byte	0x11c
+ 839 003c 5F5F7365 		.ascii	"__set_MSP\000"
+ 839      745F4D53 
+ 839      5000
+ 840 0046 43010000 		.4byte	0x143
+ 841 004a 5F5F6765 		.ascii	"__get_PRIMASK\000"
+ 841      745F5052 
+ 841      494D4153 
+ 841      4B00
+ 842 0058 70010000 		.4byte	0x170
+ 843 005c 5F5F7365 		.ascii	"__set_PRIMASK\000"
+ 843      745F5052 
+ 843      494D4153 
+ 843      4B00
+ 844 006a 97010000 		.4byte	0x197
+ 845 006e 5F5F6765 		.ascii	"__get_CONTROL\000"
+ 845      745F434F 
+ 845      4E54524F 
+ 845      4C00
+ 846 007c C4010000 		.4byte	0x1c4
+ 847 0080 5F5F7365 		.ascii	"__set_CONTROL\000"
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 24
+
+
+ 847      745F434F 
+ 847      4E54524F 
+ 847      4C00
+ 848 008e EB010000 		.4byte	0x1eb
+ 849 0092 5F5F5245 		.ascii	"__REV\000"
+ 849      5600
+ 850 0098 28020000 		.4byte	0x228
+ 851 009c 5F5F5245 		.ascii	"__REV16\000"
+ 851      56313600 
+ 852 00a4 65020000 		.4byte	0x265
+ 853 00a8 5F5F5245 		.ascii	"__REVSH\000"
+ 853      56534800 
+ 854 00b0 00000000 		.4byte	0x0
+ 855              		.section	.debug_aranges,"",%progbits
+ 856 0000 6C000000 		.4byte	0x6c
+ 857 0004 0200     		.2byte	0x2
+ 858 0006 00000000 		.4byte	.Ldebug_info0
+ 859 000a 04       		.byte	0x4
+ 860 000b 00       		.byte	0x0
+ 861 000c 0000     		.2byte	0x0
+ 862 000e 0000     		.2byte	0x0
+ 863 0010 00000000 		.4byte	.LFB0
+ 864 0014 08000000 		.4byte	.LFE0-.LFB0
+ 865 0018 00000000 		.4byte	.LFB1
+ 866 001c 06000000 		.4byte	.LFE1-.LFB1
+ 867 0020 00000000 		.4byte	.LFB2
+ 868 0024 08000000 		.4byte	.LFE2-.LFB2
+ 869 0028 00000000 		.4byte	.LFB3
+ 870 002c 06000000 		.4byte	.LFE3-.LFB3
+ 871 0030 00000000 		.4byte	.LFB4
+ 872 0034 06000000 		.4byte	.LFE4-.LFB4
+ 873 0038 00000000 		.4byte	.LFB5
+ 874 003c 06000000 		.4byte	.LFE5-.LFB5
+ 875 0040 00000000 		.4byte	.LFB6
+ 876 0044 06000000 		.4byte	.LFE6-.LFB6
+ 877 0048 00000000 		.4byte	.LFB7
+ 878 004c 06000000 		.4byte	.LFE7-.LFB7
+ 879 0050 00000000 		.4byte	.LFB8
+ 880 0054 04000000 		.4byte	.LFE8-.LFB8
+ 881 0058 00000000 		.4byte	.LFB9
+ 882 005c 04000000 		.4byte	.LFE9-.LFB9
+ 883 0060 00000000 		.4byte	.LFB10
+ 884 0064 04000000 		.4byte	.LFE10-.LFB10
+ 885 0068 00000000 		.4byte	0x0
+ 886 006c 00000000 		.4byte	0x0
+ 887              		.section	.debug_ranges,"",%progbits
+ 888              	.Ldebug_ranges0:
+ 889 0000 00000000 		.4byte	.Ltext0
+ 890 0004 00000000 		.4byte	.Letext0
+ 891 0008 00000000 		.4byte	.LFB0
+ 892 000c 08000000 		.4byte	.LFE0
+ 893 0010 00000000 		.4byte	.LFB1
+ 894 0014 06000000 		.4byte	.LFE1
+ 895 0018 00000000 		.4byte	.LFB2
+ 896 001c 08000000 		.4byte	.LFE2
+ 897 0020 00000000 		.4byte	.LFB3
+ 898 0024 06000000 		.4byte	.LFE3
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 25
+
+
+ 899 0028 00000000 		.4byte	.LFB4
+ 900 002c 06000000 		.4byte	.LFE4
+ 901 0030 00000000 		.4byte	.LFB5
+ 902 0034 06000000 		.4byte	.LFE5
+ 903 0038 00000000 		.4byte	.LFB6
+ 904 003c 06000000 		.4byte	.LFE6
+ 905 0040 00000000 		.4byte	.LFB7
+ 906 0044 06000000 		.4byte	.LFE7
+ 907 0048 00000000 		.4byte	.LFB8
+ 908 004c 04000000 		.4byte	.LFE8
+ 909 0050 00000000 		.4byte	.LFB9
+ 910 0054 04000000 		.4byte	.LFE9
+ 911 0058 00000000 		.4byte	.LFB10
+ 912 005c 04000000 		.4byte	.LFE10
+ 913 0060 00000000 		.4byte	0x0
+ 914 0064 00000000 		.4byte	0x0
+ 915              		.section	.debug_str,"MS",%progbits,1
+ 916              	.LASF10:
+ 917 0000 6C6F6E67 		.ascii	"long long int\000"
+ 917      206C6F6E 
+ 917      6720696E 
+ 917      7400
+ 918              	.LASF24:
+ 919 000e 5F5F7365 		.ascii	"__set_CONTROL\000"
+ 919      745F434F 
+ 919      4E54524F 
+ 919      4C00
+ 920              	.LASF27:
+ 921 001c 76616C75 		.ascii	"value\000"
+ 921      6500
+ 922              	.LASF22:
+ 923 0022 7072694D 		.ascii	"priMask\000"
+ 923      61736B00 
+ 924              	.LASF18:
+ 925 002a 746F704F 		.ascii	"topOfProcStack\000"
+ 925      6650726F 
+ 925      63537461 
+ 925      636B00
+ 926              	.LASF14:
+ 927 0039 5F5F6765 		.ascii	"__get_MSP\000"
+ 927      745F4D53 
+ 927      5000
+ 928              	.LASF17:
+ 929 0043 5F5F7365 		.ascii	"__set_MSP\000"
+ 929      745F4D53 
+ 929      5000
+ 930              	.LASF13:
+ 931 004d 5F5F6765 		.ascii	"__get_PSP\000"
+ 931      745F5053 
+ 931      5000
+ 932              	.LASF16:
+ 933 0057 5F5F7365 		.ascii	"__set_PSP\000"
+ 933      745F5053 
+ 933      5000
+ 934              	.LASF28:
+ 935 0061 5F5F5245 		.ascii	"__REV16\000"
+ 935      56313600 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 26
+
+
+ 936              	.LASF1:
+ 937 0069 756E7369 		.ascii	"unsigned char\000"
+ 937      676E6564 
+ 937      20636861 
+ 937      7200
+ 938              	.LASF20:
+ 939 0077 5F5F6765 		.ascii	"__get_PRIMASK\000"
+ 939      745F5052 
+ 939      494D4153 
+ 939      4B00
+ 940              	.LASF9:
+ 941 0085 6C6F6E67 		.ascii	"long unsigned int\000"
+ 941      20756E73 
+ 941      69676E65 
+ 941      6420696E 
+ 941      7400
+ 942              	.LASF5:
+ 943 0097 73686F72 		.ascii	"short unsigned int\000"
+ 943      7420756E 
+ 943      7369676E 
+ 943      65642069 
+ 943      6E7400
+ 944              	.LASF25:
+ 945 00aa 636F6E74 		.ascii	"control\000"
+ 945      726F6C00 
+ 946              	.LASF12:
+ 947 00b2 756E7369 		.ascii	"unsigned int\000"
+ 947      676E6564 
+ 947      20696E74 
+ 947      00
+ 948              	.LASF11:
+ 949 00bf 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 949      206C6F6E 
+ 949      6720756E 
+ 949      7369676E 
+ 949      65642069 
+ 950              	.LASF15:
+ 951 00d6 72657375 		.ascii	"result\000"
+ 951      6C7400
+ 952              	.LASF3:
+ 953 00dd 696E7431 		.ascii	"int16_t\000"
+ 953      365F7400 
+ 954              	.LASF6:
+ 955 00e5 696E7433 		.ascii	"int32_t\000"
+ 955      325F7400 
+ 956              	.LASF29:
+ 957 00ed 5F5F5245 		.ascii	"__REVSH\000"
+ 957      56534800 
+ 958              	.LASF19:
+ 959 00f5 746F704F 		.ascii	"topOfMainStack\000"
+ 959      664D6169 
+ 959      6E537461 
+ 959      636B00
+ 960              	.LASF30:
+ 961 0104 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 961      4320342E 
+ 961      342E3100 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccxgkeib.s 			page 27
+
+
+ 962              	.LASF21:
+ 963 0110 5F5F7365 		.ascii	"__set_PRIMASK\000"
+ 963      745F5052 
+ 963      494D4153 
+ 963      4B00
+ 964              	.LASF26:
+ 965 011e 5F5F5245 		.ascii	"__REV\000"
+ 965      5600
+ 966              	.LASF23:
+ 967 0124 5F5F6765 		.ascii	"__get_CONTROL\000"
+ 967      745F434F 
+ 967      4E54524F 
+ 967      4C00
+ 968              	.LASF31:
+ 969 0132 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\core_cm0.c\000"
+ 969      6E657261 
+ 969      7465645F 
+ 969      536F7572 
+ 969      63655C50 
+ 970              	.LASF2:
+ 971 0156 73686F72 		.ascii	"short int\000"
+ 971      7420696E 
+ 971      7400
+ 972              	.LASF4:
+ 973 0160 75696E74 		.ascii	"uint16_t\000"
+ 973      31365F74 
+ 973      00
+ 974              	.LASF8:
+ 975 0169 75696E74 		.ascii	"uint32_t\000"
+ 975      33325F74 
+ 975      00
+ 976              	.LASF7:
+ 977 0172 6C6F6E67 		.ascii	"long int\000"
+ 977      20696E74 
+ 977      00
+ 978              	.LASF32:
+ 979 017b 433A5C55 		.ascii	"C:\\Users\\kees\\Documents\\test_projects\\My fun s"
+ 979      73657273 
+ 979      5C6B6565 
+ 979      735C446F 
+ 979      63756D65 
+ 980 01a9 74756666 		.ascii	"tuff\\3d_cube\\3d_cube.Bundle01\\Design137.cydsn\000"
+ 980      5C33645F 
+ 980      63756265 
+ 980      5C33645F 
+ 980      63756265 
+ 981              	.LASF0:
+ 982 01d7 7369676E 		.ascii	"signed char\000"
+ 982      65642063 
+ 982      68617200 
+ 983              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

@@ -1,0 +1,1266 @@
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"CyFlash.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 AC000000 		.text
+  19      02006000 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.text.CySysFlashSetWaitCycles,"ax",%progbits
+  23              		.align	1
+  24              		.global	CySysFlashSetWaitCycles
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	CySysFlashSetWaitCycles, %function
+  28              	CySysFlashSetWaitCycles:
+  29              	.LFB1:
+  30              		.file 1 ".\\Generated_Source\\PSoC4\\CyFlash.c"
+   1:.\Generated_Source\PSoC4/CyFlash.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/CyFlash.c **** * File Name: CyFlash.c
+   3:.\Generated_Source\PSoC4/CyFlash.c **** * Version 3.40
+   4:.\Generated_Source\PSoC4/CyFlash.c **** *
+   5:.\Generated_Source\PSoC4/CyFlash.c **** *  Description:
+   6:.\Generated_Source\PSoC4/CyFlash.c **** *   Provides an API for the FLASH.
+   7:.\Generated_Source\PSoC4/CyFlash.c **** *
+   8:.\Generated_Source\PSoC4/CyFlash.c **** *  Note:
+   9:.\Generated_Source\PSoC4/CyFlash.c **** *   This code is endian agnostic.
+  10:.\Generated_Source\PSoC4/CyFlash.c **** *
+  11:.\Generated_Source\PSoC4/CyFlash.c **** *  Note:
+  12:.\Generated_Source\PSoC4/CyFlash.c **** *   Documentation of the API's in this file is located in the
+  13:.\Generated_Source\PSoC4/CyFlash.c **** *   System Reference Guide provided with PSoC Creator.
+  14:.\Generated_Source\PSoC4/CyFlash.c **** *
+  15:.\Generated_Source\PSoC4/CyFlash.c **** ********************************************************************************
+  16:.\Generated_Source\PSoC4/CyFlash.c **** * Copyright 2010-2013, Cypress Semiconductor Corporation.  All rights reserved.
+  17:.\Generated_Source\PSoC4/CyFlash.c **** * You may use this file only in accordance with the license, terms, conditions,
+  18:.\Generated_Source\PSoC4/CyFlash.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  19:.\Generated_Source\PSoC4/CyFlash.c **** * the software package with which this file was provided.
+  20:.\Generated_Source\PSoC4/CyFlash.c **** *******************************************************************************/
+  21:.\Generated_Source\PSoC4/CyFlash.c **** 
+  22:.\Generated_Source\PSoC4/CyFlash.c **** #include "CyFlash.h"
+  23:.\Generated_Source\PSoC4/CyFlash.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 2
+
+
+  24:.\Generated_Source\PSoC4/CyFlash.c **** 
+  25:.\Generated_Source\PSoC4/CyFlash.c **** /*******************************************************************************
+  26:.\Generated_Source\PSoC4/CyFlash.c **** * Function Name: CySysFlashWriteRow
+  27:.\Generated_Source\PSoC4/CyFlash.c **** ********************************************************************************
+  28:.\Generated_Source\PSoC4/CyFlash.c **** *
+  29:.\Generated_Source\PSoC4/CyFlash.c **** * Summary:
+  30:.\Generated_Source\PSoC4/CyFlash.c **** *  Writes a row of Flash.
+  31:.\Generated_Source\PSoC4/CyFlash.c **** *
+  32:.\Generated_Source\PSoC4/CyFlash.c **** * Parameters:
+  33:.\Generated_Source\PSoC4/CyFlash.c **** *  uint16 rowNum:
+  34:.\Generated_Source\PSoC4/CyFlash.c **** *   Row number. Each row is 128 bytes so a 32KB flash memory will have a valid
+  35:.\Generated_Source\PSoC4/CyFlash.c **** *   range of [0-255].
+  36:.\Generated_Source\PSoC4/CyFlash.c **** *
+  37:.\Generated_Source\PSoC4/CyFlash.c **** *  uint8* rowData:
+  38:.\Generated_Source\PSoC4/CyFlash.c **** *   Array of bytes to write.
+  39:.\Generated_Source\PSoC4/CyFlash.c **** *
+  40:.\Generated_Source\PSoC4/CyFlash.c **** * Return:
+  41:.\Generated_Source\PSoC4/CyFlash.c **** *  Status
+  42:.\Generated_Source\PSoC4/CyFlash.c **** *     Value             Description
+  43:.\Generated_Source\PSoC4/CyFlash.c **** *    CYRET_SUCCESS     Successful
+  44:.\Generated_Source\PSoC4/CyFlash.c **** *    CYRET_LOCKED      Flash writing already in use
+  45:.\Generated_Source\PSoC4/CyFlash.c **** *    CYRET_CANCELED    Command not accepted
+  46:.\Generated_Source\PSoC4/CyFlash.c **** *    CYRET_BAD_PARAM   One or more invalid parameters
+  47:.\Generated_Source\PSoC4/CyFlash.c **** *    Other non-zero    Failure
+  48:.\Generated_Source\PSoC4/CyFlash.c **** *
+  49:.\Generated_Source\PSoC4/CyFlash.c **** *******************************************************************************/
+  50:.\Generated_Source\PSoC4/CyFlash.c **** cystatus CySysFlashWriteRow(uint32 rowNum, const uint8 rowData[])
+  51:.\Generated_Source\PSoC4/CyFlash.c **** {
+  52:.\Generated_Source\PSoC4/CyFlash.c ****     volatile cystatus retValue = CYRET_SUCCESS;
+  53:.\Generated_Source\PSoC4/CyFlash.c ****     volatile uint32   *ptr;
+  54:.\Generated_Source\PSoC4/CyFlash.c ****     volatile uint32   cpuValue;
+  55:.\Generated_Source\PSoC4/CyFlash.c ****     volatile uint32   localData[(CY_FLASH_SIZEOF_ROW + CY_FLASH_SRAM_ROM_DATA)/4u];
+  56:.\Generated_Source\PSoC4/CyFlash.c ****     volatile uint32   imoConfigReg;
+  57:.\Generated_Source\PSoC4/CyFlash.c ****     uint8  interruptState;
+  58:.\Generated_Source\PSoC4/CyFlash.c **** 
+  59:.\Generated_Source\PSoC4/CyFlash.c ****     if ((rowNum < CY_FLASH_NUMBER_ROWS) && (rowData != 0u))
+  60:.\Generated_Source\PSoC4/CyFlash.c ****     {
+  61:.\Generated_Source\PSoC4/CyFlash.c ****         /* First load the data. Then invoke Write row command. */
+  62:.\Generated_Source\PSoC4/CyFlash.c ****         ptr = &localData[CY_FLASH_SRAM_ROM_KEY1];
+  63:.\Generated_Source\PSoC4/CyFlash.c **** 
+  64:.\Generated_Source\PSoC4/CyFlash.c ****         CY_FLASH_CPUSS_SYSARG_REG = (uint32)ptr;
+  65:.\Generated_Source\PSoC4/CyFlash.c **** 
+  66:.\Generated_Source\PSoC4/CyFlash.c ****         #if(CY_FLASH_NUMBER_ROWS > 255u)
+  67:.\Generated_Source\PSoC4/CyFlash.c ****             localData[CY_FLASH_SRAM_ROM_KEY1] = CY_FLASH_SROM_LOAD_CMD | (uint32)((rowNum & 0x100u)
+  68:.\Generated_Source\PSoC4/CyFlash.c ****         #else
+  69:.\Generated_Source\PSoC4/CyFlash.c ****             localData[CY_FLASH_SRAM_ROM_KEY1] = CY_FLASH_SROM_LOAD_CMD;
+  70:.\Generated_Source\PSoC4/CyFlash.c ****         #endif /* (CY_FLASH_SIZEOF_ROW > 255) */
+  71:.\Generated_Source\PSoC4/CyFlash.c **** 
+  72:.\Generated_Source\PSoC4/CyFlash.c ****         localData[CY_FLASH_SRAM_ROM_PARAM2/4u] = ((uint32)(CYDEV_FLS_ROW_SIZE - 1u));
+  73:.\Generated_Source\PSoC4/CyFlash.c **** 
+  74:.\Generated_Source\PSoC4/CyFlash.c ****         /* Copy row data from 8bit to 32bit array with shift for CPUSS commands */
+  75:.\Generated_Source\PSoC4/CyFlash.c ****         (void)memcpy((void *)&localData[CY_FLASH_SRAM_ROM_DATA/4u], rowData, CYDEV_FLS_ROW_SIZE);
+  76:.\Generated_Source\PSoC4/CyFlash.c **** 
+  77:.\Generated_Source\PSoC4/CyFlash.c ****         /* Perform sysreq load data, opcode 0x80000004h */
+  78:.\Generated_Source\PSoC4/CyFlash.c ****         CY_FLASH_CPUSS_SYSREQ_REG = CY_FLASH_LOAD_BYTE_OPCODE | CY_FLASH_CPUSS_REQ_START;
+  79:.\Generated_Source\PSoC4/CyFlash.c **** 
+  80:.\Generated_Source\PSoC4/CyFlash.c ****         while((CY_FLASH_CPUSS_SYSREQ_REG & CY_FLASH_CPUSS_REQ_START) == CY_FLASH_CPUSS_REQ_START)
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 3
+
+
+  81:.\Generated_Source\PSoC4/CyFlash.c ****         {
+  82:.\Generated_Source\PSoC4/CyFlash.c ****             /* Wait till the CY_FLASH_CPUSS_REQ_START bit goes low */
+  83:.\Generated_Source\PSoC4/CyFlash.c ****         }
+  84:.\Generated_Source\PSoC4/CyFlash.c **** 
+  85:.\Generated_Source\PSoC4/CyFlash.c ****         /* Check if the value is written to the SRAM_BASE */
+  86:.\Generated_Source\PSoC4/CyFlash.c ****         cpuValue = CY_FLASH_CPUSS_SYSARG_REG;
+  87:.\Generated_Source\PSoC4/CyFlash.c ****         if (cpuValue == CY_FLASH_SROM_CMD_RETURN_SUCC)
+  88:.\Generated_Source\PSoC4/CyFlash.c ****         {
+  89:.\Generated_Source\PSoC4/CyFlash.c ****             retValue = CYRET_SUCCESS;
+  90:.\Generated_Source\PSoC4/CyFlash.c ****         }
+  91:.\Generated_Source\PSoC4/CyFlash.c ****         else if((cpuValue & CY_FLASH_SROM_CMD_RETURN_MASK) == CY_FLASH_SROM_CMD_RETURN_MASK)
+  92:.\Generated_Source\PSoC4/CyFlash.c ****         {
+  93:.\Generated_Source\PSoC4/CyFlash.c ****             /* Error value, cant proceed */
+  94:.\Generated_Source\PSoC4/CyFlash.c ****             retValue = CYRET_CANCELED;
+  95:.\Generated_Source\PSoC4/CyFlash.c ****         }
+  96:.\Generated_Source\PSoC4/CyFlash.c ****         else
+  97:.\Generated_Source\PSoC4/CyFlash.c ****         {
+  98:.\Generated_Source\PSoC4/CyFlash.c ****             while((CY_FLASH_CPUSS_SYSARG_REG & CY_FLASH_SROM_CMD_RETURN_MASK) != CY_FLASH_SROM_CMD_
+  99:.\Generated_Source\PSoC4/CyFlash.c ****             {
+ 100:.\Generated_Source\PSoC4/CyFlash.c ****                 /* Wait till the request is completed */
+ 101:.\Generated_Source\PSoC4/CyFlash.c ****             }
+ 102:.\Generated_Source\PSoC4/CyFlash.c ****         }
+ 103:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 104:.\Generated_Source\PSoC4/CyFlash.c ****         if(retValue == CYRET_SUCCESS)
+ 105:.\Generated_Source\PSoC4/CyFlash.c ****         {
+ 106:.\Generated_Source\PSoC4/CyFlash.c ****             ptr = &localData[CY_FLASH_SRAM_ROM_KEY1/4u];
+ 107:.\Generated_Source\PSoC4/CyFlash.c ****             CY_FLASH_CPUSS_SYSARG_REG = (uint32)ptr;
+ 108:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 109:.\Generated_Source\PSoC4/CyFlash.c ****             /* Write row command to SROM */
+ 110:.\Generated_Source\PSoC4/CyFlash.c ****             localData[CY_FLASH_SRAM_ROM_KEY1/4u] =  (uint32)(rowNum << 16u) | 
+ 111:.\Generated_Source\PSoC4/CyFlash.c ****                                                     (uint32)(CY_FLASH_SROM_KEY2_WRITE << 8u) | 
+ 112:.\Generated_Source\PSoC4/CyFlash.c ****                                                     CY_FLASH_SROM_KEY1;
+ 113:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 114:.\Generated_Source\PSoC4/CyFlash.c ****             /* Mask all exceptions to guarantee that IMO configuration will be changed 
+ 115:.\Generated_Source\PSoC4/CyFlash.c ****             * in the atomic way. It will not affect syscall execution (flash row write) 
+ 116:.\Generated_Source\PSoC4/CyFlash.c ****             * since it is executed in the NMI context.
+ 117:.\Generated_Source\PSoC4/CyFlash.c ****             */
+ 118:.\Generated_Source\PSoC4/CyFlash.c ****             interruptState = CyEnterCriticalSection();
+ 119:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 120:.\Generated_Source\PSoC4/CyFlash.c ****             /* Preserve IMO configuration that could be changed 
+ 121:.\Generated_Source\PSoC4/CyFlash.c ****             * during syscall execution (Cypress ID #150448).
+ 122:.\Generated_Source\PSoC4/CyFlash.c ****             */
+ 123:.\Generated_Source\PSoC4/CyFlash.c ****             imoConfigReg = CY_SYS_CLK_IMO_CONFIG_REG;
+ 124:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 125:.\Generated_Source\PSoC4/CyFlash.c ****             /* Perform sysreq for Write row, opcode 0x80000005 */
+ 126:.\Generated_Source\PSoC4/CyFlash.c ****             CY_FLASH_CPUSS_SYSREQ_REG = CY_FLASH_WRITE_ROW_OPCODE | CY_FLASH_CPUSS_REQ_START;
+ 127:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 128:.\Generated_Source\PSoC4/CyFlash.c ****             while((CY_FLASH_CPUSS_SYSREQ_REG & CY_FLASH_CPUSS_REQ_START) == CY_FLASH_CPUSS_REQ_STAR
+ 129:.\Generated_Source\PSoC4/CyFlash.c ****             {
+ 130:.\Generated_Source\PSoC4/CyFlash.c ****                 /* Wait till the CY_FLASH_CPUSS_REQ_START bit goes low */
+ 131:.\Generated_Source\PSoC4/CyFlash.c ****             }
+ 132:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 133:.\Generated_Source\PSoC4/CyFlash.c ****             /* Restore IMO configuration */
+ 134:.\Generated_Source\PSoC4/CyFlash.c ****             CY_SYS_CLK_IMO_CONFIG_REG = imoConfigReg;
+ 135:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 136:.\Generated_Source\PSoC4/CyFlash.c ****             CyExitCriticalSection(interruptState);
+ 137:.\Generated_Source\PSoC4/CyFlash.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 4
+
+
+ 138:.\Generated_Source\PSoC4/CyFlash.c ****             cpuValue = CY_FLASH_CPUSS_SYSARG_REG;
+ 139:.\Generated_Source\PSoC4/CyFlash.c ****             if (cpuValue != CY_FLASH_SROM_CMD_RETURN_SUCC)
+ 140:.\Generated_Source\PSoC4/CyFlash.c ****             {
+ 141:.\Generated_Source\PSoC4/CyFlash.c ****                 retValue = cpuValue;
+ 142:.\Generated_Source\PSoC4/CyFlash.c ****             }
+ 143:.\Generated_Source\PSoC4/CyFlash.c ****         }
+ 144:.\Generated_Source\PSoC4/CyFlash.c ****     }
+ 145:.\Generated_Source\PSoC4/CyFlash.c ****     else
+ 146:.\Generated_Source\PSoC4/CyFlash.c ****     {
+ 147:.\Generated_Source\PSoC4/CyFlash.c ****         retValue = CYRET_BAD_PARAM;
+ 148:.\Generated_Source\PSoC4/CyFlash.c ****     }
+ 149:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 150:.\Generated_Source\PSoC4/CyFlash.c ****     return (retValue);
+ 151:.\Generated_Source\PSoC4/CyFlash.c **** }
+ 152:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 153:.\Generated_Source\PSoC4/CyFlash.c **** 
+ 154:.\Generated_Source\PSoC4/CyFlash.c **** /*******************************************************************************
+ 155:.\Generated_Source\PSoC4/CyFlash.c **** * Function Name: CySysFlashSetWaitCycles
+ 156:.\Generated_Source\PSoC4/CyFlash.c **** ********************************************************************************
+ 157:.\Generated_Source\PSoC4/CyFlash.c **** *
+ 158:.\Generated_Source\PSoC4/CyFlash.c **** * Summary:
+ 159:.\Generated_Source\PSoC4/CyFlash.c **** *  Sets the number of clock cycles the cache will wait before it samples data
+ 160:.\Generated_Source\PSoC4/CyFlash.c **** *  coming back from Flash. This function must be called before increasing SYSCLK
+ 161:.\Generated_Source\PSoC4/CyFlash.c **** *  clock frequency. It can optionally be called after lowering SYSCLK clock
+ 162:.\Generated_Source\PSoC4/CyFlash.c **** *  frequency in order to improve CPU performance.
+ 163:.\Generated_Source\PSoC4/CyFlash.c **** *
+ 164:.\Generated_Source\PSoC4/CyFlash.c **** * Parameters:
+ 165:.\Generated_Source\PSoC4/CyFlash.c **** *  freq: Valid range [3-48].  Frequency for operation of the IMO.
+ 166:.\Generated_Source\PSoC4/CyFlash.c **** *  Note: Invalid frequency will be ignored.
+ 167:.\Generated_Source\PSoC4/CyFlash.c **** *
+ 168:.\Generated_Source\PSoC4/CyFlash.c **** * Return:
+ 169:.\Generated_Source\PSoC4/CyFlash.c **** *  None
+ 170:.\Generated_Source\PSoC4/CyFlash.c **** *
+ 171:.\Generated_Source\PSoC4/CyFlash.c **** *******************************************************************************/
+ 172:.\Generated_Source\PSoC4/CyFlash.c **** void CySysFlashSetWaitCycles(uint32 freq)
+ 173:.\Generated_Source\PSoC4/CyFlash.c **** {
+  31              		.loc 1 173 0
+  32              		.cfi_startproc
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  38              	.LVL0:
+ 174:.\Generated_Source\PSoC4/CyFlash.c ****     if ((freq >= CY_SYS_CLK_IMO_MIN_FREQ_MHZ) && (freq <= CY_SYS_CLK_IMO_MAX_FREQ_MHZ))
+  39              		.loc 1 174 0
+  40 0002 C31E     		sub	r3, r0, #3
+  41 0004 2D2B     		cmp	r3, #45
+  42 0006 0ED8     		bhi	.L2
+ 175:.\Generated_Source\PSoC4/CyFlash.c ****     {
+ 176:.\Generated_Source\PSoC4/CyFlash.c ****         if ( freq <= CY_FLASH_SYSCLK_BOUNDARY_MHZ )
+  43              		.loc 1 176 0
+  44 0008 1828     		cmp	r0, #24
+  45 000a 05D8     		bhi	.L3
+ 177:.\Generated_Source\PSoC4/CyFlash.c ****         {
+ 178:.\Generated_Source\PSoC4/CyFlash.c ****             CY_SYS_CLK_SELECT_REG &= (uint32)(~CY_FLASH_WAIT_STATE_EN);
+  46              		.loc 1 178 0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 5
+
+
+  47 000c 084B     		ldr	r3, .L7
+  48 000e 094A     		ldr	r2, .L7+4
+  49 0010 1968     		ldr	r1, [r3]
+  50 0012 0A40     		and	r2, r2, r1
+  51 0014 1A60     		str	r2, [r3]
+  52 0016 09E0     		b	.L5
+  53              	.L3:
+ 179:.\Generated_Source\PSoC4/CyFlash.c ****         }
+ 180:.\Generated_Source\PSoC4/CyFlash.c ****         else
+ 181:.\Generated_Source\PSoC4/CyFlash.c ****         {
+ 182:.\Generated_Source\PSoC4/CyFlash.c ****             CY_SYS_CLK_SELECT_REG |= CY_FLASH_WAIT_STATE_EN;
+  54              		.loc 1 182 0
+  55 0018 054A     		ldr	r2, .L7
+  56 001a 8023     		mov	r3, #128
+  57 001c 1168     		ldr	r1, [r2]
+  58 001e DB02     		lsl	r3, r3, #11
+  59 0020 0B43     		orr	r3, r3, r1
+  60 0022 1360     		str	r3, [r2]
+  61 0024 02E0     		b	.L5
+  62              	.L2:
+ 183:.\Generated_Source\PSoC4/CyFlash.c ****         }
+ 184:.\Generated_Source\PSoC4/CyFlash.c ****     }
+ 185:.\Generated_Source\PSoC4/CyFlash.c ****     else
+ 186:.\Generated_Source\PSoC4/CyFlash.c ****     {
+ 187:.\Generated_Source\PSoC4/CyFlash.c ****         /* Halt CPU in debug mode if frequency is invalid */
+ 188:.\Generated_Source\PSoC4/CyFlash.c ****         CYASSERT(0u != 0u);
+  63              		.loc 1 188 0
+  64 0026 0020     		mov	r0, #0
+  65              	.LVL1:
+  66 0028 FFF7FEFF 		bl	CyHalt
+  67              	.LVL2:
+  68              	.L5:
+ 189:.\Generated_Source\PSoC4/CyFlash.c ****     }
+ 190:.\Generated_Source\PSoC4/CyFlash.c **** }
+  69              		.loc 1 190 0
+  70              		@ sp needed for prologue
+  71 002c 08BD     		pop	{r3, pc}
+  72              	.L8:
+  73 002e C046     		.align	2
+  74              	.L7:
+  75 0030 00010B40 		.word	1074462976
+  76 0034 FFFFFBFF 		.word	-262145
+  77              		.cfi_endproc
+  78              	.LFE1:
+  79              		.size	CySysFlashSetWaitCycles, .-CySysFlashSetWaitCycles
+  80              		.section	.text.CySysFlashWriteRow,"ax",%progbits
+  81              		.align	1
+  82              		.global	CySysFlashWriteRow
+  83              		.code	16
+  84              		.thumb_func
+  85              		.type	CySysFlashWriteRow, %function
+  86              	CySysFlashWriteRow:
+  87              	.LFB0:
+  88              		.loc 1 51 0
+  89              		.cfi_startproc
+  90 0000 10B5     		push	{r4, lr}
+  91              	.LCFI1:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 6
+
+
+  92              		.cfi_def_cfa_offset 8
+  93              		.cfi_offset 4, -8
+  94              		.cfi_offset 14, -4
+  95              	.LVL3:
+  96 0002 A6B0     		sub	sp, sp, #152
+  97              	.LCFI2:
+  98              		.cfi_def_cfa_offset 160
+  99              		.loc 1 52 0
+ 100 0004 0023     		mov	r3, #0
+ 101              		.loc 1 51 0
+ 102 0006 041C     		mov	r4, r0
+ 103              		.loc 1 52 0
+ 104 0008 2593     		str	r3, [sp, #148]
+ 105              	.LVL4:
+ 106              		.loc 1 59 0
+ 107 000a 0029     		cmp	r1, #0
+ 108 000c 59D0     		beq	.L10
+ 109              	.LVL5:
+ 110 000e FF28     		cmp	r0, #255
+ 111 0010 57D8     		bhi	.L10
+ 112              	.LVL6:
+ 113              		.loc 1 64 0
+ 114 0012 2E4B     		ldr	r3, .L20
+ 115 0014 01AA     		add	r2, sp, #4
+ 116 0016 1A60     		str	r2, [r3]
+ 117              		.loc 1 67 0
+ 118 0018 8023     		mov	r3, #128
+ 119 001a 5B00     		lsl	r3, r3, #1
+ 120 001c 0340     		and	r3, r3, r0
+ 121 001e 2C48     		ldr	r0, .L20+4
+ 122              	.LVL7:
+ 123 0020 1B04     		lsl	r3, r3, #16
+ 124 0022 0343     		orr	r3, r3, r0
+ 125 0024 0193     		str	r3, [sp, #4]
+ 126              		.loc 1 72 0
+ 127 0026 7F23     		mov	r3, #127
+ 128 0028 5360     		str	r3, [r2, #4]
+ 129              		.loc 1 75 0
+ 130 002a 03A8     		add	r0, sp, #12
+ 131 002c 8022     		mov	r2, #128
+ 132 002e FFF7FEFF 		bl	memcpy
+ 133              	.LVL8:
+ 134              		.loc 1 78 0
+ 135 0032 284A     		ldr	r2, .L20+8
+ 136 0034 284B     		ldr	r3, .L20+12
+ 137 0036 1A60     		str	r2, [r3]
+ 138              	.L11:
+ 139              		.loc 1 80 0
+ 140 0038 274B     		ldr	r3, .L20+12
+ 141 003a 1B68     		ldr	r3, [r3]
+ 142 003c 002B     		cmp	r3, #0
+ 143 003e FBDB     		blt	.L11
+ 144              		.loc 1 86 0
+ 145 0040 224B     		ldr	r3, .L20
+ 146 0042 1B68     		ldr	r3, [r3]
+ 147              	.LVL9:
+ 148 0044 2493     		str	r3, [sp, #144]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 7
+
+
+ 149              		.loc 1 87 0
+ 150 0046 249A     		ldr	r2, [sp, #144]
+ 151 0048 A023     		mov	r3, #160
+ 152              	.LVL10:
+ 153 004a 1B06     		lsl	r3, r3, #24
+ 154 004c 9A42     		cmp	r2, r3
+ 155 004e 01D1     		bne	.L12
+ 156              		.loc 1 89 0
+ 157 0050 0023     		mov	r3, #0
+ 158 0052 06E0     		b	.L18
+ 159              	.L12:
+ 160              		.loc 1 91 0
+ 161 0054 249A     		ldr	r2, [sp, #144]
+ 162 0056 F023     		mov	r3, #240
+ 163 0058 1B06     		lsl	r3, r3, #24
+ 164 005a 1A40     		and	r2, r2, r3
+ 165 005c 9A42     		cmp	r2, r3
+ 166 005e 02D1     		bne	.L14
+ 167              		.loc 1 94 0
+ 168 0060 0923     		mov	r3, #9
+ 169              	.L18:
+ 170 0062 2593     		str	r3, [sp, #148]
+ 171              	.LVL11:
+ 172 0064 08E0     		b	.L13
+ 173              	.L14:
+ 174              		.loc 1 98 0
+ 175 0066 194B     		ldr	r3, .L20
+ 176 0068 1A68     		ldr	r2, [r3]
+ 177 006a F023     		mov	r3, #240
+ 178 006c 1B06     		lsl	r3, r3, #24
+ 179 006e 1A40     		and	r2, r2, r3
+ 180 0070 A023     		mov	r3, #160
+ 181 0072 1B06     		lsl	r3, r3, #24
+ 182 0074 9A42     		cmp	r2, r3
+ 183 0076 F6D1     		bne	.L14
+ 184              	.L13:
+ 185              		.loc 1 104 0
+ 186 0078 259B     		ldr	r3, [sp, #148]
+ 187 007a 002B     		cmp	r3, #0
+ 188 007c 23D1     		bne	.L15
+ 189              	.LVL12:
+ 190              		.loc 1 107 0
+ 191 007e 134B     		ldr	r3, .L20
+ 192 0080 01AA     		add	r2, sp, #4
+ 193 0082 1A60     		str	r2, [r3]
+ 194              		.loc 1 110 0
+ 195 0084 154B     		ldr	r3, .L20+16
+ 196 0086 2404     		lsl	r4, r4, #16
+ 197              	.LVL13:
+ 198 0088 1C43     		orr	r4, r4, r3
+ 199 008a 0194     		str	r4, [sp, #4]
+ 200              		.loc 1 118 0
+ 201 008c FFF7FEFF 		bl	CyEnterCriticalSection
+ 202              		.loc 1 123 0
+ 203 0090 134B     		ldr	r3, .L20+20
+ 204              		.loc 1 126 0
+ 205 0092 144A     		ldr	r2, .L20+24
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 8
+
+
+ 206              		.loc 1 123 0
+ 207 0094 1B68     		ldr	r3, [r3]
+ 208              	.LVL14:
+ 209 0096 2393     		str	r3, [sp, #140]
+ 210              		.loc 1 126 0
+ 211 0098 0F4B     		ldr	r3, .L20+12
+ 212              	.LVL15:
+ 213 009a 1A60     		str	r2, [r3]
+ 214              	.L16:
+ 215              		.loc 1 128 0
+ 216 009c 0E4B     		ldr	r3, .L20+12
+ 217 009e 1B68     		ldr	r3, [r3]
+ 218 00a0 002B     		cmp	r3, #0
+ 219 00a2 FBDB     		blt	.L16
+ 220              		.loc 1 134 0
+ 221 00a4 239A     		ldr	r2, [sp, #140]
+ 222 00a6 0E4B     		ldr	r3, .L20+20
+ 223 00a8 1A60     		str	r2, [r3]
+ 224              		.loc 1 136 0
+ 225 00aa FFF7FEFF 		bl	CyExitCriticalSection
+ 226              		.loc 1 138 0
+ 227 00ae 074B     		ldr	r3, .L20
+ 228 00b0 1B68     		ldr	r3, [r3]
+ 229              	.LVL16:
+ 230 00b2 2493     		str	r3, [sp, #144]
+ 231              		.loc 1 139 0
+ 232 00b4 249A     		ldr	r2, [sp, #144]
+ 233 00b6 A023     		mov	r3, #160
+ 234              	.LVL17:
+ 235 00b8 1B06     		lsl	r3, r3, #24
+ 236 00ba 9A42     		cmp	r2, r3
+ 237 00bc 03D0     		beq	.L15
+ 238              	.LVL18:
+ 239              		.loc 1 141 0
+ 240 00be 249B     		ldr	r3, [sp, #144]
+ 241              	.LVL19:
+ 242 00c0 00E0     		b	.L19
+ 243              	.LVL20:
+ 244              	.L10:
+ 245              		.loc 1 147 0
+ 246 00c2 0123     		mov	r3, #1
+ 247              	.LVL21:
+ 248              	.L19:
+ 249 00c4 2593     		str	r3, [sp, #148]
+ 250              	.LVL22:
+ 251              	.L15:
+ 252              		.loc 1 150 0
+ 253 00c6 2598     		ldr	r0, [sp, #148]
+ 254              		.loc 1 151 0
+ 255 00c8 26B0     		add	sp, sp, #152
+ 256              		@ sp needed for prologue
+ 257              	.LVL23:
+ 258 00ca 10BD     		pop	{r4, pc}
+ 259              	.L21:
+ 260              		.align	2
+ 261              	.L20:
+ 262 00cc 08000040 		.word	1073741832
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 9
+
+
+ 263 00d0 B6D70000 		.word	55222
+ 264 00d4 04000080 		.word	-2147483644
+ 265 00d8 04000040 		.word	1073741828
+ 266 00dc B6D80000 		.word	55478
+ 267 00e0 08010B40 		.word	1074462984
+ 268 00e4 05000080 		.word	-2147483643
+ 269              		.cfi_endproc
+ 270              	.LFE0:
+ 271              		.size	CySysFlashWriteRow, .-CySysFlashWriteRow
+ 272              		.text
+ 273              	.Letext0:
+ 274              		.section	.debug_loc,"",%progbits
+ 275              	.Ldebug_loc0:
+ 276              	.LLST0:
+ 277 0000 00000000 		.4byte	.LFB1
+ 278 0004 02000000 		.4byte	.LCFI0
+ 279 0008 0100     		.2byte	0x1
+ 280 000a 5D       		.byte	0x5d
+ 281 000b 02000000 		.4byte	.LCFI0
+ 282 000f 38000000 		.4byte	.LFE1
+ 283 0013 0200     		.2byte	0x2
+ 284 0015 7D       		.byte	0x7d
+ 285 0016 08       		.sleb128 8
+ 286 0017 00000000 		.4byte	0x0
+ 287 001b 00000000 		.4byte	0x0
+ 288              	.LLST1:
+ 289 001f 02000000 		.4byte	.LVL0
+ 290 0023 28000000 		.4byte	.LVL1
+ 291 0027 0100     		.2byte	0x1
+ 292 0029 50       		.byte	0x50
+ 293 002a 2C000000 		.4byte	.LVL2
+ 294 002e 38000000 		.4byte	.LFE1
+ 295 0032 0100     		.2byte	0x1
+ 296 0034 50       		.byte	0x50
+ 297 0035 00000000 		.4byte	0x0
+ 298 0039 00000000 		.4byte	0x0
+ 299              	.LLST2:
+ 300 003d 00000000 		.4byte	.LFB0
+ 301 0041 02000000 		.4byte	.LCFI1
+ 302 0045 0100     		.2byte	0x1
+ 303 0047 5D       		.byte	0x5d
+ 304 0048 02000000 		.4byte	.LCFI1
+ 305 004c 04000000 		.4byte	.LCFI2
+ 306 0050 0200     		.2byte	0x2
+ 307 0052 7D       		.byte	0x7d
+ 308 0053 08       		.sleb128 8
+ 309 0054 04000000 		.4byte	.LCFI2
+ 310 0058 E8000000 		.4byte	.LFE0
+ 311 005c 0300     		.2byte	0x3
+ 312 005e 7D       		.byte	0x7d
+ 313 005f A001     		.sleb128 160
+ 314 0061 00000000 		.4byte	0x0
+ 315 0065 00000000 		.4byte	0x0
+ 316              	.LLST3:
+ 317 0069 02000000 		.4byte	.LVL3
+ 318 006d 0E000000 		.4byte	.LVL5
+ 319 0071 0100     		.2byte	0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 10
+
+
+ 320 0073 50       		.byte	0x50
+ 321 0074 0E000000 		.4byte	.LVL5
+ 322 0078 12000000 		.4byte	.LVL6
+ 323 007c 0100     		.2byte	0x1
+ 324 007e 54       		.byte	0x54
+ 325 007f 12000000 		.4byte	.LVL6
+ 326 0083 20000000 		.4byte	.LVL7
+ 327 0087 0100     		.2byte	0x1
+ 328 0089 50       		.byte	0x50
+ 329 008a 20000000 		.4byte	.LVL7
+ 330 008e 88000000 		.4byte	.LVL13
+ 331 0092 0100     		.2byte	0x1
+ 332 0094 54       		.byte	0x54
+ 333 0095 C2000000 		.4byte	.LVL20
+ 334 0099 C6000000 		.4byte	.LVL22
+ 335 009d 0100     		.2byte	0x1
+ 336 009f 50       		.byte	0x50
+ 337 00a0 C6000000 		.4byte	.LVL22
+ 338 00a4 CA000000 		.4byte	.LVL23
+ 339 00a8 0100     		.2byte	0x1
+ 340 00aa 54       		.byte	0x54
+ 341 00ab 00000000 		.4byte	0x0
+ 342 00af 00000000 		.4byte	0x0
+ 343              	.LLST4:
+ 344 00b3 02000000 		.4byte	.LVL3
+ 345 00b7 32000000 		.4byte	.LVL8
+ 346 00bb 0100     		.2byte	0x1
+ 347 00bd 51       		.byte	0x51
+ 348 00be C2000000 		.4byte	.LVL20
+ 349 00c2 E8000000 		.4byte	.LFE0
+ 350 00c6 0100     		.2byte	0x1
+ 351 00c8 51       		.byte	0x51
+ 352 00c9 00000000 		.4byte	0x0
+ 353 00cd 00000000 		.4byte	0x0
+ 354              	.LLST5:
+ 355 00d1 0A000000 		.4byte	.LVL4
+ 356 00d5 7E000000 		.4byte	.LVL12
+ 357 00d9 0300     		.2byte	0x3
+ 358 00db 7D       		.byte	0x7d
+ 359 00dc 9401     		.sleb128 148
+ 360 00de 7E000000 		.4byte	.LVL12
+ 361 00e2 C0000000 		.4byte	.LVL19
+ 362 00e6 0200     		.2byte	0x2
+ 363 00e8 91       		.byte	0x91
+ 364 00e9 7C       		.sleb128 -4
+ 365 00ea C0000000 		.4byte	.LVL19
+ 366 00ee C2000000 		.4byte	.LVL20
+ 367 00f2 0100     		.2byte	0x1
+ 368 00f4 53       		.byte	0x53
+ 369 00f5 C2000000 		.4byte	.LVL20
+ 370 00f9 E8000000 		.4byte	.LFE0
+ 371 00fd 0300     		.2byte	0x3
+ 372 00ff 7D       		.byte	0x7d
+ 373 0100 9401     		.sleb128 148
+ 374 0102 00000000 		.4byte	0x0
+ 375 0106 00000000 		.4byte	0x0
+ 376              	.LLST6:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 11
+
+
+ 377 010a 44000000 		.4byte	.LVL9
+ 378 010e 4A000000 		.4byte	.LVL10
+ 379 0112 0100     		.2byte	0x1
+ 380 0114 53       		.byte	0x53
+ 381 0115 4A000000 		.4byte	.LVL10
+ 382 0119 B2000000 		.4byte	.LVL16
+ 383 011d 0200     		.2byte	0x2
+ 384 011f 91       		.byte	0x91
+ 385 0120 78       		.sleb128 -8
+ 386 0121 B2000000 		.4byte	.LVL16
+ 387 0125 B8000000 		.4byte	.LVL17
+ 388 0129 0100     		.2byte	0x1
+ 389 012b 53       		.byte	0x53
+ 390 012c B8000000 		.4byte	.LVL17
+ 391 0130 C2000000 		.4byte	.LVL20
+ 392 0134 0200     		.2byte	0x2
+ 393 0136 91       		.byte	0x91
+ 394 0137 78       		.sleb128 -8
+ 395 0138 C4000000 		.4byte	.LVL21
+ 396 013c E8000000 		.4byte	.LFE0
+ 397 0140 0200     		.2byte	0x2
+ 398 0142 91       		.byte	0x91
+ 399 0143 78       		.sleb128 -8
+ 400 0144 00000000 		.4byte	0x0
+ 401 0148 00000000 		.4byte	0x0
+ 402              	.LLST7:
+ 403 014c 96000000 		.4byte	.LVL14
+ 404 0150 9A000000 		.4byte	.LVL15
+ 405 0154 0100     		.2byte	0x1
+ 406 0156 53       		.byte	0x53
+ 407 0157 9A000000 		.4byte	.LVL15
+ 408 015b BE000000 		.4byte	.LVL18
+ 409 015f 0300     		.2byte	0x3
+ 410 0161 7D       		.byte	0x7d
+ 411 0162 8C01     		.sleb128 140
+ 412 0164 BE000000 		.4byte	.LVL18
+ 413 0168 C2000000 		.4byte	.LVL20
+ 414 016c 0200     		.2byte	0x2
+ 415 016e 91       		.byte	0x91
+ 416 016f 74       		.sleb128 -12
+ 417 0170 C4000000 		.4byte	.LVL21
+ 418 0174 E8000000 		.4byte	.LFE0
+ 419 0178 0200     		.2byte	0x2
+ 420 017a 91       		.byte	0x91
+ 421 017b 74       		.sleb128 -12
+ 422 017c 00000000 		.4byte	0x0
+ 423 0180 00000000 		.4byte	0x0
+ 424              		.file 2 ".\\Generated_Source\\PSoC4\\/cytypes.h"
+ 425              		.section	.debug_info
+ 426 0000 8C010000 		.4byte	0x18c
+ 427 0004 0200     		.2byte	0x2
+ 428 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 429 000a 04       		.byte	0x4
+ 430 000b 01       		.uleb128 0x1
+ 431 000c 64000000 		.4byte	.LASF23
+ 432 0010 01       		.byte	0x1
+ 433 0011 DA000000 		.4byte	.LASF24
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 12
+
+
+ 434 0015 70000000 		.4byte	.LASF25
+ 435 0019 00000000 		.4byte	0x0
+ 436 001d 00000000 		.4byte	0x0
+ 437 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 438 0025 00000000 		.4byte	.Ldebug_line0
+ 439 0029 02       		.uleb128 0x2
+ 440 002a 01       		.byte	0x1
+ 441 002b 06       		.byte	0x6
+ 442 002c 37010000 		.4byte	.LASF0
+ 443 0030 02       		.uleb128 0x2
+ 444 0031 01       		.byte	0x1
+ 445 0032 08       		.byte	0x8
+ 446 0033 CC000000 		.4byte	.LASF1
+ 447 0037 02       		.uleb128 0x2
+ 448 0038 02       		.byte	0x2
+ 449 0039 05       		.byte	0x5
+ 450 003a 5C010000 		.4byte	.LASF2
+ 451 003e 02       		.uleb128 0x2
+ 452 003f 02       		.byte	0x2
+ 453 0040 07       		.byte	0x7
+ 454 0041 24010000 		.4byte	.LASF3
+ 455 0045 02       		.uleb128 0x2
+ 456 0046 04       		.byte	0x4
+ 457 0047 05       		.byte	0x5
+ 458 0048 02010000 		.4byte	.LASF4
+ 459 004c 02       		.uleb128 0x2
+ 460 004d 04       		.byte	0x4
+ 461 004e 07       		.byte	0x7
+ 462 004f 8D010000 		.4byte	.LASF5
+ 463 0053 02       		.uleb128 0x2
+ 464 0054 08       		.byte	0x8
+ 465 0055 05       		.byte	0x5
+ 466 0056 00000000 		.4byte	.LASF6
+ 467 005a 02       		.uleb128 0x2
+ 468 005b 08       		.byte	0x8
+ 469 005c 07       		.byte	0x7
+ 470 005d 3B000000 		.4byte	.LASF7
+ 471 0061 03       		.uleb128 0x3
+ 472 0062 04       		.byte	0x4
+ 473 0063 05       		.byte	0x5
+ 474 0064 696E7400 		.ascii	"int\000"
+ 475 0068 02       		.uleb128 0x2
+ 476 0069 04       		.byte	0x4
+ 477 006a 07       		.byte	0x7
+ 478 006b 15000000 		.4byte	.LASF8
+ 479 006f 04       		.uleb128 0x4
+ 480 0070 22000000 		.4byte	.LASF9
+ 481 0074 02       		.byte	0x2
+ 482 0075 4C       		.byte	0x4c
+ 483 0076 30000000 		.4byte	0x30
+ 484 007a 04       		.uleb128 0x4
+ 485 007b 0E000000 		.4byte	.LASF10
+ 486 007f 02       		.byte	0x2
+ 487 0080 4E       		.byte	0x4e
+ 488 0081 4C000000 		.4byte	0x4c
+ 489 0085 02       		.uleb128 0x2
+ 490 0086 04       		.byte	0x4
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 13
+
+
+ 491 0087 04       		.byte	0x4
+ 492 0088 56010000 		.4byte	.LASF11
+ 493 008c 02       		.uleb128 0x2
+ 494 008d 08       		.byte	0x8
+ 495 008e 04       		.byte	0x4
+ 496 008f 14010000 		.4byte	.LASF12
+ 497 0093 02       		.uleb128 0x2
+ 498 0094 01       		.byte	0x1
+ 499 0095 08       		.byte	0x8
+ 500 0096 FD000000 		.4byte	.LASF13
+ 501 009a 04       		.uleb128 0x4
+ 502 009b 1B010000 		.4byte	.LASF14
+ 503 009f 02       		.byte	0x2
+ 504 00a0 D1       		.byte	0xd1
+ 505 00a1 4C000000 		.4byte	0x4c
+ 506 00a5 05       		.uleb128 0x5
+ 507 00a6 7A000000 		.4byte	0x7a
+ 508 00aa 06       		.uleb128 0x6
+ 509 00ab 04       		.byte	0x4
+ 510 00ac 07       		.byte	0x7
+ 511 00ad 07       		.uleb128 0x7
+ 512 00ae 01       		.byte	0x1
+ 513 00af 6D010000 		.4byte	.LASF26
+ 514 00b3 01       		.byte	0x1
+ 515 00b4 AC       		.byte	0xac
+ 516 00b5 01       		.byte	0x1
+ 517 00b6 00000000 		.4byte	.LFB1
+ 518 00ba 38000000 		.4byte	.LFE1
+ 519 00be 00000000 		.4byte	.LLST0
+ 520 00c2 D6000000 		.4byte	0xd6
+ 521 00c6 08       		.uleb128 0x8
+ 522 00c7 5F000000 		.4byte	.LASF15
+ 523 00cb 01       		.byte	0x1
+ 524 00cc AC       		.byte	0xac
+ 525 00cd 7A000000 		.4byte	0x7a
+ 526 00d1 1F000000 		.4byte	.LLST1
+ 527 00d5 00       		.byte	0x0
+ 528 00d6 09       		.uleb128 0x9
+ 529 00d7 01       		.byte	0x1
+ 530 00d8 43010000 		.4byte	.LASF27
+ 531 00dc 01       		.byte	0x1
+ 532 00dd 32       		.byte	0x32
+ 533 00de 01       		.byte	0x1
+ 534 00df 9A000000 		.4byte	0x9a
+ 535 00e3 00000000 		.4byte	.LFB0
+ 536 00e7 E8000000 		.4byte	.LFE0
+ 537 00eb 3D000000 		.4byte	.LLST2
+ 538 00ef 64010000 		.4byte	0x164
+ 539 00f3 08       		.uleb128 0x8
+ 540 00f4 66010000 		.4byte	.LASF16
+ 541 00f8 01       		.byte	0x1
+ 542 00f9 32       		.byte	0x32
+ 543 00fa 7A000000 		.4byte	0x7a
+ 544 00fe 69000000 		.4byte	.LLST3
+ 545 0102 08       		.uleb128 0x8
+ 546 0103 85010000 		.4byte	.LASF17
+ 547 0107 01       		.byte	0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 14
+
+
+ 548 0108 32       		.byte	0x32
+ 549 0109 64010000 		.4byte	0x164
+ 550 010d B3000000 		.4byte	.LLST4
+ 551 0111 0A       		.uleb128 0xa
+ 552 0112 28000000 		.4byte	.LASF18
+ 553 0116 01       		.byte	0x1
+ 554 0117 34       		.byte	0x34
+ 555 0118 6F010000 		.4byte	0x16f
+ 556 011c D1000000 		.4byte	.LLST5
+ 557 0120 0B       		.uleb128 0xb
+ 558 0121 70747200 		.ascii	"ptr\000"
+ 559 0125 01       		.byte	0x1
+ 560 0126 35       		.byte	0x35
+ 561 0127 74010000 		.4byte	0x174
+ 562 012b 0A       		.uleb128 0xa
+ 563 012c 0B010000 		.4byte	.LASF19
+ 564 0130 01       		.byte	0x1
+ 565 0131 36       		.byte	0x36
+ 566 0132 A5000000 		.4byte	0xa5
+ 567 0136 0A010000 		.4byte	.LLST6
+ 568 013a 0C       		.uleb128 0xc
+ 569 013b 31000000 		.4byte	.LASF20
+ 570 013f 01       		.byte	0x1
+ 571 0140 37       		.byte	0x37
+ 572 0141 8A010000 		.4byte	0x18a
+ 573 0145 03       		.byte	0x3
+ 574 0146 91       		.byte	0x91
+ 575 0147 E47E     		.sleb128 -156
+ 576 0149 0A       		.uleb128 0xa
+ 577 014a 52000000 		.4byte	.LASF21
+ 578 014e 01       		.byte	0x1
+ 579 014f 38       		.byte	0x38
+ 580 0150 A5000000 		.4byte	0xa5
+ 581 0154 4C010000 		.4byte	.LLST7
+ 582 0158 0D       		.uleb128 0xd
+ 583 0159 9F010000 		.4byte	.LASF22
+ 584 015d 01       		.byte	0x1
+ 585 015e 39       		.byte	0x39
+ 586 015f 6F000000 		.4byte	0x6f
+ 587 0163 00       		.byte	0x0
+ 588 0164 0E       		.uleb128 0xe
+ 589 0165 04       		.byte	0x4
+ 590 0166 6A010000 		.4byte	0x16a
+ 591 016a 0F       		.uleb128 0xf
+ 592 016b 6F000000 		.4byte	0x6f
+ 593 016f 05       		.uleb128 0x5
+ 594 0170 9A000000 		.4byte	0x9a
+ 595 0174 0E       		.uleb128 0xe
+ 596 0175 04       		.byte	0x4
+ 597 0176 A5000000 		.4byte	0xa5
+ 598 017a 10       		.uleb128 0x10
+ 599 017b 7A000000 		.4byte	0x7a
+ 600 017f 8A010000 		.4byte	0x18a
+ 601 0183 11       		.uleb128 0x11
+ 602 0184 AA000000 		.4byte	0xaa
+ 603 0188 21       		.byte	0x21
+ 604 0189 00       		.byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 15
+
+
+ 605 018a 05       		.uleb128 0x5
+ 606 018b 7A010000 		.4byte	0x17a
+ 607 018f 00       		.byte	0x0
+ 608              		.section	.debug_abbrev
+ 609 0000 01       		.uleb128 0x1
+ 610 0001 11       		.uleb128 0x11
+ 611 0002 01       		.byte	0x1
+ 612 0003 25       		.uleb128 0x25
+ 613 0004 0E       		.uleb128 0xe
+ 614 0005 13       		.uleb128 0x13
+ 615 0006 0B       		.uleb128 0xb
+ 616 0007 03       		.uleb128 0x3
+ 617 0008 0E       		.uleb128 0xe
+ 618 0009 1B       		.uleb128 0x1b
+ 619 000a 0E       		.uleb128 0xe
+ 620 000b 11       		.uleb128 0x11
+ 621 000c 01       		.uleb128 0x1
+ 622 000d 52       		.uleb128 0x52
+ 623 000e 01       		.uleb128 0x1
+ 624 000f 55       		.uleb128 0x55
+ 625 0010 06       		.uleb128 0x6
+ 626 0011 10       		.uleb128 0x10
+ 627 0012 06       		.uleb128 0x6
+ 628 0013 00       		.byte	0x0
+ 629 0014 00       		.byte	0x0
+ 630 0015 02       		.uleb128 0x2
+ 631 0016 24       		.uleb128 0x24
+ 632 0017 00       		.byte	0x0
+ 633 0018 0B       		.uleb128 0xb
+ 634 0019 0B       		.uleb128 0xb
+ 635 001a 3E       		.uleb128 0x3e
+ 636 001b 0B       		.uleb128 0xb
+ 637 001c 03       		.uleb128 0x3
+ 638 001d 0E       		.uleb128 0xe
+ 639 001e 00       		.byte	0x0
+ 640 001f 00       		.byte	0x0
+ 641 0020 03       		.uleb128 0x3
+ 642 0021 24       		.uleb128 0x24
+ 643 0022 00       		.byte	0x0
+ 644 0023 0B       		.uleb128 0xb
+ 645 0024 0B       		.uleb128 0xb
+ 646 0025 3E       		.uleb128 0x3e
+ 647 0026 0B       		.uleb128 0xb
+ 648 0027 03       		.uleb128 0x3
+ 649 0028 08       		.uleb128 0x8
+ 650 0029 00       		.byte	0x0
+ 651 002a 00       		.byte	0x0
+ 652 002b 04       		.uleb128 0x4
+ 653 002c 16       		.uleb128 0x16
+ 654 002d 00       		.byte	0x0
+ 655 002e 03       		.uleb128 0x3
+ 656 002f 0E       		.uleb128 0xe
+ 657 0030 3A       		.uleb128 0x3a
+ 658 0031 0B       		.uleb128 0xb
+ 659 0032 3B       		.uleb128 0x3b
+ 660 0033 0B       		.uleb128 0xb
+ 661 0034 49       		.uleb128 0x49
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 16
+
+
+ 662 0035 13       		.uleb128 0x13
+ 663 0036 00       		.byte	0x0
+ 664 0037 00       		.byte	0x0
+ 665 0038 05       		.uleb128 0x5
+ 666 0039 35       		.uleb128 0x35
+ 667 003a 00       		.byte	0x0
+ 668 003b 49       		.uleb128 0x49
+ 669 003c 13       		.uleb128 0x13
+ 670 003d 00       		.byte	0x0
+ 671 003e 00       		.byte	0x0
+ 672 003f 06       		.uleb128 0x6
+ 673 0040 24       		.uleb128 0x24
+ 674 0041 00       		.byte	0x0
+ 675 0042 0B       		.uleb128 0xb
+ 676 0043 0B       		.uleb128 0xb
+ 677 0044 3E       		.uleb128 0x3e
+ 678 0045 0B       		.uleb128 0xb
+ 679 0046 00       		.byte	0x0
+ 680 0047 00       		.byte	0x0
+ 681 0048 07       		.uleb128 0x7
+ 682 0049 2E       		.uleb128 0x2e
+ 683 004a 01       		.byte	0x1
+ 684 004b 3F       		.uleb128 0x3f
+ 685 004c 0C       		.uleb128 0xc
+ 686 004d 03       		.uleb128 0x3
+ 687 004e 0E       		.uleb128 0xe
+ 688 004f 3A       		.uleb128 0x3a
+ 689 0050 0B       		.uleb128 0xb
+ 690 0051 3B       		.uleb128 0x3b
+ 691 0052 0B       		.uleb128 0xb
+ 692 0053 27       		.uleb128 0x27
+ 693 0054 0C       		.uleb128 0xc
+ 694 0055 11       		.uleb128 0x11
+ 695 0056 01       		.uleb128 0x1
+ 696 0057 12       		.uleb128 0x12
+ 697 0058 01       		.uleb128 0x1
+ 698 0059 40       		.uleb128 0x40
+ 699 005a 06       		.uleb128 0x6
+ 700 005b 01       		.uleb128 0x1
+ 701 005c 13       		.uleb128 0x13
+ 702 005d 00       		.byte	0x0
+ 703 005e 00       		.byte	0x0
+ 704 005f 08       		.uleb128 0x8
+ 705 0060 05       		.uleb128 0x5
+ 706 0061 00       		.byte	0x0
+ 707 0062 03       		.uleb128 0x3
+ 708 0063 0E       		.uleb128 0xe
+ 709 0064 3A       		.uleb128 0x3a
+ 710 0065 0B       		.uleb128 0xb
+ 711 0066 3B       		.uleb128 0x3b
+ 712 0067 0B       		.uleb128 0xb
+ 713 0068 49       		.uleb128 0x49
+ 714 0069 13       		.uleb128 0x13
+ 715 006a 02       		.uleb128 0x2
+ 716 006b 06       		.uleb128 0x6
+ 717 006c 00       		.byte	0x0
+ 718 006d 00       		.byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 17
+
+
+ 719 006e 09       		.uleb128 0x9
+ 720 006f 2E       		.uleb128 0x2e
+ 721 0070 01       		.byte	0x1
+ 722 0071 3F       		.uleb128 0x3f
+ 723 0072 0C       		.uleb128 0xc
+ 724 0073 03       		.uleb128 0x3
+ 725 0074 0E       		.uleb128 0xe
+ 726 0075 3A       		.uleb128 0x3a
+ 727 0076 0B       		.uleb128 0xb
+ 728 0077 3B       		.uleb128 0x3b
+ 729 0078 0B       		.uleb128 0xb
+ 730 0079 27       		.uleb128 0x27
+ 731 007a 0C       		.uleb128 0xc
+ 732 007b 49       		.uleb128 0x49
+ 733 007c 13       		.uleb128 0x13
+ 734 007d 11       		.uleb128 0x11
+ 735 007e 01       		.uleb128 0x1
+ 736 007f 12       		.uleb128 0x12
+ 737 0080 01       		.uleb128 0x1
+ 738 0081 40       		.uleb128 0x40
+ 739 0082 06       		.uleb128 0x6
+ 740 0083 01       		.uleb128 0x1
+ 741 0084 13       		.uleb128 0x13
+ 742 0085 00       		.byte	0x0
+ 743 0086 00       		.byte	0x0
+ 744 0087 0A       		.uleb128 0xa
+ 745 0088 34       		.uleb128 0x34
+ 746 0089 00       		.byte	0x0
+ 747 008a 03       		.uleb128 0x3
+ 748 008b 0E       		.uleb128 0xe
+ 749 008c 3A       		.uleb128 0x3a
+ 750 008d 0B       		.uleb128 0xb
+ 751 008e 3B       		.uleb128 0x3b
+ 752 008f 0B       		.uleb128 0xb
+ 753 0090 49       		.uleb128 0x49
+ 754 0091 13       		.uleb128 0x13
+ 755 0092 02       		.uleb128 0x2
+ 756 0093 06       		.uleb128 0x6
+ 757 0094 00       		.byte	0x0
+ 758 0095 00       		.byte	0x0
+ 759 0096 0B       		.uleb128 0xb
+ 760 0097 34       		.uleb128 0x34
+ 761 0098 00       		.byte	0x0
+ 762 0099 03       		.uleb128 0x3
+ 763 009a 08       		.uleb128 0x8
+ 764 009b 3A       		.uleb128 0x3a
+ 765 009c 0B       		.uleb128 0xb
+ 766 009d 3B       		.uleb128 0x3b
+ 767 009e 0B       		.uleb128 0xb
+ 768 009f 49       		.uleb128 0x49
+ 769 00a0 13       		.uleb128 0x13
+ 770 00a1 00       		.byte	0x0
+ 771 00a2 00       		.byte	0x0
+ 772 00a3 0C       		.uleb128 0xc
+ 773 00a4 34       		.uleb128 0x34
+ 774 00a5 00       		.byte	0x0
+ 775 00a6 03       		.uleb128 0x3
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 18
+
+
+ 776 00a7 0E       		.uleb128 0xe
+ 777 00a8 3A       		.uleb128 0x3a
+ 778 00a9 0B       		.uleb128 0xb
+ 779 00aa 3B       		.uleb128 0x3b
+ 780 00ab 0B       		.uleb128 0xb
+ 781 00ac 49       		.uleb128 0x49
+ 782 00ad 13       		.uleb128 0x13
+ 783 00ae 02       		.uleb128 0x2
+ 784 00af 0A       		.uleb128 0xa
+ 785 00b0 00       		.byte	0x0
+ 786 00b1 00       		.byte	0x0
+ 787 00b2 0D       		.uleb128 0xd
+ 788 00b3 34       		.uleb128 0x34
+ 789 00b4 00       		.byte	0x0
+ 790 00b5 03       		.uleb128 0x3
+ 791 00b6 0E       		.uleb128 0xe
+ 792 00b7 3A       		.uleb128 0x3a
+ 793 00b8 0B       		.uleb128 0xb
+ 794 00b9 3B       		.uleb128 0x3b
+ 795 00ba 0B       		.uleb128 0xb
+ 796 00bb 49       		.uleb128 0x49
+ 797 00bc 13       		.uleb128 0x13
+ 798 00bd 00       		.byte	0x0
+ 799 00be 00       		.byte	0x0
+ 800 00bf 0E       		.uleb128 0xe
+ 801 00c0 0F       		.uleb128 0xf
+ 802 00c1 00       		.byte	0x0
+ 803 00c2 0B       		.uleb128 0xb
+ 804 00c3 0B       		.uleb128 0xb
+ 805 00c4 49       		.uleb128 0x49
+ 806 00c5 13       		.uleb128 0x13
+ 807 00c6 00       		.byte	0x0
+ 808 00c7 00       		.byte	0x0
+ 809 00c8 0F       		.uleb128 0xf
+ 810 00c9 26       		.uleb128 0x26
+ 811 00ca 00       		.byte	0x0
+ 812 00cb 49       		.uleb128 0x49
+ 813 00cc 13       		.uleb128 0x13
+ 814 00cd 00       		.byte	0x0
+ 815 00ce 00       		.byte	0x0
+ 816 00cf 10       		.uleb128 0x10
+ 817 00d0 01       		.uleb128 0x1
+ 818 00d1 01       		.byte	0x1
+ 819 00d2 49       		.uleb128 0x49
+ 820 00d3 13       		.uleb128 0x13
+ 821 00d4 01       		.uleb128 0x1
+ 822 00d5 13       		.uleb128 0x13
+ 823 00d6 00       		.byte	0x0
+ 824 00d7 00       		.byte	0x0
+ 825 00d8 11       		.uleb128 0x11
+ 826 00d9 21       		.uleb128 0x21
+ 827 00da 00       		.byte	0x0
+ 828 00db 49       		.uleb128 0x49
+ 829 00dc 13       		.uleb128 0x13
+ 830 00dd 2F       		.uleb128 0x2f
+ 831 00de 0B       		.uleb128 0xb
+ 832 00df 00       		.byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 19
+
+
+ 833 00e0 00       		.byte	0x0
+ 834 00e1 00       		.byte	0x0
+ 835              		.section	.debug_pubnames,"",%progbits
+ 836 0000 41000000 		.4byte	0x41
+ 837 0004 0200     		.2byte	0x2
+ 838 0006 00000000 		.4byte	.Ldebug_info0
+ 839 000a 90010000 		.4byte	0x190
+ 840 000e AD000000 		.4byte	0xad
+ 841 0012 43795379 		.ascii	"CySysFlashSetWaitCycles\000"
+ 841      73466C61 
+ 841      73685365 
+ 841      74576169 
+ 841      74437963 
+ 842 002a D6000000 		.4byte	0xd6
+ 843 002e 43795379 		.ascii	"CySysFlashWriteRow\000"
+ 843      73466C61 
+ 843      73685772 
+ 843      69746552 
+ 843      6F7700
+ 844 0041 00000000 		.4byte	0x0
+ 845              		.section	.debug_aranges,"",%progbits
+ 846 0000 24000000 		.4byte	0x24
+ 847 0004 0200     		.2byte	0x2
+ 848 0006 00000000 		.4byte	.Ldebug_info0
+ 849 000a 04       		.byte	0x4
+ 850 000b 00       		.byte	0x0
+ 851 000c 0000     		.2byte	0x0
+ 852 000e 0000     		.2byte	0x0
+ 853 0010 00000000 		.4byte	.LFB1
+ 854 0014 38000000 		.4byte	.LFE1-.LFB1
+ 855 0018 00000000 		.4byte	.LFB0
+ 856 001c E8000000 		.4byte	.LFE0-.LFB0
+ 857 0020 00000000 		.4byte	0x0
+ 858 0024 00000000 		.4byte	0x0
+ 859              		.section	.debug_ranges,"",%progbits
+ 860              	.Ldebug_ranges0:
+ 861 0000 00000000 		.4byte	.Ltext0
+ 862 0004 00000000 		.4byte	.Letext0
+ 863 0008 00000000 		.4byte	.LFB1
+ 864 000c 38000000 		.4byte	.LFE1
+ 865 0010 00000000 		.4byte	.LFB0
+ 866 0014 E8000000 		.4byte	.LFE0
+ 867 0018 00000000 		.4byte	0x0
+ 868 001c 00000000 		.4byte	0x0
+ 869              		.section	.debug_str,"MS",%progbits,1
+ 870              	.LASF6:
+ 871 0000 6C6F6E67 		.ascii	"long long int\000"
+ 871      206C6F6E 
+ 871      6720696E 
+ 871      7400
+ 872              	.LASF10:
+ 873 000e 75696E74 		.ascii	"uint32\000"
+ 873      333200
+ 874              	.LASF8:
+ 875 0015 756E7369 		.ascii	"unsigned int\000"
+ 875      676E6564 
+ 875      20696E74 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 20
+
+
+ 875      00
+ 876              	.LASF9:
+ 877 0022 75696E74 		.ascii	"uint8\000"
+ 877      3800
+ 878              	.LASF18:
+ 879 0028 72657456 		.ascii	"retValue\000"
+ 879      616C7565 
+ 879      00
+ 880              	.LASF20:
+ 881 0031 6C6F6361 		.ascii	"localData\000"
+ 881      6C446174 
+ 881      6100
+ 882              	.LASF7:
+ 883 003b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 883      206C6F6E 
+ 883      6720756E 
+ 883      7369676E 
+ 883      65642069 
+ 884              	.LASF21:
+ 885 0052 696D6F43 		.ascii	"imoConfigReg\000"
+ 885      6F6E6669 
+ 885      67526567 
+ 885      00
+ 886              	.LASF15:
+ 887 005f 66726571 		.ascii	"freq\000"
+ 887      00
+ 888              	.LASF23:
+ 889 0064 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 889      4320342E 
+ 889      342E3100 
+ 890              	.LASF25:
+ 891 0070 433A5C55 		.ascii	"C:\\Users\\kees\\Documents\\test_projects\\My fun s"
+ 891      73657273 
+ 891      5C6B6565 
+ 891      735C446F 
+ 891      63756D65 
+ 892 009e 74756666 		.ascii	"tuff\\3d_cube\\3d_cube.Bundle01\\Design137.cydsn\000"
+ 892      5C33645F 
+ 892      63756265 
+ 892      5C33645F 
+ 892      63756265 
+ 893              	.LASF1:
+ 894 00cc 756E7369 		.ascii	"unsigned char\000"
+ 894      676E6564 
+ 894      20636861 
+ 894      7200
+ 895              	.LASF24:
+ 896 00da 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\CyFlash.c\000"
+ 896      6E657261 
+ 896      7465645F 
+ 896      536F7572 
+ 896      63655C50 
+ 897              	.LASF13:
+ 898 00fd 63686172 		.ascii	"char\000"
+ 898      00
+ 899              	.LASF4:
+ 900 0102 6C6F6E67 		.ascii	"long int\000"
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 21
+
+
+ 900      20696E74 
+ 900      00
+ 901              	.LASF19:
+ 902 010b 63707556 		.ascii	"cpuValue\000"
+ 902      616C7565 
+ 902      00
+ 903              	.LASF12:
+ 904 0114 646F7562 		.ascii	"double\000"
+ 904      6C6500
+ 905              	.LASF14:
+ 906 011b 63797374 		.ascii	"cystatus\000"
+ 906      61747573 
+ 906      00
+ 907              	.LASF3:
+ 908 0124 73686F72 		.ascii	"short unsigned int\000"
+ 908      7420756E 
+ 908      7369676E 
+ 908      65642069 
+ 908      6E7400
+ 909              	.LASF0:
+ 910 0137 7369676E 		.ascii	"signed char\000"
+ 910      65642063 
+ 910      68617200 
+ 911              	.LASF27:
+ 912 0143 43795379 		.ascii	"CySysFlashWriteRow\000"
+ 912      73466C61 
+ 912      73685772 
+ 912      69746552 
+ 912      6F7700
+ 913              	.LASF11:
+ 914 0156 666C6F61 		.ascii	"float\000"
+ 914      7400
+ 915              	.LASF2:
+ 916 015c 73686F72 		.ascii	"short int\000"
+ 916      7420696E 
+ 916      7400
+ 917              	.LASF16:
+ 918 0166 726F774E 		.ascii	"rowNum\000"
+ 918      756D00
+ 919              	.LASF26:
+ 920 016d 43795379 		.ascii	"CySysFlashSetWaitCycles\000"
+ 920      73466C61 
+ 920      73685365 
+ 920      74576169 
+ 920      74437963 
+ 921              	.LASF17:
+ 922 0185 726F7744 		.ascii	"rowData\000"
+ 922      61746100 
+ 923              	.LASF5:
+ 924 018d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 924      20756E73 
+ 924      69676E65 
+ 924      6420696E 
+ 924      7400
+ 925              	.LASF22:
+ 926 019f 696E7465 		.ascii	"interruptState\000"
+ 926      72727570 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccDwCwtG.s 			page 22
+
+
+ 926      74537461 
+ 926      746500
+ 927              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

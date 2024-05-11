@@ -1,0 +1,880 @@
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"main.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 A8000000 		.text
+  19      02006100 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.text.CheckButtons,"ax",%progbits
+  23              		.align	1
+  24              		.global	CheckButtons
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	CheckButtons, %function
+  28              	CheckButtons:
+  29              	.LFB21:
+  30              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <device.h>
+  13:.\main.c      **** #include "Defines.h"
+  14:.\main.c      **** #include "Cube.h"
+  15:.\main.c      **** #include "Menu.h"
+  16:.\main.c      **** 
+  17:.\main.c      **** void CheckButtons(void);
+  18:.\main.c      **** 
+  19:.\main.c      **** float x_rot, y_rot, z_rot;
+  20:.\main.c      **** 
+  21:.\main.c      **** void main()
+  22:.\main.c      **** {
+  23:.\main.c      **** 	
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 2
+
+
+  24:.\main.c      **** 	X_OFFSET = 65.0;  // 65
+  25:.\main.c      **** 	Y_OFFSET = 65.0;  // 65
+  26:.\main.c      **** 	X_SCALE = 30.0;  // 30
+  27:.\main.c      **** 	Y_SCALE = 30.0;  // 30
+  28:.\main.c      **** 	
+  29:.\main.c      **** 	x_rot = 0.02;
+  30:.\main.c      **** 	y_rot = 0.035;
+  31:.\main.c      **** 	z_rot = 0.055;
+  32:.\main.c      **** 	
+  33:.\main.c      **** 	InitializeCube();
+  34:.\main.c      **** 	
+  35:.\main.c      **** 	LCD_Start();
+  36:.\main.c      **** 	LCD_On();
+  37:.\main.c      **** 	LCD_Contrast(60);
+  38:.\main.c      **** 	LCD_Clear(BACKGROUND);
+  39:.\main.c      **** 	
+  40:.\main.c      **** 	ShowMenuLevel(0);
+  41:.\main.c      **** 
+  42:.\main.c      ****     for(;;)
+  43:.\main.c      ****     {
+  44:.\main.c      ****         //CyDelay(16);
+  45:.\main.c      **** 		
+  46:.\main.c      **** 		//ScaleDistort();
+  47:.\main.c      **** 		//OffsetBounce();
+  48:.\main.c      **** 		
+  49:.\main.c      **** 		RotateCubeX(x_rot);
+  50:.\main.c      **** 		RotateCubeY(y_rot);
+  51:.\main.c      **** 		RotateCubeZ(z_rot);
+  52:.\main.c      **** 		
+  53:.\main.c      **** 		SaveOldLinesCube();
+  54:.\main.c      **** 		
+  55:.\main.c      **** 		ProjectCube();
+  56:.\main.c      **** 		DrawCube();
+  57:.\main.c      **** 		
+  58:.\main.c      **** 		CheckButtons();
+  59:.\main.c      ****     }
+  60:.\main.c      **** }
+  61:.\main.c      **** 
+  62:.\main.c      **** void CheckButtons(void)
+  63:.\main.c      **** {		
+  31              		.loc 1 63 0
+  32              		.cfi_startproc
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  64:.\main.c      **** 	if(D5_Read() == 0)
+  38              		.loc 1 64 0
+  39 0002 FFF7FEFF 		bl	D5_Read
+  40 0006 0028     		cmp	r0, #0
+  41 0008 01D1     		bne	.L2
+  65:.\main.c      **** 	{
+  66:.\main.c      **** 		IncreaseMenuOption(1);
+  42              		.loc 1 66 0
+  43 000a 0120     		mov	r0, #1
+  44 000c 00E0     		b	.L11
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 3
+
+
+  45              	.L2:
+  67:.\main.c      **** 	}
+  68:.\main.c      **** 	else
+  69:.\main.c      **** 	{
+  70:.\main.c      **** 		IncreaseMenuOption(0);
+  46              		.loc 1 70 0
+  47 000e 0020     		mov	r0, #0
+  48              	.L11:
+  49 0010 FFF7FEFF 		bl	IncreaseMenuOption
+  71:.\main.c      **** 	}
+  72:.\main.c      **** 	
+  73:.\main.c      **** 	if(D4_Read() == 0)
+  50              		.loc 1 73 0
+  51 0014 FFF7FEFF 		bl	D4_Read
+  52 0018 0028     		cmp	r0, #0
+  53 001a 01D1     		bne	.L4
+  74:.\main.c      **** 	{
+  75:.\main.c      **** 		DecreaseMenuOption(1);
+  54              		.loc 1 75 0
+  55 001c 0120     		mov	r0, #1
+  56 001e 00E0     		b	.L12
+  57              	.L4:
+  76:.\main.c      **** 	}
+  77:.\main.c      **** 	else
+  78:.\main.c      **** 	{
+  79:.\main.c      **** 		DecreaseMenuOption(0);
+  58              		.loc 1 79 0
+  59 0020 0020     		mov	r0, #0
+  60              	.L12:
+  61 0022 FFF7FEFF 		bl	DecreaseMenuOption
+  80:.\main.c      **** 	}
+  81:.\main.c      **** 	
+  82:.\main.c      **** 	if(D3_Read() == 0)
+  62              		.loc 1 82 0
+  63 0026 FFF7FEFF 		bl	D3_Read
+  64 002a 0028     		cmp	r0, #0
+  65 002c 01D1     		bne	.L6
+  83:.\main.c      **** 	{
+  84:.\main.c      **** 		ResetMenuOption(1);
+  66              		.loc 1 84 0
+  67 002e 0120     		mov	r0, #1
+  68 0030 00E0     		b	.L13
+  69              	.L6:
+  85:.\main.c      **** 	}
+  86:.\main.c      **** 	else
+  87:.\main.c      **** 	{
+  88:.\main.c      **** 		ResetMenuOption(0);
+  70              		.loc 1 88 0
+  71 0032 0020     		mov	r0, #0
+  72              	.L13:
+  73 0034 FFF7FEFF 		bl	ResetMenuOption
+  89:.\main.c      **** 	}
+  90:.\main.c      **** 	
+  91:.\main.c      **** 	if(P0_7_SWITCH_Read() == 0)
+  74              		.loc 1 91 0
+  75 0038 FFF7FEFF 		bl	P0_7_SWITCH_Read
+  76 003c 0028     		cmp	r0, #0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 4
+
+
+  77 003e 01D1     		bne	.L8
+  92:.\main.c      **** 	{
+  93:.\main.c      **** 		IncreaseMenuLevel(1);
+  78              		.loc 1 93 0
+  79 0040 0120     		mov	r0, #1
+  80 0042 00E0     		b	.L14
+  81              	.L8:
+  94:.\main.c      **** 	}
+  95:.\main.c      **** 	else
+  96:.\main.c      **** 	{
+  97:.\main.c      **** 		IncreaseMenuLevel(0);
+  82              		.loc 1 97 0
+  83 0044 0020     		mov	r0, #0
+  84              	.L14:
+  85 0046 FFF7FEFF 		bl	IncreaseMenuLevel
+  98:.\main.c      **** 	}
+  99:.\main.c      **** 	
+ 100:.\main.c      **** 	return;
+ 101:.\main.c      **** }
+  86              		.loc 1 101 0
+  87              		@ sp needed for prologue
+  88 004a 08BD     		pop	{r3, pc}
+  89              		.cfi_endproc
+  90              	.LFE21:
+  91              		.size	CheckButtons, .-CheckButtons
+  92              		.section	.text.main,"ax",%progbits
+  93              		.align	1
+  94              		.global	main
+  95              		.code	16
+  96              		.thumb_func
+  97              		.type	main, %function
+  98              	main:
+  99              	.LFB20:
+ 100              		.loc 1 22 0
+ 101              		.cfi_startproc
+ 102 0000 08B5     		push	{r3, lr}
+ 103              	.LCFI1:
+ 104              		.cfi_def_cfa_offset 8
+ 105              		.cfi_offset 3, -8
+ 106              		.cfi_offset 14, -4
+ 107              		.loc 1 24 0
+ 108 0002 1B4B     		ldr	r3, .L19
+ 109 0004 1B4A     		ldr	r2, .L19+4
+ 110 0006 1360     		str	r3, [r2]
+ 111              		.loc 1 25 0
+ 112 0008 1B4A     		ldr	r2, .L19+8
+ 113 000a 1360     		str	r3, [r2]
+ 114              		.loc 1 26 0
+ 115 000c 1B4B     		ldr	r3, .L19+12
+ 116 000e 1C4A     		ldr	r2, .L19+16
+ 117 0010 1360     		str	r3, [r2]
+ 118              		.loc 1 27 0
+ 119 0012 1C4A     		ldr	r2, .L19+20
+ 120 0014 1360     		str	r3, [r2]
+ 121              		.loc 1 29 0
+ 122 0016 1C4B     		ldr	r3, .L19+24
+ 123 0018 1C4A     		ldr	r2, .L19+28
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 5
+
+
+ 124 001a 1A60     		str	r2, [r3]
+ 125              		.loc 1 30 0
+ 126 001c 1C4B     		ldr	r3, .L19+32
+ 127 001e 1D4A     		ldr	r2, .L19+36
+ 128 0020 1A60     		str	r2, [r3]
+ 129              		.loc 1 31 0
+ 130 0022 1D4A     		ldr	r2, .L19+40
+ 131 0024 1D4B     		ldr	r3, .L19+44
+ 132 0026 1A60     		str	r2, [r3]
+ 133              		.loc 1 33 0
+ 134 0028 FFF7FEFF 		bl	InitializeCube
+ 135              		.loc 1 35 0
+ 136 002c FFF7FEFF 		bl	LCD_Start
+ 137              		.loc 1 36 0
+ 138 0030 FFF7FEFF 		bl	LCD_On
+ 139              		.loc 1 37 0
+ 140 0034 3C20     		mov	r0, #60
+ 141 0036 FFF7FEFF 		bl	LCD_Contrast
+ 142              		.loc 1 38 0
+ 143 003a 0020     		mov	r0, #0
+ 144 003c FFF7FEFF 		bl	LCD_Clear
+ 145              		.loc 1 40 0
+ 146 0040 0020     		mov	r0, #0
+ 147 0042 FFF7FEFF 		bl	ShowMenuLevel
+ 148              	.L17:
+ 149              		.loc 1 49 0
+ 150 0046 104B     		ldr	r3, .L19+24
+ 151 0048 1868     		ldr	r0, [r3]
+ 152 004a FFF7FEFF 		bl	RotateCubeX
+ 153              		.loc 1 50 0
+ 154 004e 104B     		ldr	r3, .L19+32
+ 155 0050 1868     		ldr	r0, [r3]
+ 156 0052 FFF7FEFF 		bl	RotateCubeY
+ 157              		.loc 1 51 0
+ 158 0056 114B     		ldr	r3, .L19+44
+ 159 0058 1868     		ldr	r0, [r3]
+ 160 005a FFF7FEFF 		bl	RotateCubeZ
+ 161              		.loc 1 53 0
+ 162 005e FFF7FEFF 		bl	SaveOldLinesCube
+ 163              		.loc 1 55 0
+ 164 0062 FFF7FEFF 		bl	ProjectCube
+ 165              		.loc 1 56 0
+ 166 0066 FFF7FEFF 		bl	DrawCube
+ 167              		.loc 1 58 0
+ 168 006a FFF7FEFF 		bl	CheckButtons
+ 169 006e EAE7     		b	.L17
+ 170              	.L20:
+ 171              		.align	2
+ 172              	.L19:
+ 173 0070 00008242 		.word	1115815936
+ 174 0074 00000000 		.word	X_OFFSET
+ 175 0078 00000000 		.word	Y_OFFSET
+ 176 007c 0000F041 		.word	1106247680
+ 177 0080 00000000 		.word	X_SCALE
+ 178 0084 00000000 		.word	Y_SCALE
+ 179 0088 00000000 		.word	x_rot
+ 180 008c 0AD7A33C 		.word	1017370378
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 6
+
+
+ 181 0090 00000000 		.word	y_rot
+ 182 0094 295C0F3D 		.word	1024416809
+ 183 0098 AE47613D 		.word	1029785518
+ 184 009c 00000000 		.word	z_rot
+ 185              		.cfi_endproc
+ 186              	.LFE20:
+ 187              		.size	main, .-main
+ 188              		.comm	LCD_FONT8x16,1552,4
+ 189              		.comm	x_rot,4,4
+ 190              		.comm	y_rot,4,4
+ 191              		.comm	z_rot,4,4
+ 192              		.text
+ 193              	.Letext0:
+ 194              		.section	.debug_loc,"",%progbits
+ 195              	.Ldebug_loc0:
+ 196              	.LLST0:
+ 197 0000 00000000 		.4byte	.LFB21
+ 198 0004 02000000 		.4byte	.LCFI0
+ 199 0008 0100     		.2byte	0x1
+ 200 000a 5D       		.byte	0x5d
+ 201 000b 02000000 		.4byte	.LCFI0
+ 202 000f 4C000000 		.4byte	.LFE21
+ 203 0013 0200     		.2byte	0x2
+ 204 0015 7D       		.byte	0x7d
+ 205 0016 08       		.sleb128 8
+ 206 0017 00000000 		.4byte	0x0
+ 207 001b 00000000 		.4byte	0x0
+ 208              	.LLST1:
+ 209 001f 00000000 		.4byte	.LFB20
+ 210 0023 02000000 		.4byte	.LCFI1
+ 211 0027 0100     		.2byte	0x1
+ 212 0029 5D       		.byte	0x5d
+ 213 002a 02000000 		.4byte	.LCFI1
+ 214 002e A0000000 		.4byte	.LFE20
+ 215 0032 0200     		.2byte	0x2
+ 216 0034 7D       		.byte	0x7d
+ 217 0035 08       		.sleb128 8
+ 218 0036 00000000 		.4byte	0x0
+ 219 003a 00000000 		.4byte	0x0
+ 220              		.file 2 "./Generated_Source/PSoC4/LCD.h"
+ 221              		.file 3 ".\\/Transforms.h"
+ 222              		.file 4 "./Generated_Source/PSoC4/cytypes.h"
+ 223              		.section	.debug_info
+ 224 0000 56010000 		.4byte	0x156
+ 225 0004 0200     		.2byte	0x2
+ 226 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 227 000a 04       		.byte	0x4
+ 228 000b 01       		.uleb128 0x1
+ 229 000c 8A000000 		.4byte	.LASF21
+ 230 0010 01       		.byte	0x1
+ 231 0011 50010000 		.4byte	.LASF22
+ 232 0015 96000000 		.4byte	.LASF23
+ 233 0019 00000000 		.4byte	0x0
+ 234 001d 00000000 		.4byte	0x0
+ 235 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 236 0025 00000000 		.4byte	.Ldebug_line0
+ 237 0029 02       		.uleb128 0x2
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 7
+
+
+ 238 002a 01       		.byte	0x1
+ 239 002b 06       		.byte	0x6
+ 240 002c 38010000 		.4byte	.LASF0
+ 241 0030 02       		.uleb128 0x2
+ 242 0031 01       		.byte	0x1
+ 243 0032 08       		.byte	0x8
+ 244 0033 F2000000 		.4byte	.LASF1
+ 245 0037 02       		.uleb128 0x2
+ 246 0038 02       		.byte	0x2
+ 247 0039 05       		.byte	0x5
+ 248 003a 0E010000 		.4byte	.LASF2
+ 249 003e 02       		.uleb128 0x2
+ 250 003f 02       		.byte	0x2
+ 251 0040 07       		.byte	0x7
+ 252 0041 25010000 		.4byte	.LASF3
+ 253 0045 02       		.uleb128 0x2
+ 254 0046 04       		.byte	0x4
+ 255 0047 05       		.byte	0x5
+ 256 0048 05010000 		.4byte	.LASF4
+ 257 004c 02       		.uleb128 0x2
+ 258 004d 04       		.byte	0x4
+ 259 004e 07       		.byte	0x7
+ 260 004f 3D000000 		.4byte	.LASF5
+ 261 0053 02       		.uleb128 0x2
+ 262 0054 08       		.byte	0x8
+ 263 0055 05       		.byte	0x5
+ 264 0056 00000000 		.4byte	.LASF6
+ 265 005a 02       		.uleb128 0x2
+ 266 005b 08       		.byte	0x8
+ 267 005c 07       		.byte	0x7
+ 268 005d 4F000000 		.4byte	.LASF7
+ 269 0061 03       		.uleb128 0x3
+ 270 0062 04       		.byte	0x4
+ 271 0063 05       		.byte	0x5
+ 272 0064 696E7400 		.ascii	"int\000"
+ 273 0068 02       		.uleb128 0x2
+ 274 0069 04       		.byte	0x4
+ 275 006a 07       		.byte	0x7
+ 276 006b 17000000 		.4byte	.LASF8
+ 277 006f 04       		.uleb128 0x4
+ 278 0070 37000000 		.4byte	.LASF24
+ 279 0074 04       		.byte	0x4
+ 280 0075 4C       		.byte	0x4c
+ 281 0076 30000000 		.4byte	0x30
+ 282 007a 02       		.uleb128 0x2
+ 283 007b 04       		.byte	0x4
+ 284 007c 04       		.byte	0x4
+ 285 007d 66000000 		.4byte	.LASF9
+ 286 0081 02       		.uleb128 0x2
+ 287 0082 08       		.byte	0x8
+ 288 0083 04       		.byte	0x4
+ 289 0084 18010000 		.4byte	.LASF10
+ 290 0088 02       		.uleb128 0x2
+ 291 0089 01       		.byte	0x1
+ 292 008a 08       		.byte	0x8
+ 293 008b 00010000 		.4byte	.LASF11
+ 294 008f 05       		.uleb128 0x5
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 8
+
+
+ 295 0090 04       		.byte	0x4
+ 296 0091 07       		.byte	0x7
+ 297 0092 02       		.uleb128 0x2
+ 298 0093 08       		.byte	0x8
+ 299 0094 04       		.byte	0x4
+ 300 0095 44010000 		.4byte	.LASF12
+ 301 0099 06       		.uleb128 0x6
+ 302 009a 01       		.byte	0x1
+ 303 009b 5F010000 		.4byte	.LASF25
+ 304 009f 01       		.byte	0x1
+ 305 00a0 3E       		.byte	0x3e
+ 306 00a1 01       		.byte	0x1
+ 307 00a2 00000000 		.4byte	.LFB21
+ 308 00a6 4C000000 		.4byte	.LFE21
+ 309 00aa 00000000 		.4byte	.LLST0
+ 310 00ae 07       		.uleb128 0x7
+ 311 00af 01       		.byte	0x1
+ 312 00b0 24000000 		.4byte	.LASF26
+ 313 00b4 01       		.byte	0x1
+ 314 00b5 15       		.byte	0x15
+ 315 00b6 00000000 		.4byte	.LFB20
+ 316 00ba A0000000 		.4byte	.LFE20
+ 317 00be 1F000000 		.4byte	.LLST1
+ 318 00c2 08       		.uleb128 0x8
+ 319 00c3 6F000000 		.4byte	0x6f
+ 320 00c7 D8000000 		.4byte	0xd8
+ 321 00cb 09       		.uleb128 0x9
+ 322 00cc 8F000000 		.4byte	0x8f
+ 323 00d0 60       		.byte	0x60
+ 324 00d1 09       		.uleb128 0x9
+ 325 00d2 8F000000 		.4byte	0x8f
+ 326 00d6 0F       		.byte	0xf
+ 327 00d7 00       		.byte	0x0
+ 328 00d8 0A       		.uleb128 0xa
+ 329 00d9 7D000000 		.4byte	.LASF13
+ 330 00dd 02       		.byte	0x2
+ 331 00de 42       		.byte	0x42
+ 332 00df EA000000 		.4byte	0xea
+ 333 00e3 01       		.byte	0x1
+ 334 00e4 05       		.byte	0x5
+ 335 00e5 03       		.byte	0x3
+ 336 00e6 00000000 		.4byte	LCD_FONT8x16
+ 337 00ea 0B       		.uleb128 0xb
+ 338 00eb C2000000 		.4byte	0xc2
+ 339 00ef 0C       		.uleb128 0xc
+ 340 00f0 74000000 		.4byte	.LASF14
+ 341 00f4 03       		.byte	0x3
+ 342 00f5 1B       		.byte	0x1b
+ 343 00f6 7A000000 		.4byte	0x7a
+ 344 00fa 01       		.byte	0x1
+ 345 00fb 01       		.byte	0x1
+ 346 00fc 0C       		.uleb128 0xc
+ 347 00fd 0E000000 		.4byte	.LASF15
+ 348 0101 03       		.byte	0x3
+ 349 0102 1C       		.byte	0x1c
+ 350 0103 7A000000 		.4byte	0x7a
+ 351 0107 01       		.byte	0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 9
+
+
+ 352 0108 01       		.byte	0x1
+ 353 0109 0C       		.uleb128 0xc
+ 354 010a 2F000000 		.4byte	.LASF16
+ 355 010e 03       		.byte	0x3
+ 356 010f 1D       		.byte	0x1d
+ 357 0110 7A000000 		.4byte	0x7a
+ 358 0114 01       		.byte	0x1
+ 359 0115 01       		.byte	0x1
+ 360 0116 0C       		.uleb128 0xc
+ 361 0117 6C000000 		.4byte	.LASF17
+ 362 011b 03       		.byte	0x3
+ 363 011c 1E       		.byte	0x1e
+ 364 011d 7A000000 		.4byte	0x7a
+ 365 0121 01       		.byte	0x1
+ 366 0122 01       		.byte	0x1
+ 367 0123 0A       		.uleb128 0xa
+ 368 0124 29000000 		.4byte	.LASF18
+ 369 0128 01       		.byte	0x1
+ 370 0129 13       		.byte	0x13
+ 371 012a 7A000000 		.4byte	0x7a
+ 372 012e 01       		.byte	0x1
+ 373 012f 05       		.byte	0x5
+ 374 0130 03       		.byte	0x3
+ 375 0131 00000000 		.4byte	x_rot
+ 376 0135 0A       		.uleb128 0xa
+ 377 0136 1F010000 		.4byte	.LASF19
+ 378 013a 01       		.byte	0x1
+ 379 013b 13       		.byte	0x13
+ 380 013c 7A000000 		.4byte	0x7a
+ 381 0140 01       		.byte	0x1
+ 382 0141 05       		.byte	0x5
+ 383 0142 03       		.byte	0x3
+ 384 0143 00000000 		.4byte	y_rot
+ 385 0147 0A       		.uleb128 0xa
+ 386 0148 59010000 		.4byte	.LASF20
+ 387 014c 01       		.byte	0x1
+ 388 014d 13       		.byte	0x13
+ 389 014e 7A000000 		.4byte	0x7a
+ 390 0152 01       		.byte	0x1
+ 391 0153 05       		.byte	0x5
+ 392 0154 03       		.byte	0x3
+ 393 0155 00000000 		.4byte	z_rot
+ 394 0159 00       		.byte	0x0
+ 395              		.section	.debug_abbrev
+ 396 0000 01       		.uleb128 0x1
+ 397 0001 11       		.uleb128 0x11
+ 398 0002 01       		.byte	0x1
+ 399 0003 25       		.uleb128 0x25
+ 400 0004 0E       		.uleb128 0xe
+ 401 0005 13       		.uleb128 0x13
+ 402 0006 0B       		.uleb128 0xb
+ 403 0007 03       		.uleb128 0x3
+ 404 0008 0E       		.uleb128 0xe
+ 405 0009 1B       		.uleb128 0x1b
+ 406 000a 0E       		.uleb128 0xe
+ 407 000b 11       		.uleb128 0x11
+ 408 000c 01       		.uleb128 0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 10
+
+
+ 409 000d 52       		.uleb128 0x52
+ 410 000e 01       		.uleb128 0x1
+ 411 000f 55       		.uleb128 0x55
+ 412 0010 06       		.uleb128 0x6
+ 413 0011 10       		.uleb128 0x10
+ 414 0012 06       		.uleb128 0x6
+ 415 0013 00       		.byte	0x0
+ 416 0014 00       		.byte	0x0
+ 417 0015 02       		.uleb128 0x2
+ 418 0016 24       		.uleb128 0x24
+ 419 0017 00       		.byte	0x0
+ 420 0018 0B       		.uleb128 0xb
+ 421 0019 0B       		.uleb128 0xb
+ 422 001a 3E       		.uleb128 0x3e
+ 423 001b 0B       		.uleb128 0xb
+ 424 001c 03       		.uleb128 0x3
+ 425 001d 0E       		.uleb128 0xe
+ 426 001e 00       		.byte	0x0
+ 427 001f 00       		.byte	0x0
+ 428 0020 03       		.uleb128 0x3
+ 429 0021 24       		.uleb128 0x24
+ 430 0022 00       		.byte	0x0
+ 431 0023 0B       		.uleb128 0xb
+ 432 0024 0B       		.uleb128 0xb
+ 433 0025 3E       		.uleb128 0x3e
+ 434 0026 0B       		.uleb128 0xb
+ 435 0027 03       		.uleb128 0x3
+ 436 0028 08       		.uleb128 0x8
+ 437 0029 00       		.byte	0x0
+ 438 002a 00       		.byte	0x0
+ 439 002b 04       		.uleb128 0x4
+ 440 002c 16       		.uleb128 0x16
+ 441 002d 00       		.byte	0x0
+ 442 002e 03       		.uleb128 0x3
+ 443 002f 0E       		.uleb128 0xe
+ 444 0030 3A       		.uleb128 0x3a
+ 445 0031 0B       		.uleb128 0xb
+ 446 0032 3B       		.uleb128 0x3b
+ 447 0033 0B       		.uleb128 0xb
+ 448 0034 49       		.uleb128 0x49
+ 449 0035 13       		.uleb128 0x13
+ 450 0036 00       		.byte	0x0
+ 451 0037 00       		.byte	0x0
+ 452 0038 05       		.uleb128 0x5
+ 453 0039 24       		.uleb128 0x24
+ 454 003a 00       		.byte	0x0
+ 455 003b 0B       		.uleb128 0xb
+ 456 003c 0B       		.uleb128 0xb
+ 457 003d 3E       		.uleb128 0x3e
+ 458 003e 0B       		.uleb128 0xb
+ 459 003f 00       		.byte	0x0
+ 460 0040 00       		.byte	0x0
+ 461 0041 06       		.uleb128 0x6
+ 462 0042 2E       		.uleb128 0x2e
+ 463 0043 00       		.byte	0x0
+ 464 0044 3F       		.uleb128 0x3f
+ 465 0045 0C       		.uleb128 0xc
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 11
+
+
+ 466 0046 03       		.uleb128 0x3
+ 467 0047 0E       		.uleb128 0xe
+ 468 0048 3A       		.uleb128 0x3a
+ 469 0049 0B       		.uleb128 0xb
+ 470 004a 3B       		.uleb128 0x3b
+ 471 004b 0B       		.uleb128 0xb
+ 472 004c 27       		.uleb128 0x27
+ 473 004d 0C       		.uleb128 0xc
+ 474 004e 11       		.uleb128 0x11
+ 475 004f 01       		.uleb128 0x1
+ 476 0050 12       		.uleb128 0x12
+ 477 0051 01       		.uleb128 0x1
+ 478 0052 40       		.uleb128 0x40
+ 479 0053 06       		.uleb128 0x6
+ 480 0054 00       		.byte	0x0
+ 481 0055 00       		.byte	0x0
+ 482 0056 07       		.uleb128 0x7
+ 483 0057 2E       		.uleb128 0x2e
+ 484 0058 00       		.byte	0x0
+ 485 0059 3F       		.uleb128 0x3f
+ 486 005a 0C       		.uleb128 0xc
+ 487 005b 03       		.uleb128 0x3
+ 488 005c 0E       		.uleb128 0xe
+ 489 005d 3A       		.uleb128 0x3a
+ 490 005e 0B       		.uleb128 0xb
+ 491 005f 3B       		.uleb128 0x3b
+ 492 0060 0B       		.uleb128 0xb
+ 493 0061 11       		.uleb128 0x11
+ 494 0062 01       		.uleb128 0x1
+ 495 0063 12       		.uleb128 0x12
+ 496 0064 01       		.uleb128 0x1
+ 497 0065 40       		.uleb128 0x40
+ 498 0066 06       		.uleb128 0x6
+ 499 0067 00       		.byte	0x0
+ 500 0068 00       		.byte	0x0
+ 501 0069 08       		.uleb128 0x8
+ 502 006a 01       		.uleb128 0x1
+ 503 006b 01       		.byte	0x1
+ 504 006c 49       		.uleb128 0x49
+ 505 006d 13       		.uleb128 0x13
+ 506 006e 01       		.uleb128 0x1
+ 507 006f 13       		.uleb128 0x13
+ 508 0070 00       		.byte	0x0
+ 509 0071 00       		.byte	0x0
+ 510 0072 09       		.uleb128 0x9
+ 511 0073 21       		.uleb128 0x21
+ 512 0074 00       		.byte	0x0
+ 513 0075 49       		.uleb128 0x49
+ 514 0076 13       		.uleb128 0x13
+ 515 0077 2F       		.uleb128 0x2f
+ 516 0078 0B       		.uleb128 0xb
+ 517 0079 00       		.byte	0x0
+ 518 007a 00       		.byte	0x0
+ 519 007b 0A       		.uleb128 0xa
+ 520 007c 34       		.uleb128 0x34
+ 521 007d 00       		.byte	0x0
+ 522 007e 03       		.uleb128 0x3
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 12
+
+
+ 523 007f 0E       		.uleb128 0xe
+ 524 0080 3A       		.uleb128 0x3a
+ 525 0081 0B       		.uleb128 0xb
+ 526 0082 3B       		.uleb128 0x3b
+ 527 0083 0B       		.uleb128 0xb
+ 528 0084 49       		.uleb128 0x49
+ 529 0085 13       		.uleb128 0x13
+ 530 0086 3F       		.uleb128 0x3f
+ 531 0087 0C       		.uleb128 0xc
+ 532 0088 02       		.uleb128 0x2
+ 533 0089 0A       		.uleb128 0xa
+ 534 008a 00       		.byte	0x0
+ 535 008b 00       		.byte	0x0
+ 536 008c 0B       		.uleb128 0xb
+ 537 008d 26       		.uleb128 0x26
+ 538 008e 00       		.byte	0x0
+ 539 008f 49       		.uleb128 0x49
+ 540 0090 13       		.uleb128 0x13
+ 541 0091 00       		.byte	0x0
+ 542 0092 00       		.byte	0x0
+ 543 0093 0C       		.uleb128 0xc
+ 544 0094 34       		.uleb128 0x34
+ 545 0095 00       		.byte	0x0
+ 546 0096 03       		.uleb128 0x3
+ 547 0097 0E       		.uleb128 0xe
+ 548 0098 3A       		.uleb128 0x3a
+ 549 0099 0B       		.uleb128 0xb
+ 550 009a 3B       		.uleb128 0x3b
+ 551 009b 0B       		.uleb128 0xb
+ 552 009c 49       		.uleb128 0x49
+ 553 009d 13       		.uleb128 0x13
+ 554 009e 3F       		.uleb128 0x3f
+ 555 009f 0C       		.uleb128 0xc
+ 556 00a0 3C       		.uleb128 0x3c
+ 557 00a1 0C       		.uleb128 0xc
+ 558 00a2 00       		.byte	0x0
+ 559 00a3 00       		.byte	0x0
+ 560 00a4 00       		.byte	0x0
+ 561              		.section	.debug_pubnames,"",%progbits
+ 562 0000 57000000 		.4byte	0x57
+ 563 0004 0200     		.2byte	0x2
+ 564 0006 00000000 		.4byte	.Ldebug_info0
+ 565 000a 5A010000 		.4byte	0x15a
+ 566 000e 99000000 		.4byte	0x99
+ 567 0012 43686563 		.ascii	"CheckButtons\000"
+ 567      6B427574 
+ 567      746F6E73 
+ 567      00
+ 568 001f AE000000 		.4byte	0xae
+ 569 0023 6D61696E 		.ascii	"main\000"
+ 569      00
+ 570 0028 D8000000 		.4byte	0xd8
+ 571 002c 4C43445F 		.ascii	"LCD_FONT8x16\000"
+ 571      464F4E54 
+ 571      38783136 
+ 571      00
+ 572 0039 23010000 		.4byte	0x123
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 13
+
+
+ 573 003d 785F726F 		.ascii	"x_rot\000"
+ 573      7400
+ 574 0043 35010000 		.4byte	0x135
+ 575 0047 795F726F 		.ascii	"y_rot\000"
+ 575      7400
+ 576 004d 47010000 		.4byte	0x147
+ 577 0051 7A5F726F 		.ascii	"z_rot\000"
+ 577      7400
+ 578 0057 00000000 		.4byte	0x0
+ 579              		.section	.debug_aranges,"",%progbits
+ 580 0000 24000000 		.4byte	0x24
+ 581 0004 0200     		.2byte	0x2
+ 582 0006 00000000 		.4byte	.Ldebug_info0
+ 583 000a 04       		.byte	0x4
+ 584 000b 00       		.byte	0x0
+ 585 000c 0000     		.2byte	0x0
+ 586 000e 0000     		.2byte	0x0
+ 587 0010 00000000 		.4byte	.LFB21
+ 588 0014 4C000000 		.4byte	.LFE21-.LFB21
+ 589 0018 00000000 		.4byte	.LFB20
+ 590 001c A0000000 		.4byte	.LFE20-.LFB20
+ 591 0020 00000000 		.4byte	0x0
+ 592 0024 00000000 		.4byte	0x0
+ 593              		.section	.debug_ranges,"",%progbits
+ 594              	.Ldebug_ranges0:
+ 595 0000 00000000 		.4byte	.Ltext0
+ 596 0004 00000000 		.4byte	.Letext0
+ 597 0008 00000000 		.4byte	.LFB21
+ 598 000c 4C000000 		.4byte	.LFE21
+ 599 0010 00000000 		.4byte	.LFB20
+ 600 0014 A0000000 		.4byte	.LFE20
+ 601 0018 00000000 		.4byte	0x0
+ 602 001c 00000000 		.4byte	0x0
+ 603              		.section	.debug_str,"MS",%progbits,1
+ 604              	.LASF6:
+ 605 0000 6C6F6E67 		.ascii	"long long int\000"
+ 605      206C6F6E 
+ 605      6720696E 
+ 605      7400
+ 606              	.LASF15:
+ 607 000e 595F4F46 		.ascii	"Y_OFFSET\000"
+ 607      46534554 
+ 607      00
+ 608              	.LASF8:
+ 609 0017 756E7369 		.ascii	"unsigned int\000"
+ 609      676E6564 
+ 609      20696E74 
+ 609      00
+ 610              	.LASF26:
+ 611 0024 6D61696E 		.ascii	"main\000"
+ 611      00
+ 612              	.LASF18:
+ 613 0029 785F726F 		.ascii	"x_rot\000"
+ 613      7400
+ 614              	.LASF16:
+ 615 002f 585F5343 		.ascii	"X_SCALE\000"
+ 615      414C4500 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 14
+
+
+ 616              	.LASF24:
+ 617 0037 75696E74 		.ascii	"uint8\000"
+ 617      3800
+ 618              	.LASF5:
+ 619 003d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 619      20756E73 
+ 619      69676E65 
+ 619      6420696E 
+ 619      7400
+ 620              	.LASF7:
+ 621 004f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 621      206C6F6E 
+ 621      6720756E 
+ 621      7369676E 
+ 621      65642069 
+ 622              	.LASF9:
+ 623 0066 666C6F61 		.ascii	"float\000"
+ 623      7400
+ 624              	.LASF17:
+ 625 006c 595F5343 		.ascii	"Y_SCALE\000"
+ 625      414C4500 
+ 626              	.LASF14:
+ 627 0074 585F4F46 		.ascii	"X_OFFSET\000"
+ 627      46534554 
+ 627      00
+ 628              	.LASF13:
+ 629 007d 4C43445F 		.ascii	"LCD_FONT8x16\000"
+ 629      464F4E54 
+ 629      38783136 
+ 629      00
+ 630              	.LASF21:
+ 631 008a 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 631      4320342E 
+ 631      342E3100 
+ 632              	.LASF23:
+ 633 0096 433A5C55 		.ascii	"C:\\Users\\kees\\Documents\\test_projects\\My fun s"
+ 633      73657273 
+ 633      5C6B6565 
+ 633      735C446F 
+ 633      63756D65 
+ 634 00c4 74756666 		.ascii	"tuff\\3d_cube\\3d_cube.Bundle01\\Design137.cydsn\000"
+ 634      5C33645F 
+ 634      63756265 
+ 634      5C33645F 
+ 634      63756265 
+ 635              	.LASF1:
+ 636 00f2 756E7369 		.ascii	"unsigned char\000"
+ 636      676E6564 
+ 636      20636861 
+ 636      7200
+ 637              	.LASF11:
+ 638 0100 63686172 		.ascii	"char\000"
+ 638      00
+ 639              	.LASF4:
+ 640 0105 6C6F6E67 		.ascii	"long int\000"
+ 640      20696E74 
+ 640      00
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccFl3qnT.s 			page 15
+
+
+ 641              	.LASF2:
+ 642 010e 73686F72 		.ascii	"short int\000"
+ 642      7420696E 
+ 642      7400
+ 643              	.LASF10:
+ 644 0118 646F7562 		.ascii	"double\000"
+ 644      6C6500
+ 645              	.LASF19:
+ 646 011f 795F726F 		.ascii	"y_rot\000"
+ 646      7400
+ 647              	.LASF3:
+ 648 0125 73686F72 		.ascii	"short unsigned int\000"
+ 648      7420756E 
+ 648      7369676E 
+ 648      65642069 
+ 648      6E7400
+ 649              	.LASF0:
+ 650 0138 7369676E 		.ascii	"signed char\000"
+ 650      65642063 
+ 650      68617200 
+ 651              	.LASF12:
+ 652 0144 6C6F6E67 		.ascii	"long double\000"
+ 652      20646F75 
+ 652      626C6500 
+ 653              	.LASF22:
+ 654 0150 2E5C6D61 		.ascii	".\\main.c\000"
+ 654      696E2E63 
+ 654      00
+ 655              	.LASF20:
+ 656 0159 7A5F726F 		.ascii	"z_rot\000"
+ 656      7400
+ 657              	.LASF25:
+ 658 015f 43686563 		.ascii	"CheckButtons\000"
+ 658      6B427574 
+ 658      746F6E73 
+ 658      00
+ 659              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

@@ -1,0 +1,3889 @@
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"Cube.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 C3010000 		.text
+  19      02006100 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.text.InitializeCube,"ax",%progbits
+  23              		.align	1
+  24              		.global	InitializeCube
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	InitializeCube, %function
+  28              	InitializeCube:
+  29              	.LFB20:
+  30              		.file 1 ".\\Cube.c"
+   1:.\Cube.c      **** /* ========================================
+   2:.\Cube.c      ****  *
+   3:.\Cube.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\Cube.c      ****  * All Rights Reserved
+   5:.\Cube.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\Cube.c      ****  *
+   7:.\Cube.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\Cube.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\Cube.c      ****  *
+  10:.\Cube.c      ****  * ========================================
+  11:.\Cube.c      **** */
+  12:.\Cube.c      **** 
+  13:.\Cube.c      **** #include "Cube.h"
+  14:.\Cube.c      **** 
+  15:.\Cube.c      **** uint32 X_scale_flag = 0;
+  16:.\Cube.c      **** uint32 Y_scale_flag = 0;
+  17:.\Cube.c      **** uint32 X_offset_flag = 0;
+  18:.\Cube.c      **** uint32 Y_offset_flag = 0;
+  19:.\Cube.c      **** 
+  20:.\Cube.c      **** float a1x, a1y, a1z;
+  21:.\Cube.c      **** float a2x, a2y, a2z;
+  22:.\Cube.c      **** float a3x, a3y, a3z;
+  23:.\Cube.c      **** float a4x, a4y, a4z;
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 2
+
+
+  24:.\Cube.c      **** float a5x, a5y, a5z;
+  25:.\Cube.c      **** float a6x, a6y, a6z;
+  26:.\Cube.c      **** float a7x, a7y, a7z;
+  27:.\Cube.c      **** float a8x, a8y, a8z;
+  28:.\Cube.c      **** 
+  29:.\Cube.c      **** float b1x, b1y;
+  30:.\Cube.c      **** float b2x, b2y;
+  31:.\Cube.c      **** float b3x, b3y;
+  32:.\Cube.c      **** float b4x, b4y;
+  33:.\Cube.c      **** float b5x, b5y;
+  34:.\Cube.c      **** float b6x, b6y;
+  35:.\Cube.c      **** float b7x, b7y;
+  36:.\Cube.c      **** float b8x, b8y;
+  37:.\Cube.c      **** 
+  38:.\Cube.c      **** float b1x_old, b1y_old;
+  39:.\Cube.c      **** float b2x_old, b2y_old;
+  40:.\Cube.c      **** float b3x_old, b3y_old;
+  41:.\Cube.c      **** float b4x_old, b4y_old;
+  42:.\Cube.c      **** float b5x_old, b5y_old;
+  43:.\Cube.c      **** float b6x_old, b6y_old;
+  44:.\Cube.c      **** float b7x_old, b7y_old;
+  45:.\Cube.c      **** float b8x_old, b8y_old;
+  46:.\Cube.c      **** 
+  47:.\Cube.c      **** void InitializeCube(void)
+  48:.\Cube.c      **** {
+  31              		.loc 1 48 0
+  32              		.cfi_startproc
+  49:.\Cube.c      **** 	a1x = 1;
+  33              		.loc 1 49 0
+  34 0000 194B     		ldr	r3, .L3
+  35 0002 1A4A     		ldr	r2, .L3+4
+  50:.\Cube.c      **** 	a1y = 1;
+  51:.\Cube.c      **** 	a1z = 1;
+  52:.\Cube.c      **** 	
+  53:.\Cube.c      **** 	a2x = 1;
+  54:.\Cube.c      **** 	a2y = 1;
+  55:.\Cube.c      **** 	a2z = -1;
+  36              		.loc 1 55 0
+  37 0004 1A49     		ldr	r1, .L3+8
+  38              		.loc 1 49 0
+  39 0006 1360     		str	r3, [r2]
+  40              		.loc 1 50 0
+  41 0008 1A4A     		ldr	r2, .L3+12
+  56:.\Cube.c      **** 	
+  57:.\Cube.c      **** 	a3x = -1;
+  58:.\Cube.c      **** 	a3y = 1;
+  59:.\Cube.c      **** 	a3z = -1;
+  60:.\Cube.c      **** 	
+  61:.\Cube.c      **** 	a4x = -1;
+  62:.\Cube.c      **** 	a4y = 1;
+  63:.\Cube.c      **** 	a4z = 1;
+  64:.\Cube.c      **** 	
+  65:.\Cube.c      **** 	a5x = 1;
+  66:.\Cube.c      **** 	a5y = -1;
+  67:.\Cube.c      **** 	a5z = 1;
+  68:.\Cube.c      **** 	
+  69:.\Cube.c      **** 	a6x = 1;
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 3
+
+
+  70:.\Cube.c      **** 	a6y = -1;
+  71:.\Cube.c      **** 	a6z = -1;
+  72:.\Cube.c      **** 	
+  73:.\Cube.c      **** 	a7x = -1;
+  74:.\Cube.c      **** 	a7y = -1;
+  75:.\Cube.c      **** 	a7z = -1;
+  76:.\Cube.c      **** 	
+  77:.\Cube.c      **** 	a8x = -1;
+  78:.\Cube.c      **** 	a8y = -1;
+  79:.\Cube.c      **** 	a8z = 1;
+  80:.\Cube.c      **** 	
+  81:.\Cube.c      **** 	return;
+  82:.\Cube.c      **** }
+  42              		.loc 1 82 0
+  43              		@ sp needed for prologue
+  44              		.loc 1 50 0
+  45 000a 1360     		str	r3, [r2]
+  46              		.loc 1 51 0
+  47 000c 1A4A     		ldr	r2, .L3+16
+  48 000e 1360     		str	r3, [r2]
+  49              		.loc 1 53 0
+  50 0010 1A4A     		ldr	r2, .L3+20
+  51 0012 1360     		str	r3, [r2]
+  52              		.loc 1 54 0
+  53 0014 1A4A     		ldr	r2, .L3+24
+  54 0016 1360     		str	r3, [r2]
+  55              		.loc 1 55 0
+  56 0018 1A4A     		ldr	r2, .L3+28
+  57 001a 0A60     		str	r2, [r1]
+  58              		.loc 1 57 0
+  59 001c 1A49     		ldr	r1, .L3+32
+  60 001e 0A60     		str	r2, [r1]
+  61              		.loc 1 58 0
+  62 0020 1A49     		ldr	r1, .L3+36
+  63 0022 0B60     		str	r3, [r1]
+  64              		.loc 1 59 0
+  65 0024 1A49     		ldr	r1, .L3+40
+  66 0026 0A60     		str	r2, [r1]
+  67              		.loc 1 61 0
+  68 0028 1A49     		ldr	r1, .L3+44
+  69 002a 0A60     		str	r2, [r1]
+  70              		.loc 1 62 0
+  71 002c 1A49     		ldr	r1, .L3+48
+  72 002e 0B60     		str	r3, [r1]
+  73              		.loc 1 63 0
+  74 0030 1A49     		ldr	r1, .L3+52
+  75 0032 0B60     		str	r3, [r1]
+  76              		.loc 1 65 0
+  77 0034 1A49     		ldr	r1, .L3+56
+  78 0036 0B60     		str	r3, [r1]
+  79              		.loc 1 66 0
+  80 0038 1A49     		ldr	r1, .L3+60
+  81 003a 0A60     		str	r2, [r1]
+  82              		.loc 1 67 0
+  83 003c 1A49     		ldr	r1, .L3+64
+  84 003e 0B60     		str	r3, [r1]
+  85              		.loc 1 69 0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 4
+
+
+  86 0040 1A49     		ldr	r1, .L3+68
+  87 0042 0B60     		str	r3, [r1]
+  88              		.loc 1 70 0
+  89 0044 1A49     		ldr	r1, .L3+72
+  90 0046 0A60     		str	r2, [r1]
+  91              		.loc 1 71 0
+  92 0048 1A49     		ldr	r1, .L3+76
+  93 004a 0A60     		str	r2, [r1]
+  94              		.loc 1 73 0
+  95 004c 1A49     		ldr	r1, .L3+80
+  96 004e 0A60     		str	r2, [r1]
+  97              		.loc 1 74 0
+  98 0050 1A49     		ldr	r1, .L3+84
+  99 0052 0A60     		str	r2, [r1]
+ 100              		.loc 1 75 0
+ 101 0054 1A49     		ldr	r1, .L3+88
+ 102 0056 0A60     		str	r2, [r1]
+ 103              		.loc 1 77 0
+ 104 0058 1A49     		ldr	r1, .L3+92
+ 105 005a 0A60     		str	r2, [r1]
+ 106              		.loc 1 78 0
+ 107 005c 1A49     		ldr	r1, .L3+96
+ 108 005e 0A60     		str	r2, [r1]
+ 109              		.loc 1 79 0
+ 110 0060 1A4A     		ldr	r2, .L3+100
+ 111 0062 1360     		str	r3, [r2]
+ 112              		.loc 1 82 0
+ 113 0064 7047     		bx	lr
+ 114              	.L4:
+ 115 0066 C046     		.align	2
+ 116              	.L3:
+ 117 0068 0000803F 		.word	1065353216
+ 118 006c 00000000 		.word	a1x
+ 119 0070 00000000 		.word	a2z
+ 120 0074 00000000 		.word	a1y
+ 121 0078 00000000 		.word	a1z
+ 122 007c 00000000 		.word	a2x
+ 123 0080 00000000 		.word	a2y
+ 124 0084 000080BF 		.word	-1082130432
+ 125 0088 00000000 		.word	a3x
+ 126 008c 00000000 		.word	a3y
+ 127 0090 00000000 		.word	a3z
+ 128 0094 00000000 		.word	a4x
+ 129 0098 00000000 		.word	a4y
+ 130 009c 00000000 		.word	a4z
+ 131 00a0 00000000 		.word	a5x
+ 132 00a4 00000000 		.word	a5y
+ 133 00a8 00000000 		.word	a5z
+ 134 00ac 00000000 		.word	a6x
+ 135 00b0 00000000 		.word	a6y
+ 136 00b4 00000000 		.word	a6z
+ 137 00b8 00000000 		.word	a7x
+ 138 00bc 00000000 		.word	a7y
+ 139 00c0 00000000 		.word	a7z
+ 140 00c4 00000000 		.word	a8x
+ 141 00c8 00000000 		.word	a8y
+ 142 00cc 00000000 		.word	a8z
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 5
+
+
+ 143              		.cfi_endproc
+ 144              	.LFE20:
+ 145              		.size	InitializeCube, .-InitializeCube
+ 146              		.section	.text.SaveOldLinesCube,"ax",%progbits
+ 147              		.align	1
+ 148              		.global	SaveOldLinesCube
+ 149              		.code	16
+ 150              		.thumb_func
+ 151              		.type	SaveOldLinesCube, %function
+ 152              	SaveOldLinesCube:
+ 153              	.LFB24:
+  83:.\Cube.c      **** 
+  84:.\Cube.c      **** void RotateCubeX(float angle)
+  85:.\Cube.c      **** {
+  86:.\Cube.c      **** 	rotatex(&a1x, &a1y, &a1z, angle);
+  87:.\Cube.c      **** 	rotatex(&a2x, &a2y, &a2z, angle);
+  88:.\Cube.c      **** 	rotatex(&a3x, &a3y, &a3z, angle);
+  89:.\Cube.c      **** 	rotatex(&a4x, &a4y, &a4z, angle);
+  90:.\Cube.c      **** 	rotatex(&a5x, &a5y, &a5z, angle);
+  91:.\Cube.c      **** 	rotatex(&a6x, &a6y, &a6z, angle);
+  92:.\Cube.c      **** 	rotatex(&a7x, &a7y, &a7z, angle);
+  93:.\Cube.c      **** 	rotatex(&a8x, &a8y, &a8z, angle);
+  94:.\Cube.c      **** 	
+  95:.\Cube.c      **** 	return;
+  96:.\Cube.c      **** }
+  97:.\Cube.c      **** 
+  98:.\Cube.c      **** void RotateCubeY(float angle)
+  99:.\Cube.c      **** {
+ 100:.\Cube.c      **** 	rotatey(&a1x, &a1y, &a1z, angle);
+ 101:.\Cube.c      **** 	rotatey(&a2x, &a2y, &a2z, angle);
+ 102:.\Cube.c      **** 	rotatey(&a3x, &a3y, &a3z, angle);
+ 103:.\Cube.c      **** 	rotatey(&a4x, &a4y, &a4z, angle);
+ 104:.\Cube.c      **** 	rotatey(&a5x, &a5y, &a5z, angle);
+ 105:.\Cube.c      **** 	rotatey(&a6x, &a6y, &a6z, angle);
+ 106:.\Cube.c      **** 	rotatey(&a7x, &a7y, &a7z, angle);
+ 107:.\Cube.c      **** 	rotatey(&a8x, &a8y, &a8z, angle);
+ 108:.\Cube.c      **** 	
+ 109:.\Cube.c      **** 	return;
+ 110:.\Cube.c      **** }
+ 111:.\Cube.c      **** 
+ 112:.\Cube.c      **** void RotateCubeZ(float angle)
+ 113:.\Cube.c      **** {
+ 114:.\Cube.c      **** 	rotatez(&a1x, &a1y, &a1z, angle);
+ 115:.\Cube.c      **** 	rotatez(&a2x, &a2y, &a2z, angle);
+ 116:.\Cube.c      **** 	rotatez(&a3x, &a3y, &a3z, angle);
+ 117:.\Cube.c      **** 	rotatez(&a4x, &a4y, &a4z, angle);
+ 118:.\Cube.c      **** 	rotatez(&a5x, &a5y, &a5z, angle);
+ 119:.\Cube.c      **** 	rotatez(&a6x, &a6y, &a6z, angle);
+ 120:.\Cube.c      **** 	rotatez(&a7x, &a7y, &a7z, angle);
+ 121:.\Cube.c      **** 	rotatez(&a8x, &a8y, &a8z, angle);
+ 122:.\Cube.c      **** 	
+ 123:.\Cube.c      **** 	return;
+ 124:.\Cube.c      **** }
+ 125:.\Cube.c      **** 
+ 126:.\Cube.c      **** void SaveOldLinesCube(void)
+ 127:.\Cube.c      **** {
+ 154              		.loc 1 127 0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 6
+
+
+ 155              		.cfi_startproc
+ 128:.\Cube.c      **** 	b1x_old = b1x;
+ 156              		.loc 1 128 0
+ 157 0000 204B     		ldr	r3, .L7
+ 129:.\Cube.c      **** 	b2x_old = b2x;
+ 130:.\Cube.c      **** 	b3x_old = b3x;
+ 131:.\Cube.c      **** 	b4x_old = b4x;
+ 132:.\Cube.c      **** 	b5x_old = b5x;
+ 133:.\Cube.c      **** 	b6x_old = b6x;
+ 134:.\Cube.c      **** 	b7x_old = b7x;
+ 135:.\Cube.c      **** 	b8x_old = b8x;
+ 136:.\Cube.c      **** 	
+ 137:.\Cube.c      **** 	b1y_old = b1y;
+ 138:.\Cube.c      **** 	b2y_old = b2y;
+ 139:.\Cube.c      **** 	b3y_old = b3y;
+ 140:.\Cube.c      **** 	b4y_old = b4y;
+ 141:.\Cube.c      **** 	b5y_old = b5y;
+ 142:.\Cube.c      **** 	b6y_old = b6y;
+ 143:.\Cube.c      **** 	b7y_old = b7y;
+ 144:.\Cube.c      **** 	b8y_old = b8y;
+ 145:.\Cube.c      **** 	
+ 146:.\Cube.c      **** 	return;
+ 147:.\Cube.c      **** }
+ 158              		.loc 1 147 0
+ 159              		@ sp needed for prologue
+ 160              		.loc 1 128 0
+ 161 0002 1A68     		ldr	r2, [r3]
+ 162 0004 204B     		ldr	r3, .L7+4
+ 163 0006 1A60     		str	r2, [r3]
+ 164              		.loc 1 129 0
+ 165 0008 204B     		ldr	r3, .L7+8
+ 166 000a 1A68     		ldr	r2, [r3]
+ 167 000c 204B     		ldr	r3, .L7+12
+ 168 000e 1A60     		str	r2, [r3]
+ 169              		.loc 1 130 0
+ 170 0010 204B     		ldr	r3, .L7+16
+ 171 0012 1A68     		ldr	r2, [r3]
+ 172 0014 204B     		ldr	r3, .L7+20
+ 173 0016 1A60     		str	r2, [r3]
+ 174              		.loc 1 131 0
+ 175 0018 204B     		ldr	r3, .L7+24
+ 176 001a 1A68     		ldr	r2, [r3]
+ 177 001c 204B     		ldr	r3, .L7+28
+ 178 001e 1A60     		str	r2, [r3]
+ 179              		.loc 1 132 0
+ 180 0020 204B     		ldr	r3, .L7+32
+ 181 0022 1A68     		ldr	r2, [r3]
+ 182 0024 204B     		ldr	r3, .L7+36
+ 183 0026 1A60     		str	r2, [r3]
+ 184              		.loc 1 133 0
+ 185 0028 204B     		ldr	r3, .L7+40
+ 186 002a 1A68     		ldr	r2, [r3]
+ 187 002c 204B     		ldr	r3, .L7+44
+ 188 002e 1A60     		str	r2, [r3]
+ 189              		.loc 1 134 0
+ 190 0030 204B     		ldr	r3, .L7+48
+ 191 0032 1A68     		ldr	r2, [r3]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 7
+
+
+ 192 0034 204B     		ldr	r3, .L7+52
+ 193 0036 1A60     		str	r2, [r3]
+ 194              		.loc 1 135 0
+ 195 0038 204B     		ldr	r3, .L7+56
+ 196 003a 1A68     		ldr	r2, [r3]
+ 197 003c 204B     		ldr	r3, .L7+60
+ 198 003e 1A60     		str	r2, [r3]
+ 199              		.loc 1 137 0
+ 200 0040 204B     		ldr	r3, .L7+64
+ 201 0042 1A68     		ldr	r2, [r3]
+ 202 0044 204B     		ldr	r3, .L7+68
+ 203 0046 1A60     		str	r2, [r3]
+ 204              		.loc 1 138 0
+ 205 0048 204B     		ldr	r3, .L7+72
+ 206 004a 1A68     		ldr	r2, [r3]
+ 207 004c 204B     		ldr	r3, .L7+76
+ 208 004e 1A60     		str	r2, [r3]
+ 209              		.loc 1 139 0
+ 210 0050 204B     		ldr	r3, .L7+80
+ 211 0052 1A68     		ldr	r2, [r3]
+ 212 0054 204B     		ldr	r3, .L7+84
+ 213 0056 1A60     		str	r2, [r3]
+ 214              		.loc 1 140 0
+ 215 0058 204B     		ldr	r3, .L7+88
+ 216 005a 1A68     		ldr	r2, [r3]
+ 217 005c 204B     		ldr	r3, .L7+92
+ 218 005e 1A60     		str	r2, [r3]
+ 219              		.loc 1 141 0
+ 220 0060 204B     		ldr	r3, .L7+96
+ 221 0062 1A68     		ldr	r2, [r3]
+ 222 0064 204B     		ldr	r3, .L7+100
+ 223 0066 1A60     		str	r2, [r3]
+ 224              		.loc 1 142 0
+ 225 0068 204B     		ldr	r3, .L7+104
+ 226 006a 1A68     		ldr	r2, [r3]
+ 227 006c 204B     		ldr	r3, .L7+108
+ 228 006e 1A60     		str	r2, [r3]
+ 229              		.loc 1 143 0
+ 230 0070 204B     		ldr	r3, .L7+112
+ 231 0072 1A68     		ldr	r2, [r3]
+ 232 0074 204B     		ldr	r3, .L7+116
+ 233 0076 1A60     		str	r2, [r3]
+ 234              		.loc 1 144 0
+ 235 0078 204B     		ldr	r3, .L7+120
+ 236 007a 1A68     		ldr	r2, [r3]
+ 237 007c 204B     		ldr	r3, .L7+124
+ 238 007e 1A60     		str	r2, [r3]
+ 239              		.loc 1 147 0
+ 240 0080 7047     		bx	lr
+ 241              	.L8:
+ 242 0082 C046     		.align	2
+ 243              	.L7:
+ 244 0084 00000000 		.word	b1x
+ 245 0088 00000000 		.word	b1x_old
+ 246 008c 00000000 		.word	b2x
+ 247 0090 00000000 		.word	b2x_old
+ 248 0094 00000000 		.word	b3x
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 8
+
+
+ 249 0098 00000000 		.word	b3x_old
+ 250 009c 00000000 		.word	b4x
+ 251 00a0 00000000 		.word	b4x_old
+ 252 00a4 00000000 		.word	b5x
+ 253 00a8 00000000 		.word	b5x_old
+ 254 00ac 00000000 		.word	b6x
+ 255 00b0 00000000 		.word	b6x_old
+ 256 00b4 00000000 		.word	b7x
+ 257 00b8 00000000 		.word	b7x_old
+ 258 00bc 00000000 		.word	b8x
+ 259 00c0 00000000 		.word	b8x_old
+ 260 00c4 00000000 		.word	b1y
+ 261 00c8 00000000 		.word	b1y_old
+ 262 00cc 00000000 		.word	b2y
+ 263 00d0 00000000 		.word	b2y_old
+ 264 00d4 00000000 		.word	b3y
+ 265 00d8 00000000 		.word	b3y_old
+ 266 00dc 00000000 		.word	b4y
+ 267 00e0 00000000 		.word	b4y_old
+ 268 00e4 00000000 		.word	b5y
+ 269 00e8 00000000 		.word	b5y_old
+ 270 00ec 00000000 		.word	b6y
+ 271 00f0 00000000 		.word	b6y_old
+ 272 00f4 00000000 		.word	b7y
+ 273 00f8 00000000 		.word	b7y_old
+ 274 00fc 00000000 		.word	b8y
+ 275 0100 00000000 		.word	b8y_old
+ 276              		.cfi_endproc
+ 277              	.LFE24:
+ 278              		.size	SaveOldLinesCube, .-SaveOldLinesCube
+ 279              		.global	__aeabi_fsub
+ 280              		.global	__aeabi_fadd
+ 281              		.global	__aeabi_fcmpeq
+ 282              		.section	.text.ScaleDistort,"ax",%progbits
+ 283              		.align	1
+ 284              		.global	ScaleDistort
+ 285              		.code	16
+ 286              		.thumb_func
+ 287              		.type	ScaleDistort, %function
+ 288              	ScaleDistort:
+ 289              	.LFB27:
+ 148:.\Cube.c      **** 
+ 149:.\Cube.c      **** void ProjectCube(void)
+ 150:.\Cube.c      **** {
+ 151:.\Cube.c      **** 	project(a1x, a1y, a1z, &b1x, &b1y);
+ 152:.\Cube.c      **** 	project(a2x, a2y, a2z, &b2x, &b2y);
+ 153:.\Cube.c      **** 	project(a3x, a3y, a3z, &b3x, &b3y);
+ 154:.\Cube.c      **** 	project(a4x, a4y, a4z, &b4x, &b4y);
+ 155:.\Cube.c      **** 	project(a5x, a5y, a5z, &b5x, &b5y);
+ 156:.\Cube.c      **** 	project(a6x, a6y, a6z, &b6x, &b6y);
+ 157:.\Cube.c      **** 	project(a7x, a7y, a7z, &b7x, &b7y);
+ 158:.\Cube.c      **** 	project(a8x, a8y, a8z, &b8x, &b8y);
+ 159:.\Cube.c      **** }
+ 160:.\Cube.c      **** 
+ 161:.\Cube.c      **** void DrawCube(void)
+ 162:.\Cube.c      **** {
+ 163:.\Cube.c      **** 	LCD_DrawLine((uint8) b1x_old,(uint8) b1y_old,(uint8) b2x_old,(uint8) b2y_old, BACKGROUND);
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 9
+
+
+ 164:.\Cube.c      **** 	LCD_DrawLine((uint8) b1x,(uint8) b1y,(uint8) b2x,(uint8) b2y, FOREGROUND);
+ 165:.\Cube.c      **** 	
+ 166:.\Cube.c      **** 	LCD_DrawLine((uint8) b1x_old,(uint8) b1y_old,(uint8) b4x_old,(uint8) b4y_old, BACKGROUND);
+ 167:.\Cube.c      **** 	LCD_DrawLine((uint8) b1x,(uint8) b1y,(uint8) b4x,(uint8) b4y, FOREGROUND);
+ 168:.\Cube.c      **** 	
+ 169:.\Cube.c      **** 	LCD_DrawLine((uint8) b1x_old,(uint8) b1y_old,(uint8) b5x_old,(uint8) b5y_old, BACKGROUND);
+ 170:.\Cube.c      **** 	LCD_DrawLine((uint8) b1x,(uint8) b1y,(uint8) b5x,(uint8) b5y, FOREGROUND);
+ 171:.\Cube.c      **** 	
+ 172:.\Cube.c      **** 	LCD_DrawLine((uint8) b2x_old,(uint8) b2y_old,(uint8) b3x_old,(uint8) b3y_old, BACKGROUND);
+ 173:.\Cube.c      **** 	LCD_DrawLine((uint8) b2x,(uint8) b2y,(uint8) b3x,(uint8) b3y, FOREGROUND);
+ 174:.\Cube.c      **** 	
+ 175:.\Cube.c      **** 	LCD_DrawLine((uint8) b2x_old,(uint8) b2y_old,(uint8) b6x_old,(uint8) b6y_old, BACKGROUND);
+ 176:.\Cube.c      **** 	LCD_DrawLine((uint8) b2x,(uint8) b2y,(uint8) b6x,(uint8) b6y, FOREGROUND);
+ 177:.\Cube.c      **** 	
+ 178:.\Cube.c      **** 	LCD_DrawLine((uint8) b5x_old,(uint8) b5y_old,(uint8) b6x_old,(uint8) b6y_old, BACKGROUND);
+ 179:.\Cube.c      **** 	LCD_DrawLine((uint8) b5x,(uint8) b5y,(uint8) b6x,(uint8) b6y, FOREGROUND);
+ 180:.\Cube.c      **** 	
+ 181:.\Cube.c      **** 	LCD_DrawLine((uint8) b5x_old,(uint8) b5y_old,(uint8) b8x_old,(uint8) b8y_old, BACKGROUND);
+ 182:.\Cube.c      **** 	LCD_DrawLine((uint8) b5x,(uint8) b5y,(uint8) b8x,(uint8) b8y, FOREGROUND);
+ 183:.\Cube.c      **** 	
+ 184:.\Cube.c      **** 	LCD_DrawLine((uint8) b8x_old,(uint8) b8y_old,(uint8) b7x_old,(uint8) b7y_old, BACKGROUND);
+ 185:.\Cube.c      **** 	LCD_DrawLine((uint8) b8x,(uint8) b8y,(uint8) b7x,(uint8) b7y, FOREGROUND);
+ 186:.\Cube.c      **** 	
+ 187:.\Cube.c      **** 	LCD_DrawLine((uint8) b7x_old,(uint8) b7y_old,(uint8) b6x_old,(uint8) b6y_old, BACKGROUND);
+ 188:.\Cube.c      **** 	LCD_DrawLine((uint8) b7x,(uint8) b7y,(uint8) b6x,(uint8) b6y, FOREGROUND);
+ 189:.\Cube.c      **** 	
+ 190:.\Cube.c      **** 	LCD_DrawLine((uint8) b7x_old,(uint8) b7y_old,(uint8) b3x_old,(uint8) b3y_old, BACKGROUND);
+ 191:.\Cube.c      **** 	LCD_DrawLine((uint8) b7x,(uint8) b7y,(uint8) b3x,(uint8) b3y, FOREGROUND);
+ 192:.\Cube.c      **** 	
+ 193:.\Cube.c      **** 	LCD_DrawLine((uint8) b4x_old,(uint8) b4y_old,(uint8) b3x_old,(uint8) b3y_old, BACKGROUND);
+ 194:.\Cube.c      **** 	LCD_DrawLine((uint8) b4x,(uint8) b4y,(uint8) b3x,(uint8) b3y, FOREGROUND);
+ 195:.\Cube.c      **** 	
+ 196:.\Cube.c      **** 	LCD_DrawLine((uint8) b4x_old,(uint8) b4y_old,(uint8) b8x_old,(uint8) b8y_old, BACKGROUND);
+ 197:.\Cube.c      **** 	LCD_DrawLine((uint8) b4x,(uint8) b4y,(uint8) b8x,(uint8) b8y, FOREGROUND);
+ 198:.\Cube.c      **** 	
+ 199:.\Cube.c      **** 	// X
+ 200:.\Cube.c      **** 	LCD_DrawLine((uint8) b2x_old,(uint8) b2y_old,(uint8) b4x_old,(uint8) b4y_old, BACKGROUND);
+ 201:.\Cube.c      **** 	LCD_DrawLine((uint8) b2x,(uint8) b2y,(uint8) b4x,(uint8) b4y, LCD_RED);
+ 202:.\Cube.c      **** 	
+ 203:.\Cube.c      **** 	LCD_DrawLine((uint8) b1x_old,(uint8) b1y_old,(uint8) b3x_old,(uint8) b3y_old, BACKGROUND);
+ 204:.\Cube.c      **** 	LCD_DrawLine((uint8) b1x,(uint8) b1y,(uint8) b3x,(uint8) b3y, LCD_RED);
+ 205:.\Cube.c      **** 	
+ 206:.\Cube.c      **** 	return;
+ 207:.\Cube.c      **** }
+ 208:.\Cube.c      **** 
+ 209:.\Cube.c      **** void ScaleDistort(void)
+ 210:.\Cube.c      **** {
+ 290              		.loc 1 210 0
+ 291              		.cfi_startproc
+ 292 0000 10B5     		push	{r4, lr}
+ 293              	.LCFI0:
+ 294              		.cfi_def_cfa_offset 8
+ 295              		.cfi_offset 4, -8
+ 296              		.cfi_offset 14, -4
+ 211:.\Cube.c      **** 		if(X_scale_flag == 0)
+ 297              		.loc 1 211 0
+ 298 0002 214B     		ldr	r3, .L30
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 10
+
+
+ 299 0004 214C     		ldr	r4, .L30+4
+ 300 0006 1B68     		ldr	r3, [r3]
+ 212:.\Cube.c      **** 		{
+ 213:.\Cube.c      **** 			X_SCALE--;
+ 301              		.loc 1 213 0
+ 302 0008 2068     		ldr	r0, [r4]
+ 303 000a 2149     		ldr	r1, .L30+8
+ 304              		.loc 1 211 0
+ 305 000c 002B     		cmp	r3, #0
+ 306 000e 02D1     		bne	.L10
+ 307              		.loc 1 213 0
+ 308 0010 FFF7FEFF 		bl	__aeabi_fsub
+ 309 0014 01E0     		b	.L27
+ 310              	.L10:
+ 214:.\Cube.c      **** 		}
+ 215:.\Cube.c      **** 		else
+ 216:.\Cube.c      **** 		{
+ 217:.\Cube.c      **** 			X_SCALE++;
+ 311              		.loc 1 217 0
+ 312 0016 FFF7FEFF 		bl	__aeabi_fadd
+ 313              	.L27:
+ 218:.\Cube.c      **** 		}
+ 219:.\Cube.c      **** 		
+ 220:.\Cube.c      **** 		if(X_SCALE == 0)
+ 314              		.loc 1 220 0
+ 315 001a 1C4B     		ldr	r3, .L30+4
+ 316              		.loc 1 217 0
+ 317 001c 2060     		str	r0, [r4]
+ 318              		.loc 1 220 0
+ 319 001e 1C68     		ldr	r4, [r3]
+ 320 0020 1C49     		ldr	r1, .L30+12
+ 321 0022 201C     		add	r0, r4, #0
+ 322 0024 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 323 0028 0028     		cmp	r0, #0
+ 324 002a 02D0     		beq	.L12
+ 221:.\Cube.c      **** 		{
+ 222:.\Cube.c      **** 			X_scale_flag = 1;
+ 325              		.loc 1 222 0
+ 326 002c 164B     		ldr	r3, .L30
+ 327 002e 0122     		mov	r2, #1
+ 328 0030 1A60     		str	r2, [r3]
+ 329              	.L12:
+ 223:.\Cube.c      **** 		}
+ 224:.\Cube.c      **** 		if(X_SCALE == 40)
+ 330              		.loc 1 224 0
+ 331 0032 201C     		add	r0, r4, #0
+ 332 0034 1849     		ldr	r1, .L30+16
+ 333 0036 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 334 003a 0028     		cmp	r0, #0
+ 335 003c 02D0     		beq	.L14
+ 225:.\Cube.c      **** 		{
+ 226:.\Cube.c      **** 			X_scale_flag = 0;
+ 336              		.loc 1 226 0
+ 337 003e 124B     		ldr	r3, .L30
+ 338 0040 0022     		mov	r2, #0
+ 339 0042 1A60     		str	r2, [r3]
+ 340              	.L14:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 11
+
+
+ 227:.\Cube.c      **** 		}
+ 228:.\Cube.c      **** 		
+ 229:.\Cube.c      **** 		if(Y_scale_flag == 0)
+ 341              		.loc 1 229 0
+ 342 0044 104B     		ldr	r3, .L30
+ 343 0046 154C     		ldr	r4, .L30+20
+ 344 0048 5B68     		ldr	r3, [r3, #4]
+ 230:.\Cube.c      **** 		{
+ 231:.\Cube.c      **** 			Y_SCALE--;
+ 345              		.loc 1 231 0
+ 346 004a 2068     		ldr	r0, [r4]
+ 347 004c 1049     		ldr	r1, .L30+8
+ 348              		.loc 1 229 0
+ 349 004e 002B     		cmp	r3, #0
+ 350 0050 02D1     		bne	.L16
+ 351              		.loc 1 231 0
+ 352 0052 FFF7FEFF 		bl	__aeabi_fsub
+ 353 0056 01E0     		b	.L28
+ 354              	.L16:
+ 232:.\Cube.c      **** 		}
+ 233:.\Cube.c      **** 		else
+ 234:.\Cube.c      **** 		{
+ 235:.\Cube.c      **** 			Y_SCALE++;
+ 355              		.loc 1 235 0
+ 356 0058 FFF7FEFF 		bl	__aeabi_fadd
+ 357              	.L28:
+ 236:.\Cube.c      **** 		}
+ 237:.\Cube.c      **** 		
+ 238:.\Cube.c      **** 		if(Y_SCALE == 0)
+ 358              		.loc 1 238 0
+ 359 005c 0F4B     		ldr	r3, .L30+20
+ 360              		.loc 1 235 0
+ 361 005e 2060     		str	r0, [r4]
+ 362              		.loc 1 238 0
+ 363 0060 1C68     		ldr	r4, [r3]
+ 364 0062 0C49     		ldr	r1, .L30+12
+ 365 0064 201C     		add	r0, r4, #0
+ 366 0066 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 367 006a 0028     		cmp	r0, #0
+ 368 006c 02D0     		beq	.L18
+ 239:.\Cube.c      **** 		{
+ 240:.\Cube.c      **** 			Y_scale_flag = 1;
+ 369              		.loc 1 240 0
+ 370 006e 064B     		ldr	r3, .L30
+ 371 0070 0122     		mov	r2, #1
+ 372 0072 5A60     		str	r2, [r3, #4]
+ 373              	.L18:
+ 241:.\Cube.c      **** 		}
+ 242:.\Cube.c      **** 		if(Y_SCALE == 37)
+ 374              		.loc 1 242 0
+ 375 0074 201C     		add	r0, r4, #0
+ 376 0076 0A49     		ldr	r1, .L30+24
+ 377 0078 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 378 007c 0028     		cmp	r0, #0
+ 379 007e 02D0     		beq	.L22
+ 243:.\Cube.c      **** 		{
+ 244:.\Cube.c      **** 			Y_scale_flag = 0;
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 12
+
+
+ 380              		.loc 1 244 0
+ 381 0080 014B     		ldr	r3, .L30
+ 382 0082 0022     		mov	r2, #0
+ 383 0084 5A60     		str	r2, [r3, #4]
+ 384              	.L22:
+ 245:.\Cube.c      **** 		}
+ 246:.\Cube.c      **** 		
+ 247:.\Cube.c      **** 		return;
+ 248:.\Cube.c      **** }
+ 385              		.loc 1 248 0
+ 386              		@ sp needed for prologue
+ 387 0086 10BD     		pop	{r4, pc}
+ 388              	.L31:
+ 389              		.align	2
+ 390              	.L30:
+ 391 0088 00000000 		.word	.LANCHOR0
+ 392 008c 00000000 		.word	X_SCALE
+ 393 0090 0000803F 		.word	1065353216
+ 394 0094 00000000 		.word	0
+ 395 0098 00002042 		.word	1109393408
+ 396 009c 00000000 		.word	Y_SCALE
+ 397 00a0 00001442 		.word	1108606976
+ 398              		.cfi_endproc
+ 399              	.LFE27:
+ 400              		.size	ScaleDistort, .-ScaleDistort
+ 401              		.section	.text.OffsetBounce,"ax",%progbits
+ 402              		.align	1
+ 403              		.global	OffsetBounce
+ 404              		.code	16
+ 405              		.thumb_func
+ 406              		.type	OffsetBounce, %function
+ 407              	OffsetBounce:
+ 408              	.LFB28:
+ 249:.\Cube.c      **** 
+ 250:.\Cube.c      **** void OffsetBounce(void)
+ 251:.\Cube.c      **** {
+ 409              		.loc 1 251 0
+ 410              		.cfi_startproc
+ 411 0000 10B5     		push	{r4, lr}
+ 412              	.LCFI1:
+ 413              		.cfi_def_cfa_offset 8
+ 414              		.cfi_offset 4, -8
+ 415              		.cfi_offset 14, -4
+ 252:.\Cube.c      **** 		if(X_offset_flag == 0)
+ 416              		.loc 1 252 0
+ 417 0002 214B     		ldr	r3, .L52
+ 418 0004 214C     		ldr	r4, .L52+4
+ 419 0006 9B68     		ldr	r3, [r3, #8]
+ 253:.\Cube.c      **** 		{
+ 254:.\Cube.c      **** 			X_OFFSET--;
+ 420              		.loc 1 254 0
+ 421 0008 2068     		ldr	r0, [r4]
+ 422 000a 2149     		ldr	r1, .L52+8
+ 423              		.loc 1 252 0
+ 424 000c 002B     		cmp	r3, #0
+ 425 000e 02D1     		bne	.L33
+ 426              		.loc 1 254 0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 13
+
+
+ 427 0010 FFF7FEFF 		bl	__aeabi_fsub
+ 428 0014 01E0     		b	.L50
+ 429              	.L33:
+ 255:.\Cube.c      **** 		}
+ 256:.\Cube.c      **** 		else
+ 257:.\Cube.c      **** 		{
+ 258:.\Cube.c      **** 			X_OFFSET++;
+ 430              		.loc 1 258 0
+ 431 0016 FFF7FEFF 		bl	__aeabi_fadd
+ 432              	.L50:
+ 259:.\Cube.c      **** 		}
+ 260:.\Cube.c      **** 		
+ 261:.\Cube.c      **** 		if(X_OFFSET == 0)
+ 433              		.loc 1 261 0
+ 434 001a 1C4B     		ldr	r3, .L52+4
+ 435              		.loc 1 258 0
+ 436 001c 2060     		str	r0, [r4]
+ 437              		.loc 1 261 0
+ 438 001e 1C68     		ldr	r4, [r3]
+ 439 0020 1C49     		ldr	r1, .L52+12
+ 440 0022 201C     		add	r0, r4, #0
+ 441 0024 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 442 0028 0028     		cmp	r0, #0
+ 443 002a 02D0     		beq	.L35
+ 262:.\Cube.c      **** 		{
+ 263:.\Cube.c      **** 			X_offset_flag = 1;
+ 444              		.loc 1 263 0
+ 445 002c 164B     		ldr	r3, .L52
+ 446 002e 0122     		mov	r2, #1
+ 447 0030 9A60     		str	r2, [r3, #8]
+ 448              	.L35:
+ 264:.\Cube.c      **** 		}
+ 265:.\Cube.c      **** 		if(X_OFFSET == 132)
+ 449              		.loc 1 265 0
+ 450 0032 201C     		add	r0, r4, #0
+ 451 0034 1849     		ldr	r1, .L52+16
+ 452 0036 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 453 003a 0028     		cmp	r0, #0
+ 454 003c 02D0     		beq	.L37
+ 266:.\Cube.c      **** 		{
+ 267:.\Cube.c      **** 			X_offset_flag = 0;
+ 455              		.loc 1 267 0
+ 456 003e 124B     		ldr	r3, .L52
+ 457 0040 0022     		mov	r2, #0
+ 458 0042 9A60     		str	r2, [r3, #8]
+ 459              	.L37:
+ 268:.\Cube.c      **** 		}
+ 269:.\Cube.c      **** 		
+ 270:.\Cube.c      **** 		if(Y_offset_flag == 0)
+ 460              		.loc 1 270 0
+ 461 0044 104B     		ldr	r3, .L52
+ 462 0046 154C     		ldr	r4, .L52+20
+ 463 0048 DB68     		ldr	r3, [r3, #12]
+ 271:.\Cube.c      **** 		{
+ 272:.\Cube.c      **** 			Y_OFFSET--;
+ 464              		.loc 1 272 0
+ 465 004a 2068     		ldr	r0, [r4]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 14
+
+
+ 466 004c 1049     		ldr	r1, .L52+8
+ 467              		.loc 1 270 0
+ 468 004e 002B     		cmp	r3, #0
+ 469 0050 02D1     		bne	.L39
+ 470              		.loc 1 272 0
+ 471 0052 FFF7FEFF 		bl	__aeabi_fsub
+ 472 0056 01E0     		b	.L51
+ 473              	.L39:
+ 273:.\Cube.c      **** 		}
+ 274:.\Cube.c      **** 		else
+ 275:.\Cube.c      **** 		{
+ 276:.\Cube.c      **** 			Y_OFFSET++;
+ 474              		.loc 1 276 0
+ 475 0058 FFF7FEFF 		bl	__aeabi_fadd
+ 476              	.L51:
+ 277:.\Cube.c      **** 		}
+ 278:.\Cube.c      **** 		
+ 279:.\Cube.c      **** 		if(Y_OFFSET == 0)
+ 477              		.loc 1 279 0
+ 478 005c 0F4B     		ldr	r3, .L52+20
+ 479              		.loc 1 276 0
+ 480 005e 2060     		str	r0, [r4]
+ 481              		.loc 1 279 0
+ 482 0060 1C68     		ldr	r4, [r3]
+ 483 0062 0C49     		ldr	r1, .L52+12
+ 484 0064 201C     		add	r0, r4, #0
+ 485 0066 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 486 006a 0028     		cmp	r0, #0
+ 487 006c 02D0     		beq	.L41
+ 280:.\Cube.c      **** 		{
+ 281:.\Cube.c      **** 			Y_offset_flag = 1;
+ 488              		.loc 1 281 0
+ 489 006e 064B     		ldr	r3, .L52
+ 490 0070 0122     		mov	r2, #1
+ 491 0072 DA60     		str	r2, [r3, #12]
+ 492              	.L41:
+ 282:.\Cube.c      **** 		}
+ 283:.\Cube.c      **** 		if(Y_OFFSET == 132)
+ 493              		.loc 1 283 0
+ 494 0074 201C     		add	r0, r4, #0
+ 495 0076 0849     		ldr	r1, .L52+16
+ 496 0078 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 497 007c 0028     		cmp	r0, #0
+ 498 007e 02D0     		beq	.L45
+ 284:.\Cube.c      **** 		{
+ 285:.\Cube.c      **** 			Y_offset_flag = 0;
+ 499              		.loc 1 285 0
+ 500 0080 014B     		ldr	r3, .L52
+ 501 0082 0022     		mov	r2, #0
+ 502 0084 DA60     		str	r2, [r3, #12]
+ 503              	.L45:
+ 286:.\Cube.c      **** 		}
+ 287:.\Cube.c      **** 		
+ 288:.\Cube.c      **** 		return;
+ 289:.\Cube.c      **** }
+ 504              		.loc 1 289 0
+ 505              		@ sp needed for prologue
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 15
+
+
+ 506 0086 10BD     		pop	{r4, pc}
+ 507              	.L53:
+ 508              		.align	2
+ 509              	.L52:
+ 510 0088 00000000 		.word	.LANCHOR0
+ 511 008c 00000000 		.word	X_OFFSET
+ 512 0090 0000803F 		.word	1065353216
+ 513 0094 00000000 		.word	0
+ 514 0098 00000443 		.word	1124335616
+ 515 009c 00000000 		.word	Y_OFFSET
+ 516              		.cfi_endproc
+ 517              	.LFE28:
+ 518              		.size	OffsetBounce, .-OffsetBounce
+ 519              		.global	__aeabi_f2uiz
+ 520              		.section	.text.DrawCube,"ax",%progbits
+ 521              		.align	1
+ 522              		.global	DrawCube
+ 523              		.code	16
+ 524              		.thumb_func
+ 525              		.type	DrawCube, %function
+ 526              	DrawCube:
+ 527              	.LFB26:
+ 528              		.loc 1 162 0
+ 529              		.cfi_startproc
+ 530 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 531              	.LCFI2:
+ 532              		.cfi_def_cfa_offset 20
+ 533              		.cfi_offset 4, -20
+ 534              		.cfi_offset 5, -16
+ 535              		.cfi_offset 6, -12
+ 536              		.cfi_offset 7, -8
+ 537              		.cfi_offset 14, -4
+ 538              		.loc 1 163 0
+ 539 0002 FF4A     		ldr	r2, .L56
+ 540              		.loc 1 162 0
+ 541 0004 87B0     		sub	sp, sp, #28
+ 542              	.LCFI3:
+ 543              		.cfi_def_cfa_offset 48
+ 544              		.loc 1 163 0
+ 545 0006 1068     		ldr	r0, [r2]
+ 546 0008 FFF7FEFF 		bl	__aeabi_f2uiz
+ 547 000c FD4B     		ldr	r3, .L56+4
+ 548 000e C4B2     		uxtb	r4, r0
+ 549 0010 1868     		ldr	r0, [r3]
+ 550 0012 FFF7FEFF 		bl	__aeabi_f2uiz
+ 551 0016 FC4A     		ldr	r2, .L56+8
+ 552 0018 C5B2     		uxtb	r5, r0
+ 553 001a 1068     		ldr	r0, [r2]
+ 554 001c FFF7FEFF 		bl	__aeabi_f2uiz
+ 555 0020 FA4B     		ldr	r3, .L56+12
+ 556 0022 C6B2     		uxtb	r6, r0
+ 557 0024 1868     		ldr	r0, [r3]
+ 558 0026 FFF7FEFF 		bl	__aeabi_f2uiz
+ 559 002a 0022     		mov	r2, #0
+ 560 002c 291C     		mov	r1, r5
+ 561 002e C3B2     		uxtb	r3, r0
+ 562 0030 0092     		str	r2, [sp]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 16
+
+
+ 563 0032 201C     		mov	r0, r4
+ 564 0034 321C     		mov	r2, r6
+ 565 0036 FFF7FEFF 		bl	LCD_DrawLine
+ 566              		.loc 1 164 0
+ 567 003a F54B     		ldr	r3, .L56+16
+ 568 003c 1868     		ldr	r0, [r3]
+ 569 003e FFF7FEFF 		bl	__aeabi_f2uiz
+ 570 0042 F44A     		ldr	r2, .L56+20
+ 571 0044 C4B2     		uxtb	r4, r0
+ 572 0046 1068     		ldr	r0, [r2]
+ 573 0048 FFF7FEFF 		bl	__aeabi_f2uiz
+ 574 004c F24B     		ldr	r3, .L56+24
+ 575 004e C5B2     		uxtb	r5, r0
+ 576 0050 1868     		ldr	r0, [r3]
+ 577 0052 FFF7FEFF 		bl	__aeabi_f2uiz
+ 578 0056 F14A     		ldr	r2, .L56+28
+ 579 0058 C6B2     		uxtb	r6, r0
+ 580 005a 1068     		ldr	r0, [r2]
+ 581 005c FFF7FEFF 		bl	__aeabi_f2uiz
+ 582 0060 EF4A     		ldr	r2, .L56+32
+ 583 0062 291C     		mov	r1, r5
+ 584 0064 C3B2     		uxtb	r3, r0
+ 585 0066 0092     		str	r2, [sp]
+ 586 0068 201C     		mov	r0, r4
+ 587 006a 321C     		mov	r2, r6
+ 588 006c FFF7FEFF 		bl	LCD_DrawLine
+ 589              		.loc 1 166 0
+ 590 0070 E34B     		ldr	r3, .L56
+ 591 0072 1868     		ldr	r0, [r3]
+ 592 0074 FFF7FEFF 		bl	__aeabi_f2uiz
+ 593 0078 E24A     		ldr	r2, .L56+4
+ 594 007a C4B2     		uxtb	r4, r0
+ 595 007c 1068     		ldr	r0, [r2]
+ 596 007e FFF7FEFF 		bl	__aeabi_f2uiz
+ 597 0082 E84B     		ldr	r3, .L56+36
+ 598 0084 C5B2     		uxtb	r5, r0
+ 599 0086 1868     		ldr	r0, [r3]
+ 600 0088 FFF7FEFF 		bl	__aeabi_f2uiz
+ 601 008c E64A     		ldr	r2, .L56+40
+ 602 008e C6B2     		uxtb	r6, r0
+ 603 0090 1068     		ldr	r0, [r2]
+ 604 0092 FFF7FEFF 		bl	__aeabi_f2uiz
+ 605 0096 0022     		mov	r2, #0
+ 606 0098 291C     		mov	r1, r5
+ 607 009a C3B2     		uxtb	r3, r0
+ 608 009c 0092     		str	r2, [sp]
+ 609 009e 201C     		mov	r0, r4
+ 610 00a0 321C     		mov	r2, r6
+ 611 00a2 FFF7FEFF 		bl	LCD_DrawLine
+ 612              		.loc 1 167 0
+ 613 00a6 DA4B     		ldr	r3, .L56+16
+ 614 00a8 1868     		ldr	r0, [r3]
+ 615 00aa FFF7FEFF 		bl	__aeabi_f2uiz
+ 616 00ae D94A     		ldr	r2, .L56+20
+ 617 00b0 C4B2     		uxtb	r4, r0
+ 618 00b2 1068     		ldr	r0, [r2]
+ 619 00b4 FFF7FEFF 		bl	__aeabi_f2uiz
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 17
+
+
+ 620 00b8 DC4B     		ldr	r3, .L56+44
+ 621 00ba C5B2     		uxtb	r5, r0
+ 622 00bc 1868     		ldr	r0, [r3]
+ 623 00be FFF7FEFF 		bl	__aeabi_f2uiz
+ 624 00c2 DB4A     		ldr	r2, .L56+48
+ 625 00c4 C6B2     		uxtb	r6, r0
+ 626 00c6 1068     		ldr	r0, [r2]
+ 627 00c8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 628 00cc D44A     		ldr	r2, .L56+32
+ 629 00ce 291C     		mov	r1, r5
+ 630 00d0 C3B2     		uxtb	r3, r0
+ 631 00d2 0092     		str	r2, [sp]
+ 632 00d4 201C     		mov	r0, r4
+ 633 00d6 321C     		mov	r2, r6
+ 634 00d8 FFF7FEFF 		bl	LCD_DrawLine
+ 635              		.loc 1 169 0
+ 636 00dc C84B     		ldr	r3, .L56
+ 637 00de 1868     		ldr	r0, [r3]
+ 638 00e0 FFF7FEFF 		bl	__aeabi_f2uiz
+ 639 00e4 C74A     		ldr	r2, .L56+4
+ 640 00e6 C4B2     		uxtb	r4, r0
+ 641 00e8 1068     		ldr	r0, [r2]
+ 642 00ea FFF7FEFF 		bl	__aeabi_f2uiz
+ 643 00ee D14F     		ldr	r7, .L56+52
+ 644 00f0 C5B2     		uxtb	r5, r0
+ 645 00f2 3868     		ldr	r0, [r7]
+ 646 00f4 FFF7FEFF 		bl	__aeabi_f2uiz
+ 647 00f8 CF4B     		ldr	r3, .L56+56
+ 648 00fa C6B2     		uxtb	r6, r0
+ 649 00fc 1868     		ldr	r0, [r3]
+ 650 00fe FFF7FEFF 		bl	__aeabi_f2uiz
+ 651 0102 0022     		mov	r2, #0
+ 652 0104 291C     		mov	r1, r5
+ 653 0106 C3B2     		uxtb	r3, r0
+ 654 0108 0092     		str	r2, [sp]
+ 655 010a 201C     		mov	r0, r4
+ 656 010c 321C     		mov	r2, r6
+ 657 010e FFF7FEFF 		bl	LCD_DrawLine
+ 658              		.loc 1 170 0
+ 659 0112 BF4B     		ldr	r3, .L56+16
+ 660 0114 1868     		ldr	r0, [r3]
+ 661 0116 FFF7FEFF 		bl	__aeabi_f2uiz
+ 662 011a BE4A     		ldr	r2, .L56+20
+ 663 011c C4B2     		uxtb	r4, r0
+ 664 011e 1068     		ldr	r0, [r2]
+ 665 0120 FFF7FEFF 		bl	__aeabi_f2uiz
+ 666 0124 C54B     		ldr	r3, .L56+60
+ 667 0126 C5B2     		uxtb	r5, r0
+ 668 0128 1868     		ldr	r0, [r3]
+ 669 012a FFF7FEFF 		bl	__aeabi_f2uiz
+ 670 012e C44A     		ldr	r2, .L56+64
+ 671 0130 C6B2     		uxtb	r6, r0
+ 672 0132 1068     		ldr	r0, [r2]
+ 673 0134 FFF7FEFF 		bl	__aeabi_f2uiz
+ 674 0138 B94A     		ldr	r2, .L56+32
+ 675 013a 291C     		mov	r1, r5
+ 676 013c C3B2     		uxtb	r3, r0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 18
+
+
+ 677 013e 0092     		str	r2, [sp]
+ 678 0140 201C     		mov	r0, r4
+ 679 0142 321C     		mov	r2, r6
+ 680 0144 FFF7FEFF 		bl	LCD_DrawLine
+ 681              		.loc 1 172 0
+ 682 0148 AF4B     		ldr	r3, .L56+8
+ 683 014a 1868     		ldr	r0, [r3]
+ 684 014c FFF7FEFF 		bl	__aeabi_f2uiz
+ 685 0150 AE4A     		ldr	r2, .L56+12
+ 686 0152 C4B2     		uxtb	r4, r0
+ 687 0154 1068     		ldr	r0, [r2]
+ 688 0156 FFF7FEFF 		bl	__aeabi_f2uiz
+ 689 015a BA4B     		ldr	r3, .L56+68
+ 690 015c C5B2     		uxtb	r5, r0
+ 691 015e 1868     		ldr	r0, [r3]
+ 692 0160 FFF7FEFF 		bl	__aeabi_f2uiz
+ 693 0164 B84A     		ldr	r2, .L56+72
+ 694 0166 C6B2     		uxtb	r6, r0
+ 695 0168 1068     		ldr	r0, [r2]
+ 696 016a FFF7FEFF 		bl	__aeabi_f2uiz
+ 697 016e 0022     		mov	r2, #0
+ 698 0170 291C     		mov	r1, r5
+ 699 0172 C3B2     		uxtb	r3, r0
+ 700 0174 0092     		str	r2, [sp]
+ 701 0176 201C     		mov	r0, r4
+ 702 0178 321C     		mov	r2, r6
+ 703 017a FFF7FEFF 		bl	LCD_DrawLine
+ 704              		.loc 1 173 0
+ 705 017e A64B     		ldr	r3, .L56+24
+ 706 0180 1868     		ldr	r0, [r3]
+ 707 0182 FFF7FEFF 		bl	__aeabi_f2uiz
+ 708 0186 A54A     		ldr	r2, .L56+28
+ 709 0188 C4B2     		uxtb	r4, r0
+ 710 018a 1068     		ldr	r0, [r2]
+ 711 018c FFF7FEFF 		bl	__aeabi_f2uiz
+ 712 0190 AE4B     		ldr	r3, .L56+76
+ 713 0192 C5B2     		uxtb	r5, r0
+ 714 0194 1868     		ldr	r0, [r3]
+ 715 0196 FFF7FEFF 		bl	__aeabi_f2uiz
+ 716 019a AD4A     		ldr	r2, .L56+80
+ 717 019c C6B2     		uxtb	r6, r0
+ 718 019e 1068     		ldr	r0, [r2]
+ 719 01a0 FFF7FEFF 		bl	__aeabi_f2uiz
+ 720 01a4 9E4A     		ldr	r2, .L56+32
+ 721 01a6 291C     		mov	r1, r5
+ 722 01a8 C3B2     		uxtb	r3, r0
+ 723 01aa 0092     		str	r2, [sp]
+ 724 01ac 201C     		mov	r0, r4
+ 725 01ae 321C     		mov	r2, r6
+ 726 01b0 FFF7FEFF 		bl	LCD_DrawLine
+ 727              		.loc 1 175 0
+ 728 01b4 944B     		ldr	r3, .L56+8
+ 729 01b6 1868     		ldr	r0, [r3]
+ 730 01b8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 731 01bc 934A     		ldr	r2, .L56+12
+ 732 01be C4B2     		uxtb	r4, r0
+ 733 01c0 1068     		ldr	r0, [r2]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 19
+
+
+ 734 01c2 FFF7FEFF 		bl	__aeabi_f2uiz
+ 735 01c6 A34B     		ldr	r3, .L56+84
+ 736 01c8 C5B2     		uxtb	r5, r0
+ 737 01ca 1868     		ldr	r0, [r3]
+ 738 01cc FFF7FEFF 		bl	__aeabi_f2uiz
+ 739 01d0 A14A     		ldr	r2, .L56+88
+ 740 01d2 C6B2     		uxtb	r6, r0
+ 741 01d4 1068     		ldr	r0, [r2]
+ 742 01d6 FFF7FEFF 		bl	__aeabi_f2uiz
+ 743 01da 0022     		mov	r2, #0
+ 744 01dc 291C     		mov	r1, r5
+ 745 01de C3B2     		uxtb	r3, r0
+ 746 01e0 0092     		str	r2, [sp]
+ 747 01e2 201C     		mov	r0, r4
+ 748 01e4 321C     		mov	r2, r6
+ 749 01e6 FFF7FEFF 		bl	LCD_DrawLine
+ 750              		.loc 1 176 0
+ 751 01ea 8B4B     		ldr	r3, .L56+24
+ 752 01ec 1868     		ldr	r0, [r3]
+ 753 01ee FFF7FEFF 		bl	__aeabi_f2uiz
+ 754 01f2 8A4A     		ldr	r2, .L56+28
+ 755 01f4 C4B2     		uxtb	r4, r0
+ 756 01f6 1068     		ldr	r0, [r2]
+ 757 01f8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 758 01fc 974B     		ldr	r3, .L56+92
+ 759 01fe C5B2     		uxtb	r5, r0
+ 760 0200 1868     		ldr	r0, [r3]
+ 761 0202 FFF7FEFF 		bl	__aeabi_f2uiz
+ 762 0206 964A     		ldr	r2, .L56+96
+ 763 0208 C6B2     		uxtb	r6, r0
+ 764 020a 1068     		ldr	r0, [r2]
+ 765 020c FFF7FEFF 		bl	__aeabi_f2uiz
+ 766 0210 834A     		ldr	r2, .L56+32
+ 767 0212 291C     		mov	r1, r5
+ 768 0214 C3B2     		uxtb	r3, r0
+ 769 0216 0092     		str	r2, [sp]
+ 770 0218 201C     		mov	r0, r4
+ 771 021a 321C     		mov	r2, r6
+ 772 021c FFF7FEFF 		bl	LCD_DrawLine
+ 773              		.loc 1 178 0
+ 774 0220 3868     		ldr	r0, [r7]
+ 775 0222 FFF7FEFF 		bl	__aeabi_f2uiz
+ 776 0226 844B     		ldr	r3, .L56+56
+ 777 0228 C4B2     		uxtb	r4, r0
+ 778 022a 1868     		ldr	r0, [r3]
+ 779 022c FFF7FEFF 		bl	__aeabi_f2uiz
+ 780 0230 884A     		ldr	r2, .L56+84
+ 781 0232 C5B2     		uxtb	r5, r0
+ 782 0234 1068     		ldr	r0, [r2]
+ 783 0236 FFF7FEFF 		bl	__aeabi_f2uiz
+ 784 023a 874B     		ldr	r3, .L56+88
+ 785 023c C6B2     		uxtb	r6, r0
+ 786 023e 1868     		ldr	r0, [r3]
+ 787 0240 FFF7FEFF 		bl	__aeabi_f2uiz
+ 788 0244 0022     		mov	r2, #0
+ 789 0246 291C     		mov	r1, r5
+ 790 0248 C3B2     		uxtb	r3, r0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 20
+
+
+ 791 024a 0092     		str	r2, [sp]
+ 792 024c 201C     		mov	r0, r4
+ 793 024e 321C     		mov	r2, r6
+ 794 0250 FFF7FEFF 		bl	LCD_DrawLine
+ 795              		.loc 1 179 0
+ 796 0254 794B     		ldr	r3, .L56+60
+ 797 0256 1868     		ldr	r0, [r3]
+ 798 0258 FFF7FEFF 		bl	__aeabi_f2uiz
+ 799 025c 784A     		ldr	r2, .L56+64
+ 800 025e C4B2     		uxtb	r4, r0
+ 801 0260 1068     		ldr	r0, [r2]
+ 802 0262 FFF7FEFF 		bl	__aeabi_f2uiz
+ 803 0266 7D4B     		ldr	r3, .L56+92
+ 804 0268 C5B2     		uxtb	r5, r0
+ 805 026a 1868     		ldr	r0, [r3]
+ 806 026c FFF7FEFF 		bl	__aeabi_f2uiz
+ 807 0270 7B4A     		ldr	r2, .L56+96
+ 808 0272 C6B2     		uxtb	r6, r0
+ 809 0274 1068     		ldr	r0, [r2]
+ 810 0276 FFF7FEFF 		bl	__aeabi_f2uiz
+ 811 027a 694A     		ldr	r2, .L56+32
+ 812 027c 291C     		mov	r1, r5
+ 813 027e C3B2     		uxtb	r3, r0
+ 814 0280 0092     		str	r2, [sp]
+ 815 0282 201C     		mov	r0, r4
+ 816 0284 321C     		mov	r2, r6
+ 817 0286 FFF7FEFF 		bl	LCD_DrawLine
+ 818              		.loc 1 181 0
+ 819 028a 3868     		ldr	r0, [r7]
+ 820 028c FFF7FEFF 		bl	__aeabi_f2uiz
+ 821 0290 694B     		ldr	r3, .L56+56
+ 822 0292 C4B2     		uxtb	r4, r0
+ 823 0294 1868     		ldr	r0, [r3]
+ 824 0296 FFF7FEFF 		bl	__aeabi_f2uiz
+ 825 029a 724A     		ldr	r2, .L56+100
+ 826 029c C5B2     		uxtb	r5, r0
+ 827 029e 1068     		ldr	r0, [r2]
+ 828 02a0 FFF7FEFF 		bl	__aeabi_f2uiz
+ 829 02a4 704B     		ldr	r3, .L56+104
+ 830 02a6 C6B2     		uxtb	r6, r0
+ 831 02a8 1868     		ldr	r0, [r3]
+ 832 02aa FFF7FEFF 		bl	__aeabi_f2uiz
+ 833 02ae 0022     		mov	r2, #0
+ 834 02b0 291C     		mov	r1, r5
+ 835 02b2 C3B2     		uxtb	r3, r0
+ 836 02b4 0092     		str	r2, [sp]
+ 837 02b6 201C     		mov	r0, r4
+ 838 02b8 321C     		mov	r2, r6
+ 839 02ba FFF7FEFF 		bl	LCD_DrawLine
+ 840              		.loc 1 182 0
+ 841 02be 5F4B     		ldr	r3, .L56+60
+ 842 02c0 1868     		ldr	r0, [r3]
+ 843 02c2 FFF7FEFF 		bl	__aeabi_f2uiz
+ 844 02c6 5E4A     		ldr	r2, .L56+64
+ 845 02c8 C4B2     		uxtb	r4, r0
+ 846 02ca 1068     		ldr	r0, [r2]
+ 847 02cc FFF7FEFF 		bl	__aeabi_f2uiz
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 21
+
+
+ 848 02d0 664B     		ldr	r3, .L56+108
+ 849 02d2 C5B2     		uxtb	r5, r0
+ 850 02d4 1868     		ldr	r0, [r3]
+ 851 02d6 FFF7FEFF 		bl	__aeabi_f2uiz
+ 852 02da 654A     		ldr	r2, .L56+112
+ 853 02dc C6B2     		uxtb	r6, r0
+ 854 02de 1068     		ldr	r0, [r2]
+ 855 02e0 FFF7FEFF 		bl	__aeabi_f2uiz
+ 856 02e4 4E4A     		ldr	r2, .L56+32
+ 857 02e6 291C     		mov	r1, r5
+ 858 02e8 C3B2     		uxtb	r3, r0
+ 859 02ea 0092     		str	r2, [sp]
+ 860 02ec 201C     		mov	r0, r4
+ 861 02ee 321C     		mov	r2, r6
+ 862 02f0 FFF7FEFF 		bl	LCD_DrawLine
+ 863              		.loc 1 184 0
+ 864 02f4 5B4B     		ldr	r3, .L56+100
+ 865 02f6 1868     		ldr	r0, [r3]
+ 866 02f8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 867 02fc 5A4A     		ldr	r2, .L56+104
+ 868 02fe C6B2     		uxtb	r6, r0
+ 869 0300 1068     		ldr	r0, [r2]
+ 870 0302 FFF7FEFF 		bl	__aeabi_f2uiz
+ 871 0306 5B4C     		ldr	r4, .L56+116
+ 872 0308 C7B2     		uxtb	r7, r0
+ 873 030a 2068     		ldr	r0, [r4]
+ 874 030c FFF7FEFF 		bl	__aeabi_f2uiz
+ 875 0310 594D     		ldr	r5, .L56+120
+ 876 0312 C0B2     		uxtb	r0, r0
+ 877 0314 0390     		str	r0, [sp, #12]
+ 878 0316 2868     		ldr	r0, [r5]
+ 879 0318 FFF7FEFF 		bl	__aeabi_f2uiz
+ 880 031c 0022     		mov	r2, #0
+ 881 031e 391C     		mov	r1, r7
+ 882 0320 C3B2     		uxtb	r3, r0
+ 883 0322 0092     		str	r2, [sp]
+ 884 0324 301C     		mov	r0, r6
+ 885 0326 039A     		ldr	r2, [sp, #12]
+ 886 0328 FFF7FEFF 		bl	LCD_DrawLine
+ 887              		.loc 1 185 0
+ 888 032c 4F4B     		ldr	r3, .L56+108
+ 889 032e 1868     		ldr	r0, [r3]
+ 890 0330 FFF7FEFF 		bl	__aeabi_f2uiz
+ 891 0334 4E4A     		ldr	r2, .L56+112
+ 892 0336 C0B2     		uxtb	r0, r0
+ 893 0338 0390     		str	r0, [sp, #12]
+ 894 033a 1068     		ldr	r0, [r2]
+ 895 033c FFF7FEFF 		bl	__aeabi_f2uiz
+ 896 0340 4E4E     		ldr	r6, .L56+124
+ 897 0342 C0B2     		uxtb	r0, r0
+ 898 0344 0490     		str	r0, [sp, #16]
+ 899 0346 3068     		ldr	r0, [r6]
+ 900 0348 FFF7FEFF 		bl	__aeabi_f2uiz
+ 901 034c 4C4F     		ldr	r7, .L56+128
+ 902 034e C0B2     		uxtb	r0, r0
+ 903 0350 0590     		str	r0, [sp, #20]
+ 904 0352 3868     		ldr	r0, [r7]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 22
+
+
+ 905 0354 FFF7FEFF 		bl	__aeabi_f2uiz
+ 906 0358 314A     		ldr	r2, .L56+32
+ 907 035a 0499     		ldr	r1, [sp, #16]
+ 908 035c C3B2     		uxtb	r3, r0
+ 909 035e 0092     		str	r2, [sp]
+ 910 0360 0398     		ldr	r0, [sp, #12]
+ 911 0362 059A     		ldr	r2, [sp, #20]
+ 912 0364 FFF7FEFF 		bl	LCD_DrawLine
+ 913              		.loc 1 187 0
+ 914 0368 2068     		ldr	r0, [r4]
+ 915 036a FFF7FEFF 		bl	__aeabi_f2uiz
+ 916 036e C0B2     		uxtb	r0, r0
+ 917 0370 0390     		str	r0, [sp, #12]
+ 918 0372 2868     		ldr	r0, [r5]
+ 919 0374 FFF7FEFF 		bl	__aeabi_f2uiz
+ 920 0378 364B     		ldr	r3, .L56+84
+ 921 037a C0B2     		uxtb	r0, r0
+ 922 037c 0490     		str	r0, [sp, #16]
+ 923 037e 1868     		ldr	r0, [r3]
+ 924 0380 FFF7FEFF 		bl	__aeabi_f2uiz
+ 925 0384 344A     		ldr	r2, .L56+88
+ 926 0386 C0B2     		uxtb	r0, r0
+ 927 0388 0590     		str	r0, [sp, #20]
+ 928 038a 1068     		ldr	r0, [r2]
+ 929 038c FFF7FEFF 		bl	__aeabi_f2uiz
+ 930 0390 0022     		mov	r2, #0
+ 931 0392 0499     		ldr	r1, [sp, #16]
+ 932 0394 C3B2     		uxtb	r3, r0
+ 933 0396 0092     		str	r2, [sp]
+ 934 0398 0398     		ldr	r0, [sp, #12]
+ 935 039a 059A     		ldr	r2, [sp, #20]
+ 936 039c FFF7FEFF 		bl	LCD_DrawLine
+ 937              		.loc 1 188 0
+ 938 03a0 3068     		ldr	r0, [r6]
+ 939 03a2 FFF7FEFF 		bl	__aeabi_f2uiz
+ 940 03a6 C0B2     		uxtb	r0, r0
+ 941 03a8 0390     		str	r0, [sp, #12]
+ 942 03aa 3868     		ldr	r0, [r7]
+ 943 03ac FFF7FEFF 		bl	__aeabi_f2uiz
+ 944 03b0 2A4B     		ldr	r3, .L56+92
+ 945 03b2 C0B2     		uxtb	r0, r0
+ 946 03b4 0490     		str	r0, [sp, #16]
+ 947 03b6 1868     		ldr	r0, [r3]
+ 948 03b8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 949 03bc 284A     		ldr	r2, .L56+96
+ 950 03be C0B2     		uxtb	r0, r0
+ 951 03c0 0590     		str	r0, [sp, #20]
+ 952 03c2 1068     		ldr	r0, [r2]
+ 953 03c4 FFF7FEFF 		bl	__aeabi_f2uiz
+ 954 03c8 154A     		ldr	r2, .L56+32
+ 955 03ca 0499     		ldr	r1, [sp, #16]
+ 956 03cc C3B2     		uxtb	r3, r0
+ 957 03ce 0092     		str	r2, [sp]
+ 958 03d0 0398     		ldr	r0, [sp, #12]
+ 959 03d2 059A     		ldr	r2, [sp, #20]
+ 960 03d4 FFF7FEFF 		bl	LCD_DrawLine
+ 961              		.loc 1 190 0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 23
+
+
+ 962 03d8 2068     		ldr	r0, [r4]
+ 963 03da FFF7FEFF 		bl	__aeabi_f2uiz
+ 964 03de C0B2     		uxtb	r0, r0
+ 965 03e0 0390     		str	r0, [sp, #12]
+ 966 03e2 2868     		ldr	r0, [r5]
+ 967 03e4 FFF7FEFF 		bl	__aeabi_f2uiz
+ 968 03e8 164B     		ldr	r3, .L56+68
+ 969 03ea C4B2     		uxtb	r4, r0
+ 970 03ec 1868     		ldr	r0, [r3]
+ 971 03ee FFF7FEFF 		bl	__aeabi_f2uiz
+ 972 03f2 154A     		ldr	r2, .L56+72
+ 973 03f4 C5B2     		uxtb	r5, r0
+ 974 03f6 1068     		ldr	r0, [r2]
+ 975 03f8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 976 03fc 42E0     		b	.L57
+ 977              	.L58:
+ 978 03fe C046     		.align	2
+ 979              	.L56:
+ 980 0400 00000000 		.word	b1x_old
+ 981 0404 00000000 		.word	b1y_old
+ 982 0408 00000000 		.word	b2x_old
+ 983 040c 00000000 		.word	b2y_old
+ 984 0410 00000000 		.word	b1x
+ 985 0414 00000000 		.word	b1y
+ 986 0418 00000000 		.word	b2x
+ 987 041c 00000000 		.word	b2y
+ 988 0420 FF0F0000 		.word	4095
+ 989 0424 00000000 		.word	b4x_old
+ 990 0428 00000000 		.word	b4y_old
+ 991 042c 00000000 		.word	b4x
+ 992 0430 00000000 		.word	b4y
+ 993 0434 00000000 		.word	b5x_old
+ 994 0438 00000000 		.word	b5y_old
+ 995 043c 00000000 		.word	b5x
+ 996 0440 00000000 		.word	b5y
+ 997 0444 00000000 		.word	b3x_old
+ 998 0448 00000000 		.word	b3y_old
+ 999 044c 00000000 		.word	b3x
+ 1000 0450 00000000 		.word	b3y
+ 1001 0454 00000000 		.word	b6x_old
+ 1002 0458 00000000 		.word	b6y_old
+ 1003 045c 00000000 		.word	b6x
+ 1004 0460 00000000 		.word	b6y
+ 1005 0464 00000000 		.word	b8x_old
+ 1006 0468 00000000 		.word	b8y_old
+ 1007 046c 00000000 		.word	b8x
+ 1008 0470 00000000 		.word	b8y
+ 1009 0474 00000000 		.word	b7x_old
+ 1010 0478 00000000 		.word	b7y_old
+ 1011 047c 00000000 		.word	b7x
+ 1012 0480 00000000 		.word	b7y
+ 1013              	.L57:
+ 1014 0484 0022     		mov	r2, #0
+ 1015 0486 211C     		mov	r1, r4
+ 1016 0488 C3B2     		uxtb	r3, r0
+ 1017 048a 0092     		str	r2, [sp]
+ 1018 048c 0398     		ldr	r0, [sp, #12]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 24
+
+
+ 1019 048e 2A1C     		mov	r2, r5
+ 1020 0490 FFF7FEFF 		bl	LCD_DrawLine
+ 1021              		.loc 1 191 0
+ 1022 0494 3068     		ldr	r0, [r6]
+ 1023 0496 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1024 049a C6B2     		uxtb	r6, r0
+ 1025 049c 3868     		ldr	r0, [r7]
+ 1026 049e FFF7FEFF 		bl	__aeabi_f2uiz
+ 1027 04a2 764B     		ldr	r3, .L59
+ 1028 04a4 C4B2     		uxtb	r4, r0
+ 1029 04a6 1868     		ldr	r0, [r3]
+ 1030 04a8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1031 04ac 744A     		ldr	r2, .L59+4
+ 1032 04ae C5B2     		uxtb	r5, r0
+ 1033 04b0 1068     		ldr	r0, [r2]
+ 1034 04b2 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1035 04b6 734A     		ldr	r2, .L59+8
+ 1036 04b8 211C     		mov	r1, r4
+ 1037 04ba C3B2     		uxtb	r3, r0
+ 1038 04bc 0092     		str	r2, [sp]
+ 1039 04be 301C     		mov	r0, r6
+ 1040 04c0 2A1C     		mov	r2, r5
+ 1041 04c2 FFF7FEFF 		bl	LCD_DrawLine
+ 1042              		.loc 1 193 0
+ 1043 04c6 704B     		ldr	r3, .L59+12
+ 1044 04c8 1868     		ldr	r0, [r3]
+ 1045 04ca FFF7FEFF 		bl	__aeabi_f2uiz
+ 1046 04ce 6F4A     		ldr	r2, .L59+16
+ 1047 04d0 C4B2     		uxtb	r4, r0
+ 1048 04d2 1068     		ldr	r0, [r2]
+ 1049 04d4 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1050 04d8 6D4B     		ldr	r3, .L59+20
+ 1051 04da C5B2     		uxtb	r5, r0
+ 1052 04dc 1868     		ldr	r0, [r3]
+ 1053 04de FFF7FEFF 		bl	__aeabi_f2uiz
+ 1054 04e2 6C4A     		ldr	r2, .L59+24
+ 1055 04e4 C6B2     		uxtb	r6, r0
+ 1056 04e6 1068     		ldr	r0, [r2]
+ 1057 04e8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1058 04ec 0022     		mov	r2, #0
+ 1059 04ee 291C     		mov	r1, r5
+ 1060 04f0 C3B2     		uxtb	r3, r0
+ 1061 04f2 0092     		str	r2, [sp]
+ 1062 04f4 201C     		mov	r0, r4
+ 1063 04f6 321C     		mov	r2, r6
+ 1064 04f8 FFF7FEFF 		bl	LCD_DrawLine
+ 1065              		.loc 1 194 0
+ 1066 04fc 664B     		ldr	r3, .L59+28
+ 1067 04fe 1868     		ldr	r0, [r3]
+ 1068 0500 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1069 0504 654A     		ldr	r2, .L59+32
+ 1070 0506 C4B2     		uxtb	r4, r0
+ 1071 0508 1068     		ldr	r0, [r2]
+ 1072 050a FFF7FEFF 		bl	__aeabi_f2uiz
+ 1073 050e 5B4B     		ldr	r3, .L59
+ 1074 0510 C5B2     		uxtb	r5, r0
+ 1075 0512 1868     		ldr	r0, [r3]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 25
+
+
+ 1076 0514 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1077 0518 594A     		ldr	r2, .L59+4
+ 1078 051a C6B2     		uxtb	r6, r0
+ 1079 051c 1068     		ldr	r0, [r2]
+ 1080 051e FFF7FEFF 		bl	__aeabi_f2uiz
+ 1081 0522 584A     		ldr	r2, .L59+8
+ 1082 0524 291C     		mov	r1, r5
+ 1083 0526 C3B2     		uxtb	r3, r0
+ 1084 0528 0092     		str	r2, [sp]
+ 1085 052a 201C     		mov	r0, r4
+ 1086 052c 321C     		mov	r2, r6
+ 1087 052e FFF7FEFF 		bl	LCD_DrawLine
+ 1088              		.loc 1 196 0
+ 1089 0532 554B     		ldr	r3, .L59+12
+ 1090 0534 1868     		ldr	r0, [r3]
+ 1091 0536 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1092 053a 544A     		ldr	r2, .L59+16
+ 1093 053c C4B2     		uxtb	r4, r0
+ 1094 053e 1068     		ldr	r0, [r2]
+ 1095 0540 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1096 0544 564B     		ldr	r3, .L59+36
+ 1097 0546 C5B2     		uxtb	r5, r0
+ 1098 0548 1868     		ldr	r0, [r3]
+ 1099 054a FFF7FEFF 		bl	__aeabi_f2uiz
+ 1100 054e 554A     		ldr	r2, .L59+40
+ 1101 0550 C6B2     		uxtb	r6, r0
+ 1102 0552 1068     		ldr	r0, [r2]
+ 1103 0554 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1104 0558 0022     		mov	r2, #0
+ 1105 055a 291C     		mov	r1, r5
+ 1106 055c C3B2     		uxtb	r3, r0
+ 1107 055e 0092     		str	r2, [sp]
+ 1108 0560 201C     		mov	r0, r4
+ 1109 0562 321C     		mov	r2, r6
+ 1110 0564 FFF7FEFF 		bl	LCD_DrawLine
+ 1111              		.loc 1 197 0
+ 1112 0568 4B4B     		ldr	r3, .L59+28
+ 1113 056a 1868     		ldr	r0, [r3]
+ 1114 056c FFF7FEFF 		bl	__aeabi_f2uiz
+ 1115 0570 4A4A     		ldr	r2, .L59+32
+ 1116 0572 C4B2     		uxtb	r4, r0
+ 1117 0574 1068     		ldr	r0, [r2]
+ 1118 0576 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1119 057a 4B4B     		ldr	r3, .L59+44
+ 1120 057c C5B2     		uxtb	r5, r0
+ 1121 057e 1868     		ldr	r0, [r3]
+ 1122 0580 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1123 0584 494A     		ldr	r2, .L59+48
+ 1124 0586 C6B2     		uxtb	r6, r0
+ 1125 0588 1068     		ldr	r0, [r2]
+ 1126 058a FFF7FEFF 		bl	__aeabi_f2uiz
+ 1127 058e 3D4A     		ldr	r2, .L59+8
+ 1128 0590 291C     		mov	r1, r5
+ 1129 0592 C3B2     		uxtb	r3, r0
+ 1130 0594 0092     		str	r2, [sp]
+ 1131 0596 201C     		mov	r0, r4
+ 1132 0598 321C     		mov	r2, r6
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 26
+
+
+ 1133 059a FFF7FEFF 		bl	LCD_DrawLine
+ 1134              		.loc 1 200 0
+ 1135 059e 444B     		ldr	r3, .L59+52
+ 1136 05a0 1868     		ldr	r0, [r3]
+ 1137 05a2 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1138 05a6 434A     		ldr	r2, .L59+56
+ 1139 05a8 C4B2     		uxtb	r4, r0
+ 1140 05aa 1068     		ldr	r0, [r2]
+ 1141 05ac FFF7FEFF 		bl	__aeabi_f2uiz
+ 1142 05b0 354B     		ldr	r3, .L59+12
+ 1143 05b2 C5B2     		uxtb	r5, r0
+ 1144 05b4 1868     		ldr	r0, [r3]
+ 1145 05b6 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1146 05ba 344A     		ldr	r2, .L59+16
+ 1147 05bc C6B2     		uxtb	r6, r0
+ 1148 05be 1068     		ldr	r0, [r2]
+ 1149 05c0 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1150 05c4 0022     		mov	r2, #0
+ 1151 05c6 291C     		mov	r1, r5
+ 1152 05c8 C3B2     		uxtb	r3, r0
+ 1153 05ca 0092     		str	r2, [sp]
+ 1154 05cc 201C     		mov	r0, r4
+ 1155 05ce 321C     		mov	r2, r6
+ 1156 05d0 FFF7FEFF 		bl	LCD_DrawLine
+ 1157              		.loc 1 201 0
+ 1158 05d4 384B     		ldr	r3, .L59+60
+ 1159 05d6 F024     		mov	r4, #240
+ 1160 05d8 1868     		ldr	r0, [r3]
+ 1161 05da FFF7FEFF 		bl	__aeabi_f2uiz
+ 1162 05de 374A     		ldr	r2, .L59+64
+ 1163 05e0 C5B2     		uxtb	r5, r0
+ 1164 05e2 1068     		ldr	r0, [r2]
+ 1165 05e4 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1166 05e8 2B4B     		ldr	r3, .L59+28
+ 1167 05ea C6B2     		uxtb	r6, r0
+ 1168 05ec 1868     		ldr	r0, [r3]
+ 1169 05ee FFF7FEFF 		bl	__aeabi_f2uiz
+ 1170 05f2 2A4A     		ldr	r2, .L59+32
+ 1171 05f4 C7B2     		uxtb	r7, r0
+ 1172 05f6 1068     		ldr	r0, [r2]
+ 1173 05f8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1174 05fc 2401     		lsl	r4, r4, #4
+ 1175 05fe 311C     		mov	r1, r6
+ 1176 0600 3A1C     		mov	r2, r7
+ 1177 0602 C3B2     		uxtb	r3, r0
+ 1178 0604 281C     		mov	r0, r5
+ 1179 0606 0094     		str	r4, [sp]
+ 1180 0608 FFF7FEFF 		bl	LCD_DrawLine
+ 1181              		.loc 1 203 0
+ 1182 060c 2C4B     		ldr	r3, .L59+68
+ 1183 060e 1868     		ldr	r0, [r3]
+ 1184 0610 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1185 0614 2B4A     		ldr	r2, .L59+72
+ 1186 0616 C5B2     		uxtb	r5, r0
+ 1187 0618 1068     		ldr	r0, [r2]
+ 1188 061a FFF7FEFF 		bl	__aeabi_f2uiz
+ 1189 061e 1C4B     		ldr	r3, .L59+20
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 27
+
+
+ 1190 0620 C6B2     		uxtb	r6, r0
+ 1191 0622 1868     		ldr	r0, [r3]
+ 1192 0624 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1193 0628 1A4A     		ldr	r2, .L59+24
+ 1194 062a C7B2     		uxtb	r7, r0
+ 1195 062c 1068     		ldr	r0, [r2]
+ 1196 062e FFF7FEFF 		bl	__aeabi_f2uiz
+ 1197 0632 0022     		mov	r2, #0
+ 1198 0634 311C     		mov	r1, r6
+ 1199 0636 C3B2     		uxtb	r3, r0
+ 1200 0638 0092     		str	r2, [sp]
+ 1201 063a 281C     		mov	r0, r5
+ 1202 063c 3A1C     		mov	r2, r7
+ 1203 063e FFF7FEFF 		bl	LCD_DrawLine
+ 1204              		.loc 1 204 0
+ 1205 0642 214B     		ldr	r3, .L59+76
+ 1206 0644 1868     		ldr	r0, [r3]
+ 1207 0646 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1208 064a 204A     		ldr	r2, .L59+80
+ 1209 064c C5B2     		uxtb	r5, r0
+ 1210 064e 1068     		ldr	r0, [r2]
+ 1211 0650 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1212 0654 094B     		ldr	r3, .L59
+ 1213 0656 C6B2     		uxtb	r6, r0
+ 1214 0658 1868     		ldr	r0, [r3]
+ 1215 065a FFF7FEFF 		bl	__aeabi_f2uiz
+ 1216 065e 084A     		ldr	r2, .L59+4
+ 1217 0660 C7B2     		uxtb	r7, r0
+ 1218 0662 1068     		ldr	r0, [r2]
+ 1219 0664 FFF7FEFF 		bl	__aeabi_f2uiz
+ 1220 0668 311C     		mov	r1, r6
+ 1221 066a C3B2     		uxtb	r3, r0
+ 1222 066c 3A1C     		mov	r2, r7
+ 1223 066e 281C     		mov	r0, r5
+ 1224 0670 0094     		str	r4, [sp]
+ 1225 0672 FFF7FEFF 		bl	LCD_DrawLine
+ 1226              		.loc 1 207 0
+ 1227 0676 07B0     		add	sp, sp, #28
+ 1228              		@ sp needed for prologue
+ 1229 0678 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1230              	.L60:
+ 1231 067a C046     		.align	2
+ 1232              	.L59:
+ 1233 067c 00000000 		.word	b3x
+ 1234 0680 00000000 		.word	b3y
+ 1235 0684 FF0F0000 		.word	4095
+ 1236 0688 00000000 		.word	b4x_old
+ 1237 068c 00000000 		.word	b4y_old
+ 1238 0690 00000000 		.word	b3x_old
+ 1239 0694 00000000 		.word	b3y_old
+ 1240 0698 00000000 		.word	b4x
+ 1241 069c 00000000 		.word	b4y
+ 1242 06a0 00000000 		.word	b8x_old
+ 1243 06a4 00000000 		.word	b8y_old
+ 1244 06a8 00000000 		.word	b8x
+ 1245 06ac 00000000 		.word	b8y
+ 1246 06b0 00000000 		.word	b2x_old
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 28
+
+
+ 1247 06b4 00000000 		.word	b2y_old
+ 1248 06b8 00000000 		.word	b2x
+ 1249 06bc 00000000 		.word	b2y
+ 1250 06c0 00000000 		.word	b1x_old
+ 1251 06c4 00000000 		.word	b1y_old
+ 1252 06c8 00000000 		.word	b1x
+ 1253 06cc 00000000 		.word	b1y
+ 1254              		.cfi_endproc
+ 1255              	.LFE26:
+ 1256              		.size	DrawCube, .-DrawCube
+ 1257              		.section	.text.ProjectCube,"ax",%progbits
+ 1258              		.align	1
+ 1259              		.global	ProjectCube
+ 1260              		.code	16
+ 1261              		.thumb_func
+ 1262              		.type	ProjectCube, %function
+ 1263              	ProjectCube:
+ 1264              	.LFB25:
+ 1265              		.loc 1 150 0
+ 1266              		.cfi_startproc
+ 1267 0000 00B5     		push	{lr}
+ 1268              	.LCFI4:
+ 1269              		.cfi_def_cfa_offset 4
+ 1270              		.cfi_offset 14, -4
+ 1271              		.loc 1 151 0
+ 1272 0002 2D4B     		ldr	r3, .L63
+ 1273              		.loc 1 150 0
+ 1274 0004 83B0     		sub	sp, sp, #12
+ 1275              	.LCFI5:
+ 1276              		.cfi_def_cfa_offset 16
+ 1277              		.loc 1 151 0
+ 1278 0006 0093     		str	r3, [sp]
+ 1279 0008 2C4B     		ldr	r3, .L63+4
+ 1280 000a 1868     		ldr	r0, [r3]
+ 1281 000c 2C4B     		ldr	r3, .L63+8
+ 1282 000e 1968     		ldr	r1, [r3]
+ 1283 0010 2C4B     		ldr	r3, .L63+12
+ 1284 0012 1A68     		ldr	r2, [r3]
+ 1285 0014 2C4B     		ldr	r3, .L63+16
+ 1286 0016 FFF7FEFF 		bl	project
+ 1287              		.loc 1 152 0
+ 1288 001a 2C4B     		ldr	r3, .L63+20
+ 1289 001c 0093     		str	r3, [sp]
+ 1290 001e 2C4B     		ldr	r3, .L63+24
+ 1291 0020 1868     		ldr	r0, [r3]
+ 1292 0022 2C4B     		ldr	r3, .L63+28
+ 1293 0024 1968     		ldr	r1, [r3]
+ 1294 0026 2C4B     		ldr	r3, .L63+32
+ 1295 0028 1A68     		ldr	r2, [r3]
+ 1296 002a 2C4B     		ldr	r3, .L63+36
+ 1297 002c FFF7FEFF 		bl	project
+ 1298              		.loc 1 153 0
+ 1299 0030 2B4B     		ldr	r3, .L63+40
+ 1300 0032 0093     		str	r3, [sp]
+ 1301 0034 2B4B     		ldr	r3, .L63+44
+ 1302 0036 1868     		ldr	r0, [r3]
+ 1303 0038 2B4B     		ldr	r3, .L63+48
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 29
+
+
+ 1304 003a 1968     		ldr	r1, [r3]
+ 1305 003c 2B4B     		ldr	r3, .L63+52
+ 1306 003e 1A68     		ldr	r2, [r3]
+ 1307 0040 2B4B     		ldr	r3, .L63+56
+ 1308 0042 FFF7FEFF 		bl	project
+ 1309              		.loc 1 154 0
+ 1310 0046 2B4B     		ldr	r3, .L63+60
+ 1311 0048 0093     		str	r3, [sp]
+ 1312 004a 2B4B     		ldr	r3, .L63+64
+ 1313 004c 1868     		ldr	r0, [r3]
+ 1314 004e 2B4B     		ldr	r3, .L63+68
+ 1315 0050 1968     		ldr	r1, [r3]
+ 1316 0052 2B4B     		ldr	r3, .L63+72
+ 1317 0054 1A68     		ldr	r2, [r3]
+ 1318 0056 2B4B     		ldr	r3, .L63+76
+ 1319 0058 FFF7FEFF 		bl	project
+ 1320              		.loc 1 155 0
+ 1321 005c 2A4B     		ldr	r3, .L63+80
+ 1322 005e 0093     		str	r3, [sp]
+ 1323 0060 2A4B     		ldr	r3, .L63+84
+ 1324 0062 1868     		ldr	r0, [r3]
+ 1325 0064 2A4B     		ldr	r3, .L63+88
+ 1326 0066 1968     		ldr	r1, [r3]
+ 1327 0068 2A4B     		ldr	r3, .L63+92
+ 1328 006a 1A68     		ldr	r2, [r3]
+ 1329 006c 2A4B     		ldr	r3, .L63+96
+ 1330 006e FFF7FEFF 		bl	project
+ 1331              		.loc 1 156 0
+ 1332 0072 2A4B     		ldr	r3, .L63+100
+ 1333 0074 0093     		str	r3, [sp]
+ 1334 0076 2A4B     		ldr	r3, .L63+104
+ 1335 0078 1868     		ldr	r0, [r3]
+ 1336 007a 2A4B     		ldr	r3, .L63+108
+ 1337 007c 1968     		ldr	r1, [r3]
+ 1338 007e 2A4B     		ldr	r3, .L63+112
+ 1339 0080 1A68     		ldr	r2, [r3]
+ 1340 0082 2A4B     		ldr	r3, .L63+116
+ 1341 0084 FFF7FEFF 		bl	project
+ 1342              		.loc 1 157 0
+ 1343 0088 294B     		ldr	r3, .L63+120
+ 1344 008a 0093     		str	r3, [sp]
+ 1345 008c 294B     		ldr	r3, .L63+124
+ 1346 008e 1868     		ldr	r0, [r3]
+ 1347 0090 294B     		ldr	r3, .L63+128
+ 1348 0092 1968     		ldr	r1, [r3]
+ 1349 0094 294B     		ldr	r3, .L63+132
+ 1350 0096 1A68     		ldr	r2, [r3]
+ 1351 0098 294B     		ldr	r3, .L63+136
+ 1352 009a FFF7FEFF 		bl	project
+ 1353              		.loc 1 158 0
+ 1354 009e 294B     		ldr	r3, .L63+140
+ 1355 00a0 0093     		str	r3, [sp]
+ 1356 00a2 294B     		ldr	r3, .L63+144
+ 1357 00a4 1868     		ldr	r0, [r3]
+ 1358 00a6 294B     		ldr	r3, .L63+148
+ 1359 00a8 1968     		ldr	r1, [r3]
+ 1360 00aa 294B     		ldr	r3, .L63+152
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 30
+
+
+ 1361 00ac 1A68     		ldr	r2, [r3]
+ 1362 00ae 294B     		ldr	r3, .L63+156
+ 1363 00b0 FFF7FEFF 		bl	project
+ 1364              		.loc 1 159 0
+ 1365 00b4 03B0     		add	sp, sp, #12
+ 1366              		@ sp needed for prologue
+ 1367 00b6 00BD     		pop	{pc}
+ 1368              	.L64:
+ 1369              		.align	2
+ 1370              	.L63:
+ 1371 00b8 00000000 		.word	b1y
+ 1372 00bc 00000000 		.word	a1x
+ 1373 00c0 00000000 		.word	a1y
+ 1374 00c4 00000000 		.word	a1z
+ 1375 00c8 00000000 		.word	b1x
+ 1376 00cc 00000000 		.word	b2y
+ 1377 00d0 00000000 		.word	a2x
+ 1378 00d4 00000000 		.word	a2y
+ 1379 00d8 00000000 		.word	a2z
+ 1380 00dc 00000000 		.word	b2x
+ 1381 00e0 00000000 		.word	b3y
+ 1382 00e4 00000000 		.word	a3x
+ 1383 00e8 00000000 		.word	a3y
+ 1384 00ec 00000000 		.word	a3z
+ 1385 00f0 00000000 		.word	b3x
+ 1386 00f4 00000000 		.word	b4y
+ 1387 00f8 00000000 		.word	a4x
+ 1388 00fc 00000000 		.word	a4y
+ 1389 0100 00000000 		.word	a4z
+ 1390 0104 00000000 		.word	b4x
+ 1391 0108 00000000 		.word	b5y
+ 1392 010c 00000000 		.word	a5x
+ 1393 0110 00000000 		.word	a5y
+ 1394 0114 00000000 		.word	a5z
+ 1395 0118 00000000 		.word	b5x
+ 1396 011c 00000000 		.word	b6y
+ 1397 0120 00000000 		.word	a6x
+ 1398 0124 00000000 		.word	a6y
+ 1399 0128 00000000 		.word	a6z
+ 1400 012c 00000000 		.word	b6x
+ 1401 0130 00000000 		.word	b7y
+ 1402 0134 00000000 		.word	a7x
+ 1403 0138 00000000 		.word	a7y
+ 1404 013c 00000000 		.word	a7z
+ 1405 0140 00000000 		.word	b7x
+ 1406 0144 00000000 		.word	b8y
+ 1407 0148 00000000 		.word	a8x
+ 1408 014c 00000000 		.word	a8y
+ 1409 0150 00000000 		.word	a8z
+ 1410 0154 00000000 		.word	b8x
+ 1411              		.cfi_endproc
+ 1412              	.LFE25:
+ 1413              		.size	ProjectCube, .-ProjectCube
+ 1414              		.section	.text.RotateCubeZ,"ax",%progbits
+ 1415              		.align	1
+ 1416              		.global	RotateCubeZ
+ 1417              		.code	16
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 31
+
+
+ 1418              		.thumb_func
+ 1419              		.type	RotateCubeZ, %function
+ 1420              	RotateCubeZ:
+ 1421              	.LFB23:
+ 1422              		.loc 1 113 0
+ 1423              		.cfi_startproc
+ 1424 0000 10B5     		push	{r4, lr}
+ 1425              	.LCFI6:
+ 1426              		.cfi_def_cfa_offset 8
+ 1427              		.cfi_offset 4, -8
+ 1428              		.cfi_offset 14, -4
+ 1429              	.LVL0:
+ 1430              		.loc 1 113 0
+ 1431 0002 041C     		add	r4, r0, #0
+ 1432              		.loc 1 114 0
+ 1433 0004 231C     		add	r3, r4, #0
+ 1434 0006 1848     		ldr	r0, .L67
+ 1435              	.LVL1:
+ 1436 0008 1849     		ldr	r1, .L67+4
+ 1437 000a 194A     		ldr	r2, .L67+8
+ 1438 000c FFF7FEFF 		bl	rotatez
+ 1439              		.loc 1 115 0
+ 1440 0010 231C     		add	r3, r4, #0
+ 1441 0012 1848     		ldr	r0, .L67+12
+ 1442 0014 1849     		ldr	r1, .L67+16
+ 1443 0016 194A     		ldr	r2, .L67+20
+ 1444 0018 FFF7FEFF 		bl	rotatez
+ 1445              		.loc 1 116 0
+ 1446 001c 231C     		add	r3, r4, #0
+ 1447 001e 1848     		ldr	r0, .L67+24
+ 1448 0020 1849     		ldr	r1, .L67+28
+ 1449 0022 194A     		ldr	r2, .L67+32
+ 1450 0024 FFF7FEFF 		bl	rotatez
+ 1451              		.loc 1 117 0
+ 1452 0028 231C     		add	r3, r4, #0
+ 1453 002a 1848     		ldr	r0, .L67+36
+ 1454 002c 1849     		ldr	r1, .L67+40
+ 1455 002e 194A     		ldr	r2, .L67+44
+ 1456 0030 FFF7FEFF 		bl	rotatez
+ 1457              		.loc 1 118 0
+ 1458 0034 231C     		add	r3, r4, #0
+ 1459 0036 1848     		ldr	r0, .L67+48
+ 1460 0038 1849     		ldr	r1, .L67+52
+ 1461 003a 194A     		ldr	r2, .L67+56
+ 1462 003c FFF7FEFF 		bl	rotatez
+ 1463              		.loc 1 119 0
+ 1464 0040 231C     		add	r3, r4, #0
+ 1465 0042 1848     		ldr	r0, .L67+60
+ 1466 0044 1849     		ldr	r1, .L67+64
+ 1467 0046 194A     		ldr	r2, .L67+68
+ 1468 0048 FFF7FEFF 		bl	rotatez
+ 1469              		.loc 1 120 0
+ 1470 004c 231C     		add	r3, r4, #0
+ 1471 004e 1848     		ldr	r0, .L67+72
+ 1472 0050 1849     		ldr	r1, .L67+76
+ 1473 0052 194A     		ldr	r2, .L67+80
+ 1474 0054 FFF7FEFF 		bl	rotatez
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 32
+
+
+ 1475              		.loc 1 121 0
+ 1476 0058 1848     		ldr	r0, .L67+84
+ 1477 005a 1949     		ldr	r1, .L67+88
+ 1478 005c 194A     		ldr	r2, .L67+92
+ 1479 005e 231C     		add	r3, r4, #0
+ 1480 0060 FFF7FEFF 		bl	rotatez
+ 1481              		.loc 1 124 0
+ 1482              		@ sp needed for prologue
+ 1483              	.LVL2:
+ 1484 0064 10BD     		pop	{r4, pc}
+ 1485              	.L68:
+ 1486 0066 C046     		.align	2
+ 1487              	.L67:
+ 1488 0068 00000000 		.word	a1x
+ 1489 006c 00000000 		.word	a1y
+ 1490 0070 00000000 		.word	a1z
+ 1491 0074 00000000 		.word	a2x
+ 1492 0078 00000000 		.word	a2y
+ 1493 007c 00000000 		.word	a2z
+ 1494 0080 00000000 		.word	a3x
+ 1495 0084 00000000 		.word	a3y
+ 1496 0088 00000000 		.word	a3z
+ 1497 008c 00000000 		.word	a4x
+ 1498 0090 00000000 		.word	a4y
+ 1499 0094 00000000 		.word	a4z
+ 1500 0098 00000000 		.word	a5x
+ 1501 009c 00000000 		.word	a5y
+ 1502 00a0 00000000 		.word	a5z
+ 1503 00a4 00000000 		.word	a6x
+ 1504 00a8 00000000 		.word	a6y
+ 1505 00ac 00000000 		.word	a6z
+ 1506 00b0 00000000 		.word	a7x
+ 1507 00b4 00000000 		.word	a7y
+ 1508 00b8 00000000 		.word	a7z
+ 1509 00bc 00000000 		.word	a8x
+ 1510 00c0 00000000 		.word	a8y
+ 1511 00c4 00000000 		.word	a8z
+ 1512              		.cfi_endproc
+ 1513              	.LFE23:
+ 1514              		.size	RotateCubeZ, .-RotateCubeZ
+ 1515              		.section	.text.RotateCubeY,"ax",%progbits
+ 1516              		.align	1
+ 1517              		.global	RotateCubeY
+ 1518              		.code	16
+ 1519              		.thumb_func
+ 1520              		.type	RotateCubeY, %function
+ 1521              	RotateCubeY:
+ 1522              	.LFB22:
+ 1523              		.loc 1 99 0
+ 1524              		.cfi_startproc
+ 1525 0000 10B5     		push	{r4, lr}
+ 1526              	.LCFI7:
+ 1527              		.cfi_def_cfa_offset 8
+ 1528              		.cfi_offset 4, -8
+ 1529              		.cfi_offset 14, -4
+ 1530              	.LVL3:
+ 1531              		.loc 1 99 0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 33
+
+
+ 1532 0002 041C     		add	r4, r0, #0
+ 1533              		.loc 1 100 0
+ 1534 0004 231C     		add	r3, r4, #0
+ 1535 0006 1848     		ldr	r0, .L71
+ 1536              	.LVL4:
+ 1537 0008 1849     		ldr	r1, .L71+4
+ 1538 000a 194A     		ldr	r2, .L71+8
+ 1539 000c FFF7FEFF 		bl	rotatey
+ 1540              		.loc 1 101 0
+ 1541 0010 231C     		add	r3, r4, #0
+ 1542 0012 1848     		ldr	r0, .L71+12
+ 1543 0014 1849     		ldr	r1, .L71+16
+ 1544 0016 194A     		ldr	r2, .L71+20
+ 1545 0018 FFF7FEFF 		bl	rotatey
+ 1546              		.loc 1 102 0
+ 1547 001c 231C     		add	r3, r4, #0
+ 1548 001e 1848     		ldr	r0, .L71+24
+ 1549 0020 1849     		ldr	r1, .L71+28
+ 1550 0022 194A     		ldr	r2, .L71+32
+ 1551 0024 FFF7FEFF 		bl	rotatey
+ 1552              		.loc 1 103 0
+ 1553 0028 231C     		add	r3, r4, #0
+ 1554 002a 1848     		ldr	r0, .L71+36
+ 1555 002c 1849     		ldr	r1, .L71+40
+ 1556 002e 194A     		ldr	r2, .L71+44
+ 1557 0030 FFF7FEFF 		bl	rotatey
+ 1558              		.loc 1 104 0
+ 1559 0034 231C     		add	r3, r4, #0
+ 1560 0036 1848     		ldr	r0, .L71+48
+ 1561 0038 1849     		ldr	r1, .L71+52
+ 1562 003a 194A     		ldr	r2, .L71+56
+ 1563 003c FFF7FEFF 		bl	rotatey
+ 1564              		.loc 1 105 0
+ 1565 0040 231C     		add	r3, r4, #0
+ 1566 0042 1848     		ldr	r0, .L71+60
+ 1567 0044 1849     		ldr	r1, .L71+64
+ 1568 0046 194A     		ldr	r2, .L71+68
+ 1569 0048 FFF7FEFF 		bl	rotatey
+ 1570              		.loc 1 106 0
+ 1571 004c 231C     		add	r3, r4, #0
+ 1572 004e 1848     		ldr	r0, .L71+72
+ 1573 0050 1849     		ldr	r1, .L71+76
+ 1574 0052 194A     		ldr	r2, .L71+80
+ 1575 0054 FFF7FEFF 		bl	rotatey
+ 1576              		.loc 1 107 0
+ 1577 0058 1848     		ldr	r0, .L71+84
+ 1578 005a 1949     		ldr	r1, .L71+88
+ 1579 005c 194A     		ldr	r2, .L71+92
+ 1580 005e 231C     		add	r3, r4, #0
+ 1581 0060 FFF7FEFF 		bl	rotatey
+ 1582              		.loc 1 110 0
+ 1583              		@ sp needed for prologue
+ 1584              	.LVL5:
+ 1585 0064 10BD     		pop	{r4, pc}
+ 1586              	.L72:
+ 1587 0066 C046     		.align	2
+ 1588              	.L71:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 34
+
+
+ 1589 0068 00000000 		.word	a1x
+ 1590 006c 00000000 		.word	a1y
+ 1591 0070 00000000 		.word	a1z
+ 1592 0074 00000000 		.word	a2x
+ 1593 0078 00000000 		.word	a2y
+ 1594 007c 00000000 		.word	a2z
+ 1595 0080 00000000 		.word	a3x
+ 1596 0084 00000000 		.word	a3y
+ 1597 0088 00000000 		.word	a3z
+ 1598 008c 00000000 		.word	a4x
+ 1599 0090 00000000 		.word	a4y
+ 1600 0094 00000000 		.word	a4z
+ 1601 0098 00000000 		.word	a5x
+ 1602 009c 00000000 		.word	a5y
+ 1603 00a0 00000000 		.word	a5z
+ 1604 00a4 00000000 		.word	a6x
+ 1605 00a8 00000000 		.word	a6y
+ 1606 00ac 00000000 		.word	a6z
+ 1607 00b0 00000000 		.word	a7x
+ 1608 00b4 00000000 		.word	a7y
+ 1609 00b8 00000000 		.word	a7z
+ 1610 00bc 00000000 		.word	a8x
+ 1611 00c0 00000000 		.word	a8y
+ 1612 00c4 00000000 		.word	a8z
+ 1613              		.cfi_endproc
+ 1614              	.LFE22:
+ 1615              		.size	RotateCubeY, .-RotateCubeY
+ 1616              		.section	.text.RotateCubeX,"ax",%progbits
+ 1617              		.align	1
+ 1618              		.global	RotateCubeX
+ 1619              		.code	16
+ 1620              		.thumb_func
+ 1621              		.type	RotateCubeX, %function
+ 1622              	RotateCubeX:
+ 1623              	.LFB21:
+ 1624              		.loc 1 85 0
+ 1625              		.cfi_startproc
+ 1626 0000 10B5     		push	{r4, lr}
+ 1627              	.LCFI8:
+ 1628              		.cfi_def_cfa_offset 8
+ 1629              		.cfi_offset 4, -8
+ 1630              		.cfi_offset 14, -4
+ 1631              	.LVL6:
+ 1632              		.loc 1 85 0
+ 1633 0002 041C     		add	r4, r0, #0
+ 1634              		.loc 1 86 0
+ 1635 0004 231C     		add	r3, r4, #0
+ 1636 0006 1848     		ldr	r0, .L75
+ 1637              	.LVL7:
+ 1638 0008 1849     		ldr	r1, .L75+4
+ 1639 000a 194A     		ldr	r2, .L75+8
+ 1640 000c FFF7FEFF 		bl	rotatex
+ 1641              		.loc 1 87 0
+ 1642 0010 231C     		add	r3, r4, #0
+ 1643 0012 1848     		ldr	r0, .L75+12
+ 1644 0014 1849     		ldr	r1, .L75+16
+ 1645 0016 194A     		ldr	r2, .L75+20
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 35
+
+
+ 1646 0018 FFF7FEFF 		bl	rotatex
+ 1647              		.loc 1 88 0
+ 1648 001c 231C     		add	r3, r4, #0
+ 1649 001e 1848     		ldr	r0, .L75+24
+ 1650 0020 1849     		ldr	r1, .L75+28
+ 1651 0022 194A     		ldr	r2, .L75+32
+ 1652 0024 FFF7FEFF 		bl	rotatex
+ 1653              		.loc 1 89 0
+ 1654 0028 231C     		add	r3, r4, #0
+ 1655 002a 1848     		ldr	r0, .L75+36
+ 1656 002c 1849     		ldr	r1, .L75+40
+ 1657 002e 194A     		ldr	r2, .L75+44
+ 1658 0030 FFF7FEFF 		bl	rotatex
+ 1659              		.loc 1 90 0
+ 1660 0034 231C     		add	r3, r4, #0
+ 1661 0036 1848     		ldr	r0, .L75+48
+ 1662 0038 1849     		ldr	r1, .L75+52
+ 1663 003a 194A     		ldr	r2, .L75+56
+ 1664 003c FFF7FEFF 		bl	rotatex
+ 1665              		.loc 1 91 0
+ 1666 0040 231C     		add	r3, r4, #0
+ 1667 0042 1848     		ldr	r0, .L75+60
+ 1668 0044 1849     		ldr	r1, .L75+64
+ 1669 0046 194A     		ldr	r2, .L75+68
+ 1670 0048 FFF7FEFF 		bl	rotatex
+ 1671              		.loc 1 92 0
+ 1672 004c 231C     		add	r3, r4, #0
+ 1673 004e 1848     		ldr	r0, .L75+72
+ 1674 0050 1849     		ldr	r1, .L75+76
+ 1675 0052 194A     		ldr	r2, .L75+80
+ 1676 0054 FFF7FEFF 		bl	rotatex
+ 1677              		.loc 1 93 0
+ 1678 0058 1848     		ldr	r0, .L75+84
+ 1679 005a 1949     		ldr	r1, .L75+88
+ 1680 005c 194A     		ldr	r2, .L75+92
+ 1681 005e 231C     		add	r3, r4, #0
+ 1682 0060 FFF7FEFF 		bl	rotatex
+ 1683              		.loc 1 96 0
+ 1684              		@ sp needed for prologue
+ 1685              	.LVL8:
+ 1686 0064 10BD     		pop	{r4, pc}
+ 1687              	.L76:
+ 1688 0066 C046     		.align	2
+ 1689              	.L75:
+ 1690 0068 00000000 		.word	a1x
+ 1691 006c 00000000 		.word	a1y
+ 1692 0070 00000000 		.word	a1z
+ 1693 0074 00000000 		.word	a2x
+ 1694 0078 00000000 		.word	a2y
+ 1695 007c 00000000 		.word	a2z
+ 1696 0080 00000000 		.word	a3x
+ 1697 0084 00000000 		.word	a3y
+ 1698 0088 00000000 		.word	a3z
+ 1699 008c 00000000 		.word	a4x
+ 1700 0090 00000000 		.word	a4y
+ 1701 0094 00000000 		.word	a4z
+ 1702 0098 00000000 		.word	a5x
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 36
+
+
+ 1703 009c 00000000 		.word	a5y
+ 1704 00a0 00000000 		.word	a5z
+ 1705 00a4 00000000 		.word	a6x
+ 1706 00a8 00000000 		.word	a6y
+ 1707 00ac 00000000 		.word	a6z
+ 1708 00b0 00000000 		.word	a7x
+ 1709 00b4 00000000 		.word	a7y
+ 1710 00b8 00000000 		.word	a7z
+ 1711 00bc 00000000 		.word	a8x
+ 1712 00c0 00000000 		.word	a8y
+ 1713 00c4 00000000 		.word	a8z
+ 1714              		.cfi_endproc
+ 1715              	.LFE21:
+ 1716              		.size	RotateCubeX, .-RotateCubeX
+ 1717              		.global	X_scale_flag
+ 1718              		.global	Y_scale_flag
+ 1719              		.global	X_offset_flag
+ 1720              		.global	Y_offset_flag
+ 1721              		.comm	LCD_FONT8x16,1552,4
+ 1722              		.comm	a1x,4,4
+ 1723              		.comm	a1y,4,4
+ 1724              		.comm	a1z,4,4
+ 1725              		.comm	a2x,4,4
+ 1726              		.comm	a2y,4,4
+ 1727              		.comm	a2z,4,4
+ 1728              		.comm	a3x,4,4
+ 1729              		.comm	a3y,4,4
+ 1730              		.comm	a3z,4,4
+ 1731              		.comm	a4x,4,4
+ 1732              		.comm	a4y,4,4
+ 1733              		.comm	a4z,4,4
+ 1734              		.comm	a5x,4,4
+ 1735              		.comm	a5y,4,4
+ 1736              		.comm	a5z,4,4
+ 1737              		.comm	a6x,4,4
+ 1738              		.comm	a6y,4,4
+ 1739              		.comm	a6z,4,4
+ 1740              		.comm	a7x,4,4
+ 1741              		.comm	a7y,4,4
+ 1742              		.comm	a7z,4,4
+ 1743              		.comm	a8x,4,4
+ 1744              		.comm	a8y,4,4
+ 1745              		.comm	a8z,4,4
+ 1746              		.comm	b1x,4,4
+ 1747              		.comm	b1y,4,4
+ 1748              		.comm	b2x,4,4
+ 1749              		.comm	b2y,4,4
+ 1750              		.comm	b3x,4,4
+ 1751              		.comm	b3y,4,4
+ 1752              		.comm	b4x,4,4
+ 1753              		.comm	b4y,4,4
+ 1754              		.comm	b5x,4,4
+ 1755              		.comm	b5y,4,4
+ 1756              		.comm	b6x,4,4
+ 1757              		.comm	b6y,4,4
+ 1758              		.comm	b7x,4,4
+ 1759              		.comm	b7y,4,4
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 37
+
+
+ 1760              		.comm	b8x,4,4
+ 1761              		.comm	b8y,4,4
+ 1762              		.comm	b1x_old,4,4
+ 1763              		.comm	b1y_old,4,4
+ 1764              		.comm	b2x_old,4,4
+ 1765              		.comm	b2y_old,4,4
+ 1766              		.comm	b3x_old,4,4
+ 1767              		.comm	b3y_old,4,4
+ 1768              		.comm	b4x_old,4,4
+ 1769              		.comm	b4y_old,4,4
+ 1770              		.comm	b5x_old,4,4
+ 1771              		.comm	b5y_old,4,4
+ 1772              		.comm	b6x_old,4,4
+ 1773              		.comm	b6y_old,4,4
+ 1774              		.comm	b7x_old,4,4
+ 1775              		.comm	b7y_old,4,4
+ 1776              		.comm	b8x_old,4,4
+ 1777              		.comm	b8y_old,4,4
+ 1778              		.bss
+ 1779              		.align	2
+ 1780              		.set	.LANCHOR0,. + 0
+ 1781              		.type	X_scale_flag, %object
+ 1782              		.size	X_scale_flag, 4
+ 1783              	X_scale_flag:
+ 1784 0000 00000000 		.space	4
+ 1785              		.type	Y_scale_flag, %object
+ 1786              		.size	Y_scale_flag, 4
+ 1787              	Y_scale_flag:
+ 1788 0004 00000000 		.space	4
+ 1789              		.type	X_offset_flag, %object
+ 1790              		.size	X_offset_flag, 4
+ 1791              	X_offset_flag:
+ 1792 0008 00000000 		.space	4
+ 1793              		.type	Y_offset_flag, %object
+ 1794              		.size	Y_offset_flag, 4
+ 1795              	Y_offset_flag:
+ 1796 000c 00000000 		.space	4
+ 1797              		.text
+ 1798              	.Letext0:
+ 1799              		.section	.debug_loc,"",%progbits
+ 1800              	.Ldebug_loc0:
+ 1801              	.LLST2:
+ 1802 0000 00000000 		.4byte	.LFB27
+ 1803 0004 02000000 		.4byte	.LCFI0
+ 1804 0008 0100     		.2byte	0x1
+ 1805 000a 5D       		.byte	0x5d
+ 1806 000b 02000000 		.4byte	.LCFI0
+ 1807 000f A4000000 		.4byte	.LFE27
+ 1808 0013 0200     		.2byte	0x2
+ 1809 0015 7D       		.byte	0x7d
+ 1810 0016 08       		.sleb128 8
+ 1811 0017 00000000 		.4byte	0x0
+ 1812 001b 00000000 		.4byte	0x0
+ 1813              	.LLST3:
+ 1814 001f 00000000 		.4byte	.LFB28
+ 1815 0023 02000000 		.4byte	.LCFI1
+ 1816 0027 0100     		.2byte	0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 38
+
+
+ 1817 0029 5D       		.byte	0x5d
+ 1818 002a 02000000 		.4byte	.LCFI1
+ 1819 002e A0000000 		.4byte	.LFE28
+ 1820 0032 0200     		.2byte	0x2
+ 1821 0034 7D       		.byte	0x7d
+ 1822 0035 08       		.sleb128 8
+ 1823 0036 00000000 		.4byte	0x0
+ 1824 003a 00000000 		.4byte	0x0
+ 1825              	.LLST4:
+ 1826 003e 00000000 		.4byte	.LFB26
+ 1827 0042 02000000 		.4byte	.LCFI2
+ 1828 0046 0100     		.2byte	0x1
+ 1829 0048 5D       		.byte	0x5d
+ 1830 0049 02000000 		.4byte	.LCFI2
+ 1831 004d 06000000 		.4byte	.LCFI3
+ 1832 0051 0200     		.2byte	0x2
+ 1833 0053 7D       		.byte	0x7d
+ 1834 0054 14       		.sleb128 20
+ 1835 0055 06000000 		.4byte	.LCFI3
+ 1836 0059 D0060000 		.4byte	.LFE26
+ 1837 005d 0200     		.2byte	0x2
+ 1838 005f 7D       		.byte	0x7d
+ 1839 0060 30       		.sleb128 48
+ 1840 0061 00000000 		.4byte	0x0
+ 1841 0065 00000000 		.4byte	0x0
+ 1842              	.LLST5:
+ 1843 0069 00000000 		.4byte	.LFB25
+ 1844 006d 02000000 		.4byte	.LCFI4
+ 1845 0071 0100     		.2byte	0x1
+ 1846 0073 5D       		.byte	0x5d
+ 1847 0074 02000000 		.4byte	.LCFI4
+ 1848 0078 06000000 		.4byte	.LCFI5
+ 1849 007c 0200     		.2byte	0x2
+ 1850 007e 7D       		.byte	0x7d
+ 1851 007f 04       		.sleb128 4
+ 1852 0080 06000000 		.4byte	.LCFI5
+ 1853 0084 58010000 		.4byte	.LFE25
+ 1854 0088 0200     		.2byte	0x2
+ 1855 008a 7D       		.byte	0x7d
+ 1856 008b 10       		.sleb128 16
+ 1857 008c 00000000 		.4byte	0x0
+ 1858 0090 00000000 		.4byte	0x0
+ 1859              	.LLST6:
+ 1860 0094 00000000 		.4byte	.LFB23
+ 1861 0098 02000000 		.4byte	.LCFI6
+ 1862 009c 0100     		.2byte	0x1
+ 1863 009e 5D       		.byte	0x5d
+ 1864 009f 02000000 		.4byte	.LCFI6
+ 1865 00a3 C8000000 		.4byte	.LFE23
+ 1866 00a7 0200     		.2byte	0x2
+ 1867 00a9 7D       		.byte	0x7d
+ 1868 00aa 08       		.sleb128 8
+ 1869 00ab 00000000 		.4byte	0x0
+ 1870 00af 00000000 		.4byte	0x0
+ 1871              	.LLST7:
+ 1872 00b3 02000000 		.4byte	.LVL0
+ 1873 00b7 08000000 		.4byte	.LVL1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 39
+
+
+ 1874 00bb 0100     		.2byte	0x1
+ 1875 00bd 50       		.byte	0x50
+ 1876 00be 08000000 		.4byte	.LVL1
+ 1877 00c2 64000000 		.4byte	.LVL2
+ 1878 00c6 0100     		.2byte	0x1
+ 1879 00c8 54       		.byte	0x54
+ 1880 00c9 00000000 		.4byte	0x0
+ 1881 00cd 00000000 		.4byte	0x0
+ 1882              	.LLST8:
+ 1883 00d1 00000000 		.4byte	.LFB22
+ 1884 00d5 02000000 		.4byte	.LCFI7
+ 1885 00d9 0100     		.2byte	0x1
+ 1886 00db 5D       		.byte	0x5d
+ 1887 00dc 02000000 		.4byte	.LCFI7
+ 1888 00e0 C8000000 		.4byte	.LFE22
+ 1889 00e4 0200     		.2byte	0x2
+ 1890 00e6 7D       		.byte	0x7d
+ 1891 00e7 08       		.sleb128 8
+ 1892 00e8 00000000 		.4byte	0x0
+ 1893 00ec 00000000 		.4byte	0x0
+ 1894              	.LLST9:
+ 1895 00f0 02000000 		.4byte	.LVL3
+ 1896 00f4 08000000 		.4byte	.LVL4
+ 1897 00f8 0100     		.2byte	0x1
+ 1898 00fa 50       		.byte	0x50
+ 1899 00fb 08000000 		.4byte	.LVL4
+ 1900 00ff 64000000 		.4byte	.LVL5
+ 1901 0103 0100     		.2byte	0x1
+ 1902 0105 54       		.byte	0x54
+ 1903 0106 00000000 		.4byte	0x0
+ 1904 010a 00000000 		.4byte	0x0
+ 1905              	.LLST10:
+ 1906 010e 00000000 		.4byte	.LFB21
+ 1907 0112 02000000 		.4byte	.LCFI8
+ 1908 0116 0100     		.2byte	0x1
+ 1909 0118 5D       		.byte	0x5d
+ 1910 0119 02000000 		.4byte	.LCFI8
+ 1911 011d C8000000 		.4byte	.LFE21
+ 1912 0121 0200     		.2byte	0x2
+ 1913 0123 7D       		.byte	0x7d
+ 1914 0124 08       		.sleb128 8
+ 1915 0125 00000000 		.4byte	0x0
+ 1916 0129 00000000 		.4byte	0x0
+ 1917              	.LLST11:
+ 1918 012d 02000000 		.4byte	.LVL6
+ 1919 0131 08000000 		.4byte	.LVL7
+ 1920 0135 0100     		.2byte	0x1
+ 1921 0137 50       		.byte	0x50
+ 1922 0138 08000000 		.4byte	.LVL7
+ 1923 013c 64000000 		.4byte	.LVL8
+ 1924 0140 0100     		.2byte	0x1
+ 1925 0142 54       		.byte	0x54
+ 1926 0143 00000000 		.4byte	0x0
+ 1927 0147 00000000 		.4byte	0x0
+ 1928              		.file 2 "./Generated_Source/PSoC4/cytypes.h"
+ 1929              		.file 3 "./Generated_Source/PSoC4/LCD.h"
+ 1930              		.file 4 ".\\/Transforms.h"
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 40
+
+
+ 1931              		.section	.debug_info
+ 1932 0000 2F060000 		.4byte	0x62f
+ 1933 0004 0200     		.2byte	0x2
+ 1934 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1935 000a 04       		.byte	0x4
+ 1936 000b 01       		.uleb128 0x1
+ 1937 000c 4A000000 		.4byte	.LASF50
+ 1938 0010 01       		.byte	0x1
+ 1939 0011 24000000 		.4byte	.LASF51
+ 1940 0015 5B010000 		.4byte	.LASF52
+ 1941 0019 00000000 		.4byte	0x0
+ 1942 001d 00000000 		.4byte	0x0
+ 1943 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 1944 0025 00000000 		.4byte	.Ldebug_line0
+ 1945 0029 02       		.uleb128 0x2
+ 1946 002a 01       		.byte	0x1
+ 1947 002b 06       		.byte	0x6
+ 1948 002c 64000000 		.4byte	.LASF0
+ 1949 0030 02       		.uleb128 0x2
+ 1950 0031 01       		.byte	0x1
+ 1951 0032 08       		.byte	0x8
+ 1952 0033 E4010000 		.4byte	.LASF1
+ 1953 0037 02       		.uleb128 0x2
+ 1954 0038 02       		.byte	0x2
+ 1955 0039 05       		.byte	0x5
+ 1956 003a FA010000 		.4byte	.LASF2
+ 1957 003e 02       		.uleb128 0x2
+ 1958 003f 02       		.byte	0x2
+ 1959 0040 07       		.byte	0x7
+ 1960 0041 FC000000 		.4byte	.LASF3
+ 1961 0045 02       		.uleb128 0x2
+ 1962 0046 04       		.byte	0x4
+ 1963 0047 05       		.byte	0x5
+ 1964 0048 80000000 		.4byte	.LASF4
+ 1965 004c 02       		.uleb128 0x2
+ 1966 004d 04       		.byte	0x4
+ 1967 004e 07       		.byte	0x7
+ 1968 004f C6000000 		.4byte	.LASF5
+ 1969 0053 02       		.uleb128 0x2
+ 1970 0054 08       		.byte	0x8
+ 1971 0055 05       		.byte	0x5
+ 1972 0056 56000000 		.4byte	.LASF6
+ 1973 005a 02       		.uleb128 0x2
+ 1974 005b 08       		.byte	0x8
+ 1975 005c 07       		.byte	0x7
+ 1976 005d 2D000000 		.4byte	.LASF7
+ 1977 0061 03       		.uleb128 0x3
+ 1978 0062 04       		.byte	0x4
+ 1979 0063 05       		.byte	0x5
+ 1980 0064 696E7400 		.ascii	"int\000"
+ 1981 0068 02       		.uleb128 0x2
+ 1982 0069 04       		.byte	0x4
+ 1983 006a 07       		.byte	0x7
+ 1984 006b B9000000 		.4byte	.LASF8
+ 1985 006f 04       		.uleb128 0x4
+ 1986 0070 89000000 		.4byte	.LASF9
+ 1987 0074 02       		.byte	0x2
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 41
+
+
+ 1988 0075 4C       		.byte	0x4c
+ 1989 0076 30000000 		.4byte	0x30
+ 1990 007a 04       		.uleb128 0x4
+ 1991 007b AA000000 		.4byte	.LASF10
+ 1992 007f 02       		.byte	0x2
+ 1993 0080 4E       		.byte	0x4e
+ 1994 0081 4C000000 		.4byte	0x4c
+ 1995 0085 02       		.uleb128 0x2
+ 1996 0086 04       		.byte	0x4
+ 1997 0087 04       		.byte	0x4
+ 1998 0088 C8010000 		.4byte	.LASF11
+ 1999 008c 02       		.uleb128 0x2
+ 2000 008d 08       		.byte	0x8
+ 2001 008e 04       		.byte	0x4
+ 2002 008f 97000000 		.4byte	.LASF12
+ 2003 0093 02       		.uleb128 0x2
+ 2004 0094 01       		.byte	0x1
+ 2005 0095 08       		.byte	0x8
+ 2006 0096 32020000 		.4byte	.LASF13
+ 2007 009a 05       		.uleb128 0x5
+ 2008 009b 04       		.byte	0x4
+ 2009 009c 07       		.byte	0x7
+ 2010 009d 02       		.uleb128 0x2
+ 2011 009e 08       		.byte	0x8
+ 2012 009f 04       		.byte	0x4
+ 2013 00a0 47010000 		.4byte	.LASF14
+ 2014 00a4 06       		.uleb128 0x6
+ 2015 00a5 01       		.byte	0x1
+ 2016 00a6 00000000 		.4byte	.LASF15
+ 2017 00aa 01       		.byte	0x1
+ 2018 00ab 2F       		.byte	0x2f
+ 2019 00ac 01       		.byte	0x1
+ 2020 00ad 00000000 		.4byte	.LFB20
+ 2021 00b1 D0000000 		.4byte	.LFE20
+ 2022 00b5 01       		.byte	0x1
+ 2023 00b6 5D       		.byte	0x5d
+ 2024 00b7 06       		.uleb128 0x6
+ 2025 00b8 01       		.byte	0x1
+ 2026 00b9 04020000 		.4byte	.LASF16
+ 2027 00bd 01       		.byte	0x1
+ 2028 00be 7E       		.byte	0x7e
+ 2029 00bf 01       		.byte	0x1
+ 2030 00c0 00000000 		.4byte	.LFB24
+ 2031 00c4 04010000 		.4byte	.LFE24
+ 2032 00c8 01       		.byte	0x1
+ 2033 00c9 5D       		.byte	0x5d
+ 2034 00ca 07       		.uleb128 0x7
+ 2035 00cb 01       		.byte	0x1
+ 2036 00cc 1D010000 		.4byte	.LASF17
+ 2037 00d0 01       		.byte	0x1
+ 2038 00d1 D1       		.byte	0xd1
+ 2039 00d2 01       		.byte	0x1
+ 2040 00d3 00000000 		.4byte	.LFB27
+ 2041 00d7 A4000000 		.4byte	.LFE27
+ 2042 00db 00000000 		.4byte	.LLST2
+ 2043 00df 07       		.uleb128 0x7
+ 2044 00e0 01       		.byte	0x1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 42
+
+
+ 2045 00e1 1D020000 		.4byte	.LASF18
+ 2046 00e5 01       		.byte	0x1
+ 2047 00e6 FA       		.byte	0xfa
+ 2048 00e7 01       		.byte	0x1
+ 2049 00e8 00000000 		.4byte	.LFB28
+ 2050 00ec A0000000 		.4byte	.LFE28
+ 2051 00f0 1F000000 		.4byte	.LLST3
+ 2052 00f4 07       		.uleb128 0x7
+ 2053 00f5 01       		.byte	0x1
+ 2054 00f6 6D020000 		.4byte	.LASF19
+ 2055 00fa 01       		.byte	0x1
+ 2056 00fb A1       		.byte	0xa1
+ 2057 00fc 01       		.byte	0x1
+ 2058 00fd 00000000 		.4byte	.LFB26
+ 2059 0101 D0060000 		.4byte	.LFE26
+ 2060 0105 3E000000 		.4byte	.LLST4
+ 2061 0109 07       		.uleb128 0x7
+ 2062 010a 01       		.byte	0x1
+ 2063 010b 9E000000 		.4byte	.LASF20
+ 2064 010f 01       		.byte	0x1
+ 2065 0110 95       		.byte	0x95
+ 2066 0111 01       		.byte	0x1
+ 2067 0112 00000000 		.4byte	.LFB25
+ 2068 0116 58010000 		.4byte	.LFE25
+ 2069 011a 69000000 		.4byte	.LLST5
+ 2070 011e 08       		.uleb128 0x8
+ 2071 011f 01       		.byte	0x1
+ 2072 0120 F0000000 		.4byte	.LASF21
+ 2073 0124 01       		.byte	0x1
+ 2074 0125 70       		.byte	0x70
+ 2075 0126 01       		.byte	0x1
+ 2076 0127 00000000 		.4byte	.LFB23
+ 2077 012b C8000000 		.4byte	.LFE23
+ 2078 012f 94000000 		.4byte	.LLST6
+ 2079 0133 47010000 		.4byte	0x147
+ 2080 0137 09       		.uleb128 0x9
+ 2081 0138 44000000 		.4byte	.LASF23
+ 2082 013c 01       		.byte	0x1
+ 2083 013d 70       		.byte	0x70
+ 2084 013e 85000000 		.4byte	0x85
+ 2085 0142 B3000000 		.4byte	.LLST7
+ 2086 0146 00       		.byte	0x0
+ 2087 0147 08       		.uleb128 0x8
+ 2088 0148 01       		.byte	0x1
+ 2089 0149 E4000000 		.4byte	.LASF22
+ 2090 014d 01       		.byte	0x1
+ 2091 014e 62       		.byte	0x62
+ 2092 014f 01       		.byte	0x1
+ 2093 0150 00000000 		.4byte	.LFB22
+ 2094 0154 C8000000 		.4byte	.LFE22
+ 2095 0158 D1000000 		.4byte	.LLST8
+ 2096 015c 70010000 		.4byte	0x170
+ 2097 0160 09       		.uleb128 0x9
+ 2098 0161 44000000 		.4byte	.LASF23
+ 2099 0165 01       		.byte	0x1
+ 2100 0166 62       		.byte	0x62
+ 2101 0167 85000000 		.4byte	0x85
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 43
+
+
+ 2102 016b F0000000 		.4byte	.LLST9
+ 2103 016f 00       		.byte	0x0
+ 2104 0170 08       		.uleb128 0x8
+ 2105 0171 01       		.byte	0x1
+ 2106 0172 D8000000 		.4byte	.LASF24
+ 2107 0176 01       		.byte	0x1
+ 2108 0177 54       		.byte	0x54
+ 2109 0178 01       		.byte	0x1
+ 2110 0179 00000000 		.4byte	.LFB21
+ 2111 017d C8000000 		.4byte	.LFE21
+ 2112 0181 0E010000 		.4byte	.LLST10
+ 2113 0185 99010000 		.4byte	0x199
+ 2114 0189 09       		.uleb128 0x9
+ 2115 018a 44000000 		.4byte	.LASF23
+ 2116 018e 01       		.byte	0x1
+ 2117 018f 54       		.byte	0x54
+ 2118 0190 85000000 		.4byte	0x85
+ 2119 0194 2D010000 		.4byte	.LLST11
+ 2120 0198 00       		.byte	0x0
+ 2121 0199 0A       		.uleb128 0xa
+ 2122 019a 6F000000 		.4byte	0x6f
+ 2123 019e AF010000 		.4byte	0x1af
+ 2124 01a2 0B       		.uleb128 0xb
+ 2125 01a3 9A000000 		.4byte	0x9a
+ 2126 01a7 60       		.byte	0x60
+ 2127 01a8 0B       		.uleb128 0xb
+ 2128 01a9 9A000000 		.4byte	0x9a
+ 2129 01ad 0F       		.byte	0xf
+ 2130 01ae 00       		.byte	0x0
+ 2131 01af 0C       		.uleb128 0xc
+ 2132 01b0 37020000 		.4byte	.LASF25
+ 2133 01b4 03       		.byte	0x3
+ 2134 01b5 42       		.byte	0x42
+ 2135 01b6 C1010000 		.4byte	0x1c1
+ 2136 01ba 01       		.byte	0x1
+ 2137 01bb 05       		.byte	0x5
+ 2138 01bc 03       		.byte	0x3
+ 2139 01bd 00000000 		.4byte	LCD_FONT8x16
+ 2140 01c1 0D       		.uleb128 0xd
+ 2141 01c2 99010000 		.4byte	0x199
+ 2142 01c6 0E       		.uleb128 0xe
+ 2143 01c7 54020000 		.4byte	.LASF26
+ 2144 01cb 04       		.byte	0x4
+ 2145 01cc 1B       		.byte	0x1b
+ 2146 01cd 85000000 		.4byte	0x85
+ 2147 01d1 01       		.byte	0x1
+ 2148 01d2 01       		.byte	0x1
+ 2149 01d3 0E       		.uleb128 0xe
+ 2150 01d4 BF010000 		.4byte	.LASF27
+ 2151 01d8 04       		.byte	0x4
+ 2152 01d9 1C       		.byte	0x1c
+ 2153 01da 85000000 		.4byte	0x85
+ 2154 01de 01       		.byte	0x1
+ 2155 01df 01       		.byte	0x1
+ 2156 01e0 0E       		.uleb128 0xe
+ 2157 01e1 32010000 		.4byte	.LASF28
+ 2158 01e5 04       		.byte	0x4
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 44
+
+
+ 2159 01e6 1D       		.byte	0x1d
+ 2160 01e7 85000000 		.4byte	0x85
+ 2161 01eb 01       		.byte	0x1
+ 2162 01ec 01       		.byte	0x1
+ 2163 01ed 0E       		.uleb128 0xe
+ 2164 01ee 65020000 		.4byte	.LASF29
+ 2165 01f2 04       		.byte	0x4
+ 2166 01f3 1E       		.byte	0x1e
+ 2167 01f4 85000000 		.4byte	0x85
+ 2168 01f8 01       		.byte	0x1
+ 2169 01f9 01       		.byte	0x1
+ 2170 01fa 0C       		.uleb128 0xc
+ 2171 01fb 17000000 		.4byte	.LASF30
+ 2172 01ff 01       		.byte	0x1
+ 2173 0200 0F       		.byte	0xf
+ 2174 0201 7A000000 		.4byte	0x7a
+ 2175 0205 01       		.byte	0x1
+ 2176 0206 05       		.byte	0x5
+ 2177 0207 03       		.byte	0x3
+ 2178 0208 00000000 		.4byte	X_scale_flag
+ 2179 020c 0C       		.uleb128 0xc
+ 2180 020d 3A010000 		.4byte	.LASF31
+ 2181 0211 01       		.byte	0x1
+ 2182 0212 10       		.byte	0x10
+ 2183 0213 7A000000 		.4byte	0x7a
+ 2184 0217 01       		.byte	0x1
+ 2185 0218 05       		.byte	0x5
+ 2186 0219 03       		.byte	0x3
+ 2187 021a 00000000 		.4byte	Y_scale_flag
+ 2188 021e 0C       		.uleb128 0xc
+ 2189 021f 0F010000 		.4byte	.LASF32
+ 2190 0223 01       		.byte	0x1
+ 2191 0224 11       		.byte	0x11
+ 2192 0225 7A000000 		.4byte	0x7a
+ 2193 0229 01       		.byte	0x1
+ 2194 022a 05       		.byte	0x5
+ 2195 022b 03       		.byte	0x3
+ 2196 022c 00000000 		.4byte	X_offset_flag
+ 2197 0230 0C       		.uleb128 0xc
+ 2198 0231 D6010000 		.4byte	.LASF33
+ 2199 0235 01       		.byte	0x1
+ 2200 0236 12       		.byte	0x12
+ 2201 0237 7A000000 		.4byte	0x7a
+ 2202 023b 01       		.byte	0x1
+ 2203 023c 05       		.byte	0x5
+ 2204 023d 03       		.byte	0x3
+ 2205 023e 00000000 		.4byte	Y_offset_flag
+ 2206 0242 0F       		.uleb128 0xf
+ 2207 0243 61317800 		.ascii	"a1x\000"
+ 2208 0247 01       		.byte	0x1
+ 2209 0248 14       		.byte	0x14
+ 2210 0249 85000000 		.4byte	0x85
+ 2211 024d 01       		.byte	0x1
+ 2212 024e 05       		.byte	0x5
+ 2213 024f 03       		.byte	0x3
+ 2214 0250 00000000 		.4byte	a1x
+ 2215 0254 0F       		.uleb128 0xf
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 45
+
+
+ 2216 0255 61317900 		.ascii	"a1y\000"
+ 2217 0259 01       		.byte	0x1
+ 2218 025a 14       		.byte	0x14
+ 2219 025b 85000000 		.4byte	0x85
+ 2220 025f 01       		.byte	0x1
+ 2221 0260 05       		.byte	0x5
+ 2222 0261 03       		.byte	0x3
+ 2223 0262 00000000 		.4byte	a1y
+ 2224 0266 0F       		.uleb128 0xf
+ 2225 0267 61317A00 		.ascii	"a1z\000"
+ 2226 026b 01       		.byte	0x1
+ 2227 026c 14       		.byte	0x14
+ 2228 026d 85000000 		.4byte	0x85
+ 2229 0271 01       		.byte	0x1
+ 2230 0272 05       		.byte	0x5
+ 2231 0273 03       		.byte	0x3
+ 2232 0274 00000000 		.4byte	a1z
+ 2233 0278 0F       		.uleb128 0xf
+ 2234 0279 61327800 		.ascii	"a2x\000"
+ 2235 027d 01       		.byte	0x1
+ 2236 027e 15       		.byte	0x15
+ 2237 027f 85000000 		.4byte	0x85
+ 2238 0283 01       		.byte	0x1
+ 2239 0284 05       		.byte	0x5
+ 2240 0285 03       		.byte	0x3
+ 2241 0286 00000000 		.4byte	a2x
+ 2242 028a 0F       		.uleb128 0xf
+ 2243 028b 61327900 		.ascii	"a2y\000"
+ 2244 028f 01       		.byte	0x1
+ 2245 0290 15       		.byte	0x15
+ 2246 0291 85000000 		.4byte	0x85
+ 2247 0295 01       		.byte	0x1
+ 2248 0296 05       		.byte	0x5
+ 2249 0297 03       		.byte	0x3
+ 2250 0298 00000000 		.4byte	a2y
+ 2251 029c 0F       		.uleb128 0xf
+ 2252 029d 61327A00 		.ascii	"a2z\000"
+ 2253 02a1 01       		.byte	0x1
+ 2254 02a2 15       		.byte	0x15
+ 2255 02a3 85000000 		.4byte	0x85
+ 2256 02a7 01       		.byte	0x1
+ 2257 02a8 05       		.byte	0x5
+ 2258 02a9 03       		.byte	0x3
+ 2259 02aa 00000000 		.4byte	a2z
+ 2260 02ae 0F       		.uleb128 0xf
+ 2261 02af 61337800 		.ascii	"a3x\000"
+ 2262 02b3 01       		.byte	0x1
+ 2263 02b4 16       		.byte	0x16
+ 2264 02b5 85000000 		.4byte	0x85
+ 2265 02b9 01       		.byte	0x1
+ 2266 02ba 05       		.byte	0x5
+ 2267 02bb 03       		.byte	0x3
+ 2268 02bc 00000000 		.4byte	a3x
+ 2269 02c0 0F       		.uleb128 0xf
+ 2270 02c1 61337900 		.ascii	"a3y\000"
+ 2271 02c5 01       		.byte	0x1
+ 2272 02c6 16       		.byte	0x16
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 46
+
+
+ 2273 02c7 85000000 		.4byte	0x85
+ 2274 02cb 01       		.byte	0x1
+ 2275 02cc 05       		.byte	0x5
+ 2276 02cd 03       		.byte	0x3
+ 2277 02ce 00000000 		.4byte	a3y
+ 2278 02d2 0F       		.uleb128 0xf
+ 2279 02d3 61337A00 		.ascii	"a3z\000"
+ 2280 02d7 01       		.byte	0x1
+ 2281 02d8 16       		.byte	0x16
+ 2282 02d9 85000000 		.4byte	0x85
+ 2283 02dd 01       		.byte	0x1
+ 2284 02de 05       		.byte	0x5
+ 2285 02df 03       		.byte	0x3
+ 2286 02e0 00000000 		.4byte	a3z
+ 2287 02e4 0F       		.uleb128 0xf
+ 2288 02e5 61347800 		.ascii	"a4x\000"
+ 2289 02e9 01       		.byte	0x1
+ 2290 02ea 17       		.byte	0x17
+ 2291 02eb 85000000 		.4byte	0x85
+ 2292 02ef 01       		.byte	0x1
+ 2293 02f0 05       		.byte	0x5
+ 2294 02f1 03       		.byte	0x3
+ 2295 02f2 00000000 		.4byte	a4x
+ 2296 02f6 0F       		.uleb128 0xf
+ 2297 02f7 61347900 		.ascii	"a4y\000"
+ 2298 02fb 01       		.byte	0x1
+ 2299 02fc 17       		.byte	0x17
+ 2300 02fd 85000000 		.4byte	0x85
+ 2301 0301 01       		.byte	0x1
+ 2302 0302 05       		.byte	0x5
+ 2303 0303 03       		.byte	0x3
+ 2304 0304 00000000 		.4byte	a4y
+ 2305 0308 0F       		.uleb128 0xf
+ 2306 0309 61347A00 		.ascii	"a4z\000"
+ 2307 030d 01       		.byte	0x1
+ 2308 030e 17       		.byte	0x17
+ 2309 030f 85000000 		.4byte	0x85
+ 2310 0313 01       		.byte	0x1
+ 2311 0314 05       		.byte	0x5
+ 2312 0315 03       		.byte	0x3
+ 2313 0316 00000000 		.4byte	a4z
+ 2314 031a 0F       		.uleb128 0xf
+ 2315 031b 61357800 		.ascii	"a5x\000"
+ 2316 031f 01       		.byte	0x1
+ 2317 0320 18       		.byte	0x18
+ 2318 0321 85000000 		.4byte	0x85
+ 2319 0325 01       		.byte	0x1
+ 2320 0326 05       		.byte	0x5
+ 2321 0327 03       		.byte	0x3
+ 2322 0328 00000000 		.4byte	a5x
+ 2323 032c 0F       		.uleb128 0xf
+ 2324 032d 61357900 		.ascii	"a5y\000"
+ 2325 0331 01       		.byte	0x1
+ 2326 0332 18       		.byte	0x18
+ 2327 0333 85000000 		.4byte	0x85
+ 2328 0337 01       		.byte	0x1
+ 2329 0338 05       		.byte	0x5
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 47
+
+
+ 2330 0339 03       		.byte	0x3
+ 2331 033a 00000000 		.4byte	a5y
+ 2332 033e 0F       		.uleb128 0xf
+ 2333 033f 61357A00 		.ascii	"a5z\000"
+ 2334 0343 01       		.byte	0x1
+ 2335 0344 18       		.byte	0x18
+ 2336 0345 85000000 		.4byte	0x85
+ 2337 0349 01       		.byte	0x1
+ 2338 034a 05       		.byte	0x5
+ 2339 034b 03       		.byte	0x3
+ 2340 034c 00000000 		.4byte	a5z
+ 2341 0350 0F       		.uleb128 0xf
+ 2342 0351 61367800 		.ascii	"a6x\000"
+ 2343 0355 01       		.byte	0x1
+ 2344 0356 19       		.byte	0x19
+ 2345 0357 85000000 		.4byte	0x85
+ 2346 035b 01       		.byte	0x1
+ 2347 035c 05       		.byte	0x5
+ 2348 035d 03       		.byte	0x3
+ 2349 035e 00000000 		.4byte	a6x
+ 2350 0362 0F       		.uleb128 0xf
+ 2351 0363 61367900 		.ascii	"a6y\000"
+ 2352 0367 01       		.byte	0x1
+ 2353 0368 19       		.byte	0x19
+ 2354 0369 85000000 		.4byte	0x85
+ 2355 036d 01       		.byte	0x1
+ 2356 036e 05       		.byte	0x5
+ 2357 036f 03       		.byte	0x3
+ 2358 0370 00000000 		.4byte	a6y
+ 2359 0374 0F       		.uleb128 0xf
+ 2360 0375 61367A00 		.ascii	"a6z\000"
+ 2361 0379 01       		.byte	0x1
+ 2362 037a 19       		.byte	0x19
+ 2363 037b 85000000 		.4byte	0x85
+ 2364 037f 01       		.byte	0x1
+ 2365 0380 05       		.byte	0x5
+ 2366 0381 03       		.byte	0x3
+ 2367 0382 00000000 		.4byte	a6z
+ 2368 0386 0F       		.uleb128 0xf
+ 2369 0387 61377800 		.ascii	"a7x\000"
+ 2370 038b 01       		.byte	0x1
+ 2371 038c 1A       		.byte	0x1a
+ 2372 038d 85000000 		.4byte	0x85
+ 2373 0391 01       		.byte	0x1
+ 2374 0392 05       		.byte	0x5
+ 2375 0393 03       		.byte	0x3
+ 2376 0394 00000000 		.4byte	a7x
+ 2377 0398 0F       		.uleb128 0xf
+ 2378 0399 61377900 		.ascii	"a7y\000"
+ 2379 039d 01       		.byte	0x1
+ 2380 039e 1A       		.byte	0x1a
+ 2381 039f 85000000 		.4byte	0x85
+ 2382 03a3 01       		.byte	0x1
+ 2383 03a4 05       		.byte	0x5
+ 2384 03a5 03       		.byte	0x3
+ 2385 03a6 00000000 		.4byte	a7y
+ 2386 03aa 0F       		.uleb128 0xf
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 48
+
+
+ 2387 03ab 61377A00 		.ascii	"a7z\000"
+ 2388 03af 01       		.byte	0x1
+ 2389 03b0 1A       		.byte	0x1a
+ 2390 03b1 85000000 		.4byte	0x85
+ 2391 03b5 01       		.byte	0x1
+ 2392 03b6 05       		.byte	0x5
+ 2393 03b7 03       		.byte	0x3
+ 2394 03b8 00000000 		.4byte	a7z
+ 2395 03bc 0F       		.uleb128 0xf
+ 2396 03bd 61387800 		.ascii	"a8x\000"
+ 2397 03c1 01       		.byte	0x1
+ 2398 03c2 1B       		.byte	0x1b
+ 2399 03c3 85000000 		.4byte	0x85
+ 2400 03c7 01       		.byte	0x1
+ 2401 03c8 05       		.byte	0x5
+ 2402 03c9 03       		.byte	0x3
+ 2403 03ca 00000000 		.4byte	a8x
+ 2404 03ce 0F       		.uleb128 0xf
+ 2405 03cf 61387900 		.ascii	"a8y\000"
+ 2406 03d3 01       		.byte	0x1
+ 2407 03d4 1B       		.byte	0x1b
+ 2408 03d5 85000000 		.4byte	0x85
+ 2409 03d9 01       		.byte	0x1
+ 2410 03da 05       		.byte	0x5
+ 2411 03db 03       		.byte	0x3
+ 2412 03dc 00000000 		.4byte	a8y
+ 2413 03e0 0F       		.uleb128 0xf
+ 2414 03e1 61387A00 		.ascii	"a8z\000"
+ 2415 03e5 01       		.byte	0x1
+ 2416 03e6 1B       		.byte	0x1b
+ 2417 03e7 85000000 		.4byte	0x85
+ 2418 03eb 01       		.byte	0x1
+ 2419 03ec 05       		.byte	0x5
+ 2420 03ed 03       		.byte	0x3
+ 2421 03ee 00000000 		.4byte	a8z
+ 2422 03f2 0F       		.uleb128 0xf
+ 2423 03f3 62317800 		.ascii	"b1x\000"
+ 2424 03f7 01       		.byte	0x1
+ 2425 03f8 1D       		.byte	0x1d
+ 2426 03f9 85000000 		.4byte	0x85
+ 2427 03fd 01       		.byte	0x1
+ 2428 03fe 05       		.byte	0x5
+ 2429 03ff 03       		.byte	0x3
+ 2430 0400 00000000 		.4byte	b1x
+ 2431 0404 0F       		.uleb128 0xf
+ 2432 0405 62317900 		.ascii	"b1y\000"
+ 2433 0409 01       		.byte	0x1
+ 2434 040a 1D       		.byte	0x1d
+ 2435 040b 85000000 		.4byte	0x85
+ 2436 040f 01       		.byte	0x1
+ 2437 0410 05       		.byte	0x5
+ 2438 0411 03       		.byte	0x3
+ 2439 0412 00000000 		.4byte	b1y
+ 2440 0416 0F       		.uleb128 0xf
+ 2441 0417 62327800 		.ascii	"b2x\000"
+ 2442 041b 01       		.byte	0x1
+ 2443 041c 1E       		.byte	0x1e
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 49
+
+
+ 2444 041d 85000000 		.4byte	0x85
+ 2445 0421 01       		.byte	0x1
+ 2446 0422 05       		.byte	0x5
+ 2447 0423 03       		.byte	0x3
+ 2448 0424 00000000 		.4byte	b2x
+ 2449 0428 0F       		.uleb128 0xf
+ 2450 0429 62327900 		.ascii	"b2y\000"
+ 2451 042d 01       		.byte	0x1
+ 2452 042e 1E       		.byte	0x1e
+ 2453 042f 85000000 		.4byte	0x85
+ 2454 0433 01       		.byte	0x1
+ 2455 0434 05       		.byte	0x5
+ 2456 0435 03       		.byte	0x3
+ 2457 0436 00000000 		.4byte	b2y
+ 2458 043a 0F       		.uleb128 0xf
+ 2459 043b 62337800 		.ascii	"b3x\000"
+ 2460 043f 01       		.byte	0x1
+ 2461 0440 1F       		.byte	0x1f
+ 2462 0441 85000000 		.4byte	0x85
+ 2463 0445 01       		.byte	0x1
+ 2464 0446 05       		.byte	0x5
+ 2465 0447 03       		.byte	0x3
+ 2466 0448 00000000 		.4byte	b3x
+ 2467 044c 0F       		.uleb128 0xf
+ 2468 044d 62337900 		.ascii	"b3y\000"
+ 2469 0451 01       		.byte	0x1
+ 2470 0452 1F       		.byte	0x1f
+ 2471 0453 85000000 		.4byte	0x85
+ 2472 0457 01       		.byte	0x1
+ 2473 0458 05       		.byte	0x5
+ 2474 0459 03       		.byte	0x3
+ 2475 045a 00000000 		.4byte	b3y
+ 2476 045e 0F       		.uleb128 0xf
+ 2477 045f 62347800 		.ascii	"b4x\000"
+ 2478 0463 01       		.byte	0x1
+ 2479 0464 20       		.byte	0x20
+ 2480 0465 85000000 		.4byte	0x85
+ 2481 0469 01       		.byte	0x1
+ 2482 046a 05       		.byte	0x5
+ 2483 046b 03       		.byte	0x3
+ 2484 046c 00000000 		.4byte	b4x
+ 2485 0470 0F       		.uleb128 0xf
+ 2486 0471 62347900 		.ascii	"b4y\000"
+ 2487 0475 01       		.byte	0x1
+ 2488 0476 20       		.byte	0x20
+ 2489 0477 85000000 		.4byte	0x85
+ 2490 047b 01       		.byte	0x1
+ 2491 047c 05       		.byte	0x5
+ 2492 047d 03       		.byte	0x3
+ 2493 047e 00000000 		.4byte	b4y
+ 2494 0482 0F       		.uleb128 0xf
+ 2495 0483 62357800 		.ascii	"b5x\000"
+ 2496 0487 01       		.byte	0x1
+ 2497 0488 21       		.byte	0x21
+ 2498 0489 85000000 		.4byte	0x85
+ 2499 048d 01       		.byte	0x1
+ 2500 048e 05       		.byte	0x5
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 50
+
+
+ 2501 048f 03       		.byte	0x3
+ 2502 0490 00000000 		.4byte	b5x
+ 2503 0494 0F       		.uleb128 0xf
+ 2504 0495 62357900 		.ascii	"b5y\000"
+ 2505 0499 01       		.byte	0x1
+ 2506 049a 21       		.byte	0x21
+ 2507 049b 85000000 		.4byte	0x85
+ 2508 049f 01       		.byte	0x1
+ 2509 04a0 05       		.byte	0x5
+ 2510 04a1 03       		.byte	0x3
+ 2511 04a2 00000000 		.4byte	b5y
+ 2512 04a6 0F       		.uleb128 0xf
+ 2513 04a7 62367800 		.ascii	"b6x\000"
+ 2514 04ab 01       		.byte	0x1
+ 2515 04ac 22       		.byte	0x22
+ 2516 04ad 85000000 		.4byte	0x85
+ 2517 04b1 01       		.byte	0x1
+ 2518 04b2 05       		.byte	0x5
+ 2519 04b3 03       		.byte	0x3
+ 2520 04b4 00000000 		.4byte	b6x
+ 2521 04b8 0F       		.uleb128 0xf
+ 2522 04b9 62367900 		.ascii	"b6y\000"
+ 2523 04bd 01       		.byte	0x1
+ 2524 04be 22       		.byte	0x22
+ 2525 04bf 85000000 		.4byte	0x85
+ 2526 04c3 01       		.byte	0x1
+ 2527 04c4 05       		.byte	0x5
+ 2528 04c5 03       		.byte	0x3
+ 2529 04c6 00000000 		.4byte	b6y
+ 2530 04ca 0F       		.uleb128 0xf
+ 2531 04cb 62377800 		.ascii	"b7x\000"
+ 2532 04cf 01       		.byte	0x1
+ 2533 04d0 23       		.byte	0x23
+ 2534 04d1 85000000 		.4byte	0x85
+ 2535 04d5 01       		.byte	0x1
+ 2536 04d6 05       		.byte	0x5
+ 2537 04d7 03       		.byte	0x3
+ 2538 04d8 00000000 		.4byte	b7x
+ 2539 04dc 0F       		.uleb128 0xf
+ 2540 04dd 62377900 		.ascii	"b7y\000"
+ 2541 04e1 01       		.byte	0x1
+ 2542 04e2 23       		.byte	0x23
+ 2543 04e3 85000000 		.4byte	0x85
+ 2544 04e7 01       		.byte	0x1
+ 2545 04e8 05       		.byte	0x5
+ 2546 04e9 03       		.byte	0x3
+ 2547 04ea 00000000 		.4byte	b7y
+ 2548 04ee 0F       		.uleb128 0xf
+ 2549 04ef 62387800 		.ascii	"b8x\000"
+ 2550 04f3 01       		.byte	0x1
+ 2551 04f4 24       		.byte	0x24
+ 2552 04f5 85000000 		.4byte	0x85
+ 2553 04f9 01       		.byte	0x1
+ 2554 04fa 05       		.byte	0x5
+ 2555 04fb 03       		.byte	0x3
+ 2556 04fc 00000000 		.4byte	b8x
+ 2557 0500 0F       		.uleb128 0xf
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 51
+
+
+ 2558 0501 62387900 		.ascii	"b8y\000"
+ 2559 0505 01       		.byte	0x1
+ 2560 0506 24       		.byte	0x24
+ 2561 0507 85000000 		.4byte	0x85
+ 2562 050b 01       		.byte	0x1
+ 2563 050c 05       		.byte	0x5
+ 2564 050d 03       		.byte	0x3
+ 2565 050e 00000000 		.4byte	b8y
+ 2566 0512 0C       		.uleb128 0xc
+ 2567 0513 4C020000 		.4byte	.LASF34
+ 2568 0517 01       		.byte	0x1
+ 2569 0518 26       		.byte	0x26
+ 2570 0519 85000000 		.4byte	0x85
+ 2571 051d 01       		.byte	0x1
+ 2572 051e 05       		.byte	0x5
+ 2573 051f 03       		.byte	0x3
+ 2574 0520 00000000 		.4byte	b1x_old
+ 2575 0524 0C       		.uleb128 0xc
+ 2576 0525 53010000 		.4byte	.LASF35
+ 2577 0529 01       		.byte	0x1
+ 2578 052a 26       		.byte	0x26
+ 2579 052b 85000000 		.4byte	0x85
+ 2580 052f 01       		.byte	0x1
+ 2581 0530 05       		.byte	0x5
+ 2582 0531 03       		.byte	0x3
+ 2583 0532 00000000 		.4byte	b1y_old
+ 2584 0536 0C       		.uleb128 0xc
+ 2585 0537 78000000 		.4byte	.LASF36
+ 2586 053b 01       		.byte	0x1
+ 2587 053c 27       		.byte	0x27
+ 2588 053d 85000000 		.4byte	0x85
+ 2589 0541 01       		.byte	0x1
+ 2590 0542 05       		.byte	0x5
+ 2591 0543 03       		.byte	0x3
+ 2592 0544 00000000 		.4byte	b2x_old
+ 2593 0548 0C       		.uleb128 0xc
+ 2594 0549 5D020000 		.4byte	.LASF37
+ 2595 054d 01       		.byte	0x1
+ 2596 054e 27       		.byte	0x27
+ 2597 054f 85000000 		.4byte	0x85
+ 2598 0553 01       		.byte	0x1
+ 2599 0554 05       		.byte	0x5
+ 2600 0555 03       		.byte	0x3
+ 2601 0556 00000000 		.4byte	b2y_old
+ 2602 055a 0C       		.uleb128 0xc
+ 2603 055b 2A010000 		.4byte	.LASF38
+ 2604 055f 01       		.byte	0x1
+ 2605 0560 28       		.byte	0x28
+ 2606 0561 85000000 		.4byte	0x85
+ 2607 0565 01       		.byte	0x1
+ 2608 0566 05       		.byte	0x5
+ 2609 0567 03       		.byte	0x3
+ 2610 0568 00000000 		.4byte	b3x_old
+ 2611 056c 0C       		.uleb128 0xc
+ 2612 056d 0F000000 		.4byte	.LASF39
+ 2613 0571 01       		.byte	0x1
+ 2614 0572 28       		.byte	0x28
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 52
+
+
+ 2615 0573 85000000 		.4byte	0x85
+ 2616 0577 01       		.byte	0x1
+ 2617 0578 05       		.byte	0x5
+ 2618 0579 03       		.byte	0x3
+ 2619 057a 00000000 		.4byte	b3y_old
+ 2620 057e 0C       		.uleb128 0xc
+ 2621 057f B7010000 		.4byte	.LASF40
+ 2622 0583 01       		.byte	0x1
+ 2623 0584 29       		.byte	0x29
+ 2624 0585 85000000 		.4byte	0x85
+ 2625 0589 01       		.byte	0x1
+ 2626 058a 05       		.byte	0x5
+ 2627 058b 03       		.byte	0x3
+ 2628 058c 00000000 		.4byte	b4x_old
+ 2629 0590 0C       		.uleb128 0xc
+ 2630 0591 70000000 		.4byte	.LASF41
+ 2631 0595 01       		.byte	0x1
+ 2632 0596 29       		.byte	0x29
+ 2633 0597 85000000 		.4byte	0x85
+ 2634 059b 01       		.byte	0x1
+ 2635 059c 05       		.byte	0x5
+ 2636 059d 03       		.byte	0x3
+ 2637 059e 00000000 		.4byte	b4y_old
+ 2638 05a2 0C       		.uleb128 0xc
+ 2639 05a3 76020000 		.4byte	.LASF42
+ 2640 05a7 01       		.byte	0x1
+ 2641 05a8 2A       		.byte	0x2a
+ 2642 05a9 85000000 		.4byte	0x85
+ 2643 05ad 01       		.byte	0x1
+ 2644 05ae 05       		.byte	0x5
+ 2645 05af 03       		.byte	0x3
+ 2646 05b0 00000000 		.4byte	b5x_old
+ 2647 05b4 0C       		.uleb128 0xc
+ 2648 05b5 CE010000 		.4byte	.LASF43
+ 2649 05b9 01       		.byte	0x1
+ 2650 05ba 2A       		.byte	0x2a
+ 2651 05bb 85000000 		.4byte	0x85
+ 2652 05bf 01       		.byte	0x1
+ 2653 05c0 05       		.byte	0x5
+ 2654 05c1 03       		.byte	0x3
+ 2655 05c2 00000000 		.4byte	b5y_old
+ 2656 05c6 0C       		.uleb128 0xc
+ 2657 05c7 15020000 		.4byte	.LASF44
+ 2658 05cb 01       		.byte	0x1
+ 2659 05cc 2B       		.byte	0x2b
+ 2660 05cd 85000000 		.4byte	0x85
+ 2661 05d1 01       		.byte	0x1
+ 2662 05d2 05       		.byte	0x5
+ 2663 05d3 03       		.byte	0x3
+ 2664 05d4 00000000 		.4byte	b6x_old
+ 2665 05d8 0C       		.uleb128 0xc
+ 2666 05d9 2A020000 		.4byte	.LASF45
+ 2667 05dd 01       		.byte	0x1
+ 2668 05de 2B       		.byte	0x2b
+ 2669 05df 85000000 		.4byte	0x85
+ 2670 05e3 01       		.byte	0x1
+ 2671 05e4 05       		.byte	0x5
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 53
+
+
+ 2672 05e5 03       		.byte	0x3
+ 2673 05e6 00000000 		.4byte	b6y_old
+ 2674 05ea 0C       		.uleb128 0xc
+ 2675 05eb 8F000000 		.4byte	.LASF46
+ 2676 05ef 01       		.byte	0x1
+ 2677 05f0 2C       		.byte	0x2c
+ 2678 05f1 85000000 		.4byte	0x85
+ 2679 05f5 01       		.byte	0x1
+ 2680 05f6 05       		.byte	0x5
+ 2681 05f7 03       		.byte	0x3
+ 2682 05f8 00000000 		.4byte	b7x_old
+ 2683 05fc 0C       		.uleb128 0xc
+ 2684 05fd 44020000 		.4byte	.LASF47
+ 2685 0601 01       		.byte	0x1
+ 2686 0602 2C       		.byte	0x2c
+ 2687 0603 85000000 		.4byte	0x85
+ 2688 0607 01       		.byte	0x1
+ 2689 0608 05       		.byte	0x5
+ 2690 0609 03       		.byte	0x3
+ 2691 060a 00000000 		.4byte	b7y_old
+ 2692 060e 0C       		.uleb128 0xc
+ 2693 060f F2010000 		.4byte	.LASF48
+ 2694 0613 01       		.byte	0x1
+ 2695 0614 2D       		.byte	0x2d
+ 2696 0615 85000000 		.4byte	0x85
+ 2697 0619 01       		.byte	0x1
+ 2698 061a 05       		.byte	0x5
+ 2699 061b 03       		.byte	0x3
+ 2700 061c 00000000 		.4byte	b8x_old
+ 2701 0620 0C       		.uleb128 0xc
+ 2702 0621 B1000000 		.4byte	.LASF49
+ 2703 0625 01       		.byte	0x1
+ 2704 0626 2D       		.byte	0x2d
+ 2705 0627 85000000 		.4byte	0x85
+ 2706 062b 01       		.byte	0x1
+ 2707 062c 05       		.byte	0x5
+ 2708 062d 03       		.byte	0x3
+ 2709 062e 00000000 		.4byte	b8y_old
+ 2710 0632 00       		.byte	0x0
+ 2711              		.section	.debug_abbrev
+ 2712 0000 01       		.uleb128 0x1
+ 2713 0001 11       		.uleb128 0x11
+ 2714 0002 01       		.byte	0x1
+ 2715 0003 25       		.uleb128 0x25
+ 2716 0004 0E       		.uleb128 0xe
+ 2717 0005 13       		.uleb128 0x13
+ 2718 0006 0B       		.uleb128 0xb
+ 2719 0007 03       		.uleb128 0x3
+ 2720 0008 0E       		.uleb128 0xe
+ 2721 0009 1B       		.uleb128 0x1b
+ 2722 000a 0E       		.uleb128 0xe
+ 2723 000b 11       		.uleb128 0x11
+ 2724 000c 01       		.uleb128 0x1
+ 2725 000d 52       		.uleb128 0x52
+ 2726 000e 01       		.uleb128 0x1
+ 2727 000f 55       		.uleb128 0x55
+ 2728 0010 06       		.uleb128 0x6
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 54
+
+
+ 2729 0011 10       		.uleb128 0x10
+ 2730 0012 06       		.uleb128 0x6
+ 2731 0013 00       		.byte	0x0
+ 2732 0014 00       		.byte	0x0
+ 2733 0015 02       		.uleb128 0x2
+ 2734 0016 24       		.uleb128 0x24
+ 2735 0017 00       		.byte	0x0
+ 2736 0018 0B       		.uleb128 0xb
+ 2737 0019 0B       		.uleb128 0xb
+ 2738 001a 3E       		.uleb128 0x3e
+ 2739 001b 0B       		.uleb128 0xb
+ 2740 001c 03       		.uleb128 0x3
+ 2741 001d 0E       		.uleb128 0xe
+ 2742 001e 00       		.byte	0x0
+ 2743 001f 00       		.byte	0x0
+ 2744 0020 03       		.uleb128 0x3
+ 2745 0021 24       		.uleb128 0x24
+ 2746 0022 00       		.byte	0x0
+ 2747 0023 0B       		.uleb128 0xb
+ 2748 0024 0B       		.uleb128 0xb
+ 2749 0025 3E       		.uleb128 0x3e
+ 2750 0026 0B       		.uleb128 0xb
+ 2751 0027 03       		.uleb128 0x3
+ 2752 0028 08       		.uleb128 0x8
+ 2753 0029 00       		.byte	0x0
+ 2754 002a 00       		.byte	0x0
+ 2755 002b 04       		.uleb128 0x4
+ 2756 002c 16       		.uleb128 0x16
+ 2757 002d 00       		.byte	0x0
+ 2758 002e 03       		.uleb128 0x3
+ 2759 002f 0E       		.uleb128 0xe
+ 2760 0030 3A       		.uleb128 0x3a
+ 2761 0031 0B       		.uleb128 0xb
+ 2762 0032 3B       		.uleb128 0x3b
+ 2763 0033 0B       		.uleb128 0xb
+ 2764 0034 49       		.uleb128 0x49
+ 2765 0035 13       		.uleb128 0x13
+ 2766 0036 00       		.byte	0x0
+ 2767 0037 00       		.byte	0x0
+ 2768 0038 05       		.uleb128 0x5
+ 2769 0039 24       		.uleb128 0x24
+ 2770 003a 00       		.byte	0x0
+ 2771 003b 0B       		.uleb128 0xb
+ 2772 003c 0B       		.uleb128 0xb
+ 2773 003d 3E       		.uleb128 0x3e
+ 2774 003e 0B       		.uleb128 0xb
+ 2775 003f 00       		.byte	0x0
+ 2776 0040 00       		.byte	0x0
+ 2777 0041 06       		.uleb128 0x6
+ 2778 0042 2E       		.uleb128 0x2e
+ 2779 0043 00       		.byte	0x0
+ 2780 0044 3F       		.uleb128 0x3f
+ 2781 0045 0C       		.uleb128 0xc
+ 2782 0046 03       		.uleb128 0x3
+ 2783 0047 0E       		.uleb128 0xe
+ 2784 0048 3A       		.uleb128 0x3a
+ 2785 0049 0B       		.uleb128 0xb
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 55
+
+
+ 2786 004a 3B       		.uleb128 0x3b
+ 2787 004b 0B       		.uleb128 0xb
+ 2788 004c 27       		.uleb128 0x27
+ 2789 004d 0C       		.uleb128 0xc
+ 2790 004e 11       		.uleb128 0x11
+ 2791 004f 01       		.uleb128 0x1
+ 2792 0050 12       		.uleb128 0x12
+ 2793 0051 01       		.uleb128 0x1
+ 2794 0052 40       		.uleb128 0x40
+ 2795 0053 0A       		.uleb128 0xa
+ 2796 0054 00       		.byte	0x0
+ 2797 0055 00       		.byte	0x0
+ 2798 0056 07       		.uleb128 0x7
+ 2799 0057 2E       		.uleb128 0x2e
+ 2800 0058 00       		.byte	0x0
+ 2801 0059 3F       		.uleb128 0x3f
+ 2802 005a 0C       		.uleb128 0xc
+ 2803 005b 03       		.uleb128 0x3
+ 2804 005c 0E       		.uleb128 0xe
+ 2805 005d 3A       		.uleb128 0x3a
+ 2806 005e 0B       		.uleb128 0xb
+ 2807 005f 3B       		.uleb128 0x3b
+ 2808 0060 0B       		.uleb128 0xb
+ 2809 0061 27       		.uleb128 0x27
+ 2810 0062 0C       		.uleb128 0xc
+ 2811 0063 11       		.uleb128 0x11
+ 2812 0064 01       		.uleb128 0x1
+ 2813 0065 12       		.uleb128 0x12
+ 2814 0066 01       		.uleb128 0x1
+ 2815 0067 40       		.uleb128 0x40
+ 2816 0068 06       		.uleb128 0x6
+ 2817 0069 00       		.byte	0x0
+ 2818 006a 00       		.byte	0x0
+ 2819 006b 08       		.uleb128 0x8
+ 2820 006c 2E       		.uleb128 0x2e
+ 2821 006d 01       		.byte	0x1
+ 2822 006e 3F       		.uleb128 0x3f
+ 2823 006f 0C       		.uleb128 0xc
+ 2824 0070 03       		.uleb128 0x3
+ 2825 0071 0E       		.uleb128 0xe
+ 2826 0072 3A       		.uleb128 0x3a
+ 2827 0073 0B       		.uleb128 0xb
+ 2828 0074 3B       		.uleb128 0x3b
+ 2829 0075 0B       		.uleb128 0xb
+ 2830 0076 27       		.uleb128 0x27
+ 2831 0077 0C       		.uleb128 0xc
+ 2832 0078 11       		.uleb128 0x11
+ 2833 0079 01       		.uleb128 0x1
+ 2834 007a 12       		.uleb128 0x12
+ 2835 007b 01       		.uleb128 0x1
+ 2836 007c 40       		.uleb128 0x40
+ 2837 007d 06       		.uleb128 0x6
+ 2838 007e 01       		.uleb128 0x1
+ 2839 007f 13       		.uleb128 0x13
+ 2840 0080 00       		.byte	0x0
+ 2841 0081 00       		.byte	0x0
+ 2842 0082 09       		.uleb128 0x9
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 56
+
+
+ 2843 0083 05       		.uleb128 0x5
+ 2844 0084 00       		.byte	0x0
+ 2845 0085 03       		.uleb128 0x3
+ 2846 0086 0E       		.uleb128 0xe
+ 2847 0087 3A       		.uleb128 0x3a
+ 2848 0088 0B       		.uleb128 0xb
+ 2849 0089 3B       		.uleb128 0x3b
+ 2850 008a 0B       		.uleb128 0xb
+ 2851 008b 49       		.uleb128 0x49
+ 2852 008c 13       		.uleb128 0x13
+ 2853 008d 02       		.uleb128 0x2
+ 2854 008e 06       		.uleb128 0x6
+ 2855 008f 00       		.byte	0x0
+ 2856 0090 00       		.byte	0x0
+ 2857 0091 0A       		.uleb128 0xa
+ 2858 0092 01       		.uleb128 0x1
+ 2859 0093 01       		.byte	0x1
+ 2860 0094 49       		.uleb128 0x49
+ 2861 0095 13       		.uleb128 0x13
+ 2862 0096 01       		.uleb128 0x1
+ 2863 0097 13       		.uleb128 0x13
+ 2864 0098 00       		.byte	0x0
+ 2865 0099 00       		.byte	0x0
+ 2866 009a 0B       		.uleb128 0xb
+ 2867 009b 21       		.uleb128 0x21
+ 2868 009c 00       		.byte	0x0
+ 2869 009d 49       		.uleb128 0x49
+ 2870 009e 13       		.uleb128 0x13
+ 2871 009f 2F       		.uleb128 0x2f
+ 2872 00a0 0B       		.uleb128 0xb
+ 2873 00a1 00       		.byte	0x0
+ 2874 00a2 00       		.byte	0x0
+ 2875 00a3 0C       		.uleb128 0xc
+ 2876 00a4 34       		.uleb128 0x34
+ 2877 00a5 00       		.byte	0x0
+ 2878 00a6 03       		.uleb128 0x3
+ 2879 00a7 0E       		.uleb128 0xe
+ 2880 00a8 3A       		.uleb128 0x3a
+ 2881 00a9 0B       		.uleb128 0xb
+ 2882 00aa 3B       		.uleb128 0x3b
+ 2883 00ab 0B       		.uleb128 0xb
+ 2884 00ac 49       		.uleb128 0x49
+ 2885 00ad 13       		.uleb128 0x13
+ 2886 00ae 3F       		.uleb128 0x3f
+ 2887 00af 0C       		.uleb128 0xc
+ 2888 00b0 02       		.uleb128 0x2
+ 2889 00b1 0A       		.uleb128 0xa
+ 2890 00b2 00       		.byte	0x0
+ 2891 00b3 00       		.byte	0x0
+ 2892 00b4 0D       		.uleb128 0xd
+ 2893 00b5 26       		.uleb128 0x26
+ 2894 00b6 00       		.byte	0x0
+ 2895 00b7 49       		.uleb128 0x49
+ 2896 00b8 13       		.uleb128 0x13
+ 2897 00b9 00       		.byte	0x0
+ 2898 00ba 00       		.byte	0x0
+ 2899 00bb 0E       		.uleb128 0xe
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 57
+
+
+ 2900 00bc 34       		.uleb128 0x34
+ 2901 00bd 00       		.byte	0x0
+ 2902 00be 03       		.uleb128 0x3
+ 2903 00bf 0E       		.uleb128 0xe
+ 2904 00c0 3A       		.uleb128 0x3a
+ 2905 00c1 0B       		.uleb128 0xb
+ 2906 00c2 3B       		.uleb128 0x3b
+ 2907 00c3 0B       		.uleb128 0xb
+ 2908 00c4 49       		.uleb128 0x49
+ 2909 00c5 13       		.uleb128 0x13
+ 2910 00c6 3F       		.uleb128 0x3f
+ 2911 00c7 0C       		.uleb128 0xc
+ 2912 00c8 3C       		.uleb128 0x3c
+ 2913 00c9 0C       		.uleb128 0xc
+ 2914 00ca 00       		.byte	0x0
+ 2915 00cb 00       		.byte	0x0
+ 2916 00cc 0F       		.uleb128 0xf
+ 2917 00cd 34       		.uleb128 0x34
+ 2918 00ce 00       		.byte	0x0
+ 2919 00cf 03       		.uleb128 0x3
+ 2920 00d0 08       		.uleb128 0x8
+ 2921 00d1 3A       		.uleb128 0x3a
+ 2922 00d2 0B       		.uleb128 0xb
+ 2923 00d3 3B       		.uleb128 0x3b
+ 2924 00d4 0B       		.uleb128 0xb
+ 2925 00d5 49       		.uleb128 0x49
+ 2926 00d6 13       		.uleb128 0x13
+ 2927 00d7 3F       		.uleb128 0x3f
+ 2928 00d8 0C       		.uleb128 0xc
+ 2929 00d9 02       		.uleb128 0x2
+ 2930 00da 0A       		.uleb128 0xa
+ 2931 00db 00       		.byte	0x0
+ 2932 00dc 00       		.byte	0x0
+ 2933 00dd 00       		.byte	0x0
+ 2934              		.section	.debug_pubnames,"",%progbits
+ 2935 0000 FC020000 		.4byte	0x2fc
+ 2936 0004 0200     		.2byte	0x2
+ 2937 0006 00000000 		.4byte	.Ldebug_info0
+ 2938 000a 33060000 		.4byte	0x633
+ 2939 000e A4000000 		.4byte	0xa4
+ 2940 0012 496E6974 		.ascii	"InitializeCube\000"
+ 2940      69616C69 
+ 2940      7A654375 
+ 2940      626500
+ 2941 0021 B7000000 		.4byte	0xb7
+ 2942 0025 53617665 		.ascii	"SaveOldLinesCube\000"
+ 2942      4F6C644C 
+ 2942      696E6573 
+ 2942      43756265 
+ 2942      00
+ 2943 0036 CA000000 		.4byte	0xca
+ 2944 003a 5363616C 		.ascii	"ScaleDistort\000"
+ 2944      65446973 
+ 2944      746F7274 
+ 2944      00
+ 2945 0047 DF000000 		.4byte	0xdf
+ 2946 004b 4F666673 		.ascii	"OffsetBounce\000"
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 58
+
+
+ 2946      6574426F 
+ 2946      756E6365 
+ 2946      00
+ 2947 0058 F4000000 		.4byte	0xf4
+ 2948 005c 44726177 		.ascii	"DrawCube\000"
+ 2948      43756265 
+ 2948      00
+ 2949 0065 09010000 		.4byte	0x109
+ 2950 0069 50726F6A 		.ascii	"ProjectCube\000"
+ 2950      65637443 
+ 2950      75626500 
+ 2951 0075 1E010000 		.4byte	0x11e
+ 2952 0079 526F7461 		.ascii	"RotateCubeZ\000"
+ 2952      74654375 
+ 2952      62655A00 
+ 2953 0085 47010000 		.4byte	0x147
+ 2954 0089 526F7461 		.ascii	"RotateCubeY\000"
+ 2954      74654375 
+ 2954      62655900 
+ 2955 0095 70010000 		.4byte	0x170
+ 2956 0099 526F7461 		.ascii	"RotateCubeX\000"
+ 2956      74654375 
+ 2956      62655800 
+ 2957 00a5 AF010000 		.4byte	0x1af
+ 2958 00a9 4C43445F 		.ascii	"LCD_FONT8x16\000"
+ 2958      464F4E54 
+ 2958      38783136 
+ 2958      00
+ 2959 00b6 FA010000 		.4byte	0x1fa
+ 2960 00ba 585F7363 		.ascii	"X_scale_flag\000"
+ 2960      616C655F 
+ 2960      666C6167 
+ 2960      00
+ 2961 00c7 0C020000 		.4byte	0x20c
+ 2962 00cb 595F7363 		.ascii	"Y_scale_flag\000"
+ 2962      616C655F 
+ 2962      666C6167 
+ 2962      00
+ 2963 00d8 1E020000 		.4byte	0x21e
+ 2964 00dc 585F6F66 		.ascii	"X_offset_flag\000"
+ 2964      66736574 
+ 2964      5F666C61 
+ 2964      6700
+ 2965 00ea 30020000 		.4byte	0x230
+ 2966 00ee 595F6F66 		.ascii	"Y_offset_flag\000"
+ 2966      66736574 
+ 2966      5F666C61 
+ 2966      6700
+ 2967 00fc 42020000 		.4byte	0x242
+ 2968 0100 61317800 		.ascii	"a1x\000"
+ 2969 0104 54020000 		.4byte	0x254
+ 2970 0108 61317900 		.ascii	"a1y\000"
+ 2971 010c 66020000 		.4byte	0x266
+ 2972 0110 61317A00 		.ascii	"a1z\000"
+ 2973 0114 78020000 		.4byte	0x278
+ 2974 0118 61327800 		.ascii	"a2x\000"
+ 2975 011c 8A020000 		.4byte	0x28a
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 59
+
+
+ 2976 0120 61327900 		.ascii	"a2y\000"
+ 2977 0124 9C020000 		.4byte	0x29c
+ 2978 0128 61327A00 		.ascii	"a2z\000"
+ 2979 012c AE020000 		.4byte	0x2ae
+ 2980 0130 61337800 		.ascii	"a3x\000"
+ 2981 0134 C0020000 		.4byte	0x2c0
+ 2982 0138 61337900 		.ascii	"a3y\000"
+ 2983 013c D2020000 		.4byte	0x2d2
+ 2984 0140 61337A00 		.ascii	"a3z\000"
+ 2985 0144 E4020000 		.4byte	0x2e4
+ 2986 0148 61347800 		.ascii	"a4x\000"
+ 2987 014c F6020000 		.4byte	0x2f6
+ 2988 0150 61347900 		.ascii	"a4y\000"
+ 2989 0154 08030000 		.4byte	0x308
+ 2990 0158 61347A00 		.ascii	"a4z\000"
+ 2991 015c 1A030000 		.4byte	0x31a
+ 2992 0160 61357800 		.ascii	"a5x\000"
+ 2993 0164 2C030000 		.4byte	0x32c
+ 2994 0168 61357900 		.ascii	"a5y\000"
+ 2995 016c 3E030000 		.4byte	0x33e
+ 2996 0170 61357A00 		.ascii	"a5z\000"
+ 2997 0174 50030000 		.4byte	0x350
+ 2998 0178 61367800 		.ascii	"a6x\000"
+ 2999 017c 62030000 		.4byte	0x362
+ 3000 0180 61367900 		.ascii	"a6y\000"
+ 3001 0184 74030000 		.4byte	0x374
+ 3002 0188 61367A00 		.ascii	"a6z\000"
+ 3003 018c 86030000 		.4byte	0x386
+ 3004 0190 61377800 		.ascii	"a7x\000"
+ 3005 0194 98030000 		.4byte	0x398
+ 3006 0198 61377900 		.ascii	"a7y\000"
+ 3007 019c AA030000 		.4byte	0x3aa
+ 3008 01a0 61377A00 		.ascii	"a7z\000"
+ 3009 01a4 BC030000 		.4byte	0x3bc
+ 3010 01a8 61387800 		.ascii	"a8x\000"
+ 3011 01ac CE030000 		.4byte	0x3ce
+ 3012 01b0 61387900 		.ascii	"a8y\000"
+ 3013 01b4 E0030000 		.4byte	0x3e0
+ 3014 01b8 61387A00 		.ascii	"a8z\000"
+ 3015 01bc F2030000 		.4byte	0x3f2
+ 3016 01c0 62317800 		.ascii	"b1x\000"
+ 3017 01c4 04040000 		.4byte	0x404
+ 3018 01c8 62317900 		.ascii	"b1y\000"
+ 3019 01cc 16040000 		.4byte	0x416
+ 3020 01d0 62327800 		.ascii	"b2x\000"
+ 3021 01d4 28040000 		.4byte	0x428
+ 3022 01d8 62327900 		.ascii	"b2y\000"
+ 3023 01dc 3A040000 		.4byte	0x43a
+ 3024 01e0 62337800 		.ascii	"b3x\000"
+ 3025 01e4 4C040000 		.4byte	0x44c
+ 3026 01e8 62337900 		.ascii	"b3y\000"
+ 3027 01ec 5E040000 		.4byte	0x45e
+ 3028 01f0 62347800 		.ascii	"b4x\000"
+ 3029 01f4 70040000 		.4byte	0x470
+ 3030 01f8 62347900 		.ascii	"b4y\000"
+ 3031 01fc 82040000 		.4byte	0x482
+ 3032 0200 62357800 		.ascii	"b5x\000"
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 60
+
+
+ 3033 0204 94040000 		.4byte	0x494
+ 3034 0208 62357900 		.ascii	"b5y\000"
+ 3035 020c A6040000 		.4byte	0x4a6
+ 3036 0210 62367800 		.ascii	"b6x\000"
+ 3037 0214 B8040000 		.4byte	0x4b8
+ 3038 0218 62367900 		.ascii	"b6y\000"
+ 3039 021c CA040000 		.4byte	0x4ca
+ 3040 0220 62377800 		.ascii	"b7x\000"
+ 3041 0224 DC040000 		.4byte	0x4dc
+ 3042 0228 62377900 		.ascii	"b7y\000"
+ 3043 022c EE040000 		.4byte	0x4ee
+ 3044 0230 62387800 		.ascii	"b8x\000"
+ 3045 0234 00050000 		.4byte	0x500
+ 3046 0238 62387900 		.ascii	"b8y\000"
+ 3047 023c 12050000 		.4byte	0x512
+ 3048 0240 6231785F 		.ascii	"b1x_old\000"
+ 3048      6F6C6400 
+ 3049 0248 24050000 		.4byte	0x524
+ 3050 024c 6231795F 		.ascii	"b1y_old\000"
+ 3050      6F6C6400 
+ 3051 0254 36050000 		.4byte	0x536
+ 3052 0258 6232785F 		.ascii	"b2x_old\000"
+ 3052      6F6C6400 
+ 3053 0260 48050000 		.4byte	0x548
+ 3054 0264 6232795F 		.ascii	"b2y_old\000"
+ 3054      6F6C6400 
+ 3055 026c 5A050000 		.4byte	0x55a
+ 3056 0270 6233785F 		.ascii	"b3x_old\000"
+ 3056      6F6C6400 
+ 3057 0278 6C050000 		.4byte	0x56c
+ 3058 027c 6233795F 		.ascii	"b3y_old\000"
+ 3058      6F6C6400 
+ 3059 0284 7E050000 		.4byte	0x57e
+ 3060 0288 6234785F 		.ascii	"b4x_old\000"
+ 3060      6F6C6400 
+ 3061 0290 90050000 		.4byte	0x590
+ 3062 0294 6234795F 		.ascii	"b4y_old\000"
+ 3062      6F6C6400 
+ 3063 029c A2050000 		.4byte	0x5a2
+ 3064 02a0 6235785F 		.ascii	"b5x_old\000"
+ 3064      6F6C6400 
+ 3065 02a8 B4050000 		.4byte	0x5b4
+ 3066 02ac 6235795F 		.ascii	"b5y_old\000"
+ 3066      6F6C6400 
+ 3067 02b4 C6050000 		.4byte	0x5c6
+ 3068 02b8 6236785F 		.ascii	"b6x_old\000"
+ 3068      6F6C6400 
+ 3069 02c0 D8050000 		.4byte	0x5d8
+ 3070 02c4 6236795F 		.ascii	"b6y_old\000"
+ 3070      6F6C6400 
+ 3071 02cc EA050000 		.4byte	0x5ea
+ 3072 02d0 6237785F 		.ascii	"b7x_old\000"
+ 3072      6F6C6400 
+ 3073 02d8 FC050000 		.4byte	0x5fc
+ 3074 02dc 6237795F 		.ascii	"b7y_old\000"
+ 3074      6F6C6400 
+ 3075 02e4 0E060000 		.4byte	0x60e
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 61
+
+
+ 3076 02e8 6238785F 		.ascii	"b8x_old\000"
+ 3076      6F6C6400 
+ 3077 02f0 20060000 		.4byte	0x620
+ 3078 02f4 6238795F 		.ascii	"b8y_old\000"
+ 3078      6F6C6400 
+ 3079 02fc 00000000 		.4byte	0x0
+ 3080              		.section	.debug_aranges,"",%progbits
+ 3081 0000 5C000000 		.4byte	0x5c
+ 3082 0004 0200     		.2byte	0x2
+ 3083 0006 00000000 		.4byte	.Ldebug_info0
+ 3084 000a 04       		.byte	0x4
+ 3085 000b 00       		.byte	0x0
+ 3086 000c 0000     		.2byte	0x0
+ 3087 000e 0000     		.2byte	0x0
+ 3088 0010 00000000 		.4byte	.LFB20
+ 3089 0014 D0000000 		.4byte	.LFE20-.LFB20
+ 3090 0018 00000000 		.4byte	.LFB24
+ 3091 001c 04010000 		.4byte	.LFE24-.LFB24
+ 3092 0020 00000000 		.4byte	.LFB27
+ 3093 0024 A4000000 		.4byte	.LFE27-.LFB27
+ 3094 0028 00000000 		.4byte	.LFB28
+ 3095 002c A0000000 		.4byte	.LFE28-.LFB28
+ 3096 0030 00000000 		.4byte	.LFB26
+ 3097 0034 D0060000 		.4byte	.LFE26-.LFB26
+ 3098 0038 00000000 		.4byte	.LFB25
+ 3099 003c 58010000 		.4byte	.LFE25-.LFB25
+ 3100 0040 00000000 		.4byte	.LFB23
+ 3101 0044 C8000000 		.4byte	.LFE23-.LFB23
+ 3102 0048 00000000 		.4byte	.LFB22
+ 3103 004c C8000000 		.4byte	.LFE22-.LFB22
+ 3104 0050 00000000 		.4byte	.LFB21
+ 3105 0054 C8000000 		.4byte	.LFE21-.LFB21
+ 3106 0058 00000000 		.4byte	0x0
+ 3107 005c 00000000 		.4byte	0x0
+ 3108              		.section	.debug_ranges,"",%progbits
+ 3109              	.Ldebug_ranges0:
+ 3110 0000 00000000 		.4byte	.Ltext0
+ 3111 0004 00000000 		.4byte	.Letext0
+ 3112 0008 00000000 		.4byte	.LFB20
+ 3113 000c D0000000 		.4byte	.LFE20
+ 3114 0010 00000000 		.4byte	.LFB24
+ 3115 0014 04010000 		.4byte	.LFE24
+ 3116 0018 00000000 		.4byte	.LFB27
+ 3117 001c A4000000 		.4byte	.LFE27
+ 3118 0020 00000000 		.4byte	.LFB28
+ 3119 0024 A0000000 		.4byte	.LFE28
+ 3120 0028 00000000 		.4byte	.LFB26
+ 3121 002c D0060000 		.4byte	.LFE26
+ 3122 0030 00000000 		.4byte	.LFB25
+ 3123 0034 58010000 		.4byte	.LFE25
+ 3124 0038 00000000 		.4byte	.LFB23
+ 3125 003c C8000000 		.4byte	.LFE23
+ 3126 0040 00000000 		.4byte	.LFB22
+ 3127 0044 C8000000 		.4byte	.LFE22
+ 3128 0048 00000000 		.4byte	.LFB21
+ 3129 004c C8000000 		.4byte	.LFE21
+ 3130 0050 00000000 		.4byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 62
+
+
+ 3131 0054 00000000 		.4byte	0x0
+ 3132              		.section	.debug_str,"MS",%progbits,1
+ 3133              	.LASF15:
+ 3134 0000 496E6974 		.ascii	"InitializeCube\000"
+ 3134      69616C69 
+ 3134      7A654375 
+ 3134      626500
+ 3135              	.LASF39:
+ 3136 000f 6233795F 		.ascii	"b3y_old\000"
+ 3136      6F6C6400 
+ 3137              	.LASF30:
+ 3138 0017 585F7363 		.ascii	"X_scale_flag\000"
+ 3138      616C655F 
+ 3138      666C6167 
+ 3138      00
+ 3139              	.LASF51:
+ 3140 0024 2E5C4375 		.ascii	".\\Cube.c\000"
+ 3140      62652E63 
+ 3140      00
+ 3141              	.LASF7:
+ 3142 002d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3142      206C6F6E 
+ 3142      6720756E 
+ 3142      7369676E 
+ 3142      65642069 
+ 3143              	.LASF23:
+ 3144 0044 616E676C 		.ascii	"angle\000"
+ 3144      6500
+ 3145              	.LASF50:
+ 3146 004a 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 3146      4320342E 
+ 3146      342E3100 
+ 3147              	.LASF6:
+ 3148 0056 6C6F6E67 		.ascii	"long long int\000"
+ 3148      206C6F6E 
+ 3148      6720696E 
+ 3148      7400
+ 3149              	.LASF0:
+ 3150 0064 7369676E 		.ascii	"signed char\000"
+ 3150      65642063 
+ 3150      68617200 
+ 3151              	.LASF41:
+ 3152 0070 6234795F 		.ascii	"b4y_old\000"
+ 3152      6F6C6400 
+ 3153              	.LASF36:
+ 3154 0078 6232785F 		.ascii	"b2x_old\000"
+ 3154      6F6C6400 
+ 3155              	.LASF4:
+ 3156 0080 6C6F6E67 		.ascii	"long int\000"
+ 3156      20696E74 
+ 3156      00
+ 3157              	.LASF9:
+ 3158 0089 75696E74 		.ascii	"uint8\000"
+ 3158      3800
+ 3159              	.LASF46:
+ 3160 008f 6237785F 		.ascii	"b7x_old\000"
+ 3160      6F6C6400 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 63
+
+
+ 3161              	.LASF12:
+ 3162 0097 646F7562 		.ascii	"double\000"
+ 3162      6C6500
+ 3163              	.LASF20:
+ 3164 009e 50726F6A 		.ascii	"ProjectCube\000"
+ 3164      65637443 
+ 3164      75626500 
+ 3165              	.LASF10:
+ 3166 00aa 75696E74 		.ascii	"uint32\000"
+ 3166      333200
+ 3167              	.LASF49:
+ 3168 00b1 6238795F 		.ascii	"b8y_old\000"
+ 3168      6F6C6400 
+ 3169              	.LASF8:
+ 3170 00b9 756E7369 		.ascii	"unsigned int\000"
+ 3170      676E6564 
+ 3170      20696E74 
+ 3170      00
+ 3171              	.LASF5:
+ 3172 00c6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3172      20756E73 
+ 3172      69676E65 
+ 3172      6420696E 
+ 3172      7400
+ 3173              	.LASF24:
+ 3174 00d8 526F7461 		.ascii	"RotateCubeX\000"
+ 3174      74654375 
+ 3174      62655800 
+ 3175              	.LASF22:
+ 3176 00e4 526F7461 		.ascii	"RotateCubeY\000"
+ 3176      74654375 
+ 3176      62655900 
+ 3177              	.LASF21:
+ 3178 00f0 526F7461 		.ascii	"RotateCubeZ\000"
+ 3178      74654375 
+ 3178      62655A00 
+ 3179              	.LASF3:
+ 3180 00fc 73686F72 		.ascii	"short unsigned int\000"
+ 3180      7420756E 
+ 3180      7369676E 
+ 3180      65642069 
+ 3180      6E7400
+ 3181              	.LASF32:
+ 3182 010f 585F6F66 		.ascii	"X_offset_flag\000"
+ 3182      66736574 
+ 3182      5F666C61 
+ 3182      6700
+ 3183              	.LASF17:
+ 3184 011d 5363616C 		.ascii	"ScaleDistort\000"
+ 3184      65446973 
+ 3184      746F7274 
+ 3184      00
+ 3185              	.LASF38:
+ 3186 012a 6233785F 		.ascii	"b3x_old\000"
+ 3186      6F6C6400 
+ 3187              	.LASF28:
+ 3188 0132 585F5343 		.ascii	"X_SCALE\000"
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 64
+
+
+ 3188      414C4500 
+ 3189              	.LASF31:
+ 3190 013a 595F7363 		.ascii	"Y_scale_flag\000"
+ 3190      616C655F 
+ 3190      666C6167 
+ 3190      00
+ 3191              	.LASF14:
+ 3192 0147 6C6F6E67 		.ascii	"long double\000"
+ 3192      20646F75 
+ 3192      626C6500 
+ 3193              	.LASF35:
+ 3194 0153 6231795F 		.ascii	"b1y_old\000"
+ 3194      6F6C6400 
+ 3195              	.LASF52:
+ 3196 015b 433A5C55 		.ascii	"C:\\Users\\kees\\Documents\\test_projects\\My fun s"
+ 3196      73657273 
+ 3196      5C6B6565 
+ 3196      735C446F 
+ 3196      63756D65 
+ 3197 0189 74756666 		.ascii	"tuff\\3d_cube\\3d_cube.Bundle01\\Design137.cydsn\000"
+ 3197      5C33645F 
+ 3197      63756265 
+ 3197      5C33645F 
+ 3197      63756265 
+ 3198              	.LASF40:
+ 3199 01b7 6234785F 		.ascii	"b4x_old\000"
+ 3199      6F6C6400 
+ 3200              	.LASF27:
+ 3201 01bf 595F4F46 		.ascii	"Y_OFFSET\000"
+ 3201      46534554 
+ 3201      00
+ 3202              	.LASF11:
+ 3203 01c8 666C6F61 		.ascii	"float\000"
+ 3203      7400
+ 3204              	.LASF43:
+ 3205 01ce 6235795F 		.ascii	"b5y_old\000"
+ 3205      6F6C6400 
+ 3206              	.LASF33:
+ 3207 01d6 595F6F66 		.ascii	"Y_offset_flag\000"
+ 3207      66736574 
+ 3207      5F666C61 
+ 3207      6700
+ 3208              	.LASF1:
+ 3209 01e4 756E7369 		.ascii	"unsigned char\000"
+ 3209      676E6564 
+ 3209      20636861 
+ 3209      7200
+ 3210              	.LASF48:
+ 3211 01f2 6238785F 		.ascii	"b8x_old\000"
+ 3211      6F6C6400 
+ 3212              	.LASF2:
+ 3213 01fa 73686F72 		.ascii	"short int\000"
+ 3213      7420696E 
+ 3213      7400
+ 3214              	.LASF16:
+ 3215 0204 53617665 		.ascii	"SaveOldLinesCube\000"
+ 3215      4F6C644C 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cctvj9ob.s 			page 65
+
+
+ 3215      696E6573 
+ 3215      43756265 
+ 3215      00
+ 3216              	.LASF44:
+ 3217 0215 6236785F 		.ascii	"b6x_old\000"
+ 3217      6F6C6400 
+ 3218              	.LASF18:
+ 3219 021d 4F666673 		.ascii	"OffsetBounce\000"
+ 3219      6574426F 
+ 3219      756E6365 
+ 3219      00
+ 3220              	.LASF45:
+ 3221 022a 6236795F 		.ascii	"b6y_old\000"
+ 3221      6F6C6400 
+ 3222              	.LASF13:
+ 3223 0232 63686172 		.ascii	"char\000"
+ 3223      00
+ 3224              	.LASF25:
+ 3225 0237 4C43445F 		.ascii	"LCD_FONT8x16\000"
+ 3225      464F4E54 
+ 3225      38783136 
+ 3225      00
+ 3226              	.LASF47:
+ 3227 0244 6237795F 		.ascii	"b7y_old\000"
+ 3227      6F6C6400 
+ 3228              	.LASF34:
+ 3229 024c 6231785F 		.ascii	"b1x_old\000"
+ 3229      6F6C6400 
+ 3230              	.LASF26:
+ 3231 0254 585F4F46 		.ascii	"X_OFFSET\000"
+ 3231      46534554 
+ 3231      00
+ 3232              	.LASF37:
+ 3233 025d 6232795F 		.ascii	"b2y_old\000"
+ 3233      6F6C6400 
+ 3234              	.LASF29:
+ 3235 0265 595F5343 		.ascii	"Y_SCALE\000"
+ 3235      414C4500 
+ 3236              	.LASF19:
+ 3237 026d 44726177 		.ascii	"DrawCube\000"
+ 3237      43756265 
+ 3237      00
+ 3238              	.LASF42:
+ 3239 0276 6235785F 		.ascii	"b5x_old\000"
+ 3239      6F6C6400 
+ 3240              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

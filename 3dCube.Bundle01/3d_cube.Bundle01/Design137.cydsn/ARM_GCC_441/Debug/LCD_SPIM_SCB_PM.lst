@@ -1,0 +1,739 @@
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"LCD_SPIM_SCB_PM.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 B0000000 		.text
+  19      02007A00 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.text.LCD_SPIM_SCB_Wakeup,"ax",%progbits
+  23              		.align	1
+  24              		.global	LCD_SPIM_SCB_Wakeup
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	LCD_SPIM_SCB_Wakeup, %function
+  28              	LCD_SPIM_SCB_Wakeup:
+  29              	.LFB1:
+  30              		.file 1 ".\\Generated_Source\\PSoC4\\LCD_SPIM_SCB_PM.c"
+   1:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * File Name: LCD_SPIM_SCB_PM.c
+   3:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Version 1.0
+   4:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+   5:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Description:
+   6:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *  This file provides the source code to the Power Management support for
+   7:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *  the SCB Component.
+   8:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+   9:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Note:
+  10:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+  11:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  18:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** #include "LCD_SPIM_SCB.h"
+  19:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  20:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** #if(LCD_SPIM_SCB_SCB_MODE_I2C_INC)
+  21:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #include "LCD_SPIM_SCB_I2C_PVT.h"
+  22:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** #endif /* (LCD_SPIM_SCB_SCB_MODE_I2C_INC) */
+  23:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 2
+
+
+  24:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** #if(LCD_SPIM_SCB_SCB_MODE_SPI_INC || LCD_SPIM_SCB_SCB_MODE_UART_INC)
+  25:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #include "LCD_SPIM_SCB_SPI_UART_PVT.h"
+  26:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** #endif /* (LCD_SPIM_SCB_SCB_MODE_SPI_INC || LCD_SPIM_SCB_SCB_MODE_UART_INC) */
+  27:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  28:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  29:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** /***************************************
+  30:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *   Backup Structure declaration
+  31:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** ***************************************/
+  32:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  33:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** LCD_SPIM_SCB_BACKUP_STRUCT LCD_SPIM_SCB_backup =
+  34:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** {
+  35:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     0u, /* enableState */
+  36:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** };
+  37:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  38:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  39:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** /*******************************************************************************
+  40:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Function Name: LCD_SPIM_SCB_Sleep
+  41:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** ********************************************************************************
+  42:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+  43:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Summary:
+  44:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *  Calls SaveConfig function fucntion for selected mode.
+  45:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+  46:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Parameters:
+  47:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *  None
+  48:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+  49:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Return:
+  50:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *  None
+  51:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+  52:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *******************************************************************************/
+  53:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** void LCD_SPIM_SCB_Sleep(void)
+  54:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** {
+  55:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     LCD_SPIM_SCB_backup.enableState = (uint8) LCD_SPIM_SCB_GET_CTRL_ENABLED;
+  56:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  57:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #if(LCD_SPIM_SCB_SCB_MODE_UNCONFIG_CONST_CFG)
+  58:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  59:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         if(LCD_SPIM_SCB_SCB_MODE_I2C_RUNTM_CFG)
+  60:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         {
+  61:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****             LCD_SPIM_SCB_I2CSaveConfig();
+  62:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         }
+  63:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         else if(LCD_SPIM_SCB_SCB_MODE_SPI_RUNTM_CFG)
+  64:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         {
+  65:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****             LCD_SPIM_SCB_SpiSaveConfig();
+  66:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         }
+  67:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         else if(LCD_SPIM_SCB_SCB_MODE_UART_RUNTM_CFG)
+  68:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         {
+  69:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****             LCD_SPIM_SCB_UartSaveConfig();
+  70:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         }
+  71:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         else
+  72:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         {
+  73:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****             /* Unknown mode: do nothing */
+  74:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         }
+  75:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  76:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #elif(LCD_SPIM_SCB_SCB_MODE_I2C_CONST_CFG)
+  77:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         LCD_SPIM_SCB_I2CSaveConfig();
+  78:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  79:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #elif(LCD_SPIM_SCB_SCB_MODE_SPI_CONST_CFG)
+  80:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         LCD_SPIM_SCB_SpiSaveConfig();
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 3
+
+
+  81:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  82:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #elif(LCD_SPIM_SCB_SCB_MODE_UART_CONST_CFG)
+  83:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         LCD_SPIM_SCB_UartSaveConfig();
+  84:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  85:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #else
+  86:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         /* Do nothing */
+  87:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  88:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #endif /* (LCD_SPIM_SCB_SCB_MODE_UNCONFIG_CONST_CFG) */
+  89:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  90:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     if(0u != LCD_SPIM_SCB_backup.enableState)
+  91:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     {
+  92:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         LCD_SPIM_SCB_Stop();
+  93:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     }
+  94:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** }
+  95:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  96:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+  97:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** /*******************************************************************************
+  98:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Function Name: LCD_SPIM_SCB_Wakeup
+  99:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** ********************************************************************************
+ 100:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+ 101:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Summary:
+ 102:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *  Calls RestoreConfig function fucntion for selected mode.
+ 103:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+ 104:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Parameters:
+ 105:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *  None
+ 106:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+ 107:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** * Return:
+ 108:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *  None
+ 109:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *
+ 110:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** *******************************************************************************/
+ 111:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** void LCD_SPIM_SCB_Wakeup(void)
+ 112:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** {
+  31              		.loc 1 112 0
+  32              		.cfi_startproc
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+ 113:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #if(LCD_SPIM_SCB_SCB_MODE_UNCONFIG_CONST_CFG)
+ 114:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+ 115:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         if(LCD_SPIM_SCB_SCB_MODE_I2C_RUNTM_CFG)
+ 116:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         {
+ 117:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****             LCD_SPIM_SCB_I2CRestoreConfig();
+ 118:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         }
+ 119:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         else if(LCD_SPIM_SCB_SCB_MODE_SPI_RUNTM_CFG)
+ 120:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         {
+ 121:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****             LCD_SPIM_SCB_SpiRestoreConfig();
+ 122:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         }
+ 123:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         else if(LCD_SPIM_SCB_SCB_MODE_UART_RUNTM_CFG)
+ 124:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         {
+ 125:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****             LCD_SPIM_SCB_UartRestoreConfig();
+ 126:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         }
+ 127:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         else
+ 128:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         {
+ 129:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****             /* Unknown mode: do nothing */
+ 130:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         }
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 4
+
+
+ 131:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+ 132:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #elif(LCD_SPIM_SCB_SCB_MODE_I2C_CONST_CFG)
+ 133:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         LCD_SPIM_SCB_I2CRestoreConfig();
+ 134:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+ 135:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #elif(LCD_SPIM_SCB_SCB_MODE_SPI_CONST_CFG)
+ 136:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         LCD_SPIM_SCB_SpiRestoreConfig();
+  38              		.loc 1 136 0
+  39 0002 FFF7FEFF 		bl	LCD_SPIM_SCB_SpiRestoreConfig
+ 137:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+ 138:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #elif(LCD_SPIM_SCB_SCB_MODE_UART_CONST_CFG)
+ 139:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         LCD_SPIM_SCB_UartRestoreConfig();
+ 140:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+ 141:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #else
+ 142:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         /* Do nothing */
+ 143:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+ 144:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     #endif /* (LCD_SPIM_SCB_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 145:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** 
+ 146:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     if(0u != LCD_SPIM_SCB_backup.enableState)
+  40              		.loc 1 146 0
+  41 0006 034B     		ldr	r3, .L5
+  42 0008 1B78     		ldrb	r3, [r3]
+  43 000a 002B     		cmp	r3, #0
+  44 000c 01D0     		beq	.L3
+ 147:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     {
+ 148:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****         LCD_SPIM_SCB_Enable();
+  45              		.loc 1 148 0
+  46 000e FFF7FEFF 		bl	LCD_SPIM_SCB_Enable
+  47              	.L3:
+ 149:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c ****     }
+ 150:.\Generated_Source\PSoC4/LCD_SPIM_SCB_PM.c **** }
+  48              		.loc 1 150 0
+  49              		@ sp needed for prologue
+  50 0012 08BD     		pop	{r3, pc}
+  51              	.L6:
+  52              		.align	2
+  53              	.L5:
+  54 0014 00000000 		.word	.LANCHOR0
+  55              		.cfi_endproc
+  56              	.LFE1:
+  57              		.size	LCD_SPIM_SCB_Wakeup, .-LCD_SPIM_SCB_Wakeup
+  58              		.section	.text.LCD_SPIM_SCB_Sleep,"ax",%progbits
+  59              		.align	1
+  60              		.global	LCD_SPIM_SCB_Sleep
+  61              		.code	16
+  62              		.thumb_func
+  63              		.type	LCD_SPIM_SCB_Sleep, %function
+  64              	LCD_SPIM_SCB_Sleep:
+  65              	.LFB0:
+  66              		.loc 1 54 0
+  67              		.cfi_startproc
+  68 0000 10B5     		push	{r4, lr}
+  69              	.LCFI1:
+  70              		.cfi_def_cfa_offset 8
+  71              		.cfi_offset 4, -8
+  72              		.cfi_offset 14, -4
+  73              		.loc 1 55 0
+  74 0002 064B     		ldr	r3, .L10
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 5
+
+
+  75 0004 064C     		ldr	r4, .L10+4
+  76 0006 1B68     		ldr	r3, [r3]
+  77 0008 DB0F     		lsr	r3, r3, #31
+  78 000a 2370     		strb	r3, [r4]
+  79              		.loc 1 80 0
+  80 000c FFF7FEFF 		bl	LCD_SPIM_SCB_SpiSaveConfig
+  81              		.loc 1 90 0
+  82 0010 2378     		ldrb	r3, [r4]
+  83 0012 002B     		cmp	r3, #0
+  84 0014 01D0     		beq	.L9
+  85              		.loc 1 92 0
+  86 0016 FFF7FEFF 		bl	LCD_SPIM_SCB_Stop
+  87              	.L9:
+  88              		.loc 1 94 0
+  89              		@ sp needed for prologue
+  90 001a 10BD     		pop	{r4, pc}
+  91              	.L11:
+  92              		.align	2
+  93              	.L10:
+  94 001c 00000740 		.word	1074200576
+  95 0020 00000000 		.word	.LANCHOR0
+  96              		.cfi_endproc
+  97              	.LFE0:
+  98              		.size	LCD_SPIM_SCB_Sleep, .-LCD_SPIM_SCB_Sleep
+  99              		.global	LCD_SPIM_SCB_backup
+ 100              		.bss
+ 101              		.align	2
+ 102              		.set	.LANCHOR0,. + 0
+ 103              		.type	LCD_SPIM_SCB_backup, %object
+ 104              		.size	LCD_SPIM_SCB_backup, 1
+ 105              	LCD_SPIM_SCB_backup:
+ 106 0000 00       		.space	1
+ 107 0001 000000   		.text
+ 108              	.Letext0:
+ 109              		.section	.debug_loc,"",%progbits
+ 110              	.Ldebug_loc0:
+ 111              	.LLST0:
+ 112 0000 00000000 		.4byte	.LFB1
+ 113 0004 02000000 		.4byte	.LCFI0
+ 114 0008 0100     		.2byte	0x1
+ 115 000a 5D       		.byte	0x5d
+ 116 000b 02000000 		.4byte	.LCFI0
+ 117 000f 18000000 		.4byte	.LFE1
+ 118 0013 0200     		.2byte	0x2
+ 119 0015 7D       		.byte	0x7d
+ 120 0016 08       		.sleb128 8
+ 121 0017 00000000 		.4byte	0x0
+ 122 001b 00000000 		.4byte	0x0
+ 123              	.LLST1:
+ 124 001f 00000000 		.4byte	.LFB0
+ 125 0023 02000000 		.4byte	.LCFI1
+ 126 0027 0100     		.2byte	0x1
+ 127 0029 5D       		.byte	0x5d
+ 128 002a 02000000 		.4byte	.LCFI1
+ 129 002e 24000000 		.4byte	.LFE0
+ 130 0032 0200     		.2byte	0x2
+ 131 0034 7D       		.byte	0x7d
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 6
+
+
+ 132 0035 08       		.sleb128 8
+ 133 0036 00000000 		.4byte	0x0
+ 134 003a 00000000 		.4byte	0x0
+ 135              		.file 2 ".\\Generated_Source\\PSoC4\\/cytypes.h"
+ 136              		.file 3 ".\\Generated_Source\\PSoC4\\/LCD_SPIM_SCB.h"
+ 137              		.section	.debug_info
+ 138 0000 ED000000 		.4byte	0xed
+ 139 0004 0200     		.2byte	0x2
+ 140 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 141 000a 04       		.byte	0x4
+ 142 000b 01       		.uleb128 0x1
+ 143 000c B0000000 		.4byte	.LASF16
+ 144 0010 01       		.byte	0x1
+ 145 0011 27000000 		.4byte	.LASF17
+ 146 0015 BC000000 		.4byte	.LASF18
+ 147 0019 00000000 		.4byte	0x0
+ 148 001d 00000000 		.4byte	0x0
+ 149 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 150 0025 00000000 		.4byte	.Ldebug_line0
+ 151 0029 02       		.uleb128 0x2
+ 152 002a 01       		.byte	0x1
+ 153 002b 06       		.byte	0x6
+ 154 002c 4E010000 		.4byte	.LASF0
+ 155 0030 02       		.uleb128 0x2
+ 156 0031 01       		.byte	0x1
+ 157 0032 08       		.byte	0x8
+ 158 0033 18010000 		.4byte	.LASF1
+ 159 0037 02       		.uleb128 0x2
+ 160 0038 02       		.byte	0x2
+ 161 0039 05       		.byte	0x5
+ 162 003a 60010000 		.4byte	.LASF2
+ 163 003e 02       		.uleb128 0x2
+ 164 003f 02       		.byte	0x2
+ 165 0040 07       		.byte	0x7
+ 166 0041 3B010000 		.4byte	.LASF3
+ 167 0045 02       		.uleb128 0x2
+ 168 0046 04       		.byte	0x4
+ 169 0047 05       		.byte	0x5
+ 170 0048 2B010000 		.4byte	.LASF4
+ 171 004c 02       		.uleb128 0x2
+ 172 004d 04       		.byte	0x4
+ 173 004e 07       		.byte	0x7
+ 174 004f 58000000 		.4byte	.LASF5
+ 175 0053 02       		.uleb128 0x2
+ 176 0054 08       		.byte	0x8
+ 177 0055 05       		.byte	0x5
+ 178 0056 00000000 		.4byte	.LASF6
+ 179 005a 02       		.uleb128 0x2
+ 180 005b 08       		.byte	0x8
+ 181 005c 07       		.byte	0x7
+ 182 005d 6A000000 		.4byte	.LASF7
+ 183 0061 03       		.uleb128 0x3
+ 184 0062 04       		.byte	0x4
+ 185 0063 05       		.byte	0x5
+ 186 0064 696E7400 		.ascii	"int\000"
+ 187 0068 02       		.uleb128 0x2
+ 188 0069 04       		.byte	0x4
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 7
+
+
+ 189 006a 07       		.byte	0x7
+ 190 006b 1A000000 		.4byte	.LASF8
+ 191 006f 04       		.uleb128 0x4
+ 192 0070 52000000 		.4byte	.LASF12
+ 193 0074 02       		.byte	0x2
+ 194 0075 4C       		.byte	0x4c
+ 195 0076 30000000 		.4byte	0x30
+ 196 007a 02       		.uleb128 0x2
+ 197 007b 04       		.byte	0x4
+ 198 007c 04       		.byte	0x4
+ 199 007d 5A010000 		.4byte	.LASF9
+ 200 0081 02       		.uleb128 0x2
+ 201 0082 08       		.byte	0x8
+ 202 0083 04       		.byte	0x4
+ 203 0084 34010000 		.4byte	.LASF10
+ 204 0088 02       		.uleb128 0x2
+ 205 0089 01       		.byte	0x1
+ 206 008a 08       		.byte	0x8
+ 207 008b 26010000 		.4byte	.LASF11
+ 208 008f 05       		.uleb128 0x5
+ 209 0090 04       		.byte	0x4
+ 210 0091 07       		.byte	0x7
+ 211 0092 06       		.uleb128 0x6
+ 212 0093 01       		.byte	0x1
+ 213 0094 03       		.byte	0x3
+ 214 0095 5C       		.byte	0x5c
+ 215 0096 A9000000 		.4byte	0xa9
+ 216 009a 07       		.uleb128 0x7
+ 217 009b 0E000000 		.4byte	.LASF19
+ 218 009f 03       		.byte	0x3
+ 219 00a0 5D       		.byte	0x5d
+ 220 00a1 6F000000 		.4byte	0x6f
+ 221 00a5 02       		.byte	0x2
+ 222 00a6 23       		.byte	0x23
+ 223 00a7 00       		.uleb128 0x0
+ 224 00a8 00       		.byte	0x0
+ 225 00a9 04       		.uleb128 0x4
+ 226 00aa 81000000 		.4byte	.LASF13
+ 227 00ae 03       		.byte	0x3
+ 228 00af 5E       		.byte	0x5e
+ 229 00b0 92000000 		.4byte	0x92
+ 230 00b4 08       		.uleb128 0x8
+ 231 00b5 01       		.byte	0x1
+ 232 00b6 7D010000 		.4byte	.LASF14
+ 233 00ba 01       		.byte	0x1
+ 234 00bb 6F       		.byte	0x6f
+ 235 00bc 01       		.byte	0x1
+ 236 00bd 00000000 		.4byte	.LFB1
+ 237 00c1 18000000 		.4byte	.LFE1
+ 238 00c5 00000000 		.4byte	.LLST0
+ 239 00c9 08       		.uleb128 0x8
+ 240 00ca 01       		.byte	0x1
+ 241 00cb 6A010000 		.4byte	.LASF15
+ 242 00cf 01       		.byte	0x1
+ 243 00d0 35       		.byte	0x35
+ 244 00d1 01       		.byte	0x1
+ 245 00d2 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 8
+
+
+ 246 00d6 24000000 		.4byte	.LFE0
+ 247 00da 1F000000 		.4byte	.LLST1
+ 248 00de 09       		.uleb128 0x9
+ 249 00df 9C000000 		.4byte	.LASF20
+ 250 00e3 01       		.byte	0x1
+ 251 00e4 21       		.byte	0x21
+ 252 00e5 A9000000 		.4byte	0xa9
+ 253 00e9 01       		.byte	0x1
+ 254 00ea 05       		.byte	0x5
+ 255 00eb 03       		.byte	0x3
+ 256 00ec 00000000 		.4byte	LCD_SPIM_SCB_backup
+ 257 00f0 00       		.byte	0x0
+ 258              		.section	.debug_abbrev
+ 259 0000 01       		.uleb128 0x1
+ 260 0001 11       		.uleb128 0x11
+ 261 0002 01       		.byte	0x1
+ 262 0003 25       		.uleb128 0x25
+ 263 0004 0E       		.uleb128 0xe
+ 264 0005 13       		.uleb128 0x13
+ 265 0006 0B       		.uleb128 0xb
+ 266 0007 03       		.uleb128 0x3
+ 267 0008 0E       		.uleb128 0xe
+ 268 0009 1B       		.uleb128 0x1b
+ 269 000a 0E       		.uleb128 0xe
+ 270 000b 11       		.uleb128 0x11
+ 271 000c 01       		.uleb128 0x1
+ 272 000d 52       		.uleb128 0x52
+ 273 000e 01       		.uleb128 0x1
+ 274 000f 55       		.uleb128 0x55
+ 275 0010 06       		.uleb128 0x6
+ 276 0011 10       		.uleb128 0x10
+ 277 0012 06       		.uleb128 0x6
+ 278 0013 00       		.byte	0x0
+ 279 0014 00       		.byte	0x0
+ 280 0015 02       		.uleb128 0x2
+ 281 0016 24       		.uleb128 0x24
+ 282 0017 00       		.byte	0x0
+ 283 0018 0B       		.uleb128 0xb
+ 284 0019 0B       		.uleb128 0xb
+ 285 001a 3E       		.uleb128 0x3e
+ 286 001b 0B       		.uleb128 0xb
+ 287 001c 03       		.uleb128 0x3
+ 288 001d 0E       		.uleb128 0xe
+ 289 001e 00       		.byte	0x0
+ 290 001f 00       		.byte	0x0
+ 291 0020 03       		.uleb128 0x3
+ 292 0021 24       		.uleb128 0x24
+ 293 0022 00       		.byte	0x0
+ 294 0023 0B       		.uleb128 0xb
+ 295 0024 0B       		.uleb128 0xb
+ 296 0025 3E       		.uleb128 0x3e
+ 297 0026 0B       		.uleb128 0xb
+ 298 0027 03       		.uleb128 0x3
+ 299 0028 08       		.uleb128 0x8
+ 300 0029 00       		.byte	0x0
+ 301 002a 00       		.byte	0x0
+ 302 002b 04       		.uleb128 0x4
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 9
+
+
+ 303 002c 16       		.uleb128 0x16
+ 304 002d 00       		.byte	0x0
+ 305 002e 03       		.uleb128 0x3
+ 306 002f 0E       		.uleb128 0xe
+ 307 0030 3A       		.uleb128 0x3a
+ 308 0031 0B       		.uleb128 0xb
+ 309 0032 3B       		.uleb128 0x3b
+ 310 0033 0B       		.uleb128 0xb
+ 311 0034 49       		.uleb128 0x49
+ 312 0035 13       		.uleb128 0x13
+ 313 0036 00       		.byte	0x0
+ 314 0037 00       		.byte	0x0
+ 315 0038 05       		.uleb128 0x5
+ 316 0039 24       		.uleb128 0x24
+ 317 003a 00       		.byte	0x0
+ 318 003b 0B       		.uleb128 0xb
+ 319 003c 0B       		.uleb128 0xb
+ 320 003d 3E       		.uleb128 0x3e
+ 321 003e 0B       		.uleb128 0xb
+ 322 003f 00       		.byte	0x0
+ 323 0040 00       		.byte	0x0
+ 324 0041 06       		.uleb128 0x6
+ 325 0042 13       		.uleb128 0x13
+ 326 0043 01       		.byte	0x1
+ 327 0044 0B       		.uleb128 0xb
+ 328 0045 0B       		.uleb128 0xb
+ 329 0046 3A       		.uleb128 0x3a
+ 330 0047 0B       		.uleb128 0xb
+ 331 0048 3B       		.uleb128 0x3b
+ 332 0049 0B       		.uleb128 0xb
+ 333 004a 01       		.uleb128 0x1
+ 334 004b 13       		.uleb128 0x13
+ 335 004c 00       		.byte	0x0
+ 336 004d 00       		.byte	0x0
+ 337 004e 07       		.uleb128 0x7
+ 338 004f 0D       		.uleb128 0xd
+ 339 0050 00       		.byte	0x0
+ 340 0051 03       		.uleb128 0x3
+ 341 0052 0E       		.uleb128 0xe
+ 342 0053 3A       		.uleb128 0x3a
+ 343 0054 0B       		.uleb128 0xb
+ 344 0055 3B       		.uleb128 0x3b
+ 345 0056 0B       		.uleb128 0xb
+ 346 0057 49       		.uleb128 0x49
+ 347 0058 13       		.uleb128 0x13
+ 348 0059 38       		.uleb128 0x38
+ 349 005a 0A       		.uleb128 0xa
+ 350 005b 00       		.byte	0x0
+ 351 005c 00       		.byte	0x0
+ 352 005d 08       		.uleb128 0x8
+ 353 005e 2E       		.uleb128 0x2e
+ 354 005f 00       		.byte	0x0
+ 355 0060 3F       		.uleb128 0x3f
+ 356 0061 0C       		.uleb128 0xc
+ 357 0062 03       		.uleb128 0x3
+ 358 0063 0E       		.uleb128 0xe
+ 359 0064 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 10
+
+
+ 360 0065 0B       		.uleb128 0xb
+ 361 0066 3B       		.uleb128 0x3b
+ 362 0067 0B       		.uleb128 0xb
+ 363 0068 27       		.uleb128 0x27
+ 364 0069 0C       		.uleb128 0xc
+ 365 006a 11       		.uleb128 0x11
+ 366 006b 01       		.uleb128 0x1
+ 367 006c 12       		.uleb128 0x12
+ 368 006d 01       		.uleb128 0x1
+ 369 006e 40       		.uleb128 0x40
+ 370 006f 06       		.uleb128 0x6
+ 371 0070 00       		.byte	0x0
+ 372 0071 00       		.byte	0x0
+ 373 0072 09       		.uleb128 0x9
+ 374 0073 34       		.uleb128 0x34
+ 375 0074 00       		.byte	0x0
+ 376 0075 03       		.uleb128 0x3
+ 377 0076 0E       		.uleb128 0xe
+ 378 0077 3A       		.uleb128 0x3a
+ 379 0078 0B       		.uleb128 0xb
+ 380 0079 3B       		.uleb128 0x3b
+ 381 007a 0B       		.uleb128 0xb
+ 382 007b 49       		.uleb128 0x49
+ 383 007c 13       		.uleb128 0x13
+ 384 007d 3F       		.uleb128 0x3f
+ 385 007e 0C       		.uleb128 0xc
+ 386 007f 02       		.uleb128 0x2
+ 387 0080 0A       		.uleb128 0xa
+ 388 0081 00       		.byte	0x0
+ 389 0082 00       		.byte	0x0
+ 390 0083 00       		.byte	0x0
+ 391              		.section	.debug_pubnames,"",%progbits
+ 392 0000 55000000 		.4byte	0x55
+ 393 0004 0200     		.2byte	0x2
+ 394 0006 00000000 		.4byte	.Ldebug_info0
+ 395 000a F1000000 		.4byte	0xf1
+ 396 000e B4000000 		.4byte	0xb4
+ 397 0012 4C43445F 		.ascii	"LCD_SPIM_SCB_Wakeup\000"
+ 397      5350494D 
+ 397      5F534342 
+ 397      5F57616B 
+ 397      65757000 
+ 398 0026 C9000000 		.4byte	0xc9
+ 399 002a 4C43445F 		.ascii	"LCD_SPIM_SCB_Sleep\000"
+ 399      5350494D 
+ 399      5F534342 
+ 399      5F536C65 
+ 399      657000
+ 400 003d DE000000 		.4byte	0xde
+ 401 0041 4C43445F 		.ascii	"LCD_SPIM_SCB_backup\000"
+ 401      5350494D 
+ 401      5F534342 
+ 401      5F626163 
+ 401      6B757000 
+ 402 0055 00000000 		.4byte	0x0
+ 403              		.section	.debug_aranges,"",%progbits
+ 404 0000 24000000 		.4byte	0x24
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 11
+
+
+ 405 0004 0200     		.2byte	0x2
+ 406 0006 00000000 		.4byte	.Ldebug_info0
+ 407 000a 04       		.byte	0x4
+ 408 000b 00       		.byte	0x0
+ 409 000c 0000     		.2byte	0x0
+ 410 000e 0000     		.2byte	0x0
+ 411 0010 00000000 		.4byte	.LFB1
+ 412 0014 18000000 		.4byte	.LFE1-.LFB1
+ 413 0018 00000000 		.4byte	.LFB0
+ 414 001c 24000000 		.4byte	.LFE0-.LFB0
+ 415 0020 00000000 		.4byte	0x0
+ 416 0024 00000000 		.4byte	0x0
+ 417              		.section	.debug_ranges,"",%progbits
+ 418              	.Ldebug_ranges0:
+ 419 0000 00000000 		.4byte	.Ltext0
+ 420 0004 00000000 		.4byte	.Letext0
+ 421 0008 00000000 		.4byte	.LFB1
+ 422 000c 18000000 		.4byte	.LFE1
+ 423 0010 00000000 		.4byte	.LFB0
+ 424 0014 24000000 		.4byte	.LFE0
+ 425 0018 00000000 		.4byte	0x0
+ 426 001c 00000000 		.4byte	0x0
+ 427              		.section	.debug_str,"MS",%progbits,1
+ 428              	.LASF6:
+ 429 0000 6C6F6E67 		.ascii	"long long int\000"
+ 429      206C6F6E 
+ 429      6720696E 
+ 429      7400
+ 430              	.LASF19:
+ 431 000e 656E6162 		.ascii	"enableState\000"
+ 431      6C655374 
+ 431      61746500 
+ 432              	.LASF8:
+ 433 001a 756E7369 		.ascii	"unsigned int\000"
+ 433      676E6564 
+ 433      20696E74 
+ 433      00
+ 434              	.LASF17:
+ 435 0027 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\LCD_SPIM_SCB_PM.c\000"
+ 435      6E657261 
+ 435      7465645F 
+ 435      536F7572 
+ 435      63655C50 
+ 436              	.LASF12:
+ 437 0052 75696E74 		.ascii	"uint8\000"
+ 437      3800
+ 438              	.LASF5:
+ 439 0058 6C6F6E67 		.ascii	"long unsigned int\000"
+ 439      20756E73 
+ 439      69676E65 
+ 439      6420696E 
+ 439      7400
+ 440              	.LASF7:
+ 441 006a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 441      206C6F6E 
+ 441      6720756E 
+ 441      7369676E 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 12
+
+
+ 441      65642069 
+ 442              	.LASF13:
+ 443 0081 4C43445F 		.ascii	"LCD_SPIM_SCB_BACKUP_STRUCT\000"
+ 443      5350494D 
+ 443      5F534342 
+ 443      5F424143 
+ 443      4B55505F 
+ 444              	.LASF20:
+ 445 009c 4C43445F 		.ascii	"LCD_SPIM_SCB_backup\000"
+ 445      5350494D 
+ 445      5F534342 
+ 445      5F626163 
+ 445      6B757000 
+ 446              	.LASF16:
+ 447 00b0 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 447      4320342E 
+ 447      342E3100 
+ 448              	.LASF18:
+ 449 00bc 433A5C55 		.ascii	"C:\\Users\\kees\\Documents\\test_projects\\My fun s"
+ 449      73657273 
+ 449      5C6B6565 
+ 449      735C446F 
+ 449      63756D65 
+ 450 00ea 74756666 		.ascii	"tuff\\3d_cube\\3d_cube.Bundle01\\Design137.cydsn\000"
+ 450      5C33645F 
+ 450      63756265 
+ 450      5C33645F 
+ 450      63756265 
+ 451              	.LASF1:
+ 452 0118 756E7369 		.ascii	"unsigned char\000"
+ 452      676E6564 
+ 452      20636861 
+ 452      7200
+ 453              	.LASF11:
+ 454 0126 63686172 		.ascii	"char\000"
+ 454      00
+ 455              	.LASF4:
+ 456 012b 6C6F6E67 		.ascii	"long int\000"
+ 456      20696E74 
+ 456      00
+ 457              	.LASF10:
+ 458 0134 646F7562 		.ascii	"double\000"
+ 458      6C6500
+ 459              	.LASF3:
+ 460 013b 73686F72 		.ascii	"short unsigned int\000"
+ 460      7420756E 
+ 460      7369676E 
+ 460      65642069 
+ 460      6E7400
+ 461              	.LASF0:
+ 462 014e 7369676E 		.ascii	"signed char\000"
+ 462      65642063 
+ 462      68617200 
+ 463              	.LASF9:
+ 464 015a 666C6F61 		.ascii	"float\000"
+ 464      7400
+ 465              	.LASF2:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\ccUP3zdC.s 			page 13
+
+
+ 466 0160 73686F72 		.ascii	"short int\000"
+ 466      7420696E 
+ 466      7400
+ 467              	.LASF15:
+ 468 016a 4C43445F 		.ascii	"LCD_SPIM_SCB_Sleep\000"
+ 468      5350494D 
+ 468      5F534342 
+ 468      5F536C65 
+ 468      657000
+ 469              	.LASF14:
+ 470 017d 4C43445F 		.ascii	"LCD_SPIM_SCB_Wakeup\000"
+ 470      5350494D 
+ 470      5F534342 
+ 470      5F57616B 
+ 470      65757000 
+ 471              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

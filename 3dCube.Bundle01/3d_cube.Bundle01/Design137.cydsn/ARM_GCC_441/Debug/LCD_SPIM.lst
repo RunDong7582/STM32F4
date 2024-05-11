@@ -1,0 +1,4004 @@
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"LCD_SPIM.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 92020000 		.text
+  19      02006100 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.text.LCD_SPIM_EnableTxInt,"ax",%progbits
+  23              		.align	1
+  24              		.global	LCD_SPIM_EnableTxInt
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	LCD_SPIM_EnableTxInt, %function
+  28              	LCD_SPIM_EnableTxInt:
+  29              	.LFB4:
+  30              		.file 1 ".\\Generated_Source\\PSoC4\\LCD_SPIM.c"
+   1:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/LCD_SPIM.c **** * File Name: LCD_SPIM.c
+   3:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Version 2.40
+   4:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+   5:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Description:
+   6:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  This file provides all API functionality of the SPI Master component.
+   7:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+   8:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Note:
+   9:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+  10:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+  11:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/LCD_SPIM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC4/LCD_SPIM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC4/LCD_SPIM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  18:.\Generated_Source\PSoC4/LCD_SPIM.c **** #include "LCD_SPIM_PVT.h"
+  19:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  20:.\Generated_Source\PSoC4/LCD_SPIM.c **** #if(LCD_SPIM_TX_SOFTWARE_BUF_ENABLED)
+  21:.\Generated_Source\PSoC4/LCD_SPIM.c ****     volatile uint16 LCD_SPIM_txBuffer[LCD_SPIM_TX_BUFFER_SIZE] = {0u};
+  22:.\Generated_Source\PSoC4/LCD_SPIM.c ****     volatile uint8 LCD_SPIM_txBufferFull;
+  23:.\Generated_Source\PSoC4/LCD_SPIM.c ****     volatile uint8 LCD_SPIM_txBufferRead;
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 2
+
+
+  24:.\Generated_Source\PSoC4/LCD_SPIM.c ****     volatile uint8 LCD_SPIM_txBufferWrite;
+  25:.\Generated_Source\PSoC4/LCD_SPIM.c **** #endif /* (LCD_SPIM_TX_SOFTWARE_BUF_ENABLED) */
+  26:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  27:.\Generated_Source\PSoC4/LCD_SPIM.c **** #if(LCD_SPIM_RX_SOFTWARE_BUF_ENABLED)
+  28:.\Generated_Source\PSoC4/LCD_SPIM.c ****     volatile uint16 LCD_SPIM_rxBuffer[LCD_SPIM_RX_BUFFER_SIZE] = {0u};
+  29:.\Generated_Source\PSoC4/LCD_SPIM.c ****     volatile uint8 LCD_SPIM_rxBufferFull;
+  30:.\Generated_Source\PSoC4/LCD_SPIM.c ****     volatile uint8 LCD_SPIM_rxBufferRead;
+  31:.\Generated_Source\PSoC4/LCD_SPIM.c ****     volatile uint8 LCD_SPIM_rxBufferWrite;
+  32:.\Generated_Source\PSoC4/LCD_SPIM.c **** #endif /* (LCD_SPIM_RX_SOFTWARE_BUF_ENABLED) */
+  33:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  34:.\Generated_Source\PSoC4/LCD_SPIM.c **** uint8 LCD_SPIM_initVar = 0u;
+  35:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  36:.\Generated_Source\PSoC4/LCD_SPIM.c **** volatile uint8 LCD_SPIM_swStatusTx;
+  37:.\Generated_Source\PSoC4/LCD_SPIM.c **** volatile uint8 LCD_SPIM_swStatusRx;
+  38:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  39:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  40:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+  41:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_Init
+  42:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+  43:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+  44:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+  45:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Inits/Restores default SPIM configuration provided with customizer.
+  46:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+  47:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+  48:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+  49:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+  50:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+  51:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+  52:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+  53:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+  54:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  When this function is called it initializes all of the necessary parameters
+  55:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  for execution. i.e. setting the initial interrupt mask, configuring the
+  56:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  interrupt service routine, configuring the bit-counter parameters and
+  57:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  clearing the FIFO and Status Register.
+  58:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+  59:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+  60:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+  61:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+  62:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+  63:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_Init(void) 
+  64:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+  65:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Initialize the Bit counter */
+  66:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_COUNTER_PERIOD_REG = LCD_SPIM_BITCTR_INIT;
+  67:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  68:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Init TX ISR  */
+  69:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(0u != LCD_SPIM_INTERNAL_TX_INT_ENABLED)
+  70:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CyIntDisable         (LCD_SPIM_TX_ISR_NUMBER);
+  71:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CyIntSetPriority     (LCD_SPIM_TX_ISR_NUMBER,  LCD_SPIM_TX_ISR_PRIORITY);
+  72:.\Generated_Source\PSoC4/LCD_SPIM.c ****         (void) CyIntSetVector(LCD_SPIM_TX_ISR_NUMBER, &LCD_SPIM_TX_ISR);
+  73:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (0u != LCD_SPIM_INTERNAL_TX_INT_ENABLED) */
+  74:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  75:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Init RX ISR  */
+  76:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(0u != LCD_SPIM_INTERNAL_RX_INT_ENABLED)
+  77:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CyIntDisable         (LCD_SPIM_RX_ISR_NUMBER);
+  78:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CyIntSetPriority     (LCD_SPIM_RX_ISR_NUMBER,  LCD_SPIM_RX_ISR_PRIORITY);
+  79:.\Generated_Source\PSoC4/LCD_SPIM.c ****         (void) CyIntSetVector(LCD_SPIM_RX_ISR_NUMBER, &LCD_SPIM_RX_ISR);
+  80:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (0u != LCD_SPIM_INTERNAL_RX_INT_ENABLED) */
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 3
+
+
+  81:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  82:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Clear any stray data from the RX and TX FIFO */
+  83:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_ClearFIFO();
+  84:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  85:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_RX_SOFTWARE_BUF_ENABLED)
+  86:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_rxBufferFull  = 0u;
+  87:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_rxBufferRead  = 0u;
+  88:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_rxBufferWrite = 0u;
+  89:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_RX_SOFTWARE_BUF_ENABLED) */
+  90:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  91:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_TX_SOFTWARE_BUF_ENABLED)
+  92:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_txBufferFull  = 0u;
+  93:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_txBufferRead  = 0u;
+  94:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_txBufferWrite = 0u;
+  95:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_TX_SOFTWARE_BUF_ENABLED) */
+  96:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+  97:.\Generated_Source\PSoC4/LCD_SPIM.c ****     (void) LCD_SPIM_ReadTxStatus(); /* Clear Tx status and swStatusTx */
+  98:.\Generated_Source\PSoC4/LCD_SPIM.c ****     (void) LCD_SPIM_ReadRxStatus(); /* Clear Rx status and swStatusRx */
+  99:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 100:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Configure TX and RX interrupt mask */
+ 101:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_TX_STATUS_MASK_REG = LCD_SPIM_TX_INIT_INTERRUPTS_MASK;
+ 102:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_RX_STATUS_MASK_REG = LCD_SPIM_RX_INIT_INTERRUPTS_MASK;
+ 103:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 104:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 105:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 106:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 107:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_Enable
+ 108:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 109:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 110:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 111:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enable SPIM component.
+ 112:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 113:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 114:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 115:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 116:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 117:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 118:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 119:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 120:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_Enable(void) 
+ 121:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 122:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 enableInterrupts;
+ 123:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 124:.\Generated_Source\PSoC4/LCD_SPIM.c ****     enableInterrupts = CyEnterCriticalSection();
+ 125:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_COUNTER_CONTROL_REG |= LCD_SPIM_CNTR_ENABLE;
+ 126:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_TX_STATUS_ACTL_REG  |= LCD_SPIM_INT_ENABLE;
+ 127:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_RX_STATUS_ACTL_REG  |= LCD_SPIM_INT_ENABLE;
+ 128:.\Generated_Source\PSoC4/LCD_SPIM.c ****     CyExitCriticalSection(enableInterrupts);
+ 129:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 130:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(0u != LCD_SPIM_INTERNAL_CLOCK)
+ 131:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_IntClock_Enable();
+ 132:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (0u != LCD_SPIM_INTERNAL_CLOCK) */
+ 133:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 134:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_EnableTxInt();
+ 135:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_EnableRxInt();
+ 136:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 137:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 4
+
+
+ 138:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 139:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 140:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_Start
+ 141:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 142:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 143:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 144:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Initialize and Enable the SPI Master component.
+ 145:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 146:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 147:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 148:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 149:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 150:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 151:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 152:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 153:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_initVar - used to check initial configuration, modified on
+ 154:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  first function call.
+ 155:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 156:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 157:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enable the clock input to enable operation.
+ 158:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 159:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+ 160:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+ 161:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 162:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 163:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_Start(void) 
+ 164:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 165:.\Generated_Source\PSoC4/LCD_SPIM.c ****     if(0u == LCD_SPIM_initVar)
+ 166:.\Generated_Source\PSoC4/LCD_SPIM.c ****     {
+ 167:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_Init();
+ 168:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_initVar = 1u;
+ 169:.\Generated_Source\PSoC4/LCD_SPIM.c ****     }
+ 170:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 171:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_Enable();
+ 172:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 173:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 174:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 175:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 176:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_Stop
+ 177:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 178:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 179:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 180:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Disable the SPI Master component.
+ 181:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 182:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 183:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 184:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 185:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 186:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 187:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 188:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 189:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Disable the clock input to enable operation.
+ 190:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 191:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 192:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_Stop(void) 
+ 193:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 194:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 enableInterrupts;
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 5
+
+
+ 195:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 196:.\Generated_Source\PSoC4/LCD_SPIM.c ****     enableInterrupts = CyEnterCriticalSection();
+ 197:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_TX_STATUS_ACTL_REG &= ((uint8) ~LCD_SPIM_INT_ENABLE);
+ 198:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_RX_STATUS_ACTL_REG &= ((uint8) ~LCD_SPIM_INT_ENABLE);
+ 199:.\Generated_Source\PSoC4/LCD_SPIM.c ****     CyExitCriticalSection(enableInterrupts);
+ 200:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 201:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(0u != LCD_SPIM_INTERNAL_CLOCK)
+ 202:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_IntClock_Disable();
+ 203:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (0u != LCD_SPIM_INTERNAL_CLOCK) */
+ 204:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 205:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_DisableTxInt();
+ 206:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_DisableRxInt();
+ 207:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 208:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 209:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 210:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 211:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_EnableTxInt
+ 212:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 213:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 214:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 215:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enable internal Tx interrupt generation.
+ 216:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 217:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 218:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 219:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 220:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 221:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 222:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 223:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 224:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enable the internal Tx interrupt output -or- the interrupt component itself.
+ 225:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 226:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 227:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_EnableTxInt(void) 
+ 228:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+  31              		.loc 1 228 0
+  32              		.cfi_startproc
+ 229:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(0u != LCD_SPIM_INTERNAL_TX_INT_ENABLED)
+ 230:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CyIntEnable(LCD_SPIM_TX_ISR_NUMBER);
+ 231:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (0u != LCD_SPIM_INTERNAL_TX_INT_ENABLED) */
+ 232:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+  33              		.loc 1 232 0
+  34              		@ sp needed for prologue
+  35 0000 7047     		bx	lr
+  36              		.cfi_endproc
+  37              	.LFE4:
+  38              		.size	LCD_SPIM_EnableTxInt, .-LCD_SPIM_EnableTxInt
+  39              		.section	.text.LCD_SPIM_EnableRxInt,"ax",%progbits
+  40              		.align	1
+  41              		.global	LCD_SPIM_EnableRxInt
+  42              		.code	16
+  43              		.thumb_func
+  44              		.type	LCD_SPIM_EnableRxInt, %function
+  45              	LCD_SPIM_EnableRxInt:
+  46              	.LFB5:
+ 233:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 234:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 235:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 6
+
+
+ 236:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_EnableRxInt
+ 237:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 238:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 239:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 240:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enable internal Rx interrupt generation.
+ 241:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 242:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 243:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 244:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 245:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 246:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 247:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 248:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 249:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enable the internal Rx interrupt output -or- the interrupt component itself.
+ 250:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 251:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 252:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_EnableRxInt(void) 
+ 253:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+  47              		.loc 1 253 0
+  48              		.cfi_startproc
+ 254:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(0u != LCD_SPIM_INTERNAL_RX_INT_ENABLED)
+ 255:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CyIntEnable(LCD_SPIM_RX_ISR_NUMBER);
+ 256:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (0u != LCD_SPIM_INTERNAL_RX_INT_ENABLED) */
+ 257:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+  49              		.loc 1 257 0
+  50              		@ sp needed for prologue
+  51 0000 7047     		bx	lr
+  52              		.cfi_endproc
+  53              	.LFE5:
+  54              		.size	LCD_SPIM_EnableRxInt, .-LCD_SPIM_EnableRxInt
+  55              		.section	.text.LCD_SPIM_DisableTxInt,"ax",%progbits
+  56              		.align	1
+  57              		.global	LCD_SPIM_DisableTxInt
+  58              		.code	16
+  59              		.thumb_func
+  60              		.type	LCD_SPIM_DisableTxInt, %function
+  61              	LCD_SPIM_DisableTxInt:
+  62              	.LFB6:
+ 258:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 259:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 260:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 261:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_DisableTxInt
+ 262:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 263:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 264:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 265:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Disable internal Tx interrupt generation.
+ 266:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 267:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 268:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 269:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 270:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 271:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 272:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 273:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 274:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Disable the internal Tx interrupt output -or- the interrupt component itself.
+ 275:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 276:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 7
+
+
+ 277:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_DisableTxInt(void) 
+ 278:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+  63              		.loc 1 278 0
+  64              		.cfi_startproc
+ 279:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(0u != LCD_SPIM_INTERNAL_TX_INT_ENABLED)
+ 280:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CyIntDisable(LCD_SPIM_TX_ISR_NUMBER);
+ 281:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (0u != LCD_SPIM_INTERNAL_TX_INT_ENABLED) */
+ 282:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+  65              		.loc 1 282 0
+  66              		@ sp needed for prologue
+  67 0000 7047     		bx	lr
+  68              		.cfi_endproc
+  69              	.LFE6:
+  70              		.size	LCD_SPIM_DisableTxInt, .-LCD_SPIM_DisableTxInt
+  71              		.section	.text.LCD_SPIM_DisableRxInt,"ax",%progbits
+  72              		.align	1
+  73              		.global	LCD_SPIM_DisableRxInt
+  74              		.code	16
+  75              		.thumb_func
+  76              		.type	LCD_SPIM_DisableRxInt, %function
+  77              	LCD_SPIM_DisableRxInt:
+  78              	.LFB7:
+ 283:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 284:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 285:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 286:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_DisableRxInt
+ 287:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 288:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 289:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 290:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Disable internal Rx interrupt generation.
+ 291:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 292:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 293:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 294:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 295:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 296:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 297:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 298:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 299:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Disable the internal Rx interrupt output -or- the interrupt component itself.
+ 300:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 301:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 302:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_DisableRxInt(void) 
+ 303:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+  79              		.loc 1 303 0
+  80              		.cfi_startproc
+ 304:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(0u != LCD_SPIM_INTERNAL_RX_INT_ENABLED)
+ 305:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CyIntDisable(LCD_SPIM_RX_ISR_NUMBER);
+ 306:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (0u != LCD_SPIM_INTERNAL_RX_INT_ENABLED) */
+ 307:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+  81              		.loc 1 307 0
+  82              		@ sp needed for prologue
+  83 0000 7047     		bx	lr
+  84              		.cfi_endproc
+  85              	.LFE7:
+  86              		.size	LCD_SPIM_DisableRxInt, .-LCD_SPIM_DisableRxInt
+  87              		.section	.text.LCD_SPIM_SetTxInterruptMode,"ax",%progbits
+  88              		.align	1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 8
+
+
+  89              		.global	LCD_SPIM_SetTxInterruptMode
+  90              		.code	16
+  91              		.thumb_func
+  92              		.type	LCD_SPIM_SetTxInterruptMode, %function
+  93              	LCD_SPIM_SetTxInterruptMode:
+  94              	.LFB8:
+ 308:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 309:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 310:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 311:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_SetTxInterruptMode
+ 312:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 313:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 314:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 315:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Configure which status bits trigger an interrupt event.
+ 316:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 317:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 318:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+ 319:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  header file).
+ 320:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 321:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 322:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 323:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 324:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 325:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enables the output of specific status bits to the interrupt controller.
+ 326:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 327:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 328:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_SetTxInterruptMode(uint8 intSrc) 
+ 329:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+  95              		.loc 1 329 0
+  96              		.cfi_startproc
+  97              	.LVL0:
+ 330:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_TX_STATUS_MASK_REG = intSrc;
+  98              		.loc 1 330 0
+  99 0000 014B     		ldr	r3, .L11
+ 331:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 100              		.loc 1 331 0
+ 101              		@ sp needed for prologue
+ 102              		.loc 1 330 0
+ 103 0002 1870     		strb	r0, [r3]
+ 104              		.loc 1 331 0
+ 105 0004 7047     		bx	lr
+ 106              	.L12:
+ 107 0006 C046     		.align	2
+ 108              	.L11:
+ 109 0008 82000F40 		.word	1074724994
+ 110              		.cfi_endproc
+ 111              	.LFE8:
+ 112              		.size	LCD_SPIM_SetTxInterruptMode, .-LCD_SPIM_SetTxInterruptMode
+ 113              		.section	.text.LCD_SPIM_SetRxInterruptMode,"ax",%progbits
+ 114              		.align	1
+ 115              		.global	LCD_SPIM_SetRxInterruptMode
+ 116              		.code	16
+ 117              		.thumb_func
+ 118              		.type	LCD_SPIM_SetRxInterruptMode, %function
+ 119              	LCD_SPIM_SetRxInterruptMode:
+ 120              	.LFB9:
+ 332:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 9
+
+
+ 333:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 334:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 335:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_SetRxInterruptMode
+ 336:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 337:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 338:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 339:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Configure which status bits trigger an interrupt event.
+ 340:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 341:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 342:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+ 343:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  header file).
+ 344:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 345:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 346:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 347:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 348:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 349:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enables the output of specific status bits to the interrupt controller.
+ 350:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 351:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 352:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_SetRxInterruptMode(uint8 intSrc) 
+ 353:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 121              		.loc 1 353 0
+ 122              		.cfi_startproc
+ 123              	.LVL1:
+ 354:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_RX_STATUS_MASK_REG  = intSrc;
+ 124              		.loc 1 354 0
+ 125 0000 014B     		ldr	r3, .L15
+ 355:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 126              		.loc 1 355 0
+ 127              		@ sp needed for prologue
+ 128              		.loc 1 354 0
+ 129 0002 1870     		strb	r0, [r3]
+ 130              		.loc 1 355 0
+ 131 0004 7047     		bx	lr
+ 132              	.L16:
+ 133 0006 C046     		.align	2
+ 134              	.L15:
+ 135 0008 80000F40 		.word	1074724992
+ 136              		.cfi_endproc
+ 137              	.LFE9:
+ 138              		.size	LCD_SPIM_SetRxInterruptMode, .-LCD_SPIM_SetRxInterruptMode
+ 139              		.section	.text.LCD_SPIM_ReadTxStatus,"ax",%progbits
+ 140              		.align	1
+ 141              		.global	LCD_SPIM_ReadTxStatus
+ 142              		.code	16
+ 143              		.thumb_func
+ 144              		.type	LCD_SPIM_ReadTxStatus, %function
+ 145              	LCD_SPIM_ReadTxStatus:
+ 146              	.LFB10:
+ 356:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 357:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 358:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 359:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_ReadTxStatus
+ 360:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 361:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 362:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 363:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Read the Tx status register for the component.
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 10
+
+
+ 364:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 365:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 366:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 367:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 368:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 369:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Contents of the Tx status register.
+ 370:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 371:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 372:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_swStatusTx - used to store in software status register,
+ 373:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  modified every function call - resets to zero.
+ 374:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 375:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 376:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Allows the user and the API to read the Tx status register for error
+ 377:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  detection and flow control.
+ 378:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 379:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 380:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear Tx status register of the component.
+ 381:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 382:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+ 383:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+ 384:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 385:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 386:.\Generated_Source\PSoC4/LCD_SPIM.c **** uint8 LCD_SPIM_ReadTxStatus(void) 
+ 387:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 147              		.loc 1 387 0
+ 148              		.cfi_startproc
+ 388:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 tmpStatus;
+ 389:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 390:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_TX_SOFTWARE_BUF_ENABLED)
+ 391:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Disable TX interrupt to protect global veriables */
+ 392:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableTxInt();
+ 393:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 394:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus = LCD_SPIM_GET_STATUS_TX(LCD_SPIM_swStatusTx);
+ 395:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_swStatusTx = 0u;
+ 396:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 397:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableTxInt();
+ 398:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 399:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #else
+ 400:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 401:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus = LCD_SPIM_TX_STATUS_REG;
+ 149              		.loc 1 401 0
+ 150 0000 014B     		ldr	r3, .L19
+ 402:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 403:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_TX_SOFTWARE_BUF_ENABLED) */
+ 404:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 405:.\Generated_Source\PSoC4/LCD_SPIM.c ****     return(tmpStatus);
+ 406:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 151              		.loc 1 406 0
+ 152              		@ sp needed for prologue
+ 153              		.loc 1 401 0
+ 154 0002 1878     		ldrb	r0, [r3]
+ 155              		.loc 1 406 0
+ 156 0004 7047     		bx	lr
+ 157              	.L20:
+ 158 0006 C046     		.align	2
+ 159              	.L19:
+ 160 0008 62000F40 		.word	1074724962
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 11
+
+
+ 161              		.cfi_endproc
+ 162              	.LFE10:
+ 163              		.size	LCD_SPIM_ReadTxStatus, .-LCD_SPIM_ReadTxStatus
+ 164              		.section	.text.LCD_SPIM_ReadRxStatus,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	LCD_SPIM_ReadRxStatus
+ 167              		.code	16
+ 168              		.thumb_func
+ 169              		.type	LCD_SPIM_ReadRxStatus, %function
+ 170              	LCD_SPIM_ReadRxStatus:
+ 171              	.LFB11:
+ 407:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 408:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 409:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 410:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_ReadRxStatus
+ 411:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 412:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 413:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 414:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Read the Rx status register for the component.
+ 415:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 416:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 417:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 418:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 419:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 420:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Contents of the Rx status register.
+ 421:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 422:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 423:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_swStatusRx - used to store in software Rx status register,
+ 424:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  modified every function call - resets to zero.
+ 425:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 426:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 427:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Allows the user and the API to read the Rx status register for error
+ 428:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  detection and flow control.
+ 429:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 430:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 431:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear Rx status register of the component.
+ 432:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 433:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+ 434:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+ 435:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 436:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 437:.\Generated_Source\PSoC4/LCD_SPIM.c **** uint8 LCD_SPIM_ReadRxStatus(void) 
+ 438:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 172              		.loc 1 438 0
+ 173              		.cfi_startproc
+ 439:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 tmpStatus;
+ 440:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 441:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_RX_SOFTWARE_BUF_ENABLED)
+ 442:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Disable RX interrupt to protect global veriables */
+ 443:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableRxInt();
+ 444:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 445:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus = LCD_SPIM_GET_STATUS_RX(LCD_SPIM_swStatusRx);
+ 446:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_swStatusRx = 0u;
+ 447:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 448:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableRxInt();
+ 449:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 450:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #else
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 12
+
+
+ 451:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 452:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus = LCD_SPIM_RX_STATUS_REG;
+ 174              		.loc 1 452 0
+ 175 0000 014B     		ldr	r3, .L23
+ 453:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 454:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_RX_SOFTWARE_BUF_ENABLED) */
+ 455:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 456:.\Generated_Source\PSoC4/LCD_SPIM.c ****     return(tmpStatus);
+ 457:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 176              		.loc 1 457 0
+ 177              		@ sp needed for prologue
+ 178              		.loc 1 452 0
+ 179 0002 1878     		ldrb	r0, [r3]
+ 180              		.loc 1 457 0
+ 181 0004 7047     		bx	lr
+ 182              	.L24:
+ 183 0006 C046     		.align	2
+ 184              	.L23:
+ 185 0008 60000F40 		.word	1074724960
+ 186              		.cfi_endproc
+ 187              	.LFE11:
+ 188              		.size	LCD_SPIM_ReadRxStatus, .-LCD_SPIM_ReadRxStatus
+ 189              		.section	.text.LCD_SPIM_WriteTxData,"ax",%progbits
+ 190              		.align	1
+ 191              		.global	LCD_SPIM_WriteTxData
+ 192              		.code	16
+ 193              		.thumb_func
+ 194              		.type	LCD_SPIM_WriteTxData, %function
+ 195              	LCD_SPIM_WriteTxData:
+ 196              	.LFB12:
+ 458:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 459:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 460:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 461:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_WriteTxData
+ 462:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 463:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 464:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 465:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Write a byte of data to be sent across the SPI.
+ 466:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 467:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 468:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  txDataByte: The data value to send across the SPI.
+ 469:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 470:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 471:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 472:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 473:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 474:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_txBufferWrite - used for the account of the bytes which
+ 475:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been written down in the TX software buffer, modified every function
+ 476:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  call if TX Software Buffer is used.
+ 477:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_txBufferRead - used for the account of the bytes which
+ 478:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been read from the TX software buffer.
+ 479:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_txBuffer[LCD_SPIM_TX_BUFFER_SIZE] - used to store
+ 480:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  data to sending, modified every function call if TX Software Buffer is used.
+ 481:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 482:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 483:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Allows the user to transmit any byte of data in a single transfer.
+ 484:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 13
+
+
+ 485:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 486:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  If this function is called again before the previous byte is finished then
+ 487:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  the next byte will be appended to the transfer with no time between
+ 488:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  the byte transfers. Clear Tx status register of the component.
+ 489:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 490:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+ 491:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+ 492:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 493:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 494:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_WriteTxData(uint16 txData) 
+ 495:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 197              		.loc 1 495 0
+ 198              		.cfi_startproc
+ 199 0000 00B5     		push	{lr}
+ 200              	.LCFI0:
+ 201              		.cfi_def_cfa_offset 4
+ 202              		.cfi_offset 14, -4
+ 203              	.LVL2:
+ 204              	.L26:
+ 496:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_TX_SOFTWARE_BUF_ENABLED)
+ 497:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 498:.\Generated_Source\PSoC4/LCD_SPIM.c ****         uint8 tempStatus;
+ 499:.\Generated_Source\PSoC4/LCD_SPIM.c ****         uint8 tmpTxBufferRead;
+ 500:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 501:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Block if TX buffer is FULL: don't overwrite */
+ 502:.\Generated_Source\PSoC4/LCD_SPIM.c ****         do
+ 503:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 504:.\Generated_Source\PSoC4/LCD_SPIM.c ****             tmpTxBufferRead = LCD_SPIM_txBufferRead;
+ 505:.\Generated_Source\PSoC4/LCD_SPIM.c ****             if(0u == tmpTxBufferRead)
+ 506:.\Generated_Source\PSoC4/LCD_SPIM.c ****             {
+ 507:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 tmpTxBufferRead = (LCD_SPIM_TX_BUFFER_SIZE - 1u);
+ 508:.\Generated_Source\PSoC4/LCD_SPIM.c ****             }
+ 509:.\Generated_Source\PSoC4/LCD_SPIM.c ****             else
+ 510:.\Generated_Source\PSoC4/LCD_SPIM.c ****             {
+ 511:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 tmpTxBufferRead--;
+ 512:.\Generated_Source\PSoC4/LCD_SPIM.c ****             }
+ 513:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 514:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }while(tmpTxBufferRead == LCD_SPIM_txBufferWrite);
+ 515:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 516:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Disable TX interrupt to protect global veriables */
+ 517:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableTxInt();
+ 518:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 519:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tempStatus = LCD_SPIM_GET_STATUS_TX(LCD_SPIM_swStatusTx);
+ 520:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_swStatusTx = tempStatus;
+ 521:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 522:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 523:.\Generated_Source\PSoC4/LCD_SPIM.c ****         if((LCD_SPIM_txBufferRead == LCD_SPIM_txBufferWrite) &&
+ 524:.\Generated_Source\PSoC4/LCD_SPIM.c ****            (0u != (LCD_SPIM_swStatusTx & LCD_SPIM_STS_TX_FIFO_NOT_FULL)))
+ 525:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 526:.\Generated_Source\PSoC4/LCD_SPIM.c ****             /* Add directly to the TX FIFO */
+ 527:.\Generated_Source\PSoC4/LCD_SPIM.c ****             CY_SET_REG16(LCD_SPIM_TXDATA_PTR, txData);
+ 528:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 529:.\Generated_Source\PSoC4/LCD_SPIM.c ****         else
+ 530:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 531:.\Generated_Source\PSoC4/LCD_SPIM.c ****             /* Add to the TX software buffer */
+ 532:.\Generated_Source\PSoC4/LCD_SPIM.c ****             LCD_SPIM_txBufferWrite++;
+ 533:.\Generated_Source\PSoC4/LCD_SPIM.c ****             if(LCD_SPIM_txBufferWrite >= LCD_SPIM_TX_BUFFER_SIZE)
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 14
+
+
+ 534:.\Generated_Source\PSoC4/LCD_SPIM.c ****             {
+ 535:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 LCD_SPIM_txBufferWrite = 0u;
+ 536:.\Generated_Source\PSoC4/LCD_SPIM.c ****             }
+ 537:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 538:.\Generated_Source\PSoC4/LCD_SPIM.c ****             if(LCD_SPIM_txBufferWrite == LCD_SPIM_txBufferRead)
+ 539:.\Generated_Source\PSoC4/LCD_SPIM.c ****             {
+ 540:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 LCD_SPIM_txBufferRead++;
+ 541:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 if(LCD_SPIM_txBufferRead >= LCD_SPIM_TX_BUFFER_SIZE)
+ 542:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 {
+ 543:.\Generated_Source\PSoC4/LCD_SPIM.c ****                     LCD_SPIM_txBufferRead = 0u;
+ 544:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 }
+ 545:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 LCD_SPIM_txBufferFull = 1u;
+ 546:.\Generated_Source\PSoC4/LCD_SPIM.c ****             }
+ 547:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 548:.\Generated_Source\PSoC4/LCD_SPIM.c ****             LCD_SPIM_txBuffer[LCD_SPIM_txBufferWrite] = txData;
+ 549:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 550:.\Generated_Source\PSoC4/LCD_SPIM.c ****             LCD_SPIM_TX_STATUS_MASK_REG |= LCD_SPIM_STS_TX_FIFO_NOT_FULL;
+ 551:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 552:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 553:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableTxInt();
+ 554:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 555:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #else
+ 556:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 557:.\Generated_Source\PSoC4/LCD_SPIM.c ****         while(0u == (LCD_SPIM_TX_STATUS_REG & LCD_SPIM_STS_TX_FIFO_NOT_FULL))
+ 205              		.loc 1 557 0
+ 206 0002 034B     		ldr	r3, .L29
+ 207 0004 1B78     		ldrb	r3, [r3]
+ 208 0006 5A07     		lsl	r2, r3, #29
+ 209 0008 FBD5     		bpl	.L26
+ 558:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 559:.\Generated_Source\PSoC4/LCD_SPIM.c ****             ; /* Wait for room in FIFO */
+ 560:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 561:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 562:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Put byte in TX FIFO */
+ 563:.\Generated_Source\PSoC4/LCD_SPIM.c ****         CY_SET_REG16(LCD_SPIM_TXDATA_PTR, txData);
+ 210              		.loc 1 563 0
+ 211 000a 024B     		ldr	r3, .L29+4
+ 564:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 565:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_TX_SOFTWARE_BUF_ENABLED) */
+ 566:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 212              		.loc 1 566 0
+ 213              		@ sp needed for prologue
+ 214              		.loc 1 563 0
+ 215 000c 1880     		strh	r0, [r3]
+ 216              		.loc 1 566 0
+ 217 000e 00BD     		pop	{pc}
+ 218              	.L30:
+ 219              		.align	2
+ 220              	.L29:
+ 221 0010 62000F40 		.word	1074724962
+ 222 0014 84100F40 		.word	1074729092
+ 223              		.cfi_endproc
+ 224              	.LFE12:
+ 225              		.size	LCD_SPIM_WriteTxData, .-LCD_SPIM_WriteTxData
+ 226              		.section	.text.LCD_SPIM_ReadRxData,"ax",%progbits
+ 227              		.align	1
+ 228              		.global	LCD_SPIM_ReadRxData
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 15
+
+
+ 229              		.code	16
+ 230              		.thumb_func
+ 231              		.type	LCD_SPIM_ReadRxData, %function
+ 232              	LCD_SPIM_ReadRxData:
+ 233              	.LFB13:
+ 567:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 568:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 569:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 570:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_ReadRxData
+ 571:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 572:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 573:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 574:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Read the next byte of data received across the SPI.
+ 575:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 576:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 577:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 578:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 579:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 580:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  The next byte of data read from the FIFO.
+ 581:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 582:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 583:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_rxBufferWrite - used for the account of the bytes which
+ 584:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been written down in the RX software buffer.
+ 585:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_rxBufferRead - used for the account of the bytes which
+ 586:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been read from the RX software buffer, modified every function
+ 587:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  call if RX Software Buffer is used.
+ 588:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_rxBuffer[LCD_SPIM_RX_BUFFER_SIZE] - used to store
+ 589:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  received data.
+ 590:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 591:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 592:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Allows the user to read a byte of data received.
+ 593:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 594:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 595:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Will return invalid data if the FIFO is empty. The user should Call
+ 596:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  GetRxBufferSize() and if it returns a non-zero value then it is safe to call
+ 597:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  ReadByte() function.
+ 598:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 599:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+ 600:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+ 601:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 602:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 603:.\Generated_Source\PSoC4/LCD_SPIM.c **** uint16 LCD_SPIM_ReadRxData(void) 
+ 604:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 234              		.loc 1 604 0
+ 235              		.cfi_startproc
+ 605:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint16 rxData;
+ 606:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 607:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_RX_SOFTWARE_BUF_ENABLED)
+ 608:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 609:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Disable RX interrupt to protect global veriables */
+ 610:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableRxInt();
+ 611:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 612:.\Generated_Source\PSoC4/LCD_SPIM.c ****         if(LCD_SPIM_rxBufferRead != LCD_SPIM_rxBufferWrite)
+ 613:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 614:.\Generated_Source\PSoC4/LCD_SPIM.c ****             if(0u == LCD_SPIM_rxBufferFull)
+ 615:.\Generated_Source\PSoC4/LCD_SPIM.c ****             {
+ 616:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 LCD_SPIM_rxBufferRead++;
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 16
+
+
+ 617:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 if(LCD_SPIM_rxBufferRead >= LCD_SPIM_RX_BUFFER_SIZE)
+ 618:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 {
+ 619:.\Generated_Source\PSoC4/LCD_SPIM.c ****                     LCD_SPIM_rxBufferRead = 0u;
+ 620:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 }
+ 621:.\Generated_Source\PSoC4/LCD_SPIM.c ****             }
+ 622:.\Generated_Source\PSoC4/LCD_SPIM.c ****             else
+ 623:.\Generated_Source\PSoC4/LCD_SPIM.c ****             {
+ 624:.\Generated_Source\PSoC4/LCD_SPIM.c ****                 LCD_SPIM_rxBufferFull = 0u;
+ 625:.\Generated_Source\PSoC4/LCD_SPIM.c ****             }
+ 626:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 627:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 628:.\Generated_Source\PSoC4/LCD_SPIM.c ****         rxData = LCD_SPIM_rxBuffer[LCD_SPIM_rxBufferRead];
+ 629:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 630:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableRxInt();
+ 631:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 632:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #else
+ 633:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 634:.\Generated_Source\PSoC4/LCD_SPIM.c ****         rxData = CY_GET_REG16(LCD_SPIM_RXDATA_PTR);
+ 236              		.loc 1 634 0
+ 237 0000 014B     		ldr	r3, .L33
+ 635:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 636:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_RX_SOFTWARE_BUF_ENABLED) */
+ 637:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 638:.\Generated_Source\PSoC4/LCD_SPIM.c ****     return(rxData);
+ 639:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 238              		.loc 1 639 0
+ 239              		@ sp needed for prologue
+ 240              		.loc 1 634 0
+ 241 0002 1888     		ldrh	r0, [r3]
+ 242              		.loc 1 639 0
+ 243 0004 7047     		bx	lr
+ 244              	.L34:
+ 245 0006 C046     		.align	2
+ 246              	.L33:
+ 247 0008 A4100F40 		.word	1074729124
+ 248              		.cfi_endproc
+ 249              	.LFE13:
+ 250              		.size	LCD_SPIM_ReadRxData, .-LCD_SPIM_ReadRxData
+ 251              		.section	.text.LCD_SPIM_GetRxBufferSize,"ax",%progbits
+ 252              		.align	1
+ 253              		.global	LCD_SPIM_GetRxBufferSize
+ 254              		.code	16
+ 255              		.thumb_func
+ 256              		.type	LCD_SPIM_GetRxBufferSize, %function
+ 257              	LCD_SPIM_GetRxBufferSize:
+ 258              	.LFB14:
+ 640:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 641:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 642:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 643:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_GetRxBufferSize
+ 644:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 645:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 646:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 647:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Returns the number of bytes/words of data currently held in the RX buffer.
+ 648:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  If RX Software Buffer not used then function return 0 if FIFO empty or 1 if
+ 649:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  FIFO not empty. In another case function return size of RX Software Buffer.
+ 650:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 17
+
+
+ 651:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 652:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 653:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 654:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 655:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Integer count of the number of bytes/words in the RX buffer.
+ 656:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 657:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 658:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_rxBufferWrite - used for the account of the bytes which
+ 659:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been written down in the RX software buffer.
+ 660:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_rxBufferRead - used for the account of the bytes which
+ 661:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been read from the RX software buffer.
+ 662:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 663:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 664:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear status register of the component.
+ 665:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 666:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 667:.\Generated_Source\PSoC4/LCD_SPIM.c **** uint8 LCD_SPIM_GetRxBufferSize(void) 
+ 668:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 259              		.loc 1 668 0
+ 260              		.cfi_startproc
+ 669:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 size;
+ 670:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 671:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_RX_SOFTWARE_BUF_ENABLED)
+ 672:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 673:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Disable RX interrupt to protect global veriables */
+ 674:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableRxInt();
+ 675:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 676:.\Generated_Source\PSoC4/LCD_SPIM.c ****         if(LCD_SPIM_rxBufferRead == LCD_SPIM_rxBufferWrite)
+ 677:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 678:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = 0u;
+ 679:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 680:.\Generated_Source\PSoC4/LCD_SPIM.c ****         else if(LCD_SPIM_rxBufferRead < LCD_SPIM_rxBufferWrite)
+ 681:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 682:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = (LCD_SPIM_rxBufferWrite - LCD_SPIM_rxBufferRead);
+ 683:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 684:.\Generated_Source\PSoC4/LCD_SPIM.c ****         else
+ 685:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 686:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = (LCD_SPIM_RX_BUFFER_SIZE - LCD_SPIM_rxBufferRead) + LCD_SPIM_rxBufferWrite;
+ 687:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 688:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 689:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableRxInt();
+ 690:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 691:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #else
+ 692:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 693:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* We can only know if there is data in the RX FIFO */
+ 694:.\Generated_Source\PSoC4/LCD_SPIM.c ****         size = (0u != (LCD_SPIM_RX_STATUS_REG & LCD_SPIM_STS_RX_FIFO_NOT_EMPTY)) ? 1u : 0u;
+ 261              		.loc 1 694 0
+ 262 0000 024B     		ldr	r3, .L37
+ 695:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 696:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_TX_SOFTWARE_BUF_ENABLED) */
+ 697:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 698:.\Generated_Source\PSoC4/LCD_SPIM.c ****     return(size);
+ 699:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 263              		.loc 1 699 0
+ 264              		@ sp needed for prologue
+ 265              		.loc 1 694 0
+ 266 0002 1878     		ldrb	r0, [r3]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 18
+
+
+ 267 0004 8006     		lsl	r0, r0, #26
+ 268 0006 C00F     		lsr	r0, r0, #31
+ 269              		.loc 1 699 0
+ 270 0008 7047     		bx	lr
+ 271              	.L38:
+ 272 000a C046     		.align	2
+ 273              	.L37:
+ 274 000c 60000F40 		.word	1074724960
+ 275              		.cfi_endproc
+ 276              	.LFE14:
+ 277              		.size	LCD_SPIM_GetRxBufferSize, .-LCD_SPIM_GetRxBufferSize
+ 278              		.section	.text.LCD_SPIM_GetTxBufferSize,"ax",%progbits
+ 279              		.align	1
+ 280              		.global	LCD_SPIM_GetTxBufferSize
+ 281              		.code	16
+ 282              		.thumb_func
+ 283              		.type	LCD_SPIM_GetTxBufferSize, %function
+ 284              	LCD_SPIM_GetTxBufferSize:
+ 285              	.LFB15:
+ 700:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 701:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 702:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 703:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_GetTxBufferSize
+ 704:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 705:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 706:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 707:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Returns the number of bytes/words of data currently held in the TX buffer.
+ 708:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  If TX Software Buffer not used then function return 0 - if FIFO empty, 1 - if
+ 709:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  FIFO not full, 4 - if FIFO full. In another case function return size of TX
+ 710:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Software Buffer.
+ 711:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 712:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 713:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 714:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 715:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 716:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Integer count of the number of bytes/words in the TX buffer.
+ 717:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 718:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 719:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_txBufferWrite - used for the account of the bytes which
+ 720:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been written down in the TX software buffer.
+ 721:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_txBufferRead - used for the account of the bytes which
+ 722:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been read from the TX software buffer.
+ 723:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 724:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 725:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear status register of the component.
+ 726:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 727:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 728:.\Generated_Source\PSoC4/LCD_SPIM.c **** uint8  LCD_SPIM_GetTxBufferSize(void) 
+ 729:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 286              		.loc 1 729 0
+ 287              		.cfi_startproc
+ 288 0000 00B5     		push	{lr}
+ 289              	.LCFI1:
+ 290              		.cfi_def_cfa_offset 4
+ 291              		.cfi_offset 14, -4
+ 730:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 size;
+ 731:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 19
+
+
+ 732:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_TX_SOFTWARE_BUF_ENABLED)
+ 733:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Disable TX interrupt to protect global veriables */
+ 734:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableTxInt();
+ 735:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 736:.\Generated_Source\PSoC4/LCD_SPIM.c ****         if(LCD_SPIM_txBufferRead == LCD_SPIM_txBufferWrite)
+ 737:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 738:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = 0u;
+ 739:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 740:.\Generated_Source\PSoC4/LCD_SPIM.c ****         else if(LCD_SPIM_txBufferRead < LCD_SPIM_txBufferWrite)
+ 741:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 742:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = (LCD_SPIM_txBufferWrite - LCD_SPIM_txBufferRead);
+ 743:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 744:.\Generated_Source\PSoC4/LCD_SPIM.c ****         else
+ 745:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 746:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = (LCD_SPIM_TX_BUFFER_SIZE - LCD_SPIM_txBufferRead) + LCD_SPIM_txBufferWrite;
+ 747:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 748:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 749:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableTxInt();
+ 750:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 751:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #else
+ 752:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 753:.\Generated_Source\PSoC4/LCD_SPIM.c ****         size = LCD_SPIM_TX_STATUS_REG;
+ 292              		.loc 1 753 0
+ 293 0002 064B     		ldr	r3, .L44
+ 294 0004 1B78     		ldrb	r3, [r3]
+ 754:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 755:.\Generated_Source\PSoC4/LCD_SPIM.c ****         if(0u != (size & LCD_SPIM_STS_TX_FIFO_EMPTY))
+ 295              		.loc 1 755 0
+ 296 0006 9A07     		lsl	r2, r3, #30
+ 297 0008 01D5     		bpl	.L40
+ 298              	.LVL3:
+ 299 000a 0020     		mov	r0, #0
+ 300              	.LVL4:
+ 301 000c 04E0     		b	.L41
+ 302              	.LVL5:
+ 303              	.L40:
+ 756:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 757:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = 0u;
+ 758:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 759:.\Generated_Source\PSoC4/LCD_SPIM.c ****         else if(0u != (size & LCD_SPIM_STS_TX_FIFO_NOT_FULL))
+ 304              		.loc 1 759 0
+ 305 000e 5A07     		lsl	r2, r3, #29
+ 306 0010 01D4     		bmi	.L42
+ 307 0012 0420     		mov	r0, #4
+ 308              	.LVL6:
+ 309 0014 00E0     		b	.L41
+ 310              	.LVL7:
+ 311              	.L42:
+ 312 0016 0120     		mov	r0, #1
+ 313              	.LVL8:
+ 314              	.L41:
+ 315              	.LVL9:
+ 760:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ 761:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = 1u;
+ 762:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 763:.\Generated_Source\PSoC4/LCD_SPIM.c ****         else
+ 764:.\Generated_Source\PSoC4/LCD_SPIM.c ****         {
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 20
+
+
+ 765:.\Generated_Source\PSoC4/LCD_SPIM.c ****             size = LCD_SPIM_FIFO_SIZE;
+ 766:.\Generated_Source\PSoC4/LCD_SPIM.c ****         }
+ 767:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 768:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_TX_SOFTWARE_BUF_ENABLED) */
+ 769:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 770:.\Generated_Source\PSoC4/LCD_SPIM.c ****     return(size);
+ 771:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 316              		.loc 1 771 0
+ 317              		@ sp needed for prologue
+ 318 0018 00BD     		pop	{pc}
+ 319              	.L45:
+ 320 001a C046     		.align	2
+ 321              	.L44:
+ 322 001c 62000F40 		.word	1074724962
+ 323              		.cfi_endproc
+ 324              	.LFE15:
+ 325              		.size	LCD_SPIM_GetTxBufferSize, .-LCD_SPIM_GetTxBufferSize
+ 326              		.section	.text.LCD_SPIM_ClearRxBuffer,"ax",%progbits
+ 327              		.align	1
+ 328              		.global	LCD_SPIM_ClearRxBuffer
+ 329              		.code	16
+ 330              		.thumb_func
+ 331              		.type	LCD_SPIM_ClearRxBuffer, %function
+ 332              	LCD_SPIM_ClearRxBuffer:
+ 333              	.LFB16:
+ 772:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 773:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 774:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 775:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_ClearRxBuffer
+ 776:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 777:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 778:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 779:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear the RX RAM buffer by setting the read and write pointers both to zero.
+ 780:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 781:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 782:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 783:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 784:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 785:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 786:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 787:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 788:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_rxBufferWrite - used for the account of the bytes which
+ 789:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been written down in the RX software buffer, modified every function
+ 790:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  call - resets to zero.
+ 791:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_rxBufferRead - used for the account of the bytes which
+ 792:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been read from the RX software buffer, modified every function call -
+ 793:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  resets to zero.
+ 794:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 795:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 796:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Setting the pointers to zero makes the system believe there is no data to
+ 797:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  read and writing will resume at address 0 overwriting any data that may have
+ 798:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  remained in the RAM.
+ 799:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 800:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 801:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Any received data not read from the RAM buffer will be lost when overwritten.
+ 802:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 803:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 21
+
+
+ 804:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+ 805:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 806:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 807:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_ClearRxBuffer(void) 
+ 808:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 334              		.loc 1 808 0
+ 335              		.cfi_startproc
+ 336 0000 00B5     		push	{lr}
+ 337              	.LCFI2:
+ 338              		.cfi_def_cfa_offset 4
+ 339              		.cfi_offset 14, -4
+ 809:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Clear Hardware RX FIFO */
+ 810:.\Generated_Source\PSoC4/LCD_SPIM.c ****     while(0u !=(LCD_SPIM_RX_STATUS_REG & LCD_SPIM_STS_RX_FIFO_NOT_EMPTY))
+ 340              		.loc 1 810 0
+ 341 0002 01E0     		b	.L47
+ 342              	.L48:
+ 811:.\Generated_Source\PSoC4/LCD_SPIM.c ****     {
+ 812:.\Generated_Source\PSoC4/LCD_SPIM.c ****         (void) CY_GET_REG16(LCD_SPIM_RXDATA_PTR);
+ 343              		.loc 1 812 0
+ 344 0004 034B     		ldr	r3, .L50
+ 345 0006 1B88     		ldrh	r3, [r3]
+ 346              	.L47:
+ 347              		.loc 1 810 0
+ 348 0008 034B     		ldr	r3, .L50+4
+ 349 000a 1B78     		ldrb	r3, [r3]
+ 350 000c 9A06     		lsl	r2, r3, #26
+ 351 000e F9D4     		bmi	.L48
+ 813:.\Generated_Source\PSoC4/LCD_SPIM.c ****     }
+ 814:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 815:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_RX_SOFTWARE_BUF_ENABLED)
+ 816:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Disable RX interrupt to protect global veriables */
+ 817:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableRxInt();
+ 818:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 819:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_rxBufferFull  = 0u;
+ 820:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_rxBufferRead  = 0u;
+ 821:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_rxBufferWrite = 0u;
+ 822:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 823:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableRxInt();
+ 824:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_RX_SOFTWARE_BUF_ENABLED) */
+ 825:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 352              		.loc 1 825 0
+ 353              		@ sp needed for prologue
+ 354 0010 00BD     		pop	{pc}
+ 355              	.L51:
+ 356 0012 C046     		.align	2
+ 357              	.L50:
+ 358 0014 A4100F40 		.word	1074729124
+ 359 0018 60000F40 		.word	1074724960
+ 360              		.cfi_endproc
+ 361              	.LFE16:
+ 362              		.size	LCD_SPIM_ClearRxBuffer, .-LCD_SPIM_ClearRxBuffer
+ 363              		.section	.text.LCD_SPIM_PutArray,"ax",%progbits
+ 364              		.align	1
+ 365              		.global	LCD_SPIM_PutArray
+ 366              		.code	16
+ 367              		.thumb_func
+ 368              		.type	LCD_SPIM_PutArray, %function
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 22
+
+
+ 369              	LCD_SPIM_PutArray:
+ 370              	.LFB18:
+ 826:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 827:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 828:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 829:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_ClearTxBuffer
+ 830:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 831:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 832:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 833:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear the TX RAM buffer by setting the read and write pointers both to zero.
+ 834:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 835:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 836:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 837:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 838:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 839:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 840:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 841:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+ 842:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_txBufferWrite - used for the account of the bytes which
+ 843:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been written down in the TX software buffer, modified every function
+ 844:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  call - resets to zero.
+ 845:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_txBufferRead - used for the account of the bytes which
+ 846:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  have been read from the TX software buffer, modified every function call -
+ 847:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  resets to zero.
+ 848:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 849:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+ 850:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Setting the pointers to zero makes the system believe there is no data to
+ 851:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  read and writing will resume at address 0 overwriting any data that may have
+ 852:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  remained in the RAM.
+ 853:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 854:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 855:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Any data not yet transmitted from the RAM buffer will be lost when
+ 856:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  overwritten.
+ 857:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 858:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+ 859:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+ 860:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 861:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 862:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_ClearTxBuffer(void) 
+ 863:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 864:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 enableInterrupts;
+ 865:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 866:.\Generated_Source\PSoC4/LCD_SPIM.c ****     enableInterrupts = CyEnterCriticalSection();
+ 867:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Clear TX FIFO */
+ 868:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_AUX_CONTROL_DP0_REG |= ((uint8)  LCD_SPIM_TX_FIFO_CLR);
+ 869:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_AUX_CONTROL_DP0_REG &= ((uint8) ~LCD_SPIM_TX_FIFO_CLR);
+ 870:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 871:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_USE_SECOND_DATAPATH)
+ 872:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Clear TX FIFO for 2nd Datapath */
+ 873:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_AUX_CONTROL_DP1_REG |= ((uint8)  LCD_SPIM_TX_FIFO_CLR);
+ 874:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_AUX_CONTROL_DP1_REG &= ((uint8) ~LCD_SPIM_TX_FIFO_CLR);
+ 875:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_USE_SECOND_DATAPATH) */
+ 876:.\Generated_Source\PSoC4/LCD_SPIM.c ****     CyExitCriticalSection(enableInterrupts);
+ 877:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 878:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_TX_SOFTWARE_BUF_ENABLED)
+ 879:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Disable TX interrupt to protect global veriables */
+ 880:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableTxInt();
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 23
+
+
+ 881:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 882:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_txBufferFull  = 0u;
+ 883:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_txBufferRead  = 0u;
+ 884:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_txBufferWrite = 0u;
+ 885:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 886:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Buffer is EMPTY: disable TX FIFO NOT FULL interrupt */
+ 887:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_TX_STATUS_MASK_REG &= ((uint8) ~LCD_SPIM_STS_TX_FIFO_NOT_FULL);
+ 888:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 889:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableTxInt();
+ 890:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_TX_SOFTWARE_BUF_ENABLED) */
+ 891:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 892:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 893:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 894:.\Generated_Source\PSoC4/LCD_SPIM.c **** #if(0u != LCD_SPIM_BIDIRECTIONAL_MODE)
+ 895:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /*******************************************************************************
+ 896:.\Generated_Source\PSoC4/LCD_SPIM.c ****     * Function Name: LCD_SPIM_TxEnable
+ 897:.\Generated_Source\PSoC4/LCD_SPIM.c ****     ********************************************************************************
+ 898:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *
+ 899:.\Generated_Source\PSoC4/LCD_SPIM.c ****     * Summary:
+ 900:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *  If the SPI master is configured to use a single bi-directional pin then this
+ 901:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *  will set the bi-directional pin to transmit.
+ 902:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *
+ 903:.\Generated_Source\PSoC4/LCD_SPIM.c ****     * Parameters:
+ 904:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *  None.
+ 905:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *
+ 906:.\Generated_Source\PSoC4/LCD_SPIM.c ****     * Return:
+ 907:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *  None.
+ 908:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *
+ 909:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *******************************************************************************/
+ 910:.\Generated_Source\PSoC4/LCD_SPIM.c ****     void LCD_SPIM_TxEnable(void) 
+ 911:.\Generated_Source\PSoC4/LCD_SPIM.c ****     {
+ 912:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_CONTROL_REG |= LCD_SPIM_CTRL_TX_SIGNAL_EN;
+ 913:.\Generated_Source\PSoC4/LCD_SPIM.c ****     }
+ 914:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 915:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 916:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /*******************************************************************************
+ 917:.\Generated_Source\PSoC4/LCD_SPIM.c ****     * Function Name: LCD_SPIM_TxDisable
+ 918:.\Generated_Source\PSoC4/LCD_SPIM.c ****     ********************************************************************************
+ 919:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *
+ 920:.\Generated_Source\PSoC4/LCD_SPIM.c ****     * Summary:
+ 921:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *  If the SPI master is configured to use a single bi-directional pin then this
+ 922:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *  will set the bi-directional pin to receive.
+ 923:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *
+ 924:.\Generated_Source\PSoC4/LCD_SPIM.c ****     * Parameters:
+ 925:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *  None.
+ 926:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *
+ 927:.\Generated_Source\PSoC4/LCD_SPIM.c ****     * Return:
+ 928:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *  None.
+ 929:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *
+ 930:.\Generated_Source\PSoC4/LCD_SPIM.c ****     *******************************************************************************/
+ 931:.\Generated_Source\PSoC4/LCD_SPIM.c ****     void LCD_SPIM_TxDisable(void) 
+ 932:.\Generated_Source\PSoC4/LCD_SPIM.c ****     {
+ 933:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_CONTROL_REG &= ((uint8) ~LCD_SPIM_CTRL_TX_SIGNAL_EN);
+ 934:.\Generated_Source\PSoC4/LCD_SPIM.c ****     }
+ 935:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 936:.\Generated_Source\PSoC4/LCD_SPIM.c **** #endif /* (0u != LCD_SPIM_BIDIRECTIONAL_MODE) */
+ 937:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 24
+
+
+ 938:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 939:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 940:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_PutArray
+ 941:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 942:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 943:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 944:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Write available data from ROM/RAM to the TX buffer while space is available
+ 945:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  in the TX buffer. Keep trying until all data is passed to the TX buffer.
+ 946:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 947:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 948:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  *buffer: Pointer to the location in RAM containing the data to send
+ 949:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  byteCount: The number of bytes to move to the transmit buffer.
+ 950:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 951:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 952:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 953:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 954:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 955:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Will stay in this routine until all data has been sent.  May get locked in
+ 956:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  this loop if data is not being initiated by the master if there is not
+ 957:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  enough room in the TX FIFO.
+ 958:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 959:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+ 960:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+ 961:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 962:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 963:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_PutArray(const uint16 buffer[], uint8 byteCount)
+ 964:.\Generated_Source\PSoC4/LCD_SPIM.c ****                                                                           
+ 965:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 371              		.loc 1 965 0
+ 372              		.cfi_startproc
+ 373 0000 38B5     		push	{r3, r4, r5, lr}
+ 374              	.LCFI3:
+ 375              		.cfi_def_cfa_offset 16
+ 376              		.cfi_offset 3, -16
+ 377              		.cfi_offset 4, -12
+ 378              		.cfi_offset 5, -8
+ 379              		.cfi_offset 14, -4
+ 380              	.LVL10:
+ 381              		.loc 1 965 0
+ 382 0002 0C1C     		mov	r4, r1
+ 383 0004 051C     		mov	r5, r0
+ 966:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 bufIndex;
+ 967:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 968:.\Generated_Source\PSoC4/LCD_SPIM.c ****     bufIndex = 0u;
+ 969:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 970:.\Generated_Source\PSoC4/LCD_SPIM.c ****     while(byteCount > 0u)
+ 384              		.loc 1 970 0
+ 385 0006 05E0     		b	.L53
+ 386              	.LVL11:
+ 387              	.L54:
+ 971:.\Generated_Source\PSoC4/LCD_SPIM.c ****     {
+ 972:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_WriteTxData(buffer[bufIndex]);
+ 388              		.loc 1 972 0
+ 389 0008 2888     		ldrh	r0, [r5]
+ 390              	.LVL12:
+ 391 000a FFF7FEFF 		bl	LCD_SPIM_WriteTxData
+ 973:.\Generated_Source\PSoC4/LCD_SPIM.c ****         bufIndex++;
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 25
+
+
+ 974:.\Generated_Source\PSoC4/LCD_SPIM.c ****         byteCount--;
+ 392              		.loc 1 974 0
+ 393 000e 013C     		sub	r4, r4, #1
+ 394              	.LVL13:
+ 395 0010 E4B2     		uxtb	r4, r4
+ 396              	.LVL14:
+ 397 0012 0235     		add	r5, r5, #2
+ 398              	.LVL15:
+ 399              	.L53:
+ 400              		.loc 1 970 0
+ 401 0014 002C     		cmp	r4, #0
+ 402 0016 F7D1     		bne	.L54
+ 975:.\Generated_Source\PSoC4/LCD_SPIM.c ****     }
+ 976:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 403              		.loc 1 976 0
+ 404              		@ sp needed for prologue
+ 405              	.LVL16:
+ 406 0018 38BD     		pop	{r3, r4, r5, pc}
+ 407              		.cfi_endproc
+ 408              	.LFE18:
+ 409              		.size	LCD_SPIM_PutArray, .-LCD_SPIM_PutArray
+ 410              		.section	.text.LCD_SPIM_EnableInt,"ax",%progbits
+ 411              		.align	1
+ 412              		.global	LCD_SPIM_EnableInt
+ 413              		.code	16
+ 414              		.thumb_func
+ 415              		.type	LCD_SPIM_EnableInt, %function
+ 416              	LCD_SPIM_EnableInt:
+ 417              	.LFB20:
+ 977:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 978:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+ 979:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+ 980:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_ClearFIFO
+ 981:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+ 982:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 983:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+ 984:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear the RX and TX FIFO's of all data for a fresh start.
+ 985:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 986:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+ 987:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 988:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 989:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+ 990:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+ 991:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 992:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+ 993:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear status register of the component.
+ 994:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ 995:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+ 996:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_ClearFIFO(void) 
+ 997:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 998:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 enableInterrupts;
+ 999:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1000:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Clear Hardware RX FIFO */
+1001:.\Generated_Source\PSoC4/LCD_SPIM.c ****     while(0u !=(LCD_SPIM_RX_STATUS_REG & LCD_SPIM_STS_RX_FIFO_NOT_EMPTY))
+1002:.\Generated_Source\PSoC4/LCD_SPIM.c ****     {
+1003:.\Generated_Source\PSoC4/LCD_SPIM.c ****         (void) CY_GET_REG16(LCD_SPIM_RXDATA_PTR);
+1004:.\Generated_Source\PSoC4/LCD_SPIM.c ****     }
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 26
+
+
+1005:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1006:.\Generated_Source\PSoC4/LCD_SPIM.c ****     enableInterrupts = CyEnterCriticalSection();
+1007:.\Generated_Source\PSoC4/LCD_SPIM.c ****     /* Clear TX FIFO */
+1008:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_AUX_CONTROL_DP0_REG |= ((uint8)  LCD_SPIM_TX_FIFO_CLR);
+1009:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_AUX_CONTROL_DP0_REG &= ((uint8) ~LCD_SPIM_TX_FIFO_CLR);
+1010:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1011:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_USE_SECOND_DATAPATH)
+1012:.\Generated_Source\PSoC4/LCD_SPIM.c ****         /* Clear TX FIFO for 2nd Datapath */
+1013:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_AUX_CONTROL_DP1_REG |= ((uint8)  LCD_SPIM_TX_FIFO_CLR);
+1014:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_AUX_CONTROL_DP1_REG &= ((uint8) ~LCD_SPIM_TX_FIFO_CLR);
+1015:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_USE_SECOND_DATAPATH) */
+1016:.\Generated_Source\PSoC4/LCD_SPIM.c ****     CyExitCriticalSection(enableInterrupts);
+1017:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+1018:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1019:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1020:.\Generated_Source\PSoC4/LCD_SPIM.c **** /* Following functions are for version Compatibility, they are obsolete.
+1021:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Please do not use it in new projects.
+1022:.\Generated_Source\PSoC4/LCD_SPIM.c **** */
+1023:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1024:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1025:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+1026:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_EnableInt
+1027:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+1028:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1029:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+1030:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enable internal interrupt generation.
+1031:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1032:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+1033:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+1034:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1035:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+1036:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+1037:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1038:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+1039:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enable the internal interrupt output -or- the interrupt component itself.
+1040:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1041:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+1042:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_EnableInt(void) 
+1043:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 418              		.loc 1 1043 0
+ 419              		.cfi_startproc
+1044:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_EnableRxInt();
+1045:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_EnableTxInt();
+1046:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 420              		.loc 1 1046 0
+ 421              		@ sp needed for prologue
+ 422 0000 7047     		bx	lr
+ 423              		.cfi_endproc
+ 424              	.LFE20:
+ 425              		.size	LCD_SPIM_EnableInt, .-LCD_SPIM_EnableInt
+ 426              		.section	.text.LCD_SPIM_DisableInt,"ax",%progbits
+ 427              		.align	1
+ 428              		.global	LCD_SPIM_DisableInt
+ 429              		.code	16
+ 430              		.thumb_func
+ 431              		.type	LCD_SPIM_DisableInt, %function
+ 432              	LCD_SPIM_DisableInt:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 27
+
+
+ 433              	.LFB21:
+1047:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1048:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1049:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+1050:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_DisableInt
+1051:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+1052:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1053:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+1054:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Disable internal interrupt generation.
+1055:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1056:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+1057:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+1058:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1059:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+1060:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+1061:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1062:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+1063:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Disable the internal interrupt output -or- the interrupt component itself.
+1064:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1065:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+1066:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_DisableInt(void) 
+1067:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 434              		.loc 1 1067 0
+ 435              		.cfi_startproc
+1068:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_DisableTxInt();
+1069:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_DisableRxInt();
+1070:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 436              		.loc 1 1070 0
+ 437              		@ sp needed for prologue
+ 438 0000 7047     		bx	lr
+ 439              		.cfi_endproc
+ 440              	.LFE21:
+ 441              		.size	LCD_SPIM_DisableInt, .-LCD_SPIM_DisableInt
+ 442              		.section	.text.LCD_SPIM_SetInterruptMode,"ax",%progbits
+ 443              		.align	1
+ 444              		.global	LCD_SPIM_SetInterruptMode
+ 445              		.code	16
+ 446              		.thumb_func
+ 447              		.type	LCD_SPIM_SetInterruptMode, %function
+ 448              	LCD_SPIM_SetInterruptMode:
+ 449              	.LFB22:
+1071:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1072:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1073:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+1074:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_SetInterruptMode
+1075:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+1076:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1077:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+1078:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Configure which status bits trigger an interrupt event.
+1079:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1080:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+1081:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+1082:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  header file).
+1083:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1084:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+1085:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+1086:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 28
+
+
+1087:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+1088:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Enables the output of specific status bits to the interrupt controller.
+1089:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1090:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+1091:.\Generated_Source\PSoC4/LCD_SPIM.c **** void LCD_SPIM_SetInterruptMode(uint8 intSrc) 
+1092:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 450              		.loc 1 1092 0
+ 451              		.cfi_startproc
+ 452              	.LVL17:
+1093:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_TX_STATUS_MASK_REG  = (intSrc & ((uint8) ~LCD_SPIM_STS_SPI_IDLE));
+ 453              		.loc 1 1093 0
+ 454 0000 034B     		ldr	r3, .L62
+ 455 0002 EF22     		mov	r2, #239
+ 456 0004 0240     		and	r2, r2, r0
+ 457 0006 1A70     		strb	r2, [r3]
+1094:.\Generated_Source\PSoC4/LCD_SPIM.c ****     LCD_SPIM_RX_STATUS_MASK_REG  =  intSrc;
+ 458              		.loc 1 1094 0
+ 459 0008 023B     		sub	r3, r3, #2
+ 460 000a 1870     		strb	r0, [r3]
+1095:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 461              		.loc 1 1095 0
+ 462              		@ sp needed for prologue
+ 463 000c 7047     		bx	lr
+ 464              	.L63:
+ 465 000e C046     		.align	2
+ 466              	.L62:
+ 467 0010 82000F40 		.word	1074724994
+ 468              		.cfi_endproc
+ 469              	.LFE22:
+ 470              		.size	LCD_SPIM_SetInterruptMode, .-LCD_SPIM_SetInterruptMode
+ 471              		.section	.text.LCD_SPIM_ReadStatus,"ax",%progbits
+ 472              		.align	1
+ 473              		.global	LCD_SPIM_ReadStatus
+ 474              		.code	16
+ 475              		.thumb_func
+ 476              		.type	LCD_SPIM_ReadStatus, %function
+ 477              	LCD_SPIM_ReadStatus:
+ 478              	.LFB23:
+1096:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1097:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1098:.\Generated_Source\PSoC4/LCD_SPIM.c **** /*******************************************************************************
+1099:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Function Name: LCD_SPIM_ReadStatus
+1100:.\Generated_Source\PSoC4/LCD_SPIM.c **** ********************************************************************************
+1101:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1102:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Summary:
+1103:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Read the status register for the component.
+1104:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1105:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Parameters:
+1106:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  None.
+1107:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1108:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Return:
+1109:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Contents of the status register.
+1110:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1111:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Global variables:
+1112:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  LCD_SPIM_swStatus - used to store in software status register,
+1113:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  modified every function call - resets to zero.
+1114:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 29
+
+
+1115:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Theory:
+1116:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Allows the user and the API to read the status register for error detection
+1117:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  and flow control.
+1118:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1119:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Side Effects:
+1120:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  Clear status register of the component.
+1121:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1122:.\Generated_Source\PSoC4/LCD_SPIM.c **** * Reentrant:
+1123:.\Generated_Source\PSoC4/LCD_SPIM.c **** *  No.
+1124:.\Generated_Source\PSoC4/LCD_SPIM.c **** *
+1125:.\Generated_Source\PSoC4/LCD_SPIM.c **** *******************************************************************************/
+1126:.\Generated_Source\PSoC4/LCD_SPIM.c **** uint8 LCD_SPIM_ReadStatus(void) 
+1127:.\Generated_Source\PSoC4/LCD_SPIM.c **** {
+ 479              		.loc 1 1127 0
+ 480              		.cfi_startproc
+1128:.\Generated_Source\PSoC4/LCD_SPIM.c ****     uint8 tmpStatus;
+1129:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1130:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #if(LCD_SPIM_TX_SOFTWARE_BUF_ENABLED || LCD_SPIM_RX_SOFTWARE_BUF_ENABLED)
+1131:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1132:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_DisableInt();
+1133:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1134:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus  = LCD_SPIM_GET_STATUS_RX(LCD_SPIM_swStatusRx);
+1135:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus |= LCD_SPIM_GET_STATUS_TX(LCD_SPIM_swStatusTx);
+1136:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus &= ((uint8) ~LCD_SPIM_STS_SPI_IDLE);
+1137:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1138:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_swStatusTx = 0u;
+1139:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_swStatusRx = 0u;
+1140:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1141:.\Generated_Source\PSoC4/LCD_SPIM.c ****         LCD_SPIM_EnableInt();
+1142:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1143:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #else
+1144:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1145:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus  = LCD_SPIM_RX_STATUS_REG;
+1146:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus |= LCD_SPIM_TX_STATUS_REG;
+ 481              		.loc 1 1146 0
+ 482 0000 034A     		ldr	r2, .L66
+ 483              		.loc 1 1145 0
+ 484 0002 044B     		ldr	r3, .L66+4
+1147:.\Generated_Source\PSoC4/LCD_SPIM.c ****         tmpStatus &= ((uint8) ~LCD_SPIM_STS_SPI_IDLE);
+1148:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1149:.\Generated_Source\PSoC4/LCD_SPIM.c ****     #endif /* (LCD_SPIM_TX_SOFTWARE_BUF_ENABLED || LCD_SPIM_RX_SOFTWARE_BUF_ENABLED) */
+1150:.\Generated_Source\PSoC4/LCD_SPIM.c **** 
+1151:.\Generated_Source\PSoC4/LCD_SPIM.c ****     return(tmpStatus);
+1152:.\Generated_Source\PSoC4/LCD_SPIM.c **** }
+ 485              		.loc 1 1152 0
+ 486              		@ sp needed for prologue
+ 487              		.loc 1 1145 0
+ 488 0004 1B78     		ldrb	r3, [r3]
+ 489              		.loc 1 1146 0
+ 490 0006 1078     		ldrb	r0, [r2]
+ 491 0008 1843     		orr	r0, r0, r3
+ 492              	.LVL18:
+ 493 000a 1023     		mov	r3, #16
+ 494 000c 9843     		bic	r0, r0, r3
+ 495              	.LVL19:
+ 496              		.loc 1 1152 0
+ 497 000e 7047     		bx	lr
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 30
+
+
+ 498              	.L67:
+ 499              		.align	2
+ 500              	.L66:
+ 501 0010 62000F40 		.word	1074724962
+ 502 0014 60000F40 		.word	1074724960
+ 503              		.cfi_endproc
+ 504              	.LFE23:
+ 505              		.size	LCD_SPIM_ReadStatus, .-LCD_SPIM_ReadStatus
+ 506              		.section	.text.LCD_SPIM_ClearFIFO,"ax",%progbits
+ 507              		.align	1
+ 508              		.global	LCD_SPIM_ClearFIFO
+ 509              		.code	16
+ 510              		.thumb_func
+ 511              		.type	LCD_SPIM_ClearFIFO, %function
+ 512              	LCD_SPIM_ClearFIFO:
+ 513              	.LFB19:
+ 514              		.loc 1 997 0
+ 515              		.cfi_startproc
+ 516 0000 10B5     		push	{r4, lr}
+ 517              	.LCFI4:
+ 518              		.cfi_def_cfa_offset 8
+ 519              		.cfi_offset 4, -8
+ 520              		.cfi_offset 14, -4
+ 521              		.loc 1 1001 0
+ 522 0002 01E0     		b	.L69
+ 523              	.L70:
+ 524              		.loc 1 1003 0
+ 525 0004 0E4B     		ldr	r3, .L72
+ 526 0006 1B88     		ldrh	r3, [r3]
+ 527              	.L69:
+ 528              		.loc 1 1001 0
+ 529 0008 0E4B     		ldr	r3, .L72+4
+ 530 000a 1B78     		ldrb	r3, [r3]
+ 531 000c 9A06     		lsl	r2, r3, #26
+ 532 000e F9D4     		bmi	.L70
+ 533              		.loc 1 1006 0
+ 534 0010 FFF7FEFF 		bl	CyEnterCriticalSection
+ 535              		.loc 1 1008 0
+ 536 0014 0C4B     		ldr	r3, .L72+8
+ 537 0016 0121     		mov	r1, #1
+ 538 0018 1A78     		ldrb	r2, [r3]
+ 539              		.loc 1 1017 0
+ 540              		@ sp needed for prologue
+ 541              		.loc 1 1008 0
+ 542 001a 0A43     		orr	r2, r2, r1
+ 543 001c D2B2     		uxtb	r2, r2
+ 544 001e 1A70     		strb	r2, [r3]
+ 545              		.loc 1 1009 0
+ 546 0020 1C78     		ldrb	r4, [r3]
+ 547 0022 FE22     		mov	r2, #254
+ 548 0024 1440     		and	r4, r4, r2
+ 549 0026 1C70     		strb	r4, [r3]
+ 550              		.loc 1 1013 0
+ 551 0028 0133     		add	r3, r3, #1
+ 552 002a 1C78     		ldrb	r4, [r3]
+ 553 002c 2143     		orr	r1, r1, r4
+ 554 002e C9B2     		uxtb	r1, r1
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 31
+
+
+ 555 0030 1970     		strb	r1, [r3]
+ 556              		.loc 1 1014 0
+ 557 0032 1978     		ldrb	r1, [r3]
+ 558 0034 0A40     		and	r2, r2, r1
+ 559 0036 1A70     		strb	r2, [r3]
+ 560              		.loc 1 1016 0
+ 561 0038 FFF7FEFF 		bl	CyExitCriticalSection
+ 562              		.loc 1 1017 0
+ 563 003c 10BD     		pop	{r4, pc}
+ 564              	.L73:
+ 565 003e C046     		.align	2
+ 566              	.L72:
+ 567 0040 A4100F40 		.word	1074729124
+ 568 0044 60000F40 		.word	1074724960
+ 569 0048 92000F40 		.word	1074725010
+ 570              		.cfi_endproc
+ 571              	.LFE19:
+ 572              		.size	LCD_SPIM_ClearFIFO, .-LCD_SPIM_ClearFIFO
+ 573              		.section	.text.LCD_SPIM_Init,"ax",%progbits
+ 574              		.align	1
+ 575              		.global	LCD_SPIM_Init
+ 576              		.code	16
+ 577              		.thumb_func
+ 578              		.type	LCD_SPIM_Init, %function
+ 579              	LCD_SPIM_Init:
+ 580              	.LFB0:
+ 581              		.loc 1 64 0
+ 582              		.cfi_startproc
+ 583 0000 08B5     		push	{r3, lr}
+ 584              	.LCFI5:
+ 585              		.cfi_def_cfa_offset 8
+ 586              		.cfi_offset 3, -8
+ 587              		.cfi_offset 14, -4
+ 588              		.loc 1 66 0
+ 589 0002 074B     		ldr	r3, .L76
+ 590 0004 1122     		mov	r2, #17
+ 591 0006 1A70     		strb	r2, [r3]
+ 592              		.loc 1 83 0
+ 593 0008 FFF7FEFF 		bl	LCD_SPIM_ClearFIFO
+ 594              	.LBB22:
+ 595              	.LBB23:
+ 596              		.loc 1 401 0
+ 597 000c 054B     		ldr	r3, .L76+4
+ 598              	.LBE23:
+ 599              	.LBE22:
+ 600              		.loc 1 101 0
+ 601 000e 064A     		ldr	r2, .L76+8
+ 602              	.LBB25:
+ 603              	.LBB24:
+ 604              		.loc 1 401 0
+ 605 0010 1B78     		ldrb	r3, [r3]
+ 606              	.LBE24:
+ 607              	.LBE25:
+ 608              	.LBB26:
+ 609              	.LBB27:
+ 610              		.loc 1 452 0
+ 611 0012 064B     		ldr	r3, .L76+12
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 32
+
+
+ 612              	.LBE27:
+ 613              	.LBE26:
+ 614              		.loc 1 103 0
+ 615              		@ sp needed for prologue
+ 616              	.LBB29:
+ 617              	.LBB28:
+ 618              		.loc 1 452 0
+ 619 0014 1B78     		ldrb	r3, [r3]
+ 620              	.LBE28:
+ 621              	.LBE29:
+ 622              		.loc 1 101 0
+ 623 0016 0023     		mov	r3, #0
+ 624 0018 1370     		strb	r3, [r2]
+ 625              		.loc 1 102 0
+ 626 001a 023A     		sub	r2, r2, #2
+ 627 001c 1370     		strb	r3, [r2]
+ 628              		.loc 1 103 0
+ 629 001e 08BD     		pop	{r3, pc}
+ 630              	.L77:
+ 631              		.align	2
+ 632              	.L76:
+ 633 0020 81000F40 		.word	1074724993
+ 634 0024 62000F40 		.word	1074724962
+ 635 0028 82000F40 		.word	1074724994
+ 636 002c 60000F40 		.word	1074724960
+ 637              		.cfi_endproc
+ 638              	.LFE0:
+ 639              		.size	LCD_SPIM_Init, .-LCD_SPIM_Init
+ 640              		.section	.text.LCD_SPIM_ClearTxBuffer,"ax",%progbits
+ 641              		.align	1
+ 642              		.global	LCD_SPIM_ClearTxBuffer
+ 643              		.code	16
+ 644              		.thumb_func
+ 645              		.type	LCD_SPIM_ClearTxBuffer, %function
+ 646              	LCD_SPIM_ClearTxBuffer:
+ 647              	.LFB17:
+ 648              		.loc 1 863 0
+ 649              		.cfi_startproc
+ 650 0000 10B5     		push	{r4, lr}
+ 651              	.LCFI6:
+ 652              		.cfi_def_cfa_offset 8
+ 653              		.cfi_offset 4, -8
+ 654              		.cfi_offset 14, -4
+ 655              		.loc 1 866 0
+ 656 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 657              		.loc 1 868 0
+ 658 0006 0A4B     		ldr	r3, .L80
+ 659 0008 0121     		mov	r1, #1
+ 660 000a 1A78     		ldrb	r2, [r3]
+ 661              		.loc 1 891 0
+ 662              		@ sp needed for prologue
+ 663              		.loc 1 868 0
+ 664 000c 0A43     		orr	r2, r2, r1
+ 665 000e D2B2     		uxtb	r2, r2
+ 666 0010 1A70     		strb	r2, [r3]
+ 667              		.loc 1 869 0
+ 668 0012 1C78     		ldrb	r4, [r3]
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 33
+
+
+ 669 0014 FE22     		mov	r2, #254
+ 670 0016 1440     		and	r4, r4, r2
+ 671 0018 1C70     		strb	r4, [r3]
+ 672              		.loc 1 873 0
+ 673 001a 0133     		add	r3, r3, #1
+ 674 001c 1C78     		ldrb	r4, [r3]
+ 675 001e 2143     		orr	r1, r1, r4
+ 676 0020 C9B2     		uxtb	r1, r1
+ 677 0022 1970     		strb	r1, [r3]
+ 678              		.loc 1 874 0
+ 679 0024 1978     		ldrb	r1, [r3]
+ 680 0026 0A40     		and	r2, r2, r1
+ 681 0028 1A70     		strb	r2, [r3]
+ 682              		.loc 1 876 0
+ 683 002a FFF7FEFF 		bl	CyExitCriticalSection
+ 684              		.loc 1 891 0
+ 685 002e 10BD     		pop	{r4, pc}
+ 686              	.L81:
+ 687              		.align	2
+ 688              	.L80:
+ 689 0030 92000F40 		.word	1074725010
+ 690              		.cfi_endproc
+ 691              	.LFE17:
+ 692              		.size	LCD_SPIM_ClearTxBuffer, .-LCD_SPIM_ClearTxBuffer
+ 693              		.section	.text.LCD_SPIM_Stop,"ax",%progbits
+ 694              		.align	1
+ 695              		.global	LCD_SPIM_Stop
+ 696              		.code	16
+ 697              		.thumb_func
+ 698              		.type	LCD_SPIM_Stop, %function
+ 699              	LCD_SPIM_Stop:
+ 700              	.LFB3:
+ 701              		.loc 1 193 0
+ 702              		.cfi_startproc
+ 703 0000 08B5     		push	{r3, lr}
+ 704              	.LCFI7:
+ 705              		.cfi_def_cfa_offset 8
+ 706              		.cfi_offset 3, -8
+ 707              		.cfi_offset 14, -4
+ 708              		.loc 1 196 0
+ 709 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 710              		.loc 1 197 0
+ 711 0006 074B     		ldr	r3, .L84
+ 712 0008 EF22     		mov	r2, #239
+ 713 000a 1978     		ldrb	r1, [r3]
+ 714              		.loc 1 207 0
+ 715              		@ sp needed for prologue
+ 716              		.loc 1 197 0
+ 717 000c 1140     		and	r1, r1, r2
+ 718 000e 1970     		strb	r1, [r3]
+ 719              		.loc 1 198 0
+ 720 0010 023B     		sub	r3, r3, #2
+ 721 0012 1978     		ldrb	r1, [r3]
+ 722 0014 0A40     		and	r2, r2, r1
+ 723 0016 1A70     		strb	r2, [r3]
+ 724              		.loc 1 199 0
+ 725 0018 FFF7FEFF 		bl	CyExitCriticalSection
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 34
+
+
+ 726              		.loc 1 202 0
+ 727 001c FFF7FEFF 		bl	LCD_SPIM_IntClock_Stop
+ 728              		.loc 1 207 0
+ 729 0020 08BD     		pop	{r3, pc}
+ 730              	.L85:
+ 731 0022 C046     		.align	2
+ 732              	.L84:
+ 733 0024 92000F40 		.word	1074725010
+ 734              		.cfi_endproc
+ 735              	.LFE3:
+ 736              		.size	LCD_SPIM_Stop, .-LCD_SPIM_Stop
+ 737              		.section	.text.LCD_SPIM_Enable,"ax",%progbits
+ 738              		.align	1
+ 739              		.global	LCD_SPIM_Enable
+ 740              		.code	16
+ 741              		.thumb_func
+ 742              		.type	LCD_SPIM_Enable, %function
+ 743              	LCD_SPIM_Enable:
+ 744              	.LFB1:
+ 745              		.loc 1 121 0
+ 746              		.cfi_startproc
+ 747 0000 08B5     		push	{r3, lr}
+ 748              	.LCFI8:
+ 749              		.cfi_def_cfa_offset 8
+ 750              		.cfi_offset 3, -8
+ 751              		.cfi_offset 14, -4
+ 752              		.loc 1 124 0
+ 753 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 754              		.loc 1 125 0
+ 755 0006 0A4B     		ldr	r3, .L88
+ 756 0008 2022     		mov	r2, #32
+ 757 000a 1978     		ldrb	r1, [r3]
+ 758              		.loc 1 136 0
+ 759              		@ sp needed for prologue
+ 760              		.loc 1 125 0
+ 761 000c 0A43     		orr	r2, r2, r1
+ 762 000e 1A70     		strb	r2, [r3]
+ 763              		.loc 1 126 0
+ 764 0010 0133     		add	r3, r3, #1
+ 765 0012 1978     		ldrb	r1, [r3]
+ 766 0014 1022     		mov	r2, #16
+ 767 0016 1143     		orr	r1, r1, r2
+ 768 0018 C9B2     		uxtb	r1, r1
+ 769 001a 1970     		strb	r1, [r3]
+ 770              		.loc 1 127 0
+ 771 001c 023B     		sub	r3, r3, #2
+ 772 001e 1978     		ldrb	r1, [r3]
+ 773 0020 0A43     		orr	r2, r2, r1
+ 774 0022 D2B2     		uxtb	r2, r2
+ 775 0024 1A70     		strb	r2, [r3]
+ 776              		.loc 1 128 0
+ 777 0026 FFF7FEFF 		bl	CyExitCriticalSection
+ 778              		.loc 1 131 0
+ 779 002a FFF7FEFF 		bl	LCD_SPIM_IntClock_Start
+ 780              		.loc 1 136 0
+ 781 002e 08BD     		pop	{r3, pc}
+ 782              	.L89:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 35
+
+
+ 783              		.align	2
+ 784              	.L88:
+ 785 0030 91000F40 		.word	1074725009
+ 786              		.cfi_endproc
+ 787              	.LFE1:
+ 788              		.size	LCD_SPIM_Enable, .-LCD_SPIM_Enable
+ 789              		.section	.text.LCD_SPIM_Start,"ax",%progbits
+ 790              		.align	1
+ 791              		.global	LCD_SPIM_Start
+ 792              		.code	16
+ 793              		.thumb_func
+ 794              		.type	LCD_SPIM_Start, %function
+ 795              	LCD_SPIM_Start:
+ 796              	.LFB2:
+ 797              		.loc 1 164 0
+ 798              		.cfi_startproc
+ 799 0000 10B5     		push	{r4, lr}
+ 800              	.LCFI9:
+ 801              		.cfi_def_cfa_offset 8
+ 802              		.cfi_offset 4, -8
+ 803              		.cfi_offset 14, -4
+ 804              		.loc 1 165 0
+ 805 0002 054C     		ldr	r4, .L93
+ 806 0004 2378     		ldrb	r3, [r4]
+ 807 0006 002B     		cmp	r3, #0
+ 808 0008 03D1     		bne	.L91
+ 809              		.loc 1 167 0
+ 810 000a FFF7FEFF 		bl	LCD_SPIM_Init
+ 811              		.loc 1 168 0
+ 812 000e 0123     		mov	r3, #1
+ 813 0010 2370     		strb	r3, [r4]
+ 814              	.L91:
+ 815              		.loc 1 171 0
+ 816 0012 FFF7FEFF 		bl	LCD_SPIM_Enable
+ 817              		.loc 1 172 0
+ 818              		@ sp needed for prologue
+ 819 0016 10BD     		pop	{r4, pc}
+ 820              	.L94:
+ 821              		.align	2
+ 822              	.L93:
+ 823 0018 00000000 		.word	.LANCHOR0
+ 824              		.cfi_endproc
+ 825              	.LFE2:
+ 826              		.size	LCD_SPIM_Start, .-LCD_SPIM_Start
+ 827              		.global	LCD_SPIM_initVar
+ 828              		.comm	LCD_SPIM_swStatusTx,1,1
+ 829              		.comm	LCD_SPIM_swStatusRx,1,1
+ 830              		.bss
+ 831              		.set	.LANCHOR0,. + 0
+ 832              		.type	LCD_SPIM_initVar, %object
+ 833              		.size	LCD_SPIM_initVar, 1
+ 834              	LCD_SPIM_initVar:
+ 835 0000 00       		.space	1
+ 836              		.text
+ 837              	.Letext0:
+ 838              		.section	.debug_loc,"",%progbits
+ 839              	.Ldebug_loc0:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 36
+
+
+ 840              	.LLST8:
+ 841 0000 00000000 		.4byte	.LFB12
+ 842 0004 02000000 		.4byte	.LCFI0
+ 843 0008 0100     		.2byte	0x1
+ 844 000a 5D       		.byte	0x5d
+ 845 000b 02000000 		.4byte	.LCFI0
+ 846 000f 18000000 		.4byte	.LFE12
+ 847 0013 0200     		.2byte	0x2
+ 848 0015 7D       		.byte	0x7d
+ 849 0016 04       		.sleb128 4
+ 850 0017 00000000 		.4byte	0x0
+ 851 001b 00000000 		.4byte	0x0
+ 852              	.LLST11:
+ 853 001f 00000000 		.4byte	.LFB15
+ 854 0023 02000000 		.4byte	.LCFI1
+ 855 0027 0100     		.2byte	0x1
+ 856 0029 5D       		.byte	0x5d
+ 857 002a 02000000 		.4byte	.LCFI1
+ 858 002e 20000000 		.4byte	.LFE15
+ 859 0032 0200     		.2byte	0x2
+ 860 0034 7D       		.byte	0x7d
+ 861 0035 04       		.sleb128 4
+ 862 0036 00000000 		.4byte	0x0
+ 863 003a 00000000 		.4byte	0x0
+ 864              	.LLST12:
+ 865 003e 0A000000 		.4byte	.LVL3
+ 866 0042 0C000000 		.4byte	.LVL4
+ 867 0046 0100     		.2byte	0x1
+ 868 0048 53       		.byte	0x53
+ 869 0049 0C000000 		.4byte	.LVL4
+ 870 004d 0E000000 		.4byte	.LVL5
+ 871 0051 0100     		.2byte	0x1
+ 872 0053 50       		.byte	0x50
+ 873 0054 0E000000 		.4byte	.LVL5
+ 874 0058 14000000 		.4byte	.LVL6
+ 875 005c 0100     		.2byte	0x1
+ 876 005e 53       		.byte	0x53
+ 877 005f 14000000 		.4byte	.LVL6
+ 878 0063 16000000 		.4byte	.LVL7
+ 879 0067 0100     		.2byte	0x1
+ 880 0069 50       		.byte	0x50
+ 881 006a 16000000 		.4byte	.LVL7
+ 882 006e 18000000 		.4byte	.LVL8
+ 883 0072 0100     		.2byte	0x1
+ 884 0074 53       		.byte	0x53
+ 885 0075 18000000 		.4byte	.LVL8
+ 886 0079 18000000 		.4byte	.LVL9
+ 887 007d 0100     		.2byte	0x1
+ 888 007f 50       		.byte	0x50
+ 889 0080 00000000 		.4byte	0x0
+ 890 0084 00000000 		.4byte	0x0
+ 891              	.LLST13:
+ 892 0088 00000000 		.4byte	.LFB16
+ 893 008c 02000000 		.4byte	.LCFI2
+ 894 0090 0100     		.2byte	0x1
+ 895 0092 5D       		.byte	0x5d
+ 896 0093 02000000 		.4byte	.LCFI2
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 37
+
+
+ 897 0097 1C000000 		.4byte	.LFE16
+ 898 009b 0200     		.2byte	0x2
+ 899 009d 7D       		.byte	0x7d
+ 900 009e 04       		.sleb128 4
+ 901 009f 00000000 		.4byte	0x0
+ 902 00a3 00000000 		.4byte	0x0
+ 903              	.LLST14:
+ 904 00a7 00000000 		.4byte	.LFB18
+ 905 00ab 02000000 		.4byte	.LCFI3
+ 906 00af 0100     		.2byte	0x1
+ 907 00b1 5D       		.byte	0x5d
+ 908 00b2 02000000 		.4byte	.LCFI3
+ 909 00b6 1A000000 		.4byte	.LFE18
+ 910 00ba 0200     		.2byte	0x2
+ 911 00bc 7D       		.byte	0x7d
+ 912 00bd 10       		.sleb128 16
+ 913 00be 00000000 		.4byte	0x0
+ 914 00c2 00000000 		.4byte	0x0
+ 915              	.LLST15:
+ 916 00c6 02000000 		.4byte	.LVL10
+ 917 00ca 0A000000 		.4byte	.LVL12
+ 918 00ce 0100     		.2byte	0x1
+ 919 00d0 50       		.byte	0x50
+ 920 00d1 14000000 		.4byte	.LVL15
+ 921 00d5 1A000000 		.4byte	.LFE18
+ 922 00d9 0100     		.2byte	0x1
+ 923 00db 50       		.byte	0x50
+ 924 00dc 00000000 		.4byte	0x0
+ 925 00e0 00000000 		.4byte	0x0
+ 926              	.LLST16:
+ 927 00e4 02000000 		.4byte	.LVL10
+ 928 00e8 08000000 		.4byte	.LVL11
+ 929 00ec 0100     		.2byte	0x1
+ 930 00ee 51       		.byte	0x51
+ 931 00ef 08000000 		.4byte	.LVL11
+ 932 00f3 10000000 		.4byte	.LVL13
+ 933 00f7 0100     		.2byte	0x1
+ 934 00f9 54       		.byte	0x54
+ 935 00fa 12000000 		.4byte	.LVL14
+ 936 00fe 18000000 		.4byte	.LVL16
+ 937 0102 0100     		.2byte	0x1
+ 938 0104 54       		.byte	0x54
+ 939 0105 18000000 		.4byte	.LVL16
+ 940 0109 1A000000 		.4byte	.LFE18
+ 941 010d 0100     		.2byte	0x1
+ 942 010f 51       		.byte	0x51
+ 943 0110 00000000 		.4byte	0x0
+ 944 0114 00000000 		.4byte	0x0
+ 945              	.LLST21:
+ 946 0118 0A000000 		.4byte	.LVL18
+ 947 011c 0E000000 		.4byte	.LVL19
+ 948 0120 0100     		.2byte	0x1
+ 949 0122 50       		.byte	0x50
+ 950 0123 00000000 		.4byte	0x0
+ 951 0127 00000000 		.4byte	0x0
+ 952              	.LLST22:
+ 953 012b 00000000 		.4byte	.LFB19
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 38
+
+
+ 954 012f 02000000 		.4byte	.LCFI4
+ 955 0133 0100     		.2byte	0x1
+ 956 0135 5D       		.byte	0x5d
+ 957 0136 02000000 		.4byte	.LCFI4
+ 958 013a 4C000000 		.4byte	.LFE19
+ 959 013e 0200     		.2byte	0x2
+ 960 0140 7D       		.byte	0x7d
+ 961 0141 08       		.sleb128 8
+ 962 0142 00000000 		.4byte	0x0
+ 963 0146 00000000 		.4byte	0x0
+ 964              	.LLST23:
+ 965 014a 00000000 		.4byte	.LFB0
+ 966 014e 02000000 		.4byte	.LCFI5
+ 967 0152 0100     		.2byte	0x1
+ 968 0154 5D       		.byte	0x5d
+ 969 0155 02000000 		.4byte	.LCFI5
+ 970 0159 30000000 		.4byte	.LFE0
+ 971 015d 0200     		.2byte	0x2
+ 972 015f 7D       		.byte	0x7d
+ 973 0160 08       		.sleb128 8
+ 974 0161 00000000 		.4byte	0x0
+ 975 0165 00000000 		.4byte	0x0
+ 976              	.LLST24:
+ 977 0169 00000000 		.4byte	.LFB17
+ 978 016d 02000000 		.4byte	.LCFI6
+ 979 0171 0100     		.2byte	0x1
+ 980 0173 5D       		.byte	0x5d
+ 981 0174 02000000 		.4byte	.LCFI6
+ 982 0178 34000000 		.4byte	.LFE17
+ 983 017c 0200     		.2byte	0x2
+ 984 017e 7D       		.byte	0x7d
+ 985 017f 08       		.sleb128 8
+ 986 0180 00000000 		.4byte	0x0
+ 987 0184 00000000 		.4byte	0x0
+ 988              	.LLST25:
+ 989 0188 00000000 		.4byte	.LFB3
+ 990 018c 02000000 		.4byte	.LCFI7
+ 991 0190 0100     		.2byte	0x1
+ 992 0192 5D       		.byte	0x5d
+ 993 0193 02000000 		.4byte	.LCFI7
+ 994 0197 28000000 		.4byte	.LFE3
+ 995 019b 0200     		.2byte	0x2
+ 996 019d 7D       		.byte	0x7d
+ 997 019e 08       		.sleb128 8
+ 998 019f 00000000 		.4byte	0x0
+ 999 01a3 00000000 		.4byte	0x0
+ 1000              	.LLST26:
+ 1001 01a7 00000000 		.4byte	.LFB1
+ 1002 01ab 02000000 		.4byte	.LCFI8
+ 1003 01af 0100     		.2byte	0x1
+ 1004 01b1 5D       		.byte	0x5d
+ 1005 01b2 02000000 		.4byte	.LCFI8
+ 1006 01b6 34000000 		.4byte	.LFE1
+ 1007 01ba 0200     		.2byte	0x2
+ 1008 01bc 7D       		.byte	0x7d
+ 1009 01bd 08       		.sleb128 8
+ 1010 01be 00000000 		.4byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 39
+
+
+ 1011 01c2 00000000 		.4byte	0x0
+ 1012              	.LLST27:
+ 1013 01c6 00000000 		.4byte	.LFB2
+ 1014 01ca 02000000 		.4byte	.LCFI9
+ 1015 01ce 0100     		.2byte	0x1
+ 1016 01d0 5D       		.byte	0x5d
+ 1017 01d1 02000000 		.4byte	.LCFI9
+ 1018 01d5 1C000000 		.4byte	.LFE2
+ 1019 01d9 0200     		.2byte	0x2
+ 1020 01db 7D       		.byte	0x7d
+ 1021 01dc 08       		.sleb128 8
+ 1022 01dd 00000000 		.4byte	0x0
+ 1023 01e1 00000000 		.4byte	0x0
+ 1024              		.file 2 ".\\Generated_Source\\PSoC4\\/cytypes.h"
+ 1025              		.section	.debug_info
+ 1026 0000 90040000 		.4byte	0x490
+ 1027 0004 0200     		.2byte	0x2
+ 1028 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1029 000a 04       		.byte	0x4
+ 1030 000b 01       		.uleb128 0x1
+ 1031 000c 99020000 		.4byte	.LASF50
+ 1032 0010 01       		.byte	0x1
+ 1033 0011 BE000000 		.4byte	.LASF51
+ 1034 0015 0C030000 		.4byte	.LASF52
+ 1035 0019 00000000 		.4byte	0x0
+ 1036 001d 00000000 		.4byte	0x0
+ 1037 0021 60000000 		.4byte	.Ldebug_ranges0+0x60
+ 1038 0025 00000000 		.4byte	.Ldebug_line0
+ 1039 0029 02       		.uleb128 0x2
+ 1040 002a 01       		.byte	0x1
+ 1041 002b 06       		.byte	0x6
+ 1042 002c 68030000 		.4byte	.LASF0
+ 1043 0030 02       		.uleb128 0x2
+ 1044 0031 01       		.byte	0x1
+ 1045 0032 08       		.byte	0x8
+ 1046 0033 FD010000 		.4byte	.LASF1
+ 1047 0037 02       		.uleb128 0x2
+ 1048 0038 02       		.byte	0x2
+ 1049 0039 05       		.byte	0x5
+ 1050 003a DA020000 		.4byte	.LASF2
+ 1051 003e 02       		.uleb128 0x2
+ 1052 003f 02       		.byte	0x2
+ 1053 0040 07       		.byte	0x7
+ 1054 0041 AB000000 		.4byte	.LASF3
+ 1055 0045 02       		.uleb128 0x2
+ 1056 0046 04       		.byte	0x4
+ 1057 0047 05       		.byte	0x5
+ 1058 0048 F9020000 		.4byte	.LASF4
+ 1059 004c 02       		.uleb128 0x2
+ 1060 004d 04       		.byte	0x4
+ 1061 004e 07       		.byte	0x7
+ 1062 004f 3E010000 		.4byte	.LASF5
+ 1063 0053 02       		.uleb128 0x2
+ 1064 0054 08       		.byte	0x8
+ 1065 0055 05       		.byte	0x5
+ 1066 0056 00000000 		.4byte	.LASF6
+ 1067 005a 02       		.uleb128 0x2
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 40
+
+
+ 1068 005b 08       		.byte	0x8
+ 1069 005c 07       		.byte	0x7
+ 1070 005d 31020000 		.4byte	.LASF7
+ 1071 0061 03       		.uleb128 0x3
+ 1072 0062 04       		.byte	0x4
+ 1073 0063 05       		.byte	0x5
+ 1074 0064 696E7400 		.ascii	"int\000"
+ 1075 0068 02       		.uleb128 0x2
+ 1076 0069 04       		.byte	0x4
+ 1077 006a 07       		.byte	0x7
+ 1078 006b 0B020000 		.4byte	.LASF8
+ 1079 006f 04       		.uleb128 0x4
+ 1080 0070 64010000 		.4byte	.LASF9
+ 1081 0074 02       		.byte	0x2
+ 1082 0075 4C       		.byte	0x4c
+ 1083 0076 30000000 		.4byte	0x30
+ 1084 007a 04       		.uleb128 0x4
+ 1085 007b F6010000 		.4byte	.LASF10
+ 1086 007f 02       		.byte	0x2
+ 1087 0080 4D       		.byte	0x4d
+ 1088 0081 3E000000 		.4byte	0x3e
+ 1089 0085 02       		.uleb128 0x2
+ 1090 0086 04       		.byte	0x4
+ 1091 0087 04       		.byte	0x4
+ 1092 0088 A5020000 		.4byte	.LASF11
+ 1093 008c 02       		.uleb128 0x2
+ 1094 008d 08       		.byte	0x8
+ 1095 008e 04       		.byte	0x4
+ 1096 008f DA010000 		.4byte	.LASF12
+ 1097 0093 02       		.uleb128 0x2
+ 1098 0094 01       		.byte	0x1
+ 1099 0095 08       		.byte	0x8
+ 1100 0096 AB020000 		.4byte	.LASF13
+ 1101 009a 05       		.uleb128 0x5
+ 1102 009b 6F000000 		.4byte	0x6f
+ 1103 009f 06       		.uleb128 0x6
+ 1104 00a0 04       		.byte	0x4
+ 1105 00a1 07       		.byte	0x7
+ 1106 00a2 07       		.uleb128 0x7
+ 1107 00a3 01       		.byte	0x1
+ 1108 00a4 B2010000 		.4byte	.LASF14
+ 1109 00a8 01       		.byte	0x1
+ 1110 00a9 FC       		.byte	0xfc
+ 1111 00aa 01       		.byte	0x1
+ 1112 00ab 01       		.byte	0x1
+ 1113 00ac 07       		.uleb128 0x7
+ 1114 00ad 01       		.byte	0x1
+ 1115 00ae 74030000 		.4byte	.LASF15
+ 1116 00b2 01       		.byte	0x1
+ 1117 00b3 E3       		.byte	0xe3
+ 1118 00b4 01       		.byte	0x1
+ 1119 00b5 01       		.byte	0x1
+ 1120 00b6 08       		.uleb128 0x8
+ 1121 00b7 01       		.byte	0x1
+ 1122 00b8 E2000000 		.4byte	.LASF16
+ 1123 00bc 01       		.byte	0x1
+ 1124 00bd 1501     		.2byte	0x115
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 41
+
+
+ 1125 00bf 01       		.byte	0x1
+ 1126 00c0 01       		.byte	0x1
+ 1127 00c1 08       		.uleb128 0x8
+ 1128 00c2 01       		.byte	0x1
+ 1129 00c3 6F020000 		.4byte	.LASF17
+ 1130 00c7 01       		.byte	0x1
+ 1131 00c8 2E01     		.2byte	0x12e
+ 1132 00ca 01       		.byte	0x1
+ 1133 00cb 01       		.byte	0x1
+ 1134 00cc 09       		.uleb128 0x9
+ 1135 00cd 01       		.byte	0x1
+ 1136 00ce C4020000 		.4byte	.LASF18
+ 1137 00d2 01       		.byte	0x1
+ 1138 00d3 8201     		.2byte	0x182
+ 1139 00d5 01       		.byte	0x1
+ 1140 00d6 6F000000 		.4byte	0x6f
+ 1141 00da 01       		.byte	0x1
+ 1142 00db EC000000 		.4byte	0xec
+ 1143 00df 0A       		.uleb128 0xa
+ 1144 00e0 02030000 		.4byte	.LASF20
+ 1145 00e4 01       		.byte	0x1
+ 1146 00e5 8401     		.2byte	0x184
+ 1147 00e7 6F000000 		.4byte	0x6f
+ 1148 00eb 00       		.byte	0x0
+ 1149 00ec 09       		.uleb128 0x9
+ 1150 00ed 01       		.byte	0x1
+ 1151 00ee 79000000 		.4byte	.LASF19
+ 1152 00f2 01       		.byte	0x1
+ 1153 00f3 B501     		.2byte	0x1b5
+ 1154 00f5 01       		.byte	0x1
+ 1155 00f6 6F000000 		.4byte	0x6f
+ 1156 00fa 01       		.byte	0x1
+ 1157 00fb 0C010000 		.4byte	0x10c
+ 1158 00ff 0A       		.uleb128 0xa
+ 1159 0100 02030000 		.4byte	.LASF20
+ 1160 0104 01       		.byte	0x1
+ 1161 0105 B701     		.2byte	0x1b7
+ 1162 0107 6F000000 		.4byte	0x6f
+ 1163 010b 00       		.byte	0x0
+ 1164 010c 0B       		.uleb128 0xb
+ 1165 010d AC000000 		.4byte	0xac
+ 1166 0111 00000000 		.4byte	.LFB4
+ 1167 0115 02000000 		.4byte	.LFE4
+ 1168 0119 01       		.byte	0x1
+ 1169 011a 5D       		.byte	0x5d
+ 1170 011b 0B       		.uleb128 0xb
+ 1171 011c A2000000 		.4byte	0xa2
+ 1172 0120 00000000 		.4byte	.LFB5
+ 1173 0124 02000000 		.4byte	.LFE5
+ 1174 0128 01       		.byte	0x1
+ 1175 0129 5D       		.byte	0x5d
+ 1176 012a 0B       		.uleb128 0xb
+ 1177 012b B6000000 		.4byte	0xb6
+ 1178 012f 00000000 		.4byte	.LFB6
+ 1179 0133 02000000 		.4byte	.LFE6
+ 1180 0137 01       		.byte	0x1
+ 1181 0138 5D       		.byte	0x5d
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 42
+
+
+ 1182 0139 0B       		.uleb128 0xb
+ 1183 013a C1000000 		.4byte	0xc1
+ 1184 013e 00000000 		.4byte	.LFB7
+ 1185 0142 02000000 		.4byte	.LFE7
+ 1186 0146 01       		.byte	0x1
+ 1187 0147 5D       		.byte	0x5d
+ 1188 0148 0C       		.uleb128 0xc
+ 1189 0149 01       		.byte	0x1
+ 1190 014a 5D000000 		.4byte	.LASF21
+ 1191 014e 01       		.byte	0x1
+ 1192 014f 4801     		.2byte	0x148
+ 1193 0151 01       		.byte	0x1
+ 1194 0152 00000000 		.4byte	.LFB8
+ 1195 0156 0C000000 		.4byte	.LFE8
+ 1196 015a 01       		.byte	0x1
+ 1197 015b 5D       		.byte	0x5d
+ 1198 015c 6F010000 		.4byte	0x16f
+ 1199 0160 0D       		.uleb128 0xd
+ 1200 0161 E1010000 		.4byte	.LASF23
+ 1201 0165 01       		.byte	0x1
+ 1202 0166 4801     		.2byte	0x148
+ 1203 0168 6F000000 		.4byte	0x6f
+ 1204 016c 01       		.byte	0x1
+ 1205 016d 50       		.byte	0x50
+ 1206 016e 00       		.byte	0x0
+ 1207 016f 0C       		.uleb128 0xc
+ 1208 0170 01       		.byte	0x1
+ 1209 0171 8F000000 		.4byte	.LASF22
+ 1210 0175 01       		.byte	0x1
+ 1211 0176 6001     		.2byte	0x160
+ 1212 0178 01       		.byte	0x1
+ 1213 0179 00000000 		.4byte	.LFB9
+ 1214 017d 0C000000 		.4byte	.LFE9
+ 1215 0181 01       		.byte	0x1
+ 1216 0182 5D       		.byte	0x5d
+ 1217 0183 96010000 		.4byte	0x196
+ 1218 0187 0D       		.uleb128 0xd
+ 1219 0188 E1010000 		.4byte	.LASF23
+ 1220 018c 01       		.byte	0x1
+ 1221 018d 6001     		.2byte	0x160
+ 1222 018f 6F000000 		.4byte	0x6f
+ 1223 0193 01       		.byte	0x1
+ 1224 0194 50       		.byte	0x50
+ 1225 0195 00       		.byte	0x0
+ 1226 0196 0E       		.uleb128 0xe
+ 1227 0197 CC000000 		.4byte	0xcc
+ 1228 019b 00000000 		.4byte	.LFB10
+ 1229 019f 0C000000 		.4byte	.LFE10
+ 1230 01a3 01       		.byte	0x1
+ 1231 01a4 5D       		.byte	0x5d
+ 1232 01a5 B1010000 		.4byte	0x1b1
+ 1233 01a9 0F       		.uleb128 0xf
+ 1234 01aa DF000000 		.4byte	0xdf
+ 1235 01ae 01       		.byte	0x1
+ 1236 01af 50       		.byte	0x50
+ 1237 01b0 00       		.byte	0x0
+ 1238 01b1 0E       		.uleb128 0xe
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 43
+
+
+ 1239 01b2 EC000000 		.4byte	0xec
+ 1240 01b6 00000000 		.4byte	.LFB11
+ 1241 01ba 0C000000 		.4byte	.LFE11
+ 1242 01be 01       		.byte	0x1
+ 1243 01bf 5D       		.byte	0x5d
+ 1244 01c0 CC010000 		.4byte	0x1cc
+ 1245 01c4 0F       		.uleb128 0xf
+ 1246 01c5 FF000000 		.4byte	0xff
+ 1247 01c9 01       		.byte	0x1
+ 1248 01ca 50       		.byte	0x50
+ 1249 01cb 00       		.byte	0x0
+ 1250 01cc 10       		.uleb128 0x10
+ 1251 01cd 01       		.byte	0x1
+ 1252 01ce 48000000 		.4byte	.LASF24
+ 1253 01d2 01       		.byte	0x1
+ 1254 01d3 EE01     		.2byte	0x1ee
+ 1255 01d5 01       		.byte	0x1
+ 1256 01d6 00000000 		.4byte	.LFB12
+ 1257 01da 18000000 		.4byte	.LFE12
+ 1258 01de 00000000 		.4byte	.LLST8
+ 1259 01e2 F5010000 		.4byte	0x1f5
+ 1260 01e6 0D       		.uleb128 0xd
+ 1261 01e7 51020000 		.4byte	.LASF25
+ 1262 01eb 01       		.byte	0x1
+ 1263 01ec EE01     		.2byte	0x1ee
+ 1264 01ee 7A000000 		.4byte	0x7a
+ 1265 01f2 01       		.byte	0x1
+ 1266 01f3 50       		.byte	0x50
+ 1267 01f4 00       		.byte	0x0
+ 1268 01f5 11       		.uleb128 0x11
+ 1269 01f6 01       		.byte	0x1
+ 1270 01f7 85020000 		.4byte	.LASF26
+ 1271 01fb 01       		.byte	0x1
+ 1272 01fc 5B02     		.2byte	0x25b
+ 1273 01fe 01       		.byte	0x1
+ 1274 01ff 7A000000 		.4byte	0x7a
+ 1275 0203 00000000 		.4byte	.LFB13
+ 1276 0207 0C000000 		.4byte	.LFE13
+ 1277 020b 01       		.byte	0x1
+ 1278 020c 5D       		.byte	0x5d
+ 1279 020d 20020000 		.4byte	0x220
+ 1280 0211 12       		.uleb128 0x12
+ 1281 0212 22010000 		.4byte	.LASF30
+ 1282 0216 01       		.byte	0x1
+ 1283 0217 5D02     		.2byte	0x25d
+ 1284 0219 7A000000 		.4byte	0x7a
+ 1285 021d 01       		.byte	0x1
+ 1286 021e 50       		.byte	0x50
+ 1287 021f 00       		.byte	0x0
+ 1288 0220 11       		.uleb128 0x11
+ 1289 0221 01       		.byte	0x1
+ 1290 0222 18020000 		.4byte	.LASF27
+ 1291 0226 01       		.byte	0x1
+ 1292 0227 9B02     		.2byte	0x29b
+ 1293 0229 01       		.byte	0x1
+ 1294 022a 6F000000 		.4byte	0x6f
+ 1295 022e 00000000 		.4byte	.LFB14
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 44
+
+
+ 1296 0232 10000000 		.4byte	.LFE14
+ 1297 0236 01       		.byte	0x1
+ 1298 0237 5D       		.byte	0x5d
+ 1299 0238 49020000 		.4byte	0x249
+ 1300 023c 0A       		.uleb128 0xa
+ 1301 023d 39010000 		.4byte	.LASF28
+ 1302 0241 01       		.byte	0x1
+ 1303 0242 9D02     		.2byte	0x29d
+ 1304 0244 6F000000 		.4byte	0x6f
+ 1305 0248 00       		.byte	0x0
+ 1306 0249 13       		.uleb128 0x13
+ 1307 024a 01       		.byte	0x1
+ 1308 024b 99010000 		.4byte	.LASF29
+ 1309 024f 01       		.byte	0x1
+ 1310 0250 D802     		.2byte	0x2d8
+ 1311 0252 01       		.byte	0x1
+ 1312 0253 6F000000 		.4byte	0x6f
+ 1313 0257 00000000 		.4byte	.LFB15
+ 1314 025b 20000000 		.4byte	.LFE15
+ 1315 025f 1F000000 		.4byte	.LLST11
+ 1316 0263 78020000 		.4byte	0x278
+ 1317 0267 14       		.uleb128 0x14
+ 1318 0268 39010000 		.4byte	.LASF28
+ 1319 026c 01       		.byte	0x1
+ 1320 026d DA02     		.2byte	0x2da
+ 1321 026f 6F000000 		.4byte	0x6f
+ 1322 0273 3E000000 		.4byte	.LLST12
+ 1323 0277 00       		.byte	0x0
+ 1324 0278 15       		.uleb128 0x15
+ 1325 0279 01       		.byte	0x1
+ 1326 027a F8000000 		.4byte	.LASF35
+ 1327 027e 01       		.byte	0x1
+ 1328 027f 2703     		.2byte	0x327
+ 1329 0281 01       		.byte	0x1
+ 1330 0282 00000000 		.4byte	.LFB16
+ 1331 0286 1C000000 		.4byte	.LFE16
+ 1332 028a 88000000 		.4byte	.LLST13
+ 1333 028e 10       		.uleb128 0x10
+ 1334 028f 01       		.byte	0x1
+ 1335 0290 89030000 		.4byte	.LASF31
+ 1336 0294 01       		.byte	0x1
+ 1337 0295 C303     		.2byte	0x3c3
+ 1338 0297 01       		.byte	0x1
+ 1339 0298 00000000 		.4byte	.LFB18
+ 1340 029c 1A000000 		.4byte	.LFE18
+ 1341 02a0 A7000000 		.4byte	.LLST14
+ 1342 02a4 D5020000 		.4byte	0x2d5
+ 1343 02a8 16       		.uleb128 0x16
+ 1344 02a9 E4020000 		.4byte	.LASF32
+ 1345 02ad 01       		.byte	0x1
+ 1346 02ae C303     		.2byte	0x3c3
+ 1347 02b0 D5020000 		.4byte	0x2d5
+ 1348 02b4 C6000000 		.4byte	.LLST15
+ 1349 02b8 16       		.uleb128 0x16
+ 1350 02b9 7E010000 		.4byte	.LASF33
+ 1351 02bd 01       		.byte	0x1
+ 1352 02be C303     		.2byte	0x3c3
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 45
+
+
+ 1353 02c0 6F000000 		.4byte	0x6f
+ 1354 02c4 E4000000 		.4byte	.LLST16
+ 1355 02c8 0A       		.uleb128 0xa
+ 1356 02c9 48020000 		.4byte	.LASF34
+ 1357 02cd 01       		.byte	0x1
+ 1358 02ce C603     		.2byte	0x3c6
+ 1359 02d0 6F000000 		.4byte	0x6f
+ 1360 02d4 00       		.byte	0x0
+ 1361 02d5 17       		.uleb128 0x17
+ 1362 02d6 04       		.byte	0x4
+ 1363 02d7 DB020000 		.4byte	0x2db
+ 1364 02db 18       		.uleb128 0x18
+ 1365 02dc 7A000000 		.4byte	0x7a
+ 1366 02e0 19       		.uleb128 0x19
+ 1367 02e1 01       		.byte	0x1
+ 1368 02e2 0F010000 		.4byte	.LASF36
+ 1369 02e6 01       		.byte	0x1
+ 1370 02e7 1204     		.2byte	0x412
+ 1371 02e9 01       		.byte	0x1
+ 1372 02ea 00000000 		.4byte	.LFB20
+ 1373 02ee 02000000 		.4byte	.LFE20
+ 1374 02f2 01       		.byte	0x1
+ 1375 02f3 5D       		.byte	0x5d
+ 1376 02f4 19       		.uleb128 0x19
+ 1377 02f5 01       		.byte	0x1
+ 1378 02f6 50010000 		.4byte	.LASF37
+ 1379 02fa 01       		.byte	0x1
+ 1380 02fb 2A04     		.2byte	0x42a
+ 1381 02fd 01       		.byte	0x1
+ 1382 02fe 00000000 		.4byte	.LFB21
+ 1383 0302 02000000 		.4byte	.LFE21
+ 1384 0306 01       		.byte	0x1
+ 1385 0307 5D       		.byte	0x5d
+ 1386 0308 0C       		.uleb128 0xc
+ 1387 0309 01       		.byte	0x1
+ 1388 030a 2E000000 		.4byte	.LASF38
+ 1389 030e 01       		.byte	0x1
+ 1390 030f 4304     		.2byte	0x443
+ 1391 0311 01       		.byte	0x1
+ 1392 0312 00000000 		.4byte	.LFB22
+ 1393 0316 14000000 		.4byte	.LFE22
+ 1394 031a 01       		.byte	0x1
+ 1395 031b 5D       		.byte	0x5d
+ 1396 031c 2F030000 		.4byte	0x32f
+ 1397 0320 0D       		.uleb128 0xd
+ 1398 0321 E1010000 		.4byte	.LASF23
+ 1399 0325 01       		.byte	0x1
+ 1400 0326 4304     		.2byte	0x443
+ 1401 0328 6F000000 		.4byte	0x6f
+ 1402 032c 01       		.byte	0x1
+ 1403 032d 50       		.byte	0x50
+ 1404 032e 00       		.byte	0x0
+ 1405 032f 11       		.uleb128 0x11
+ 1406 0330 01       		.byte	0x1
+ 1407 0331 6A010000 		.4byte	.LASF39
+ 1408 0335 01       		.byte	0x1
+ 1409 0336 6604     		.2byte	0x466
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 46
+
+
+ 1410 0338 01       		.byte	0x1
+ 1411 0339 6F000000 		.4byte	0x6f
+ 1412 033d 00000000 		.4byte	.LFB23
+ 1413 0341 18000000 		.4byte	.LFE23
+ 1414 0345 01       		.byte	0x1
+ 1415 0346 5D       		.byte	0x5d
+ 1416 0347 5C030000 		.4byte	0x35c
+ 1417 034b 14       		.uleb128 0x14
+ 1418 034c 02030000 		.4byte	.LASF20
+ 1419 0350 01       		.byte	0x1
+ 1420 0351 6804     		.2byte	0x468
+ 1421 0353 6F000000 		.4byte	0x6f
+ 1422 0357 18010000 		.4byte	.LLST21
+ 1423 035b 00       		.byte	0x0
+ 1424 035c 10       		.uleb128 0x10
+ 1425 035d 01       		.byte	0x1
+ 1426 035e C7010000 		.4byte	.LASF40
+ 1427 0362 01       		.byte	0x1
+ 1428 0363 E403     		.2byte	0x3e4
+ 1429 0365 01       		.byte	0x1
+ 1430 0366 00000000 		.4byte	.LFB19
+ 1431 036a 4C000000 		.4byte	.LFE19
+ 1432 036e 2B010000 		.4byte	.LLST22
+ 1433 0372 83030000 		.4byte	0x383
+ 1434 0376 0A       		.uleb128 0xa
+ 1435 0377 88010000 		.4byte	.LASF41
+ 1436 037b 01       		.byte	0x1
+ 1437 037c E603     		.2byte	0x3e6
+ 1438 037e 6F000000 		.4byte	0x6f
+ 1439 0382 00       		.byte	0x0
+ 1440 0383 1A       		.uleb128 0x1a
+ 1441 0384 01       		.byte	0x1
+ 1442 0385 E8010000 		.4byte	.LASF42
+ 1443 0389 01       		.byte	0x1
+ 1444 038a 3F       		.byte	0x3f
+ 1445 038b 01       		.byte	0x1
+ 1446 038c 00000000 		.4byte	.LFB0
+ 1447 0390 30000000 		.4byte	.LFE0
+ 1448 0394 4A010000 		.4byte	.LLST23
+ 1449 0398 D7030000 		.4byte	0x3d7
+ 1450 039c 1B       		.uleb128 0x1b
+ 1451 039d CC000000 		.4byte	0xcc
+ 1452 03a1 0C000000 		.4byte	.LBB22
+ 1453 03a5 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 1454 03a9 01       		.byte	0x1
+ 1455 03aa 61       		.byte	0x61
+ 1456 03ab BB030000 		.4byte	0x3bb
+ 1457 03af 1C       		.uleb128 0x1c
+ 1458 03b0 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1459 03b4 1D       		.uleb128 0x1d
+ 1460 03b5 DF000000 		.4byte	0xdf
+ 1461 03b9 00       		.byte	0x0
+ 1462 03ba 00       		.byte	0x0
+ 1463 03bb 1E       		.uleb128 0x1e
+ 1464 03bc EC000000 		.4byte	0xec
+ 1465 03c0 12000000 		.4byte	.LBB26
+ 1466 03c4 30000000 		.4byte	.Ldebug_ranges0+0x30
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 47
+
+
+ 1467 03c8 01       		.byte	0x1
+ 1468 03c9 62       		.byte	0x62
+ 1469 03ca 1C       		.uleb128 0x1c
+ 1470 03cb 48000000 		.4byte	.Ldebug_ranges0+0x48
+ 1471 03cf 1D       		.uleb128 0x1d
+ 1472 03d0 FF000000 		.4byte	0xff
+ 1473 03d4 00       		.byte	0x0
+ 1474 03d5 00       		.byte	0x0
+ 1475 03d6 00       		.byte	0x0
+ 1476 03d7 10       		.uleb128 0x10
+ 1477 03d8 01       		.byte	0x1
+ 1478 03d9 58020000 		.4byte	.LASF43
+ 1479 03dd 01       		.byte	0x1
+ 1480 03de 5E03     		.2byte	0x35e
+ 1481 03e0 01       		.byte	0x1
+ 1482 03e1 00000000 		.4byte	.LFB17
+ 1483 03e5 34000000 		.4byte	.LFE17
+ 1484 03e9 69010000 		.4byte	.LLST24
+ 1485 03ed FE030000 		.4byte	0x3fe
+ 1486 03f1 0A       		.uleb128 0xa
+ 1487 03f2 88010000 		.4byte	.LASF41
+ 1488 03f6 01       		.byte	0x1
+ 1489 03f7 6003     		.2byte	0x360
+ 1490 03f9 6F000000 		.4byte	0x6f
+ 1491 03fd 00       		.byte	0x0
+ 1492 03fe 1A       		.uleb128 0x1a
+ 1493 03ff 01       		.byte	0x1
+ 1494 0400 EB020000 		.4byte	.LASF44
+ 1495 0404 01       		.byte	0x1
+ 1496 0405 C0       		.byte	0xc0
+ 1497 0406 01       		.byte	0x1
+ 1498 0407 00000000 		.4byte	.LFB3
+ 1499 040b 28000000 		.4byte	.LFE3
+ 1500 040f 88010000 		.4byte	.LLST25
+ 1501 0413 23040000 		.4byte	0x423
+ 1502 0417 1F       		.uleb128 0x1f
+ 1503 0418 88010000 		.4byte	.LASF41
+ 1504 041c 01       		.byte	0x1
+ 1505 041d C2       		.byte	0xc2
+ 1506 041e 6F000000 		.4byte	0x6f
+ 1507 0422 00       		.byte	0x0
+ 1508 0423 1A       		.uleb128 0x1a
+ 1509 0424 01       		.byte	0x1
+ 1510 0425 29010000 		.4byte	.LASF45
+ 1511 0429 01       		.byte	0x1
+ 1512 042a 78       		.byte	0x78
+ 1513 042b 01       		.byte	0x1
+ 1514 042c 00000000 		.4byte	.LFB1
+ 1515 0430 34000000 		.4byte	.LFE1
+ 1516 0434 A7010000 		.4byte	.LLST26
+ 1517 0438 48040000 		.4byte	0x448
+ 1518 043c 1F       		.uleb128 0x1f
+ 1519 043d 88010000 		.4byte	.LASF41
+ 1520 0441 01       		.byte	0x1
+ 1521 0442 7A       		.byte	0x7a
+ 1522 0443 6F000000 		.4byte	0x6f
+ 1523 0447 00       		.byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 48
+
+
+ 1524 0448 20       		.uleb128 0x20
+ 1525 0449 01       		.byte	0x1
+ 1526 044a 1F000000 		.4byte	.LASF46
+ 1527 044e 01       		.byte	0x1
+ 1528 044f A3       		.byte	0xa3
+ 1529 0450 01       		.byte	0x1
+ 1530 0451 00000000 		.4byte	.LFB2
+ 1531 0455 1C000000 		.4byte	.LFE2
+ 1532 0459 C6010000 		.4byte	.LLST27
+ 1533 045d 21       		.uleb128 0x21
+ 1534 045e 0E000000 		.4byte	.LASF47
+ 1535 0462 01       		.byte	0x1
+ 1536 0463 22       		.byte	0x22
+ 1537 0464 6F000000 		.4byte	0x6f
+ 1538 0468 01       		.byte	0x1
+ 1539 0469 05       		.byte	0x5
+ 1540 046a 03       		.byte	0x3
+ 1541 046b 00000000 		.4byte	LCD_SPIM_initVar
+ 1542 046f 21       		.uleb128 0x21
+ 1543 0470 9B030000 		.4byte	.LASF48
+ 1544 0474 01       		.byte	0x1
+ 1545 0475 24       		.byte	0x24
+ 1546 0476 9A000000 		.4byte	0x9a
+ 1547 047a 01       		.byte	0x1
+ 1548 047b 05       		.byte	0x5
+ 1549 047c 03       		.byte	0x3
+ 1550 047d 00000000 		.4byte	LCD_SPIM_swStatusTx
+ 1551 0481 21       		.uleb128 0x21
+ 1552 0482 B0020000 		.4byte	.LASF49
+ 1553 0486 01       		.byte	0x1
+ 1554 0487 25       		.byte	0x25
+ 1555 0488 9A000000 		.4byte	0x9a
+ 1556 048c 01       		.byte	0x1
+ 1557 048d 05       		.byte	0x5
+ 1558 048e 03       		.byte	0x3
+ 1559 048f 00000000 		.4byte	LCD_SPIM_swStatusRx
+ 1560 0493 00       		.byte	0x0
+ 1561              		.section	.debug_abbrev
+ 1562 0000 01       		.uleb128 0x1
+ 1563 0001 11       		.uleb128 0x11
+ 1564 0002 01       		.byte	0x1
+ 1565 0003 25       		.uleb128 0x25
+ 1566 0004 0E       		.uleb128 0xe
+ 1567 0005 13       		.uleb128 0x13
+ 1568 0006 0B       		.uleb128 0xb
+ 1569 0007 03       		.uleb128 0x3
+ 1570 0008 0E       		.uleb128 0xe
+ 1571 0009 1B       		.uleb128 0x1b
+ 1572 000a 0E       		.uleb128 0xe
+ 1573 000b 11       		.uleb128 0x11
+ 1574 000c 01       		.uleb128 0x1
+ 1575 000d 52       		.uleb128 0x52
+ 1576 000e 01       		.uleb128 0x1
+ 1577 000f 55       		.uleb128 0x55
+ 1578 0010 06       		.uleb128 0x6
+ 1579 0011 10       		.uleb128 0x10
+ 1580 0012 06       		.uleb128 0x6
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 49
+
+
+ 1581 0013 00       		.byte	0x0
+ 1582 0014 00       		.byte	0x0
+ 1583 0015 02       		.uleb128 0x2
+ 1584 0016 24       		.uleb128 0x24
+ 1585 0017 00       		.byte	0x0
+ 1586 0018 0B       		.uleb128 0xb
+ 1587 0019 0B       		.uleb128 0xb
+ 1588 001a 3E       		.uleb128 0x3e
+ 1589 001b 0B       		.uleb128 0xb
+ 1590 001c 03       		.uleb128 0x3
+ 1591 001d 0E       		.uleb128 0xe
+ 1592 001e 00       		.byte	0x0
+ 1593 001f 00       		.byte	0x0
+ 1594 0020 03       		.uleb128 0x3
+ 1595 0021 24       		.uleb128 0x24
+ 1596 0022 00       		.byte	0x0
+ 1597 0023 0B       		.uleb128 0xb
+ 1598 0024 0B       		.uleb128 0xb
+ 1599 0025 3E       		.uleb128 0x3e
+ 1600 0026 0B       		.uleb128 0xb
+ 1601 0027 03       		.uleb128 0x3
+ 1602 0028 08       		.uleb128 0x8
+ 1603 0029 00       		.byte	0x0
+ 1604 002a 00       		.byte	0x0
+ 1605 002b 04       		.uleb128 0x4
+ 1606 002c 16       		.uleb128 0x16
+ 1607 002d 00       		.byte	0x0
+ 1608 002e 03       		.uleb128 0x3
+ 1609 002f 0E       		.uleb128 0xe
+ 1610 0030 3A       		.uleb128 0x3a
+ 1611 0031 0B       		.uleb128 0xb
+ 1612 0032 3B       		.uleb128 0x3b
+ 1613 0033 0B       		.uleb128 0xb
+ 1614 0034 49       		.uleb128 0x49
+ 1615 0035 13       		.uleb128 0x13
+ 1616 0036 00       		.byte	0x0
+ 1617 0037 00       		.byte	0x0
+ 1618 0038 05       		.uleb128 0x5
+ 1619 0039 35       		.uleb128 0x35
+ 1620 003a 00       		.byte	0x0
+ 1621 003b 49       		.uleb128 0x49
+ 1622 003c 13       		.uleb128 0x13
+ 1623 003d 00       		.byte	0x0
+ 1624 003e 00       		.byte	0x0
+ 1625 003f 06       		.uleb128 0x6
+ 1626 0040 24       		.uleb128 0x24
+ 1627 0041 00       		.byte	0x0
+ 1628 0042 0B       		.uleb128 0xb
+ 1629 0043 0B       		.uleb128 0xb
+ 1630 0044 3E       		.uleb128 0x3e
+ 1631 0045 0B       		.uleb128 0xb
+ 1632 0046 00       		.byte	0x0
+ 1633 0047 00       		.byte	0x0
+ 1634 0048 07       		.uleb128 0x7
+ 1635 0049 2E       		.uleb128 0x2e
+ 1636 004a 00       		.byte	0x0
+ 1637 004b 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 50
+
+
+ 1638 004c 0C       		.uleb128 0xc
+ 1639 004d 03       		.uleb128 0x3
+ 1640 004e 0E       		.uleb128 0xe
+ 1641 004f 3A       		.uleb128 0x3a
+ 1642 0050 0B       		.uleb128 0xb
+ 1643 0051 3B       		.uleb128 0x3b
+ 1644 0052 0B       		.uleb128 0xb
+ 1645 0053 27       		.uleb128 0x27
+ 1646 0054 0C       		.uleb128 0xc
+ 1647 0055 20       		.uleb128 0x20
+ 1648 0056 0B       		.uleb128 0xb
+ 1649 0057 00       		.byte	0x0
+ 1650 0058 00       		.byte	0x0
+ 1651 0059 08       		.uleb128 0x8
+ 1652 005a 2E       		.uleb128 0x2e
+ 1653 005b 00       		.byte	0x0
+ 1654 005c 3F       		.uleb128 0x3f
+ 1655 005d 0C       		.uleb128 0xc
+ 1656 005e 03       		.uleb128 0x3
+ 1657 005f 0E       		.uleb128 0xe
+ 1658 0060 3A       		.uleb128 0x3a
+ 1659 0061 0B       		.uleb128 0xb
+ 1660 0062 3B       		.uleb128 0x3b
+ 1661 0063 05       		.uleb128 0x5
+ 1662 0064 27       		.uleb128 0x27
+ 1663 0065 0C       		.uleb128 0xc
+ 1664 0066 20       		.uleb128 0x20
+ 1665 0067 0B       		.uleb128 0xb
+ 1666 0068 00       		.byte	0x0
+ 1667 0069 00       		.byte	0x0
+ 1668 006a 09       		.uleb128 0x9
+ 1669 006b 2E       		.uleb128 0x2e
+ 1670 006c 01       		.byte	0x1
+ 1671 006d 3F       		.uleb128 0x3f
+ 1672 006e 0C       		.uleb128 0xc
+ 1673 006f 03       		.uleb128 0x3
+ 1674 0070 0E       		.uleb128 0xe
+ 1675 0071 3A       		.uleb128 0x3a
+ 1676 0072 0B       		.uleb128 0xb
+ 1677 0073 3B       		.uleb128 0x3b
+ 1678 0074 05       		.uleb128 0x5
+ 1679 0075 27       		.uleb128 0x27
+ 1680 0076 0C       		.uleb128 0xc
+ 1681 0077 49       		.uleb128 0x49
+ 1682 0078 13       		.uleb128 0x13
+ 1683 0079 20       		.uleb128 0x20
+ 1684 007a 0B       		.uleb128 0xb
+ 1685 007b 01       		.uleb128 0x1
+ 1686 007c 13       		.uleb128 0x13
+ 1687 007d 00       		.byte	0x0
+ 1688 007e 00       		.byte	0x0
+ 1689 007f 0A       		.uleb128 0xa
+ 1690 0080 34       		.uleb128 0x34
+ 1691 0081 00       		.byte	0x0
+ 1692 0082 03       		.uleb128 0x3
+ 1693 0083 0E       		.uleb128 0xe
+ 1694 0084 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 51
+
+
+ 1695 0085 0B       		.uleb128 0xb
+ 1696 0086 3B       		.uleb128 0x3b
+ 1697 0087 05       		.uleb128 0x5
+ 1698 0088 49       		.uleb128 0x49
+ 1699 0089 13       		.uleb128 0x13
+ 1700 008a 00       		.byte	0x0
+ 1701 008b 00       		.byte	0x0
+ 1702 008c 0B       		.uleb128 0xb
+ 1703 008d 2E       		.uleb128 0x2e
+ 1704 008e 00       		.byte	0x0
+ 1705 008f 31       		.uleb128 0x31
+ 1706 0090 13       		.uleb128 0x13
+ 1707 0091 11       		.uleb128 0x11
+ 1708 0092 01       		.uleb128 0x1
+ 1709 0093 12       		.uleb128 0x12
+ 1710 0094 01       		.uleb128 0x1
+ 1711 0095 40       		.uleb128 0x40
+ 1712 0096 0A       		.uleb128 0xa
+ 1713 0097 00       		.byte	0x0
+ 1714 0098 00       		.byte	0x0
+ 1715 0099 0C       		.uleb128 0xc
+ 1716 009a 2E       		.uleb128 0x2e
+ 1717 009b 01       		.byte	0x1
+ 1718 009c 3F       		.uleb128 0x3f
+ 1719 009d 0C       		.uleb128 0xc
+ 1720 009e 03       		.uleb128 0x3
+ 1721 009f 0E       		.uleb128 0xe
+ 1722 00a0 3A       		.uleb128 0x3a
+ 1723 00a1 0B       		.uleb128 0xb
+ 1724 00a2 3B       		.uleb128 0x3b
+ 1725 00a3 05       		.uleb128 0x5
+ 1726 00a4 27       		.uleb128 0x27
+ 1727 00a5 0C       		.uleb128 0xc
+ 1728 00a6 11       		.uleb128 0x11
+ 1729 00a7 01       		.uleb128 0x1
+ 1730 00a8 12       		.uleb128 0x12
+ 1731 00a9 01       		.uleb128 0x1
+ 1732 00aa 40       		.uleb128 0x40
+ 1733 00ab 0A       		.uleb128 0xa
+ 1734 00ac 01       		.uleb128 0x1
+ 1735 00ad 13       		.uleb128 0x13
+ 1736 00ae 00       		.byte	0x0
+ 1737 00af 00       		.byte	0x0
+ 1738 00b0 0D       		.uleb128 0xd
+ 1739 00b1 05       		.uleb128 0x5
+ 1740 00b2 00       		.byte	0x0
+ 1741 00b3 03       		.uleb128 0x3
+ 1742 00b4 0E       		.uleb128 0xe
+ 1743 00b5 3A       		.uleb128 0x3a
+ 1744 00b6 0B       		.uleb128 0xb
+ 1745 00b7 3B       		.uleb128 0x3b
+ 1746 00b8 05       		.uleb128 0x5
+ 1747 00b9 49       		.uleb128 0x49
+ 1748 00ba 13       		.uleb128 0x13
+ 1749 00bb 02       		.uleb128 0x2
+ 1750 00bc 0A       		.uleb128 0xa
+ 1751 00bd 00       		.byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 52
+
+
+ 1752 00be 00       		.byte	0x0
+ 1753 00bf 0E       		.uleb128 0xe
+ 1754 00c0 2E       		.uleb128 0x2e
+ 1755 00c1 01       		.byte	0x1
+ 1756 00c2 31       		.uleb128 0x31
+ 1757 00c3 13       		.uleb128 0x13
+ 1758 00c4 11       		.uleb128 0x11
+ 1759 00c5 01       		.uleb128 0x1
+ 1760 00c6 12       		.uleb128 0x12
+ 1761 00c7 01       		.uleb128 0x1
+ 1762 00c8 40       		.uleb128 0x40
+ 1763 00c9 0A       		.uleb128 0xa
+ 1764 00ca 01       		.uleb128 0x1
+ 1765 00cb 13       		.uleb128 0x13
+ 1766 00cc 00       		.byte	0x0
+ 1767 00cd 00       		.byte	0x0
+ 1768 00ce 0F       		.uleb128 0xf
+ 1769 00cf 34       		.uleb128 0x34
+ 1770 00d0 00       		.byte	0x0
+ 1771 00d1 31       		.uleb128 0x31
+ 1772 00d2 13       		.uleb128 0x13
+ 1773 00d3 02       		.uleb128 0x2
+ 1774 00d4 0A       		.uleb128 0xa
+ 1775 00d5 00       		.byte	0x0
+ 1776 00d6 00       		.byte	0x0
+ 1777 00d7 10       		.uleb128 0x10
+ 1778 00d8 2E       		.uleb128 0x2e
+ 1779 00d9 01       		.byte	0x1
+ 1780 00da 3F       		.uleb128 0x3f
+ 1781 00db 0C       		.uleb128 0xc
+ 1782 00dc 03       		.uleb128 0x3
+ 1783 00dd 0E       		.uleb128 0xe
+ 1784 00de 3A       		.uleb128 0x3a
+ 1785 00df 0B       		.uleb128 0xb
+ 1786 00e0 3B       		.uleb128 0x3b
+ 1787 00e1 05       		.uleb128 0x5
+ 1788 00e2 27       		.uleb128 0x27
+ 1789 00e3 0C       		.uleb128 0xc
+ 1790 00e4 11       		.uleb128 0x11
+ 1791 00e5 01       		.uleb128 0x1
+ 1792 00e6 12       		.uleb128 0x12
+ 1793 00e7 01       		.uleb128 0x1
+ 1794 00e8 40       		.uleb128 0x40
+ 1795 00e9 06       		.uleb128 0x6
+ 1796 00ea 01       		.uleb128 0x1
+ 1797 00eb 13       		.uleb128 0x13
+ 1798 00ec 00       		.byte	0x0
+ 1799 00ed 00       		.byte	0x0
+ 1800 00ee 11       		.uleb128 0x11
+ 1801 00ef 2E       		.uleb128 0x2e
+ 1802 00f0 01       		.byte	0x1
+ 1803 00f1 3F       		.uleb128 0x3f
+ 1804 00f2 0C       		.uleb128 0xc
+ 1805 00f3 03       		.uleb128 0x3
+ 1806 00f4 0E       		.uleb128 0xe
+ 1807 00f5 3A       		.uleb128 0x3a
+ 1808 00f6 0B       		.uleb128 0xb
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 53
+
+
+ 1809 00f7 3B       		.uleb128 0x3b
+ 1810 00f8 05       		.uleb128 0x5
+ 1811 00f9 27       		.uleb128 0x27
+ 1812 00fa 0C       		.uleb128 0xc
+ 1813 00fb 49       		.uleb128 0x49
+ 1814 00fc 13       		.uleb128 0x13
+ 1815 00fd 11       		.uleb128 0x11
+ 1816 00fe 01       		.uleb128 0x1
+ 1817 00ff 12       		.uleb128 0x12
+ 1818 0100 01       		.uleb128 0x1
+ 1819 0101 40       		.uleb128 0x40
+ 1820 0102 0A       		.uleb128 0xa
+ 1821 0103 01       		.uleb128 0x1
+ 1822 0104 13       		.uleb128 0x13
+ 1823 0105 00       		.byte	0x0
+ 1824 0106 00       		.byte	0x0
+ 1825 0107 12       		.uleb128 0x12
+ 1826 0108 34       		.uleb128 0x34
+ 1827 0109 00       		.byte	0x0
+ 1828 010a 03       		.uleb128 0x3
+ 1829 010b 0E       		.uleb128 0xe
+ 1830 010c 3A       		.uleb128 0x3a
+ 1831 010d 0B       		.uleb128 0xb
+ 1832 010e 3B       		.uleb128 0x3b
+ 1833 010f 05       		.uleb128 0x5
+ 1834 0110 49       		.uleb128 0x49
+ 1835 0111 13       		.uleb128 0x13
+ 1836 0112 02       		.uleb128 0x2
+ 1837 0113 0A       		.uleb128 0xa
+ 1838 0114 00       		.byte	0x0
+ 1839 0115 00       		.byte	0x0
+ 1840 0116 13       		.uleb128 0x13
+ 1841 0117 2E       		.uleb128 0x2e
+ 1842 0118 01       		.byte	0x1
+ 1843 0119 3F       		.uleb128 0x3f
+ 1844 011a 0C       		.uleb128 0xc
+ 1845 011b 03       		.uleb128 0x3
+ 1846 011c 0E       		.uleb128 0xe
+ 1847 011d 3A       		.uleb128 0x3a
+ 1848 011e 0B       		.uleb128 0xb
+ 1849 011f 3B       		.uleb128 0x3b
+ 1850 0120 05       		.uleb128 0x5
+ 1851 0121 27       		.uleb128 0x27
+ 1852 0122 0C       		.uleb128 0xc
+ 1853 0123 49       		.uleb128 0x49
+ 1854 0124 13       		.uleb128 0x13
+ 1855 0125 11       		.uleb128 0x11
+ 1856 0126 01       		.uleb128 0x1
+ 1857 0127 12       		.uleb128 0x12
+ 1858 0128 01       		.uleb128 0x1
+ 1859 0129 40       		.uleb128 0x40
+ 1860 012a 06       		.uleb128 0x6
+ 1861 012b 01       		.uleb128 0x1
+ 1862 012c 13       		.uleb128 0x13
+ 1863 012d 00       		.byte	0x0
+ 1864 012e 00       		.byte	0x0
+ 1865 012f 14       		.uleb128 0x14
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 54
+
+
+ 1866 0130 34       		.uleb128 0x34
+ 1867 0131 00       		.byte	0x0
+ 1868 0132 03       		.uleb128 0x3
+ 1869 0133 0E       		.uleb128 0xe
+ 1870 0134 3A       		.uleb128 0x3a
+ 1871 0135 0B       		.uleb128 0xb
+ 1872 0136 3B       		.uleb128 0x3b
+ 1873 0137 05       		.uleb128 0x5
+ 1874 0138 49       		.uleb128 0x49
+ 1875 0139 13       		.uleb128 0x13
+ 1876 013a 02       		.uleb128 0x2
+ 1877 013b 06       		.uleb128 0x6
+ 1878 013c 00       		.byte	0x0
+ 1879 013d 00       		.byte	0x0
+ 1880 013e 15       		.uleb128 0x15
+ 1881 013f 2E       		.uleb128 0x2e
+ 1882 0140 00       		.byte	0x0
+ 1883 0141 3F       		.uleb128 0x3f
+ 1884 0142 0C       		.uleb128 0xc
+ 1885 0143 03       		.uleb128 0x3
+ 1886 0144 0E       		.uleb128 0xe
+ 1887 0145 3A       		.uleb128 0x3a
+ 1888 0146 0B       		.uleb128 0xb
+ 1889 0147 3B       		.uleb128 0x3b
+ 1890 0148 05       		.uleb128 0x5
+ 1891 0149 27       		.uleb128 0x27
+ 1892 014a 0C       		.uleb128 0xc
+ 1893 014b 11       		.uleb128 0x11
+ 1894 014c 01       		.uleb128 0x1
+ 1895 014d 12       		.uleb128 0x12
+ 1896 014e 01       		.uleb128 0x1
+ 1897 014f 40       		.uleb128 0x40
+ 1898 0150 06       		.uleb128 0x6
+ 1899 0151 00       		.byte	0x0
+ 1900 0152 00       		.byte	0x0
+ 1901 0153 16       		.uleb128 0x16
+ 1902 0154 05       		.uleb128 0x5
+ 1903 0155 00       		.byte	0x0
+ 1904 0156 03       		.uleb128 0x3
+ 1905 0157 0E       		.uleb128 0xe
+ 1906 0158 3A       		.uleb128 0x3a
+ 1907 0159 0B       		.uleb128 0xb
+ 1908 015a 3B       		.uleb128 0x3b
+ 1909 015b 05       		.uleb128 0x5
+ 1910 015c 49       		.uleb128 0x49
+ 1911 015d 13       		.uleb128 0x13
+ 1912 015e 02       		.uleb128 0x2
+ 1913 015f 06       		.uleb128 0x6
+ 1914 0160 00       		.byte	0x0
+ 1915 0161 00       		.byte	0x0
+ 1916 0162 17       		.uleb128 0x17
+ 1917 0163 0F       		.uleb128 0xf
+ 1918 0164 00       		.byte	0x0
+ 1919 0165 0B       		.uleb128 0xb
+ 1920 0166 0B       		.uleb128 0xb
+ 1921 0167 49       		.uleb128 0x49
+ 1922 0168 13       		.uleb128 0x13
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 55
+
+
+ 1923 0169 00       		.byte	0x0
+ 1924 016a 00       		.byte	0x0
+ 1925 016b 18       		.uleb128 0x18
+ 1926 016c 26       		.uleb128 0x26
+ 1927 016d 00       		.byte	0x0
+ 1928 016e 49       		.uleb128 0x49
+ 1929 016f 13       		.uleb128 0x13
+ 1930 0170 00       		.byte	0x0
+ 1931 0171 00       		.byte	0x0
+ 1932 0172 19       		.uleb128 0x19
+ 1933 0173 2E       		.uleb128 0x2e
+ 1934 0174 00       		.byte	0x0
+ 1935 0175 3F       		.uleb128 0x3f
+ 1936 0176 0C       		.uleb128 0xc
+ 1937 0177 03       		.uleb128 0x3
+ 1938 0178 0E       		.uleb128 0xe
+ 1939 0179 3A       		.uleb128 0x3a
+ 1940 017a 0B       		.uleb128 0xb
+ 1941 017b 3B       		.uleb128 0x3b
+ 1942 017c 05       		.uleb128 0x5
+ 1943 017d 27       		.uleb128 0x27
+ 1944 017e 0C       		.uleb128 0xc
+ 1945 017f 11       		.uleb128 0x11
+ 1946 0180 01       		.uleb128 0x1
+ 1947 0181 12       		.uleb128 0x12
+ 1948 0182 01       		.uleb128 0x1
+ 1949 0183 40       		.uleb128 0x40
+ 1950 0184 0A       		.uleb128 0xa
+ 1951 0185 00       		.byte	0x0
+ 1952 0186 00       		.byte	0x0
+ 1953 0187 1A       		.uleb128 0x1a
+ 1954 0188 2E       		.uleb128 0x2e
+ 1955 0189 01       		.byte	0x1
+ 1956 018a 3F       		.uleb128 0x3f
+ 1957 018b 0C       		.uleb128 0xc
+ 1958 018c 03       		.uleb128 0x3
+ 1959 018d 0E       		.uleb128 0xe
+ 1960 018e 3A       		.uleb128 0x3a
+ 1961 018f 0B       		.uleb128 0xb
+ 1962 0190 3B       		.uleb128 0x3b
+ 1963 0191 0B       		.uleb128 0xb
+ 1964 0192 27       		.uleb128 0x27
+ 1965 0193 0C       		.uleb128 0xc
+ 1966 0194 11       		.uleb128 0x11
+ 1967 0195 01       		.uleb128 0x1
+ 1968 0196 12       		.uleb128 0x12
+ 1969 0197 01       		.uleb128 0x1
+ 1970 0198 40       		.uleb128 0x40
+ 1971 0199 06       		.uleb128 0x6
+ 1972 019a 01       		.uleb128 0x1
+ 1973 019b 13       		.uleb128 0x13
+ 1974 019c 00       		.byte	0x0
+ 1975 019d 00       		.byte	0x0
+ 1976 019e 1B       		.uleb128 0x1b
+ 1977 019f 1D       		.uleb128 0x1d
+ 1978 01a0 01       		.byte	0x1
+ 1979 01a1 31       		.uleb128 0x31
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 56
+
+
+ 1980 01a2 13       		.uleb128 0x13
+ 1981 01a3 52       		.uleb128 0x52
+ 1982 01a4 01       		.uleb128 0x1
+ 1983 01a5 55       		.uleb128 0x55
+ 1984 01a6 06       		.uleb128 0x6
+ 1985 01a7 58       		.uleb128 0x58
+ 1986 01a8 0B       		.uleb128 0xb
+ 1987 01a9 59       		.uleb128 0x59
+ 1988 01aa 0B       		.uleb128 0xb
+ 1989 01ab 01       		.uleb128 0x1
+ 1990 01ac 13       		.uleb128 0x13
+ 1991 01ad 00       		.byte	0x0
+ 1992 01ae 00       		.byte	0x0
+ 1993 01af 1C       		.uleb128 0x1c
+ 1994 01b0 0B       		.uleb128 0xb
+ 1995 01b1 01       		.byte	0x1
+ 1996 01b2 55       		.uleb128 0x55
+ 1997 01b3 06       		.uleb128 0x6
+ 1998 01b4 00       		.byte	0x0
+ 1999 01b5 00       		.byte	0x0
+ 2000 01b6 1D       		.uleb128 0x1d
+ 2001 01b7 34       		.uleb128 0x34
+ 2002 01b8 00       		.byte	0x0
+ 2003 01b9 31       		.uleb128 0x31
+ 2004 01ba 13       		.uleb128 0x13
+ 2005 01bb 00       		.byte	0x0
+ 2006 01bc 00       		.byte	0x0
+ 2007 01bd 1E       		.uleb128 0x1e
+ 2008 01be 1D       		.uleb128 0x1d
+ 2009 01bf 01       		.byte	0x1
+ 2010 01c0 31       		.uleb128 0x31
+ 2011 01c1 13       		.uleb128 0x13
+ 2012 01c2 52       		.uleb128 0x52
+ 2013 01c3 01       		.uleb128 0x1
+ 2014 01c4 55       		.uleb128 0x55
+ 2015 01c5 06       		.uleb128 0x6
+ 2016 01c6 58       		.uleb128 0x58
+ 2017 01c7 0B       		.uleb128 0xb
+ 2018 01c8 59       		.uleb128 0x59
+ 2019 01c9 0B       		.uleb128 0xb
+ 2020 01ca 00       		.byte	0x0
+ 2021 01cb 00       		.byte	0x0
+ 2022 01cc 1F       		.uleb128 0x1f
+ 2023 01cd 34       		.uleb128 0x34
+ 2024 01ce 00       		.byte	0x0
+ 2025 01cf 03       		.uleb128 0x3
+ 2026 01d0 0E       		.uleb128 0xe
+ 2027 01d1 3A       		.uleb128 0x3a
+ 2028 01d2 0B       		.uleb128 0xb
+ 2029 01d3 3B       		.uleb128 0x3b
+ 2030 01d4 0B       		.uleb128 0xb
+ 2031 01d5 49       		.uleb128 0x49
+ 2032 01d6 13       		.uleb128 0x13
+ 2033 01d7 00       		.byte	0x0
+ 2034 01d8 00       		.byte	0x0
+ 2035 01d9 20       		.uleb128 0x20
+ 2036 01da 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 57
+
+
+ 2037 01db 00       		.byte	0x0
+ 2038 01dc 3F       		.uleb128 0x3f
+ 2039 01dd 0C       		.uleb128 0xc
+ 2040 01de 03       		.uleb128 0x3
+ 2041 01df 0E       		.uleb128 0xe
+ 2042 01e0 3A       		.uleb128 0x3a
+ 2043 01e1 0B       		.uleb128 0xb
+ 2044 01e2 3B       		.uleb128 0x3b
+ 2045 01e3 0B       		.uleb128 0xb
+ 2046 01e4 27       		.uleb128 0x27
+ 2047 01e5 0C       		.uleb128 0xc
+ 2048 01e6 11       		.uleb128 0x11
+ 2049 01e7 01       		.uleb128 0x1
+ 2050 01e8 12       		.uleb128 0x12
+ 2051 01e9 01       		.uleb128 0x1
+ 2052 01ea 40       		.uleb128 0x40
+ 2053 01eb 06       		.uleb128 0x6
+ 2054 01ec 00       		.byte	0x0
+ 2055 01ed 00       		.byte	0x0
+ 2056 01ee 21       		.uleb128 0x21
+ 2057 01ef 34       		.uleb128 0x34
+ 2058 01f0 00       		.byte	0x0
+ 2059 01f1 03       		.uleb128 0x3
+ 2060 01f2 0E       		.uleb128 0xe
+ 2061 01f3 3A       		.uleb128 0x3a
+ 2062 01f4 0B       		.uleb128 0xb
+ 2063 01f5 3B       		.uleb128 0x3b
+ 2064 01f6 0B       		.uleb128 0xb
+ 2065 01f7 49       		.uleb128 0x49
+ 2066 01f8 13       		.uleb128 0x13
+ 2067 01f9 3F       		.uleb128 0x3f
+ 2068 01fa 0C       		.uleb128 0xc
+ 2069 01fb 02       		.uleb128 0x2
+ 2070 01fc 0A       		.uleb128 0xa
+ 2071 01fd 00       		.byte	0x0
+ 2072 01fe 00       		.byte	0x0
+ 2073 01ff 00       		.byte	0x0
+ 2074              		.section	.debug_pubnames,"",%progbits
+ 2075 0000 AB020000 		.4byte	0x2ab
+ 2076 0004 0200     		.2byte	0x2
+ 2077 0006 00000000 		.4byte	.Ldebug_info0
+ 2078 000a 94040000 		.4byte	0x494
+ 2079 000e 0C010000 		.4byte	0x10c
+ 2080 0012 4C43445F 		.ascii	"LCD_SPIM_EnableTxInt\000"
+ 2080      5350494D 
+ 2080      5F456E61 
+ 2080      626C6554 
+ 2080      78496E74 
+ 2081 0027 1B010000 		.4byte	0x11b
+ 2082 002b 4C43445F 		.ascii	"LCD_SPIM_EnableRxInt\000"
+ 2082      5350494D 
+ 2082      5F456E61 
+ 2082      626C6552 
+ 2082      78496E74 
+ 2083 0040 2A010000 		.4byte	0x12a
+ 2084 0044 4C43445F 		.ascii	"LCD_SPIM_DisableTxInt\000"
+ 2084      5350494D 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 58
+
+
+ 2084      5F446973 
+ 2084      61626C65 
+ 2084      5478496E 
+ 2085 005a 39010000 		.4byte	0x139
+ 2086 005e 4C43445F 		.ascii	"LCD_SPIM_DisableRxInt\000"
+ 2086      5350494D 
+ 2086      5F446973 
+ 2086      61626C65 
+ 2086      5278496E 
+ 2087 0074 48010000 		.4byte	0x148
+ 2088 0078 4C43445F 		.ascii	"LCD_SPIM_SetTxInterruptMode\000"
+ 2088      5350494D 
+ 2088      5F536574 
+ 2088      5478496E 
+ 2088      74657272 
+ 2089 0094 6F010000 		.4byte	0x16f
+ 2090 0098 4C43445F 		.ascii	"LCD_SPIM_SetRxInterruptMode\000"
+ 2090      5350494D 
+ 2090      5F536574 
+ 2090      5278496E 
+ 2090      74657272 
+ 2091 00b4 96010000 		.4byte	0x196
+ 2092 00b8 4C43445F 		.ascii	"LCD_SPIM_ReadTxStatus\000"
+ 2092      5350494D 
+ 2092      5F526561 
+ 2092      64547853 
+ 2092      74617475 
+ 2093 00ce B1010000 		.4byte	0x1b1
+ 2094 00d2 4C43445F 		.ascii	"LCD_SPIM_ReadRxStatus\000"
+ 2094      5350494D 
+ 2094      5F526561 
+ 2094      64527853 
+ 2094      74617475 
+ 2095 00e8 CC010000 		.4byte	0x1cc
+ 2096 00ec 4C43445F 		.ascii	"LCD_SPIM_WriteTxData\000"
+ 2096      5350494D 
+ 2096      5F577269 
+ 2096      74655478 
+ 2096      44617461 
+ 2097 0101 F5010000 		.4byte	0x1f5
+ 2098 0105 4C43445F 		.ascii	"LCD_SPIM_ReadRxData\000"
+ 2098      5350494D 
+ 2098      5F526561 
+ 2098      64527844 
+ 2098      61746100 
+ 2099 0119 20020000 		.4byte	0x220
+ 2100 011d 4C43445F 		.ascii	"LCD_SPIM_GetRxBufferSize\000"
+ 2100      5350494D 
+ 2100      5F476574 
+ 2100      52784275 
+ 2100      66666572 
+ 2101 0136 49020000 		.4byte	0x249
+ 2102 013a 4C43445F 		.ascii	"LCD_SPIM_GetTxBufferSize\000"
+ 2102      5350494D 
+ 2102      5F476574 
+ 2102      54784275 
+ 2102      66666572 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 59
+
+
+ 2103 0153 78020000 		.4byte	0x278
+ 2104 0157 4C43445F 		.ascii	"LCD_SPIM_ClearRxBuffer\000"
+ 2104      5350494D 
+ 2104      5F436C65 
+ 2104      61725278 
+ 2104      42756666 
+ 2105 016e 8E020000 		.4byte	0x28e
+ 2106 0172 4C43445F 		.ascii	"LCD_SPIM_PutArray\000"
+ 2106      5350494D 
+ 2106      5F507574 
+ 2106      41727261 
+ 2106      7900
+ 2107 0184 E0020000 		.4byte	0x2e0
+ 2108 0188 4C43445F 		.ascii	"LCD_SPIM_EnableInt\000"
+ 2108      5350494D 
+ 2108      5F456E61 
+ 2108      626C6549 
+ 2108      6E7400
+ 2109 019b F4020000 		.4byte	0x2f4
+ 2110 019f 4C43445F 		.ascii	"LCD_SPIM_DisableInt\000"
+ 2110      5350494D 
+ 2110      5F446973 
+ 2110      61626C65 
+ 2110      496E7400 
+ 2111 01b3 08030000 		.4byte	0x308
+ 2112 01b7 4C43445F 		.ascii	"LCD_SPIM_SetInterruptMode\000"
+ 2112      5350494D 
+ 2112      5F536574 
+ 2112      496E7465 
+ 2112      72727570 
+ 2113 01d1 2F030000 		.4byte	0x32f
+ 2114 01d5 4C43445F 		.ascii	"LCD_SPIM_ReadStatus\000"
+ 2114      5350494D 
+ 2114      5F526561 
+ 2114      64537461 
+ 2114      74757300 
+ 2115 01e9 5C030000 		.4byte	0x35c
+ 2116 01ed 4C43445F 		.ascii	"LCD_SPIM_ClearFIFO\000"
+ 2116      5350494D 
+ 2116      5F436C65 
+ 2116      61724649 
+ 2116      464F00
+ 2117 0200 83030000 		.4byte	0x383
+ 2118 0204 4C43445F 		.ascii	"LCD_SPIM_Init\000"
+ 2118      5350494D 
+ 2118      5F496E69 
+ 2118      7400
+ 2119 0212 D7030000 		.4byte	0x3d7
+ 2120 0216 4C43445F 		.ascii	"LCD_SPIM_ClearTxBuffer\000"
+ 2120      5350494D 
+ 2120      5F436C65 
+ 2120      61725478 
+ 2120      42756666 
+ 2121 022d FE030000 		.4byte	0x3fe
+ 2122 0231 4C43445F 		.ascii	"LCD_SPIM_Stop\000"
+ 2122      5350494D 
+ 2122      5F53746F 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 60
+
+
+ 2122      7000
+ 2123 023f 23040000 		.4byte	0x423
+ 2124 0243 4C43445F 		.ascii	"LCD_SPIM_Enable\000"
+ 2124      5350494D 
+ 2124      5F456E61 
+ 2124      626C6500 
+ 2125 0253 48040000 		.4byte	0x448
+ 2126 0257 4C43445F 		.ascii	"LCD_SPIM_Start\000"
+ 2126      5350494D 
+ 2126      5F537461 
+ 2126      727400
+ 2127 0266 5D040000 		.4byte	0x45d
+ 2128 026a 4C43445F 		.ascii	"LCD_SPIM_initVar\000"
+ 2128      5350494D 
+ 2128      5F696E69 
+ 2128      74566172 
+ 2128      00
+ 2129 027b 6F040000 		.4byte	0x46f
+ 2130 027f 4C43445F 		.ascii	"LCD_SPIM_swStatusTx\000"
+ 2130      5350494D 
+ 2130      5F737753 
+ 2130      74617475 
+ 2130      73547800 
+ 2131 0293 81040000 		.4byte	0x481
+ 2132 0297 4C43445F 		.ascii	"LCD_SPIM_swStatusRx\000"
+ 2132      5350494D 
+ 2132      5F737753 
+ 2132      74617475 
+ 2132      73527800 
+ 2133 02ab 00000000 		.4byte	0x0
+ 2134              		.section	.debug_aranges,"",%progbits
+ 2135 0000 D4000000 		.4byte	0xd4
+ 2136 0004 0200     		.2byte	0x2
+ 2137 0006 00000000 		.4byte	.Ldebug_info0
+ 2138 000a 04       		.byte	0x4
+ 2139 000b 00       		.byte	0x0
+ 2140 000c 0000     		.2byte	0x0
+ 2141 000e 0000     		.2byte	0x0
+ 2142 0010 00000000 		.4byte	.LFB4
+ 2143 0014 02000000 		.4byte	.LFE4-.LFB4
+ 2144 0018 00000000 		.4byte	.LFB5
+ 2145 001c 02000000 		.4byte	.LFE5-.LFB5
+ 2146 0020 00000000 		.4byte	.LFB6
+ 2147 0024 02000000 		.4byte	.LFE6-.LFB6
+ 2148 0028 00000000 		.4byte	.LFB7
+ 2149 002c 02000000 		.4byte	.LFE7-.LFB7
+ 2150 0030 00000000 		.4byte	.LFB8
+ 2151 0034 0C000000 		.4byte	.LFE8-.LFB8
+ 2152 0038 00000000 		.4byte	.LFB9
+ 2153 003c 0C000000 		.4byte	.LFE9-.LFB9
+ 2154 0040 00000000 		.4byte	.LFB10
+ 2155 0044 0C000000 		.4byte	.LFE10-.LFB10
+ 2156 0048 00000000 		.4byte	.LFB11
+ 2157 004c 0C000000 		.4byte	.LFE11-.LFB11
+ 2158 0050 00000000 		.4byte	.LFB12
+ 2159 0054 18000000 		.4byte	.LFE12-.LFB12
+ 2160 0058 00000000 		.4byte	.LFB13
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 61
+
+
+ 2161 005c 0C000000 		.4byte	.LFE13-.LFB13
+ 2162 0060 00000000 		.4byte	.LFB14
+ 2163 0064 10000000 		.4byte	.LFE14-.LFB14
+ 2164 0068 00000000 		.4byte	.LFB15
+ 2165 006c 20000000 		.4byte	.LFE15-.LFB15
+ 2166 0070 00000000 		.4byte	.LFB16
+ 2167 0074 1C000000 		.4byte	.LFE16-.LFB16
+ 2168 0078 00000000 		.4byte	.LFB18
+ 2169 007c 1A000000 		.4byte	.LFE18-.LFB18
+ 2170 0080 00000000 		.4byte	.LFB20
+ 2171 0084 02000000 		.4byte	.LFE20-.LFB20
+ 2172 0088 00000000 		.4byte	.LFB21
+ 2173 008c 02000000 		.4byte	.LFE21-.LFB21
+ 2174 0090 00000000 		.4byte	.LFB22
+ 2175 0094 14000000 		.4byte	.LFE22-.LFB22
+ 2176 0098 00000000 		.4byte	.LFB23
+ 2177 009c 18000000 		.4byte	.LFE23-.LFB23
+ 2178 00a0 00000000 		.4byte	.LFB19
+ 2179 00a4 4C000000 		.4byte	.LFE19-.LFB19
+ 2180 00a8 00000000 		.4byte	.LFB0
+ 2181 00ac 30000000 		.4byte	.LFE0-.LFB0
+ 2182 00b0 00000000 		.4byte	.LFB17
+ 2183 00b4 34000000 		.4byte	.LFE17-.LFB17
+ 2184 00b8 00000000 		.4byte	.LFB3
+ 2185 00bc 28000000 		.4byte	.LFE3-.LFB3
+ 2186 00c0 00000000 		.4byte	.LFB1
+ 2187 00c4 34000000 		.4byte	.LFE1-.LFB1
+ 2188 00c8 00000000 		.4byte	.LFB2
+ 2189 00cc 1C000000 		.4byte	.LFE2-.LFB2
+ 2190 00d0 00000000 		.4byte	0x0
+ 2191 00d4 00000000 		.4byte	0x0
+ 2192              		.section	.debug_ranges,"",%progbits
+ 2193              	.Ldebug_ranges0:
+ 2194 0000 0C000000 		.4byte	.LBB22
+ 2195 0004 0E000000 		.4byte	.LBE22
+ 2196 0008 10000000 		.4byte	.LBB25
+ 2197 000c 12000000 		.4byte	.LBE25
+ 2198 0010 00000000 		.4byte	0x0
+ 2199 0014 00000000 		.4byte	0x0
+ 2200 0018 0C000000 		.4byte	.LBB23
+ 2201 001c 0E000000 		.4byte	.LBE23
+ 2202 0020 10000000 		.4byte	.LBB24
+ 2203 0024 12000000 		.4byte	.LBE24
+ 2204 0028 00000000 		.4byte	0x0
+ 2205 002c 00000000 		.4byte	0x0
+ 2206 0030 12000000 		.4byte	.LBB26
+ 2207 0034 14000000 		.4byte	.LBE26
+ 2208 0038 14000000 		.4byte	.LBB29
+ 2209 003c 16000000 		.4byte	.LBE29
+ 2210 0040 00000000 		.4byte	0x0
+ 2211 0044 00000000 		.4byte	0x0
+ 2212 0048 12000000 		.4byte	.LBB27
+ 2213 004c 14000000 		.4byte	.LBE27
+ 2214 0050 14000000 		.4byte	.LBB28
+ 2215 0054 16000000 		.4byte	.LBE28
+ 2216 0058 00000000 		.4byte	0x0
+ 2217 005c 00000000 		.4byte	0x0
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 62
+
+
+ 2218 0060 00000000 		.4byte	.Ltext0
+ 2219 0064 00000000 		.4byte	.Letext0
+ 2220 0068 00000000 		.4byte	.LFB4
+ 2221 006c 02000000 		.4byte	.LFE4
+ 2222 0070 00000000 		.4byte	.LFB5
+ 2223 0074 02000000 		.4byte	.LFE5
+ 2224 0078 00000000 		.4byte	.LFB6
+ 2225 007c 02000000 		.4byte	.LFE6
+ 2226 0080 00000000 		.4byte	.LFB7
+ 2227 0084 02000000 		.4byte	.LFE7
+ 2228 0088 00000000 		.4byte	.LFB8
+ 2229 008c 0C000000 		.4byte	.LFE8
+ 2230 0090 00000000 		.4byte	.LFB9
+ 2231 0094 0C000000 		.4byte	.LFE9
+ 2232 0098 00000000 		.4byte	.LFB10
+ 2233 009c 0C000000 		.4byte	.LFE10
+ 2234 00a0 00000000 		.4byte	.LFB11
+ 2235 00a4 0C000000 		.4byte	.LFE11
+ 2236 00a8 00000000 		.4byte	.LFB12
+ 2237 00ac 18000000 		.4byte	.LFE12
+ 2238 00b0 00000000 		.4byte	.LFB13
+ 2239 00b4 0C000000 		.4byte	.LFE13
+ 2240 00b8 00000000 		.4byte	.LFB14
+ 2241 00bc 10000000 		.4byte	.LFE14
+ 2242 00c0 00000000 		.4byte	.LFB15
+ 2243 00c4 20000000 		.4byte	.LFE15
+ 2244 00c8 00000000 		.4byte	.LFB16
+ 2245 00cc 1C000000 		.4byte	.LFE16
+ 2246 00d0 00000000 		.4byte	.LFB18
+ 2247 00d4 1A000000 		.4byte	.LFE18
+ 2248 00d8 00000000 		.4byte	.LFB20
+ 2249 00dc 02000000 		.4byte	.LFE20
+ 2250 00e0 00000000 		.4byte	.LFB21
+ 2251 00e4 02000000 		.4byte	.LFE21
+ 2252 00e8 00000000 		.4byte	.LFB22
+ 2253 00ec 14000000 		.4byte	.LFE22
+ 2254 00f0 00000000 		.4byte	.LFB23
+ 2255 00f4 18000000 		.4byte	.LFE23
+ 2256 00f8 00000000 		.4byte	.LFB19
+ 2257 00fc 4C000000 		.4byte	.LFE19
+ 2258 0100 00000000 		.4byte	.LFB0
+ 2259 0104 30000000 		.4byte	.LFE0
+ 2260 0108 00000000 		.4byte	.LFB17
+ 2261 010c 34000000 		.4byte	.LFE17
+ 2262 0110 00000000 		.4byte	.LFB3
+ 2263 0114 28000000 		.4byte	.LFE3
+ 2264 0118 00000000 		.4byte	.LFB1
+ 2265 011c 34000000 		.4byte	.LFE1
+ 2266 0120 00000000 		.4byte	.LFB2
+ 2267 0124 1C000000 		.4byte	.LFE2
+ 2268 0128 00000000 		.4byte	0x0
+ 2269 012c 00000000 		.4byte	0x0
+ 2270              		.section	.debug_str,"MS",%progbits,1
+ 2271              	.LASF6:
+ 2272 0000 6C6F6E67 		.ascii	"long long int\000"
+ 2272      206C6F6E 
+ 2272      6720696E 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 63
+
+
+ 2272      7400
+ 2273              	.LASF47:
+ 2274 000e 4C43445F 		.ascii	"LCD_SPIM_initVar\000"
+ 2274      5350494D 
+ 2274      5F696E69 
+ 2274      74566172 
+ 2274      00
+ 2275              	.LASF46:
+ 2276 001f 4C43445F 		.ascii	"LCD_SPIM_Start\000"
+ 2276      5350494D 
+ 2276      5F537461 
+ 2276      727400
+ 2277              	.LASF38:
+ 2278 002e 4C43445F 		.ascii	"LCD_SPIM_SetInterruptMode\000"
+ 2278      5350494D 
+ 2278      5F536574 
+ 2278      496E7465 
+ 2278      72727570 
+ 2279              	.LASF24:
+ 2280 0048 4C43445F 		.ascii	"LCD_SPIM_WriteTxData\000"
+ 2280      5350494D 
+ 2280      5F577269 
+ 2280      74655478 
+ 2280      44617461 
+ 2281              	.LASF21:
+ 2282 005d 4C43445F 		.ascii	"LCD_SPIM_SetTxInterruptMode\000"
+ 2282      5350494D 
+ 2282      5F536574 
+ 2282      5478496E 
+ 2282      74657272 
+ 2283              	.LASF19:
+ 2284 0079 4C43445F 		.ascii	"LCD_SPIM_ReadRxStatus\000"
+ 2284      5350494D 
+ 2284      5F526561 
+ 2284      64527853 
+ 2284      74617475 
+ 2285              	.LASF22:
+ 2286 008f 4C43445F 		.ascii	"LCD_SPIM_SetRxInterruptMode\000"
+ 2286      5350494D 
+ 2286      5F536574 
+ 2286      5278496E 
+ 2286      74657272 
+ 2287              	.LASF3:
+ 2288 00ab 73686F72 		.ascii	"short unsigned int\000"
+ 2288      7420756E 
+ 2288      7369676E 
+ 2288      65642069 
+ 2288      6E7400
+ 2289              	.LASF51:
+ 2290 00be 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\LCD_SPIM.c\000"
+ 2290      6E657261 
+ 2290      7465645F 
+ 2290      536F7572 
+ 2290      63655C50 
+ 2291              	.LASF16:
+ 2292 00e2 4C43445F 		.ascii	"LCD_SPIM_DisableTxInt\000"
+ 2292      5350494D 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 64
+
+
+ 2292      5F446973 
+ 2292      61626C65 
+ 2292      5478496E 
+ 2293              	.LASF35:
+ 2294 00f8 4C43445F 		.ascii	"LCD_SPIM_ClearRxBuffer\000"
+ 2294      5350494D 
+ 2294      5F436C65 
+ 2294      61725278 
+ 2294      42756666 
+ 2295              	.LASF36:
+ 2296 010f 4C43445F 		.ascii	"LCD_SPIM_EnableInt\000"
+ 2296      5350494D 
+ 2296      5F456E61 
+ 2296      626C6549 
+ 2296      6E7400
+ 2297              	.LASF30:
+ 2298 0122 72784461 		.ascii	"rxData\000"
+ 2298      746100
+ 2299              	.LASF45:
+ 2300 0129 4C43445F 		.ascii	"LCD_SPIM_Enable\000"
+ 2300      5350494D 
+ 2300      5F456E61 
+ 2300      626C6500 
+ 2301              	.LASF28:
+ 2302 0139 73697A65 		.ascii	"size\000"
+ 2302      00
+ 2303              	.LASF5:
+ 2304 013e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2304      20756E73 
+ 2304      69676E65 
+ 2304      6420696E 
+ 2304      7400
+ 2305              	.LASF37:
+ 2306 0150 4C43445F 		.ascii	"LCD_SPIM_DisableInt\000"
+ 2306      5350494D 
+ 2306      5F446973 
+ 2306      61626C65 
+ 2306      496E7400 
+ 2307              	.LASF9:
+ 2308 0164 75696E74 		.ascii	"uint8\000"
+ 2308      3800
+ 2309              	.LASF39:
+ 2310 016a 4C43445F 		.ascii	"LCD_SPIM_ReadStatus\000"
+ 2310      5350494D 
+ 2310      5F526561 
+ 2310      64537461 
+ 2310      74757300 
+ 2311              	.LASF33:
+ 2312 017e 62797465 		.ascii	"byteCount\000"
+ 2312      436F756E 
+ 2312      7400
+ 2313              	.LASF41:
+ 2314 0188 656E6162 		.ascii	"enableInterrupts\000"
+ 2314      6C65496E 
+ 2314      74657272 
+ 2314      75707473 
+ 2314      00
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 65
+
+
+ 2315              	.LASF29:
+ 2316 0199 4C43445F 		.ascii	"LCD_SPIM_GetTxBufferSize\000"
+ 2316      5350494D 
+ 2316      5F476574 
+ 2316      54784275 
+ 2316      66666572 
+ 2317              	.LASF14:
+ 2318 01b2 4C43445F 		.ascii	"LCD_SPIM_EnableRxInt\000"
+ 2318      5350494D 
+ 2318      5F456E61 
+ 2318      626C6552 
+ 2318      78496E74 
+ 2319              	.LASF40:
+ 2320 01c7 4C43445F 		.ascii	"LCD_SPIM_ClearFIFO\000"
+ 2320      5350494D 
+ 2320      5F436C65 
+ 2320      61724649 
+ 2320      464F00
+ 2321              	.LASF12:
+ 2322 01da 646F7562 		.ascii	"double\000"
+ 2322      6C6500
+ 2323              	.LASF23:
+ 2324 01e1 696E7453 		.ascii	"intSrc\000"
+ 2324      726300
+ 2325              	.LASF42:
+ 2326 01e8 4C43445F 		.ascii	"LCD_SPIM_Init\000"
+ 2326      5350494D 
+ 2326      5F496E69 
+ 2326      7400
+ 2327              	.LASF10:
+ 2328 01f6 75696E74 		.ascii	"uint16\000"
+ 2328      313600
+ 2329              	.LASF1:
+ 2330 01fd 756E7369 		.ascii	"unsigned char\000"
+ 2330      676E6564 
+ 2330      20636861 
+ 2330      7200
+ 2331              	.LASF8:
+ 2332 020b 756E7369 		.ascii	"unsigned int\000"
+ 2332      676E6564 
+ 2332      20696E74 
+ 2332      00
+ 2333              	.LASF27:
+ 2334 0218 4C43445F 		.ascii	"LCD_SPIM_GetRxBufferSize\000"
+ 2334      5350494D 
+ 2334      5F476574 
+ 2334      52784275 
+ 2334      66666572 
+ 2335              	.LASF7:
+ 2336 0231 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2336      206C6F6E 
+ 2336      6720756E 
+ 2336      7369676E 
+ 2336      65642069 
+ 2337              	.LASF34:
+ 2338 0248 62756649 		.ascii	"bufIndex\000"
+ 2338      6E646578 
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 66
+
+
+ 2338      00
+ 2339              	.LASF25:
+ 2340 0251 74784461 		.ascii	"txData\000"
+ 2340      746100
+ 2341              	.LASF43:
+ 2342 0258 4C43445F 		.ascii	"LCD_SPIM_ClearTxBuffer\000"
+ 2342      5350494D 
+ 2342      5F436C65 
+ 2342      61725478 
+ 2342      42756666 
+ 2343              	.LASF17:
+ 2344 026f 4C43445F 		.ascii	"LCD_SPIM_DisableRxInt\000"
+ 2344      5350494D 
+ 2344      5F446973 
+ 2344      61626C65 
+ 2344      5278496E 
+ 2345              	.LASF26:
+ 2346 0285 4C43445F 		.ascii	"LCD_SPIM_ReadRxData\000"
+ 2346      5350494D 
+ 2346      5F526561 
+ 2346      64527844 
+ 2346      61746100 
+ 2347              	.LASF50:
+ 2348 0299 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 2348      4320342E 
+ 2348      342E3100 
+ 2349              	.LASF11:
+ 2350 02a5 666C6F61 		.ascii	"float\000"
+ 2350      7400
+ 2351              	.LASF13:
+ 2352 02ab 63686172 		.ascii	"char\000"
+ 2352      00
+ 2353              	.LASF49:
+ 2354 02b0 4C43445F 		.ascii	"LCD_SPIM_swStatusRx\000"
+ 2354      5350494D 
+ 2354      5F737753 
+ 2354      74617475 
+ 2354      73527800 
+ 2355              	.LASF18:
+ 2356 02c4 4C43445F 		.ascii	"LCD_SPIM_ReadTxStatus\000"
+ 2356      5350494D 
+ 2356      5F526561 
+ 2356      64547853 
+ 2356      74617475 
+ 2357              	.LASF2:
+ 2358 02da 73686F72 		.ascii	"short int\000"
+ 2358      7420696E 
+ 2358      7400
+ 2359              	.LASF32:
+ 2360 02e4 62756666 		.ascii	"buffer\000"
+ 2360      657200
+ 2361              	.LASF44:
+ 2362 02eb 4C43445F 		.ascii	"LCD_SPIM_Stop\000"
+ 2362      5350494D 
+ 2362      5F53746F 
+ 2362      7000
+ 2363              	.LASF4:
+ARM GAS  C:\Users\kees\AppData\Local\Temp\cckzdCcV.s 			page 67
+
+
+ 2364 02f9 6C6F6E67 		.ascii	"long int\000"
+ 2364      20696E74 
+ 2364      00
+ 2365              	.LASF20:
+ 2366 0302 746D7053 		.ascii	"tmpStatus\000"
+ 2366      74617475 
+ 2366      7300
+ 2367              	.LASF52:
+ 2368 030c 433A5C55 		.ascii	"C:\\Users\\kees\\Documents\\test_projects\\My fun s"
+ 2368      73657273 
+ 2368      5C6B6565 
+ 2368      735C446F 
+ 2368      63756D65 
+ 2369 033a 74756666 		.ascii	"tuff\\3d_cube\\3d_cube.Bundle01\\Design137.cydsn\000"
+ 2369      5C33645F 
+ 2369      63756265 
+ 2369      5C33645F 
+ 2369      63756265 
+ 2370              	.LASF0:
+ 2371 0368 7369676E 		.ascii	"signed char\000"
+ 2371      65642063 
+ 2371      68617200 
+ 2372              	.LASF15:
+ 2373 0374 4C43445F 		.ascii	"LCD_SPIM_EnableTxInt\000"
+ 2373      5350494D 
+ 2373      5F456E61 
+ 2373      626C6554 
+ 2373      78496E74 
+ 2374              	.LASF31:
+ 2375 0389 4C43445F 		.ascii	"LCD_SPIM_PutArray\000"
+ 2375      5350494D 
+ 2375      5F507574 
+ 2375      41727261 
+ 2375      7900
+ 2376              	.LASF48:
+ 2377 039b 4C43445F 		.ascii	"LCD_SPIM_swStatusTx\000"
+ 2377      5350494D 
+ 2377      5F737753 
+ 2377      74617475 
+ 2377      73547800 
+ 2378              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"
